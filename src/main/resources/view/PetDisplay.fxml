@@ -1,10 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<HBox fx:id="petPane" alignment="CENTER" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="petPane" alignment="CENTER" maxHeight="400.0" minHeight="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="pic" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+      <VBox prefHeight="75.0">
+         <children>
+            <Label fx:id="levelView" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="Level 0">
+               <font>
+                  <Font size="26.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="expBarView" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="0 XP / 100 XP">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </Label>
+            <ImageView fx:id="expBarPic" fitHeight="30.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </ImageView>
+         </children>
+         <VBox.margin>
+            <Insets left="10.0" top="10.0" />
+         </VBox.margin>
+      </VBox>
+      <HBox alignment="CENTER" prefHeight="300.0">
+         <children>
+            <BorderPane prefHeight="400.0" prefWidth="400.0">
+               <center>
+                  <ImageView fx:id="petPic" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+               </center>
+               <bottom>
+                  <ImageView fx:id="accessoryPic" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" x="15.0" BorderPane.alignment="CENTER" />
+               </bottom>
+            </BorderPane>
+         </children>
+      </HBox>
    </children>
-</HBox>
+</VBox>
+

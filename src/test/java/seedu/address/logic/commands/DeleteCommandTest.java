@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 
 import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
@@ -23,7 +23,7 @@ import seedu.address.model.task.Task;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTaskList(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -34,7 +34,7 @@ public class DeleteCommandTest {
                 new StringBuilder(DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS);
         expectedMessage.append(String.format("%n%s", taskToDelete));
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getTaskList(), new UserPrefs());
         expectedModel.deleteTask(taskToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage.toString(), expectedModel);
@@ -59,7 +59,7 @@ public class DeleteCommandTest {
                 new StringBuilder(DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS);
         expectedMessage.append(String.format("%n%s", taskToDelete));
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getTaskList(), new UserPrefs());
         expectedModel.deleteTask(taskToDelete);
         showNoPerson(expectedModel);
 
@@ -72,7 +72,7 @@ public class DeleteCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getTaskList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getTaskList().getTaskList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(new Index[] {outOfBoundIndex});
 

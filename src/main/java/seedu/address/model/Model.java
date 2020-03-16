@@ -24,16 +24,16 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /** Returns the user prefs' address book file path. */
-    Path getAddressBookFilePath();
+    Path getTaskListFilePath();
 
     /** Sets the user prefs' address book file path. */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setTaskListFilePath(Path taskListFilePath);
 
-    /** Replaces address book data with the data in {@code addressBook}. */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    /** Replaces address book data with the data in {@code taskList}. */
+    void setTaskList(ReadOnlyTaskList taskList);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the TaskList */
+    ReadOnlyTaskList getTaskList();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -62,4 +62,8 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
+
+    ReadOnlyPet getPet();
+
+    void setPetName(String name);
 }

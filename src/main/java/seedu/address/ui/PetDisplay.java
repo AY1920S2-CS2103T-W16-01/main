@@ -1,35 +1,56 @@
 package seedu.address.ui;
 
-import java.io.File;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Comparator;
 import javafx.fxml.FXML;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 
-
-/** An UI component that displays image of a Pet {@code Pet}. */
+/** An UI component that displays Pet {@code Pet}. */
 public class PetDisplay extends UiPart<Region> {
 
     private static final String FXML = "PetDisplay.fxml";
 
-    public Path filePath; // mutable
+    public Path petFilepath; // mutable
+    public Path accessoryFilepath; // mutable
 
-    @FXML private HBox petPane;
-    @FXML private ImageView pic;
+    public Path expBarFilepath; // mutable
+    public String expBarText; // mutable
+    public String levelText; // mutable
 
-    public PetDisplay(Path filepath) {
+    @FXML private VBox petPane;
+    @FXML private ImageView petPic;
+    @FXML private Label expBarView;
+    @FXML private ImageView expBarPic;
+    @FXML private ImageView accessoryPic;
+    @FXML private Label levelView;
+
+    public PetDisplay(Path petFilepath, String expBarText, Path expBarFilepath, Path accessoryFilepath, String levelText) {
         super(FXML);
-        this.filePath = filepath;
+        this.petFilepath = petFilepath;
+        this.expBarFilepath = expBarFilepath;
+        this.expBarText = expBarText;
+        this.accessoryFilepath = null;
+        this.levelText = levelText;
 
-        // set up image
-        Image image = new Image(String.valueOf(filePath));
+        if (accessoryFilepath != null) {
+            this.accessoryFilepath = accessoryFilepath;
+            Image image = new Image(String.valueOf(accessoryFilepath));
+            accessoryPic.setImage(image);
+        }
 
-        //javafx.scene.image.Image image = new javafx.scene.image.Image(getClass().getResource(filepath).toExternalForm());
-        pic.setImage(image);
+        expBarView.setText(expBarText);
+        levelView.setText(levelText);
+
+        // set up pet image
+        Image petImage = new Image(String.valueOf(petFilepath));
+        petPic.setImage(petImage);
+
+        // set up experience bar image
+        Image expBarImage = new Image(String.valueOf(expBarFilepath));
+        expBarPic.setImage(expBarImage);
     }
 
     @Override
@@ -46,7 +67,6 @@ public class PetDisplay extends UiPart<Region> {
 
         // state check
         PetDisplay card = (PetDisplay) other;
-        return pic.getImage().equals(card.pic.getImage());
+        return petPic.getImage().equals(card.petPic.getImage());
     }
-
 }

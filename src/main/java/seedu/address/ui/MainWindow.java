@@ -122,13 +122,19 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new TaskListPanel(logic.getFilteredTaskList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        petDisplay = new PetDisplay(Paths.get("images", "pet", "cyclops.png")); // hardcode: swap images here
+        petDisplay =
+                new PetDisplay(
+                        Paths.get("images", "pet", "cyclops.png"),
+                        "80 XP / 100 XP",
+                        Paths.get("images", "pet", "ProgressBar.png"),
+                        Paths.get("images", "pet", "medal.png"),
+                        "Level 1"); // hardcode: swap images here
         petPlaceholder.getChildren().add(petDisplay.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTaskListFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);

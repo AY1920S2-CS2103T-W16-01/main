@@ -1,9 +1,9 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.control.Label;
 
 /** An UI component that displays the Pomodoro {@code Pomodoro}. */
 public class PomodoroDisplay extends UiPart<Region> {
@@ -55,5 +55,4 @@ public class PomodoroDisplay extends UiPart<Region> {
         return taskInProgress.getText().equals(card.taskInProgress.getText())
                 && timer.getText().equals(card.timer.getText());
     }
-
 }

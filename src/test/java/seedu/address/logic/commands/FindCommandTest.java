@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalTasks.FEED_CAT;
 import static seedu.address.testutil.TypicalTasks.RUN;
 import static seedu.address.testutil.TypicalTasks.TUTORIAL_1;
-import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -20,8 +20,8 @@ import seedu.address.model.task.NameContainsKeywordsPredicate;
 
 /** Contains integration tests (interaction with the Model) for {@code FindCommand}. */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTaskList(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalTaskList(), new UserPrefs());
 
     @Test
     public void equals() {

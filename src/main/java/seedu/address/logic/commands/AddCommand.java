@@ -61,6 +61,8 @@ public class AddCommand extends Command {
         }
 
         model.addTask(toAdd);
+        // model.setPetName("Jeff");
+        // DONE Setting values on model in recorded in storage and reflected in json
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

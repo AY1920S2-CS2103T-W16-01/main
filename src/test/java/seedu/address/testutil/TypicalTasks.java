@@ -12,7 +12,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MA1521;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import seedu.address.model.AddressBook;
+import seedu.address.model.TaskList;
 import seedu.address.model.task.Task;
 
 /** A utility class containing a list of {@code Task} objects to be used in tests. */
@@ -99,9 +99,9 @@ public class TypicalTasks {
 
     private TypicalTasks() {} // prevents instantiation
 
-    /** Returns an {@code AddressBook} with all the typical persons. */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    /** Returns an {@code TaskList} with all the typical persons. */
+    public static TaskList getTypicalTaskList() {
+        TaskList ab = new TaskList();
         for (Task task : getTypicalTasks()) {
             ab.addTask(task);
         }

@@ -13,8 +13,8 @@ import java.util.Arrays;
 import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.TaskList;
 import seedu.address.model.task.NameContainsKeywordsPredicate;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
@@ -112,11 +112,11 @@ public class CommandTestUtil {
             Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        TaskList expectedTaskList = new TaskList(actualModel.getTaskList());
         List<Task> expectedFilteredList = new ArrayList<>(actualModel.getFilteredTaskList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedTaskList, actualModel.getTaskList());
         assertEquals(expectedFilteredList, actualModel.getFilteredTaskList());
     }
 
