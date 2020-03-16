@@ -204,7 +204,7 @@ public class MainWindow extends UiPart<Stage> {
                     // Continue to next prompt from break-timer
                 } else if (commandText.toLowerCase().equals("n")) {
                     CommandResult commandResult = new CommandResult(
-                        "Alright, lets try again the next round! " + pomodoro.CHECK_TAKE_BREAK_MESSAGE, 
+                        "Alright, lets try again the next round! " + pomodoro.CHECK_TAKE_BREAK_MESSAGE,
                         false, false);
                     resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
                     pomodoro.checkBreakActions();

@@ -16,9 +16,9 @@ public class PomCommand extends Command {
 
     public static final String COMMAND_WORD = "pom";
 
-    public static final String MESSAGE_USAGE = 
+    public static final String MESSAGE_USAGE =
         COMMAND_WORD
-            + ": Starts the pomodoro timer, focusing on " 
+            + ": Starts the pomodoro timer, focusing on "
             + "the task identified by the index number used in the displayed task list.\n"
             + "Parameters: 1-INDEXed (must be a positive integer)\n"
             + "Example: "
@@ -26,7 +26,7 @@ public class PomCommand extends Command {
             + " 1 "
             + PREFIX_TIMER
             + " 10";
-    
+
     public static final String PAUSE_MESSAGE = "Pomodoro paused.";
 
     public static final String CONTINUE_MESSAGE = "Pomodoro continuing.";
@@ -54,12 +54,12 @@ public class PomCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (isPause) {
-            return new PomCommandResult(PAUSE_MESSAGE, null, 0, 
+            return new PomCommandResult(PAUSE_MESSAGE, null, 0,
                 model, -1, null, isPause, isContinue);
         }
 
         if (isContinue) {
-            return new PomCommandResult(COMMAND_WORD, null, 0, 
+            return new PomCommandResult(COMMAND_WORD, null, 0,
                 model, -1, null, isPause, isContinue);
         }
 
@@ -71,8 +71,8 @@ public class PomCommand extends Command {
 
         Task taskToPom = lastShownList.get(index);
 
-        return new PomCommandResult("Pomming task: " + taskToPom.toString(), 
-            taskToPom.getName().toString(), 
+        return new PomCommandResult("Pomming task: " + taskToPom.toString(),
+            taskToPom.getName().toString(),
             timerAmount,
             model,
             index,

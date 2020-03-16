@@ -10,9 +10,9 @@ import seedu.address.logic.commands.PomCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class PomCommandParser implements Parser<PomCommand> {
-    
+
     public PomCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = 
+        ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(
                 args, PREFIX_TIMER);
 
@@ -20,7 +20,7 @@ public class PomCommandParser implements Parser<PomCommand> {
         float timerAmount = optTimerString.isEmpty()
             ? PomCommand.DEFAULT_TIMER
             : Float.parseFloat(optTimerString.get());
-        
+
         try {
             String preamble = argMultimap.getPreamble();
             if (preamble.toLowerCase().equals("pause")) {

@@ -12,7 +12,7 @@ public class PomCommandResult extends CommandResult {
     private final String pommedTask;
 
     private final float timerAmount;
-    
+
     private final boolean isPause;
 
     private final boolean isContinue;
@@ -24,7 +24,7 @@ public class PomCommandResult extends CommandResult {
     private List<Task> originList;
 
     /** Constructs a {@code PomCommandResult} with the specified fields. */
-    public PomCommandResult(String feedbackToUser, String pommedTask, float timerAmount, 
+    public PomCommandResult(String feedbackToUser, String pommedTask, float timerAmount,
         Model model, int taskIndex, List<Task> originList, boolean isPause, boolean isContinue) {
         super(requireNonNull(feedbackToUser), false, false);
         this.pommedTask = pommedTask;
