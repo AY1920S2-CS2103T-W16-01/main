@@ -14,6 +14,7 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
+import seedu.address.logic.Pomodoro;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -42,6 +43,7 @@ public class MainApp extends Application {
     protected Storage storage;
     protected Model model;
     protected Config config;
+    protected Pomodoro pomodoro;
 
     @Override
     public void init() throws Exception {
@@ -64,7 +66,9 @@ public class MainApp extends Application {
 
         logic = new LogicManager(model, storage);
 
-        ui = new UiManager(logic);
+        pomodoro = new Pomodoro();
+
+        ui = new UiManager(logic, pomodoro);
     }
 
     /**

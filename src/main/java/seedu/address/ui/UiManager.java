@@ -10,6 +10,7 @@ import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
+import seedu.address.logic.Pomodoro;
 
 /** The manager of the UI component. */
 public class UiManager implements Ui {
@@ -21,10 +22,12 @@ public class UiManager implements Ui {
 
     private Logic logic;
     private MainWindow mainWindow;
+    private Pomodoro pomodoro;
 
-    public UiManager(Logic logic) {
+    public UiManager(Logic logic, Pomodoro pomodoro) {
         super();
         this.logic = logic;
+        this.pomodoro = pomodoro;
     }
 
     @Override
@@ -35,7 +38,7 @@ public class UiManager implements Ui {
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
         try {
-            mainWindow = new MainWindow(primaryStage, logic);
+            mainWindow = new MainWindow(primaryStage, logic, pomodoro);
             mainWindow.show(); // This should be called before creating other UI parts
             mainWindow.fillInnerParts();
 

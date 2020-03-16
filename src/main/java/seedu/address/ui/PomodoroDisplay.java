@@ -26,6 +26,18 @@ public class PomodoroDisplay extends UiPart<Region> {
         timer.setText(timerText);
     }
 
+    public void setTaskInProgressText(String toDisplay) {
+        taskInProgress.setText(toDisplay);
+    }
+
+    public void setTimerText(String toDisplay) {
+        timer.setText(toDisplay);
+    }
+
+    public Label getTimerLabel() {
+        return timer;
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object

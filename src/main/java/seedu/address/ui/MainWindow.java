@@ -14,12 +14,15 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.PomCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.Pomodoro;
+import seedu.address.logic.Pomodoro.PROMPT_STATE;
 
 /**
- * The Main Window. Provides the basic application layout containing a menu bar and space where
- * other JavaFX elements can be placed.
+ * The Main Window. Provides the basic application layout containing a menu bar
+ * and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
 
@@ -29,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private Stage primaryStage;
     private Logic logic;
+    private Pomodoro pomodoro;
 
     // Independent Ui parts residing in this Ui container
     private TaskListPanel personListPanel;
@@ -37,26 +41,34 @@ public class MainWindow extends UiPart<Stage> {
     private PetDisplay petDisplay;
     private PomodoroDisplay pomodoroDisplay;
 
-    @FXML private StackPane commandBoxPlaceholder;
+    @FXML
+    private StackPane commandBoxPlaceholder;
 
-    @FXML private MenuItem helpMenuItem;
+    @FXML
+    private MenuItem helpMenuItem;
 
-    @FXML private StackPane personListPanelPlaceholder;
+    @FXML
+    private StackPane personListPanelPlaceholder;
 
-    @FXML private StackPane resultDisplayPlaceholder;
+    @FXML
+    private StackPane resultDisplayPlaceholder;
 
-    @FXML private StackPane statusbarPlaceholder;
+    @FXML
+    private StackPane statusbarPlaceholder;
 
-    @FXML private StackPane petPlaceholder;
+    @FXML
+    private StackPane petPlaceholder;
 
-    @FXML private StackPane pomodoroPlaceholder;
+    @FXML
+    private StackPane pomodoroPlaceholder;
 
-    public MainWindow(Stage primaryStage, Logic logic) {
+    public MainWindow(Stage primaryStage, Logic logic, Pomodoro pomodoro) {
         super(FXML, primaryStage);
 
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
+        this.pomodoro = pomodoro;
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -84,29 +96,25 @@ public class MainWindow extends UiPart<Stage> {
 
         /*
          * TODO: the code below can be removed once the bug reported here
-         * https://bugs.openjdk.java.net/browse/JDK-8131666
-         * is fixed in later version of SDK.
+         * https://bugs.openjdk.java.net/browse/JDK-8131666 is fixed in later version of
+         * SDK.
          *
          * According to the bug report, TextInputControl (TextField, TextArea) will
          * consume function-key events. Because CommandBox contains a TextField, and
-         * ResultDisplay contains a TextArea, thus some accelerators (e.g F1) will
-         * not work when the focus is in them because the key event is consumed by
-         * the TextInputControl(s).
+         * ResultDisplay contains a TextArea, thus some accelerators (e.g F1) will not
+         * work when the focus is in them because the key event is consumed by the
+         * TextInputControl(s).
          *
          * For now, we add following event filter to capture such key events and open
-         * help window purposely so to support accelerators even when focus is
-         * in CommandBox or ResultDisplay.
+         * help window purposely so to support accelerators even when focus is in
+         * CommandBox or ResultDisplay.
          */
-        getRoot()
-                .addEventFilter(
-                        KeyEvent.KEY_PRESSED,
-                        event -> {
-                            if (event.getTarget() instanceof TextInputControl
-                                    && keyCombination.match(event)) {
-                                menuItem.getOnAction().handle(new ActionEvent());
-                                event.consume();
-                            }
-                        });
+        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getTarget() instanceof TextInputControl && keyCombination.match(event)) {
+                menuItem.getOnAction().handle(new ActionEvent());
+                event.consume();
+            }
+        });
     }
 
     /** Fills up all the placeholders of this window. */
@@ -128,6 +136,8 @@ public class MainWindow extends UiPart<Stage> {
 
         pomodoroDisplay = new PomodoroDisplay("No task in progress.", "25:00");
         pomodoroPlaceholder.getChildren().add(pomodoroDisplay.getRoot());
+        pomodoro.setTimerLabel(pomodoroDisplay.getTimerLabel());
+        pomodoro.setResultDisplay(resultDisplay);
     }
 
     /** Sets the default size based on {@code guiSettings}. */
@@ -157,12 +167,8 @@ public class MainWindow extends UiPart<Stage> {
     /** Closes the application. */
     @FXML
     private void handleExit() {
-        GuiSettings guiSettings =
-                new GuiSettings(
-                        primaryStage.getWidth(),
-                        primaryStage.getHeight(),
-                        (int) primaryStage.getX(),
-                        (int) primaryStage.getY());
+        GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
+                (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
@@ -177,12 +183,78 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.address.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText)
-            throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+
+        Pomodoro.PROMPT_STATE pomPromptState = pomodoro.getPromptState();
+        switch (pomPromptState) {
+            case CHECK_DONE:
+                if (commandText.toLowerCase().equals("y")) {
+                    CommandResult commandResult = new CommandResult(
+                        "Good job! " + pomodoro.CHECK_TAKE_BREAK_MESSAGE, false, false);
+                    resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+                    pomodoro.doneTask();
+                    pomodoro.checkBreakActions();
+                    return commandResult;
+                    // Continue to next prompt from break-timer
+                } else if (commandText.toLowerCase().equals("n")) {
+                    CommandResult commandResult = new CommandResult(
+                        "Alright, lets try again the next round! " + pomodoro.CHECK_TAKE_BREAK_MESSAGE, 
+                        false, false);
+                    resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+                    pomodoro.checkBreakActions();
+                    return commandResult;
+                } else {
+                    throw new ParseException("(Please confirm) Did you manage to finish the last task?\n"
+                            + "(Y) - Task will be set to done. (N) - No changes");
+                }
+            case CHECK_TAKE_BREAK:
+                if (commandText.toLowerCase().equals("y")) {
+                    CommandResult commandResult = new CommandResult("Okie doke! Rest easy now...", false, false);
+                    resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+                    pomodoro.takeABreak();
+                    pomodoro.setPromptState(PROMPT_STATE.NONE);
+                    return commandResult;
+                    // Continue to next prompt from break-timer
+                } else if (commandText.toLowerCase().equals("n")) {
+                    CommandResult commandResult = new CommandResult("Alright, back to neutral!", false,
+                            false);
+                    resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+                    pomodoro.setPromptState(PROMPT_STATE.NONE);
+                    return commandResult;
+                } else {
+                    throw new ParseException("(Please confirm) Shall we take a 5-min break?\n"
+                    + "(Y) - 5-min timer begins. (N) - App goes neutral.");
+                }
+            case NONE:
+                break;
+        }
+
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            // Pomodoro related results
+            try {
+                PomCommandResult pomCommandResult = (PomCommandResult) commandResult;
+                if (pomCommandResult.getIsPause()) {
+                    pomodoro.pause();
+                } else if (pomCommandResult.getIsContinue()) {
+                    pomodoro.unpause();
+                } else {
+                    pomodoroDisplay.setTaskInProgressText(pomCommandResult.getPommedTask());
+                    pomodoro.start(pomCommandResult.getTimerAmountInMin());
+                    pomodoro.setDoneParams(
+                        pomCommandResult.getModel(),
+                        pomCommandResult.getOriginList(),
+                        pomCommandResult.getTaskIndex()
+                    );
+                }
+            } catch (ClassCastException ce) {
+
+            } catch (NullPointerException ne) {
+                resultDisplay.setFeedbackToUser("Sorry, you've got no tasks being POMmed.");
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
