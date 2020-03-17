@@ -13,19 +13,21 @@
 <li><a href="#quick-start">2. Quick Start</a></li>
 <li><a href="#Features">3. Features</a>
 <ul class="sectlevel2">
-<li><a href="#reminders">3.1. Reminders</a></li>
-<li><a href="#viewing-help-code-help-code">3.2. Viewing help : <code>help</code></a></li>
-<li><a href="#adding-a-task-code-add-code">3.3. Adding a task: <code>add</code></a></li>
-<li><a href="#listing-all-tasks-code-list-code">3.4. Listing all tasks : <code>list</code></a></li>
-<li><a href="#editing-a-task-code-edit-code">3.5. Editing a task : <code>edit</code></a></li>
-<li><a href="#using-pomodoro-code-pom-code">3.6. Using Pomodoro: <code>pom</code></a></li>
-<li><a href="#locating-tasks-by-a-keyword-code-find-code">3.7. Locating tasks by a keyword: <code>find</code></a></li>
-<li><a href="#deleting-a-task-code-delete-code">3.8. Deleting a task : <code>delete</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code">3.9. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">3.10. Exiting the program : <code>exit</code></a></li>
+<li><a href="#use-of-indexes">3.1. Use of indexes</a></li>
+<li><a href="#adding-a-task-code-add-code">3.2. Adding a task: <code>add</code></a></li>
+<li><a href="#editing-a-task-code-edit-code">3.3. Editing a task : <code>edit</code></a></li>
+<li><a href="#reminders">3.4. Reminders</a></li>
+<li><a href="#viewing-help-code-help-code">3.5. Viewing help : <code>help</code></a></li>
+<li><a href="#marking-tasks-as-done-code-done-index-code-br">3.6. Marking tasks as done : <code>done INDEX</code><br></a></li>
+<li><a href="#deleting-tasks-code-delete-index-code-br">3.7. Deleting tasks : <code>delete INDEX</code><br></a></li>
+<li><a href="#listing-all-tasks-code-list-code">3.8. Listing all tasks : <code>list</code></a></li>
+<li><a href="#pomodoro">3.9. Pomodoro</a></li>
+<li><a href="#locating-tasks-by-a-keyword-code-find-code">3.10. Locating tasks by a keyword: <code>find</code></a></li>
 <li><a href="#statistics-stats">3.11. Statistics : 'stats'</a></li>
 <li><a href="#pet">3.12. Pet</a></li>
-<li><a href="#saving-the-data">3.13. Saving the data</a></li>
+<li><a href="#clearing-all-entries-code-clear-code">3.13. Clearing all entries : <code>clear</code></a></li>
+<li><a href="#exiting-the-program-code-exit-code">3.14. Exiting the program : <code>exit</code></a></li>
+<li><a href="#saving-the-data">3.15. Saving the data</a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -72,7 +74,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p><strong><code>add</code></strong><code>n/Do math homework d/pages 1-2 ld/2020-08-09</code> : adds a task, <code>Do math homework</code> to the Task List.</p>
+<p><strong><code>add</code></strong><code>n/Do math homework 1-2 r/DD/MM/YY@HH:MM</code> : adds a task of name <code>Do math homework</code> to the Task List with a date and time that follows the r/ prefix and a <code>pages 1-2</code> description.</p>
 </li>
 <li>
 <p><strong><code>delete</code></strong><code>3</code> : deletes the 3rd task shown in the list</p>
@@ -94,96 +96,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <h2 id="Features"><a class="link" href="#Features">3. Features</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="reminders"><a class="link" href="#reminders">3.1. Reminders</a></h3>
-<div class="paragraph">
-<p>Adds a reminder task that will take a date and time.<br>
-When the time has arrived, a pop up will appear reminding the user to complete the task.<br></p>
-</div>
-<div class="paragraph">
-<p>Format: <code>reminder &lt;description&gt; /at yyyy-mm-ddThh-mm-ss</code></p>
-</div>
-<div class="paragraph">
-<p>A reminder can also be added to an existing task, just specify the task index instead of the description.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>reminder &lt;index&gt; /at yyyy-mm-ddThh-mm-ss</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">3.2. Viewing help : <code>help</code></a></h3>
-<div class="paragraph">
-<p>Format: <code>help</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="adding-a-task-code-add-code"><a class="link" href="#adding-a-task-code-add-code">3.3. Adding a task: <code>add</code></a></h3>
-<div class="paragraph">
-<p>Adds a task to the task list<br>
-Format: <code>add n/Do math homework d/pages 1-2 ld/LOCALDATE</code></p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>add n/Do math homework d/pages 1-2 ld/2020-08-09</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="listing-all-tasks-code-list-code"><a class="link" href="#listing-all-tasks-code-list-code">3.4. Listing all tasks : <code>list</code></a></h3>
-<div class="paragraph">
-<p>Shows a list of all tasks recorded.<br>
-Format: <code>list</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="editing-a-task-code-edit-code"><a class="link" href="#editing-a-task-code-edit-code">3.5. Editing a task : <code>edit</code></a></h3>
-<div class="paragraph">
-<p>Edits an existing task in the list.<br>
-Format: <code>edit INDEX [n/NAME] [d/DESCRIPTION] [ld/LOCALDATE]</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Edits the task at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed task list. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-<li>
-<p>At least one of the optional fields must be provided.</p>
-</li>
-<li>
-<p>Existing values will be updated to the input values.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>edit 1 n/Do Spanish Quiz</code><br>
-Edits the name of the 1st task to be <code>Do Spanish Quiz</code>.</p>
-</li>
-<li>
-<p><code>edit 2 n/Add Buy Feature ld/2020-03-04</code><br>
-Edits the name and date of the 2nd task to be <code>Add Buy Feature</code> and <code>4th Mar 2020</code>, respectively.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="using-pomodoro-code-pom-code"><a class="link" href="#using-pomodoro-code-pom-code">3.6. Using Pomodoro: <code>pom</code></a></h3>
-<div class="paragraph">
-<p>Starts the Pomodoro timer, with a task in focus<br>
-Format: <code>pom INDEX</code></p>
-</div>
+<h3 id="use-of-indexes"><a class="link" href="#use-of-indexes">3.1. Use of indexes</a></h3>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
@@ -191,59 +104,160 @@ Format: <code>pom INDEX</code></p>
 <li>
 <p>Focus is on the task at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed task list. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
 </li>
-<li>
-<p>Runs Pomodoro for one cycle (Default 25 minutes of work, 5 minutes of rest)</p>
-</li>
 </ul>
 </div>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="adding-a-task-code-add-code"><a class="link" href="#adding-a-task-code-add-code">3.2. Adding a task: <code>add</code></a></h3>
 <div class="paragraph">
-<p>Pomodoro Flow:<br></p>
+<p>Adds a task to the task list<br>
+Format: <code>add n/Do math homework d/pages 1-2 ld/LOCALDATE</code></p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+<div class="paragraph">
+<p>Prefixes accepted:</p>
+</div>
+<div class="ulist">
+<ul>
 <li>
-<p><code>pom 10</code> starts a timer of 25 minutes, focusing on task at index 10.</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
+<p><code>n/</code> Adds task name. <strong>Compulsory</strong>.<br></p>
+<div class="ulist">
+<ul>
 <li>
-<p>If task is completed before time is up:<br></p>
-<div class="olist lowerroman">
-<ol class="lowerroman" type="i">
-<li>
-<p><code>done 10</code> to complete the task.<br></p>
+<p><code>add n/Do math homework</code> - Adds a task with name <strong>Do math homework</strong>.</p>
 </li>
-<li>
-<p>The app will prompt you with <code>continue?(Y #) or end(N)</code><br></p>
-</li>
-<li>
-<p><code>Y INDEX</code>: Pomodoro continues remaining time with new task at <code>INDEX</code> in focus.<br></p>
-</li>
-<li>
-<p><code>N</code> : The Pomodoro timer is stopped and the app is in the <code>neutral</code> state.</p>
-</li>
-</ol>
+</ul>
 </div>
 </li>
 <li>
-<p>If Pomodoro timer is up:<br></p>
-<div class="olist lowerroman">
-<ol class="lowerroman" type="i">
+<p><code>des/</code> Adds task with description.<br></p>
+<div class="ulist">
+<ul>
 <li>
-<p>Pomodoro prompts to check to go into 5 minute break, and prompts to check again then continues 25-minute work</p>
+<p><code>add n/Task1 des/quiz online</code> - Adds a task with description <strong>quiz online</strong>.</p>
 </li>
-</ol>
+</ul>
 </div>
 </li>
-</ol>
+<li>
+<p><code>p/</code> Adds task with priority 1 if unspecified. Priority is of 3 categories with 3 as the highest priority.<br></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add n/Task2 p/2</code> - Adds a task with priority <strong>2</strong>.</p>
+</li>
+</ul>
 </div>
 </li>
-</ol>
+<li>
+<p><code>r/</code> Adds task with reminder.<br></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add n/Task3 r/20/03/20@19:30</code> - Adds a task with reminder on <strong>19:30 on March, 20th 2020</strong>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>t/</code> Adds task with tags.<br></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add n/Task4 t/tag1 tag2</code> - Adds a task with 2 tags, <strong>tag1</strong>, <strong>tag2</strong> - tags are space separated.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="locating-tasks-by-a-keyword-code-find-code"><a class="link" href="#locating-tasks-by-a-keyword-code-find-code">3.7. Locating tasks by a keyword: <code>find</code></a></h3>
+<h3 id="editing-a-task-code-edit-code"><a class="link" href="#editing-a-task-code-edit-code">3.3. Editing a task : <code>edit</code></a></h3>
+<div class="paragraph">
+<p>Edits an existing task in the list.<br>
+Format: <code>edit INDEX [n/NAME] [des/DESCRIPTION] [p/PRIORITY] [r/REMINDER] [t/TAG]</code>.
+* Refer to prefixes in <code>add</code> section before to see examples of possible inputs for prefixes.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="reminders"><a class="link" href="#reminders">3.4. Reminders</a></h3>
+<div class="paragraph">
+<p>Adds a reminder task that will take a date and time of the format <code>r/DD/MM/YY@HH:MM</code>. A pop up will then appear reminding the user to complete the task at the specifed date and time.</p>
+</div>
+<div class="sect3">
+<h4 id="add-reminder-when-adding-a-task"><a class="link" href="#add-reminder-when-adding-a-task">3.4.1. Add reminder when adding a task</a></h4>
+<div class="paragraph">
+<p>Format: <code>add</code>**<code>n/Do math homework d/pages 1-2 r/DD/MM/YY@HH:MM</code><br></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="edit-and-add-a-reminder-to-existing-task"><a class="link" href="#edit-and-add-a-reminder-to-existing-task">3.4.2. Edit and add a reminder to existing task</a></h4>
+<div class="paragraph">
+<p>Editing the 1 index task on taskList displayed on the right.
+Format: <code>edit</code>**<code>1 r/DD/MM/YY@HH:MM</code></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">3.5. Viewing help : <code>help</code></a></h3>
+<div class="paragraph">
+<p>Format: <code>help</code>
+Opens UserGuide on application site.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="marking-tasks-as-done-code-done-index-code-br"><a class="link" href="#marking-tasks-as-done-code-done-index-code-br">3.6. Marking tasks as done : <code>done INDEX</code><br></a></h3>
+<div class="paragraph">
+<p>Format: <code>done 1</code> or <code>done 1, 2, &#8230;&#8203;</code>
+Will mark tasks indexed on the list on the right as done. Multiple tasks can be marked as done with comma separated indexes.</p>
+</div>
+<div class="paragraph">
+<p>Note: Tasks already marked done will not be marked done again.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-tasks-code-delete-index-code-br"><a class="link" href="#deleting-tasks-code-delete-index-code-br">3.7. Deleting tasks : <code>delete INDEX</code><br></a></h3>
+<div class="paragraph">
+<p>Format:`delete 1` or <code>delete 1, 2, &#8230;&#8203;</code></p>
+</div>
+<div class="paragraph">
+<p>Will delte tasks indexed on the list on the right as done. Multiple tasks can be deleted with comma separated indexes.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listing-all-tasks-code-list-code"><a class="link" href="#listing-all-tasks-code-list-code">3.8. Listing all tasks : <code>list</code></a></h3>
+<div class="paragraph">
+<p>Shows a list of all tasks recorded.<br>
+Format: <code>list</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="pomodoro"><a class="link" href="#pomodoro">3.9. Pomodoro</a></h3>
+<div class="paragraph">
+<p>Activates the Pomodoro timer with a task in focus. User can add an optional timer amount field, different from the default time of 25 minutes.<br></p>
+</div>
+<div class="paragraph">
+<p>Format: <code>pom 1</code> or <code>pom 2 tm/5</code>.<br>
+The value following the <code>tm/</code> tag is treated as a float for the amount of minutes for this pomodoro cycle.<br></p>
+</div>
+<div class="paragraph">
+<p>To pause the timer, enter: <code>pom pause</code>.<br></p>
+</div>
+<div class="paragraph">
+<p>To continue, enter: <code>pom continue</code>.<br></p>
+</div>
+<div class="paragraph">
+<p>Once the timer expires, the app will ask the user if they have done the task. User need only respond with <code>Yes (Y)</code> or <code>No (N)</code>.<br></p>
+</div>
+<div class="paragraph">
+<p>After, the app will prompt the user to begin a 5 minute break (as per the pomodoro technique). Similarly, user need only respond with <code>Yes (Y)</code> or <code>No (N)</code>.<br>
+During these prompts, user will not be able to enter any other forms of input.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="locating-tasks-by-a-keyword-code-find-code"><a class="link" href="#locating-tasks-by-a-keyword-code-find-code">3.10. Locating tasks by a keyword: <code>find</code></a></h3>
 <div class="paragraph">
 <p>Finds tasks whose names contain any of the given keywords.<br>
 Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
@@ -286,51 +300,6 @@ Returns any tasks containing names <code>Essay</code>, <code>Homework</code>, an
 </li>
 </ul>
 </div>
-</div>
-<div class="sect2">
-<h3 id="deleting-a-task-code-delete-code"><a class="link" href="#deleting-a-task-code-delete-code">3.8. Deleting a task : <code>delete</code></a></h3>
-<div class="paragraph">
-<p>Deletes the specified task from the list.<br>
-Format: <code>delete INDEX</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Deletes the task at the specified <code>INDEX</code>.</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the displayed person list.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>delete 2</code><br>
-Deletes the 2nd task in the list.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.9. Clearing all entries : <code>clear</code></a></h3>
-<div class="paragraph">
-<p>Clears all task from the list.<br>
-Format: <code>clear</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.10. Exiting the program : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
@@ -352,9 +321,23 @@ DONE : Displays average number of tasks done over past week/month/year.</p>
 It acts as a motivation to encourage the user to be productive.<br>
 The Pet also gives a sense of satisfaction to the user when it is being fed.</p>
 </div>
+<div class="paragraph">
+<p>The pet can earn experience points (XP) upon completion of each task via the <code>done</code> or <code>pom</code> command.</p>
+</div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.13. Saving the data</a></h3>
+<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.13. Clearing all entries : <code>clear</code></a></h3>
+<div class="paragraph">
+<p>Clears all task from the list.<br>
+Format: <code>clear</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.14. Exiting the program : <code>exit</code></a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.15. Saving the data</a></h3>
 <div class="paragraph">
 <p>Address book data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
@@ -377,23 +360,26 @@ There is no need to save manually.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Add</strong> <code>add n/Do math homework d/pages 1-2 ld/LOCALDATE</code><br>
-e.g. <code>add n/Do math homework d/pages 1-2 ld/2020-08-09</code></p>
+<p><strong>Add</strong> <code>add n/Do math homework des/pages 1-2 r/DD/MM/YY@HH:mm t/tag1 tag2</code><br>
+e.g. <code>add n/Do math homework d/pages 1-2 r/09/08/20@12:30 t/Difficult InProgress</code></p>
 </li>
 <li>
-<p><strong>Clear</strong> : <code>clear</code></p>
+<p><strong>Edit</strong> : <code>edit INDEX [n/NAME] [des/DESCRIPTION] [r/REMINDER]</code><br>
+e.g. <code>edit 2 n/Add Buy Feature ld/2020-03-04</code></p>
 </li>
 <li>
 <p><strong>Delete</strong> : <code>delete INDEX</code><br>
 e.g. <code>delete 3</code></p>
 </li>
 <li>
-<p><strong>Edit</strong> : <code>edit INDEX [n/NAME] [d/DESCRIPTION] [ld/LOCALDATE]</code><br>
-e.g. <code>edit 2 n/Add Buy Feature ld/2020-03-04</code></p>
-</li>
-<li>
 <p><strong>Find</strong> : <code>find KEYWORD [MORE_KEYWORDS]</code><br>
 e.g. <code>find Quiz Essay</code></p>
+</li>
+<li>
+<p><strong>Statistics</strong> : <code>stats</code></p>
+</li>
+<li>
+<p><strong>Pom</strong> : <code>pom 2 tm/5</code></p>
 </li>
 <li>
 <p><strong>List</strong> : <code>list</code></p>
@@ -402,12 +388,12 @@ e.g. <code>find Quiz Essay</code></p>
 <p><strong>Help</strong> : <code>help</code></p>
 </li>
 <li>
-<p><strong>Statistics</strong> : <code>stats SPEED/DONE</code></p>
+<p><strong>Clear</strong> : <code>clear</code></p>
 </li>
 <li>
-<p><strong>Pom</strong> : <code>pom 10</code></p>
+<p><strong>Exit</strong> : <code>exit</code></p>
 </li>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-03-06 07:48:21 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-03-17 08:43:17 UTC</div></div></div></body></html>
