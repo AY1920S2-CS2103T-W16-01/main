@@ -48,9 +48,14 @@ public class DoneCommand extends Command {
             }
             // Person person = lastShownList.get(targetIndex.getZeroBased());
             Task taskToEdit = lastShownList.get(targetIndex.getZeroBased());
+            if (taskToEdit.getDone().isDone) {
+                throw new CommandException(Messages.MESSAGE_INVALID_TASK_TO_BE_DONED);
+            }
             Task editedTask = createDoneTask(taskToEdit);
             tasksDone.append(String.format("%n%s", editedTask));
             model.setTask(taskToEdit, editedTask);
+            // increment Pet EXP after completing a task
+            model.incrementExp();
         }
         // model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 

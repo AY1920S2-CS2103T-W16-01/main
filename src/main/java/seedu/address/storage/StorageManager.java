@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyPet;
+import seedu.address.model.ReadOnlyPomodoro;
 import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
@@ -18,15 +19,18 @@ public class StorageManager implements Storage {
     private TaskListStorage taskListStorage;
     private UserPrefsStorage userPrefsStorage;
     private PetStorage petStorage;
+    private PomodoroStorage pomodoroStorage;
 
     // NOTE these storage objects all correspond to Json-storagename, i.e. JsonTaskListStorage, ...
     public StorageManager(
             TaskListStorage taskListStorage,
             PetStorage petStorage,
+            PomodoroStorage pomodoroStorage,
             UserPrefsStorage userPrefsStorage) {
         super();
         this.taskListStorage = taskListStorage;
         this.petStorage = petStorage;
+        this.pomodoroStorage = pomodoroStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -76,7 +80,7 @@ public class StorageManager implements Storage {
         logger.fine("Attempting to write to data file: " + filePath);
         taskListStorage.saveTaskList(taskList, filePath);
     }
-    // ================ TaskList methods ==============================
+    // ================ Pet methods ==============================
     @Override
     public Path getPetFilePath() {
         return petStorage.getPetFilePath();
@@ -95,13 +99,25 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void savePet(ReadOnlyPet taskList) throws IOException {
-        savePet(taskList, petStorage.getPetFilePath());
+    public void savePet(ReadOnlyPet pet) throws IOException {
+        savePet(pet, petStorage.getPetFilePath());
     }
 
     @Override
-    public void savePet(ReadOnlyPet taskList, Path filePath) throws IOException {
-        logger.fine("Attempting to write to data file: " + filePath);
-        petStorage.savePet(taskList, filePath);
+    public void savePet(ReadOnlyPet pet, Path filePath) throws IOException {
+        logger.fine("Attempting to write pet data: " + filePath);
+        petStorage.savePet(pet, filePath);
+    }
+
+    // ================ Pomodoro methods ==============================
+    @Override
+    public Optional<ReadOnlyPomodoro> readPomodoro() throws DataConversionException, IOException {
+        return pomodoroStorage.readPomodoro();
+    }
+
+    @Override
+    public void savePomodoro(ReadOnlyPomodoro pomodoro) throws IOException {
+        logger.fine("Attempting to write pomodoro data: ");
+        pomodoroStorage.savePomodoro(pomodoro);
     }
 }

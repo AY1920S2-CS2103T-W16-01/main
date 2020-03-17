@@ -8,6 +8,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.task.Task;
+import seedu.address.ui.PetDisplayHandler;
 
 /** API of the Logic component */
 public interface Logic {
@@ -39,4 +40,6 @@ public interface Logic {
 
     /** Set the user prefs' GUI settings. */
     void setGuiSettings(GuiSettings guiSettings);
+
+    PetDisplayHandler getPetDisplayHandler();
 }

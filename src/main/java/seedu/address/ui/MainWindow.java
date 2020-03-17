@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.nio.file.Paths;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,7 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private TaskListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private PetDisplay petDisplay;
+    private PetDisplayHandler petDisplayHandler;
     private PomodoroDisplay pomodoroDisplay;
 
     @FXML
@@ -122,14 +121,8 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new TaskListPanel(logic.getFilteredTaskList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        petDisplay =
-                new PetDisplay(
-                        Paths.get("images", "pet", "cyclops.png"),
-                        "80 XP / 100 XP",
-                        Paths.get("images", "pet", "ProgressBar.png"),
-                        Paths.get("images", "pet", "medal.png"),
-                        "Level 1"); // hardcode: swap images here
-        petPlaceholder.getChildren().add(petDisplay.getRoot());
+        petDisplayHandler = getPetDisplayHandler();
+        petPlaceholder.getChildren().add(petDisplayHandler.getPetDisplay().getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -276,5 +269,9 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    private PetDisplayHandler getPetDisplayHandler() {
+        return logic.getPetDisplayHandler();
     }
 }
