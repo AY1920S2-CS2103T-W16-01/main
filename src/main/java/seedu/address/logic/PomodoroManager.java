@@ -21,7 +21,7 @@ import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
 import seedu.address.ui.ResultDisplay;
 
-public class Pomodoro {
+public class PomodoroManager {
 
     private Integer startTime;
     private Integer restTime = 5; //5 * 60;
@@ -45,7 +45,7 @@ public class Pomodoro {
 
     private PROMPT_STATE promptState;
 
-    public Pomodoro() {
+    public PomodoroManager() {
         promptState = PROMPT_STATE.NONE;
     }
 

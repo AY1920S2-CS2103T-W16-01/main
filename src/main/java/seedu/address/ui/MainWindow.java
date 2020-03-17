@@ -16,8 +16,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.PomCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.Pomodoro;
-import seedu.address.logic.Pomodoro.PROMPT_STATE;
+import seedu.address.logic.PomodoroManager;
+import seedu.address.logic.PomodoroManager.PROMPT_STATE;
 
 /**
  * The Main Window. Provides the basic application layout containing a menu bar
@@ -31,7 +31,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private Stage primaryStage;
     private Logic logic;
-    private Pomodoro pomodoro;
+    private PomodoroManager pomodoro;
 
     // Independent Ui parts residing in this Ui container
     private TaskListPanel personListPanel;
@@ -61,7 +61,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane pomodoroPlaceholder;
 
-    public MainWindow(Stage primaryStage, Logic logic, Pomodoro pomodoro) {
+    public MainWindow(Stage primaryStage, Logic logic, PomodoroManager pomodoro) {
         super(FXML, primaryStage);
 
         // Set dependencies
@@ -184,7 +184,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
 
-        Pomodoro.PROMPT_STATE pomPromptState = pomodoro.getPromptState();
+        PomodoroManager.PROMPT_STATE pomPromptState = pomodoro.getPromptState();
         switch (pomPromptState) {
             case CHECK_DONE:
                 if (commandText.toLowerCase().equals("y")) {

@@ -10,7 +10,7 @@ import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
-import seedu.address.logic.Pomodoro;
+import seedu.address.logic.PomodoroManager;
 
 /** The manager of the UI component. */
 public class UiManager implements Ui {
@@ -22,9 +22,9 @@ public class UiManager implements Ui {
 
     private Logic logic;
     private MainWindow mainWindow;
-    private Pomodoro pomodoro;
+    private PomodoroManager pomodoro;
 
-    public UiManager(Logic logic, Pomodoro pomodoro) {
+    public UiManager(Logic logic, PomodoroManager pomodoro) {
         super();
         this.logic = logic;
         this.pomodoro = pomodoro;
