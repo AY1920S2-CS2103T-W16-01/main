@@ -8,7 +8,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.CommandCompletor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -22,7 +21,7 @@ public class CommandBox extends UiPart<Region> {
 
     @FXML private TextField commandTextField;
 
-    public CommandBox(CommandExecutor commandExecutor, CommandCompletor bigBrains) {
+    public CommandBox(CommandExecutor commandExecutor, CommandSuggestor bigBrains) {
         super(FXML);
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
@@ -33,8 +32,13 @@ public class CommandBox extends UiPart<Region> {
         commandTextField.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                if(event.getCode() == KeyCode.TAB) {
-
+                if(event.getCode() == KeyCode.TAB && !event.isShiftDown() && !event.isControlDown()) {
+                    event.consume(); // cancel default behaviour
+                    String suggestion = bigBrains.suggestCommand(commandTextField.getText());
+                    commandTextField.setText(suggestion);
+                    commandTextField.requestFocus();
+                    commandTextField.forward();
+                    return;
                 }
             }
         });
@@ -76,5 +80,10 @@ public class CommandBox extends UiPart<Region> {
          * @see seedu.address.logic.Logic#execute(String)
          */
         CommandResult execute(String commandText) throws CommandException, ParseException;
+    }
+
+    @FunctionalInterface
+    public interface CommandSuggestor {
+        String suggestCommand(String commandText);
     }
 }
