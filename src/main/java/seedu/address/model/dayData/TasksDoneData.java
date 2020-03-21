@@ -4,12 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a DayData's TasksDoneData number. Guarantees: immutable; is valid as
- * declared in {@link #isValidTasksDoneData(String)}
+ * Represents a DayData's TasksDoneData number. Guarantees: immutable; is valid as declared in
+ * {@link #isValidTasksDoneData(String)}
  */
 public class TasksDoneData {
 
-    public static final String MESSAGE_CONSTRAINTS = "TasksDoneData is an integer greater than or equals to 0";
+    public static final String MESSAGE_CONSTRAINTS =
+            "TasksDoneData is an integer greater than or equals to 0";
     public final String value;
 
     /**
@@ -42,7 +43,7 @@ public class TasksDoneData {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TasksDoneData // instanceof handles nulls
-                && value.equals(((TasksDoneData) other).value)); // state check
+                        && value.equals(((TasksDoneData) other).value)); // state check
     }
 
     @Override

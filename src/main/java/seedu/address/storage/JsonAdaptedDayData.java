@@ -53,7 +53,8 @@ class JsonAdaptedDayData {
 
         if (pomDurationData == null) {
             throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, PomDurationData.class.getSimpleName()));
+                    String.format(
+                            MISSING_FIELD_MESSAGE_FORMAT, PomDurationData.class.getSimpleName()));
         }
         if (!PomDurationData.isValidPomDurationData(pomDurationData)) {
             throw new IllegalValueException(PomDurationData.MESSAGE_CONSTRAINTS);
@@ -62,7 +63,8 @@ class JsonAdaptedDayData {
 
         if (tasksDoneData == null) {
             throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, TasksDoneData.class.getSimpleName()));
+                    String.format(
+                            MISSING_FIELD_MESSAGE_FORMAT, TasksDoneData.class.getSimpleName()));
         }
         if (!TasksDoneData.isValidTasksDoneData(tasksDoneData)) {
             throw new IllegalValueException(TasksDoneData.MESSAGE_CONSTRAINTS);

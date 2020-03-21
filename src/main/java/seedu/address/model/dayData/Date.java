@@ -1,22 +1,23 @@
 package seedu.address.model.dayData;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 import java.util.Locale;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
 /**
- * Represents a DayDaya's date in the address book. Guarantees: immutable; is valid as
- * declared in {@link #isValidDate(String)}
+ * Represents a DayDaya's date in the address book. Guarantees: immutable; is valid as declared in
+ * {@link #isValidDate(String)}
  */
 public class Date {
     public static final String MESSAGE_CONSTRAINTS =
             "Date must be in the form yyyy-mm-dd and is a valid date in the Gregorian calender";
-    public static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("uuuu-MM-dd", Locale.US)
-            .withResolverStyle(ResolverStyle.STRICT);
+    public static final DateTimeFormatter dateFormatter =
+            DateTimeFormatter.ofPattern("uuuu-MM-dd", Locale.US)
+                    .withResolverStyle(ResolverStyle.STRICT);
     public final String value;
 
     /**
@@ -49,7 +50,7 @@ public class Date {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Date // instanceof handles nulls
-                && value.equals(((Date) other).value)); // state check
+                        && value.equals(((Date) other).value)); // state check
     }
 
     @Override
@@ -57,4 +58,3 @@ public class Date {
         return value.hashCode();
     }
 }
-

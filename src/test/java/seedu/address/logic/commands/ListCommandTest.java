@@ -11,6 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.Pet;
 import seedu.address.model.Pomodoro;
+import seedu.address.model.Statistics;
 import seedu.address.model.UserPrefs;
 
 /** Contains integration tests (interaction with the Model) and unit tests for ListCommand. */
@@ -26,9 +27,10 @@ public class ListCommandTest {
                         getTypicalTaskList(),
                         new Pet(),
                         new Pomodoro(),
+                        new Statistics(),
                         new UserPrefs()); // Should we shift these to ModelManager
         expectedModel =
-                new ModelManager(model.getTaskList(), new Pet(), new Pomodoro(), new UserPrefs());
+                new ModelManager(model.getTaskList(), new Pet(), new Pomodoro(), new Statistics(), new UserPrefs());
     }
 
     @Test

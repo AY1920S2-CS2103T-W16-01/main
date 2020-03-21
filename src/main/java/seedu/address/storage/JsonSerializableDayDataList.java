@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.dayData.DayData;
 import seedu.address.model.ReadOnlyStatistics;
 import seedu.address.model.Statistics;
+import seedu.address.model.dayData.DayData;
 
 /** An Immutable TaskList that is serializable to JSON format. */
 @JsonRootName(value = "statistics")

@@ -10,6 +10,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.Pet;
 import seedu.address.model.Pomodoro;
+import seedu.address.model.Statistics;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
@@ -21,7 +22,7 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalTaskList(), new Pet(), new Pomodoro(), new UserPrefs());
+        model = new ModelManager(getTypicalTaskList(), new Pet(), new Pomodoro(), new Statistics(), new UserPrefs());
     }
 
     @Test
@@ -29,7 +30,7 @@ public class AddCommandIntegrationTest {
         Task validTask = new TaskBuilder().build();
 
         Model expectedModel =
-                new ModelManager(model.getTaskList(), new Pet(), new Pomodoro(), new UserPrefs());
+                new ModelManager(model.getTaskList(), new Pet(), new Pomodoro(), new Statistics(), new UserPrefs());
         expectedModel.addTask(validTask);
 
         assertCommandSuccess(

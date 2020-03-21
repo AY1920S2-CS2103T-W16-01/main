@@ -1,11 +1,10 @@
 package seedu.address.model;
 
-import seedu.address.model.dayData.DayData;
-
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import seedu.address.model.dayData.DayData;
 
 /**
  * Wraps all data at the address-book level Duplicates are not allowed (by .isSameTask comparison)
@@ -74,7 +73,7 @@ public class Statistics implements ReadOnlyStatistics {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Statistics // instanceof handles nulls
-                && dayDataList.equals(((Statistics) other).dayDataList));
+                        && dayDataList.equals(((Statistics) other).dayDataList));
     }
 
     @Override

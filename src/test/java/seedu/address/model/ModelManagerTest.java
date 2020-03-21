@@ -100,9 +100,9 @@ public class ModelManagerTest {
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(taskList, new Pet(), new Pomodoro(), userPrefs);
+        modelManager = new ModelManager(taskList, new Pet(), new Pomodoro(), new Statistics(), userPrefs);
         ModelManager modelManagerCopy =
-                new ModelManager(taskList, new Pet(), new Pomodoro(), userPrefs);
+                new ModelManager(taskList, new Pet(), new Pomodoro(), new Statistics(), userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -117,7 +117,7 @@ public class ModelManagerTest {
         // different taskList -> returns false
         assertFalse(
                 modelManager.equals(
-                        new ModelManager(differentTaskList, new Pet(), new Pomodoro(), userPrefs)));
+                        new ModelManager(differentTaskList, new Pet(), new Pomodoro(), new Statistics(), userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = HOMEWORK10.getName().fullName.split("\\s+");
@@ -125,7 +125,7 @@ public class ModelManagerTest {
                 new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(
                 modelManager.equals(
-                        new ModelManager(taskList, new Pet(), new Pomodoro(), userPrefs)));
+                        new ModelManager(taskList, new Pet(), new Pomodoro(), new Statistics(), userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredTaskList(PREDICATE_SHOW_ALL_PERSONS);
@@ -135,6 +135,6 @@ public class ModelManagerTest {
         differentUserPrefs.setTaskListFilePath(Paths.get("differentFilePath"));
         assertFalse(
                 modelManager.equals(
-                        new ModelManager(taskList, new Pet(), new Pomodoro(), differentUserPrefs)));
+                        new ModelManager(taskList, new Pet(), new Pomodoro(), new Statistics(), differentUserPrefs)));
     }
 }

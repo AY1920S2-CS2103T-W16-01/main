@@ -17,6 +17,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.Pet;
 import seedu.address.model.Pomodoro;
+import seedu.address.model.Statistics;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
@@ -28,7 +29,7 @@ import seedu.address.testutil.TaskBuilder;
 public class DoneCommandTest {
 
     private Model model =
-            new ModelManager(getTypicalTaskList(), new Pet(), new Pomodoro(), new UserPrefs());
+            new ModelManager(getTypicalTaskList(), new Pet(), new Pomodoro(), new Statistics(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -41,7 +42,7 @@ public class DoneCommandTest {
         expectedMessage.append(String.format("%n%s", doneTask));
 
         ModelManager expectedModel =
-                new ModelManager(model.getTaskList(), new Pet(), new Pomodoro(), new UserPrefs());
+                new ModelManager(model.getTaskList(), new Pet(), new Pomodoro(), new Statistics(), new UserPrefs());
         expectedModel.setTask(
                 model.getFilteredTaskList().get(INDEX_FIRST_PERSON.getZeroBased()), doneTask);
 
@@ -69,7 +70,7 @@ public class DoneCommandTest {
         expectedMessage.append(String.format("%n%s", doneTask));
 
         ModelManager expectedModel =
-                new ModelManager(model.getTaskList(), new Pet(), new Pomodoro(), new UserPrefs());
+                new ModelManager(model.getTaskList(), new Pet(), new Pomodoro(), new Statistics(), new UserPrefs());
         expectedModel.setTask(
                 model.getFilteredTaskList().get(INDEX_FIRST_PERSON.getZeroBased()), doneTask);
 

@@ -16,7 +16,6 @@ import seedu.address.model.ReadOnlyPet;
 import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.task.Task;
 import seedu.address.storage.Storage;
-import seedu.address.model.ReadOnlyPet;
 
 /** The main LogicManager of the app. */
 public class LogicManager implements Logic {

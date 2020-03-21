@@ -11,7 +11,6 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.task.Task;
-import seedu.address.model.Pet;
 
 /** Represents the in-memory model of the address book data. */
 public class ModelManager implements Model {
@@ -172,7 +171,7 @@ public class ModelManager implements Model {
     public void setPetName(String name) {
         this.pet.setName(name);
     }
-  
+
     @Override
     public void incrementPomExp() {
         this.pet.incrementPomExp();

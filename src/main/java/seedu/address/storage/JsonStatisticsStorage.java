@@ -28,10 +28,7 @@ public class JsonStatisticsStorage implements StatisticsStorage {
         return filePath;
     }
 
-    /**
-     * Similar to {@link #readStatistics()}.
-     *
-     */
+    /** Similar to {@link #readStatistics()}. */
     public Optional<ReadOnlyStatistics> readStatistics() throws DataConversionException {
         requireNonNull(this.filePath);
 

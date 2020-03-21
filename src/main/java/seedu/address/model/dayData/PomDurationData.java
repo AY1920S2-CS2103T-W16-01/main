@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a DayData's PomDurationData number. Guarantees: immutable; is valid as
- * declared in {@link #isValidPomDurationData(String)}
+ * Represents a DayData's PomDurationData number. Guarantees: immutable; is valid as declared in
+ * {@link #isValidPomDurationData(String)}
  */
 public class PomDurationData {
 
@@ -43,7 +43,7 @@ public class PomDurationData {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof PomDurationData // instanceof handles nulls
-                && value.equals(((PomDurationData) other).value)); // state check
+                        && value.equals(((PomDurationData) other).value)); // state check
     }
 
     @Override
