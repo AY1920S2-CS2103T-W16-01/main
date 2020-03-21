@@ -21,7 +21,7 @@ public class CommandBox extends UiPart<Region> {
 
     @FXML private TextField commandTextField;
 
-    public CommandBox(CommandExecutor commandExecutor, CommandSuggestor bigBrains) {
+    public CommandBox(CommandExecutor commandExecutor, CommandSuggestor commandSuggestor) {
         super(FXML);
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
@@ -33,10 +33,11 @@ public class CommandBox extends UiPart<Region> {
             @Override
             public void handle(KeyEvent event) {
                 if(event.getCode() == KeyCode.TAB && !event.isShiftDown() && !event.isControlDown()) {
-                    event.consume(); // cancel default behaviour
-                    String suggestion = bigBrains.suggestCommand(commandTextField.getText());
+                    event.consume(); 
+                    String suggestion = commandSuggestor.suggestCommand(commandTextField.getText());
                     commandTextField.setText(suggestion);
-                    commandTextField.requestFocus();
+                    // event.consume doesn't seem to work, the below is thus a workaround
+                    commandTextField.requestFocus(); 
                     commandTextField.forward();
                     return;
                 }
