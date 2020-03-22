@@ -5,10 +5,10 @@ import java.time.LocalDateTime;
 import seedu.address.model.task.exceptions.InvalidReminderException;
 
 /**
- * Represents a Task's priority number in the address book. Guarantees: immutable; is valid as
- * declared in {@link #isValidPriority(String)}
+ * Represents a Task's reminder number in the address book. Guarantees: immutable; is valid as
+ * declared in {@link #isValidReminder(String)}
  */
-public class Reminder {
+public class Reminder implements Comparable {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Reminder should be in format DD/MM/YY@HH:mm eg 04/11/20@10:30";
@@ -75,5 +75,14 @@ public class Reminder {
         StringBuilder sb = new StringBuilder("Reminder LocalDateTime: ");
         sb.append(reminderDateTime.toString());
         return sb.toString();
+    }
+
+    @Override
+    public int compareTo(Object other) {
+        if (!(other instanceof Reminder)) {
+            return 0;
+        }
+        Reminder otherReminder = (Reminder) other;
+        return this.reminderDateTime.compareTo(otherReminder.reminderDateTime);
     }
 }

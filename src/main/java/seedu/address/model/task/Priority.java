@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Task's priority number in the address book. Guarantees: immutable; is valid as
  * declared in {@link #isValidPriority(String)}
  */
-public class Priority {
+public class Priority implements Comparable {
 
     public static final String MESSAGE_CONSTRAINTS = "Priority only contain numbers {1,2,3}";
     public static final String VALIDATION_REGEX = "[1-3]";
@@ -44,5 +44,14 @@ public class Priority {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    @Override
+    public int compareTo(Object other) {
+        if (!(other instanceof Priority)) {
+            return 0;
+        }
+        Priority otherPriority = (Priority) other;
+        return otherPriority.value.compareTo(this.value);
     }
 }

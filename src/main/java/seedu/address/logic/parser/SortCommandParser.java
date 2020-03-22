@@ -25,9 +25,13 @@ public class SortCommandParser implements Parser<SortCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        Arrays.stream(nameKeywords).anyMatch(s -> SortCommand.allowedSorts.includes(s));
+        boolean validSortField = Arrays.stream(nameKeywords).anyMatch(s -> Arrays.asList(SortCommand.ALLOWED_SORT_FIELDS).contains(s));
 
+        if (!validSortField) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+        }
 
-        return new SortCommand();// should be 
+        return new SortCommand(nameKeywords);// should be 
     }
 }

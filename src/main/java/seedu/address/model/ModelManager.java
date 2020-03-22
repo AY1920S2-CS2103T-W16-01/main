@@ -9,6 +9,7 @@ import java.util.function.Predicate;
 import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.task.Task;
@@ -23,6 +24,7 @@ public class ModelManager implements Model {
     private final Pet pet;
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
+    private Comparator<Task> comparator;
 
     /** Initializes a ModelManager with the given taskList and userPrefs. */
     public ModelManager(
@@ -130,11 +132,14 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
+     * @FXML Serves as a reference point for TaskListPanel.java to update display
      * {@code versionedTaskList}
      */
     @Override
     public ObservableList<Task> getFilteredTaskList() {
-        return filteredTasks;
+        SortedList<Task> sortedFilteredTasks = new SortedList<>(filteredTasks);
+        sortedFilteredTasks.setComparator(comparator);
+        return sortedFilteredTasks;
     }
 
     @Override
@@ -144,9 +149,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void sortFilteredTaskList(Comparator<Task> compare) {
-        requireNonNull(compare);
-        filteredTasks.sort(compare);
+    public void sortFilteredTaskList(Comparator<Task> comparator) {
+        requireNonNull(comparator);
+        logger.info("Priority set as sorter");
+        this.comparator = new Comparator<Task>() {
+            @Override
+            public int compare(Task task1, Task task2) {
+                return task1.getPriority().compareTo(task2.getPriority());
+            }};
     }
 
     @Override
