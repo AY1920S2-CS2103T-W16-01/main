@@ -20,21 +20,24 @@ public class CommandCompletor {
     }
 
     public String getSuggestedCommand(String input) {
-        String[] trimmedInputWords = input.toLowerCase().split("\\s+"); // get the first command, autoComplete based on that. 
+        String[] trimmedInputWords =
+                input.toLowerCase()
+                        .split("\\s+"); // get the first command, autoComplete based on that.
 
         if (trimmedInputWords.length > 0) {
             for (String commandWord : this.commands) {
                 Pattern commandPattern = Pattern.compile(String.format("^%s", commandWord));
                 Matcher commandMatcher = commandPattern.matcher(trimmedInputWords[0]);
-                if (commandMatcher.matches()) { // need to check for match before we can check for hitEnd
+                if (commandMatcher
+                        .matches()) { // need to check for match before we can check for hitEnd
                     break; // command found then return original
                 }
-                if (commandMatcher.hitEnd()){
+                if (commandMatcher.hitEnd()) {
                     trimmedInputWords[0] = commandWord;
                     return String.join(" ", trimmedInputWords);
                 }
             }
-        }        
+        }
         // if no matches, return original
         return input;
     }
@@ -47,5 +50,16 @@ public class CommandCompletor {
         return "No command auto complete found :(";
     }
 
-    
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof CommandCompletor)) {
+            return false;
+        } else {
+            CommandCompletor otherCommandCompletor = (CommandCompletor) other;
+            return otherCommandCompletor.commands.equals(this.commands);
+        }
+    }
 }
