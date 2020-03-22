@@ -5,7 +5,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import java.util.Arrays;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.task.NameContainsKeywordsPredicate;
 
 /** Parses input arguments and creates a new SortCommand object */
 public class SortCommandParser implements Parser<SortCommand> {
@@ -25,13 +24,15 @@ public class SortCommandParser implements Parser<SortCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        boolean validSortField = Arrays.stream(nameKeywords).anyMatch(s -> Arrays.asList(SortCommand.ALLOWED_SORT_FIELDS).contains(s));
+        boolean validSortField =
+                Arrays.stream(nameKeywords)
+                        .anyMatch(s -> Arrays.asList(SortCommand.ALLOWED_SORT_FIELDS).contains(s));
 
         if (!validSortField) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
 
-        return new SortCommand(nameKeywords);// should be 
+        return new SortCommand(nameKeywords); // should be
     }
 }

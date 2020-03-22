@@ -4,27 +4,27 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Comparator;
 import java.util.Optional;
-
-import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.task.Reminder;
 import seedu.address.model.task.Task;
-import seedu.address.commons.core.Messages;
-
 
 /** Adds a person to the address book. */
 public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
-    public static final String[] ALLOWED_SORT_FIELDS = {"priority", "date"};
+    public static final String[] ALLOWED_SORT_FIELDS = {"priority", "date", "name"};
 
     public static final String MESSAGE_SUCCESS = "TaskList sorted by: %1$s";
     public static final String MESSAGE_SORT_UNKNOWN = "No such field to sort by %1$s!";
-    public static final String MESSAGE_USAGE = String.format("%1$s: Sorts tasklist by certain field such as\n %2$s \n Example: %1$s priority", COMMAND_WORD, String.join("|",ALLOWED_SORT_FIELDS));
+    public static final String MESSAGE_USAGE =
+            String.format(
+                    "%1$s -> Sorts tasklist by certain field such as\n%2$s \nExample: %1$s priority",
+                    COMMAND_WORD, String.join(" | ", ALLOWED_SORT_FIELDS));
 
     private String[] fields;
 
-    public SortCommand(String [] fields) {
+    public SortCommand(String[] fields) {
         this.fields = fields;
     }
 
@@ -39,11 +39,13 @@ public class SortCommand extends Command {
             case "date":
                 model.setComparator(getReminderComparator());
                 return new CommandResult(String.format(MESSAGE_SUCCESS, field));
+            case "name":
+                model.setComparator(getNameComparator());
+                return new CommandResult(String.format(MESSAGE_SUCCESS, field));
+
         }
         return new CommandResult(
-                String.format(
-                        Messages.MESSAGE_FIELD_UNKNOWN,
-                        String.join(" ", fields)));
+                String.format(Messages.MESSAGE_FIELD_UNKNOWN, String.join(" ", fields)));
     }
 
     private Comparator<Task> getPriorityComparator() {
@@ -55,6 +57,15 @@ public class SortCommand extends Command {
         };
     }
 
+    private Comparator<Task> getNameComparator() {
+        return new Comparator<Task>() {
+            @Override
+            public int compare(Task task1, Task task2) {
+                return task1.getName().compareTo(task2.getName());
+            }
+        }.reversed();
+    }
+
     private Comparator<Task> getReminderComparator() {
         return new Comparator<Task>() {
             @Override
@@ -62,8 +73,9 @@ public class SortCommand extends Command {
                 Optional<Reminder> reminder1 = task1.getOptionalReminder();
                 Optional<Reminder> reminder2 = task2.getOptionalReminder();
                 if (reminder1.isPresent() && reminder2.isPresent()) {
-                    // should be sorting to which is closer to today's date or sort just in order can?
-                    return reminder1.get().compareTo(reminder2.get()); 
+                    // should be sorting to which is closer to today's date or sort just in order
+                    // can?
+                    return reminder1.get().compareTo(reminder2.get());
                 }
                 if (reminder1.isPresent()) {
                     return 1;
