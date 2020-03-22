@@ -32,6 +32,9 @@ public class SortCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         String field = fields[0];
+        System.out.println(fields);
+        System.out.println("============CHECK FIELDS FOR SORT");
+
         switch (field) {
             case "priority":
                 model.setComparator(getPriorityComparator());

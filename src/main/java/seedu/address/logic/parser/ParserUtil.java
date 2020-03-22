@@ -3,6 +3,8 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,16 +18,20 @@ import seedu.address.model.task.Priority;
 import seedu.address.model.task.Reminder;
 import seedu.address.model.task.exceptions.InvalidReminderException;
 
-/** Contains utility methods used for parsing strings in the various *Parser classes. */
+/**
+ * Contains utility methods used for parsing strings in the various *Parser
+ * classes.
+ */
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing
-     * whitespaces will be trimmed.
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading
+     * and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     * @throws ParseException if the specified index is invalid (not non-zero
+     *                        unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
@@ -36,10 +42,11 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing
-     * whitespaces will be trimmed.
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading
+     * and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     * @throws ParseException if the specified index is invalid (not non-zero
+     *                        unsigned integer).
      */
     public static Index[] parseIndices(String oneBasedIndices) throws ParseException {
         String trimmedIndices = oneBasedIndices.trim();
@@ -54,15 +61,28 @@ public class ParserUtil {
         return indexes;
     }
 
+    // function for sorting and potentially tags
+    public static String[] parseUniqueKeyWords(String keywords) throws ParseException {
+        String trimmedKeyWords = keywords.trim();
+        String[] splitKeyWords = trimmedKeyWords.split("\\s*,\\s*");
+        ArrayList<String> unique = new ArrayList<>();
+        for (String s : splitKeyWords) {
+            if (!unique.contains(s)) {
+                unique.add(s);
+            }
+        }
+        return unique.toArray(new String[0]);
+    }
+
     /**
-     * Parses a {@code String reminder} into a {@code Reminder}. Leading and trailing whitespaces
-     * will be trimmed. Format to receive is DD/MM/YY@HH:mm eg 04/11/20@10:30
+     * Parses a {@code String reminder} into a {@code Reminder}. Leading and
+     * trailing whitespaces will be trimmed. Format to receive is DD/MM/YY@HH:mm eg
+     * 04/11/20@10:30
      *
-     * @throws ParseException if the given {@code reminder} is invalid.
+     * @throws ParseException           if the given {@code reminder} is invalid.
      * @throws InvalidReminderException
      */
-    public static Reminder parseReminder(String reminder)
-            throws ParseException, InvalidReminderException {
+    public static Reminder parseReminder(String reminder) throws ParseException, InvalidReminderException {
         requireNonNull(reminder);
         String trimmedReminder = reminder.trim();
         if (!Reminder.isValidReminder(trimmedReminder)) {
@@ -82,8 +102,8 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name}. Leading and trailing whitespaces will be
-     * trimmed.
+     * Parses a {@code String name} into a {@code Name}. Leading and trailing
+     * whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
@@ -97,8 +117,8 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String priority} into a {@code Priority}. Leading and trailing whitespaces
-     * will be trimmed.
+     * Parses a {@code String priority} into a {@code Priority}. Leading and
+     * trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code priority} is invalid.
      */
@@ -112,8 +132,8 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}. Leading and trailing whitespaces
-     * will be trimmed.
+     * Parses a {@code String address} into an {@code Address}. Leading and trailing
+     * whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
@@ -127,8 +147,8 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}. Leading and trailing whitespaces will be
-     * trimmed.
+     * Parses a {@code String tag} into a {@code Tag}. Leading and trailing
+     * whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
