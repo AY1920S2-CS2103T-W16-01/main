@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.nio.file.Paths;
 import java.util.logging.Logger;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -143,18 +142,12 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand, this::suggestCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        pomodoroDisplay = new PomodoroDisplay("No task in progress.", "25:00");
+        pomodoroDisplay = new PomodoroDisplay();
         pomodoroPlaceholder.getChildren().add(pomodoroDisplay.getRoot());
         pomodoro.setTimerLabel(pomodoroDisplay.getTimerLabel());
         pomodoro.setResultDisplay(resultDisplay);
 
-        statisticsDisplay =
-                new StatisticsDisplay(
-                        "Time spent on Pomodoro over the last 7 days",
-                        null,
-                        Paths.get("images", "statistics", "progressBarDaily50%.png"),
-                        "50 mins / 100 mins",
-                        "Medals earned: 0");
+        statisticsDisplay = new StatisticsDisplay();
         statisticsPlaceholder.getChildren().add(statisticsDisplay.getRoot());
     }
 

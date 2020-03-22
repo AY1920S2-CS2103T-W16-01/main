@@ -24,9 +24,19 @@ import seedu.address.model.task.NameContainsKeywordsPredicate;
 /** Contains integration tests (interaction with the Model) for {@code FindCommand}. */
 public class FindCommandTest {
     private Model model =
-            new ModelManager(getTypicalTaskList(), new Pet(), new Pomodoro(), new Statistics(), new UserPrefs());
+            new ModelManager(
+                    getTypicalTaskList(),
+                    new Pet(),
+                    new Pomodoro(),
+                    new Statistics(),
+                    new UserPrefs());
     private Model expectedModel =
-            new ModelManager(getTypicalTaskList(), new Pet(), new Pomodoro(), new Statistics(), new UserPrefs());
+            new ModelManager(
+                    getTypicalTaskList(),
+                    new Pet(),
+                    new Pomodoro(),
+                    new Statistics(),
+                    new UserPrefs());
 
     @Test
     public void equals() {

@@ -30,7 +30,12 @@ public class StorageManagerTest {
         JsonPetStorage petStorage = new JsonPetStorage(getTempFilePath("pet.json"));
 
         storageManager =
-                new StorageManager(taskListStorage, petStorage, pomodoroStorage, statisticsStorage, userPrefsStorage);
+                new StorageManager(
+                        taskListStorage,
+                        petStorage,
+                        pomodoroStorage,
+                        statisticsStorage,
+                        userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {

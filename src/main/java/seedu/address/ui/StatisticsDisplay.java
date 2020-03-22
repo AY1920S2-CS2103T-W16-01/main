@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
@@ -16,6 +17,14 @@ import javafx.scene.layout.VBox;
 public class StatisticsDisplay extends UiPart<Region> {
 
     private static final String FXML = "StatisticsDisplay.fxml";
+    private static final String DEFAULT_BAR_CHART_TITLE = "Sample graph title";
+    private static final Path DEFAULT_PROGRESS_BAR_DAILY__PLACEHOLDER =
+            Paths.get("images", "statistics", "progressBarDaily0%.png");
+    private static final String DEFAULT_PROGRESS_DAILY = "0 mins / 100 mins (DEFAULT)";
+    private static final String DEFAULT_MEDALS = "Placeholder";
+
+    private static final String POMODORO_RUNTIME_Y_AXIS = "Total Pomodoro Runtime";
+    private static final String X_AXIS = "Day";
 
     public String barChartTitleText; // mutable
     public int[][] data; //
@@ -31,18 +40,13 @@ public class StatisticsDisplay extends UiPart<Region> {
     @FXML private ImageView progressBarDaily;
     @FXML private Label medals;
 
-    public StatisticsDisplay(
-            String barChartTitleText,
-            int[][] data,
-            Path progressBarDailyFilepath,
-            String progressDailyText,
-            String medalsText) {
+    public StatisticsDisplay() {
         super(FXML);
-        this.barChartTitleText = barChartTitleText;
-        this.data = data;
-        this.progressBarDailyFilepath = progressBarDailyFilepath;
-        this.progressDailyText = progressDailyText;
-        this.medalsText = medalsText;
+        this.barChartTitleText = DEFAULT_BAR_CHART_TITLE;
+        this.data = null; // TODO *******************
+        this.progressBarDailyFilepath = DEFAULT_PROGRESS_BAR_DAILY__PLACEHOLDER;
+        this.progressDailyText = DEFAULT_PROGRESS_DAILY;
+        this.medalsText = DEFAULT_MEDALS;
 
         progressDaily.setText(progressDailyText);
         Image progressBarDailyImage = new Image(String.valueOf(progressBarDailyFilepath));
@@ -52,13 +56,14 @@ public class StatisticsDisplay extends UiPart<Region> {
         barChartTitle.setText(barChartTitleText);
 
         CategoryAxis xAxis = new CategoryAxis();
-        xAxis.setLabel("Day");
+        xAxis.setLabel(X_AXIS);
         NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("Total Pomodoro Runtime");
+        yAxis.setLabel(POMODORO_RUNTIME_Y_AXIS);
 
         XYChart.Series<String, Integer> dataSeries1 = new XYChart.Series<>();
         dataSeries1.setName("You");
 
+        // TODO remove ********************
         dataSeries1.getData().add(new XYChart.Data<>("Day 1", 20));
         dataSeries1.getData().add(new XYChart.Data<>("Day 2", 40));
         dataSeries1.getData().add(new XYChart.Data<>("Day 3", 60));

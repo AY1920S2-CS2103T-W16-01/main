@@ -9,6 +9,8 @@ import javafx.scene.layout.Region;
 public class PomodoroDisplay extends UiPart<Region> {
 
     private static final String FXML = "PomodoroDisplay.fxml";
+    private static final String DEFAULT_TASK_IN_PROGRESS = "No task in progress.";
+    private static final String DEFAULT_TIMER = "POM";
 
     public String taskInProgressText; // mutable
     public String timerText; // mutable
@@ -17,10 +19,10 @@ public class PomodoroDisplay extends UiPart<Region> {
     @FXML private Label taskInProgress;
     @FXML private Label timer;
 
-    public PomodoroDisplay(String taskInProgressText, String timerText) {
+    public PomodoroDisplay() {
         super(FXML);
-        this.taskInProgressText = taskInProgressText;
-        this.timerText = timerText;
+        this.taskInProgressText = DEFAULT_TASK_IN_PROGRESS;
+        this.timerText = DEFAULT_TIMER;
 
         taskInProgress.setText(taskInProgressText);
         timer.setText(timerText);

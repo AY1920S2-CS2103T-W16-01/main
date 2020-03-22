@@ -36,7 +36,12 @@ import seedu.address.testutil.TaskBuilder;
 public class EditCommandTest {
 
     private Model model =
-            new ModelManager(getTypicalTaskList(), new Pet(), new Pomodoro(), new Statistics(), new UserPrefs());
+            new ModelManager(
+                    getTypicalTaskList(),
+                    new Pet(),
+                    new Pomodoro(),
+                    new Statistics(),
+                    new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {

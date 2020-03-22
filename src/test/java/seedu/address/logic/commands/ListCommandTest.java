@@ -30,7 +30,12 @@ public class ListCommandTest {
                         new Statistics(),
                         new UserPrefs()); // Should we shift these to ModelManager
         expectedModel =
-                new ModelManager(model.getTaskList(), new Pet(), new Pomodoro(), new Statistics(), new UserPrefs());
+                new ModelManager(
+                        model.getTaskList(),
+                        new Pet(),
+                        new Pomodoro(),
+                        new Statistics(),
+                        new UserPrefs());
     }
 
     @Test

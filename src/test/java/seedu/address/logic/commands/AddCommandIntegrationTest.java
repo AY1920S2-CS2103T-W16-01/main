@@ -22,7 +22,13 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalTaskList(), new Pet(), new Pomodoro(), new Statistics(), new UserPrefs());
+        model =
+                new ModelManager(
+                        getTypicalTaskList(),
+                        new Pet(),
+                        new Pomodoro(),
+                        new Statistics(),
+                        new UserPrefs());
     }
 
     @Test
@@ -30,7 +36,12 @@ public class AddCommandIntegrationTest {
         Task validTask = new TaskBuilder().build();
 
         Model expectedModel =
-                new ModelManager(model.getTaskList(), new Pet(), new Pomodoro(), new Statistics(), new UserPrefs());
+                new ModelManager(
+                        model.getTaskList(),
+                        new Pet(),
+                        new Pomodoro(),
+                        new Statistics(),
+                        new UserPrefs());
         expectedModel.addTask(validTask);
 
         assertCommandSuccess(

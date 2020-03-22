@@ -26,9 +26,19 @@ public class ClearCommandTest {
     @Test
     public void execute_nonEmptyTaskList_success() {
         Model model =
-                new ModelManager(getTypicalTaskList(), new Pet(), new Pomodoro(), new Statistics(), new UserPrefs());
+                new ModelManager(
+                        getTypicalTaskList(),
+                        new Pet(),
+                        new Pomodoro(),
+                        new Statistics(),
+                        new UserPrefs());
         Model expectedModel =
-                new ModelManager(getTypicalTaskList(), new Pet(), new Pomodoro(), new Statistics(), new UserPrefs());
+                new ModelManager(
+                        getTypicalTaskList(),
+                        new Pet(),
+                        new Pomodoro(),
+                        new Statistics(),
+                        new UserPrefs());
         expectedModel.setTaskList(new TaskList());
 
         assertCommandSuccess(

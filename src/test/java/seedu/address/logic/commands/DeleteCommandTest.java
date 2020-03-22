@@ -27,7 +27,12 @@ import seedu.address.model.task.Task;
 public class DeleteCommandTest {
 
     private Model model =
-            new ModelManager(getTypicalTaskList(), new Pet(), new Pomodoro(), new Statistics(), new UserPrefs());
+            new ModelManager(
+                    getTypicalTaskList(),
+                    new Pet(),
+                    new Pomodoro(),
+                    new Statistics(),
+                    new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -39,7 +44,12 @@ public class DeleteCommandTest {
         expectedMessage.append(String.format("%n%s", taskToDelete));
 
         ModelManager expectedModel =
-                new ModelManager(model.getTaskList(), new Pet(), new Pomodoro(), new Statistics(), new UserPrefs());
+                new ModelManager(
+                        model.getTaskList(),
+                        new Pet(),
+                        new Pomodoro(),
+                        new Statistics(),
+                        new UserPrefs());
         expectedModel.deleteTask(taskToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage.toString(), expectedModel);
@@ -65,7 +75,12 @@ public class DeleteCommandTest {
         expectedMessage.append(String.format("%n%s", taskToDelete));
 
         Model expectedModel =
-                new ModelManager(model.getTaskList(), new Pet(), new Pomodoro(), new Statistics(), new UserPrefs());
+                new ModelManager(
+                        model.getTaskList(),
+                        new Pet(),
+                        new Pomodoro(),
+                        new Statistics(),
+                        new UserPrefs());
         expectedModel.deleteTask(taskToDelete);
         showNoPerson(expectedModel);
 
