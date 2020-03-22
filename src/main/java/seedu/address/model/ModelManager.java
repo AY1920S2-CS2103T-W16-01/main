@@ -138,6 +138,7 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Task> getFilteredTaskList() {
         SortedList<Task> sortedFilteredTasks = new SortedList<>(filteredTasks);
+        logger.info("Called when refreshing view");
         sortedFilteredTasks.setComparator(comparator);
         return sortedFilteredTasks;
     }
@@ -149,14 +150,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void sortFilteredTaskList(Comparator<Task> comparator) {
+    public void setComparator(Comparator<Task> comparator) {
         requireNonNull(comparator);
-        logger.info("Priority set as sorter");
-        this.comparator = new Comparator<Task>() {
-            @Override
-            public int compare(Task task1, Task task2) {
-                return task1.getPriority().compareTo(task2.getPriority());
-            }};
+        this.comparator = comparator;
     }
 
     @Override
@@ -175,7 +171,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return taskList.equals(other.taskList)
                 && userPrefs.equals(other.userPrefs)
-                && filteredTasks.equals(other.filteredTasks);
+                && filteredTasks.equals(other.filteredTasks)
+                && comparator.equals(other.comparator);
     }
 
     // TODO Add a manager for pets

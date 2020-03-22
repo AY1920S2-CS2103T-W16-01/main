@@ -31,44 +31,49 @@ public class SortCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        Comparator<Task> c;
         String field = fields[0];
         switch (field) {
             case "priority":
-                c =  new Comparator<Task>() {
-                    @Override
-                    public int compare(Task task1, Task task2) {
-                        return task1.getPriority().compareTo(task2.getPriority());
-                    }
-                };
-                model.sortFilteredTaskList(c);
+                model.setComparator(getPriorityComparator());
                 return new CommandResult(String.format(MESSAGE_SUCCESS, field));
-                case "date":
-                c =  new Comparator<Task>() {
-                    @Override
-                    public int compare(Task task1, Task task2) {
-                        Optional<Reminder> reminder1 = task1.getOptionalReminder();
-                        Optional<Reminder> reminder2 = task2.getOptionalReminder();
-                        if (reminder1.isPresent() && reminder2.isPresent()) {
-                            // should be sorting to which is closer to today's date or sort just in order can?
-                            return reminder1.get().compareTo(reminder2.get()); 
-                        }
-                        if (reminder1.isPresent()) {
-                            return 1;
-                        }
-                        if (reminder2.isPresent()) {
-                            return -1;
-                        }
-                        return 0;
-                    }
-                };
-                model.sortFilteredTaskList(c);
+            case "date":
+                model.setComparator(getReminderComparator());
                 return new CommandResult(String.format(MESSAGE_SUCCESS, field));
         }
         return new CommandResult(
                 String.format(
                         Messages.MESSAGE_FIELD_UNKNOWN,
                         String.join(" ", fields)));
+    }
+
+    private Comparator<Task> getPriorityComparator() {
+        return new Comparator<Task>() {
+            @Override
+            public int compare(Task task1, Task task2) {
+                return task1.getPriority().compareTo(task2.getPriority());
+            }
+        };
+    }
+
+    private Comparator<Task> getReminderComparator() {
+        return new Comparator<Task>() {
+            @Override
+            public int compare(Task task1, Task task2) {
+                Optional<Reminder> reminder1 = task1.getOptionalReminder();
+                Optional<Reminder> reminder2 = task2.getOptionalReminder();
+                if (reminder1.isPresent() && reminder2.isPresent()) {
+                    // should be sorting to which is closer to today's date or sort just in order can?
+                    return reminder1.get().compareTo(reminder2.get()); 
+                }
+                if (reminder1.isPresent()) {
+                    return 1;
+                }
+                if (reminder2.isPresent()) {
+                    return -1;
+                }
+                return 0;
+            }
+        };
     }
 
     @Override

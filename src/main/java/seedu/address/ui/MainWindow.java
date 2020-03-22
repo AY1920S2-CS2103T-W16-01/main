@@ -306,6 +306,9 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+            // update because sorting returns a new list
+            personListPanel = new TaskListPanel(logic.getFilteredTaskList());
+            personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
             petDisplay.update();
 
             return commandResult;
