@@ -87,7 +87,7 @@ public class MainApp extends Application {
         model = initModelManager(storage, userPrefs);
 
         logic = new LogicManager(model, storage);
-        
+
         pomodoro = new PomodoroManager();
 
         model.setPomodoroManager(pomodoro);

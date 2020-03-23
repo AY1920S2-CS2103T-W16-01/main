@@ -62,8 +62,8 @@ public class DoneCommand extends Command {
             if (taskToEdit.equals(model.getPomodoro().getRunningTask())) {
                 pommedTask = taskToEdit;
             } else {
-                tasksDone.append(String.format("%n%s", editedTask));     
-                model.setTask(taskToEdit, editedTask);  
+                tasksDone.append(String.format("%n%s", editedTask));
+                model.setTask(taskToEdit, editedTask);
             }
             // increment Pet EXP after completing a task
             model.incrementExp();
