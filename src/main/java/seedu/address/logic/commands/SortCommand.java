@@ -3,11 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Optional;
-import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.task.Reminder;
 import seedu.address.model.task.Task;
