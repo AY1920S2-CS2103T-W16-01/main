@@ -72,8 +72,7 @@ public class SortCommand extends Command {
             public int compare(Task task1, Task task2) {
                 Optional<Reminder> reminder1 = task1.getOptionalReminder();
                 Optional<Reminder> reminder2 = task2.getOptionalReminder();
-                if (reminder1.isPresent() && reminder2.isPresent()) {
-                    // TODO sort according to closest to today and not yet expired, the rest remains unsorted
+                if (reminder1.isPresent() && reminder2.isPresent()) {                    
                     return reminder1.get().compareTo(reminder2.get());
                 }
                 if (reminder1.isPresent()) {
