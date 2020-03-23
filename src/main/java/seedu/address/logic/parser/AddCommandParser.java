@@ -51,7 +51,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         // String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         // }
 
-        System.out.println("Attempting parse.");
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
 
         Priority priority =

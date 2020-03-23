@@ -31,7 +31,6 @@ public class SortCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        System.out.println("============CHECK FIELDS FOR SORT");
         // NOTE: Incorrect sort fields has been handled in SortCommandParser already
         ArrayList<Comparator<Task>> temp = new ArrayList<>();
         for (String field: fields) {
