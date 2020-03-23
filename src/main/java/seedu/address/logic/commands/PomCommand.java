@@ -71,6 +71,13 @@ public class PomCommand extends Command {
 
         Task taskToPom = lastShownList.get(index);
 
+        if (taskToPom.getDone().isDone) {
+            throw new CommandException(Messages.MESSAGE_INVALID_TASK_TO_BE_DONED);
+        }
+
+        // Update the pomodoro model
+        model.setPomodoroTask(taskToPom);
+
         return new PomCommandResult(
                 "Pomming task: " + taskToPom.toString(),
                 taskToPom.getName().toString(),

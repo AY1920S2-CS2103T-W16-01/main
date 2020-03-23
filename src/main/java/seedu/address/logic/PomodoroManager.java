@@ -34,16 +34,21 @@ public class PomodoroManager {
     public enum PROMPT_STATE {
         NONE,
         CHECK_DONE,
-        CHECK_TAKE_BREAK;
+        CHECK_TAKE_BREAK,
+        CHECK_DONE_MIDPOM;
     }
 
     public final String CHECK_DONE_MESSAGE =
-            "Did you manage to finish the last task?\n"
-                    + "(Y) - Task will be set to done. (N) - No changes.";
+        "Did you manage to finish the last task?\n"
+            + "(Y) - Task will be set to done. (N) - No changes.";
 
     public final String CHECK_TAKE_BREAK_MESSAGE =
-            "Shall we take a 5-min break?\n" + "(Y) - 5-min timer begins. (N) - App goes neutral.";
+        "Shall we take a 5-min break?\n" + "(Y) - 5-min timer begins. (N) - App goes neutral.";
 
+    public final String CHECK_DONE_MIDPOM_MESSAGE =
+        "Great! Would you like to continue with another task\n"
+            + "(pom <index>) - next task pommed with remaining time. (N) - App goes neutral.";
+    
     private PROMPT_STATE promptState;
 
     public PomodoroManager() {
@@ -129,6 +134,10 @@ public class PomodoroManager {
         this.setPromptState(PROMPT_STATE.CHECK_TAKE_BREAK);
     }
 
+    public void checkMidPomDoneActions() {
+        this.setPromptState(PROMPT_STATE.CHECK_DONE_MIDPOM);
+    }
+    
     public void takeABreak() {
         if (timeline != null) {
             timeline.stop();
@@ -171,9 +180,6 @@ public class PomodoroManager {
                         new Done("Y"),
                         updatedTags);
         model.setTask(taskToEdit, editedTask);
-        // Update pet exp
-        model.incrementExp();
-        model.updatePetDisplayHandler();
         clearDoneParams();
     }
 }

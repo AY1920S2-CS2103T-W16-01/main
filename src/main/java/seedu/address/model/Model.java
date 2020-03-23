@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.PomodoroManager;
 import seedu.address.model.task.Task;
 
 /** The API of the Model component. */
@@ -74,6 +75,10 @@ public interface Model {
     ReadOnlyPomodoro getPomodoro();
 
     void setPomodoroTask(Task task);
+
+    void setPomodoroManager(PomodoroManager pomodoroManager);
+
+    PomodoroManager getPomodoroManager();
 
     ReadOnlyStatistics getStatistics();
 

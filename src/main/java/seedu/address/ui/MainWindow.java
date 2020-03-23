@@ -19,9 +19,12 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.PomodoroManager;
 import seedu.address.logic.PomodoroManager.PROMPT_STATE;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.PomCommand;
 import seedu.address.logic.commands.CommandCompletor;
 import seedu.address.logic.commands.PomCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.PomCommandParser;
+import seedu.address.logic.parser.TaskListParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyPet;
 import seedu.address.model.task.Reminder;
@@ -261,6 +264,41 @@ public class MainWindow extends UiPart<Stage> {
                     throw new ParseException(
                             "(Please confirm) Shall we take a 5-min break?\n"
                                     + "(Y) - 5-min timer begins. (N) - App goes neutral.");
+                }
+            case CHECK_DONE_MIDPOM:
+                if (commandText.toLowerCase().equals("n")) {
+                    CommandResult commandResult =
+                            new CommandResult("Alright, back to neutral!", false, false);
+                    resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+                    pomodoro.setPromptState(PROMPT_STATE.NONE);
+                    return commandResult;
+                }
+                try {
+                    new TaskListParser().parseCommand(commandText);
+                    // if continuedPom was created, user put in a valid pom request. Execute as per normal
+                    PomCommandResult pomCommandResult = (PomCommandResult)logic.execute(commandText);
+                    logger.info("Result: " + pomCommandResult.getFeedbackToUser());
+                    resultDisplay.setFeedbackToUser(pomCommandResult.getFeedbackToUser());
+                    if (pomCommandResult.getIsPause()) {
+                        pomodoro.pause();
+                    } else if (pomCommandResult.getIsContinue()) {
+                        pomodoro.unpause();
+                    } else {
+                        pomodoroDisplay.setTaskInProgressText(pomCommandResult.getPommedTask());
+                        // pomodoro.start(pomCommandResult.getTimerAmountInMin());
+                        pomodoro.unpause();
+                        pomodoro.setDoneParams(
+                                pomCommandResult.getModel(),
+                                pomCommandResult.getOriginList(),
+                                pomCommandResult.getTaskIndex());
+                    }
+                    pomodoro.setPromptState(PROMPT_STATE.NONE);
+                    return pomCommandResult;
+                } catch(ParseException | CommandException | ClassCastException e) {
+                    String message = "(Please confirm) Would you like to continue with another task (not done yet)\n"
+                    + "(pom <index>) - next task pommed with remaining time. (N) - App goes neutral.";
+                    resultDisplay.setFeedbackToUser(message);
+                    throw new ParseException(message);
                 }
             case NONE:
                 break;
