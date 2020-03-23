@@ -259,6 +259,7 @@ public class MainWindow extends UiPart<Stage> {
                             new CommandResult("Alright, back to neutral!", false, false);
                     resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
                     pomodoro.setPromptState(PROMPT_STATE.NONE);
+                    pomodoro.reset();
                     return commandResult;
                 } else {
                     throw new ParseException(
@@ -271,6 +272,7 @@ public class MainWindow extends UiPart<Stage> {
                             new CommandResult("Alright, back to neutral!", false, false);
                     resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
                     pomodoro.setPromptState(PROMPT_STATE.NONE);
+                    pomodoro.reset();
                     return commandResult;
                 }
                 try {

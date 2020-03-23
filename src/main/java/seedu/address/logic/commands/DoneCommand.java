@@ -70,10 +70,9 @@ public class DoneCommand extends Command {
         }
 
         // The last task to show is the pommed task
-        tasksDone.append(String.format("\n----Pom Task Done!----"));
-        tasksDone.append(String.format("%n%s", pommedTask));
-
         if (pommedTask != null) {
+            tasksDone.append(String.format("\n----Pom Task Done----"));
+            tasksDone.append(String.format("%n%s", pommedTask));
             PomodoroManager pm = model.getPomodoroManager();
             pm.pause();
             pm.doneTask();

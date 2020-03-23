@@ -86,6 +86,11 @@ public class PomodoroManager {
         }
     }
 
+    public void reset() {
+        timerLabel.textProperty().unbind();
+        timerLabel.setText("POM");
+    }
+
     private void configureUi() {
         timerLabel
                 .textProperty()
