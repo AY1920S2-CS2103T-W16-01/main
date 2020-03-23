@@ -24,7 +24,7 @@ public class ModelManager implements Model {
     private final Pet pet;
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
-    private Comparator<Task> comparator;
+    private Comparator<Task>[] comparators;
 
     /** Initializes a ModelManager with the given taskList and userPrefs. */
     public ModelManager(
@@ -139,7 +139,11 @@ public class ModelManager implements Model {
     public ObservableList<Task> getFilteredTaskList() {
         SortedList<Task> sortedFilteredTasks = new SortedList<>(filteredTasks);
         logger.info("Called when refreshing view");
-        sortedFilteredTasks.setComparator(comparator);
+        if (this.comparators != null) {
+            for (int i = comparators.length-1; i>= 0; i--) {
+                sortedFilteredTasks.setComparator(comparators[i]);
+            }
+        }
         return sortedFilteredTasks;
     }
 
@@ -150,9 +154,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setComparator(Comparator<Task> comparator) {
-        requireNonNull(comparator);
-        this.comparator = comparator;
+    public void setComparator(Comparator<Task>[] comparators) {
+        requireNonNull(comparators);
+        this.comparators = comparators; // TODO convert to list, set Comparators later in 
     }
 
     @Override
@@ -172,7 +176,7 @@ public class ModelManager implements Model {
         return taskList.equals(other.taskList)
                 && userPrefs.equals(other.userPrefs)
                 && filteredTasks.equals(other.filteredTasks)
-                && comparator.equals(other.comparator);
+                && comparators.equals(other.comparators);
     }
 
     // TODO Add a manager for pets

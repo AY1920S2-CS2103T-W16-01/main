@@ -2,6 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Optional;
 import seedu.address.commons.core.Messages;
@@ -31,24 +34,21 @@ public class SortCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        String field = fields[0];
-        System.out.println(fields);
         System.out.println("============CHECK FIELDS FOR SORT");
-
-        switch (field) {
-            case "priority":
-                model.setComparator(getPriorityComparator());
-                return new CommandResult(String.format(MESSAGE_SUCCESS, field));
-            case "date":
-                model.setComparator(getReminderComparator());
-                return new CommandResult(String.format(MESSAGE_SUCCESS, field));
-            case "name":
-                model.setComparator(getNameComparator());
-                return new CommandResult(String.format(MESSAGE_SUCCESS, field));
-
+        // NOTE: Incorrect sort fields has been handled in SortCommandParser already
+        ArrayList<Comparator<Task>> temp = new ArrayList<>();
+        for (String field: fields) {
+            switch (field) {
+                case "priority":
+                temp.add(getPriorityComparator());
+                case "date":
+                temp.add(getReminderComparator());
+                case "name":
+                temp.add(getNameComparator());
+            }
         }
-        return new CommandResult(
-                String.format(Messages.MESSAGE_FIELD_UNKNOWN, String.join(" ", fields)));
+        model.setComparator(temp.toArray(new Comparator[0]));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, String.join(" ", fields)));
     }
 
     private Comparator<Task> getPriorityComparator() {
@@ -76,8 +76,7 @@ public class SortCommand extends Command {
                 Optional<Reminder> reminder1 = task1.getOptionalReminder();
                 Optional<Reminder> reminder2 = task2.getOptionalReminder();
                 if (reminder1.isPresent() && reminder2.isPresent()) {
-                    // should be sorting to which is closer to today's date or sort just in order
-                    // can?
+                    // TODO sort according to closest to today and not yet expired, the rest remains unsorted
                     return reminder1.get().compareTo(reminder2.get());
                 }
                 if (reminder1.isPresent()) {
