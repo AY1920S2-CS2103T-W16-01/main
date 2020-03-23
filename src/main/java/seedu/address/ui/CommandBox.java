@@ -1,9 +1,9 @@
 package seedu.address.ui;
 
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
@@ -29,20 +29,24 @@ public class CommandBox extends UiPart<Region> {
                 .textProperty()
                 .addListener((unused1, unused2, unused3) -> setStyleToDefault());
 
-        commandTextField.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if(event.getCode() == KeyCode.TAB && !event.isShiftDown() && !event.isControlDown()) {
-                    event.consume(); 
-                    String suggestion = commandSuggestor.suggestCommand(commandTextField.getText());
-                    commandTextField.setText(suggestion);
-                    // event.consume doesn't seem to work, the below is thus a workaround
-                    commandTextField.requestFocus(); 
-                    commandTextField.forward();
-                    return;
-                }
-            }
-        });
+        commandTextField.setOnKeyPressed(
+                new EventHandler<KeyEvent>() {
+                    @Override
+                    public void handle(KeyEvent event) {
+                        if (event.getCode() == KeyCode.TAB
+                                && !event.isShiftDown()
+                                && !event.isControlDown()) {
+                            event.consume();
+                            String suggestion =
+                                    commandSuggestor.suggestCommand(commandTextField.getText());
+                            commandTextField.setText(suggestion);
+                            // event.consume doesn't seem to work, the below is thus a workaround
+                            commandTextField.requestFocus();
+                            commandTextField.forward();
+                            return;
+                        }
+                    }
+                });
     }
 
     /** Handles the Enter button pressed event. */

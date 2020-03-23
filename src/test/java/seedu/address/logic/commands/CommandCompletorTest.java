@@ -14,7 +14,7 @@ public class CommandCompletorTest {
                 cc.getSuggestedCommand(
                         "ad n/Math Homework p/1 des/Chapter 5, Pages 1 - 3 t/for school r/15/04/20@10:30");
         assertEquals(expectedAddCommand, actualAddCommand);
-        
+
         String expectedDoneCommand = "done 1,2,3";
         String actualDoneCommand = cc.getSuggestedCommand("do 1,2,3");
         assertEquals(expectedDoneCommand, actualDoneCommand);
@@ -37,7 +37,7 @@ public class CommandCompletorTest {
                 cc.getSuggestedCommand(
                         "asjjj n/Math Homework p/1 des/Chapter 5, Pages 1 - 3 t/for school r/15/04/20@10:30");
         assertEquals(expectedAddCommand, actualAddCommand);
-        
+
         String expectedDoneCommand = "fffsdf 1,2,3";
         String actualDoneCommand = cc.getSuggestedCommand("fffsdf 1,2,3");
         assertEquals(expectedDoneCommand, actualDoneCommand);
