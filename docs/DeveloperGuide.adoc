@@ -346,7 +346,6 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 (For all use cases below, the *System* is `BBProductive` and the *Actor* is the `user`, unless specified otherwise)
 
-[discrete]
 === Use case: Delete task
 
 *MSS*
