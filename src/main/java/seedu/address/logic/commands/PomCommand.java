@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMER;
 import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.PomodoroManager;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
@@ -53,14 +54,19 @@ public class PomCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        PomodoroManager pm = model.getPomodoroManager();
+
         if (isPause) {
+            pm.pause();
             return new PomCommandResult(
                     PAUSE_MESSAGE, null, 0, model, -1, null, isPause, isContinue);
         }
 
         if (isContinue) {
+            pm.unpause();
             return new PomCommandResult(
-                    COMMAND_WORD, null, 0, model, -1, null, isPause, isContinue);
+                    CONTINUE_MESSAGE, null, 0, model, -1, null, isPause, isContinue);
         }
 
         List<Task> lastShownList = model.getFilteredTaskList();
