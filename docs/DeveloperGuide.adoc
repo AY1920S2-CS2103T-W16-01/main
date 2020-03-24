@@ -372,6 +372,25 @@ Use case ends.
 +
 Use case resumes at step 2.
 
+=== Use case: Set Reminder
+
+*MSS*
+
+1.  User requests to create a Task specifying a timing to create a Reminder.
+2.  BBProductive creates the task and reflects it onto the task list.
+3.  Reminder pops up when time is reached.
++
+Use case ends.
+
+*Extensions*
+
+* 2a. A duplicate task is created.
++
+[none]
+** 2a1. BBProductive shows an error message.
++
+Use case resumes at step 1.
+
 === Use case: Run task with Pomodoro
 
 *MSS*
@@ -424,7 +443,7 @@ Windows, Linux, Unix, OS-X
 [[private-contact-detail]] Private contact detail::
 A contact detail that is not meant to be shared with others
 
-[[pomodoro] Pomodoro::
+[[pomodoro]] Pomodoro::
 A time management method developed by Francesco Cirillo. Traditionally, cycles of 25 minutes of work and 5 minutes of rest.
 
 [[task]] Task::
