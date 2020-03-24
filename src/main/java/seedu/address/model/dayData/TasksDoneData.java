@@ -11,7 +11,12 @@ public class TasksDoneData {
 
     public static final String MESSAGE_CONSTRAINTS =
             "TasksDoneData is an integer greater than or equals to 0";
-    public final String value;
+    public final Integer value;
+
+    /** Constructs a {@code TasksDoneData}. */
+    public TasksDoneData() {
+        value = 0;
+    }
 
     /**
      * Constructs a {@code TasksDoneData}.
@@ -21,7 +26,7 @@ public class TasksDoneData {
     public TasksDoneData(String taskDoneData) {
         requireNonNull(taskDoneData);
         checkArgument(isValidTasksDoneData(taskDoneData), MESSAGE_CONSTRAINTS);
-        value = taskDoneData;
+        value = Integer.valueOf(taskDoneData);
     }
 
     /** Returns true if a given string is a valid priority number. */
@@ -36,7 +41,7 @@ public class TasksDoneData {
 
     @Override
     public String toString() {
-        return value;
+        return value.toString();
     }
 
     @Override

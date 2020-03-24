@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -21,6 +22,7 @@ import seedu.address.logic.PomodoroManager.PROMPT_STATE;
 import seedu.address.logic.commands.CommandCompletor;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.PomCommandResult;
+import seedu.address.logic.commands.SwitchTabCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.TaskListParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -65,6 +67,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML private StackPane pomodoroPlaceholder;
 
     @FXML private StackPane statisticsPlaceholder;
+
+    @FXML private TabPane tabPanePlaceholder;
 
     public MainWindow(Stage primaryStage, Logic logic, PomodoroManager pomodoro) {
         super(FXML, primaryStage);
@@ -150,6 +154,9 @@ public class MainWindow extends UiPart<Stage> {
 
         statisticsDisplay = new StatisticsDisplay();
         statisticsPlaceholder.getChildren().add(statisticsDisplay.getRoot());
+
+        // tabPanePlaceholder.getSelectionModel().select(1);
+
     }
 
     /** Sets the default size based on {@code guiSettings}. */
@@ -311,6 +318,16 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            // Switch tabs related results
+            try {
+                SwitchTabCommandResult switchTabCommandResult =
+                        (SwitchTabCommandResult) commandResult;
+                tabPanePlaceholder
+                        .getSelectionModel()
+                        .select(switchTabCommandResult.getTabToSwitchIndex());
+            } catch (ClassCastException ce) {
+            }
 
             // Pomodoro related results
             try {

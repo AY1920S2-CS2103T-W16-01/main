@@ -11,7 +11,12 @@ public class PomDurationData {
 
     public static final String MESSAGE_CONSTRAINTS =
             "PomDurationData is an integer greater than or equals to 0 and less than 1440";
-    public final String value;
+    public final Integer value;
+
+    /** Constructs a {@code PomDurationData}. */
+    public PomDurationData() {
+        value = 0;
+    }
 
     /**
      * Constructs a {@code PomDurationData}.
@@ -21,7 +26,7 @@ public class PomDurationData {
     public PomDurationData(String pomDurationData) {
         requireNonNull(pomDurationData);
         checkArgument(isValidPomDurationData(pomDurationData), MESSAGE_CONSTRAINTS);
-        value = pomDurationData;
+        value = Integer.valueOf(pomDurationData);
     }
 
     /** Returns true if a given string is a valid priority number. */
@@ -36,7 +41,7 @@ public class PomDurationData {
 
     @Override
     public String toString() {
-        return value;
+        return value.toString();
     }
 
     @Override

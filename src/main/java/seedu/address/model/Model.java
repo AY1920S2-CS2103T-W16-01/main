@@ -81,6 +81,4 @@ public interface Model {
     PomodoroManager getPomodoroManager();
 
     ReadOnlyStatistics getStatistics();
-
-    void setStatistics(String data); // placeholder
 }

@@ -12,6 +12,12 @@ public class DayData {
         this.tasksDoneData = tasksDoneData;
     }
 
+    public DayData(Date date) {
+        this.date = date;
+        this.pomDurationData = new PomDurationData();
+        this.tasksDoneData = new TasksDoneData();
+    }
+
     public Date getDate() {
         return this.date;
     }

@@ -11,6 +11,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.PomodoroManager;
+import seedu.address.model.dayData.Date;
+import seedu.address.model.dayData.DayData;
 import seedu.address.model.task.Task;
 
 /** Represents the in-memory model of the address book data. */
@@ -164,7 +166,8 @@ public class ModelManager implements Model {
                 && filteredTasks.equals(other.filteredTasks);
     }
 
-    // TODO Add a manager for pets
+    // ============================ Pet Manager
+
     @Override
     public ReadOnlyPet getPet() {
         return pet;
@@ -180,24 +183,29 @@ public class ModelManager implements Model {
         this.pet.incrementPomExp();
     }
 
-    public ReadOnlyPomodoro getPomodoro() {
-        return pomodoro;
-    }
-
-    // TODO add a manager for statistics
-    public ReadOnlyStatistics getStatistics() {
-        return statistics;
+    @Override
+    public void incrementExp() {
+        this.pet.incrementExp();
     }
 
     // ============================ Pomodoro Manager
+
+    public ReadOnlyPomodoro getPomodoro() {
+        return pomodoro;
+    }
 
     public void setPomodoroTask(Task task) {
         this.pomodoro.setTask(task);
     }
 
-    @Override
-    public void incrementExp() {
-        this.pet.incrementExp();
+    // ============================ Statistics Manager
+
+    public ReadOnlyStatistics getStatistics() {
+        return statistics;
+    }
+
+    public void updateDataDatesStatistics() {
+        statistics.updateDataDates();
     }
 
     public void setPomodoroManager(PomodoroManager pomodoroManager) {
@@ -209,8 +217,12 @@ public class ModelManager implements Model {
     }
 
     // ============================ Statistics Manager
-
-    public void setStatistics(String data) {
-        // placeholder
+=======
+    public void updatesDayDataStatistics(DayData dayData) {
+        statistics.updatesDayData(dayData);
+    }
+  
+    public DayData getDayDataFromDate(Date date) {
+        return statistics.getDayDataFromDate(date);
     }
 }
