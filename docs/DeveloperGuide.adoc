@@ -266,6 +266,14 @@ Pomodoro has settings that can be configured by the user:
 
 This data is captured and stored in the `Pomodoro` class in `seedu.address.model`, which interacts with the app's storage system. `PomodoroManager` also updates `Pomodoro` model on what task is being run and the time remaining in a particular cycle. This allows the time progress to be persistent in between app closures and relaunches.
 
+=== Statistics
+
+The user's Pomodoro usage is tracked daily by tabulating the total duration when the Pomodoro is running, denoted by PomDurationData, and the number of tasks done, denoted by TasksDoneData. Data from the Pomodoro is stored in a DayData object that consist of the fields Date, PomDurationData and TasksDoneData. 
+
+A CustomQueue is used to store the dataset of DayDatas for the past 7 days. On creation, CustomQueue initialises with 7 DayDatas with the dates for the past 7 days and a value of 0 for both PomDurationData and TasksDoneData. DayData is updated through method calls by the Pomodoro in ModelManager. In the event that the user updates this dataset in the next/several days, CustomQueue will reinitialise the dates, maintaining only data for dates which still lie within 7 days from the new day. Older data is popped and discarded.
+
+A bar graph is generated based on this dataset and displayed on the Statistics panel for the user to track Pomodoro usage for the past 7 days.
+
 === Logging
 
 We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.
