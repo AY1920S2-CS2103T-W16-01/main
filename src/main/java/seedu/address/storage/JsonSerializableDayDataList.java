@@ -45,6 +45,7 @@ class JsonSerializableDayDataList {
      */
     public Statistics toModelType() throws IllegalValueException {
         Statistics dayDataList = new Statistics();
+        dayDataList.clearList(); // workaround to create empty list
         for (JsonAdaptedDayData jsonAdaptedDayData : dayDatas) {
             DayData dayData = jsonAdaptedDayData.toModelType();
             dayDataList.addDayData(dayData);

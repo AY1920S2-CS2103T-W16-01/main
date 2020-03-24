@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.PomodoroManager;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
@@ -41,6 +42,9 @@ public class DoneCommand extends Command {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
         StringBuilder tasksDone = new StringBuilder(MESSAGE_DONE_TASK_SUCCESS);
+
+        Task pommedTask = null;
+
         for (Index targetIndex : targetIndices) {
             targetIndex.getZeroBased();
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
@@ -51,13 +55,31 @@ public class DoneCommand extends Command {
             if (taskToEdit.getDone().isDone) {
                 throw new CommandException(Messages.MESSAGE_INVALID_TASK_TO_BE_DONED);
             }
+
             Task editedTask = createDoneTask(taskToEdit);
-            tasksDone.append(String.format("%n%s", editedTask));
-            model.setTask(taskToEdit, editedTask);
+
+            // If task to be done is being pommed...
+            if (taskToEdit.equals(model.getPomodoro().getRunningTask())) {
+                pommedTask = taskToEdit;
+            } else {
+                tasksDone.append(String.format("%n%s", editedTask));
+                model.setTask(taskToEdit, editedTask);
+            }
             // increment Pet EXP after completing a task
             model.incrementExp();
         }
-        // model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+        // The last task to show is the pommed task
+        if (pommedTask != null) {
+            tasksDone.append(String.format("\n----Pom Task Done----"));
+            tasksDone.append(String.format("%n%s", pommedTask));
+            PomodoroManager pm = model.getPomodoroManager();
+            pm.pause();
+            pm.doneTask();
+            // Pause pom timer and check if wanna continue
+            tasksDone.append("\n" + pm.CHECK_DONE_MIDPOM_MESSAGE);
+            pm.checkMidPomDoneActions();
+        }
 
         return new CommandResult(tasksDone.toString());
     }

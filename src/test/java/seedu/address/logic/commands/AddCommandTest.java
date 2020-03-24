@@ -186,11 +186,6 @@ public class AddCommandTest {
         public ReadOnlyStatistics getStatistics() {
             throw new AssertionError("This method should not be called.");
         }
-
-        @Override
-        public void setStatistics(String temp) {
-            throw new AssertionError("This method should not be called.");
-        }
     }
 
     /** A Model stub that contains a single person. */

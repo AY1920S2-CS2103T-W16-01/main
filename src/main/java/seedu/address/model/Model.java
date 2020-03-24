@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.PomodoroManager;
 import seedu.address.model.task.Task;
 
 /** The API of the Model component. */
@@ -78,7 +79,9 @@ public interface Model {
 
     void setPomodoroTask(Task task);
 
-    ReadOnlyStatistics getStatistics();
+    void setPomodoroManager(PomodoroManager pomodoroManager);
 
-    void setStatistics(String data); // placeholder
+    PomodoroManager getPomodoroManager();
+
+    ReadOnlyStatistics getStatistics();
 }

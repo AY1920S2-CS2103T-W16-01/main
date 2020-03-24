@@ -90,6 +90,8 @@ public class MainApp extends Application {
 
         pomodoro = new PomodoroManager();
 
+        model.setPomodoroManager(pomodoro);
+
         ui = new UiManager(logic, pomodoro);
     }
 

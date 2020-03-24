@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -18,10 +19,12 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.PomodoroManager;
 import seedu.address.logic.PomodoroManager.PROMPT_STATE;
-import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.CommandCompletor;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.PomCommandResult;
+import seedu.address.logic.commands.SwitchTabCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.TaskListParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyPet;
 import seedu.address.model.task.Reminder;
@@ -64,6 +67,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML private StackPane pomodoroPlaceholder;
 
     @FXML private StackPane statisticsPlaceholder;
+
+    @FXML private TabPane tabPanePlaceholder;
 
     public MainWindow(Stage primaryStage, Logic logic, PomodoroManager pomodoro) {
         super(FXML, primaryStage);
@@ -149,6 +154,9 @@ public class MainWindow extends UiPart<Stage> {
 
         statisticsDisplay = new StatisticsDisplay();
         statisticsPlaceholder.getChildren().add(statisticsDisplay.getRoot());
+
+        // tabPanePlaceholder.getSelectionModel().select(1);
+
     }
 
     /** Sets the default size based on {@code guiSettings}. */
@@ -256,11 +264,51 @@ public class MainWindow extends UiPart<Stage> {
                             new CommandResult("Alright, back to neutral!", false, false);
                     resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
                     pomodoro.setPromptState(PROMPT_STATE.NONE);
+                    pomodoro.reset();
                     return commandResult;
                 } else {
                     throw new ParseException(
                             "(Please confirm) Shall we take a 5-min break?\n"
                                     + "(Y) - 5-min timer begins. (N) - App goes neutral.");
+                }
+            case CHECK_DONE_MIDPOM:
+                if (commandText.toLowerCase().equals("n")) {
+                    CommandResult commandResult =
+                            new CommandResult("Alright, back to neutral!", false, false);
+                    resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+                    pomodoro.setPromptState(PROMPT_STATE.NONE);
+                    pomodoro.reset();
+                    return commandResult;
+                }
+                try {
+                    new TaskListParser().parseCommand(commandText);
+                    // if continuedPom was created, user put in a valid pom request. Execute as per
+                    // normal
+                    PomCommandResult pomCommandResult =
+                            (PomCommandResult) logic.execute(commandText);
+                    logger.info("Result: " + pomCommandResult.getFeedbackToUser());
+                    resultDisplay.setFeedbackToUser(pomCommandResult.getFeedbackToUser());
+                    if (pomCommandResult.getIsPause()) {
+                        pomodoro.pause();
+                    } else if (pomCommandResult.getIsContinue()) {
+                        pomodoro.unpause();
+                    } else {
+                        pomodoroDisplay.setTaskInProgressText(pomCommandResult.getPommedTask());
+                        // pomodoro.start(pomCommandResult.getTimerAmountInMin());
+                        pomodoro.unpause();
+                        pomodoro.setDoneParams(
+                                pomCommandResult.getModel(),
+                                pomCommandResult.getOriginList(),
+                                pomCommandResult.getTaskIndex());
+                    }
+                    pomodoro.setPromptState(PROMPT_STATE.NONE);
+                    return pomCommandResult;
+                } catch (ParseException | CommandException | ClassCastException e) {
+                    String message =
+                            "(Please confirm) Would you like to continue with another task (not done yet)\n"
+                                    + "(pom <index>) - next task pommed with remaining time. (N) - App goes neutral.";
+                    resultDisplay.setFeedbackToUser(message);
+                    throw new ParseException(message);
                 }
             case NONE:
                 break;
@@ -270,6 +318,16 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            // Switch tabs related results
+            try {
+                SwitchTabCommandResult switchTabCommandResult =
+                        (SwitchTabCommandResult) commandResult;
+                tabPanePlaceholder
+                        .getSelectionModel()
+                        .select(switchTabCommandResult.getTabToSwitchIndex());
+            } catch (ClassCastException ce) {
+            }
 
             // Pomodoro related results
             try {

@@ -32,17 +32,17 @@ public class PomodoroManager {
     private int taskIndex;
 
     public enum PROMPT_STATE {
-        NONE,
-        CHECK_DONE,
-        CHECK_TAKE_BREAK;
+        NONE, CHECK_DONE, CHECK_TAKE_BREAK, CHECK_DONE_MIDPOM;
     }
 
-    public final String CHECK_DONE_MESSAGE =
-            "Did you manage to finish the last task?\n"
-                    + "(Y) - Task will be set to done. (N) - No changes.";
+    public final String CHECK_DONE_MESSAGE = "Did you manage to finish the last task?\n"
+            + "(Y) - Task will be set to done. (N) - No changes.";
 
-    public final String CHECK_TAKE_BREAK_MESSAGE =
-            "Shall we take a 5-min break?\n" + "(Y) - 5-min timer begins. (N) - App goes neutral.";
+    public final String CHECK_TAKE_BREAK_MESSAGE = "Shall we take a 5-min break?\n"
+            + "(Y) - 5-min timer begins. (N) - App goes neutral.";
+
+    public final String CHECK_DONE_MIDPOM_MESSAGE = "Great! Would you like to continue with another task\n"
+            + "(pom <index>) - next task pommed with remaining time. (N) - App goes neutral.";
 
     private PROMPT_STATE promptState;
 
@@ -81,23 +81,22 @@ public class PomodoroManager {
         }
     }
 
+    public void reset() {
+        timerLabel.textProperty().unbind();
+        timerLabel.setText("POM");
+    }
+
     private void configureUi() {
-        timerLabel
-                .textProperty()
-                .bind(
-                        Bindings.createStringBinding(
-                                () -> {
-                                    if (timeSeconds.getValue() == null) {
-                                        return "";
-                                    } else {
-                                        int secondsRemaining = timeSeconds.get();
-                                        int minutePortion = secondsRemaining / 60;
-                                        int secondPortion = secondsRemaining % 60;
-                                        return String.format(
-                                                "%02d:%02d", minutePortion, secondPortion);
-                                    }
-                                },
-                                timeSeconds));
+        timerLabel.textProperty().bind(Bindings.createStringBinding(() -> {
+            if (timeSeconds.getValue() == null) {
+                return "";
+            } else {
+                int secondsRemaining = timeSeconds.get();
+                int minutePortion = secondsRemaining / 60;
+                int secondPortion = secondsRemaining % 60;
+                return String.format("%02d:%02d", minutePortion, secondPortion);
+            }
+        }, timeSeconds));
     }
 
     private void configureTimer() {
@@ -106,15 +105,13 @@ public class PomodoroManager {
         }
         timeSeconds.set(startTime);
         timeline = new Timeline();
-        timeline.getKeyFrames()
-                .add(new KeyFrame(Duration.seconds(startTime + 1), new KeyValue(timeSeconds, 0)));
+        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(startTime + 1), new KeyValue(timeSeconds, 0)));
         timeline.playFromStart();
-        timeline.setOnFinished(
-                event -> {
-                    this.setPromptState(PROMPT_STATE.CHECK_DONE);
-                    resultDisplay.setFeedbackToUser(CHECK_DONE_MESSAGE);
-                    model.incrementPomExp();
-                });
+        timeline.setOnFinished(event -> {
+            this.setPromptState(PROMPT_STATE.CHECK_DONE);
+            resultDisplay.setFeedbackToUser(CHECK_DONE_MESSAGE);
+            model.incrementPomExp();
+        });
     }
 
     public PROMPT_STATE getPromptState() {
@@ -129,20 +126,22 @@ public class PomodoroManager {
         this.setPromptState(PROMPT_STATE.CHECK_TAKE_BREAK);
     }
 
+    public void checkMidPomDoneActions() {
+        this.setPromptState(PROMPT_STATE.CHECK_DONE_MIDPOM);
+    }
+
     public void takeABreak() {
         if (timeline != null) {
             timeline.stop();
         }
         timeSeconds.set(restTime);
         timeline = new Timeline();
-        timeline.getKeyFrames()
-                .add(new KeyFrame(Duration.seconds(restTime + 1), new KeyValue(timeSeconds, 0)));
+        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(restTime + 1), new KeyValue(timeSeconds, 0)));
         timeline.playFromStart();
-        timeline.setOnFinished(
-                event -> {
-                    resultDisplay.setFeedbackToUser("Breaks over! What shall we do next?");
-                    this.setPromptState(PROMPT_STATE.NONE); // App back to neutral
-                });
+        timeline.setOnFinished(event -> {
+            resultDisplay.setFeedbackToUser("Breaks over! What shall we do next?");
+            this.setPromptState(PROMPT_STATE.NONE); // App back to neutral
+        });
     }
 
     public void setDoneParams(Model model, List<Task> originList, int taskIndex) {
@@ -163,14 +162,10 @@ public class PomodoroManager {
         Priority updatedPriority = taskToEdit.getPriority();
         Description updatedDescription = taskToEdit.getDescription();
         Set<Tag> updatedTags = taskToEdit.getTags();
-        Task editedTask =
-                new Task(
-                        updatedName,
-                        updatedPriority,
-                        updatedDescription,
-                        new Done("Y"),
-                        updatedTags);
+        Task editedTask = new Task(updatedName, updatedPriority, updatedDescription, new Done("Y"), updatedTags);
         model.setTask(taskToEdit, editedTask);
+        // Update pet exp
+        model.incrementExp();
         clearDoneParams();
     }
 }
