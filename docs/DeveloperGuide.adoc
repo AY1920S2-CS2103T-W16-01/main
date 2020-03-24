@@ -274,6 +274,14 @@ A CustomQueue is used to store the dataset of DayDatas for the past 7 days. On c
 
 A bar graph is generated based on this dataset and displayed on the Statistics panel for the user to track Pomodoro usage for the past 7 days.
 
+=== Reminders
+
+The user's reminder functionality is achieved by calculating the time delay from the current time and the time from the user input. This time delay as well as the Task name and description is passed to the MainWindow for the reminder to be triggered as a pop up at the right time. 
+
+A DateTimeFormatter is used to parse the date time from the user input, which is just the date in the r/ flag when adding or editing a task, into a LocalDateTime object. This LocalDateTime is used to store the date and time information. When the reminder is instantiated, a setDelay method is called setting in motion the calculation of time delay, and triggering of reminder on the MainWindow. The reminder class is stored as an OptionalReminder in the Task class itself.
+
+Reminder is stored as a string in the JsonAdaptedTask. This string contains the exact format of the date and time that the user inputs, this allows the same constructor to be used when the data is read and changed to a task and thus reminder object.
+
 === Logging
 
 We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.
