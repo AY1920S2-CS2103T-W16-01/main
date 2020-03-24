@@ -21,6 +21,7 @@ import seedu.address.logic.PomodoroManager;
 import seedu.address.logic.PomodoroManager.PROMPT_STATE;
 import seedu.address.logic.commands.CommandCompletor;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.PomCommand;
 import seedu.address.logic.commands.PomCommandResult;
 import seedu.address.logic.commands.SwitchTabCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -215,6 +216,10 @@ public class MainWindow extends UiPart<Stage> {
         return suggestion;
     }
 
+    public void setTabFocusTasks() {
+        tabPanePlaceholder.getSelectionModel().select(0);
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -349,7 +354,7 @@ public class MainWindow extends UiPart<Stage> {
                     return commandResult;
                 }
                 try {
-                    new TaskListParser().parseCommand(commandText);
+                    PomCommand pc = (PomCommand) (new TaskListParser().parseCommand(commandText));
                     // if continuedPom was created, user put in a valid pom request. Execute as per
                     // normal
                     PomCommandResult pomCommandResult =
@@ -380,6 +385,7 @@ public class MainWindow extends UiPart<Stage> {
                     throw new ParseException(message);
                 }
             case NONE:
+            default:
                 break;
         }
 

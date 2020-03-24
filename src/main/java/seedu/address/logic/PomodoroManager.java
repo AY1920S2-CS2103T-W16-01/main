@@ -132,6 +132,7 @@ public class PomodoroManager {
                     resultDisplay.setFeedbackToUser(CHECK_DONE_MESSAGE);
                     model.incrementPomExp();
                     mainWindow.setPomCommandExecutor();
+                    mainWindow.setTabFocusTasks();
                 });
     }
 
