@@ -17,6 +17,8 @@ public class CommandCompletor {
         this.commands.add(ClearCommand.COMMAND_WORD);
         this.commands.add(PomCommand.COMMAND_WORD);
         this.commands.add(ExitCommand.COMMAND_WORD);
+        this.commands.add(SwitchTabCommand.STATS_COMMAND_WORD);
+        this.commands.add(SwitchTabCommand.TASKS_COMMAND_WORD);
     }
 
     public String getSuggestedCommand(String input) {
