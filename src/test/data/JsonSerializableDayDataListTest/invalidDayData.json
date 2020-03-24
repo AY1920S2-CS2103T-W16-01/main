@@ -1,7 +1,7 @@
 {
   "dayDatas" : [ {
     "date" : "2020-03-17",
-    "pomDurationData" : "10",
+    "pomDurationData" : "-10",
     "tasksDoneData" : "2"
   }, {
     "date" : "2020-03-18",

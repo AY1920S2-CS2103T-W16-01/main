@@ -1,12 +1,16 @@
 package seedu.address.storage;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Optional;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyStatistics;
 
 /** Represents a storage for {@link seedu.address.model.Statistics}. */
 public interface StatisticsStorage {
+
+    /** Returns the file path of the data file. */
+    Path getStatisticsFilePath();
 
     /**
      * Returns Statistics data as a {@link ReadOnlyStatistics}. Returns {@code Optional.empty()} if
@@ -17,6 +21,10 @@ public interface StatisticsStorage {
      */
     Optional<ReadOnlyStatistics> readStatistics() throws DataConversionException, IOException;
 
+    /** @see #getStatisticsFilePath() */
+    Optional<ReadOnlyStatistics> readStatistics(Path filePath)
+            throws DataConversionException, IOException;
+
     /**
      * Saves the given {@link ReadOnlyStatistics} to the storage.
      *
@@ -24,4 +32,8 @@ public interface StatisticsStorage {
      * @throws IOException if there was any problem writing to the file.
      */
     void saveStatistics(ReadOnlyStatistics statistics) throws IOException;
+
+
+    /** @see #saveStatistics(ReadOnlyStatistics) */
+    void saveStatistics(ReadOnlyStatistics statistics, Path filePath) throws IOException;
 }

@@ -35,6 +35,10 @@ class JsonAdaptedDayData {
         tasksDoneData = source.getTasksDoneData().toString();
     }
 
+    public String getDateJson() {
+        return date;
+    }
+
     /**
      * Converts this Jackson-friendly adapted person object into the model's {@code DayData} object.
      *
