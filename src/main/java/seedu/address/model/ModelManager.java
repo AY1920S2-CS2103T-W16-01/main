@@ -4,10 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.PomodoroManager;
@@ -25,6 +27,7 @@ public class ModelManager implements Model {
     private final Pet pet;
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
+    private Comparator<Task>[] comparators;
 
     private PomodoroManager pomodoroManager;
 
@@ -44,8 +47,6 @@ public class ModelManager implements Model {
         this.pet = new Pet(pet); // initialize a pet as a model
         this.pomodoro = new Pomodoro(pomodoro); // initialize a pomodoro as a model
         this.statistics = new Statistics(statistics); // initialize a Statistics as a model
-        logger.info(String.format("Initializing with Pet: %s", this.pet.toString()));
-        logger.info(String.format("Initializing with Pomodoro: %s", this.pomodoro.toString()));
         logger.info(String.format("Initializing with DayDataList: %s", this.statistics.toString()));
 
         this.userPrefs = new UserPrefs(userPrefs);
@@ -134,17 +135,31 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
+     * @FXML Serves as a reference point for TaskListPanel.java to update display
      * {@code versionedTaskList}
      */
     @Override
     public ObservableList<Task> getFilteredTaskList() {
-        return filteredTasks;
+        SortedList<Task> sortedFilteredTasks = new SortedList<>(filteredTasks);
+        logger.info("Called when refreshing view");
+        if (this.comparators != null) {
+            for (int i = comparators.length-1; i>= 0; i--) {
+                sortedFilteredTasks.setComparator(comparators[i]);
+            }
+        }
+        return sortedFilteredTasks;
     }
 
     @Override
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         filteredTasks.setPredicate(predicate);
+    }
+
+    @Override
+    public void setComparator(Comparator<Task>[] comparators) {
+        requireNonNull(comparators);
+        this.comparators = comparators; // TODO convert to list, set Comparators later in 
     }
 
     @Override
@@ -163,7 +178,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return taskList.equals(other.taskList)
                 && userPrefs.equals(other.userPrefs)
-                && filteredTasks.equals(other.filteredTasks);
+                && filteredTasks.equals(other.filteredTasks)
+                && comparators.equals(other.comparators);
     }
 
     // ============================ Pet Manager

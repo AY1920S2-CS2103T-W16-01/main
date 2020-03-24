@@ -1,47 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="petPane" alignment="CENTER" maxHeight="400.0" minHeight="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="petPane" alignment="CENTER" maxHeight="400.0" minHeight="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox prefHeight="75.0">
          <children>
-            <HBox maxHeight="30.0" minHeight="30.0" prefHeight="30.0">
-               <children>
-                  <Label text="Level ">
-                     <font>
-                        <Font size="26.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="levelView" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="0">
-                     <font>
-                        <Font size="26.0" />
-                     </font>
-                  </Label>
-               </children>
-               <VBox.margin>
-                  <Insets left="10.0" />
-               </VBox.margin>
-            </HBox>
-            <Label fx:id="expBarView" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="0 XP / 100 XP">
+            <Label text="BB">
                <font>
-                  <Font size="18.0" />
+                  <Font size="32.0" />
                </font>
-               <VBox.margin>
+               <padding>
                   <Insets left="10.0" />
-               </VBox.margin>
+               </padding>
             </Label>
-            <ImageView fx:id="expBarPic" fitHeight="30.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-               <VBox.margin>
-                  <Insets left="10.0" />
-               </VBox.margin>
-            </ImageView>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="expBarView" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="0 XP / 100 XP">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Region prefHeight="30.0" prefWidth="37.0" />
+                        <HBox maxHeight="30.0" minHeight="30.0" prefHeight="30.0">
+                           <children>
+                              <Label prefHeight="34.0" prefWidth="56.0" text="Level ">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="levelView" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="0">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </HBox>
+                  <ImageView fx:id="expBarPic" fitHeight="30.0" fitWidth="233.0" pickOnBounds="true" preserveRatio="true">
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </ImageView>
+               </children>
+            </VBox>
          </children>
          <VBox.margin>
             <Insets left="10.0" top="10.0" />
@@ -60,4 +76,8 @@
          </children>
       </HBox>
    </children>
+   <stylesheets>
+      <URL value="@Extensions.css" />
+      <URL value="@LightTheme.css" />
+   </stylesheets>
 </VBox>

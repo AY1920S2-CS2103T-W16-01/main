@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Task's name in the address book. Guarantees: immutable; is valid as declared in
  * {@link #isValidName(String)}
  */
-public class Name {
+public class Name implements Comparable {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -51,5 +51,14 @@ public class Name {
     @Override
     public int hashCode() {
         return fullName.hashCode();
+    }
+
+    @Override
+    public int compareTo(Object obj) {
+        if (!(obj instanceof Name)) {
+            return 0; 
+        }
+        Name other = (Name) obj;
+        return other.fullName.compareToIgnoreCase(this.fullName);
     }
 }

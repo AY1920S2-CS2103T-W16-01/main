@@ -107,7 +107,6 @@ public class Task {
     }
 
     public Optional<Reminder> getOptionalReminder() {
-        // System.out.println("getReminder task: " + optionalReminder.get() );
         return optionalReminder;
     }
 

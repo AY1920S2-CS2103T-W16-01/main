@@ -4,72 +4,84 @@
     "priority" : "2",
     "description" : "123, Jurong West Ave 6, #08-111",
     "done" : "Y",
-    "tagged" : [ "neighbours" ]
+    "tagged" : [ "neighbours" ],
+    "reminder": ""
   }, {
     "name" : "David Li",
     "priority" : "2",
     "description" : "123, Jurong West Ave 6, #08-111",
     "done" : "Y",
-    "tagged" : [ "family" ]
+    "tagged" : [ "family" ],
+    "reminder": ""
   }, {
     "name" : "Irfan Ibrahim",
     "priority" : "1",
     "description" : "123, Jurong West Ave 6, #08-111",
     "done" : "Y",
-    "tagged" : [ "classmates" ]
+    "tagged" : [ "classmates" ],
+    "reminder": ""
   }, {
     "name" : "Roy Balakrishnan",
     "priority" : "1",
     "description" : "123, Jurong West Ave 6, #08-111",
     "done" : "Y",
-    "tagged" : [ "colleagues" ]
+    "tagged" : [ "colleagues" ],
+    "reminder": ""
   }, {
     "name" : "bran",
     "priority" : "1",
     "description" : "123, Jurong West Ave 6, #08-111",
     "done" : "Y",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "reminder": ""
   }, {
     "name" : "John Doe",
     "priority" : "1",
     "description" : "123, Jurong West Ave 6, #08-111",
     "done" : "Y",
-    "tagged" : [ "owesMoney", "friends" ]
+    "tagged" : [ "owesMoney", "friends" ],
+    "reminder": ""
   }, {
     "name" : "John Roe",
     "priority" : "3",
     "description" : "311, Clementi Ave 2, #02-25",
     "done" : "Y",
-    "tagged" : [ "owesMoney", "friends" ]
+    "tagged" : [ "owesMoney", "friends" ],
+    "reminder": ""
   }, {
     "name" : "Math Homework",
     "priority" : "1",
     "description" : "Chapter 5, Pages 1 - 3",
     "done" : "Y",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "reminder": ""
   }, {
     "name" : "Math Homewo",
     "priority" : "1",
     "description" : "Chapter 5, Pages 1 - 3",
     "done" : "N",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "reminder": ""
   }, {
     "name" : "Hello world",
     "priority" : "1",
     "description" : "Chapter 5, Pages 1 - 3",
     "done" : "N",
-    "tagged" : [ "somebodythatiusedtoknow" ]
+    "tagged" : [ "somebodythatiusedtoknow" ],
+    "reminder": ""
   }, {
     "name" : "blabla",
     "priority" : "1",
     "description" : "Chapter 5, Pages 1 - 3",
     "done" : "N",
-    "tagged" : [ "forschool" ]
+    "tagged" : [ "forschool" ],
+    "reminder": ""
   }, {
     "name" : "Math Homework2",
     "priority" : "1",
     "description" : "Chapter 5, Pages 1 - 3",
     "done" : "N",
-    "tagged" : [ "forschool" ]
+    "tagged" : [ "forschool" ],
+    "reminder": ""
   } ]
 }

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -13,6 +14,7 @@ import seedu.address.model.task.Description;
 import seedu.address.model.task.Done;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
+import seedu.address.model.task.Reminder;
 import seedu.address.model.task.Task;
 
 /** Jackson-friendly version of {@link Task}. */
@@ -25,15 +27,17 @@ class JsonAdaptedTask {
     private final String description;
     private final String done;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String reminder;
 
-    /** Constructs a {@code JsonAdaptedTask} with the given person details. */
+    /** Constructs a {@code JsonAdaptedTask} with the given details. */
     @JsonCreator
     public JsonAdaptedTask(
             @JsonProperty("name") String name,
             @JsonProperty("priority") String priority,
             @JsonProperty("description") String description,
             @JsonProperty("done") String done,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("reminder") String reminder) {
         this.name = name;
         this.priority = priority;
         this.description = description;
@@ -41,6 +45,7 @@ class JsonAdaptedTask {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.reminder = reminder;
     }
 
     /** Converts a given {@code Task} into this class for Jackson use. */
@@ -51,6 +56,7 @@ class JsonAdaptedTask {
         done = source.getDone().toString();
         tagged.addAll(
                 source.getTags().stream().map(JsonAdaptedTag::new).collect(Collectors.toList()));
+        reminder = (source.getOptionalReminder().isPresent()) ? source.getOptionalReminder().get().toString() : "";
     }
 
     /**
@@ -98,6 +104,13 @@ class JsonAdaptedTask {
         final Done modelDone = new Done(done);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Task(modelName, modelPriority, modelDescription, modelDone, modelTags);
+        
+        Optional<Reminder> optReminder = Optional.empty();
+        if (reminder == null || reminder.equals("")) {
+            optReminder = Optional.empty();
+        } else {
+            optReminder = Optional.of(new Reminder(reminder));
+        }
+        return new Task(modelName, modelPriority, modelDescription, modelDone, modelTags, optReminder);
     }
 }
