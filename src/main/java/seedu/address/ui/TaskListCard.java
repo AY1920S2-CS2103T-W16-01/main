@@ -28,6 +28,7 @@ public class TaskListCard extends UiPart<Region> {
     @FXML private Label id;
     @FXML private Label priority;
     @FXML private Label description;
+    @FXML private Label reminder;
     @FXML private FlowPane tags;
 
     public TaskListCard(Task task, int displayedIndex) {
@@ -37,6 +38,7 @@ public class TaskListCard extends UiPart<Region> {
         name.setText(String.format("[%s] %s", task.getDone().toString(), task.getName().fullName));
         priority.setText(task.getPriority().value);
         description.setText(task.getDescription().value);
+        task.getOptionalReminder().ifPresent(rem -> reminder.setText(rem.displayReminder()));
         task.getTags()
                 .stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

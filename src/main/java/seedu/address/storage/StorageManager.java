@@ -125,7 +125,14 @@ public class StorageManager implements Storage {
         pomodoroStorage.savePomodoro(pomodoro);
     }
 
+
     // ================ Statistics methods ==============================
+
+    @Override
+    public Path getStatisticsFilePath() {
+        return statisticsStorage.getStatisticsFilePath();
+    }
+
     @Override
     public Optional<ReadOnlyStatistics> readStatistics()
             throws DataConversionException, IOException {
@@ -133,8 +140,20 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveStatistics(ReadOnlyStatistics dayDataList) throws IOException {
-        logger.fine("Attempting to write Day Data List data: ");
-        statisticsStorage.saveStatistics(dayDataList);
+    public Optional<ReadOnlyStatistics> readStatistics(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return statisticsStorage.readStatistics(filePath);
+    }
+
+    @Override
+    public void saveStatistics(ReadOnlyStatistics statistics) throws IOException {
+        logger.fine("Attempting to write Statistics data: ");
+        statisticsStorage.saveStatistics(statistics);
+    }
+
+    @Override
+    public void saveStatistics(ReadOnlyStatistics statistics, Path filePath) throws IOException {
+        logger.fine("Attempting to write Statistics  data: " + filePath);
+        statisticsStorage.saveStatistics(statistics, filePath);
     }
 }

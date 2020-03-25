@@ -1,0 +1,31 @@
+{
+  "dayDatas" : [ {
+    "date" : "2020-03-17",
+    "pomDurationData" : "0",
+    "tasksDoneData" : "0"
+  }, {
+    "date" : "2020-03-18",
+    "pomDurationData" : "invalid",
+    "tasksDoneData" : "0"
+  }, {
+    "date" : "2020-03-19",
+    "pomDurationData" : "0",
+    "tasksDoneData" : "0"
+  }, {
+    "date" : "2020-03-20",
+    "pomDurationData" : "0",
+    "tasksDoneData" : "0"
+  }, {
+    "date" : "2020-03-21",
+    "pomDurationData" : "0",
+    "tasksDoneData" : "0"
+  }, {
+    "date" : "2020-03-22",
+    "pomDurationData" : "0",
+    "tasksDoneData" : "0"
+  }, {
+    "date" : "2020-03-23",
+    "pomDurationData" : "0",
+    "tasksDoneData" : "0"
+  } ]
+}

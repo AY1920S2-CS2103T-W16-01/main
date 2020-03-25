@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root maxHeight="700.0" minHeight="700.0" minWidth="800.0" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" width="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="700.0" minHeight="700.0" minWidth="800.0" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" width="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -72,7 +72,7 @@
          </VBox>
          <stylesheets>
             <URL value="@Extensions.css" />
-            <URL value="@DarkTheme.css" />
+            <URL value="@LightTheme.css" />
          </stylesheets>
     </Scene>
   </scene>

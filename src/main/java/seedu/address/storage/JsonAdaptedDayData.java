@@ -2,7 +2,6 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.time.LocalDate;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.dayData.Date;
 import seedu.address.model.dayData.DayData;
@@ -34,6 +33,10 @@ class JsonAdaptedDayData {
         date = source.getDate().toString();
         pomDurationData = source.getPomDurationData().toString();
         tasksDoneData = source.getTasksDoneData().toString();
+    }
+
+    public String getDateJson() {
+        return date;
     }
 
     /**

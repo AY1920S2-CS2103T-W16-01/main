@@ -237,7 +237,7 @@ public class ModelManager implements Model {
     public void updatesDayDataStatistics(DayData dayData) {
         statistics.updatesDayData(dayData);
     }
-  
+
     public DayData getDayDataFromDate(Date date) {
         return statistics.getDayDataFromDate(date);
     }

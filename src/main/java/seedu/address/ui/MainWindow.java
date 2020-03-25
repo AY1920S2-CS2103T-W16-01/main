@@ -21,6 +21,7 @@ import seedu.address.logic.PomodoroManager;
 import seedu.address.logic.PomodoroManager.PROMPT_STATE;
 import seedu.address.logic.commands.CommandCompletor;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.PomCommand;
 import seedu.address.logic.commands.PomCommandResult;
 import seedu.address.logic.commands.SwitchTabCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -51,6 +52,8 @@ public class MainWindow extends UiPart<Stage> {
     private PetDisplay petDisplay;
     private PomodoroDisplay pomodoroDisplay;
     private StatisticsDisplay statisticsDisplay;
+
+    private CommandBox commandBox;
 
     @FXML private StackPane commandBoxPlaceholder;
 
@@ -144,13 +147,14 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTaskListFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand, this::suggestCommand);
+        commandBox = new CommandBox(this::executeCommand, this::suggestCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         pomodoroDisplay = new PomodoroDisplay();
         pomodoroPlaceholder.getChildren().add(pomodoroDisplay.getRoot());
         pomodoro.setTimerLabel(pomodoroDisplay.getTimerLabel());
         pomodoro.setResultDisplay(resultDisplay);
+        pomodoro.setMainWindow(this);
 
         statisticsDisplay = new StatisticsDisplay();
         statisticsPlaceholder.getChildren().add(statisticsDisplay.getRoot());
@@ -212,12 +216,79 @@ public class MainWindow extends UiPart<Stage> {
         return suggestion;
     }
 
+    public void setTabFocusTasks() {
+        tabPanePlaceholder.getSelectionModel().select(0);
+    }
+
     /**
      * Executes the command and returns the result.
      *
      * @see seedu.address.logic.Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText)
+            throws CommandException, ParseException {
+
+        try {
+            CommandResult commandResult = logic.execute(commandText);
+            logger.info("Result: " + commandResult.getFeedbackToUser());
+            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            // Switch tabs related results
+            try {
+                SwitchTabCommandResult switchTabCommandResult =
+                        (SwitchTabCommandResult) commandResult;
+                tabPanePlaceholder
+                        .getSelectionModel()
+                        .select(switchTabCommandResult.getTabToSwitchIndex());
+            } catch (ClassCastException ce) {
+            }
+
+            // Pomodoro related results
+            try {
+                PomCommandResult pomCommandResult = (PomCommandResult) commandResult;
+
+                if (!pomCommandResult.getIsPause() && !pomCommandResult.getIsContinue()) {
+                    pomodoroDisplay.setTaskInProgressText(pomCommandResult.getPommedTask());
+                    pomodoro.start(pomCommandResult.getTimerAmountInMin());
+                    pomodoro.setDoneParams(
+                            pomCommandResult.getModel(),
+                            pomCommandResult.getOriginList(),
+                            pomCommandResult.getTaskIndex());
+                }
+            } catch (ClassCastException ce) {
+
+            } catch (NullPointerException ne) {
+                resultDisplay.setFeedbackToUser("Sorry, you've got no tasks being POMmed.");
+            }
+
+            if (commandResult.isShowHelp()) {
+                handleHelp();
+            }
+
+            if (commandResult.isExit()) {
+                handleExit();
+            }
+            petDisplay.update();
+
+            return commandResult;
+        } catch (CommandException | ParseException e) {
+            logger.info("Invalid command: " + commandText);
+            resultDisplay.setFeedbackToUser(e.getMessage());
+            throw e;
+        }
+    }
+
+    public void setPomCommandExecutor() {
+        commandBox = new CommandBox(this::pomExecuteCommand, this::suggestCommand);
+        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    public void setDefaultCommandExecutor() {
+        commandBox = new CommandBox(this::executeCommand, this::suggestCommand);
+        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    private CommandResult pomExecuteCommand(String commandText)
             throws CommandException, ParseException {
 
         PomodoroManager.PROMPT_STATE pomPromptState = pomodoro.getPromptState();
@@ -265,6 +336,7 @@ public class MainWindow extends UiPart<Stage> {
                     resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
                     pomodoro.setPromptState(PROMPT_STATE.NONE);
                     pomodoro.reset();
+                    this.setDefaultCommandExecutor();
                     return commandResult;
                 } else {
                     throw new ParseException(
@@ -278,10 +350,11 @@ public class MainWindow extends UiPart<Stage> {
                     resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
                     pomodoro.setPromptState(PROMPT_STATE.NONE);
                     pomodoro.reset();
+                    this.setDefaultCommandExecutor();
                     return commandResult;
                 }
                 try {
-                    new TaskListParser().parseCommand(commandText);
+                    PomCommand pc = (PomCommand) (new TaskListParser().parseCommand(commandText));
                     // if continuedPom was created, user put in a valid pom request. Execute as per
                     // normal
                     PomCommandResult pomCommandResult =
@@ -302,6 +375,7 @@ public class MainWindow extends UiPart<Stage> {
                                 pomCommandResult.getTaskIndex());
                     }
                     pomodoro.setPromptState(PROMPT_STATE.NONE);
+                    this.setDefaultCommandExecutor();
                     return pomCommandResult;
                 } catch (ParseException | CommandException | ClassCastException e) {
                     String message =
@@ -311,6 +385,7 @@ public class MainWindow extends UiPart<Stage> {
                     throw new ParseException(message);
                 }
             case NONE:
+            default:
                 break;
         }
 
@@ -318,49 +393,6 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
-            // Switch tabs related results
-            try {
-                SwitchTabCommandResult switchTabCommandResult =
-                        (SwitchTabCommandResult) commandResult;
-                tabPanePlaceholder
-                        .getSelectionModel()
-                        .select(switchTabCommandResult.getTabToSwitchIndex());
-            } catch (ClassCastException ce) {
-            }
-
-            // Pomodoro related results
-            try {
-                PomCommandResult pomCommandResult = (PomCommandResult) commandResult;
-                if (pomCommandResult.getIsPause()) {
-                    pomodoro.pause();
-                } else if (pomCommandResult.getIsContinue()) {
-                    pomodoro.unpause();
-                } else {
-                    pomodoroDisplay.setTaskInProgressText(pomCommandResult.getPommedTask());
-                    pomodoro.start(pomCommandResult.getTimerAmountInMin());
-                    pomodoro.setDoneParams(
-                            pomCommandResult.getModel(),
-                            pomCommandResult.getOriginList(),
-                            pomCommandResult.getTaskIndex());
-                }
-            } catch (ClassCastException ce) {
-
-            } catch (NullPointerException ne) {
-                resultDisplay.setFeedbackToUser("Sorry, you've got no tasks being POMmed.");
-            }
-
-            if (commandResult.isShowHelp()) {
-                handleHelp();
-            }
-
-            if (commandResult.isExit()) {
-                handleExit();
-            }
-            // update because sorting returns a new list
-            personListPanel = new TaskListPanel(logic.getFilteredTaskList());
-            personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-            petDisplay.update();
 
             return commandResult;
         } catch (CommandException | ParseException e) {
