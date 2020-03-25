@@ -22,6 +22,11 @@ public class TaskListPanel extends UiPart<Region> {
         personListView.setCellFactory(listView -> new TaskListViewCell());
     }
 
+    // try try new method
+    public void setTaskList(ObservableList<Task> newTaskList) {
+        this.personListView.setItems(newTaskList);
+    }
+
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Task} using a {@code
      * TaskListCard}.

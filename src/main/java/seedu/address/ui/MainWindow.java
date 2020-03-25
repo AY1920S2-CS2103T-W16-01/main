@@ -269,6 +269,14 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
             petDisplay.update();
+            // update because sorting returns a new list
+
+            this.personListPanel.setTaskList(this.logic.getFilteredTaskList());
+
+            //* Old implementation for sort
+            // personListPanel = new TaskListPanel(logic.getFilteredTaskList());
+            // personListPanelPlaceholder.getChildren().clear(); 
+            // personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
             return commandResult;
         } catch (CommandException | ParseException e) {

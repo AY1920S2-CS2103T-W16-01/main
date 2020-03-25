@@ -26,7 +26,7 @@ public class ModelManager implements Model {
     private final Statistics statistics;
     private final Pet pet;
     private final UserPrefs userPrefs;
-    private final FilteredList<Task> filteredTasks;
+    private FilteredList<Task> filteredTasks;
     private Comparator<Task>[] comparators;
 
     private PomodoroManager pomodoroManager;
@@ -140,14 +140,7 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Task> getFilteredTaskList() {
-        SortedList<Task> sortedFilteredTasks = new SortedList<>(filteredTasks);
-        logger.info("Called when refreshing view");
-        if (this.comparators != null) {
-            for (int i = comparators.length-1; i>= 0; i--) {
-                sortedFilteredTasks.setComparator(comparators[i]);
-            }
-        }
-        return sortedFilteredTasks;
+        return this.filteredTasks;
     }
 
     @Override
@@ -159,7 +152,12 @@ public class ModelManager implements Model {
     @Override
     public void setComparator(Comparator<Task>[] comparators) {
         requireNonNull(comparators);
-        this.comparators = comparators; // TODO convert to list, set Comparators later in 
+        this.comparators = comparators; 
+        SortedList<Task> sortedFilteredTasks = new SortedList<>(filteredTasks);
+        for (int i = comparators.length-1; i>= 0; i--) {
+            sortedFilteredTasks.setComparator(comparators[i]);
+        }
+        this.filteredTasks = new FilteredList<Task>(sortedFilteredTasks);
     }
 
     @Override
