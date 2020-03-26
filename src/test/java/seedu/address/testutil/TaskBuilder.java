@@ -1,6 +1,8 @@
 package seedu.address.testutil;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
@@ -8,6 +10,8 @@ import seedu.address.model.task.Done;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.exceptions.InvalidReminderException;
+import seedu.address.model.task.Reminder;
 import seedu.address.model.util.SampleDataUtil;
 
 /** A utility class to help with building Person objects. */
@@ -22,6 +26,7 @@ public class TaskBuilder {
     private Priority priority;
     private Description description;
     private Done done;
+    private Optional<Reminder> reminder = Optional.empty();
     private Set<Tag> tags;
 
     public TaskBuilder() {
@@ -68,12 +73,30 @@ public class TaskBuilder {
         return this;
     }
 
-    public TaskBuilder withDone(String done) {
-        this.done = new Done(done);
+    public TaskBuilder withDone() {
+        this.done = new Done(Done.DONE);
+        return this;
+    }
+
+    public TaskBuilder withReminder(LocalDateTime dateTime) {
+        try {
+            this.reminder = Optional.of(new Reminder(dateTime));
+        } catch (InvalidReminderException e) {
+            this.reminder = Optional.empty();
+        }
+        return this;
+    }
+
+    public TaskBuilder withReminder(String dateTime) {
+        try {
+            this.reminder = Optional.of(new Reminder(dateTime));
+        } catch (InvalidReminderException e) {
+            this.reminder = Optional.empty();
+        }
         return this;
     }
 
     public Task build() {
-        return new Task(name, priority, description, done, tags);
+        return new Task(name, priority, description, done, tags, reminder);
     }
 }
