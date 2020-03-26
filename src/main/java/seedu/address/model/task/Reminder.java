@@ -102,24 +102,23 @@ public class Reminder implements Comparable {
             return 0;
         }
         Reminder otherReminder = (Reminder) other;
-        LocalDateTime currentTime = LocalDateTime.now();
-
-        long diffFromToday = calculateDelay(currentTime);
-        long otherDiffFromToday = otherReminder.calculateDelay(currentTime);
+        long diffFromToday = calculateDelay(this.reminderDateTime);
+        long otherDiffFromToday = calculateDelay(otherReminder.reminderDateTime);
+        System.out.println(diffFromToday);
+        System.out.println("=====================");
 
         if (diffFromToday < otherDiffFromToday) {
-            if (diffFromToday < 0) {
-                return -1;
-            }
-            return 1;
-        } else if (otherDiffFromToday < diffFromToday) {
-            if (otherDiffFromToday < 0) {
+            if (diffFromToday < 0) { // if already over, put it lower in the list
                 return 1;
             }
             return -1;
+        } else if (otherDiffFromToday < diffFromToday) {
+            if (otherDiffFromToday < 0) { // if already over put it lower in the list
+                return -1;
+            }
+            return 1;
         } else {
             return 0;
         }
-        // return this.reminderDateTime.compareTo(otherReminder.reminderDateTime);
     }
 }

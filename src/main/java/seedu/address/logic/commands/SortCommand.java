@@ -75,10 +75,10 @@ public class SortCommand extends Command {
                     return reminder1.get().compareTo(reminder2.get());
                 }
                 if (reminder1.isPresent()) {
-                    return 1;
+                    return -1;
                 }
                 if (reminder2.isPresent()) {
-                    return -1;
+                    return 1;
                 }
                 return 0;
             }
