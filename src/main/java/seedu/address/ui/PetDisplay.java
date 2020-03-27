@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -14,12 +12,13 @@ import seedu.address.model.ReadOnlyPet;
 public class PetDisplay extends UiPart<Region> {
 
     private static final String FXML = "PetDisplay.fxml";
-    private Path DEFAULT_ACCESSORY_PLACEHOLDER = Paths.get("images", "pet", "medal.png");
 
-    private Path petFilepath; // mutable
-    private Path accessoryFilepath; // mutable
+    private String petFilepathString; // mutable
 
-    private Path expBarFilepath; // mutable
+    //private Path accessoryFilepath; // mutable
+
+    private String expBarFilepathString; // mutable
+
     private String expBarText; // mutable
     private String levelText; // mutable
 
@@ -47,62 +46,60 @@ public class PetDisplay extends UiPart<Region> {
         this.levelText = this.pet.getLevel();
 
         if (this.levelText.equals("1")) {
-            this.petFilepath = Paths.get("images", "pet", "level1.png");
+            this.petFilepathString = "/images/pet/level1.png";
         } else if (this.levelText.equals("2")) {
-            this.petFilepath = Paths.get("images", "pet", "level2.png");
+            this.petFilepathString = "/images/pet/level2.png";
         } else {
-            this.petFilepath = Paths.get("images", "pet", "level3.png");
+            this.petFilepathString = "/images/pet/level3.png";
         }
 
         int expBarPerc = expBarInt / 10;
 
         switch (expBarPerc) {
             case 0:
-                this.expBarFilepath = Paths.get("images", "pet", "ProgressBar0%.png");
+                this.expBarFilepathString = "/images/pet/ProgressBar0%.png";
                 break;
 
             case 1:
-                this.expBarFilepath = Paths.get("images", "pet", "ProgressBar10%.png");
+                this.expBarFilepathString = "/images/pet/ProgressBar10%.png";
                 break;
 
             case 2:
-                this.expBarFilepath = Paths.get("images", "pet", "ProgressBar20%.png");
+                this.expBarFilepathString = "/images/pet/ProgressBar20%.png";
                 break;
 
             case 3:
-                this.expBarFilepath = Paths.get("images", "pet", "ProgressBar30%.png");
+                this.expBarFilepathString = "/images/pet/ProgressBar30%.png";
                 break;
 
             case 4:
-                this.expBarFilepath = Paths.get("images", "pet", "ProgressBar40%.png");
+                this.expBarFilepathString = "/images/pet/ProgressBar40%.png";
                 break;
 
             case 5:
-                this.expBarFilepath = Paths.get("images", "pet", "ProgressBar50%.png");
+                this.expBarFilepathString = "/images/pet/ProgressBar50%.png";
                 break;
 
             case 6:
-                this.expBarFilepath = Paths.get("images", "pet", "ProgressBar60%.png");
+                this.expBarFilepathString = "/images/pet/ProgressBar60%.png";
                 break;
 
             case 7:
-                this.expBarFilepath = Paths.get("images", "pet", "ProgressBar70%.png");
+                this.expBarFilepathString = "/images/pet/ProgressBar70%.png";
                 break;
 
             case 8:
-                this.expBarFilepath = Paths.get("images", "pet", "ProgressBar80%.png");
+                this.expBarFilepathString = "/images/pet/ProgressBar80%.png";
                 break;
 
             case 9:
-                this.expBarFilepath = Paths.get("images", "pet", "ProgressBar90%.png");
+                this.expBarFilepathString = "/images/pet/ProgressBar90%.png";
                 break;
 
             case 10:
-                this.expBarFilepath = Paths.get("images", "pet", "ProgressBar100%.png");
+                this.expBarFilepathString = "/images/pet/ProgressBar100%.png";
                 break;
         }
-
-        this.accessoryFilepath = DEFAULT_ACCESSORY_PLACEHOLDER;
 
         // if (accessoryFilepath != null) {
         //     this.accessoryFilepath = accessoryFilepath;
@@ -114,11 +111,11 @@ public class PetDisplay extends UiPart<Region> {
         levelView.setText(levelText);
 
         // set up pet image
-        Image petImage = new Image(String.valueOf(petFilepath));
+        Image petImage = new Image(petFilepathString);
         petPic.setImage(petImage);
 
         // set up experience bar image
-        Image expBarImage = new Image(String.valueOf(expBarFilepath));
+        Image expBarImage = new Image(expBarFilepathString);
         expBarPic.setImage(expBarImage);
     }
 

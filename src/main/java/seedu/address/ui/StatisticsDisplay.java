@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
@@ -18,8 +16,8 @@ public class StatisticsDisplay extends UiPart<Region> {
 
     private static final String FXML = "StatisticsDisplay.fxml";
     private static final String DEFAULT_BAR_CHART_TITLE = "Sample graph title";
-    private static final Path DEFAULT_PROGRESS_BAR_DAILY__PLACEHOLDER =
-            Paths.get("images", "statistics", "progressBarDaily0%.png");
+    private static final String DEFAULT_PROGRESS_BAR_DAILY_PLACEHOLDER =
+            "/images/pet/ProgressBar90%.png";
     private static final String DEFAULT_PROGRESS_DAILY = "0 mins / 100 mins (DEFAULT)";
     private static final String DEFAULT_MEDALS = "Placeholder";
 
@@ -28,7 +26,7 @@ public class StatisticsDisplay extends UiPart<Region> {
 
     public String barChartTitleText; // mutable
     public int[][] data; //
-    public Path progressBarDailyFilepath;
+    public String progressBarDailyFilepathString;
     public String progressDailyText;
     public String medalsText;
 
@@ -44,12 +42,12 @@ public class StatisticsDisplay extends UiPart<Region> {
         super(FXML);
         this.barChartTitleText = DEFAULT_BAR_CHART_TITLE;
         this.data = null; // TODO *******************
-        this.progressBarDailyFilepath = DEFAULT_PROGRESS_BAR_DAILY__PLACEHOLDER;
+        this.progressBarDailyFilepathString = DEFAULT_PROGRESS_BAR_DAILY_PLACEHOLDER;
         this.progressDailyText = DEFAULT_PROGRESS_DAILY;
         this.medalsText = DEFAULT_MEDALS;
 
         progressDaily.setText(progressDailyText);
-        Image progressBarDailyImage = new Image(String.valueOf(progressBarDailyFilepath));
+        Image progressBarDailyImage = new Image(DEFAULT_PROGRESS_BAR_DAILY_PLACEHOLDER);
         progressBarDaily.setImage(progressBarDailyImage);
         medals.setText(medalsText);
 
