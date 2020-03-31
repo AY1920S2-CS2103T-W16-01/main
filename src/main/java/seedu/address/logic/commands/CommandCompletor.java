@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER;
 import static seedu.address.logic.parser.CliSyntax.TASK_PREFIXES;
 
@@ -19,6 +20,7 @@ import seedu.address.model.task.Reminder;
 public class CommandCompletor {
     private ArrayList<String> commands = new ArrayList<>();
 
+    /** Add all available commands */
     public CommandCompletor() {
         this.commands.add(AddCommand.COMMAND_WORD);
         this.commands.add(EditCommand.COMMAND_WORD);
@@ -35,21 +37,11 @@ public class CommandCompletor {
     public String getSuggestedCommand(String input) {
         String[] trimmedInputWords = input.split("\\s+");
 
-        if (trimmedInputWords.length > 0) {
-            for (String commandWord : this.commands) {
-                Pattern commandPattern = Pattern.compile(String.format("^%s", commandWord));
-                Matcher commandMatcher = commandPattern.matcher(trimmedInputWords[0].toLowerCase());
-                if (commandMatcher.matches()) {
-                    // need to check for match before we can check for hitEnd
-                    trimmedInputWords[0] = commandWord;
-                    break; // command found then return original
-                }
-                if (commandMatcher.hitEnd()) {
-                    trimmedInputWords[0] = commandWord;
-                    return String.join(" ", trimmedInputWords);
-                }
-            }
+        if (trimmedInputWords.length <= 0) {
+            return input;
         }
+
+        trimmedInputWords[0] = getCompletedCommand(trimmedInputWords[0]);
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(input, TASK_PREFIXES);
         boolean hasReminder = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_REMINDER);
@@ -58,11 +50,8 @@ public class CommandCompletor {
         switch (trimmedInputWords[0]) {
             case "add":
             case "edit":
-                // Check for date first, then no-spaced sections, number for priority then
-                // autoComplete is only for the purpose of arguments without prefixes
-                for (int i = trimmedInputWords.length - 1; i > 0; i--) {
-                    // we should set the priority prefix if after and before has a prefix, else
-                    // don't set
+                int loopLimit = trimmedInputWords[0] == "add" ? 0 : 1;
+                for (int i = trimmedInputWords.length - 1; i > loopLimit; i--) {
                     String currentArgument = trimmedInputWords[i];
                     if (Reminder.isValidReminder(currentArgument) && !hasReminder) {
                         trimmedInputWords[i] =
@@ -82,6 +71,12 @@ public class CommandCompletor {
                 String[] indexes = getCommandArguments(commaSeparatedWords);
                 String commaJoinedIndexes = String.join(", ", indexes);
                 return String.format("%s %s", commaSeparatedWords[0], commaJoinedIndexes);
+            case "pom":
+                ArgumentMultimap pomArgMap = ArgumentTokenizer.tokenize(input, PREFIX_TIMER);
+                boolean hasTimer = ParserUtil.arePrefixesPresent(pomArgMap, PREFIX_TIMER);
+                if (! hasTimer) {
+                    trimmedInputWords[2] = addPrefix(CliSyntax.PREFIX_TIMER.toString(), trimmedInputWords[2]);
+                }
             default:
                 return String.join(" ", trimmedInputWords);
         }
@@ -93,6 +88,17 @@ public class CommandCompletor {
 
     public String getFailureMessage() {
         return "No command auto complete found :(";
+    }
+
+    private String getCompletedCommand(String firstWord) {
+        for (String commandWord : this.commands) {
+            Pattern commandPattern = Pattern.compile(String.format("^%s", commandWord));
+            Matcher commandMatcher = commandPattern.matcher(firstWord.toLowerCase());
+            if (commandMatcher.matches() || commandMatcher.hitEnd()) {
+                return commandWord;
+            } 
+        }
+        return firstWord;
     }
 
     private String[] getCommandArguments(String[] splitWords) {
