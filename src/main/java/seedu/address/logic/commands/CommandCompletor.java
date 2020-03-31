@@ -34,6 +34,18 @@ public class CommandCompletor {
         this.commands.add(SwitchTabCommand.TASKS_COMMAND_WORD);
     }
 
+    /**
+     * Provides auto Complete for all partial command words
+     * 
+     * For done, delete commands:
+     * Converts indexes given in a mixture of spaces and commas into comma separated indexes
+     * For add and edit commands:
+     * Adds prefixes for priority and reminder 
+     * For pom command:
+     * adds timer prefix
+     * @param input
+     * @return returns command with completed command word, attached prefixes and convert indexes to comma separated ones
+     */
     public String getSuggestedCommand(String input) {
         String[] trimmedInputWords = input.split("\\s+");
 
@@ -66,20 +78,23 @@ public class CommandCompletor {
                         hasPriority = true;
                     }
                 }
-                
                 return String.join(" ", trimmedInputWords);
+
             case "done":
             case "delete":
+                // Converts indexes that are not comma separated into comma separated
                 String[] commaSeparatedWords = input.split("\\s*,\\s*|\\s+");
                 String[] indexes = getCommandArguments(commaSeparatedWords);
                 String commaJoinedIndexes = String.join(", ", indexes);
                 return String.format("%s %s", commaSeparatedWords[0], commaJoinedIndexes);
+
             case "pom":
                 ArgumentMultimap pomArgMap = ArgumentTokenizer.tokenize(input, PREFIX_TIMER);
                 boolean hasTimer = ParserUtil.arePrefixesPresent(pomArgMap, PREFIX_TIMER);
                 if (! hasTimer) {
                     trimmedInputWords[2] = addPrefix(CliSyntax.PREFIX_TIMER.toString(), trimmedInputWords[2]);
                 }
+
             default:
                 return String.join(" ", trimmedInputWords);
         }
@@ -93,6 +108,7 @@ public class CommandCompletor {
         return "No command auto complete found :(";
     }
 
+    /** Returns complete command if given partial command */
     private String getCompletedCommand(String firstWord) {
         for (String commandWord : this.commands) {
             Pattern commandPattern = Pattern.compile(String.format("^%s", commandWord));
@@ -104,6 +120,7 @@ public class CommandCompletor {
         return firstWord;
     }
 
+    /** Gets all non command arguments */
     private String[] getCommandArguments(String[] splitWords) {
         return Arrays.copyOfRange(splitWords, 1, splitWords.length);
     }
