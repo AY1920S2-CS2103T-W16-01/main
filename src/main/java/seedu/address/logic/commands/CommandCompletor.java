@@ -23,13 +23,12 @@ public class CommandCompletor {
 
     public String getSuggestedCommand(String input) {
         String[] trimmedInputWords =
-                input.toLowerCase()
-                        .split("\\s+"); // get the first command, autoComplete based on that.
+                input.split("\\s+"); // get the first command, autoComplete based on that.
 
         if (trimmedInputWords.length > 0) {
             for (String commandWord : this.commands) {
                 Pattern commandPattern = Pattern.compile(String.format("^%s", commandWord));
-                Matcher commandMatcher = commandPattern.matcher(trimmedInputWords[0]);
+                Matcher commandMatcher = commandPattern.matcher(trimmedInputWords[0].toLowerCase());
                 if (commandMatcher
                         .matches()) { // need to check for match before we can check for hitEnd
                     break; // command found then return original
