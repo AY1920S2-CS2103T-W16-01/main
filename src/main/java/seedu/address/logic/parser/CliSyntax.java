@@ -10,4 +10,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_REMINDER = new Prefix("r/");
     public static final Prefix PREFIX_TIMER = new Prefix("tm/");
+    public static final Prefix[] TASK_PREFIXES =
+            new Prefix[] {
+                PREFIX_NAME, PREFIX_PRIORITY, PREFIX_DESCRIPTION, PREFIX_TAG, PREFIX_REMINDER
+            };
 }

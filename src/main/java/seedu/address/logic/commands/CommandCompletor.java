@@ -1,10 +1,8 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.TASK_PREFIXES;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -53,14 +51,7 @@ public class CommandCompletor {
             }
         }
 
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(
-                        input,
-                        PREFIX_NAME,
-                        PREFIX_PRIORITY,
-                        PREFIX_DESCRIPTION,
-                        PREFIX_TAG,
-                        PREFIX_REMINDER);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(input, TASK_PREFIXES);
         boolean hasReminder = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_REMINDER);
         boolean hasPriority = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_PRIORITY);
 
@@ -69,8 +60,9 @@ public class CommandCompletor {
             case "edit":
                 // Check for date first, then no-spaced sections, number for priority then
                 // autoComplete is only for the purpose of arguments without prefixes
-                for (int i = trimmedInputWords.length-1; i > 0; i--) {
-                    // we should set the priority prefix if after and before has a prefix, else don't set
+                for (int i = trimmedInputWords.length - 1; i > 0; i--) {
+                    // we should set the priority prefix if after and before has a prefix, else
+                    // don't set
                     String currentArgument = trimmedInputWords[i];
                     if (Reminder.isValidReminder(currentArgument) && !hasReminder) {
                         trimmedInputWords[i] =
@@ -82,6 +74,7 @@ public class CommandCompletor {
                         hasPriority = true;
                     }
                 }
+                
                 return String.join(" ", trimmedInputWords);
             case "done":
             case "delete":

@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Priority implements Comparable {
 
-    public static final String MESSAGE_CONSTRAINTS = "Priority only contain one of these numbers: {1,2,3}";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Priority only contain one of these numbers: {1,2,3}";
     public static final String VALIDATION_REGEX = "[1-3]";
     public final String value;
 
