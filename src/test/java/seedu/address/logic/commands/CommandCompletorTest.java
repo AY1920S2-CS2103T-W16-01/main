@@ -38,9 +38,13 @@ public class CommandCompletorTest {
                         "add n/Math Homework des/Chapter 5, Pages 1 - 3  t/forschool 3 15/04/20@10:30");
         assertEquals(expectedAddCommand, actualAddCommand);
 
-        String expectedEditCommand = "edit r/15/04/20@10:30 p/3";
-        String actualEditCommand = cc.getSuggestedCommand("edit 15/04/20@10:30 p/3");
+        String expectedEditCommand = "edit 2 r/15/04/20@10:30 p/3";
+        String actualEditCommand = cc.getSuggestedCommand("edit 2 15/04/20@10:30 p/3");
         assertEquals(expectedEditCommand, actualEditCommand);
+
+        String expectedEditIndexUnchanged = "edit 2 r/15/04/20@10:30";
+        String actualEditIndexUnchanged = cc.getSuggestedCommand("edit 2 15/04/20@10:30");
+        assertEquals(expectedEditIndexUnchanged, actualEditIndexUnchanged);
 
         String expectedDoneCommand = "done 1, 2, 3";
         String actualDoneCommand = cc.getSuggestedCommand("done 1   2  3");

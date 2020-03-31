@@ -50,14 +50,17 @@ public class CommandCompletor {
         switch (trimmedInputWords[0]) {
             case "add":
             case "edit":
-                int loopLimit = trimmedInputWords[0] == "add" ? 0 : 1;
-                for (int i = trimmedInputWords.length - 1; i > loopLimit; i--) {
+                for (int i = trimmedInputWords.length - 1; i > 0; i--) {
                     String currentArgument = trimmedInputWords[i];
                     if (Reminder.isValidReminder(currentArgument) && !hasReminder) {
                         trimmedInputWords[i] =
                                 addPrefix(CliSyntax.PREFIX_REMINDER.toString(), currentArgument);
                         hasReminder = true;
                     } else if (Priority.isValidPriority(currentArgument) && !hasPriority) {
+                        // prevent autoComplete from setting task index with a priority
+                        if (trimmedInputWords[0] == "edit" && i < 2) { 
+                            continue;
+                        } 
                         trimmedInputWords[i] =
                                 addPrefix(CliSyntax.PREFIX_PRIORITY.toString(), currentArgument);
                         hasPriority = true;
