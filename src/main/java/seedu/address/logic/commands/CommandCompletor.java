@@ -69,7 +69,7 @@ public class CommandCompletor {
                         hasReminder = true;
                     } else if (Priority.isValidPriority(currentArgument) && !hasPriority) {
                         // prevent autoComplete from setting task index with a priority
-                        if (trimmedInputWords[0] == "edit" && i < 2) {
+                        if (trimmedInputWords[0].equals("edit") && i < 2) {
                             continue;
                         }
                         trimmedInputWords[i] =
