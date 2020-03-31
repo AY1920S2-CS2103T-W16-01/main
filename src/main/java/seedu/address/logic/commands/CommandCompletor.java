@@ -85,7 +85,7 @@ public class CommandCompletor {
                 String[] commaSeparatedWords = input.split("\\s*,\\s*|\\s+");
                 String[] indexes = getCommandArguments(commaSeparatedWords);
                 String commaJoinedIndexes = String.join(", ", indexes);
-                return String.format("%s %s", commaSeparatedWords[0], commaJoinedIndexes);
+                return String.format("%s %s", trimmedInputWords[0], commaJoinedIndexes);
 
             case "pom":
                 ArgumentMultimap pomArgMap = ArgumentTokenizer.tokenize(input, PREFIX_TIMER);
@@ -113,7 +113,7 @@ public class CommandCompletor {
         for (String commandWord : this.commands) {
             Pattern commandPattern = Pattern.compile(String.format("^%s", commandWord));
             Matcher commandMatcher = commandPattern.matcher(firstWord.toLowerCase());
-            if (commandMatcher.matches() || commandMatcher.hitEnd()) {
+            if (!commandMatcher.matches() && commandMatcher.hitEnd()) {
                 return commandWord;
             }
         }

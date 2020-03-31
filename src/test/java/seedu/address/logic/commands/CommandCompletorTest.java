@@ -15,11 +15,11 @@ public class CommandCompletorTest {
                         "ad n/Math Homework p/1 des/Chapter 5, Pages 1 - 3 t/forschool r/15/04/20@10:30");
         assertEquals(expectedAddCommand, actualAddCommand);
 
-        String expectedDoneCommand = "done 1,2,3";
+        String expectedDoneCommand = "done 1, 2, 3";
         String actualDoneCommand = cc.getSuggestedCommand("do 1,2,3");
         assertEquals(expectedDoneCommand, actualDoneCommand);
 
-        String expectedDeleteCommand = "delete 1,2,3";
+        String expectedDeleteCommand = "delete 1, 2, 3";
         String actualDeleteCommand = cc.getSuggestedCommand("del 1,2,3");
         assertEquals(expectedDeleteCommand, actualDeleteCommand);
 
