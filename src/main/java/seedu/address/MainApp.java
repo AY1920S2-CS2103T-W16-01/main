@@ -183,8 +183,7 @@ public class MainApp extends Application {
             statistics = new Statistics();
         }
 
-        return new ModelManager(
-                initialData, initialPet, initialPomodoro, statistics, userPrefs);
+        return new ModelManager(initialData, initialPet, initialPomodoro, statistics, userPrefs);
     }
 
     private void initLogging(Config config) {

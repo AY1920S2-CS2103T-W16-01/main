@@ -109,7 +109,10 @@ public class EditCommand extends Command {
                 editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Done updatedDone = editTaskDescriptor.getDone().orElse(taskToEdit.getDone());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
-        Optional<Reminder> updatedOptionalReminder = editTaskDescriptor.getReminder().isPresent() ? editTaskDescriptor.getReminder() : taskToEdit.getOptionalReminder();
+        Optional<Reminder> updatedOptionalReminder =
+                editTaskDescriptor.getReminder().isPresent()
+                        ? editTaskDescriptor.getReminder()
+                        : taskToEdit.getOptionalReminder();
 
         return new Task(
                 updatedName,

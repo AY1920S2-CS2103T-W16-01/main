@@ -45,7 +45,7 @@ public class Date {
 
     public String toPrint() {
         String dateString = value.toString();
-        return dateString.substring(5,7) + "/" + dateString.substring(8,10);
+        return dateString.substring(5, 7) + "/" + dateString.substring(8, 10);
     }
 
     @Override

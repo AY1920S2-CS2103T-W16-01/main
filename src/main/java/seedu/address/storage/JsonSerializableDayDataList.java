@@ -1,6 +1,6 @@
 package seedu.address.storage;
 
-import static seedu.address.model.dayData.CustomQueue.CONSTANT_SIZE;
+import static seedu.address.model.dayData.CustomQueue.tableConstraintsAreEnforced;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -14,8 +14,6 @@ import seedu.address.model.Statistics;
 import seedu.address.model.dayData.CustomQueue;
 import seedu.address.model.dayData.DayData;
 import seedu.address.model.dayData.exceptions.InvalidTableException;
-
-import static seedu.address.model.dayData.CustomQueue.tableConstraintsAreEnforced;
 
 /** An Immutable TaskList that is serializable to JSON format. */
 @JsonRootName(value = "statistics")
@@ -56,8 +54,7 @@ class JsonSerializableDayDataList {
             dayDataList.add(dayData);
         }
         if (!tableConstraintsAreEnforced(dayDataList)) {
-            throw new InvalidTableException(
-                    CustomQueue.MESSAGE_CONSTRAINTS);
+            throw new InvalidTableException(CustomQueue.MESSAGE_CONSTRAINTS);
         } else {
             Statistics statistics = new Statistics();
             statistics.setDayDatas(dayDataList);

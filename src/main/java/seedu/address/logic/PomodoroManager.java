@@ -18,11 +18,10 @@ import javafx.scene.control.Label;
 import javafx.util.Duration;
 import seedu.address.model.Model;
 import seedu.address.model.Statistics;
-import seedu.address.model.dayData.CustomQueue;
+import seedu.address.model.dayData.Date;
 import seedu.address.model.dayData.DayData;
 import seedu.address.model.dayData.PomDurationData;
 import seedu.address.model.dayData.TasksDoneData;
-import seedu.address.model.dayData.Date;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Done;
@@ -45,7 +44,7 @@ public class PomodoroManager {
     private List<Task> originList;
     private int taskIndex;
 
-    private LocalDateTime startDateTime, endDateTime; 
+    private LocalDateTime startDateTime, endDateTime;
 
     public enum PROMPT_STATE {
         NONE,
@@ -163,46 +162,41 @@ public class PomodoroManager {
     }
 
     public void updateStatisticsDisplay() {
-        mainWindow.getStatisticsDisplay().updateGraphs(model.getStatistics().getCustomQueue()); // TODO code quality
+        mainWindow
+                .getStatisticsDisplay()
+                .updateGraphs(model.getStatistics().getCustomQueue()); // TODO code quality
     }
 
-
-    public List<DayData> generateUpdatedDayData(LocalDateTime startDateTime, LocalDateTime endDateTime) {
+    public List<DayData> generateUpdatedDayData(
+            LocalDateTime startDateTime, LocalDateTime endDateTime) {
         List<DayData> out = new LinkedList<>();
         LocalDateTime tempDateTime = startDateTime;
         while (!tempDateTime.toLocalDate().equals(endDateTime.toLocalDate())) {
             // get minutes from this temp date to its end of day
-            int minutes = (int)tempDateTime
-                .until(tempDateTime.toLocalDate()
-                .atTime(LocalTime.MAX), ChronoUnit.MINUTES);
+            int minutes =
+                    (int)
+                            tempDateTime.until(
+                                    tempDateTime.toLocalDate().atTime(LocalTime.MAX),
+                                    ChronoUnit.MINUTES);
             Date date = new Date(tempDateTime.format(Date.dateFormatter));
             System.out.println(date.toString());
             DayData currDayData = model.getStatistics().getDayDataFromDate(date);
-            PomDurationData updatedPomDuration = 
-                new PomDurationData("" +
-                (currDayData.getPomDurationData().value + minutes));
+            PomDurationData updatedPomDuration =
+                    new PomDurationData("" + (currDayData.getPomDurationData().value + minutes));
             DayData updatedDayData =
-                new DayData(
-                    date,
-                    updatedPomDuration,
-                    currDayData.getTasksDoneData());
+                    new DayData(date, updatedPomDuration, currDayData.getTasksDoneData());
             out.add(updatedDayData);
             tempDateTime = tempDateTime.plusDays(1);
             tempDateTime = tempDateTime.toLocalDate().atStartOfDay();
         }
         // Handle last day
-        int minutes = (int)tempDateTime
-                .until(endDateTime, ChronoUnit.MINUTES);
+        int minutes = (int) tempDateTime.until(endDateTime, ChronoUnit.MINUTES);
         Date date = new Date(tempDateTime.format(Date.dateFormatter));
         DayData currDayData = model.getStatistics().getDayDataFromDate(date);
-        PomDurationData updatedPomDuration = 
-            new PomDurationData("" +
-            (currDayData.getPomDurationData().value + minutes));
+        PomDurationData updatedPomDuration =
+                new PomDurationData("" + (currDayData.getPomDurationData().value + minutes));
         DayData updatedDayData =
-            new DayData(
-                date,
-                updatedPomDuration,
-                currDayData.getTasksDoneData());
+                new DayData(date, updatedPomDuration, currDayData.getTasksDoneData());
         out.add(updatedDayData);
 
         return out;

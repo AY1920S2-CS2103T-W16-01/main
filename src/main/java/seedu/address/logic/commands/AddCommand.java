@@ -39,7 +39,7 @@ public class AddCommand extends Command {
                     + PREFIX_DESCRIPTION
                     + "Chapter 5, Pages 1 - 3 "
                     + PREFIX_TAG
-                    + "for_school "
+                    + "forSchool "
                     + PREFIX_REMINDER
                     + "15/04/20@10:30";
 
