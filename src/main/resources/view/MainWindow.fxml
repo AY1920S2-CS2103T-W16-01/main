@@ -7,7 +7,6 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.image.Image?>
@@ -15,9 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root maxHeight="700.0" minHeight="700.0" minWidth="800.0" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" width="600.0" 
-    xmlns="http://javafx.com/javafx/8" 
-    xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="700.0" minHeight="700.0" minWidth="1244.4" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" width="1244.4" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/address_book_32.png" />
     </icons>
@@ -25,9 +22,9 @@
         <Scene>
             <VBox>
                 <children>
-                    <SplitPane dividerPositions="0.5" VBox.vgrow="ALWAYS">
+                    <SplitPane dividerPositions="0.1" prefWidth="1244.4" VBox.vgrow="ALWAYS">
                         <items>
-                            <VBox minWidth="300.0">
+                            <VBox minWidth="373.0">
                                 <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
                                     <Menu mnemonicParsing="false" text="File">
                                         <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -48,7 +45,7 @@
                                     </padding>
                                 </StackPane>
                             </VBox>
-                            <TabPane fx:id="tabPanePlaceholder" tabClosingPolicy="UNAVAILABLE">
+                            <TabPane fx:id="tabPanePlaceholder" minWidth="871.0" tabClosingPolicy="UNAVAILABLE">
                                 <tabs>
                                     <Tab text="Tasks">
                                         <content>
@@ -64,6 +61,11 @@
                                     <Tab text="Statistics">
                                         <content>
                                             <StackPane fx:id="statisticsPlaceholder" prefWidth="340.0" />
+                                        </content>
+                                    </Tab>
+                                    <Tab text="Settings">
+                                        <content>
+                                            <StackPane fx:id="settingsPlaceholder" prefWidth="340.0" />
                                         </content>
                                     </Tab>
                                 </tabs>

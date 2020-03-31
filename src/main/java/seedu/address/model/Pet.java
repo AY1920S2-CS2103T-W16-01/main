@@ -3,7 +3,7 @@ package seedu.address.model;
 import java.time.LocalDateTime;
 
 public class Pet implements ReadOnlyPet {
-    private static final String DEFAULT_NAME = "BB Productive";
+    private static final String DEFAULT_NAME = "BB";
     private static final String DEFAULT_EXP = "0";
     private static final String DEFAULT_LEVEL = "1";
     private static final String DEFAULT_MOOD = "HAPPY";

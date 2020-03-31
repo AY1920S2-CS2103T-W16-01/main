@@ -83,14 +83,15 @@ public class LogicManagerTest {
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonTaskListIoExceptionThrowingStub
         JsonTaskListStorage taskListStorage =
-                new JsonTaskListStorage(temporaryFolder.resolve("taskList.json"));
-        JsonPetStorage petStorage = new JsonPetStorage(temporaryFolder.resolve("pet.json"));
+                new JsonTaskListIoExceptionThrowingStub(
+                        temporaryFolder.resolve("invalidTaskList.json"));
+        JsonPetStorage petStorage = new JsonPetStorage(temporaryFolder.resolve("invalidPet.json"));
         JsonPomodoroStorage pomodoroStorage =
-                new JsonPomodoroStorage(temporaryFolder.resolve("pomodoro.json"));
+                new JsonPomodoroStorage(temporaryFolder.resolve("invalidPomodoro.json"));
         JsonStatisticsStorage statisticsStorage =
-                new JsonStatisticsStorage(temporaryFolder.resolve("statistics.json"));
+                new JsonStatisticsStorage(temporaryFolder.resolve("invalidStorage.json"));
         JsonUserPrefsStorage userPrefsStorage =
-                new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
+                new JsonUserPrefsStorage(temporaryFolder.resolve("invalidPrefs.json"));
         StorageManager storage =
                 new StorageManager(
                         taskListStorage,

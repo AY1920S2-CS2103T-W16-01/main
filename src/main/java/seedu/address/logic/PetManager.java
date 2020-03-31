@@ -12,9 +12,6 @@ import seedu.address.model.Pet;
 import seedu.address.ui.PetDisplay;
 
 public class PetManager {
-    // DEFAULT HAPPY and HANGRY STRING.... peepee
-
-    private Path DEFAULT_ACCESSORY_PLACEHOLDER = Paths.get("images", "pet", "medal.png");
 
     public final String HANGRY_MOOD_STRING = "HANGRY";
     public final String HAPPY_MOOD_STRING = "HAPPY";
@@ -254,14 +251,6 @@ public class PetManager {
                 break;
         }
 
-        Path accessoryFilepath = DEFAULT_ACCESSORY_PLACEHOLDER;
-
-        // if (accessoryFilepath != null) {
-        // this.accessoryFilepath = accessoryFilepath;
-        // Image image = new Image(String.valueOf(accessoryFilepath));
-        // accessoryPic.setImage(image);
-        // }
-
         petDisplay.setExpBarText(expBarText);
         petDisplay.setLevelText(levelText);
 
@@ -270,5 +259,12 @@ public class PetManager {
 
         // set up experience bar image
         petDisplay.setExpBarImage(expBarFilepath);
+
+        // update pet name
+        petDisplay.setPetName(this.pet.getName());
+    }
+
+    public String getPetName() {
+        return pet.getName();
     }
 }

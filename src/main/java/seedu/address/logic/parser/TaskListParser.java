@@ -16,6 +16,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.PomCommand;
+import seedu.address.logic.commands.SetCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.SwitchTabCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -64,6 +65,12 @@ public class TaskListParser {
 
             case SwitchTabCommand.TASKS_COMMAND_WORD:
                 return new SwitchTabCommand(SwitchTabCommand.TASKS_TAB_INDEX);
+
+            case SwitchTabCommand.SETTINGS_COMMAND_WORD:
+                return new SwitchTabCommand(SwitchTabCommand.SETTINGS_TAB_INDEX);
+
+            case SetCommand.COMMAND_WORD:
+                return new SetCommandParser().parse(arguments);
 
             case ClearCommand.COMMAND_WORD:
                 return new ClearCommand();

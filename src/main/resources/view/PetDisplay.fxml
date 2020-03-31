@@ -10,74 +10,73 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="petPane" alignment="CENTER" maxHeight="400.0" minHeight="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <VBox prefHeight="75.0">
-         <children>
-            <Label text="BB">
-               <font>
-                  <Font size="32.0" />
-               </font>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </Label>
-            <VBox prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Label fx:id="expBarView" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="0 XP / 100 XP">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                        <Region prefHeight="30.0" prefWidth="37.0" />
-                        <HBox maxHeight="30.0" minHeight="30.0" prefHeight="30.0">
-                           <children>
-                              <Label prefHeight="34.0" prefWidth="56.0" text="Level ">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="levelView" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="0">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                           </children>
+<VBox fx:id="petPane" alignment="CENTER" maxHeight="400.0" minHeight="400.0" 
+    xmlns="http://javafx.com/javafx/8" 
+    xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <VBox prefHeight="75.0">
+            <children>
+                <Label fx:id="petNameLabel">
+                    <font>
+                        <Font size="32.0" />
+                    </font>
+                    <padding>
+                        <Insets left="10.0" />
+                    </padding>
+                </Label>
+                <VBox prefHeight="200.0" prefWidth="100.0">
+                    <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                            <children>
+                                <Label fx:id="expBarView" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="0 XP / 100 XP">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font>
+                                </Label>
+                                <Region prefHeight="30.0" prefWidth="37.0" />
+                                <HBox maxHeight="30.0" minHeight="30.0" prefHeight="30.0">
+                                    <children>
+                                        <Label prefHeight="34.0" prefWidth="56.0" text="Level ">
+                                            <font>
+                                                <Font size="20.0" />
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="levelView" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="0">
+                                            <font>
+                                                <Font size="20.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                            </children>
+                            <padding>
+                                <Insets left="10.0" />
+                            </padding>
                         </HBox>
-                     </children>
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </HBox>
-                  <ImageView fx:id="expBarPic" fitHeight="30.0" fitWidth="233.0" pickOnBounds="true" preserveRatio="true">
-                     <VBox.margin>
-                        <Insets left="10.0" />
-                     </VBox.margin>
-                  </ImageView>
-               </children>
-            </VBox>
-         </children>
-         <VBox.margin>
-            <Insets left="10.0" top="10.0" />
-         </VBox.margin>
-      </VBox>
-      <HBox alignment="CENTER" prefHeight="300.0">
-         <children>
-            <BorderPane prefHeight="400.0" prefWidth="400.0">
-               <center>
-                  <ImageView fx:id="petPic" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
-               </center>
-               <bottom>
-                  <ImageView fx:id="accessoryPic" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" x="15.0" BorderPane.alignment="CENTER" />
-               </bottom>
-            </BorderPane>
-         </children>
-      </HBox>
-   </children>
-   <stylesheets>
-      <URL value="@Extensions.css" />
-      <URL value="@LightTheme.css" />
-   </stylesheets>
+                        <ImageView fx:id="expBarPic" fitHeight="30.0" fitWidth="233.0" pickOnBounds="true" preserveRatio="true">
+                            <VBox.margin>
+                                <Insets left="10.0" />
+                            </VBox.margin>
+                        </ImageView>
+                    </children>
+                </VBox>
+            </children>
+            <VBox.margin>
+                <Insets left="10.0" top="10.0" />
+            </VBox.margin>
+        </VBox>
+        <HBox alignment="CENTER" prefHeight="300.0">
+            <children>
+                <BorderPane prefHeight="400.0" prefWidth="400.0">
+                    <center>
+                        <ImageView fx:id="petPic" fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+                    </center>
+                </BorderPane>
+            </children>
+        </HBox>
+    </children>
+    <stylesheets>
+        <URL value="@Extensions.css" />
+        <URL value="@LightTheme.css" />
+    </stylesheets>
 </VBox>

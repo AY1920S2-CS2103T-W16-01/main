@@ -11,9 +11,13 @@ public class SwitchTabCommand extends Command {
 
     public static final String STATS_COMMAND_WORD = "stats";
 
+    public static final String SETTINGS_COMMAND_WORD = "settings";
+
     public static final int TASKS_TAB_INDEX = 0;
 
     public static final int STATS_TAB_INDEX = 1;
+
+    public static final int SETTINGS_TAB_INDEX = 2;
 
     public static final String MESSAGE_SUCCESS = "View changed.";
 

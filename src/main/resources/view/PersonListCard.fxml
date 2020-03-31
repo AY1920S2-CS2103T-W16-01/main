@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
@@ -9,23 +10,19 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.CheckBox?>
 
-
-<HBox fx:id="cardPane" 
-    xmlns="http://javafx.com/javafx/8" 
-    xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="cardPane" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="20"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="20" />
         </columnConstraints>
         <HBox>
             <GridPane.margin>
-                <Insets bottom="20.0"/>
+                <Insets bottom="20.0" />
             </GridPane.margin>
             <GridPane HBox.hgrow="ALWAYS">
                 <columnConstraints>
-                    <ColumnConstraints minWidth="20" maxWidth="40"/>
+                    <ColumnConstraints maxWidth="40" minWidth="20" />
                     <ColumnConstraints hgrow="SOMETIMES" />
                 </columnConstraints>
                 <VBox alignment="CENTER" GridPane.columnIndex="0">
@@ -42,7 +39,7 @@
                             <padding>
                                 <Insets left="15" right="5" />
                             </padding>
-                            <CheckBox fx:id="done" styleClass="checkbox"/>
+                            <CheckBox fx:id="done" styleClass="checkbox" />
                         </VBox>
                         <VBox alignment="CENTER_LEFT" maxWidth="300">
                             <padding>
@@ -52,17 +49,21 @@
                             <FlowPane fx:id="tags" />
                             <Label fx:id="description" styleClass="cell_small_label" text="\$description" wrapText="true" />
                         </VBox>
+                  <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                         <VBox alignment="CENTER" minWidth="180">
                             <Label id="reminder" fx:id="reminder" minWidth="30" styleClass="reminder" />
                         </VBox>
                         <VBox>
                             <padding>
-                                <Insets top="10" right="10" />
+                                <Insets right="10" top="10" />
                             </padding>
                             <Label fx:id="priority" styleClass="cell_small_label" text="\$priority" />
                         </VBox>
                     </HBox>
                 </VBox>
+            <rowConstraints>
+               <RowConstraints />
+            </rowConstraints>
             </GridPane>
         </HBox>
         <rowConstraints>

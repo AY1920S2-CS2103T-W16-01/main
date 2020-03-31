@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMER;
 import static seedu.address.logic.parser.CliSyntax.TASK_PREFIXES;
 
 import java.util.ArrayList;
@@ -36,15 +36,14 @@ public class CommandCompletor {
 
     /**
      * Provides auto Complete for all partial command words
-     * 
-     * For done, delete commands:
-     * Converts indexes given in a mixture of spaces and commas into comma separated indexes
-     * For add and edit commands:
-     * Adds prefixes for priority and reminder 
-     * For pom command:
-     * adds timer prefix
+     *
+     * <p>For done, delete commands: Converts indexes given in a mixture of spaces and commas into
+     * comma separated indexes For add and edit commands: Adds prefixes for priority and reminder
+     * For pom command: adds timer prefix
+     *
      * @param input
-     * @return returns command with completed command word, attached prefixes and convert indexes to comma separated ones
+     * @return returns command with completed command word, attached prefixes and convert indexes to
+     *     comma separated ones
      */
     public String getSuggestedCommand(String input) {
         String[] trimmedInputWords = input.split("\\s+");
@@ -70,9 +69,9 @@ public class CommandCompletor {
                         hasReminder = true;
                     } else if (Priority.isValidPriority(currentArgument) && !hasPriority) {
                         // prevent autoComplete from setting task index with a priority
-                        if (trimmedInputWords[0] == "edit" && i < 2) { 
+                        if (trimmedInputWords[0] == "edit" && i < 2) {
                             continue;
-                        } 
+                        }
                         trimmedInputWords[i] =
                                 addPrefix(CliSyntax.PREFIX_PRIORITY.toString(), currentArgument);
                         hasPriority = true;
@@ -91,8 +90,9 @@ public class CommandCompletor {
             case "pom":
                 ArgumentMultimap pomArgMap = ArgumentTokenizer.tokenize(input, PREFIX_TIMER);
                 boolean hasTimer = ParserUtil.arePrefixesPresent(pomArgMap, PREFIX_TIMER);
-                if (! hasTimer) {
-                    trimmedInputWords[2] = addPrefix(CliSyntax.PREFIX_TIMER.toString(), trimmedInputWords[2]);
+                if (!hasTimer) {
+                    trimmedInputWords[2] =
+                            addPrefix(CliSyntax.PREFIX_TIMER.toString(), trimmedInputWords[2]);
                 }
 
             default:
@@ -115,7 +115,7 @@ public class CommandCompletor {
             Matcher commandMatcher = commandPattern.matcher(firstWord.toLowerCase());
             if (commandMatcher.matches() || commandMatcher.hitEnd()) {
                 return commandWord;
-            } 
+            }
         }
         return firstWord;
     }

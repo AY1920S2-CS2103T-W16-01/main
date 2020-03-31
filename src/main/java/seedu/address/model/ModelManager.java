@@ -28,7 +28,7 @@ public class ModelManager implements Model {
     private final Pet pet;
     private final UserPrefs userPrefs;
     private FilteredList<Task> filteredTasks;
-    private Comparator<Task>[] comparators;
+    private Comparator<Task>[] comparators = new Comparator[0];
 
     private PomodoroManager pomodoroManager;
     private PetManager petManager;
@@ -178,8 +178,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return taskList.equals(other.taskList)
                 && userPrefs.equals(other.userPrefs)
-                && filteredTasks.equals(other.filteredTasks)
-                && comparators.equals(other.comparators);
+                && filteredTasks.equals(other.filteredTasks);
     }
 
     // ============================ Pet Manager

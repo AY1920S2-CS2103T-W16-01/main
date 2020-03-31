@@ -13,29 +13,28 @@ import javafx.scene.layout.VBox;
 public class PetDisplay extends UiPart<Region> {
 
     private static final String FXML = "PetDisplay.fxml";
-    private Path DEFAULT_ACCESSORY_PLACEHOLDER = Paths.get("images", "pet", "medal.png");
     private Path DEFAULT_PET_FILEPATH = Paths.get("images", "pet", "level1.png");
     private Path DEFAULT_EXPBAR_FILEPATH = Paths.get("images", "pet", "ProgressBar0%.png");
     private String DEFAULT_EXPBAR_TEXT = "0";
     private String DEFAULT_LEVEL_TEXT = "1";
+    private String DEFEAULT_PET_NAME = "BB";
 
     private Path petFilepath; // mutable
-    private Path accessoryFilepath; // mutable
-
     private Path expBarFilepath; // mutable
     private String expBarText; // mutable
     private String levelText; // mutable
+    private String petName;
 
+    @FXML private Label petNameLabel;
     @FXML private VBox petPane;
     @FXML private ImageView petPic;
     @FXML private Label expBarView;
     @FXML private ImageView expBarPic;
-    @FXML private ImageView accessoryPic;
     @FXML private Label levelView;
 
     public PetDisplay() {
         super(FXML);
-        this.accessoryFilepath = DEFAULT_ACCESSORY_PLACEHOLDER;
+        this.petName = DEFEAULT_PET_NAME;
         this.petFilepath = DEFAULT_PET_FILEPATH;
         this.expBarFilepath = DEFAULT_EXPBAR_FILEPATH;
         this.expBarText = DEFAULT_EXPBAR_TEXT;
@@ -62,6 +61,11 @@ public class PetDisplay extends UiPart<Region> {
     public void setLevelText(String levelText) {
         this.levelText = levelText;
         levelView.setText(levelText);
+    }
+
+    public void setPetName(String petName) {
+        this.petName = petName;
+        petNameLabel.setText(petName);
     }
 
     @Override

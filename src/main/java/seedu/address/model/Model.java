@@ -82,6 +82,8 @@ public interface Model {
 
     void setPomodoroTask(Task task);
 
+    // void setPomodoroTime(String time);
+
     void setPomodoroManager(PomodoroManager pomodoroManager);
 
     void setPetManager(PetManager PetManager);

@@ -36,6 +36,10 @@ public class Pomodoro implements ReadOnlyPomodoro {
         this.runningTask = runningTask;
     }
 
+    public void setDefaultTime(String defaultTime) {
+        this.defaultTime = defaultTime;
+    }
+
     @Override
     public Task getRunningTask() {
         return this.runningTask;
