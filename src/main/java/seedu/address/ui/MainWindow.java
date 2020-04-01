@@ -232,14 +232,14 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /** */
-    private String suggestCommand(String commandText) {
+    private String suggestCommand(String commandText) throws CompletorException {
         try {
             CompletorResult completorResult = commandCompletor.getSuggestedCommand(commandText);
             resultDisplay.setFeedbackToUser(completorResult.getFeedbackToUser());
             return completorResult.getSuggestion();
         } catch (CompletorException e) {
             resultDisplay.setFeedbackToUser(e.getMessage());
-            return commandText;
+            throw e;
         }
     }
 

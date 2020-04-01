@@ -21,10 +21,11 @@ import seedu.address.model.task.Reminder;
 /** Represents a command with hidden internal logic and the ability to be executed. */
 public class CommandCompletor {
     private ArrayList<String> commands = new ArrayList<>();
-    private final String COMPLETE_SUCCESS = "Message %1$s has been auto completed: ";
-    private final String COMPLETE_SUCCESS_PREFIX = "Message %1$s has been auto completed and added these prefixes %2$s";
-    private final String COMPLETE_FAILURE_COMMAND = "Auto complete not possible";
-    private final String COMPLETE_SUCCESS_UNCHANGED = "Command has nothing to complete :)";
+    private final String COMPLETE_SUCCESS = "Message auto completed: ";
+    private final String COMPLETE_PREFIX_SUCCESS = "Message auto completed with these prefixes %1$s";
+    private final String COMMAND_UNFOUND_FAILURE = "Auto complete not possible %1$s not found!";
+    private final String COMPLETE_FAILURE_COMMAND = "Auto complete not possible!";
+    private final String UNCHANGED_SUCCESS = "Command has nothing to complete :)";
 
     /** Add all available commands */
     public CommandCompletor() {
@@ -32,9 +33,9 @@ public class CommandCompletor {
         this.commands.add(EditCommand.COMMAND_WORD);
         this.commands.add(DoneCommand.COMMAND_WORD);
         this.commands.add(DeleteCommand.COMMAND_WORD);
+        this.commands.add(PomCommand.COMMAND_WORD);
         this.commands.add(FindCommand.COMMAND_WORD);
         this.commands.add(ClearCommand.COMMAND_WORD);
-        this.commands.add(PomCommand.COMMAND_WORD);
         this.commands.add(ExitCommand.COMMAND_WORD);
         this.commands.add(SwitchTabCommand.STATS_COMMAND_WORD);
         this.commands.add(SwitchTabCommand.TASKS_COMMAND_WORD);
@@ -55,19 +56,24 @@ public class CommandCompletor {
         String[] trimmedInputWords = input.split("\\s+");
 
         if (trimmedInputWords.length <= 0) {
-            return new CompletorResult(COMPLETE_FAILURE_COMMAND);
+            throw new CompletorException(COMPLETE_FAILURE_COMMAND);
+        }
+
+        if (!isValidCommand(trimmedInputWords[0])) {
+            throw new CompletorException(String.format(COMMAND_UNFOUND_FAILURE, trimmedInputWords[0]);)
         }
 
         trimmedInputWords[0] = getCompletedCommand(trimmedInputWords[0]);
 
+
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(input, TASK_PREFIXES);
         boolean hasReminder = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_REMINDER);
         boolean hasPriority = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_PRIORITY);
-        String prefixesAdded = "", newCommand = "";
+        String prefixesAdded = "", newCommand = input, feedbackToUser = "";
 
         switch (trimmedInputWords[0]) {
-            case "add":
-            case "edit":
+            case AddCommand.COMMAND_WORD:
+            case EditCommand.COMMAND_WORD:
                 for (int i = trimmedInputWords.length - 1; i > 0; i--) {
                     String currentArgument = trimmedInputWords[i];
                     if (Reminder.isValidReminder(currentArgument) && !hasReminder) {
@@ -87,18 +93,20 @@ public class CommandCompletor {
                     }
                 }
                 newCommand = String.join(" ", trimmedInputWords);
-                return new CompletorResult(newCommand, String.format(COMPLETE_SUCCESS_PREFIX, input, prefixesAdded));
+                feedbackToUser = String.format(COMPLETE_PREFIX_SUCCESS, prefixesAdded);
+                break;
 
-            case "done":
-            case "delete":
+            case DoneCommand.COMMAND_WORD:
+            case DeleteCommand.COMMAND_WORD:
                 // Converts indexes that are not comma separated into comma separated
                 String[] commaSeparatedWords = input.split("\\s*,\\s*|\\s+");
                 String[] indexes = getCommandArguments(commaSeparatedWords);
                 String commaJoinedIndexes = String.join(", ", indexes);
                 newCommand = String.format("%s %s", trimmedInputWords[0], commaJoinedIndexes);
-                return new CompletorResult(newCommand, String.format(COMPLETE_SUCCESS, input));
+                feedbackToUser = String.format(COMPLETE_SUCCESS);
+                break;
 
-            case "pom":
+            case PomCommand.COMMAND_WORD:
                 ArgumentMultimap pomArgMap = ArgumentTokenizer.tokenize(input, PREFIX_TIMER);
                 boolean hasTimer = ParserUtil.arePrefixesPresent(pomArgMap, PREFIX_TIMER);
                 if (!hasTimer) {
@@ -106,19 +114,29 @@ public class CommandCompletor {
                             addPrefix(CliSyntax.PREFIX_TIMER.toString(), trimmedInputWords[2]);
                     prefixesAdded += CliSyntax.PREFIX_TIMER.toString();
                 }
-                return new CompletorResult(String.join(" ", trimmedInputWords), String.format(COMPLETE_SUCCESS_PREFIX, input, prefixesAdded));
+                newCommand = String.join(" ", trimmedInputWords);
+                feedbackToUser = String.format(COMPLETE_PREFIX_SUCCESS, prefixesAdded);
+                break;
 
             default:
-                return new CompletorResult(String.format(COMPLETE_SUCCESS_UNCHANGED, input, prefixesAdded));
+                feedbackToUser = UNCHANGED_SUCCESS;
         }
+        return new CompletorResult(newCommand, feedbackToUser);
     }
 
-    public String getSuccessMessage() {
-        return "Command auto completed!";
-    }
+    private boolean isValidCommand(String firstWord) {
+        for (String commandWord : this.commands) {
+            Pattern commandPattern = Pattern.compile(String.format("^%s", commandWord));
+            Matcher commandMatcher = commandPattern.matcher(firstWord.toLowerCase());
+            if (commandMatcher.matches()) {
+                return true;
+            }
 
-    public String getFailureMessage() {
-        return "No command auto complete found :(";
+            if (commandMatcher.hitEnd()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /** Returns complete command if given partial command */

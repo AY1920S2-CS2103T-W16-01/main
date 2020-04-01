@@ -14,15 +14,8 @@ public class CompletorResult {
     /** Constructs a {@code CompletorResult} with the specified fields. */
     public CompletorResult(String suggestedCommand, String feedbackToUser) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.suggestedCommand = suggestedCommand;
-    }
-
-    /**
-     * Constructs a {@code CompletorResult} with the specified {@code feedbackToUser}, and other
-     * fields set to their default value.
-     */
-    public CompletorResult(String feedbackToUser) throws CompletorException {
-        throw new CompletorException(feedbackToUser);
+        this.suggestedCommand = requireNonNull(suggestedCommand);
+        
     }
 
     public String getSuggestion() {

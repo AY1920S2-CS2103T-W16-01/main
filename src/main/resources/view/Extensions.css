@@ -2,6 +2,14 @@
 	-fx-text-fill: #d06651 !important; /* The error class should always override the default text-fill style */
 }
 
+.warning {
+	-fx-text-fill: #f8713d !important; /* The error class should always override the default text-fill style */
+}
+
+.success {
+	-fx-text-fill: #2ebe04 !important; /* The error class should always override the default text-fill style */
+}
+
 .list-cell:empty {
 	/* Empty cells will not have alternating colours */
 	-fx-background: #f7f2f0;
