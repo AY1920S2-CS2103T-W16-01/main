@@ -23,6 +23,7 @@ import seedu.address.logic.PomodoroManager;
 import seedu.address.logic.PomodoroManager.PROMPT_STATE;
 import seedu.address.logic.commands.CommandCompletor;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CompletorResult;
 import seedu.address.logic.commands.PomCommand;
 import seedu.address.logic.commands.PomCommandResult;
 import seedu.address.logic.commands.SwitchTabCommandResult;
@@ -231,13 +232,9 @@ public class MainWindow extends UiPart<Stage> {
 
     /** */
     private String suggestCommand(String commandText) {
-        String suggestion = commandCompletor.getSuggestedCommand(commandText);
-        if (suggestion.equals(commandText)) {
-            resultDisplay.setFeedbackToUser(commandCompletor.getFailureMessage());
-        } else {
-            resultDisplay.setFeedbackToUser(commandCompletor.getSuccessMessage());
-        }
-        return suggestion;
+        CompletorResult completorResult = commandCompletor.getSuggestedCommand(commandText);
+        resultDisplay.setFeedbackToUser(completorResult.getFeedbackToUser());
+        return completorResult.getSuggestion();
     }
 
     public void setTabFocusTasks() {
