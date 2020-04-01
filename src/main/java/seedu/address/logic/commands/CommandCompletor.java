@@ -20,12 +20,12 @@ import seedu.address.model.task.Reminder;
 
 /** Represents a command with hidden internal logic and the ability to be executed. */
 public class CommandCompletor {
-    private ArrayList<String> commands = new ArrayList<>();
-    private final String COMPLETE_SUCCESS = "Message auto completed: ";
-    private final String COMPLETE_PREFIX_SUCCESS = "Message auto completed with these prefixes %1$s";
-    private final String COMMAND_UNFOUND_FAILURE = "Auto complete not possible %1$s not found!";
-    private final String COMPLETE_FAILURE_COMMAND = "Auto complete not possible!";
-    private final String UNCHANGED_SUCCESS = "Command has nothing to complete :)";
+    public ArrayList<String> commands = new ArrayList<>();
+    public final static String COMPLETE_SUCCESS = "Message auto completed: ";
+    public final static String COMPLETE_PREFIX_SUCCESS = "Message auto completed with these prefixes %1$s";
+    public final static String UNCHANGED_SUCCESS = "Command has nothing to complete :)";
+    public final static String COMMAND_UNFOUND_FAILURE = "Auto complete not possible %1$s not found!";
+    public final static String COMPLETE_FAILURE_COMMAND = "Auto complete not possible!";
 
     /** Add all available commands */
     public CommandCompletor() {
@@ -60,7 +60,7 @@ public class CommandCompletor {
         }
 
         if (!isValidCommand(trimmedInputWords[0])) {
-            throw new CompletorException(String.format(COMMAND_UNFOUND_FAILURE, trimmedInputWords[0]);)
+            throw new CompletorException(String.format(COMMAND_UNFOUND_FAILURE, trimmedInputWords[0]));
         }
 
         trimmedInputWords[0] = getCompletedCommand(trimmedInputWords[0]);
@@ -69,7 +69,8 @@ public class CommandCompletor {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(input, TASK_PREFIXES);
         boolean hasReminder = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_REMINDER);
         boolean hasPriority = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_PRIORITY);
-        String prefixesAdded = "", newCommand = input, feedbackToUser = "";
+        String prefixesAdded = "",  feedbackToUser = "";
+        String newCommand = String.join(" ", trimmedInputWords);
 
         switch (trimmedInputWords[0]) {
             case AddCommand.COMMAND_WORD:
