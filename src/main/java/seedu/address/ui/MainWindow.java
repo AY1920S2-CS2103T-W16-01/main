@@ -28,6 +28,7 @@ import seedu.address.logic.commands.PomCommand;
 import seedu.address.logic.commands.PomCommandResult;
 import seedu.address.logic.commands.SwitchTabCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.exceptions.CompletorException;
 import seedu.address.logic.parser.TaskListParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyPet;
@@ -232,9 +233,14 @@ public class MainWindow extends UiPart<Stage> {
 
     /** */
     private String suggestCommand(String commandText) {
-        CompletorResult completorResult = commandCompletor.getSuggestedCommand(commandText);
-        resultDisplay.setFeedbackToUser(completorResult.getFeedbackToUser());
-        return completorResult.getSuggestion();
+        try {
+            CompletorResult completorResult = commandCompletor.getSuggestedCommand(commandText);
+            resultDisplay.setFeedbackToUser(completorResult.getFeedbackToUser());
+            return completorResult.getSuggestion();
+        } catch (CompletorException e) {
+            resultDisplay.setFeedbackToUser(e.getMessage());
+            return commandText;
+        }
     }
 
     public void setTabFocusTasks() {

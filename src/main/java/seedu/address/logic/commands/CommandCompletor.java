@@ -24,7 +24,7 @@ public class CommandCompletor {
     private final String COMPLETE_SUCCESS = "Message %1$s has been auto completed: ";
     private final String COMPLETE_SUCCESS_PREFIX = "Message %1$s has been auto completed and added these prefixes %2$s";
     private final String COMPLETE_FAILURE_COMMAND = "Auto complete not possible";
-    private final String COMPLETE_FAILURE_UNCHANGED = "Command has nothing to complete :)";
+    private final String COMPLETE_SUCCESS_UNCHANGED = "Command has nothing to complete :)";
 
     /** Add all available commands */
     public CommandCompletor() {
@@ -109,7 +109,7 @@ public class CommandCompletor {
                 return new CompletorResult(String.join(" ", trimmedInputWords), String.format(COMPLETE_SUCCESS_PREFIX, input, prefixesAdded));
 
             default:
-                return new CompletorResult(String.format(COMPLETE_FAILURE_UNCHANGED, input, prefixesAdded));
+                return new CompletorResult(String.format(COMPLETE_SUCCESS_UNCHANGED, input, prefixesAdded));
         }
     }
 
