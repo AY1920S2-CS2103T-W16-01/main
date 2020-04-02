@@ -11,10 +11,14 @@ Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
+Class TaskListPanel
+Class TaskCard
 Class StatusBarFooter
 Class CommandBox
+class PetDisplay
+class PomodoroDisplay
+class StatisticsDisplay
+class SettingsDisplay
 }
 
 package Model <<Rectangle>> {
@@ -33,28 +37,42 @@ UiManager -down-> MainWindow
 MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
-MainWindow *-down-> PersonListPanel
 MainWindow *-down-> StatusBarFooter
 
-PersonListPanel -down-> PersonCard
+MainWindow *--down-> PetDisplay
+MainWindow *-down-> PomodoroDisplay
+MainWindow *-down-> StatisticsDisplay
+MainWindow *-down-> SettingsDisplay
+MainWindow *-down-> TaskListPanel
+TaskListPanel -down-> TaskCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
+TaskListPanel --|> UiPart
+TaskCard ---|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
 
-PersonCard ..> Model
-UiManager -right-> Logic
+PetDisplay --|> UiPart
+PomodoroDisplay --|> UiPart
+StatisticsDisplay ---|> UiPart
+SettingsDisplay --|> UiPart
+
+TaskCard -up-> Model
+UiManager -up-> Logic
 MainWindow -left-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
-HelpWindow -[hidden]left- CommandBox
-CommandBox -[hidden]left- ResultDisplay
+ResultDisplay -[hidden]left- CommandBox
 ResultDisplay -[hidden]left- StatusBarFooter
+ResultDisplay -[hidden]left- HelpWindow
+ResultDisplay -[hidden]left- SettingsDisplay
+ResultDisplay -[hidden]left- PetDisplay
+ResultDisplay -[hidden]left- TaskListPanel
+PomodoroDisplay -[hidden]left- PetDisplay
+StatisticsDisplay -[hidden]left- PetDisplay
+TaskCard -[hidden]down- TaskListPanel
 
 MainWindow -[hidden]-|> UiPart
 @enduml
