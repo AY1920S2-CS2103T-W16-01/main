@@ -96,7 +96,7 @@ public class StatisticsDisplay extends UiPart<Region> {
                 break;
         }
 
-        Image progressBarDailyImage = new Image(progressBarDailyFilepathString);
+        Image progressBarDailyImage = new Image(this.getClass().getResourceAsStream(progressBarDailyFilepathString));
         progressBarDaily.setImage(progressBarDailyImage);
 
         XYChart.Series<String, Integer> dataSeriesPomDurationData = new XYChart.Series<>();

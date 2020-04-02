@@ -10,7 +10,7 @@ public class PomodoroDisplay extends UiPart<Region> {
 
     private static final String FXML = "PomodoroDisplay.fxml";
     private static final String DEFAULT_TASK_IN_PROGRESS = "No task in progress.";
-    private static final String DEFAULT_TIMER = "POM";
+    private static final String DEFAULT_TIMER = "25:00";
 
     public String taskInProgressText; // mutable
     public String timerText; // mutable

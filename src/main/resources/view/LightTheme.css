@@ -28,12 +28,10 @@
 	background-color: #f7f2f0; /* Used in the default.html file */
 }
 
-/*
 .label {
 	-fx-font-family: "SofiaProRegular";
 	-fx-opacity: 0.9;
 }
-*/
 
 .label-bright {
 	-fx-font-size: 11pt;

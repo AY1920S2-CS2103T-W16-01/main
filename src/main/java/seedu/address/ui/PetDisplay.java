@@ -13,14 +13,19 @@ import javafx.scene.layout.VBox;
 public class PetDisplay extends UiPart<Region> {
 
     private static final String FXML = "PetDisplay.fxml";
-    private Path DEFAULT_PET_FILEPATH = Paths.get("images", "pet", "level1.png");
-    private Path DEFAULT_EXPBAR_FILEPATH = Paths.get("images", "pet", "ProgressBar0%.png");
+    //private Path DEFAULT_PET_FILEPATH = Paths.get("images", "pet", "level1.png");
+    private String DEFAULT_PET_FILEPATH_STRING = "/images/pet/level1.png";
+    //private Path DEFAULT_EXPBAR_FILEPATH = Paths.get("images", "pet", "ProgressBar0%.png");
+    private String DEFAULT_EXPBAR_FILEPATH_STRING = "/images/pet/ProgressBar0%.png";
     private String DEFAULT_EXPBAR_TEXT = "0";
     private String DEFAULT_LEVEL_TEXT = "1";
     private String DEFEAULT_PET_NAME = "BB";
 
-    private Path petFilepath; // mutable
-    private Path expBarFilepath; // mutable
+    //private Path petFilepath; // mutable
+    private String petFilepathString; // mutable
+    //private Path expBarFilepath; // mutable
+    private String expBarFilepathString; // mutable
+
     private String expBarText; // mutable
     private String levelText; // mutable
     private String petName;
@@ -35,21 +40,21 @@ public class PetDisplay extends UiPart<Region> {
     public PetDisplay() {
         super(FXML);
         this.petName = DEFEAULT_PET_NAME;
-        this.petFilepath = DEFAULT_PET_FILEPATH;
-        this.expBarFilepath = DEFAULT_EXPBAR_FILEPATH;
+        this.petFilepathString = DEFAULT_PET_FILEPATH_STRING;
+        this.expBarFilepathString = DEFAULT_EXPBAR_FILEPATH_STRING;
         this.expBarText = DEFAULT_EXPBAR_TEXT;
         this.levelText = DEFAULT_LEVEL_TEXT;
     }
 
-    public void setPetImage(Path path) {
-        petFilepath = path;
-        Image petImage = new Image(String.valueOf(petFilepath));
+    public void setPetImage(String pathString) {
+        petFilepathString = pathString;
+        Image petImage = new Image("file:" + petFilepathString);
         petPic.setImage(petImage);
     }
 
-    public void setExpBarImage(Path path) {
-        expBarFilepath = path;
-        Image expBarImage = new Image(String.valueOf(expBarFilepath));
+    public void setExpBarImage(String pathString) {
+        expBarFilepathString = pathString;
+        Image expBarImage = new Image("file:" + expBarFilepathString);
         expBarPic.setImage(expBarImage);
     }
 
