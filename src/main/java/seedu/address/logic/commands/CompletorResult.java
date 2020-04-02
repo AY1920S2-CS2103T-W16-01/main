@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.commands.exceptions.CompletorException;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
@@ -15,7 +14,6 @@ public class CompletorResult {
     public CompletorResult(String suggestedCommand, String feedbackToUser) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.suggestedCommand = requireNonNull(suggestedCommand);
-        
     }
 
     public String getSuggestion() {

@@ -5,11 +5,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMER;
 import static seedu.address.logic.parser.CliSyntax.TASK_PREFIXES;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import seedu.address.logic.commands.exceptions.CompletorException;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -20,12 +21,14 @@ import seedu.address.model.task.Reminder;
 
 /** Represents a command with hidden internal logic and the ability to be executed. */
 public class CommandCompletor {
-    public ArrayList<String> commands = new ArrayList<>();
-    public final static String COMPLETE_SUCCESS = "Message auto completed: ";
-    public final static String COMPLETE_PREFIX_SUCCESS = "Message auto completed with these prefixes %1$s";
-    public final static String UNCHANGED_SUCCESS = "Command has nothing to complete :)";
-    public final static String COMMAND_UNFOUND_FAILURE = "Auto complete not possible %1$s not found!";
-    public final static String COMPLETE_FAILURE_COMMAND = "Auto complete not possible!";
+    public static final String COMPLETE_SUCCESS = "Message auto completed: ";
+    public static final String COMPLETE_PREFIX_SUCCESS =
+            "Message auto completed with these prefixes %1$s";
+    public static final String UNCHANGED_SUCCESS = "Command has nothing to complete :)";
+    public static final String COMMAND_UNFOUND_FAILURE =
+            "Auto complete not possible %1$s not found!";
+    public static final String COMPLETE_FAILURE_COMMAND = "Auto complete not possible!";
+    private Set<String> commands = new HashSet<>();
 
     /** Add all available commands */
     public CommandCompletor() {
@@ -37,6 +40,7 @@ public class CommandCompletor {
         this.commands.add(FindCommand.COMMAND_WORD);
         this.commands.add(ClearCommand.COMMAND_WORD);
         this.commands.add(ExitCommand.COMMAND_WORD);
+        this.commands.add(SortCommand.COMMAND_WORD);
         this.commands.add(SwitchTabCommand.STATS_COMMAND_WORD);
         this.commands.add(SwitchTabCommand.TASKS_COMMAND_WORD);
     }
@@ -59,17 +63,19 @@ public class CommandCompletor {
             throw new CompletorException(COMPLETE_FAILURE_COMMAND);
         }
 
-        if (!isValidCommand(trimmedInputWords[0])) {
-            throw new CompletorException(String.format(COMMAND_UNFOUND_FAILURE, trimmedInputWords[0]));
+        Optional<String> suggestedCommand =
+                getCompletedWord(trimmedInputWords[0], this.commands.toArray(new String[0]));
+        if (suggestedCommand.isPresent()) {
+            trimmedInputWords[0] = suggestedCommand.get();
+        } else {
+            throw new CompletorException(
+                    String.format(COMMAND_UNFOUND_FAILURE, trimmedInputWords[0]));
         }
-
-        trimmedInputWords[0] = getCompletedCommand(trimmedInputWords[0]);
-
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(input, TASK_PREFIXES);
         boolean hasReminder = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_REMINDER);
         boolean hasPriority = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_PRIORITY);
-        String prefixesAdded = "",  feedbackToUser = "";
+        String prefixesAdded = "", feedbackToUser = COMPLETE_FAILURE_COMMAND;
         String newCommand = String.join(" ", trimmedInputWords);
 
         switch (trimmedInputWords[0]) {
@@ -119,37 +125,40 @@ public class CommandCompletor {
                 feedbackToUser = String.format(COMPLETE_PREFIX_SUCCESS, prefixesAdded);
                 break;
 
+            case "sort":
+                for (int i = 1; i < trimmedInputWords.length; i++) {
+                    String currWord = trimmedInputWords[i];
+                    Optional<String> completedWord =
+                            getCompletedWord(currWord, SortCommand.ALLOWED_SORT_FIELDS);
+                    if (completedWord.isPresent()) {
+                        trimmedInputWords[i] = completedWord.get();
+                        feedbackToUser = COMPLETE_SUCCESS;
+                    } else {
+                        trimmedInputWords[i] = "";
+                    }
+                }
+                newCommand = String.join(" ", trimmedInputWords);
+                break;
+
             default:
                 feedbackToUser = UNCHANGED_SUCCESS;
         }
-        return new CompletorResult(newCommand, feedbackToUser);
-    }
-
-    private boolean isValidCommand(String firstWord) {
-        for (String commandWord : this.commands) {
-            Pattern commandPattern = Pattern.compile(String.format("^%s", commandWord));
-            Matcher commandMatcher = commandPattern.matcher(firstWord.toLowerCase());
-            if (commandMatcher.matches()) {
-                return true;
-            }
-
-            if (commandMatcher.hitEnd()) {
-                return true;
-            }
-        }
-        return false;
+        return new CompletorResult(newCommand + " ", feedbackToUser);
     }
 
     /** Returns complete command if given partial command */
-    private String getCompletedCommand(String firstWord) {
-        for (String commandWord : this.commands) {
-            Pattern commandPattern = Pattern.compile(String.format("^%s", commandWord));
-            Matcher commandMatcher = commandPattern.matcher(firstWord.toLowerCase());
-            if (!commandMatcher.matches() && commandMatcher.hitEnd()) {
-                return commandWord;
+    private Optional<String> getCompletedWord(String firstWord, String[] possibilities) {
+        for (String word : possibilities) {
+            Pattern pattern = Pattern.compile(String.format("^%s", word));
+            Matcher matcher = pattern.matcher(firstWord.toLowerCase());
+            if (matcher.matches()) {
+                return Optional.of(word);
+            }
+            if (matcher.hitEnd()) {
+                return Optional.of(word);
             }
         }
-        return firstWord;
+        return Optional.empty();
     }
 
     /** Gets all non command arguments */

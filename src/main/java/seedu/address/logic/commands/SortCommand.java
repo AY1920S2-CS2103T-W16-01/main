@@ -13,7 +13,9 @@ import seedu.address.model.task.Task;
 public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
-    public static final String[] ALLOWED_SORT_FIELDS = {"priority", "date", "name"};
+    public static final String[] ALLOWED_SORT_FIELDS = {
+        "r-priority", "r-date", "r-name", "r-done", "priority", "date", "name", "done"
+    }; // TODO replace with enum
 
     public static final String MESSAGE_SUCCESS = "TaskList sorted by: %1$s";
     public static final String MESSAGE_SORT_UNKNOWN = "No such field to sort by %1$s!";
@@ -41,6 +43,16 @@ public class SortCommand extends Command {
                     temp.add(getReminderComparator());
                 case "name":
                     temp.add(getNameComparator());
+                case "done":
+                    temp.add(getDoneComparator());
+                case "r-priority":
+                    temp.add(getPriorityComparator().reversed());
+                case "r-date":
+                    temp.add(getReminderComparator().reversed());
+                case "r-name":
+                    temp.add(getNameComparator().reversed());
+                case "r-done":
+                    temp.add(getDoneComparator().reversed());
             }
         }
         model.setComparator(temp.toArray(new Comparator[0]));
@@ -52,6 +64,15 @@ public class SortCommand extends Command {
             @Override
             public int compare(Task task1, Task task2) {
                 return task1.getPriority().compareTo(task2.getPriority());
+            }
+        };
+    }
+
+    private Comparator<Task> getDoneComparator() {
+        return new Comparator<Task>() {
+            @Override
+            public int compare(Task task1, Task task2) {
+                return task1.getDone().compareTo(task2.getDone());
             }
         };
     }
