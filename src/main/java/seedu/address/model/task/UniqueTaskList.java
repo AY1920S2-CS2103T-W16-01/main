@@ -3,6 +3,7 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -41,6 +42,10 @@ public class UniqueTaskList implements Iterable<Task> {
             throw new DuplicateTaskException();
         }
         internalList.add(toAdd);
+    }
+
+    public void sort(Comparator<Task> comparator) {
+        internalList.sort(comparator);
     }
 
     /**
