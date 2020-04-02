@@ -85,7 +85,7 @@
                <Insets />
             </HBox.margin>
             <opaqueInsets>
-               <Insets left="40.0" />
+               <Insets />
             </opaqueInsets>
             </GridPane>
         </HBox>
@@ -96,7 +96,7 @@
          <Insets />
       </opaqueInsets>
       <HBox.margin>
-         <Insets left="85.0" />
+         <Insets />
       </HBox.margin>
 
     </GridPane>

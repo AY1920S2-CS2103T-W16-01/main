@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.task.Task;
@@ -31,6 +32,10 @@ public class TaskList implements ReadOnlyTaskList {
     public TaskList(ReadOnlyTaskList toBeCopied) {
         this();
         resetData(toBeCopied);
+    }
+
+    public void sort(Comparator<Task> comparator) {
+        this.tasklist.sort(comparator);
     }
 
     //// list overwrite operations

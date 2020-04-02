@@ -28,10 +28,12 @@
 	background-color: #f7f2f0; /* Used in the default.html file */
 }
 
+/*
 .label {
 	-fx-font-family: "SofiaProRegular";
 	-fx-opacity: 0.9;
 }
+*/
 
 .label-bright {
 	-fx-font-size: 11pt;
@@ -53,7 +55,7 @@
 }
 
 .tab-pane {
-	-fx-padding: 0 0 0 1;
+	-fx-padding: 10 0 0 1;
 }
 
 .tab-pane .tab-header-area {
@@ -81,6 +83,7 @@
 
 .tab .tab-label {
 	-fx-text-fill: rgba(69, 63, 233, 0.4);
+	-fx-font-size: 18px;
 }
 
 .table-view {
