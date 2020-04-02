@@ -44,13 +44,13 @@ public class PetDisplay extends UiPart<Region> {
 
     public void setPetImage(String path) {
         petFilepath = path;
-        Image petImage = new Image(MainApp.class.getResourceAsStream(path));
+        Image petImage = new Image(MainApp.class.getResourceAsStream(petFilepath));
         petPic.setImage(petImage);
     }
     
     public void setExpBarImage(String path) {
         expBarFilepath = path;
-        Image expBarImage =new Image(path);
+        Image expBarImage =new Image(MainApp.class.getResourceAsStream(expBarFilepath));
         expBarPic.setImage(expBarImage);
     }
 

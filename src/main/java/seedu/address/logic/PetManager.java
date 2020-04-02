@@ -131,11 +131,11 @@ public class PetManager {
         String levelText = this.pet.getLevel();
 
         if (levelText.equals("1")) {
-            petFilepath = "/images/pet/level1.png");
+            petFilepath = "/images/pet/level1.png";
        } else if (levelText.equals("2")) {
-            petFilepath = "/images/pet/level2.png");
+            petFilepath = "/images/pet/level2.png";
        } else {
-            petFilepath = "/images/pet/level3.png");
+            petFilepath = "/images/pet/level3.png";
        }
 
         petDisplay.setPetImage(petFilepath);
@@ -146,11 +146,11 @@ public class PetManager {
         String levelText = this.pet.getLevel();
 
         if (levelText.equals("1")) {
-            petFilepath = "/images/pet/level1hangry.png");
+            petFilepath = "/images/pet/level1hangry.png";
        } else if (levelText.equals("2")) {
-            petFilepath = "/images/pet/level2hangry.png");
+            petFilepath = "/images/pet/level2hangry.png";
        } else {
-            petFilepath = "/images/pet/level3.png");
+            petFilepath = "/images/pet/level3.png";
        }
 
         petDisplay.setPetImage(petFilepath);
