@@ -157,7 +157,7 @@ public class ModelManager implements Model {
         this.comparators = comparators;
         SortedList<Task> sortedFilteredTasks = new SortedList<>(filteredTasks);
         for (int i = comparators.length - 1; i >= 0; i--) {
-            sortedFilteredTasks.setComparator(comparators[i]);
+            // sortedFilteredTasks.setComparator(comparators[i]);
             this.taskList.sort(comparators[i]);
         }
         this.filteredTasks = new FilteredList<Task>(this.taskList.getTaskList());
