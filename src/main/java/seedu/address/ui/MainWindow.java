@@ -305,8 +305,6 @@ public class MainWindow extends UiPart<Stage> {
             petManager.updatePetDisplay();
             // update because sorting returns a new list
 
-            this.personListPanel.setTaskList(this.logic.getFilteredTaskList());
-
             // * Old implementation for sort
             // personListPanel = new TaskListPanel(logic.getFilteredTaskList());
             // personListPanelPlaceholder.getChildren().clear();
