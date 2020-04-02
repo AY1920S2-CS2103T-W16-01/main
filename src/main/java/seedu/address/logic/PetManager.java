@@ -127,31 +127,31 @@ public class PetManager {
     }
 
     public void updatePetDisplayWhenDone() {
-        Path petFilepath;
+        String petFilepath;
         String levelText = this.pet.getLevel();
 
         if (levelText.equals("1")) {
-            petFilepath = Paths.get("images", "pet", "level1.png");
-        } else if (levelText.equals("2")) {
-            petFilepath = Paths.get("images", "pet", "level2.png");
-        } else {
-            petFilepath = Paths.get("images", "pet", "level3.png");
-        }
+            petFilepath = "/images/pet/level1.png";
+       } else if (levelText.equals("2")) {
+            petFilepath = "/images/pet/level2.png";
+       } else {
+            petFilepath = "/images/pet/level3.png";
+       }
 
         petDisplay.setPetImage(petFilepath);
     }
 
     public void updatePetDisplayToHangry() {
-        Path petFilepath;
+        String petFilepath;
         String levelText = this.pet.getLevel();
 
         if (levelText.equals("1")) {
-            petFilepath = Paths.get("images", "pet", "level1hangry.png");
-        } else if (levelText.equals("2")) {
-            petFilepath = Paths.get("images", "pet", "level2hangry.png");
-        } else {
-            petFilepath = Paths.get("images", "pet", "level3.png");
-        }
+            petFilepath = "/images/pet/level1hangry.png";
+       } else if (levelText.equals("2")) {
+            petFilepath = "/images/pet/level2hangry.png";
+       } else {
+            petFilepath = "/images/pet/level3.png";
+       }
 
         petDisplay.setPetImage(petFilepath);
     }
@@ -179,75 +179,75 @@ public class PetManager {
         String levelText = this.pet.getLevel();
 
         String mood = pet.getMood();
-        Path petFilepath;
+        String petFilepath;
 
         if (levelText.equals("1")) {
-            Path path =
+            String path =
                     (mood.equals(HAPPY_MOOD_STRING)
-                            ? Paths.get("images", "pet", "level1.png")
-                            : Paths.get("images", "pet", "level1hangry.png"));
-            petFilepath = path;
+                            ? "/images/pet/level1.png"
+                           : "/images/pet/level1hangry.png");
+           petFilepath = path;
         } else if (levelText.equals("2")) {
-            Path path =
+            String path =
                     (mood.equals(HAPPY_MOOD_STRING)
-                            ? Paths.get("images", "pet", "level1.png")
-                            : Paths.get("images", "pet", "level1hangry.png"));
-            petFilepath = path;
+                            ? "/images/pet/level1.png"
+                           : "/images/pet/level1hangry.png");
+           petFilepath = path;
         } else {
-            petFilepath = Paths.get("images", "pet", "level3.png");
-        }
+            petFilepath = "/images/pet/level3.png";
+       }
 
         int expBarPerc = expBarInt / 10;
 
-        Path expBarFilepath;
+        String expBarFilepath;
 
         switch (expBarPerc) {
             case 0:
-                expBarFilepath = Paths.get("images", "pet", "ProgressBar0%.png");
+                expBarFilepath = "/images/pet/ProgressBar0%.png";
                 break;
 
             case 1:
-                expBarFilepath = Paths.get("images", "pet", "ProgressBar10%.png");
+                expBarFilepath = "/images/pet/ProgressBar10%.png";
                 break;
 
             case 2:
-                expBarFilepath = Paths.get("images", "pet", "ProgressBar20%.png");
+                expBarFilepath = "/images/pet/ProgressBar20%.png";
                 break;
 
             case 3:
-                expBarFilepath = Paths.get("images", "pet", "ProgressBar30%.png");
+                expBarFilepath = "/images/pet/ProgressBar30%.png";
                 break;
 
             case 4:
-                expBarFilepath = Paths.get("images", "pet", "ProgressBar40%.png");
+                expBarFilepath = "/images/pet/ProgressBar40%.png";
                 break;
 
             case 5:
-                expBarFilepath = Paths.get("images", "pet", "ProgressBar50%.png");
+                expBarFilepath = "/images/pet/ProgressBar50%.png";
                 break;
 
             case 6:
-                expBarFilepath = Paths.get("images", "pet", "ProgressBar60%.png");
+                expBarFilepath = "/images/pet/ProgressBar60%.png";
                 break;
 
             case 7:
-                expBarFilepath = Paths.get("images", "pet", "ProgressBar70%.png");
+                expBarFilepath = "/images/pet/ProgressBar70%.png";
                 break;
 
             case 8:
-                expBarFilepath = Paths.get("images", "pet", "ProgressBar80%.png");
+                expBarFilepath = "/images/pet/ProgressBar80%.png";
                 break;
 
             case 9:
-                expBarFilepath = Paths.get("images", "pet", "ProgressBar90%.png");
+                expBarFilepath = "/images/pet/ProgressBar90%.png";
                 break;
 
             case 10:
-                expBarFilepath = Paths.get("images", "pet", "ProgressBar100%.png");
+                expBarFilepath = "/images/pet/ProgressBar100%.png";
                 break;
 
             default:
-                expBarFilepath = Paths.get("images", "pet", "ProgressBar0%.png");
+                expBarFilepath = "/images/pet/ProgressBar0%.png";
                 break;
         }
 

@@ -14,9 +14,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root maxHeight="700.0" maxWidth="1200.0" minHeight="700.0" minWidth="1200.0" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" width="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="700.0" maxWidth="1200.0" minHeight="700.0" minWidth="1200.0" onCloseRequest="#handleExit" title="BBProductive" type="javafx.stage.Stage" width="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
-        <Image url="@/images/address_book_32.png" />
+        <Image url="@/images/BBProductiveIcon.png" />
     </icons>
     <scene>
         <Scene>

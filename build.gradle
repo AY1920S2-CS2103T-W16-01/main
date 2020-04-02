@@ -83,7 +83,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveName = 'bbproductive.jar'
 
     destinationDir = file("${buildDir}/jar/")
 }

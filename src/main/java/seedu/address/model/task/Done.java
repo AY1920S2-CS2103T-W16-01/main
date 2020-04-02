@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Task's Done in the address book. Guarantees: immutable; is valid as declared in
  * {@link #isValidDone(String)}
  */
-public class Done {
+public class Done implements Comparable {
 
     public static final String MESSAGE_CONSTRAINTS = "Done should be a simple Boolean ";
 
@@ -59,5 +59,14 @@ public class Done {
     @Override
     public int hashCode() {
         return isDone.hashCode();
+    }
+
+    @Override
+    public int compareTo(Object other) {
+        if (!(other instanceof Done)) {
+            return 0;
+        }
+        Done otherDone = (Done) other;
+        return this.isDone.compareTo(otherDone.isDone);
     }
 }

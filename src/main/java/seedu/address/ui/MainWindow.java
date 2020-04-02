@@ -5,6 +5,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.MenuItem;
@@ -12,6 +13,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -23,10 +25,12 @@ import seedu.address.logic.PomodoroManager;
 import seedu.address.logic.PomodoroManager.PROMPT_STATE;
 import seedu.address.logic.commands.CommandCompletor;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CompletorResult;
 import seedu.address.logic.commands.PomCommand;
 import seedu.address.logic.commands.PomCommandResult;
 import seedu.address.logic.commands.SwitchTabCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.exceptions.CompletorException;
 import seedu.address.logic.parser.TaskListParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyPet;
@@ -101,6 +105,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        disableTabClick();
     }
 
     public Stage getPrimaryStage() {
@@ -113,6 +118,11 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+    }
+
+    private void disableTabClick() {
+        EventHandler<MouseEvent> handler = MouseEvent::consume;
+        tabPanePlaceholder.addEventFilter(MouseEvent.ANY, handler);
     }
 
     /**
@@ -230,14 +240,15 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /** */
-    private String suggestCommand(String commandText) {
-        String suggestion = commandCompletor.getSuggestedCommand(commandText);
-        if (suggestion.equals(commandText)) {
-            resultDisplay.setFeedbackToUser(commandCompletor.getFailureMessage());
-        } else {
-            resultDisplay.setFeedbackToUser(commandCompletor.getSuccessMessage());
+    private String suggestCommand(String commandText) throws CompletorException {
+        try {
+            CompletorResult completorResult = commandCompletor.getSuggestedCommand(commandText);
+            resultDisplay.setFeedbackToUser(completorResult.getFeedbackToUser());
+            return completorResult.getSuggestion();
+        } catch (CompletorException e) {
+            resultDisplay.setFeedbackToUser(e.getMessage());
+            throw e;
         }
-        return suggestion;
     }
 
     public void setTabFocusTasks() {
