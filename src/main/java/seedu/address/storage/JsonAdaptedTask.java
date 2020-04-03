@@ -63,15 +63,15 @@ class JsonAdaptedTask {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Task} object.
+     * Converts this Jackson-friendly adapted task object into the model's {@code Task} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted
-     *     person.
+     *     task.
      */
     public Task toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> taskTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            taskTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -106,7 +106,7 @@ class JsonAdaptedTask {
         }
         final Done modelDone = new Done(done);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Tag> modelTags = new HashSet<>(taskTags);
 
         Optional<Reminder> optReminder = Optional.empty();
         if (reminder == null || reminder.equals("")) {

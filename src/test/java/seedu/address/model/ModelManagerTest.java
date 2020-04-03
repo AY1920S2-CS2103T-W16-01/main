@@ -3,7 +3,7 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTasks.HOMEWORK10;
 import static seedu.address.testutil.TypicalTasks.LAB_3;
@@ -71,23 +71,23 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    public void hasTask_nullTask_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasTask(null));
     }
 
     @Test
-    public void hasPerson_personNotInTaskList_returnsFalse() {
+    public void hasTask_taskNotInTaskList_returnsFalse() {
         assertFalse(modelManager.hasTask(HOMEWORK10));
     }
 
     @Test
-    public void hasPerson_personInTaskList_returnsTrue() {
+    public void hasTask_taskInTaskList_returnsTrue() {
         modelManager.addTask(HOMEWORK10);
         assertTrue(modelManager.hasTask(HOMEWORK10));
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getFilteredTaskList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(
                 UnsupportedOperationException.class,
                 () -> modelManager.getFilteredTaskList().remove(0));
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        TaskList taskList = new TaskListBuilder().withPerson(HOMEWORK10).withPerson(LAB_3).build();
+        TaskList taskList = new TaskListBuilder().withTask(HOMEWORK10).withTask(LAB_3).build();
         TaskList differentTaskList = new TaskList();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -135,7 +135,7 @@ public class ModelManagerTest {
                                 taskList, new Pet(), new Pomodoro(), new Statistics(), userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredTaskList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

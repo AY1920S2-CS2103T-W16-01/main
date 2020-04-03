@@ -17,7 +17,7 @@ class JsonAdaptedPet {
     private final String mood;
     private final String lastDoneTaskTime;
 
-    /** Constructs a {@code JsonAdaptedTask} with the given person details. */
+    /** Constructs a {@code JsonAdaptedTask} with the given task details. */
     @JsonCreator
     public JsonAdaptedPet(
             @JsonProperty("name") String name,
@@ -42,10 +42,10 @@ class JsonAdaptedPet {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Task} object.
+     * Converts this Jackson-friendly adapted task object into the model's {@code Task} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted
-     *     person.
+     *     task.
      */
     public ReadOnlyPet toModelType() throws IllegalValueException {
         // TODO set up proper model for all attributes of the Pet

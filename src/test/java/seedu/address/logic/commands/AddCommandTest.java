@@ -48,14 +48,14 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateTask_throwsCommandException() {
         Task validTask = new TaskBuilder().build();
         AddCommand addCommand = new AddCommand(validTask);
         ModelStub modelStub = new ModelStubWithTask(validTask);
 
         assertThrows(
                 CommandException.class,
-                AddCommand.MESSAGE_DUPLICATE_PERSON,
+                AddCommand.MESSAGE_DUPLICATE_TASK,
                 () -> addCommand.execute(modelStub));
     }
 
@@ -79,7 +79,7 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // different task -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -226,7 +226,7 @@ public class AddCommandTest {
         }
     }
 
-    /** A Model stub that contains a single person. */
+    /** A Model stub that contains a single task. */
     private class ModelStubWithTask extends ModelStub {
         private final Task task;
 
@@ -242,7 +242,7 @@ public class AddCommandTest {
         }
     }
 
-    /** A Model stub that always accept the person being added. */
+    /** A Model stub that always accept the task being added. */
     private class ModelStubAcceptingTaskAdded extends ModelStub {
         final ArrayList<Task> tasksAdded = new ArrayList<>();
 

@@ -30,7 +30,7 @@ public class Done implements Comparable {
     }
 
     public
-    Done() { // TODO maybe don't need, but i don't get why we should use a PersonBuilder to inject
+    Done() { // TODO maybe don't need, but i don't get why we should use a TaskBuilder to inject
         // default values
         this.isDone = false;
     }

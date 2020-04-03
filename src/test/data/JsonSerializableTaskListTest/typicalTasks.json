@@ -1,56 +1,50 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
-  "tasks": [
-    {
-      "name": "Homework 10",
-      "priority": "1",
-      "description": "Pages 100 - 112",
-      "done" : "N",
-      "tagged": [
-        "MA1521"
-      ]
-    },
-    {
-      "name": "Lab 3",
-      "priority": "2",
-      "description": "Introduction to UDP",
-      "done" : "N",
-      "tagged": [
-        "help"
-      ]
-    },
-    {
-      "name": "mum tells me to do Tutorial 1",
-      "priority": "3",
-      "description": "Introduction to Calculus",
-      "done": "N",
-      "tagged": [
-        "MA1521"
-      ]
-    },
-    {
-      "name": "Buy milk",
-      "priority": "2",
-      "description": "Very hungry",
-      "done" : "N"
-    },
-    {
-      "name": "mum tells me to feed cat",
-      "priority": "3",
-      "description": "Cat is making noise",
-      "done" : "N"
-    },
-    {
-      "name": "mum tells me to run",
-      "priority": "1",
-      "description": "Complete 2.4km run!",
-      "done" : "N"
-    },
-    {
-      "name": "Gym",
-      "priority": "3",
-      "description": "Complete 100 sets of pushups",
-      "done" : "N"
-    }
-  ]
+	"_comment": "AddressBook save file which contains the same Task values as in TypicalTasks#getTypicalAddressBook()",
+	"tasks": [
+		{
+			"name": "Homework 10",
+			"priority": "1",
+			"description": "Pages 100 - 112",
+			"done": "N",
+			"tagged": [ "MA1521" ]
+		},
+		{
+			"name": "Lab 3",
+			"priority": "2",
+			"description": "Introduction to UDP",
+			"done": "N",
+			"tagged": [ "help" ]
+		},
+		{
+			"name": "mum tells me to do Tutorial 1",
+			"priority": "3",
+			"description": "Introduction to Calculus",
+			"done": "N",
+			"tagged": [ "MA1521" ]
+		},
+		{
+			"name": "Buy milk",
+			"priority": "2",
+			"description": "Very hungry",
+			"done": "N"
+		},
+		{
+			"name": "mum tells me to feed cat",
+			"priority": "3",
+			"description": "Cat is making noise",
+			"done": "N"
+		},
+		{
+			"name": "mum tells me to run",
+			"priority": "1",
+			"description": "Complete 2.4km run!",
+			"done": "N"
+		},
+		{
+			"name": "Gym",
+			"priority": "3",
+			"description": "Complete 100 sets of pushups",
+			"done": "N"
+		}
+	]
 }

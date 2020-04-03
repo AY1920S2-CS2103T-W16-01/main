@@ -79,7 +79,7 @@ public class TypicalTasks {
                     .withTags("Optional")
                     .build();
 
-    // Manually added - Person's details found in {@code CommandTestUtil}
+    // Manually added - Task's details found in {@code CommandTestUtil}
     public static final Task TASK1 =
             new TaskBuilder()
                     .withName(VALID_NAME_TASK1)
@@ -99,7 +99,7 @@ public class TypicalTasks {
 
     private TypicalTasks() {} // prevents instantiation
 
-    /** Returns an {@code TaskList} with all the typical persons. */
+    /** Returns an {@code TaskList} with all the typical tasks. */
     public static TaskList getTypicalTaskList() {
         TaskList ab = new TaskList();
         for (Task task : getTypicalTasks()) {

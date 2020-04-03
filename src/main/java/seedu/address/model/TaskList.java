@@ -41,8 +41,8 @@ public class TaskList implements ReadOnlyTaskList {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}. {@code persons} must not
-     * contain duplicate persons.
+     * Replaces the contents of the task list with {@code tasks}. {@code tasks} must not
+     * contain duplicate tasks.
      */
     public void setTasks(List<Task> tasklist) {
         this.tasklist.setTasks(tasklist);
@@ -55,25 +55,25 @@ public class TaskList implements ReadOnlyTaskList {
         setTasks(newData.getTaskList());
     }
 
-    //// person-level operations
+    //// task-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a task with the same identity as {@code task} exists in the address book.
      */
     public boolean hasTask(Task task) {
         requireNonNull(task);
         return tasklist.contains(task);
     }
 
-    /** Adds a person to the address book. The person must not already exist in the address book. */
+    /** Adds a task to the address book. The task must not already exist in the address book. */
     public void addTask(Task t) {
         tasklist.add(t);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedTask}. {@code target}
-     * must exist in the address book. The person identity of {@code editedTask} must not be the
-     * same as another existing person in the address book.
+     * Replaces the given task {@code target} in the list with {@code editedTask}. {@code target}
+     * must exist in the address book. The task identity of {@code editedTask} must not be the
+     * same as another existing task in the address book.
      */
     public void setTask(Task target, Task editedTask) {
         requireNonNull(editedTask);
@@ -92,7 +92,7 @@ public class TaskList implements ReadOnlyTaskList {
 
     @Override
     public String toString() {
-        return tasklist.asUnmodifiableObservableList().size() + " persons";
+        return tasklist.asUnmodifiableObservableList().size() + " tasks";
         // TODO: refine later
     }
 

@@ -38,7 +38,7 @@ public class UniqueTaskListTest {
     }
 
     @Test
-    public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
+    public void contains_taskWithSameIdentityFieldsInList_returnsTrue() {
         uniqueTaskList.add(HOMEWORK10);
         Task editedAlice =
                 new TaskBuilder(HOMEWORK10)
@@ -49,34 +49,34 @@ public class UniqueTaskListTest {
     }
 
     @Test
-    public void add_nullPerson_throwsNullPointerException() {
+    public void add_nullTask_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueTaskList.add(null));
     }
 
     @Test
-    public void add_duplicatePerson_throwsDuplicatePersonException() {
+    public void add_duplicateTask_throwsDuplicateTaskException() {
         uniqueTaskList.add(HOMEWORK10);
         assertThrows(DuplicateTaskException.class, () -> uniqueTaskList.add(HOMEWORK10));
     }
 
     @Test
-    public void setPerson_nullTargetPerson_throwsNullPointerException() {
+    public void setTask_nullTargetTask_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueTaskList.setTask(null, HOMEWORK10));
     }
 
     @Test
-    public void setPerson_nullEditedPerson_throwsNullPointerException() {
+    public void setTask_nullEditedTask_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueTaskList.setTask(HOMEWORK10, null));
     }
 
     @Test
-    public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
+    public void setTask_targetTaskNotInList_throwsTaskNotFoundException() {
         assertThrows(
                 TaskNotFoundException.class, () -> uniqueTaskList.setTask(HOMEWORK10, HOMEWORK10));
     }
 
     @Test
-    public void setPerson_editedPersonIsSamePerson_success() {
+    public void setTask_editedTaskIsSameTask_success() {
         uniqueTaskList.add(HOMEWORK10);
         uniqueTaskList.setTask(HOMEWORK10, HOMEWORK10);
         UniqueTaskList expectedUniqueTaskList = new UniqueTaskList();
@@ -85,7 +85,7 @@ public class UniqueTaskListTest {
     }
 
     @Test
-    public void setPerson_editedPersonHasSameIdentity_success() {
+    public void setTask_editedTaskHasSameIdentity_success() {
         uniqueTaskList.add(HOMEWORK10);
         Task editedAlice =
                 new TaskBuilder(HOMEWORK10)
@@ -93,39 +93,39 @@ public class UniqueTaskListTest {
                         .withTags(VALID_TAG_MA1521)
                         .build();
         uniqueTaskList.setTask(HOMEWORK10, editedAlice);
-        UniqueTaskList expectedUniquePersonList = new UniqueTaskList();
-        expectedUniquePersonList.add(editedAlice);
-        assertEquals(expectedUniquePersonList, uniqueTaskList);
+        UniqueTaskList expectedUniqueTaskList = new UniqueTaskList();
+        expectedUniqueTaskList.add(editedAlice);
+        assertEquals(expectedUniqueTaskList, uniqueTaskList);
     }
 
     @Test
-    public void setPerson_editedPersonHasDifferentIdentity_success() {
+    public void setTask_editedTaskHasDifferentIdentity_success() {
         uniqueTaskList.add(HOMEWORK10);
         uniqueTaskList.setTask(HOMEWORK10, TASK2);
-        UniqueTaskList expectedUniquePersonList = new UniqueTaskList();
-        expectedUniquePersonList.add(TASK2);
-        assertEquals(expectedUniquePersonList, uniqueTaskList);
+        UniqueTaskList expectedUniqueTaskList = new UniqueTaskList();
+        expectedUniqueTaskList.add(TASK2);
+        assertEquals(expectedUniqueTaskList, uniqueTaskList);
     }
 
     @Test
-    public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
+    public void setTask_editedTaskHasNonUniqueIdentity_throwsDuplicateTaskException() {
         uniqueTaskList.add(HOMEWORK10);
         uniqueTaskList.add(TASK2);
         assertThrows(DuplicateTaskException.class, () -> uniqueTaskList.setTask(HOMEWORK10, TASK2));
     }
 
     @Test
-    public void remove_nullPerson_throwsNullPointerException() {
+    public void remove_nullTask_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueTaskList.remove(null));
     }
 
     @Test
-    public void remove_personDoesNotExist_throwsPersonNotFoundException() {
+    public void remove_taskDoesNotExist_throwsTaskNotFoundException() {
         assertThrows(TaskNotFoundException.class, () -> uniqueTaskList.remove(HOMEWORK10));
     }
 
     @Test
-    public void remove_existingPerson_removesPerson() {
+    public void remove_existingTask_removesTask() {
         uniqueTaskList.add(HOMEWORK10);
         uniqueTaskList.remove(HOMEWORK10);
         UniqueTaskList expectedUniqueTaskList = new UniqueTaskList();
@@ -133,13 +133,13 @@ public class UniqueTaskListTest {
     }
 
     @Test
-    public void setPersons_nullUniquePersonList_throwsNullPointerException() {
+    public void setTasks_nullUniqueTaskList_throwsNullPointerException() {
         assertThrows(
                 NullPointerException.class, () -> uniqueTaskList.setTasks((UniqueTaskList) null));
     }
 
     @Test
-    public void setPersons_uniquePersonList_replacesOwnListWithProvidedUniquePersonList() {
+    public void setTasks_uniqueTaskList_replacesOwnListWithProvidedUniqueTaskList() {
         uniqueTaskList.add(HOMEWORK10);
         UniqueTaskList expectedUniqueTaskList = new UniqueTaskList();
         expectedUniqueTaskList.add(TASK2);
@@ -148,12 +148,12 @@ public class UniqueTaskListTest {
     }
 
     @Test
-    public void setPersons_nullList_throwsNullPointerException() {
+    public void setTasks_nullList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueTaskList.setTasks((List<Task>) null));
     }
 
     @Test
-    public void setPersons_list_replacesOwnListWithProvidedList() {
+    public void setTasks_list_replacesOwnListWithProvidedList() {
         uniqueTaskList.add(HOMEWORK10);
         List<Task> taskList = Collections.singletonList(TASK2);
         uniqueTaskList.setTasks(taskList);
@@ -163,7 +163,7 @@ public class UniqueTaskListTest {
     }
 
     @Test
-    public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
+    public void setTasks_listWithDuplicateTasks_throwsDuplicateTaskException() {
         List<Task> listWithDuplicateTask = Arrays.asList(HOMEWORK10, HOMEWORK10);
         assertThrows(
                 DuplicateTaskException.class, () -> uniqueTaskList.setTasks(listWithDuplicateTask));

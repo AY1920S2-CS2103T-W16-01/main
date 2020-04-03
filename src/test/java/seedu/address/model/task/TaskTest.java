@@ -14,7 +14,7 @@ import static seedu.address.testutil.TypicalTasks.TASK2;
 import org.junit.jupiter.api.Test;
 import seedu.address.testutil.TaskBuilder;
 
-public class PersonTest {
+public class TaskTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
@@ -23,7 +23,7 @@ public class PersonTest {
     }
 
     @Test
-    public void isSamePerson() {
+    public void isSameTask() {
         // same object -> returns true
         assertTrue(HOMEWORK10.isSameTask(HOMEWORK10));
 
@@ -79,7 +79,7 @@ public class PersonTest {
         // different type -> returns false
         assertFalse(HOMEWORK10.equals(5));
 
-        // different person -> returns false
+        // different task -> returns false
         assertFalse(HOMEWORK10.equals(TASK2));
 
         // different name -> returns false

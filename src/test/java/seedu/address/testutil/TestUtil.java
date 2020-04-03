@@ -27,7 +27,7 @@ public class TestUtil {
         return SANDBOX_FOLDER.resolve(fileName);
     }
 
-    /** Returns the middle index of the task in the {@code model}'s person list. */
+    /** Returns the middle index of the task in the {@code model}'s task list. */
     public static Index getMidIndex(Model model) {
         return Index.fromOneBased(model.getFilteredTaskList().size() / 2);
     }
@@ -37,7 +37,7 @@ public class TestUtil {
         return Index.fromOneBased(model.getFilteredTaskList().size());
     }
 
-    /** Returns the person in the {@code model}'s person list at {@code index}. */
+    /** Returns the task in the {@code model}'s task list at {@code index}. */
     public static Task getTask(Model model, Index index) {
         return model.getFilteredTaskList().get(index.getZeroBased());
     }

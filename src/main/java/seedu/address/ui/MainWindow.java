@@ -59,7 +59,7 @@ public class MainWindow extends UiPart<Stage> {
     private PetManager petManager;
 
     // Independent Ui parts residing in this Ui container
-    private TaskListPanel personListPanel;
+    private TaskListPanel taskListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private PetDisplay petDisplay;
@@ -73,7 +73,7 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML private MenuItem helpMenuItem;
 
-    @FXML private StackPane personListPanelPlaceholder;
+    @FXML private StackPane taskListPanelPlaceholder;
 
     @FXML private StackPane resultDisplayPlaceholder;
 
@@ -163,8 +163,8 @@ public class MainWindow extends UiPart<Stage> {
 
     /** Fills up all the placeholders of this window. */
     void fillInnerParts() {
-        personListPanel = new TaskListPanel(logic.getFilteredTaskList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
+        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
         petManager.updateMoodWhenLogIn();
         petDisplay = new PetDisplay();
@@ -237,7 +237,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     public TaskListPanel getTaskListPanel() {
-        return personListPanel;
+        return taskListPanel;
     }
 
     /** */
@@ -318,9 +318,9 @@ public class MainWindow extends UiPart<Stage> {
             // update because sorting returns a new list
 
             // * Old implementation for sort
-            // personListPanel = new TaskListPanel(logic.getFilteredTaskList());
-            // personListPanelPlaceholder.getChildren().clear();
-            // personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+            // taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
+            // taskListPanelPlaceholder.getChildren().clear();
+            // taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
             return commandResult;
         } catch (CommandException | ParseException e) {

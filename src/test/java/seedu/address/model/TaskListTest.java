@@ -42,37 +42,37 @@ public class TaskListTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
+    public void resetData_withDuplicateTasks_throwsDuplicateTaskException() {
+        // Two tasks with the same identity fields
         Task editedAlice =
                 new TaskBuilder(HOMEWORK10)
                         .withDescription(VALID_DESCRIPTION_TASK2)
                         .withTags(VALID_TAG_MA1521)
                         .build();
-        List<Task> newPersons = Arrays.asList(HOMEWORK10, editedAlice);
-        TaskListStub newData = new TaskListStub(newPersons);
+        List<Task> newTasks = Arrays.asList(HOMEWORK10, editedAlice);
+        TaskListStub newData = new TaskListStub(newTasks);
 
         assertThrows(DuplicateTaskException.class, () -> taskList.resetData(newData));
     }
 
     @Test
-    public void hasTask_nullPerson_throwsNullPointerException() {
+    public void hasTask_nullTask_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> taskList.hasTask(null));
     }
 
     @Test
-    public void hasTask_personNotInTaskList_returnsFalse() {
+    public void hasTask_taskNotInTaskList_returnsFalse() {
         assertFalse(taskList.hasTask(HOMEWORK10));
     }
 
     @Test
-    public void hasTask_personInTaskList_returnsTrue() {
+    public void hasTask_taskInTaskList_returnsTrue() {
         taskList.addTask(HOMEWORK10);
         assertTrue(taskList.hasTask(HOMEWORK10));
     }
 
     @Test
-    public void hasTask_personWithSameIdentityFieldsInTaskList_returnsTrue() {
+    public void hasTask_taskWithSameIdentityFieldsInTaskList_returnsTrue() {
         taskList.addTask(HOMEWORK10);
         Task editedAlice =
                 new TaskBuilder(HOMEWORK10)
@@ -83,11 +83,11 @@ public class TaskListTest {
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getTaskList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> taskList.getTaskList().remove(0));
     }
 
-    /** A stub ReadOnlyTaskList whose persons list can violate interface constraints. */
+    /** A stub ReadOnlyTaskList whose tasks list can violate interface constraints. */
     private static class TaskListStub implements ReadOnlyTaskList {
         private final ObservableList<Task> tasks = FXCollections.observableArrayList();
 

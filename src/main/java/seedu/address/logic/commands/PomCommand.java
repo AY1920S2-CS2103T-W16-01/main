@@ -72,7 +72,7 @@ public class PomCommand extends Command {
         List<Task> lastShownList = model.getFilteredTaskList();
         int index = targetIndex.getZeroBased();
         if (index >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
         Task taskToPom = lastShownList.get(index);

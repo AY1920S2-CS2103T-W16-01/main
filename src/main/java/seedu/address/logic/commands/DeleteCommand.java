@@ -10,7 +10,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
-/** Deletes a person identified using it's displayed index from the address book. */
+/** Deletes a task identified using it's displayed index from the address book. */
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
@@ -40,7 +40,7 @@ public class DeleteCommand extends Command {
         for (Index targetIndex : targetIndices) {
             targetIndex.getZeroBased();
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+                throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
             }
             Task taskToDelete = lastShownList.get(targetIndex.getZeroBased());
             toDeleteTasks.add(taskToDelete);

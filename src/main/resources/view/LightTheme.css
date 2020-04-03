@@ -168,7 +168,7 @@
 	-fx-background-color: #f7f2f0;
 }
 
-/* ====================== PersonListCard.fxml styling =========================== */
+/* ====================== TaskListCard.fxml styling =========================== */
 .tasklist-card {
 	-fx-background-color: white;
 	-fx-background-radius: 15px;
@@ -385,13 +385,13 @@
 	-fx-background-radius: 30px;
 	-fx-border-width: 1;
 	-fx-font-family: "SofiaProRegular";
-	-fx-font-size:  13pt;
+	-fx-font-size: 13pt;
 	-fx-text-fill: black;
 }
 
 #filterField,
-#personListPanel,
-#personWebpage {
+#taskListPanel,
+#taskWebpage {
 	-fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 

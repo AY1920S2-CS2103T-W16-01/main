@@ -70,7 +70,7 @@ public class TypicalDayDatas {
 
     private TypicalDayDatas() {} // prevents instantiation
 
-    /** Returns an {@code TaskList} with all the typical persons. */
+    /** Returns an {@code TaskList} with all the typical tasks. */
     public static Statistics getTypicalStatistics() {
         Statistics statistics = new Statistics();
         statistics.clearList(); // workaround to create empty list

@@ -43,9 +43,9 @@ public class JsonSerializableDayDataListTest {
     // Todo
     /*
     @Test
-    public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
+    public void toModelType_duplicateTasks_throwsIllegalValueException() throws Exception {
         JsonSerializableTaskList dataFromFile =
-                JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE, JsonSerializableTaskList.class).get();
+                JsonUtil.readJsonFile(DUPLICATE_TASK_FILE, JsonSerializableTaskList.class).get();
         assertThrows(
                 IllegalValueException.class,
                 JsonSerializableTaskList.MESSAGE_DUPLICATE_TASK,

@@ -15,9 +15,9 @@ import seedu.address.model.dayData.exceptions.InvalidTableException;
 /**
  * A list of dayDatas that enforces CONSTANT_SIZE, days must be continuous between its elements and
  * does not allow nulls. A dayData is considered unique by comparing using {@code
- * DayData#isSameDayData(DayData)}. As such, adding and updating of persons uses
+ * DayData#isSameDayData(DayData)}. As such, adding and updating of tasks uses
  * DayData#isSameDayData(DayData) for equality so as to ensure that the dayDaya being added or
- * updated is unique in terms of identity in the CustomQueue. However, the removal of a person uses
+ * updated is unique in terms of identity in the CustomQueue. However, the removal of a task uses
  * DayData#equals(Object) so as to ensure that the dayData with exactly the same fields will be
  * removed.
  *
@@ -182,7 +182,7 @@ public class CustomQueue implements Iterable<DayData> {
     /**
      * Replaces the dayData {@code target} in the list with {@code editedDayData}. {@code target}
      * must exist in the list. The dayData identity of {@code editedDayData} must not be the same as
-     * another existing person in the list.
+     * another existing task in the list.
      */
     public void setDayData(DayData target, DayData editedDayData) {
         requireAllNonNull(target, editedDayData);

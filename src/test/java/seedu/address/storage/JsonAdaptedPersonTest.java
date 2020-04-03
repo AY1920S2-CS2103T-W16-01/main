@@ -17,7 +17,7 @@ import seedu.address.model.task.Priority;
 
 // TODO stub: arthur please put in valid reminder here to replace final nulls.
 
-public class JsonAdaptedPersonTest {
+public class JsonAdaptedTaskTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PRIORITY = "+651234";
     // private static final String INVALID_DONE = "#A";
@@ -31,14 +31,14 @@ public class JsonAdaptedPersonTest {
             LAB_3.getTags().stream().map(JsonAdaptedTag::new).collect(Collectors.toList());
 
     @Test
-    public void toModelType_validPersonDetails_returnsPerson() throws Exception {
-        JsonAdaptedTask person = new JsonAdaptedTask(LAB_3);
-        assertEquals(LAB_3, person.toModelType());
+    public void toModelType_validTaskDetails_returnsTask() throws Exception {
+        JsonAdaptedTask task = new JsonAdaptedTask(LAB_3);
+        assertEquals(LAB_3, task.toModelType());
     }
 
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
-        JsonAdaptedTask person =
+        JsonAdaptedTask task =
                 new JsonAdaptedTask(
                         INVALID_NAME,
                         VALID_PRIORITY,
@@ -47,7 +47,7 @@ public class JsonAdaptedPersonTest {
                         VALID_TAGS,
                         null);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
 
     @Test

@@ -49,7 +49,7 @@
                                 <tabs>
                            <Tab disable="true" text="                                                                                                                                                                         ">
                               <content>
-                                 <VBox fx:id="personList1" prefWidth="340.0">
+                                 <VBox fx:id="taskList1" prefWidth="340.0">
                                     <padding>
                                        <Insets bottom="10" left="10" right="10" top="10" />
                                     </padding>
@@ -59,14 +59,14 @@
                                              <Insets bottom="20" top="10" />
                                           </padding>
                                        </StackPane>
-                                       <StackPane fx:id="personListPanelPlaceholder1" VBox.vgrow="ALWAYS" />
+                                       <StackPane fx:id="taskListPanelPlaceholder1" VBox.vgrow="ALWAYS" />
                                     </children>
                                  </VBox>
                               </content>
                            </Tab>
                                     <Tab text="Tasks">
                                         <content>
-                                            <VBox fx:id="personList" prefWidth="340.0">
+                                            <VBox fx:id="taskList" prefWidth="340.0">
                                                 <padding>
                                                     <Insets bottom="10" left="10" right="10" top="10" />
                                                 </padding>
@@ -74,7 +74,7 @@
                                        <padding>
                                           <Insets bottom="20" top="10" />
                                        </padding></StackPane>
-                                                <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                                                <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
                                             </VBox>
                                         </content>
                                     </Tab>

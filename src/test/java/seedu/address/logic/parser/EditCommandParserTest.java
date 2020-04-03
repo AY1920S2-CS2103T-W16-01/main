@@ -21,9 +21,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MA1521;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_TASK;
 
 import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
@@ -94,7 +94,7 @@ public class EditCommandParserTest {
                 Priority.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code
-        // Person} being
+        // Task} being
         // edited,
         // parsing it together with a valid tag results in error
         assertParseFailure(
@@ -113,7 +113,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        Index targetIndex = INDEX_SECOND_PERSON;
+        Index targetIndex = INDEX_SECOND_TASK;
         String userInput =
                 targetIndex.getOneBased()
                         + PRIORITY_DESC_TASK2
@@ -136,7 +136,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_someFieldsSpecified_success() {
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST_TASK;
         String userInput = targetIndex.getOneBased() + PRIORITY_DESC_TASK2;
 
         EditTaskDescriptor descriptor =
@@ -149,7 +149,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_oneFieldSpecified_success() {
         // name
-        Index targetIndex = INDEX_THIRD_PERSON;
+        Index targetIndex = INDEX_THIRD_TASK;
         String userInput = targetIndex.getOneBased() + NAME_DESC_TASK1;
         EditTaskDescriptor descriptor =
                 new EditTaskDescriptorBuilder().withName(VALID_NAME_TASK1).build();
@@ -178,7 +178,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST_TASK;
         String userInput =
                 targetIndex.getOneBased()
                         + PRIORITY_DESC_TASK1
@@ -205,7 +205,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST_TASK;
         String userInput = targetIndex.getOneBased() + INVALID_PRIORITY_DESC + PRIORITY_DESC_TASK2;
         EditTaskDescriptor descriptor =
                 new EditTaskDescriptorBuilder().withPriority(VALID_PRIORITY_TASK2).build();
@@ -229,7 +229,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_resetTags_success() {
-        Index targetIndex = INDEX_THIRD_PERSON;
+        Index targetIndex = INDEX_THIRD_TASK;
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withTags().build();

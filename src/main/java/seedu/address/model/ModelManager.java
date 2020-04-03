@@ -123,7 +123,7 @@ public class ModelManager implements Model {
     public void addTask(Task task) {
         taskList.addTask(task);
         this.sortList();
-        updateFilteredTaskList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
     }
 
     @Override

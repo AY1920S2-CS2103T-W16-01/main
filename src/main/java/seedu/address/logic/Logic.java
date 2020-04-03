@@ -31,7 +31,7 @@ public interface Logic {
      */
     ReadOnlyTaskList getTaskList();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
+    /** Returns an unmodifiable view of the filtered list of tasks */
     ObservableList<Task> getFilteredTaskList();
 
     /** Returns the user prefs' address book file path. */

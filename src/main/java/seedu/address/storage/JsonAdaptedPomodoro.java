@@ -15,7 +15,7 @@ class JsonAdaptedPomodoro {
     private String timeLeft;
     private JsonAdaptedTask runningTask;
 
-    /** Constructs a {@code JsonAdaptedTask} with the given person details. */
+    /** Constructs a {@code JsonAdaptedTask} with the given task details. */
     @JsonCreator
     public JsonAdaptedPomodoro(
             @JsonProperty("defaultTime") String defaultTime,
@@ -38,10 +38,10 @@ class JsonAdaptedPomodoro {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Task} object.
+     * Converts this Jackson-friendly adapted task object into the model's {@code Task} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted
-     *     person.
+     *     task.
      */
     public ReadOnlyPomodoro toModelType() throws IllegalValueException {
         if (runningTask == null) return new Pomodoro(defaultTime, timeLeft, null);

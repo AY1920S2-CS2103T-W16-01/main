@@ -4,8 +4,8 @@ import seedu.address.model.TaskList;
 import seedu.address.model.task.Task;
 
 /**
- * A utility class to help with building Addressbook objects. Example usage: <br>
- * {@code TaskList ab = new TaskListBuilder().withPerson("John", "Doe").build();}
+ * A utility class to help with building TaskList objects. Example usage: <br>
+ * {@code TaskList ab = new TaskListBuilder().withTask("John", "Doe").build();}
  */
 public class TaskListBuilder {
 
@@ -19,8 +19,8 @@ public class TaskListBuilder {
         this.taskList = taskList;
     }
 
-    /** Adds a new {@code Person} to the {@code TaskList} that we are building. */
-    public TaskListBuilder withPerson(Task task) {
+    /** Adds a new {@code Task} to the {@code TaskList} that we are building. */
+    public TaskListBuilder withTask(Task task) {
         taskList.addTask(task);
         return this;
     }
