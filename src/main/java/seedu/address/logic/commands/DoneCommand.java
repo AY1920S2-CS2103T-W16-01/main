@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import seedu.address.commons.core.Messages;
@@ -47,6 +48,7 @@ public class DoneCommand extends Command {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
         StringBuilder tasksDone = new StringBuilder(MESSAGE_DONE_TASK_SUCCESS);
+        HashSet<Task> toDoneTaskList = new HashSet<>();
 
         Task pommedTask = null;
 
@@ -55,12 +57,14 @@ public class DoneCommand extends Command {
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             }
-            // Person person = lastShownList.get(targetIndex.getZeroBased());
-            Task taskToEdit = lastShownList.get(targetIndex.getZeroBased());
-            if (taskToEdit.getDone().getIsDone()) {
+            Task taskToDelete = lastShownList.get(targetIndex.getZeroBased());
+            if (taskToDelete.getDone().getIsDone()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_TASK_TO_BE_DONED);
             }
+            toDoneTaskList.add(taskToDelete);
+        }
 
+        for (Task taskToEdit : toDoneTaskList) {
             Task editedTask = createDoneTask(taskToEdit);
 
             // Normal statistics update

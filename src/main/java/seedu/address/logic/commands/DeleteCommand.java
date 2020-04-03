@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -36,7 +37,7 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
         StringBuilder tasksDeleted = new StringBuilder(MESSAGE_DELETE_TASK_SUCCESS);
-        List<Task> toDeleteTasks = new ArrayList<>();
+        HashSet<Task> toDeleteTasks = new HashSet<>();
         for (Index targetIndex : targetIndices) {
             targetIndex.getZeroBased();
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
