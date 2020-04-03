@@ -1,5 +1,5 @@
 {
-	"_comment": "AddressBook save file which contains the same Task values as in TypicalTasks#getTypicalAddressBook()",
+	"_comment": "TaskList save file which contains the same Task values as in TypicalTasks#getTypicalTaskList()",
 	"tasks": [
 		{
 			"name": "Homework 10",
