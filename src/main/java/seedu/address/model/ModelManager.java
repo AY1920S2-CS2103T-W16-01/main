@@ -230,6 +230,14 @@ public class ModelManager implements Model {
         this.pomodoro.setTask(task);
     }
 
+    public void setPomodoroRestTime(float restTimeInMin) {
+        this.pomodoro.setRestTime(Float.toString(restTimeInMin));
+    }
+
+    public void setPomodoroDefaultTime(float defaultTimeInMin) {
+        this.pomodoro.setDefaultTime(Float.toString(defaultTimeInMin));
+    }
+
     public void setPomodoroManager(PomodoroManager pomodoroManager) {
         this.pomodoroManager = pomodoroManager;
     }

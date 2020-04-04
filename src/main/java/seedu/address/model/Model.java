@@ -84,7 +84,9 @@ public interface Model {
 
     void setPomodoroTask(Task task);
 
-    // void setPomodoroTime(String time);
+    void setPomodoroDefaultTime(float defaultTimeInMin);
+
+    void setPomodoroRestTime(float restTimeInMin);
 
     void setPomodoroManager(PomodoroManager pomodoroManager);
 

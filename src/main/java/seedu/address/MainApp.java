@@ -90,7 +90,7 @@ public class MainApp extends Application {
 
         logic = new LogicManager(model, storage);
 
-        pomodoroManager = new PomodoroManager();
+        pomodoroManager = new PomodoroManager(model);
 
         petManager = new PetManager();
 

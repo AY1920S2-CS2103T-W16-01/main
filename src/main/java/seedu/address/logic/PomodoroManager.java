@@ -67,8 +67,9 @@ public class PomodoroManager {
 
     private PROMPT_STATE promptState;
 
-    public PomodoroManager() {
+    public PomodoroManager(Model model) {
         promptState = PROMPT_STATE.NONE;
+        this.model = model;
     }
 
     public void setResultDisplay(ResultDisplay resultDisplay) {
@@ -89,10 +90,12 @@ public class PomodoroManager {
 
     public void setDefaultStartTime(float defaultStartTimeInMin) {
         this.defaultStartTime = (int)(defaultStartTimeInMin * 60);
+        model.setPomodoroDefaultTime(defaultStartTimeInMin);
     }
 
     public void setRestTime(float restTimeInMin) {
         this.restTime = (int)(restTimeInMin * 60);
+        model.setPomodoroRestTime(restTimeInMin);
     }
 
     public void setTimerLabel(Label timerLabel) {
@@ -260,7 +263,7 @@ public class PomodoroManager {
     }
 
     private void clearDoneParams() {
-        this.model = null;
+        //this.model = null;
         this.originList = null;
         this.taskIndex = -1;
     }
