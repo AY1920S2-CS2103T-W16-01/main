@@ -29,6 +29,7 @@ import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
 import seedu.address.ui.MainWindow;
+import seedu.address.ui.PomodoroDisplay;
 import seedu.address.ui.ResultDisplay;
 
 public class PomodoroManager {
@@ -39,6 +40,7 @@ public class PomodoroManager {
     private Timeline timeline;
     private Label timerLabel;
     private ResultDisplay resultDisplay;
+    private PomodoroDisplay pomodoroDisplay;
     private MainWindow mainWindow;
     private IntegerProperty timeSeconds;
     private Model model;
@@ -70,6 +72,10 @@ public class PomodoroManager {
     public PomodoroManager(Model model) {
         promptState = PROMPT_STATE.NONE;
         this.model = model;
+    }
+
+    public void setPomodoroDisplay(PomodoroDisplay pomodoroDisplay) {
+        this.pomodoroDisplay = pomodoroDisplay;   
     }
 
     public void setResultDisplay(ResultDisplay resultDisplay) {
@@ -177,6 +183,7 @@ public class PomodoroManager {
                     model.setPomodoroTask(null);
                     endDateTime = LocalDateTime.now();
                     updateStatistics(model); // Update pom duration
+                    pomodoroDisplay.playDone();
                 });
     }
 
@@ -259,6 +266,7 @@ public class PomodoroManager {
                 event -> {
                     resultDisplay.setFeedbackToUser("Breaks over! What shall we do next?");
                     this.setPromptState(PROMPT_STATE.NONE); // App back to neutral
+                    pomodoroDisplay.playDone();
                 });
 
         mainWindow.setDefaultCommandExecutor();

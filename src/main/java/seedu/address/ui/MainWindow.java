@@ -185,6 +185,7 @@ public class MainWindow extends UiPart<Stage> {
         pomodoroDisplay.setTimerText(pomodoro.getDefaultStartTimeAsString());
         pomodoroPlaceholder.getChildren().add(pomodoroDisplay.getRoot());
         pomodoro.setTimerLabel(pomodoroDisplay.getTimerLabel());
+        pomodoro.setPomodoroDisplay(pomodoroDisplay);
         pomodoro.setResultDisplay(resultDisplay);
         pomodoro.setMainWindow(this);
 
