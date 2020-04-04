@@ -32,9 +32,10 @@ import seedu.address.ui.MainWindow;
 import seedu.address.ui.ResultDisplay;
 
 public class PomodoroManager {
-
+    
+    private Integer defaultStartTime;
     private Integer startTime;
-    private Integer restTime = 5; // 5 * 60;
+    private Integer restTime;
     private Timeline timeline;
     private Label timerLabel;
     private ResultDisplay resultDisplay;
@@ -78,12 +79,28 @@ public class PomodoroManager {
         this.mainWindow = mainWindow;
     }
 
+    public Integer getDefaultStartTime() {
+        return defaultStartTime;
+    }
+
+    public Integer getRestTime() {
+        return restTime;
+    }
+
+    public void setDefaultStartTime(float defaultStartTimeInMin) {
+        this.defaultStartTime = (int)(defaultStartTimeInMin * 60);
+    }
+
+    public void setRestTime(float restTimeInMin) {
+        this.restTime = (int)(restTimeInMin * 60);
+    }
+
     public void setTimerLabel(Label timerLabel) {
         this.timerLabel = timerLabel;
     }
 
-    public void start(float timeInMinutes) {
-        startTime = (int) (timeInMinutes * 60);
+    public void start(float time) {
+        startTime = (int) (time);
         timeSeconds = new SimpleIntegerProperty(startTime);
         configureUi();
         configureTimer();

@@ -7,5 +7,7 @@ public interface ReadOnlyPomodoro {
 
     public String getDefaultTime();
 
+    public String getRestTime();
+
     public String getTimeLeft();
 }

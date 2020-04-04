@@ -56,7 +56,7 @@ public class MainApp extends Application {
     protected Storage storage;
     protected Model model;
     protected Config config;
-    protected PomodoroManager pomodoro;
+    protected PomodoroManager pomodoroManager;
     protected PetManager petManager;
 
     @Override
@@ -90,15 +90,19 @@ public class MainApp extends Application {
 
         logic = new LogicManager(model, storage);
 
-        pomodoro = new PomodoroManager();
+        pomodoroManager = new PomodoroManager();
 
         petManager = new PetManager();
 
-        model.setPomodoroManager(pomodoro);
+        pomodoroManager.setDefaultStartTime(Float.valueOf(model.getPomodoro().getDefaultTime()).floatValue());
+
+        pomodoroManager.setRestTime(Float.valueOf(model.getPomodoro().getRestTime()).floatValue());
+
+        model.setPomodoroManager(pomodoroManager);
 
         model.setPetManager(petManager);
 
-        ui = new UiManager(logic, pomodoro, petManager);
+        ui = new UiManager(logic, pomodoroManager, petManager);
     }
 
     /**

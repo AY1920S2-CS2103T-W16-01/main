@@ -14,10 +14,6 @@ public class PomCommandParser implements Parser<PomCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TIMER);
 
         Optional<String> optTimerString = argMultimap.getValue(PREFIX_TIMER);
-        float timerAmount =
-                optTimerString.isEmpty()
-                        ? PomCommand.DEFAULT_TIMER
-                        : Float.parseFloat(optTimerString.get());
 
         try {
             String preamble = argMultimap.getPreamble();
@@ -28,7 +24,15 @@ public class PomCommandParser implements Parser<PomCommand> {
             } else {
                 // Look for an index to call Pom on
                 Index index = ParserUtil.parseIndex(preamble);
-                return new PomCommand(index, timerAmount);
+                if (optTimerString.isEmpty()) {
+                    return new PomCommand(index);
+                } else {
+                    float timerAmount = Float.parseFloat(optTimerString.get());
+                    if (timerAmount < 0) {
+                        throw new ParseException("Invalid time");
+                    }
+                    return new PomCommand(index, timerAmount);
+                }
             }
         } catch (ParseException pe) {
             throw new ParseException(
