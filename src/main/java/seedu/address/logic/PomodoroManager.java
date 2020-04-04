@@ -80,6 +80,14 @@ public class PomodoroManager {
         this.mainWindow = mainWindow;
     }
 
+    public String getDefaultStartTimeAsString() {
+        int secondsRemaining = defaultStartTime;
+        int minutePortion = secondsRemaining / 60;
+        int secondPortion = secondsRemaining % 60;
+        return String.format(
+            "%02d:%02d", minutePortion, secondPortion);
+    }
+
     public Integer getDefaultStartTime() {
         return defaultStartTime;
     }
