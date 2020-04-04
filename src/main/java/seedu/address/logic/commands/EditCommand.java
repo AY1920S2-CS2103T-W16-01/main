@@ -91,6 +91,15 @@ public class EditCommand extends Command {
         }
 
         model.setTask(taskToEdit, editedTask);
+
+        Task pommedTask = model.getPomodoroTask();
+        if (pommedTask.equals(taskToEdit)) {
+            model.setPomodoroTask(editedTask);
+            model.getPomodoroManager()
+                .getPomodoroDisplay()
+                .setTaskInProgressText(editedTask.getName().toString());
+        }
+
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }

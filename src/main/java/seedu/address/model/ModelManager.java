@@ -230,6 +230,10 @@ public class ModelManager implements Model {
         this.pomodoro.setTask(task);
     }
 
+    public Task getPomodoroTask() {
+        return this.pomodoro.getRunningTask();
+    }
+
     public void setPomodoroRestTime(float restTimeInMin) {
         this.pomodoro.setRestTime(Float.toString(restTimeInMin));
     }

@@ -28,7 +28,7 @@ public class PomCommandParser implements Parser<PomCommand> {
                     return new PomCommand(index);
                 } else {
                     float timerAmount = Float.parseFloat(optTimerString.get());
-                    if (timerAmount < 0) {
+                    if (timerAmount <= 0) {
                         throw new ParseException("Invalid time");
                     }
                     return new PomCommand(index, timerAmount);

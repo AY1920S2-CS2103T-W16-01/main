@@ -20,7 +20,7 @@ public class PomCommand extends Command {
                     + ": Starts the pomodoro timer, focusing on "
                     + "the task identified by the index number used in the displayed task list.\n"
                     + "Parameters: 1-INDEXed (must be a positive integer)\n"
-                    + "Time value must be >= 0\n"
+                    + "Time value must be greater than 0\n"
                     + "Example: "
                     + COMMAND_WORD
                     + " 1 "

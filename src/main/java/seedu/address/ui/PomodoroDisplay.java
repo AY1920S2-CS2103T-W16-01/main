@@ -17,7 +17,7 @@ public class PomodoroDisplay extends UiPart<Region> {
     private static final String DEFAULT_TIMER = "25:00";
 
     private String DONE_SOUND_FILEPATH = "/sounds/pom_ding.mp3";
-
+    private String default_timer = DEFAULT_TIMER;
     public String taskInProgressText; // mutable
     public String timerText; // mutable
 
@@ -36,6 +36,18 @@ public class PomodoroDisplay extends UiPart<Region> {
 
     public void setTaskInProgressText(String toDisplay) {
         taskInProgress.setText(toDisplay);
+    }
+
+    public void setDefaultTimeText(String defaultTimeText) {
+        this.default_timer = defaultTimeText;
+    }
+
+    public void reset() {
+        this.taskInProgressText = DEFAULT_TASK_IN_PROGRESS;
+        this.timerText = default_timer;
+
+        taskInProgress.setText(taskInProgressText);
+        timer.setText(timerText);
     }
 
     public void setTimerText(String toDisplay) {

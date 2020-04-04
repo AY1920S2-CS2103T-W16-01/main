@@ -84,6 +84,8 @@ public interface Model {
 
     void setPomodoroTask(Task task);
 
+    Task getPomodoroTask();
+
     void setPomodoroDefaultTime(float defaultTimeInMin);
 
     void setPomodoroRestTime(float restTimeInMin);
