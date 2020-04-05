@@ -207,6 +207,14 @@ public class PomodoroManager {
         newDayDatas.forEach(dayData -> model.getStatistics().updatesDayData(dayData));
     }
 
+    public void setStartDateTime(LocalDateTime startDateTime) {
+        this.startDateTime = startDateTime;
+    }
+
+    public void setEndDateTime(LocalDateTime endDateTime) {
+        this.endDateTime = endDateTime;
+    }
+
     public List<DayData> generateUpdatedDayData(
             LocalDateTime startDateTime, LocalDateTime endDateTime) {
 

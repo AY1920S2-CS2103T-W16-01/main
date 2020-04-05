@@ -105,4 +105,24 @@ public class PomCommand extends Command {
                 isPause,
                 isContinue);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof PomCommand)) {
+            return false;
+        }
+
+        // state check
+        PomCommand e = (PomCommand) other;
+        return targetIndex.equals(e.targetIndex)
+            && ((int)timerAmount) == ((int)e.timerAmount)
+            && (isPause == e.isPause)
+            && (isContinue == e.isContinue);
+    }
 }

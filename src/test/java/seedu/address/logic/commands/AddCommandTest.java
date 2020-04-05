@@ -224,6 +224,21 @@ public class AddCommandTest {
         public void updateDataDatesStatistics() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public Task getPomodoroTask() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setPomodoroDefaultTime(float defaultTimeInMin) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setPomodoroRestTime(float restTimeInMin) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /** A Model stub that contains a single task. */
