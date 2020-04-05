@@ -73,8 +73,8 @@ public class PetManager {
         } else if (levelText.equals("2")) {
             String str =
                     (mood.equals(HAPPY_MOOD_STRING)
-                            ? "/images/pet/level1.png"
-                            : "/images/pet/level1hangry.png");
+                            ? "/images/pet/level2.png"
+                            : "/images/pet/level2hangry.png");
             petImage = str;
         } else {
             petImage = "/images/pet/level3.png";

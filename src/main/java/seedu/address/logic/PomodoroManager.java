@@ -345,6 +345,8 @@ public class PomodoroManager {
             case CHECK_DONE:
                 petManager.updateDisplayElements();
                 if (commandTextLower.equals("y")) {
+                    mainWindow.updateMoodWhenDoneTask();
+                    mainWindow.updatePetDisplay();
                     CommandResult commandResult =
                             new CommandResult(
                                     "Good job! " + CHECK_TAKE_BREAK_MESSAGE, false, false);
