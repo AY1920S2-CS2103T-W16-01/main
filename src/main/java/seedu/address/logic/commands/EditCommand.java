@@ -41,10 +41,10 @@ public class EditCommand extends Command {
                     + "NAME] "
                     + "["
                     + PREFIX_PRIORITY
-                    + "PHONE] "
+                    + "PRIORITY] "
                     + "["
                     + PREFIX_DESCRIPTION
-                    + "ADDRESS] "
+                    + "DESCRIPTION] "
                     + "["
                     + PREFIX_TAG
                     + "TAG]...\n"
@@ -52,7 +52,7 @@ public class EditCommand extends Command {
                     + COMMAND_WORD
                     + " 1 "
                     + PREFIX_PRIORITY
-                    + "91234567 ";
+                    + "2 ";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

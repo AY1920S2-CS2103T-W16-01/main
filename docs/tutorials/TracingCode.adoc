@@ -69,8 +69,8 @@ image:LeftGutter.png[]
 
 == Tracing the execution path
 
-Recall from the User Guide that the `edit` command has the format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL]
-[a/ADDRESS] [t/TAG]...` For this tutorial we will be issuing the command `edit 1 n/Alice Yeoh`.
+Recall from the User Guide that the `edit` command has the format: `edit INDEX [n/NAME] [p/PRIORITY] [e/EMAIL]
+[a/DESCRIPTION] [t/TAG]...` For this tutorial we will be issuing the command `edit 1 n/Alice Yeoh`.
 
 [TIP]
 .Taking notes
