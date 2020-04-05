@@ -84,9 +84,9 @@ public class PomodoroManagerTest {
     @Test
     public void generateUpdatedDayDataTest() {
         LocalDateTime end = LocalDateTime.now();
-        LocalDateTime start = end.minusHours(24);
+        LocalDateTime start = end.minusHours(48);
         List<DayData> dayDatas = pomodoroManager.generateUpdatedDayData(start, end);
-        assertTrue(dayDatas.size() == 2);
+        assertTrue(dayDatas.size() == 3);
     }
 
     @Test

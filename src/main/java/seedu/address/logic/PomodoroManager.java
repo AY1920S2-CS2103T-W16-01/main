@@ -347,7 +347,7 @@ public class PomodoroManager {
         
         switch (this.getPromptState()) {
         case CHECK_DONE:
-            petManager.updatePetDisplay();
+            petManager.updateDisplayElements();
             if (commandTextLower.equals("y")) {
                 CommandResult commandResult =
                     new CommandResult(

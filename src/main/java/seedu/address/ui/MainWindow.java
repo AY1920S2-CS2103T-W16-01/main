@@ -32,6 +32,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.PetManager;
 import seedu.address.logic.PomodoroManager;
+import seedu.address.logic.PomodoroManager.PROMPT_STATE;
 import seedu.address.logic.commands.CommandCompletor;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.DoneCommandResult;
@@ -42,6 +43,7 @@ import seedu.address.logic.commands.SwitchTabCommand;
 import seedu.address.logic.commands.SwitchTabCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.exceptions.CompletorException;
+import seedu.address.logic.parser.TaskListParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.dayData.DayData;
 import seedu.address.model.task.Reminder;
@@ -377,119 +379,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private CommandResult pomExecuteCommand(String commandText)
-            throws CommandException, ParseException {
-
-        PomodoroManager.PROMPT_STATE pomPromptState = pomodoro.getPromptState();
-        switch (pomPromptState) {
-            case CHECK_DONE:
-                if (commandText.toLowerCase().equals("y")) {
-                    updateMoodWhenDoneTask();
-                    updatePetDisplay();
-                    CommandResult commandResult =
-                            new CommandResult(
-                                    "Good job! " + pomodoro.CHECK_TAKE_BREAK_MESSAGE, false, false);
-                    resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-                    pomodoro.doneTask();
-                    pomodoro.checkBreakActions();
-                    return commandResult;
-                    // Continue to next prompt from break-time
-
-
-                } else if (commandText.toLowerCase().equals("n")) {
-                    CommandResult commandResult =
-                            new CommandResult(
-                                    "Alright, lets try again the next round! "
-                                            + pomodoro.CHECK_TAKE_BREAK_MESSAGE,
-                                    false,
-                                    false);
-                    resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-                    pomodoro.checkBreakActions();
-                    return commandResult;
-                } else {
-                    throw new ParseException(
-                            "(Please confirm) Did you manage to finish the last task?\n"
-                                    + "(Y) - Task will be set to done. (N) - No changes");
-                }
-            case CHECK_TAKE_BREAK:
-                if (commandText.toLowerCase().equals("y")) {
-                    CommandResult commandResult =
-                            new CommandResult("Okie doke! Rest easy now...", false, false);
-                    resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-                    pomodoro.takeABreak();
-                    pomodoro.setPromptState(PROMPT_STATE.NONE);
-                    return commandResult;
-                    // Continue to next prompt from break-timer
-                } else if (commandText.toLowerCase().equals("n")) {
-                    CommandResult commandResult =
-                            new CommandResult("Alright, back to neutral!", false, false);
-                    resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-                    pomodoro.setPromptState(PROMPT_STATE.NONE);
-                    pomodoro.reset();
-                    this.setDefaultCommandExecutor();
-                    return commandResult;
-                } else {
-                    throw new ParseException(
-                            "(Please confirm) Shall we take a 5-min break?\n"
-                                    + "(Y) - 5-min timer begins. (N) - App goes neutral.");
-                }
-            case CHECK_DONE_MIDPOM:
-                if (commandText.toLowerCase().equals("n")) {
-                    CommandResult commandResult =
-                            new CommandResult("Alright, back to neutral!", false, false);
-                    resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-                    pomodoro.setPromptState(PROMPT_STATE.NONE);
-                    pomodoro.reset();
-                    this.setDefaultCommandExecutor();
-                    return commandResult;
-                }
-                try {
-                    PomCommand pc = (PomCommand) (new TaskListParser().parseCommand(commandText));
-                    // if continuedPom was created, user put in a valid pom request. Execute as per
-                    // normal
-                    PomCommandResult pomCommandResult =
-                            (PomCommandResult) logic.execute(commandText);
-                    logger.info("Result: " + pomCommandResult.getFeedbackToUser());
-                    resultDisplay.setFeedbackToUser(pomCommandResult.getFeedbackToUser());
-                    if (pomCommandResult.getIsPause()) {
-                        pomodoro.pause();
-                    } else if (pomCommandResult.getIsContinue()) {
-                        pomodoro.unpause();
-                    } else {
-                        pomodoroDisplay.setTaskInProgressText(pomCommandResult.getPommedTask());
-                        // pomodoro.start(pomCommandResult.getTimerAmountInMin());
-                        pomodoro.unpause();
-                        pomodoro.setDoneParams(
-                                pomCommandResult.getModel(),
-                                pomCommandResult.getOriginList(),
-                                pomCommandResult.getTaskIndex());
-                    }
-                    pomodoro.setPromptState(PROMPT_STATE.NONE);
-                    this.setDefaultCommandExecutor();
-                    return pomCommandResult;
-                } catch (ParseException | CommandException | ClassCastException e) {
-                    String message =
-                            "(Please confirm) Would you like to continue with another task (not done yet)\n"
-                                    + "(pom <index>) - next task pommed with remaining time. (N) - App goes neutral.";
-                    resultDisplay.setFeedbackToUser(message);
-                    throw new ParseException(message);
-                }
-            case NONE:
-            default:
-                break;
-        }
-
-        try {
-            CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
-            return commandResult;
-        } catch (CommandException | ParseException e) {
-            logger.info("Invalid command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
-            throw e;
-        }
-      
+            throws CommandException, ParseException {      
         CommandResult commandResult = 
             pomodoro.promptBehaviour(commandText, logic, logger, petManager);
         return commandResult;
@@ -499,8 +389,8 @@ public class MainWindow extends UiPart<Stage> {
         String petName = petManager.getPetName();
         String levelText = petManager.getLevelText();
         String expBarInt = petManager.getExpBarInt();
-        Path expBarImage = petManager.getExpBarImage();
-        Path petImage = petManager.getPetImage();
+        String expBarImage = petManager.getExpBarImage();
+        String petImage = petManager.getPetImage();
 
         petDisplay.setPetName(petName);
         petDisplay.setLevelText(levelText);

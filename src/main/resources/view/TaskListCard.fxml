@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox fx:id="cardPane" alignment="TOP_CENTER" maxHeight="110.0" maxWidth="800.0" minHeight="110.0" minWidth="800.0" mouseTransparent="true" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="cardPane" alignment="TOP_CENTER" maxHeight="110.0" maxWidth="800.0" minHeight="110.0" minWidth="800.0" mouseTransparent="true" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane alignment="TOP_CENTER" mouseTransparent="true" prefHeight="73.0" prefWidth="715.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="20" />
