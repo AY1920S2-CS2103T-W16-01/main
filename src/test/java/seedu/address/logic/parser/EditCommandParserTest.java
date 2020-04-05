@@ -5,10 +5,13 @@ import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_TASK
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_TASK2;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PRIORITY_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_REMINDER;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_REMINDER_PAST;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_TASK1;
 import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_DESC_TASK1;
 import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_DESC_TASK2;
+import static seedu.address.logic.commands.CommandTestUtil.REMINDER;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HELP;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_MA1521;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_TASK1;
@@ -16,12 +19,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_TAS
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_TASK1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_TASK1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_TASK2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMINDER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HELP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MA1521;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_REMINDER;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_REMINDER;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_REMINDER_PAST;
-import static seedu.address.logic.commands.CommandTestUtil.REMINDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -114,12 +114,10 @@ public class EditCommandParserTest {
                 parser,
                 "1" + INVALID_NAME_DESC + VALID_DESCRIPTION_TASK1 + VALID_PRIORITY_TASK1,
                 Name.MESSAGE_CONSTRAINTS);
-        
+
         // reminders, for invalid and for reminders set in the past
-        assertParseFailure(
-                        parser, "1" + INVALID_REMINDER, Reminder.MESSAGE_CONSTRAINTS);
-        assertParseFailure(
-                        parser, "1" + INVALID_REMINDER_PAST, Reminder.MESSAGE_CONSTRAINTS_PAST);
+        assertParseFailure(parser, "1" + INVALID_REMINDER, Reminder.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_REMINDER_PAST, Reminder.MESSAGE_CONSTRAINTS_PAST);
     }
 
     @Test
@@ -190,8 +188,7 @@ public class EditCommandParserTest {
 
         // reminder
         userInput = targetIndex.getOneBased() + REMINDER;
-        descriptor =
-                new EditTaskDescriptorBuilder().withReminder(VALID_REMINDER).build();
+        descriptor = new EditTaskDescriptorBuilder().withReminder(VALID_REMINDER).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

@@ -1,7 +1,5 @@
 package seedu.address.logic;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import seedu.address.model.Pet;
 
@@ -19,8 +17,7 @@ public class PetManager {
     private LocalDateTime lastDoneTaskTime;
     private LocalDateTime timeForHangry;
 
-    public PetManager() {
-    }
+    public PetManager() {}
 
     public void setPet(Pet pet) {
         this.pet = pet;
@@ -29,7 +26,7 @@ public class PetManager {
         // this.timeForHangry = lastDoneTaskTime.plusHours(24);
         // use this for TESTING
         this.timeForHangry = lastDoneTaskTime.plusMinutes(1);
-    } 
+    }
 
     public void incrementPomExp() {
         this.pet.incrementPomExp();
@@ -71,17 +68,17 @@ public class PetManager {
             String str =
                     (mood.equals(HAPPY_MOOD_STRING)
                             ? "/images/pet/level1.png"
-                           : "/images/pet/level1hangry.png");
-           petImage = str;
+                            : "/images/pet/level1hangry.png");
+            petImage = str;
         } else if (levelText.equals("2")) {
             String str =
                     (mood.equals(HAPPY_MOOD_STRING)
                             ? "/images/pet/level1.png"
-                           : "/images/pet/level1hangry.png");
-           petImage = str;
+                            : "/images/pet/level1hangry.png");
+            petImage = str;
         } else {
             petImage = "/images/pet/level3.png";
-       }
+        }
 
         int expBarPerc = expBarInt / 10;
 

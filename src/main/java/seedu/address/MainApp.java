@@ -94,7 +94,8 @@ public class MainApp extends Application {
 
         PetManager petManager = new PetManager();
 
-        pomodoroManager.setDefaultStartTime(Float.valueOf(model.getPomodoro().getDefaultTime()).floatValue());
+        pomodoroManager.setDefaultStartTime(
+                Float.valueOf(model.getPomodoro().getDefaultTime()).floatValue());
 
         pomodoroManager.setRestTime(Float.valueOf(model.getPomodoro().getRestTime()).floatValue());
 
@@ -108,9 +109,9 @@ public class MainApp extends Application {
     /**
      * Returns a {@code ModelManager} with the data from {@code storage}'s task list and {@code
      * userPrefs}. <br>
-     * The data from the sample task list will be used instead if {@code storage}'s task list
-     * is not found, or an empty task list will be used instead if errors occur when reading
-     * {@code storage}'s task list.
+     * The data from the sample task list will be used instead if {@code storage}'s task list is not
+     * found, or an empty task list will be used instead if errors occur when reading {@code
+     * storage}'s task list.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyTaskList> taskListOptional;

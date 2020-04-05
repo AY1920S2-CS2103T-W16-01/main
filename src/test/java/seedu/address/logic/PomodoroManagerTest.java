@@ -5,11 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.dayData.Date;
@@ -51,13 +49,13 @@ public class PomodoroManagerTest {
         pomodoroManager = new PomodoroManager(model);
 
         petManager = new PetManager();
-        
+
         pomodoroManager.setDefaultStartTime(25f);
-        
+
         pomodoroManager.setRestTime(5f);
-        
+
         model.setPomodoroManager(pomodoroManager);
-        
+
         model.setPetManager(petManager);
     }
 
@@ -94,17 +92,16 @@ public class PomodoroManagerTest {
         final int AMOUNT_TO_TEST = 42;
         LocalDateTime end = LocalDateTime.now();
         LocalDateTime start = end.minusMinutes(AMOUNT_TO_TEST);
-        DayData d = model.getStatistics()
-            .getDayDataFromDate(new Date(LocalDateTime.now().toLocalDate().toString()));
+        DayData d =
+                model.getStatistics()
+                        .getDayDataFromDate(new Date(LocalDateTime.now().toLocalDate().toString()));
         assertTrue(d.getPomDurationData().value == 0);
         pomodoroManager.setStartDateTime(start);
         pomodoroManager.updateStatistics(model);
         List<DayData> dayDatas = pomodoroManager.generateUpdatedDayData(start, end);
         int totalMinutes = 0;
-        for (DayData dayData : dayDatas) 
-        { 
-            DayData a = model.getStatistics()
-                .getDayDataFromDate(dayData.getDate());
+        for (DayData dayData : dayDatas) {
+            DayData a = model.getStatistics().getDayDataFromDate(dayData.getDate());
             totalMinutes += a.getPomDurationData().value;
         }
         assertTrue(totalMinutes == AMOUNT_TO_TEST);

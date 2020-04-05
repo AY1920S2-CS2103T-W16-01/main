@@ -96,8 +96,8 @@ public class EditCommand extends Command {
         if (pommedTask.equals(taskToEdit)) {
             model.setPomodoroTask(editedTask);
             model.getPomodoroManager()
-                .getPomodoroDisplay()
-                .setTaskInProgressText(editedTask.getName().toString());
+                    .getPomodoroDisplay()
+                    .setTaskInProgressText(editedTask.getName().toString());
         }
 
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
@@ -105,8 +105,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Task} with the details of {@code taskToEdit} edited with
-     * {@code editTaskDescriptor}.
+     * Creates and returns a {@code Task} with the details of {@code taskToEdit} edited with {@code
+     * editTaskDescriptor}.
      */
     private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
         assert taskToEdit != null;

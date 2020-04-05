@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -51,8 +51,10 @@ public class CommandTestUtil {
             " " + PREFIX_PRIORITY + "99"; // any number not 1,2 or 3 not allowed in priority
     public static final String INVALID_TAG_DESC =
             " " + PREFIX_TAG + "tricky*"; // '*' not allowed in tags
-        public static final String INVALID_REMINDER = " " + PREFIX_REMINDER + "15/03/20@@@16:07"; // invalid date
-        public static final String INVALID_REMINDER_PAST = " " + PREFIX_REMINDER + "15/03/20@16:07"; // invalid date
+    public static final String INVALID_REMINDER =
+            " " + PREFIX_REMINDER + "15/03/20@@@16:07"; // invalid date
+    public static final String INVALID_REMINDER_PAST =
+            " " + PREFIX_REMINDER + "15/03/20@16:07"; // invalid date
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -62,7 +64,7 @@ public class CommandTestUtil {
 
     static {
         DESC_TASK1 =
-                new EditTaskDescriptorBuilder() //KIV might need to change this to include reminder
+                new EditTaskDescriptorBuilder() // KIV might need to change this to include reminder
                         .withName(VALID_NAME_TASK1)
                         .withPriority(VALID_PRIORITY_TASK1)
                         .withDescription(VALID_DESCRIPTION_TASK1)
@@ -110,8 +112,7 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the task list, filtered task list and selected task in {@code actualModel} remain
-     * unchanged
+     * - the task list, filtered task list and selected task in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(
             Command command, Model actualModel, String expectedMessage) {
@@ -126,8 +127,8 @@ public class CommandTestUtil {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show only the task at the given {@code
-     * targetIndex} in the {@code model}'s task list.
+     * Updates {@code model}'s filtered list to show only the task at the given {@code targetIndex}
+     * in the {@code model}'s task list.
      */
     public static void showTaskAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredTaskList().size());

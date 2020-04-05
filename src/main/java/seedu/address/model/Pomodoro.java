@@ -32,7 +32,11 @@ public class Pomodoro implements ReadOnlyPomodoro {
     }
 
     public Pomodoro(ReadOnlyPomodoro source) {
-        this(source.getDefaultTime(), source.getRestTime(), source.getTimeLeft(), source.getRunningTask());
+        this(
+                source.getDefaultTime(),
+                source.getRestTime(),
+                source.getTimeLeft(),
+                source.getRunningTask());
     }
 
     public Pomodoro() {

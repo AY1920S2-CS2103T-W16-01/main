@@ -120,16 +120,14 @@ public class EditCommandTest {
     public void execute_filteredList_success() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
-        Task taskInFilteredList =
-                model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        Task taskInFilteredList = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         Task editedTask = new TaskBuilder(taskInFilteredList).withName(VALID_NAME_TASK2).build();
         EditCommand editCommand =
                 new EditCommand(
                         INDEX_FIRST_TASK,
                         new EditTaskDescriptorBuilder().withName(VALID_NAME_TASK2).build());
 
-        String expectedMessage =
-                String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
         Model expectedModel =
                 new ModelManager(

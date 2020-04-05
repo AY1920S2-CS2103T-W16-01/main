@@ -3,13 +3,11 @@ package seedu.address.ui;
 import static seedu.address.logic.commands.SwitchTabCommand.STATS_TAB_INDEX;
 import static seedu.address.logic.commands.SwitchTabCommand.TASKS_TAB_INDEX;
 
-import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import java.util.logging.Logger;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -32,18 +30,15 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.PetManager;
 import seedu.address.logic.PomodoroManager;
-import seedu.address.logic.PomodoroManager.PROMPT_STATE;
 import seedu.address.logic.commands.CommandCompletor;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.DoneCommandResult;
-import seedu.address.logic.commands.PomCommand;
 import seedu.address.logic.commands.CompletorResult;
+import seedu.address.logic.commands.DoneCommandResult;
 import seedu.address.logic.commands.PomCommandResult;
 import seedu.address.logic.commands.SwitchTabCommand;
 import seedu.address.logic.commands.SwitchTabCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.exceptions.CompletorException;
-import seedu.address.logic.parser.TaskListParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.dayData.DayData;
 import seedu.address.model.task.Reminder;
@@ -80,7 +75,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private Timer timer;
     private TimerTask timerTask;
-    private boolean hasStarted; 
+    private boolean hasStarted;
 
     @FXML private StackPane commandBoxPlaceholder;
 
@@ -120,17 +115,17 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
 
-        //set-up timer
+        // set-up timer
         this.timer = new Timer();
         this.timerTask =
-        new TimerTask() {
-            public void run() {
-                petManager.changeToHangry();
-                petManager.updateDisplayElements();
-                updatePetDisplay();
-                timer.cancel();
-            }
-        };
+                new TimerTask() {
+                    public void run() {
+                        petManager.changeToHangry();
+                        petManager.updateDisplayElements();
+                        updatePetDisplay();
+                        timer.cancel();
+                    }
+                };
         this.hasStarted = false;
         disableTabClick();
     }
@@ -296,8 +291,8 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            
-            //Done Command related results
+
+            // Done Command related results
             try {
                 DoneCommandResult doneCommandResult = (DoneCommandResult) commandResult;
                 //// increment Pet EXP after completing a task
@@ -379,9 +374,9 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private CommandResult pomExecuteCommand(String commandText)
-            throws CommandException, ParseException {      
-        CommandResult commandResult = 
-            pomodoro.promptBehaviour(commandText, logic, logger, petManager);
+            throws CommandException, ParseException {
+        CommandResult commandResult =
+                pomodoro.promptBehaviour(commandText, logic, logger, petManager);
         return commandResult;
     }
 
@@ -421,7 +416,7 @@ public class MainWindow extends UiPart<Stage> {
     public void updateMoodWhenDoneTask() {
         petManager.changeToHappy();
         petManager.updateLastDoneTaskWhenDone();
-        //reschedule timer
+        // reschedule timer
         if (hasStarted) {
             timer.cancel();
         }
@@ -435,9 +430,8 @@ public class MainWindow extends UiPart<Stage> {
                         timer.cancel();
                     }
                 };
-        Date timeForMoodChange = 
-                Date.from(petManager.getTimeForHangry()
-                        .atZone(ZoneId.systemDefault()).toInstant());
+        Date timeForMoodChange =
+                Date.from(petManager.getTimeForHangry().atZone(ZoneId.systemDefault()).toInstant());
         timer.schedule(timerTask, timeForMoodChange);
         petManager.updateDisplayElements();
     }

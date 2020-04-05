@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -47,10 +45,10 @@ public class PetDisplay extends UiPart<Region> {
         Image petImage = new Image(MainApp.class.getResourceAsStream(petFilepath));
         petPic.setImage(petImage);
     }
-    
+
     public void setExpBarImage(String path) {
         expBarFilepath = path;
-        Image expBarImage =new Image(MainApp.class.getResourceAsStream(expBarFilepath));
+        Image expBarImage = new Image(MainApp.class.getResourceAsStream(expBarFilepath));
         expBarPic.setImage(expBarImage);
     }
 

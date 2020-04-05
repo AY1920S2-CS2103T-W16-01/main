@@ -50,9 +50,7 @@ public class TaskListParserTest {
         DeleteCommand command =
                 (DeleteCommand)
                         parser.parseCommand(
-                                DeleteCommand.COMMAND_WORD
-                                        + " "
-                                        + INDEX_FIRST_TASK.getOneBased());
+                                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased());
         assertEquals(new DeleteCommand(new Index[] {INDEX_FIRST_TASK}), command);
     }
 

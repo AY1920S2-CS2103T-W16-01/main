@@ -25,7 +25,6 @@ public class EditTaskDescriptorBuilder {
         this.descriptor = new EditTaskDescriptor(descriptor);
     }
 
-
     /** Returns an {@code EditTaskDescriptor} with fields containing {@code task}'s details */
     public EditTaskDescriptorBuilder(Task task) {
         descriptor = new EditTaskDescriptor();
@@ -41,7 +40,6 @@ public class EditTaskDescriptorBuilder {
         return this;
     }
 
-
     /** Sets the {@code Priority} of the {@code EditTaskDescriptor} that we are building. */
     public EditTaskDescriptorBuilder withPriority(String priority) {
         descriptor.setPriority(new Priority(priority));
@@ -55,8 +53,8 @@ public class EditTaskDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code
-     * EditTaskDescriptor} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditTaskDescriptor}
+     * that we are building.
      */
     public EditTaskDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());

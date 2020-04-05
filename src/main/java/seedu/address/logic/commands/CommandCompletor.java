@@ -65,14 +65,14 @@ public class CommandCompletor {
         boolean hasReminder = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_REMINDER);
         boolean hasPriority = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_PRIORITY);
         String prefixesAdded = "", feedbackToUser = UNCHANGED_SUCCESS;
-        
+
         if (trimmedInputWords.length <= 0) {
             throw new CompletorException(COMPLETE_FAILURE_COMMAND);
         }
-        
+
         Optional<String> suggestedCommand =
-        getCompletedWord(trimmedInputWords[0], this.commands.toArray(new String[0]));
-        
+                getCompletedWord(trimmedInputWords[0], this.commands.toArray(new String[0]));
+
         if (suggestedCommand.isPresent()) {
             if (trimmedInputWords[0].equals(suggestedCommand.get())) {
                 feedbackToUser = UNCHANGED_SUCCESS;
@@ -82,9 +82,9 @@ public class CommandCompletor {
             trimmedInputWords[0] = suggestedCommand.get();
         } else {
             throw new CompletorException(
-                String.format(COMMAND_UNFOUND_FAILURE, trimmedInputWords[0]));
+                    String.format(COMMAND_UNFOUND_FAILURE, trimmedInputWords[0]));
         }
-            
+
         String newCommand = String.join(" ", trimmedInputWords);
 
         switch (trimmedInputWords[0]) {

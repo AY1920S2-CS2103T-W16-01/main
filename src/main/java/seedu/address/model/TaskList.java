@@ -41,8 +41,8 @@ public class TaskList implements ReadOnlyTaskList {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the task list with {@code tasks}. {@code tasks} must not
-     * contain duplicate tasks.
+     * Replaces the contents of the task list with {@code tasks}. {@code tasks} must not contain
+     * duplicate tasks.
      */
     public void setTasks(List<Task> tasklist) {
         this.tasklist.setTasks(tasklist);
@@ -57,9 +57,7 @@ public class TaskList implements ReadOnlyTaskList {
 
     //// task-level operations
 
-    /**
-     * Returns true if a task with the same identity as {@code task} exists in the task list.
-     */
+    /** Returns true if a task with the same identity as {@code task} exists in the task list. */
     public boolean hasTask(Task task) {
         requireNonNull(task);
         return tasklist.contains(task);
@@ -72,8 +70,8 @@ public class TaskList implements ReadOnlyTaskList {
 
     /**
      * Replaces the given task {@code target} in the list with {@code editedTask}. {@code target}
-     * must exist in the task list. The task identity of {@code editedTask} must not be the
-     * same as another existing task in the task list.
+     * must exist in the task list. The task identity of {@code editedTask} must not be the same as
+     * another existing task in the task list.
      */
     public void setTask(Task target, Task editedTask) {
         requireNonNull(editedTask);
@@ -81,9 +79,7 @@ public class TaskList implements ReadOnlyTaskList {
         tasklist.setTask(target, editedTask);
     }
 
-    /**
-     * Removes {@code key} from this {@code TaskList}. {@code key} must exist in the task list.
-     */
+    /** Removes {@code key} from this {@code TaskList}. {@code key} must exist in the task list. */
     public void removeTask(Task key) {
         tasklist.remove(key);
     }

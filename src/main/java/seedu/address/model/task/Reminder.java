@@ -7,14 +7,14 @@ import java.time.format.DateTimeParseException;
 import seedu.address.model.task.exceptions.InvalidReminderException;
 
 /**
- * Represents a Task's reminder number in the task list. Guarantees: immutable; is valid as
- * declared in {@link #isValidReminder(String)}
+ * Represents a Task's reminder number in the task list. Guarantees: immutable; is valid as declared
+ * in {@link #isValidReminder(String)}
  */
 public class Reminder implements Comparable {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Reminder should be in format DD/MM/YY@HH:mm eg 04/11/20@10:30";
-    public static final String MESSAGE_CONSTRAINTS_PAST = 
+    public static final String MESSAGE_CONSTRAINTS_PAST =
             "Operation would result in invalid reminder due to time set being in the past.";
     public static final DateTimeFormatter stringFormatter =
             DateTimeFormatter.ofPattern("dd/MM/yy@HH:mm");

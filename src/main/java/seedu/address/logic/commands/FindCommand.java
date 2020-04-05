@@ -7,8 +7,8 @@ import seedu.address.model.Model;
 import seedu.address.model.task.NameContainsKeywordsPredicate;
 
 /**
- * Finds and lists all tasks in task list whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Finds and lists all tasks in task list whose name contains any of the argument keywords. Keyword
+ * matching is case insensitive.
  */
 public class FindCommand extends Command {
 
