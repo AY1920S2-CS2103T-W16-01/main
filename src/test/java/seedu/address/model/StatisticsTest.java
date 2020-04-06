@@ -1,11 +1,5 @@
 package seedu.address.model;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.dayData.DayData;
-import seedu.address.testutil.DayDataBuilder;
-
-import java.time.LocalDate;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedDayDataTest.VALID_POM_DURATION_DATA;
 import static seedu.address.storage.JsonAdaptedDayDataTest.VALID_TASKS_DONE_DATA;
@@ -14,6 +8,11 @@ import static seedu.address.testutil.TypicalDayDatas.DAY0;
 import static seedu.address.testutil.TypicalDayDatas.DAYNEW;
 import static seedu.address.testutil.TypicalDayDatas.getTypicalDayDatas;
 import static seedu.address.testutil.TypicalDayDatas.getTypicalStatistics;
+
+import java.time.LocalDate;
+import org.junit.jupiter.api.Test;
+import seedu.address.model.dayData.DayData;
+import seedu.address.testutil.DayDataBuilder;
 
 public class StatisticsTest {
     private final Statistics statistics = new Statistics();
@@ -49,10 +48,8 @@ public class StatisticsTest {
 
         Statistics expectedStatistics = getTypicalStatistics();
         expectedStatistics.pop();
-        expectedStatistics.addDayData(new DayDataBuilder(DAYNEW)
-                .withPomDurationData("0")
-                .withTasksDoneData("0")
-                .build());
+        expectedStatistics.addDayData(
+                new DayDataBuilder(DAYNEW).withPomDurationData("0").withTasksDoneData("0").build());
         assertEquals(expectedStatistics, statistics);
     }
 
@@ -101,6 +98,7 @@ public class StatisticsTest {
 
     @Test
     public void getCustomQueue_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> statistics.getCustomQueue().remove(0));
+        assertThrows(
+                UnsupportedOperationException.class, () -> statistics.getCustomQueue().remove(0));
     }
 }

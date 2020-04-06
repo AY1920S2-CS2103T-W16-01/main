@@ -64,7 +64,12 @@ public class DayData {
 
     @Override
     public String toString() {
-        return "DayData: " + this.getDate() + " pom: " + getPomDurationData() + " tasksDone: " + getTasksDoneData();
+        return "DayData: "
+                + this.getDate()
+                + " pom: "
+                + getPomDurationData()
+                + " tasksDone: "
+                + getTasksDoneData();
     }
 
     /*

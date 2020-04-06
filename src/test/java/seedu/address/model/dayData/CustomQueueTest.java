@@ -1,13 +1,5 @@
 package seedu.address.model.dayData;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.dayData.exceptions.DayDataNotFoundException;
-import seedu.address.model.dayData.exceptions.InvalidTableException;
-import seedu.address.testutil.DayDataBuilder;
-
-import java.time.LocalDate;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -17,6 +9,13 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalDayDatas.DAY0;
 import static seedu.address.testutil.TypicalDayDatas.DAYNEW;
 import static seedu.address.testutil.TypicalDayDatas.DAYNEW2;
+
+import java.time.LocalDate;
+import java.util.List;
+import org.junit.jupiter.api.Test;
+import seedu.address.model.dayData.exceptions.DayDataNotFoundException;
+import seedu.address.model.dayData.exceptions.InvalidTableException;
+import seedu.address.testutil.DayDataBuilder;
 
 public class CustomQueueTest {
 
@@ -35,42 +34,49 @@ public class CustomQueueTest {
     }
 
     @Test
-    public void updateDataDatesCustom_nullLocalDatethrowsNullPointerException() throws InvalidTableException {
+    public void updateDataDatesCustom_nullLocalDatethrowsNullPointerException()
+            throws InvalidTableException {
         customQueue.init(VALID_LOCAL_DATE);
         assertThrows(NullPointerException.class, () -> customQueue.updateDataDatesCustom(null));
     }
 
     @Test
-    public void updatesDayDataCustom_nullLocalDatethrowsNullPointerException() throws InvalidTableException {
+    public void updatesDayDataCustom_nullLocalDatethrowsNullPointerException()
+            throws InvalidTableException {
         customQueue.init(VALID_LOCAL_DATE);
         assertThrows(NullPointerException.class, () -> customQueue.updatesDayDataCustom(null));
     }
 
     @Test
-    public void updatesDayDataCustom_nonexistentDayDatathrowsDayDataNotFoundException() throws InvalidTableException {
+    public void updatesDayDataCustom_nonexistentDayDatathrowsDayDataNotFoundException()
+            throws InvalidTableException {
         customQueue.init(VALID_LOCAL_DATE);
-        assertThrows(DayDataNotFoundException.class, () -> customQueue.updatesDayDataCustom(DAYNEW));
+        assertThrows(
+                DayDataNotFoundException.class, () -> customQueue.updatesDayDataCustom(DAYNEW));
     }
 
     @Test
-    public void getDayDataFromDateCustom_nullLocalDatethrowsNullPointerException() throws InvalidTableException {
+    public void getDayDataFromDateCustom_nullLocalDatethrowsNullPointerException()
+            throws InvalidTableException {
         customQueue.init(VALID_LOCAL_DATE);
         assertThrows(NullPointerException.class, () -> customQueue.getDayDataFromDateCustom(null));
     }
 
     @Test
-    public void getDayDataFromDateCustom_nonexistentDayDatathrowsDayDataNotFoundException() throws InvalidTableException {
+    public void getDayDataFromDateCustom_nonexistentDayDatathrowsDayDataNotFoundException()
+            throws InvalidTableException {
         customQueue.init(VALID_LOCAL_DATE);
-        assertThrows(DayDataNotFoundException.class, () -> customQueue.getDayDataFromDateCustom(DAYNEW.getDate()));
+        assertThrows(
+                DayDataNotFoundException.class,
+                () -> customQueue.getDayDataFromDateCustom(DAYNEW.getDate()));
     }
 
     @Test
-    public void getDayDataFromDateCustom_validDayData_returnsDayData() throws InvalidTableException {
+    public void getDayDataFromDateCustom_validDayData_returnsDayData()
+            throws InvalidTableException {
         customQueue.init(TYPICAL_STATISTICS_LATEST_LOCAL_DATE);
-        DayData day0Empty = new DayDataBuilder(DAY0)
-                .withPomDurationData("0")
-                .withTasksDoneData("0")
-                .build();
+        DayData day0Empty =
+                new DayDataBuilder(DAY0).withPomDurationData("0").withTasksDoneData("0").build();
         assertEquals(day0Empty, customQueue.getDayDataFromDateCustom(day0Empty.getDate()));
     }
 
@@ -94,7 +100,8 @@ public class CustomQueueTest {
     }
 
     @Test
-    public void contains_dayDataWithSameIdentityFieldsInList_returnsTrue() throws InvalidTableException {
+    public void contains_dayDataWithSameIdentityFieldsInList_returnsTrue()
+            throws InvalidTableException {
         customQueue.init(TYPICAL_STATISTICS_LATEST_LOCAL_DATE);
         customQueue.pop();
 
@@ -118,7 +125,7 @@ public class CustomQueueTest {
     public void add_nullDayData_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> customQueue.add(null));
     }
-    
+
     @Test
     public void setDayData_nullTargetDayData_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> customQueue.setDayData(null, DAYNEW));
@@ -131,8 +138,7 @@ public class CustomQueueTest {
 
     @Test
     public void setDayData_targetDayDataNotInList_throwsDayDataNotFoundException() {
-        assertThrows(
-                DayDataNotFoundException.class, () -> customQueue.setDayData(DAYNEW, DAYNEW));
+        assertThrows(DayDataNotFoundException.class, () -> customQueue.setDayData(DAYNEW, DAYNEW));
     }
 
     @Test
@@ -173,7 +179,8 @@ public class CustomQueueTest {
     }
 
     @Test
-    public void setDayData_editedDayDataHasDifferentIdentity_success() throws InvalidTableException {
+    public void setDayData_editedDayDataHasDifferentIdentity_success()
+            throws InvalidTableException {
         customQueue.init(TYPICAL_STATISTICS_LATEST_LOCAL_DATE);
         customQueue.pop();
 
@@ -200,12 +207,12 @@ public class CustomQueueTest {
 
     @Test
     public void setDayDatas_nullCustomQueue_throwsNullPointerException() {
-        assertThrows(
-                NullPointerException.class, () -> customQueue.setDayDatas((CustomQueue)null));
+        assertThrows(NullPointerException.class, () -> customQueue.setDayDatas((CustomQueue) null));
     }
 
     @Test
-    public void setDayDatas_customQueue_replacesOwnListWithProvidedCustomQueue() throws InvalidTableException {
+    public void setDayDatas_customQueue_replacesOwnListWithProvidedCustomQueue()
+            throws InvalidTableException {
         customQueue.init(TYPICAL_STATISTICS_LATEST_LOCAL_DATE);
         customQueue.pop();
 
@@ -222,7 +229,8 @@ public class CustomQueueTest {
 
     @Test
     public void setDayDatas_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> customQueue.setDayDatas((List<DayData>) null));
+        assertThrows(
+                NullPointerException.class, () -> customQueue.setDayDatas((List<DayData>) null));
     }
 
     @Test

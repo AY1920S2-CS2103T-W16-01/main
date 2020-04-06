@@ -16,7 +16,8 @@ public class TasksDoneDataTest {
 
     @Test
     public void constructor_invalidTasksDoneData_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> new TasksDoneData(INVALID_TASKS_DONE_DATA));
+        assertThrows(
+                IllegalArgumentException.class, () -> new TasksDoneData(INVALID_TASKS_DONE_DATA));
     }
 
     @Test

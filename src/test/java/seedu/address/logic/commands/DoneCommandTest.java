@@ -52,6 +52,7 @@ public class DoneCommandTest {
                         new Pomodoro(),
                         new Statistics(),
                         new UserPrefs());
+
         expectedModel.setTask(
                 model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased()), doneTask);
 
@@ -85,6 +86,7 @@ public class DoneCommandTest {
                         new Pomodoro(),
                         new Statistics(),
                         new UserPrefs());
+
         expectedModel.setTask(
                 model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased()), doneTask);
 

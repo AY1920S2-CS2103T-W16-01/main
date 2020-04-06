@@ -166,22 +166,12 @@ public class AddCommandTest {
         }
 
         @Override
+        public PetManager getPetManager() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setPetName(String name) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void incrementPomExp() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateMoodWhenDone() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void incrementExp() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -222,6 +212,21 @@ public class AddCommandTest {
 
         @Override
         public void updateDataDatesStatistics() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Task getPomodoroTask() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setPomodoroDefaultTime(float defaultTimeInMin) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setPomodoroRestTime(float restTimeInMin) {
             throw new AssertionError("This method should not be called.");
         }
     }

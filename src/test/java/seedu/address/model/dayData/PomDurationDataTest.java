@@ -17,7 +17,8 @@ public class PomDurationDataTest {
     @Test
     public void constructor_invalidPomDurationData_throwsIllegalArgumentException() {
         assertThrows(
-                IllegalArgumentException.class, () -> new PomDurationData(INVALID_POM_DURATION_DATA));
+                IllegalArgumentException.class,
+                () -> new PomDurationData(INVALID_POM_DURATION_DATA));
     }
 
     @Test

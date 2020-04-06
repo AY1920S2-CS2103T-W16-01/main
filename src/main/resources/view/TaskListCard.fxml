@@ -47,7 +47,7 @@
                             </padding>
                      <HBox prefHeight="100.0" prefWidth="200.0">
                         <children>
-                                  <Label fx:id="name" prefHeight="33.0" prefWidth="376.0" styleClass="cell_big_label" text="\$first" HBox.hgrow="ALWAYS" />
+                                  <Label fx:id="name" prefHeight="33.0" prefWidth="510.0" styleClass="cell_big_label" text="\$first" HBox.hgrow="ALWAYS" />
                                   <FlowPane fx:id="tags" alignment="CENTER_LEFT" prefHeight="5.0">
                               <opaqueInsets>
                                  <Insets left="10.0" />

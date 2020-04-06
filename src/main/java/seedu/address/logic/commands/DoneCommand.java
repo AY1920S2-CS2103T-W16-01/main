@@ -80,9 +80,6 @@ public class DoneCommand extends Command {
                 model.setTask(taskToEdit, editedTask);
                 updateStatisticsRegularDone(model);
             }
-            // increment Pet EXP after completing a task
-            model.incrementExp();
-            model.updateMoodWhenDone();
         }
 
         // The last task to show is the pommed task
@@ -97,7 +94,7 @@ public class DoneCommand extends Command {
             pm.checkMidPomDoneActions();
         }
 
-        return new CommandResult(tasksDone.toString());
+        return new DoneCommandResult(tasksDone.toString());
     }
 
     private static Date getCurrentDate() {

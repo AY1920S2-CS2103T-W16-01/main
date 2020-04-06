@@ -7,13 +7,15 @@ import java.time.format.DateTimeParseException;
 import seedu.address.model.task.exceptions.InvalidReminderException;
 
 /**
- * Represents a Task's reminder number in the task list. Guarantees: immutable; is valid as
- * declared in {@link #isValidReminder(String)}
+ * Represents a Task's reminder number in the task list. Guarantees: immutable; is valid as declared
+ * in {@link #isValidReminder(String)}
  */
 public class Reminder implements Comparable {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Reminder should be in format DD/MM/YY@HH:mm eg 04/11/20@10:30";
+    public static final String MESSAGE_CONSTRAINTS_PAST =
+            "Operation would result in invalid reminder due to time set being in the past.";
     public static final DateTimeFormatter stringFormatter =
             DateTimeFormatter.ofPattern("dd/MM/yy@HH:mm");
     private final LocalDateTime reminderDateTime;
@@ -42,8 +44,7 @@ public class Reminder implements Comparable {
         setDelay();
     }
 
-    private long calculateDelay(LocalDateTime reminderDateTime) {
-        LocalDateTime currentTime = LocalDateTime.now();
+    public static long calculateDelay(LocalDateTime currentTime, LocalDateTime reminderDateTime) {
         Duration duration = Duration.between(currentTime, reminderDateTime);
         long delay = duration.getSeconds();
         return delay;
@@ -69,7 +70,7 @@ public class Reminder implements Comparable {
      * @throws InvalidReminderException if the time delay is negative and has not been fired before.
      */
     private void setDelay() throws InvalidReminderException {
-        long timeDelay = calculateDelay(reminderDateTime);
+        long timeDelay = calculateDelay(LocalDateTime.now(), reminderDateTime);
         if (timeDelay < 0) {
             if (!hasFired) {
                 throw new InvalidReminderException();
@@ -100,8 +101,9 @@ public class Reminder implements Comparable {
             return 0;
         }
         Reminder otherReminder = (Reminder) other;
-        long diffFromToday = calculateDelay(this.reminderDateTime);
-        long otherDiffFromToday = calculateDelay(otherReminder.reminderDateTime);
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        long diffFromToday = calculateDelay(currentDateTime, this.reminderDateTime);
+        long otherDiffFromToday = calculateDelay(currentDateTime, otherReminder.reminderDateTime);
         System.out.println(diffFromToday);
         System.out.println("=====================");
 

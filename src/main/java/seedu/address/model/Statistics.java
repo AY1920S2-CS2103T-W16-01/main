@@ -61,14 +61,16 @@ public class Statistics implements ReadOnlyStatistics {
     public void updateDataDates() {
         try {
             customQueue.updateDataDatesCustom();
-        } catch (InvalidTableException e) { }
+        } catch (InvalidTableException e) {
+        }
     }
 
     /** reinitialises dayDataList to current day while retaining stored data. */
     public void updateDataDates(LocalDate localDate) {
         try {
             customQueue.updateDataDatesCustom(localDate);
-        } catch (InvalidTableException e) { }
+        } catch (InvalidTableException e) {
+        }
     }
 
     /**

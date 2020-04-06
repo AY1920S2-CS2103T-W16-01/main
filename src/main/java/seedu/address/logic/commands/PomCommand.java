@@ -84,9 +84,9 @@ public class PomCommand extends Command {
         Task taskToPom = lastShownList.get(index);
 
         pm.startTrackTask(taskToPom);
-        //model.getPomodoroManager().startTrackTask(taskToPom);
+        // model.getPomodoroManager().startTrackTask(taskToPom);
 
-        if (taskToPom.getDone().getIsDone()){
+        if (taskToPom.getDone().getIsDone()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_TO_BE_DONED);
         }
 
@@ -98,11 +98,31 @@ public class PomCommand extends Command {
         return new PomCommandResult(
                 "Pomming task: " + taskToPom.toString(),
                 taskToPom.getName().toString(),
-                ((int)timerAmount) == -1 ? pm.getDefaultStartTime() : timerAmount,
+                ((int) timerAmount) == -1 ? pm.getDefaultStartTime() : timerAmount,
                 model,
                 index,
                 lastShownList,
                 isPause,
                 isContinue);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof PomCommand)) {
+            return false;
+        }
+
+        // state check
+        PomCommand e = (PomCommand) other;
+        return targetIndex.equals(e.targetIndex)
+                && ((int) timerAmount) == ((int) e.timerAmount)
+                && (isPause == e.isPause)
+                && (isContinue == e.isContinue);
     }
 }

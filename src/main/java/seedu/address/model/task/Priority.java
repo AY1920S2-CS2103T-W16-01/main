@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Task's priority number in the task list. Guarantees: immutable; is valid as
- * declared in {@link #isValidPriority(String)}
+ * Represents a Task's priority number in the task list. Guarantees: immutable; is valid as declared
+ * in {@link #isValidPriority(String)}
  */
 public class Priority implements Comparable {
 

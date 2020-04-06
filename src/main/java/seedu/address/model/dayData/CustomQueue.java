@@ -162,7 +162,7 @@ public class CustomQueue implements Iterable<DayData> {
     }
 
     /** Adds a dayData to the end of the queue. */
-    public void add(DayData toAdd)  {
+    public void add(DayData toAdd) {
         requireNonNull(toAdd);
         internalList.add(toAdd);
     }

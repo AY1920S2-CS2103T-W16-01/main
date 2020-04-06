@@ -11,7 +11,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import seedu.address.model.dayData.CustomQueue;
 import seedu.address.model.dayData.DayData;
 
 /** An UI component that displays the Pomodoro {@code Pomodoro}. */
@@ -113,7 +112,7 @@ public class StatisticsDisplay extends UiPart<Region> {
             int tasksDoneDataInt = customQueue.get(i).getTasksDoneData().value;
             dataSeriesTasksDoneData.getData().add(new XYChart.Data<>(dateString, tasksDoneDataInt));
         }
-        
+
         barChartPomDurationData.getData().clear();
         barChartTasksDoneData.getData().clear();
 
@@ -124,7 +123,6 @@ public class StatisticsDisplay extends UiPart<Region> {
         dataSeriesTasksDoneData.getChart().getXAxis().setAnimated(false);
         dataSeriesPomDurationData.getChart().setAnimated(false);
         dataSeriesTasksDoneData.getChart().setAnimated(false);
-
     }
     /*
     @Override

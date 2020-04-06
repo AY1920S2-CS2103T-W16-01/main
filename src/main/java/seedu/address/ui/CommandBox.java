@@ -1,10 +1,10 @@
 package seedu.address.ui;
 
+import java.util.Timer;
+import java.util.TimerTask;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import java.util.Timer;
-import java.util.TimerTask;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -33,11 +33,12 @@ public class CommandBox extends UiPart<Region> {
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField
                 .textProperty()
-                .addListener((unused1, unused2, unused3) -> {
-                    setStyleToDefault();
-                    scheduler.purge();
-                    // scheduler = new Timer();
-                });
+                .addListener(
+                        (unused1, unused2, unused3) -> {
+                            setStyleToDefault();
+                            scheduler.purge();
+                            // scheduler = new Timer();
+                        });
 
         commandTextField.setOnKeyPressed(
                 new EventHandler<KeyEvent>() {
@@ -53,10 +54,10 @@ public class CommandBox extends UiPart<Region> {
                                         commandSuggestor.suggestCommand(commandTextField.getText());
                                 commandTextField.setText(suggestion);
                                 setStyleToIndicateCompletorSuccess();
-                                scheduler.schedule( getUnsetStyleTimer(SUCCESS_STYLE_CLASS), 1000 );
+                                scheduler.schedule(getUnsetStyleTimer(SUCCESS_STYLE_CLASS), 1000);
                             } catch (CompletorException e) {
                                 setStyleToIndicateCompletorFailure();
-                                scheduler.schedule( getUnsetStyleTimer(WARNING_STYLE_CLASS), 1000 );
+                                scheduler.schedule(getUnsetStyleTimer(WARNING_STYLE_CLASS), 1000);
                             }
                             // event.consume doesn't seem to work, the below is thus a workaround
                             commandTextField.requestFocus();
@@ -84,14 +85,14 @@ public class CommandBox extends UiPart<Region> {
             public void run() {
                 switch (style) {
                     case ERROR_STYLE_CLASS:
-                    commandTextField.getStyleClass().remove(ERROR_STYLE_CLASS);
-                    break;
+                        commandTextField.getStyleClass().remove(ERROR_STYLE_CLASS);
+                        break;
                     case WARNING_STYLE_CLASS:
-                    commandTextField.getStyleClass().remove(WARNING_STYLE_CLASS);
-                    break;
+                        commandTextField.getStyleClass().remove(WARNING_STYLE_CLASS);
+                        break;
                     case SUCCESS_STYLE_CLASS:
-                    commandTextField.getStyleClass().remove(SUCCESS_STYLE_CLASS);
-                    break;
+                        commandTextField.getStyleClass().remove(SUCCESS_STYLE_CLASS);
+                        break;
                 }
             }
         };

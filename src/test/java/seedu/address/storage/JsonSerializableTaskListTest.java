@@ -17,8 +17,7 @@ public class JsonSerializableTaskListTest {
             Paths.get("src", "test", "data", "JsonSerializableTaskListTest");
     private static final Path TYPICAL_TASKS_FILE = TEST_DATA_FOLDER.resolve("typicalTasks.json");
     private static final Path INVALID_TASK_FILE = TEST_DATA_FOLDER.resolve("invalidTask.json");
-    private static final Path DUPLICATE_TASK_FILE =
-            TEST_DATA_FOLDER.resolve("duplicateTask.json");
+    private static final Path DUPLICATE_TASK_FILE = TEST_DATA_FOLDER.resolve("duplicateTask.json");
 
     @Test
     public void toModelType_typicalTasksFile_success() throws Exception {

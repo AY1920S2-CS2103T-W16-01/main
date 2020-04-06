@@ -5,7 +5,7 @@ matrix:
 
 script: >-
     ./config/travis/check-line-endings.sh &&
-    ./gradlew format clean coverage coveralls asciidoctor
+    ./gradlew format clean coverage coveralls asciidoctor test
 
 deploy:
   skip_cleanup: true

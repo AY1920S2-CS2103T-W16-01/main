@@ -72,9 +72,8 @@ public class JsonStatisticsStorageTest {
         assertEquals(original, new Statistics(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        DayData newDay0 = new DayDataBuilder(DAY0)
-                .withPomDurationData(VALID_POM_DURATION_DATA)
-                .build();
+        DayData newDay0 =
+                new DayDataBuilder(DAY0).withPomDurationData(VALID_POM_DURATION_DATA).build();
 
         original.updatesDayData(newDay0);
         jsonStatisticsStorage.saveStatistics(original, filePath);

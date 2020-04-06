@@ -220,16 +220,6 @@ public class SortCommandTest {
         }
 
         @Override
-        public void incrementPomExp() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void incrementExp() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public ReadOnlyPomodoro getPomodoro() {
             throw new AssertionError("This method should not be called.");
         }
