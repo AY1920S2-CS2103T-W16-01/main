@@ -149,7 +149,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
-        filteredTasks.setPredicate(predicate);
+        filteredTasks.setPredicate(predicate); // predicate should now be applied and evaluate to true for certain threshold
     }
 
     @Override
