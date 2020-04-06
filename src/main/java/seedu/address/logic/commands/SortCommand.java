@@ -21,7 +21,7 @@ public class SortCommand extends Command {
     public static final String MESSAGE_SORT_UNKNOWN = "No such field to sort by %1$s!";
     public static final String MESSAGE_USAGE =
             String.format(
-                    "%1$s -> Sorts tasklist by certain field such as\n%2$s \nExample: %1$s priority",
+                    "%1$s -> Sorts tasklist by one or multiple fields such as\n%2$s \nExample: %1$s done, priority",
                     COMMAND_WORD, String.join(" | ", ALLOWED_SORT_FIELDS));
 
     private String[] fields;

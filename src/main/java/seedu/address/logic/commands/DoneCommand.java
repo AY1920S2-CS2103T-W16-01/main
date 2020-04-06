@@ -29,11 +29,11 @@ public class DoneCommand extends Command {
 
     public static final String MESSAGE_USAGE =
             COMMAND_WORD
-                    + ": Marks the task identified by the index number used in the displayed task list as done.\n"
-                    + "Parameters: 1-INDEXed (must be a positive integer)\n"
+                    + ": Marks one or multiple tasks identified by the index number(s) used in the displayed task list as done.\n"
+                    + "Parameters: INDEX1, INDEX2 (must be positive integers)\n"
                     + "Example: "
                     + COMMAND_WORD
-                    + " 1";
+                    + " 1, 2";
 
     public static final String MESSAGE_DONE_TASK_SUCCESS = "Done Task(s): ";
 
