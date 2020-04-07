@@ -1,5 +1,6 @@
 package seedu.address.model.task;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 import seedu.address.commons.util.StringUtil;
@@ -7,18 +8,31 @@ import seedu.address.commons.util.StringUtil;
 /** Tests that a {@code Task}'s {@code Name} matches any of the keywords given. */
 public class NameContainsKeywordsPredicate implements Predicate<Task> {
     private final List<String> keywords;
+    private final int threshold = 2;
+    private int score = Integer.MAX_VALUE;
 
     public NameContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
+    public int getScore() {
+        return this.score;
+    }
+
     @Override
-    public boolean test(Task task) {
-        return keywords.stream()
-                .anyMatch(
-                        keyword ->
-                                StringUtil.containsWordIgnoreCase(
-                                        task.getName().fullName, keyword));
+    public boolean test(Task task) { // change test to return an int value as the edit distance
+        this.score = Integer.MAX_VALUE;
+        String joinnedKeywords = String.join(" ", keywords);
+        String[] splitTaskName = task.getName().fullName.split("\\s+");
+        for (int i = 0; i < splitTaskName.length; i ++) {
+            String joinnedPhrase = String.join(" ",  Arrays.copyOfRange(splitTaskName, i, i + keywords.size()));
+            int currScore = StringUtil.limitedCompare(joinnedPhrase, joinnedKeywords, threshold);
+            if (currScore >= 0) {
+                this.score = Math.min(this.score, currScore);
+            }
+        }
+        System.out.println(String.format("%s:%d", task.getName().fullName, this.score));
+        return this.score != -1 && this.score != Integer.MAX_VALUE;
     }
 
     @Override

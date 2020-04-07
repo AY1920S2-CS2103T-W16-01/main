@@ -15,6 +15,7 @@ import seedu.address.logic.PetManager;
 import seedu.address.logic.PomodoroManager;
 import seedu.address.model.dayData.Date;
 import seedu.address.model.dayData.DayData;
+import seedu.address.model.task.NameContainsKeywordsPredicate;
 import seedu.address.model.task.Task;
 
 /** Represents the in-memory model of the task list data. */
@@ -152,14 +153,28 @@ public class ModelManager implements Model {
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         filteredTasks.setPredicate(predicate); // predicate should now be applied and evaluate to true for certain threshold
+        if (predicate instanceof NameContainsKeywordsPredicate) {
+            NameContainsKeywordsPredicate namePredicate = (NameContainsKeywordsPredicate) predicate;
+            Comparator<Task> comparator = new Comparator<>() {
+                @Override
+                public int compare(Task task1, Task task2) {
+                    namePredicate.test(task1);
+                    int score1 = namePredicate.getScore();
+                    namePredicate.test(task2);
+                    int score2 = namePredicate.getScore();
+                    return score1 < score2 ? -1 : 1;
+                }
+            };
+            this.taskList.sort(comparator);
+        }
     }
+
 
     @Override
     public void setComparator(Comparator<Task>[] comparators) {
         requireNonNull(comparators);
         this.comparators = comparators;
         this.sortList();
-        System.out.println(this.comparators.length);
     }
 
     @Override
