@@ -73,7 +73,7 @@ public class StringUtil {
     public static boolean keywordMatchStartOfPhrase(String keyword, String phrase) {
         Pattern pattern = Pattern.compile(String.format("^%s", phrase.toLowerCase()));
         Matcher matcher = pattern.matcher(keyword.toLowerCase());
-        return matcher.matches() || matcher.hitEnd()
+        return matcher.matches() || matcher.hitEnd();
     }
 
     public static int limitedCompare(CharSequence left, CharSequence right, final int threshold) {
