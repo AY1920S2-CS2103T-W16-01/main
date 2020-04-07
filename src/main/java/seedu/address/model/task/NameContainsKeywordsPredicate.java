@@ -3,8 +3,6 @@ package seedu.address.model.task;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import seedu.address.commons.util.StringUtil;
 
@@ -34,12 +32,10 @@ public class NameContainsKeywordsPredicate implements Predicate<Task> {
                 this.score = Math.min(this.score, currScore);
             }
         }
-        // TODO if keyword matches front, then set score to 1
+
         for (String key: keywords) {
             for (String name: splitTaskName) {
-                Pattern pattern = Pattern.compile(String.format("^%s", name.toLowerCase()));
-                Matcher matcher = pattern.matcher(key.toLowerCase());
-                if (matcher.matches() || matcher.hitEnd()) {
+                if (StringUtil.keywordMatchStartOfPhrase(key, name)) {
                     this.score = 1;
                 }
             }

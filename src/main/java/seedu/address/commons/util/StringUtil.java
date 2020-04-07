@@ -6,6 +6,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /** Helper functions for handling strings. */
 public class StringUtil {
@@ -66,6 +68,12 @@ public class StringUtil {
         } catch (NumberFormatException nfe) {
             return false;
         }
+    }
+
+    public static boolean keywordMatchStartOfPhrase(String keyword, String phrase) {
+        Pattern pattern = Pattern.compile(String.format("^%s", phrase.toLowerCase()));
+        Matcher matcher = pattern.matcher(keyword.toLowerCase());
+        return matcher.matches() || matcher.hitEnd()
     }
 
     public static int limitedCompare(CharSequence left, CharSequence right, final int threshold) {
