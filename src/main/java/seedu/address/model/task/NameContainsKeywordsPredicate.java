@@ -22,6 +22,10 @@ public class NameContainsKeywordsPredicate implements Predicate<Task> {
 
     @Override
     public boolean test(Task task) { // change test to return an int value as the edit distance
+        if (keywords.size() == 0) {
+            return false;
+        }
+        
         this.score = Integer.MAX_VALUE;
         String joinnedKeywords = String.join(" ", keywords);
         String[] splitTaskName = task.getName().fullName.split("\\s+");
@@ -40,7 +44,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Task> {
                 }
             }
         }
-        System.out.println(String.format("%s:%d", task.getName().fullName, this.score));
+        // System.out.println(String.format("%s:%d", task.getName().fullName, this.score));
         return this.score != -1 && this.score != Integer.MAX_VALUE;
     }
 
