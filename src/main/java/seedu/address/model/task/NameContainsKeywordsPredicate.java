@@ -44,7 +44,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Task> {
                 }
             }
         }
-        // System.out.println(String.format("%s:%d", task.getName().fullName, this.score));
+        
         return this.score != -1 && this.score != Integer.MAX_VALUE;
     }
 
