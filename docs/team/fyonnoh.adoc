@@ -1,0 +1,60 @@
+= Fyonn Oh - Project Portfolio
+:site-section: AboutUs
+:imagesDir: ../images
+:stylesDir: ../stylesheets
+
+== PROJECT: BB Productive - Level 3
+
+---
+
+== Overview
+
+My team and I were tasked to create an enhanced application that is built upon a basic command line interface called AddressBook. And thus, We created BB Productive, a productivity application that consists of three main features: a task manager, a Pomodoro timer and a Pet. We augmented the list feature of AddressBook and transform it into a task manager with a reminder system. We also added a pomodoro timer which users can use to manage his work cycle. Furthermore, we gamified productivity by retrofitting a virtual pet that would evolve as more tasks is done by the user. It would also become angry if the user has not been productive for a period of time. BB Productive is perfect for students who are procrastinators and are lazy.
+
+== Summary of contributions
+
+* *Major enhancement*: The Virtual Pet
+** What it does: The Pet is part of the gamification of our application to help them be more productive. When the user completes a task, he/she gains 5 XP points. When the user completes a 25 minutes of work, tracked by the Pomodoro timer, he/she gains 25 XP points. As the user accumulates points, the pet will evolve whenever the points reach a milestone. Furthermore, if the user does not do any work (no completed task) for 24 hours, the pet will change its mood to be angry, which signals to the user that he/she has not been productive. The pet will switch back to being happy once the user finished a task.
+** Justification: The purpose of this pet is to gamify productivity so as to help them overcome the inertia to doing work. The user’s sense of attachment to the virtual pet acts as a source of motivation for them to do work.
+** Highlights:  In order to track the amount of time that work has not been done, I had to utilise the Timer class provided by Java. Furthermore, I have made many attempts to restructure the code for this feature so as to better adhere to the principles commonly used in coding practices. I have also provided the graphics for the Pet.
+
+* *Major enhancement*: Settings tab + Set Commands
+** What it does: The settings tab and the set commands allow the user to customise the app to better suit his/her needs. The user can customise the name of the pet, the duration prefered for the pomodoro cycle and also the goal for the daily challenge.
+** Justification: The purpose of the set commands is so the user will be able to modify the features provided in the application to better cater to his/her needs.
+** Highlights: In order to create the settings tab, I had to learn JavaFx. To create the set commands, I had to define my own set of classes and also learn Regex so as to determine the validity of certain inputs. Furthermore, I had to augment it on top of the code produced by my teammates (as I was changing the attributes of their code).
+
+* *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
+
+* *Other contributions*:
+
+** Documentation:
+** Community:
+*** PRs reviewed (with non-trivial review comments)
+*** Reported bugs and suggestions for other teams in the class
+*** Improved quality of UG
+
+_{you can add/remove categories in the list above}_
+
+== Contributions to the User Guide
+
+
+|===
+|_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
+|===
+
+include::../UserGuide.adoc[tag=delete]
+
+include::../UserGuide.adoc[tag=dataencryption]
+
+== Contributions to the Developer Guide
+
+|===
+|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
+|===
+
+
+== PROJECT: PowerPointLabs
+
+---
+
+_{Optionally, you may include other projects in your portfolio.}_
