@@ -134,10 +134,9 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredTaskList().size());
 
         Task task = model.getFilteredTaskList().get(targetIndex.getZeroBased());
-        final String[] splitName = task.getName().fullName.split("\\s+");
+        final String name = task.getName().fullName;
         model.updateFilteredTaskList(
-                new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
-
-        assertEquals(1, model.getFilteredTaskList().size());
+                new NameContainsKeywordsPredicate(Arrays.asList(name)));
+        assertEquals(task, model.getFilteredTaskList().get(0));
     }
 }

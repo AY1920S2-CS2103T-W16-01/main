@@ -68,7 +68,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_zeroKeywords_noTaskFound() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
