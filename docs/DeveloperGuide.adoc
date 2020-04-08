@@ -263,6 +263,38 @@ To implement this, we've augmented the UniqueTaskList and TaskList with a functi
 .Activity diagram of auto complete
 image::AutoCompleteActivityDiagram.png[]
 
+[[Pomodoro]]
+=== Pomodoro
+Pomodoro is activated by the `pom` command. It follows the same execution flow as many of the other commands in BBProductive.
+
+.Interactions Inside Logic Component for the pom 1 command
+image::PomSequenceDiagram.png[width=790]
+
+==== Implementation
+Pomosoero's features are implemented mainly in `seedu.address.logic` package. The `PomodoroManager` class is used to maniulate the timer and configure the relevant UI elements. The timer is facilitated by `javafx.animation.Timeline`.
+
+Through the use of the Pomodoro feature, there are occasions where the app has to prompt the user for specific input in order to progress. This behaviour flow is represented in the _Pomodoro Acctivity_ diagram.
+
+.Pomodoro Activity Diagram
+image::PomodoroActivityDiagram.png[width=400]
+
+The `PomodoroManager` maintains a  `prompt_state` indicating what the app might be prompting the user at a given time.
+
+*Pomodoro Prompt States*
+
+* `NONE`: There is no particular prompt happening. The default state when the app is in the neutral state. (i.e. No pomodoro running.)
+* `CHECK_DONE`: This state occurs when a timer expires during a Pomodoro cycle.
+* `CHECK_TAKE_BREAK`: This state occurs after user response has been received in the CHECK_DONE state.
+* `CHECK_DONE_MIDPOM`: This state occurs when the user calls done on a task that is the Pomodoro running task.
+
+Pomodoro has settings that can be configured by the user:
+
+* Pomodoro Time: This defines how long the Pomodoro work period is. The default is 25 minutes.
+* Break Time: This defines how long the breaks last in between Pomodoro periods. The default is 5 minutes.
+
+This data is captured and stored in the `Pomodoro` class in `seedu.address.model`, which interacts with the app’s storage system. `PomodoroManager` also updates the `Pomodoro` model on what task is being run and the time remaining in a particular cycle. This allows the time progress to be persistent in between app closures and relaunches.
+
+
 === Logging
 
 We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.
