@@ -28,10 +28,10 @@ StorageManager o--> PetStorage
 StorageManager o--> PomodoroStorage
 StorageManager o--> StatisticsStorage
 
-JsonPetStorage .up.|> PetStorage 
+JsonPetStorage .up.|> PetStorage
 JsonPetStorage .down.> JsonAdaptedPet
 
-JsonPomodoroStorage .up.|> PomodoroStorage 
+JsonPomodoroStorage .up.|> PomodoroStorage
 JsonPomodoroStorage .down.> JsonAdaptedPomodoro
 
 JsonStatisticsStorage .up.|> StatisticsStorage

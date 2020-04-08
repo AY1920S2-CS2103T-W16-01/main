@@ -25,7 +25,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Task> {
         if (keywords.size() == 0) {
             return false;
         }
-        
+
         this.score = Integer.MAX_VALUE;
         String joinnedKeywords = String.join(" ", keywords);
         String[] splitTaskName = task.getName().fullName.split("\\s+");
@@ -47,7 +47,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Task> {
                 }
             }
         }
-        
+
         return this.score != -1 && this.score != Integer.MAX_VALUE;
     }
 

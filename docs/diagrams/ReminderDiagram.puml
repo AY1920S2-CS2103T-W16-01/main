@@ -68,7 +68,7 @@ deactivate TaskListParser
 LogicManager -> AddCommand : execute()
 activate AddCommand
 
-AddCommand -> Model : addTask(task) 
+AddCommand -> Model : addTask(task)
 activate Model
 
 Model --> AddCommand

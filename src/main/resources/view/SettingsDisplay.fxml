@@ -6,73 +6,75 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="settingsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="true" prefHeight="500.0" prefWidth="340.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Label fx:id="petNameLabel" mouseTransparent="true" text="Pet Name">
-         <padding>
-            <Insets top="70.0" />
-         </padding>
-         <VBox.margin>
-            <Insets left="20.0" />
-         </VBox.margin>
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <TextField fx:id="petNameTextField" layoutX="10.0" maxHeight="50.0" maxWidth="300.0" mouseTransparent="true" prefHeight="30.0" prefWidth="300.0">
-         <VBox.margin>
-            <Insets left="20.0" top="10.0" />
-         </VBox.margin>
-         <padding>
-            <Insets left="10.0" />
-         </padding>
-         <font>
-            <Font size="16.0" />
-         </font>
-      </TextField>
-      <Label fx:id="pomodoroLabel" mouseTransparent="true" text="Default Pomodoro Duration">
-         <padding>
-            <Insets top="30.0" />
-         </padding>
-         <VBox.margin>
-            <Insets left="20.0" />
-         </VBox.margin>
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <TextField fx:id="pomodoroTextField" maxHeight="50.0" maxWidth="300.0" mouseTransparent="true" prefHeight="30.0">
-         <VBox.margin>
-            <Insets left="20.0" top="10.0" />
-         </VBox.margin>
-         <padding>
-            <Insets left="10.0" />
-         </padding>
-         <font>
-            <Font size="16.0" />
-         </font>
-      </TextField>
-      <Label fx:id="challengeLabel" mouseTransparent="true" text="Daily Challenge Target">
-         <padding>
-            <Insets top="30.0" />
-         </padding>
-         <VBox.margin>
-            <Insets left="20.0" />
-         </VBox.margin>
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <TextField fx:id="challengeTextField" maxHeight="30.0" maxWidth="300.0" mouseTransparent="true" prefHeight="30.0">
-         <VBox.margin>
-            <Insets left="20.0" top="10.0" />
-         </VBox.margin>
-         <padding>
-            <Insets left="10.0" />
-         </padding>
-         <font>
-            <Font size="16.0" />
-         </font>
-      </TextField>
-   </children>
+<VBox fx:id="settingsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="true" prefHeight="500.0" prefWidth="340.0"
+    xmlns="http://javafx.com/javafx/8"
+    xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label fx:id="petNameLabel" mouseTransparent="true" text="Pet Name">
+            <padding>
+                <Insets top="70.0" />
+            </padding>
+            <VBox.margin>
+                <Insets left="20.0" />
+            </VBox.margin>
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <TextField fx:id="petNameTextField" layoutX="10.0" maxHeight="50.0" maxWidth="300.0" mouseTransparent="true" prefHeight="30.0" prefWidth="300.0">
+            <VBox.margin>
+                <Insets left="20.0" top="10.0" />
+            </VBox.margin>
+            <padding>
+                <Insets left="10.0" />
+            </padding>
+            <font>
+                <Font size="16.0" />
+            </font>
+        </TextField>
+        <Label fx:id="pomodoroLabel" mouseTransparent="true" text="Default Pomodoro Duration">
+            <padding>
+                <Insets top="30.0" />
+            </padding>
+            <VBox.margin>
+                <Insets left="20.0" />
+            </VBox.margin>
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <TextField fx:id="pomodoroTextField" maxHeight="50.0" maxWidth="300.0" mouseTransparent="true" prefHeight="30.0">
+            <VBox.margin>
+                <Insets left="20.0" top="10.0" />
+            </VBox.margin>
+            <padding>
+                <Insets left="10.0" />
+            </padding>
+            <font>
+                <Font size="16.0" />
+            </font>
+        </TextField>
+        <Label fx:id="challengeLabel" mouseTransparent="true" text="Daily Challenge Target">
+            <padding>
+                <Insets top="30.0" />
+            </padding>
+            <VBox.margin>
+                <Insets left="20.0" />
+            </VBox.margin>
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Label>
+        <TextField fx:id="challengeTextField" maxHeight="30.0" maxWidth="300.0" mouseTransparent="true" prefHeight="30.0">
+            <VBox.margin>
+                <Insets left="20.0" top="10.0" />
+            </VBox.margin>
+            <padding>
+                <Insets left="10.0" />
+            </padding>
+            <font>
+                <Font size="16.0" />
+            </font>
+        </TextField>
+    </children>
 </VBox>

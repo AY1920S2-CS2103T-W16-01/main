@@ -23,7 +23,7 @@ Refer to the guide <<SettingUp#, here>>.
 == Design
 
 [[Design-Architecture]]
-=== Architecture 
+=== Architecture
 
 .Architecture Diagram
 image::ArchitectureDiagram.png[]
@@ -253,7 +253,7 @@ image::SortSequenceDiagram.png[]
 *API* : link:{repoURL}/src/main/java/seedu/address/logic/commands/SortCommand.java[`SortCommand.java`]
 
 ==== Implementation
-The tasklist has no default sorting set on it. It will only be sorted when the sort command is used like so `sort {field1}, {field2}, ...`. 
+The tasklist has no default sorting set on it. It will only be sorted when the sort command is used like so `sort {field1}, {field2}, ...`.
 First our Model accepts an array of Comparators which it will iterate through from the back to ensure that the first comparator is the highest sort order.
 
 To implement this, we've augmented the UniqueTaskList and TaskList with a function setComparator. This allows us to set several comparators on the taskList to perform multi level sorting while maintaing the ObservableList which JavaFX can then use to update the UI.

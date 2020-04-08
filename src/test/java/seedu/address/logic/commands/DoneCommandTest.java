@@ -89,7 +89,7 @@ public class DoneCommandTest {
 
         expectedModel.setTask(
                 model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased()), doneTask);
-        
+
         showTaskAtIndex(model, INDEX_FIRST_TASK);
         showTaskAtIndex(expectedModel, INDEX_FIRST_TASK);
         assertCommandSuccess(doneCommand, model, expectedMessage.toString(), expectedModel);

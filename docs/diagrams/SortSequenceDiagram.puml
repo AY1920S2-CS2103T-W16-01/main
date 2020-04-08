@@ -16,7 +16,7 @@ end box
 activate LogicManager
 
 ref over LogicManager
-    Similar to DeleteCommand's way 
+    Similar to DeleteCommand's way
     of generating {action}Command
 end ref
 
@@ -24,7 +24,7 @@ end ref
 
 LogicManager -> SortCommand : execute()
 activate SortCommand
-    
+
 SortCommand -> Model : setComparator(Comparator[])
 activate Model
 

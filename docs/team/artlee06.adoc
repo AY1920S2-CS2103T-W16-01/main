@@ -31,7 +31,7 @@ My team of 5 Computer Science students, including myself, aimed to build a produ
 *** Managed releases `v1.1` - `v1.4rc` (3 releases) on GitHub
 ** Enhancements to existing features:
 *** Implemented the foundation of the new stylesheet used for the application
-*** Adjusted the JavaFX layout to fit the Adobe XD 
+*** Adjusted the JavaFX layout to fit the Adobe XD
 *** Wrote tests for both reminders and recurring tasks
 
 ** Documentation:

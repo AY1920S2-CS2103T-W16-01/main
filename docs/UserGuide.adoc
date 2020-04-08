@@ -45,8 +45,15 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 .  Refer to <<Features>> for details of each command.
 
+[[Terminology]]
 == Terminology
-Write terminology here.
+_This section provides a quick description for the common terminologies used in this user guide._
+
+*Task*: A task is something that you need to complete. It is represented as a card on the right side of the window. Set reminders, add tags and more to better manage your tasks!
+
+*Pomodoro*: A productivity technique that consists of doing focused work for 25 minutes followed by a 5 minute break. This technique prevents you from tiring out while doing work. 
+
+*Pet*: The pet you will interact with to manage your tasks and pomodoros. You can also level up the pet by completing more tasks/pomodoros.
 
 == Graphical User Interface (Permas)
 
@@ -59,8 +66,64 @@ Write CRUD stuff
 === Pet (Fyonn)
 Write pet
 
-=== Pomodoro (Hardy)
-Write pomodoro
+[[Pomodoro]]
+=== Pomodoro
+_This section describes the Pomodoro feature in detail and contains all commands you can use to take advantage of it_
+
+==== What's Pomodoro?
+In the late 1980s, a gentleman named Francesco Cirillo devised a time management method called the Pomodoro Technique. Essentially, a single cycle consists of two parts, 25 minutes of work, followed by a 5 minutes break. This cycle repeats for as long as you want to get work done.
+
+==== How do you use it?
+Trying to prevent burnout? BB productive offers you the option to try out the pomodoro tenchinique! The pomodoro technique breaks down work into manageable intervals spaced out with short breaks so as to not tired you out._
+
+To get started, follow the instructions below:
+
+===== Command: `pom`
+
+First, you can activate the Pomodoro timer with a task in focus. You can also add an optional timer amount field, different from the default time of 25 minutes, for that particular cycle.
+
+Format: `pom <index> [tm/<amount in minutes>]`
+
+You can use the value (decimals allowed) following `tm/` to represent your desired amount of time in minutes for a particular pomodoro cycle.
+
+.Example screen when pom is successfully executed.
+image::pom_success.png[width=790]
+
+===== Command: `pom pause`
+
+You can pause a running Pomodoro timer.
+
+.Example screen when pom is successfully paused
+image::pom_pause.png[width=790]
+
+===== Command: `pom continue`
+
+You can resume a paused Pomodoro timer.
+
+.Example screen when pom is successfully resumed
+image::pom_continuing.png[width=790]
+
+==== What happens when the timer's up?
+
+===== "Done" the task
+Once the timer expires, the app will prompt you if you have finished the task. You need only respond with Yes (Y) or No (N) in order to proceed.
+
+.Prompt when the pomodoro timer expires
+image::pom_time_expire.png[width=790]
+
+===== Break-time
+Afterwards, the app will prompt you if you would like to begin a 5 minute break (as per the pomodoro technique). Similarly, you need to respond with Yes (Y) or No (N). Responding with No will set the app to its neutral state. Yes will start the break timer.
+
+.Prompt checking if you'd like to take a break
+image::pom_prompt_break.png[width=790]
+
+Note: You will not be able to do execute other commands during these prompts.
+
+===== Back to work
+At the end of the break, the app will return to it's "neutral" state and you can  repeat the process, if you wish.
+
+.End of pomodoro cycle screen
+image::pom_break_end.png[width=790]
 
 === Statistics (Permas)
 
@@ -75,15 +138,84 @@ Write autocomplete
 === Reminders (Arthur)
 Write reminders
 
-=== Navigation (Hardy)
-Write navigation
+[[Navigation]]
+=== Navigation
+_This section shows all the commands to navigate the app. There are multiple tabs that can be shown: tasklist, statistics and settings._
+
+==== Commands
+
+===== Tasks
+
+Command: `tasks`
+
+You can call the `tasks` command to view the tab where your _task list_ resides in. The orange background on the Tasks tab indicates that you are currently on this tab.
+
+image::tasks.png[width="790"]
+
+Command: `stats`
+
+You can use the `stats` command to view the _Statistics_ tab. The orange background on the Statistics tab indicates that you are currently on this tab.
+
+image::stats.png[width="790]
+
+Command: `settings`
+
+Use the `settings` command to view the _Settings_ tab. The orange background on the Settings tab indicates that you are currently on this tab.
+
+image::settings.png[width="790"]
 
 === Storage (Permas)
 Write storage
 
-== Command Table Summary (Hardy)
-Table here.
+[[CommandTableSummary]]
+== Command Table Summary
+_The following table summarizes all the commands that you can use. Input contained with in [...] are optional fields._
 
+.Command Table
+[cols="1,3m,3m", frame="topbot",options="header"]
+|===
+|Command |Format |Example
+
+|Add
+|add n/<item index> [des/<task description>] [p/<priority value>] [r/<reminder’s date and time>] [t/<tag1> t/<tag2>...]
+|add n/Finish Quiz des/Pages 3-5 p/1 r/20/03/20@19:30 t/cs2100
+
+|Edit
+|edit INDEX [n/NAME] [des/DESCRIPTION] [p/PRIORITY] [r/REMINDER] [t/TAG]
+|edit 2 r/10/03/21@13:00
+
+|Done
+|done INDEX
+|done 5
+
+|Delete
+|delete INDEX
+|delete 7
+
+|Clear
+|clear
+|clear
+
+|Pom
+|pom INDEX [tm/TIME IN MINUTES]
+|pom 4 tm/45
+
+|Sort
+|sort FIELD1 FIELD2 FIELD3 ...
+|sort done, priority
+
+|Tasks
+|tasks
+|tasks
+
+|Stats
+|stats
+|stats
+
+|Settings
+|settings
+|settings
+|===
 
 == FAQ
 

@@ -45,7 +45,7 @@ Role: Ui/Design, Scheduling and tracking
 
 === Branson Ng
 image::bransonng.png[width="150", align="left"]
-{empty}[http://github.com/bransonng[github]] [<<hardoh#, portfolio>>]
+{empty}[http://github.com/bransonng[github]] [<<bransonng#, portfolio>>]
 
 Role: Git expert, Integration
 

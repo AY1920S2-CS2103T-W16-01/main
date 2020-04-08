@@ -3,7 +3,7 @@ ifdef::env-github,env-browser[:relfileprefix: docs/]
 
 https://travis-ci.org/AY1920S2-CS2103T-W16-1/main[image:https://api.travis-ci.org/AY1920S2-CS2103T-W16-1/main.svg?branch=master[Build Status]]
 
-https://coveralls.io/github/ay1920s2-cs2103t-w16-1/main?branch=master[image:https://coveralls.io/repos/github/ay1920s2-cs2103t-w16-1/main/badge.svg?branch=master[Coverage Status]]
+https://coveralls.io/github/AY1920S2-CS2103T-W16-1/main?branch=master[image:https://coveralls.io/repos/github/AY1920S2-CS2103T-W16-1/main/badge.svg?branch=master[Coveage Status]]
 
 ifndef::env-github[]
 image::docs/images/Ui.png[width="600"]

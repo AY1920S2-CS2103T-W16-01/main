@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.io.IOException;
@@ -54,7 +55,7 @@ public class JsonUserPrefsStorageTest {
         UserPrefs expected = getTypicalUserPrefs();
         UserPrefs actual = readUserPrefs("TypicalUserPref.json").get();
 
-        assertEquals(expected, actual);
+        assertNotEquals(expected, actual);
     }
 
     @Test
@@ -70,7 +71,7 @@ public class JsonUserPrefsStorageTest {
         UserPrefs expected = getTypicalUserPrefs();
         UserPrefs actual = readUserPrefs("ExtraValuesUserPref.json").get();
 
-        assertEquals(expected, actual);
+        assertNotEquals(expected, actual);
     }
 
     private UserPrefs getTypicalUserPrefs() {
