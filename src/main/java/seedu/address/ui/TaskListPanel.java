@@ -29,7 +29,7 @@ public class TaskListPanel extends UiPart<Region> {
     }
 
     public void setSortOrder(String sortOrder) {
-        this.tasksHeader.setText(String.format("Tasks %s", sortOrder));
+        this.tasksHeader.setText(String.format("Tasks by %s", sortOrder));
     }
 
     /**

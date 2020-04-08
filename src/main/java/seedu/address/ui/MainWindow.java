@@ -36,6 +36,7 @@ import seedu.address.logic.commands.CompletorResult;
 import seedu.address.logic.commands.DoneCommandResult;
 import seedu.address.logic.commands.PomCommandResult;
 import seedu.address.logic.commands.SetCommandResult;
+import seedu.address.logic.commands.SortCommandResult;
 import seedu.address.logic.commands.SwitchTabCommand;
 import seedu.address.logic.commands.SwitchTabCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -285,6 +286,11 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             tabPanePlaceholder.getSelectionModel().select(TASKS_TAB_INDEX);
+
+            if (commandResult instanceof SortCommandResult) {
+                SortCommandResult sortCommandResult = (SortCommandResult) commandResult;
+                taskListPanel.setSortOrder(sortCommandResult.getSortOrder());
+            }
 
             // Done Command related results
             try {

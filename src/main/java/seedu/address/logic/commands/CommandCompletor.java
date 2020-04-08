@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMER;
 import static seedu.address.logic.parser.CliSyntax.TASK_PREFIXES;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Optional;
@@ -139,18 +140,19 @@ public class CommandCompletor {
 
             case "sort":
                 String[] commaSeparatedFields = input.split("\\s*,\\s*|\\s+");
+                ArrayList<String> acceptedFields = new ArrayList<>();
+                acceptedFields.add("sort");
                 for (int i = 1; i < commaSeparatedFields.length; i++) {
                     String currWord = commaSeparatedFields[i];
                     Optional<String> completedWord =
                             getCompletedWord(currWord, SortCommand.ALLOWED_SORT_FIELDS);
                     if (completedWord.isPresent()) {
-                        commaSeparatedFields[i] = completedWord.get();
+                        acceptedFields.add(completedWord.get());
                         feedbackToUser = COMPLETE_SUCCESS;
-                    } else {
-                        commaSeparatedFields[i] = "";
                     }
                 }
-                newCommand = getCommaJoinedCommand(commaSeparatedFields);
+                
+                newCommand = getCommaJoinedCommand(acceptedFields.toArray(new String[0]));
                 break;
         }
         return new CompletorResult(newCommand + " ", feedbackToUser);

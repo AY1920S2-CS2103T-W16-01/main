@@ -65,7 +65,10 @@ public class SortCommand extends Command {
         }
 
         model.setComparator(temp.toArray(new Comparator[0]));
-        return new CommandResult(String.format(MESSAGE_SUCCESS, String.join(" ", fields)));
+
+        String commandFeedback = String.format(MESSAGE_SUCCESS, String.join(" ", fields));
+
+        return new SortCommandResult(commandFeedback, fields[0]);
     }
 
     private Comparator<Task> getPriorityComparator() {
