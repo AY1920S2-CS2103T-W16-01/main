@@ -363,9 +363,13 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |=======================================================================
 
 [appendix]
+[[UseCases]]
 == Use Cases
 
 (For all use cases below, the *System* is `BBProductive` and the *Actor* is the `user`, unless specified otherwise)
+
+.Use case diagram for BBProductive
+image::use_cases.png[width=790]
 
 [discrete]
 
