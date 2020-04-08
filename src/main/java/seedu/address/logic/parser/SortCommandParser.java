@@ -38,7 +38,7 @@ public class SortCommandParser implements Parser<SortCommand> {
     }
 
     public CompletorResult completeCommand(String input) {
-        String[] commaSeparatedFields = input.split("\\s*,\\s*|\\s+");
+        String[] commaSeparatedFields = input.split("\\s+");
         String feedbackToUser = Messages.UNCHANGED_SUCCESS;
 
         ArrayList<String> acceptedFields = new ArrayList<>();
@@ -51,7 +51,7 @@ public class SortCommandParser implements Parser<SortCommand> {
                 feedbackToUser = Messages.COMPLETE_SUCCESS;
             }
         }
-        
+
         String newCommand = StringUtil.getCommaJoinedCommand(acceptedFields.toArray(new String[0]));
         return new CompletorResult(newCommand, feedbackToUser);
     }

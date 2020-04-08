@@ -49,7 +49,7 @@ public class ParserUtil {
      */
     public static Index[] parseIndices(String oneBasedIndices) throws ParseException {
         String trimmedIndices = oneBasedIndices.trim();
-        String[] splitIndices = trimmedIndices.split("\\s*,\\s*");
+        String[] splitIndices = trimmedIndices.split("\\s+");
         Index[] indexes = new Index[splitIndices.length];
         for (int i = 0; i < splitIndices.length; i++) {
             if (!StringUtil.isNonZeroUnsignedInteger(splitIndices[i])) {
@@ -63,7 +63,7 @@ public class ParserUtil {
     // function for sorting and potentially tags
     public static String[] parseUniqueKeyWords(String keywords) throws ParseException {
         String trimmedKeyWords = keywords.trim();
-        String[] splitKeyWords = trimmedKeyWords.split("\\s*,\\s*");
+        String[] splitKeyWords = trimmedKeyWords.split("\\s+");
         ArrayList<String> unique = new ArrayList<>();
         for (String s : splitKeyWords) {
             if (!unique.contains(s)) {

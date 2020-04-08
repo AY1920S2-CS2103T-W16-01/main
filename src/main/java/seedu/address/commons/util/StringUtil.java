@@ -109,7 +109,7 @@ public class StringUtil {
     }
 
     public static String getCommaJoinedCommand(String[] words) {
-        String commaArguments = String.join(", ", Arrays.copyOfRange(words, 1, words.length));
+        String commaArguments = String.join(" ", Arrays.copyOfRange(words, 1, words.length));
         return String.format("%s %s", words[0], commaArguments);
     }
 

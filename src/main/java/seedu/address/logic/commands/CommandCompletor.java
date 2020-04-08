@@ -100,9 +100,9 @@ public class CommandCompletor {
             case DoneCommand.COMMAND_WORD:
             case DeleteCommand.COMMAND_WORD:
                 // Converts indexes that are not comma separated into comma separated
-                String[] commaSeparatedIndices = input.split("\\s*,\\s*|\\s+");
+                String[] commaSeparatedIndices = input.split("\\s+");
                 String[] indexes = getCommandArguments(commaSeparatedIndices);
-                String commaJoinedIndexes = String.join(", ", indexes);
+                String commaJoinedIndexes = String.join(" ", indexes);
                 newCommand = String.format("%s %s", trimmedInputs[0], commaJoinedIndexes);
                 feedbackToUser = String.format(COMPLETE_SUCCESS);
                 break;
