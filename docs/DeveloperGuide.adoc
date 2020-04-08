@@ -368,62 +368,292 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 (For all use cases below, the *System* is `BBProductive` and the *Actor* is the `user`, unless specified otherwise)
 
 [discrete]
-=== Use case: Delete task
+
+=== Use Case: UC01 - View tasks
 
 *MSS*
 
-1.  User requests to list tasks
-2.  BBProductive shows a list of tasks
-3.  User requests to delete a specific person in the list
-4.  BBProductive deletes the task
+1. User requests to see the task list.
+2. BB Productive displays the view under the tasks tab.
++
+Use case ends.
+
+[discrete]
+
+=== Use Case: UC02 - Add task
+
+*MSS*
+
+1. User requests to add a task to the task list.
+2. BB Productive shows view with updated task list.
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 2a. The list is empty.
+* 1a. Task of the same name already exists.
++
+[none]
+** 1a1. BBProductive shows _"This task already exists in the task list"_ in response box.
 +
 Use case ends.
 
-* 3a. The given index is invalid.
-+
-[none]
-** 3a1. BBProductive shows an error message.
-+
-Use case resumes at step 2.
+[discrete]
 
-=== Use case: Run task with Pomodoro
+=== Use Case: UC03 - Done task
 
 *MSS*
 
-1.  User requests to run task with Pomodoro
-2.  User proceeds to do task
-3.  When Pomodoro timer ends, BBProductive prompts the user to continue for the next interval, or exit the Pomodoro with the task done/undone
-4.  User completes the task and request to mark the task as done
-5.  BBProductive marks the task as done
+1. User requests to set a task to done.
+2. BB Productive shows view with updated task list.
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 2a. The given index is invalid.
+* 1a. Task specified by user already marked as done.
 +
-** 2a1. BBProductive shows an error message.
+[none]
+** 1a1. BBProductive shows _"Task has already been marked as done!"_ in response box.
++
 Use case ends.
 
-* 3a. User has not completed the task.
+[none]
+* 1b. User fed in an invalid index.
 +
 [none]
-** 3a1. User continues the Pomodoro for the next interval.
+** 1b1. BBProductive shows _"Invalid command format! "_ in response box.
 +
-Use case resumes at step 3.
+Use case ends.
 
-* 3b. User has not completed the task but wants to take a break from completing the task.
+[none]
+* 2a. A pommed task is among the tasks to be set to done.
 +
 [none]
-** 3a1. User exits the Pomodoro without marking the task as done.
+** 2a1. BBProductive prompts user if they want to `pom` another task, or `N` to return the app to neutral.
+** 2a2. If user `pom` another task, use case resumes at stage 2 of UC09.
++
+Use case ends.
+
+[discrete]
+
+=== Use Case: UC04 - Edit task
+
+*MSS*
+
+1. User requests to update a task with updated fields and informs the task list.
+2. BB Productive shows view with updated task list.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. New task name matches that of another task.
++
+[none]
+** 1a1. BBProductive shows _"This task already exists in the task list."_ in response box.
++
+Use case ends.
+
+[none]
+* 1b. User fed in an invalid index
++
+[none]
+** 1a1. BBProductive shows _"Invalid command format! "_ in response box.
++
+Use case ends.
+
+[discrete]
+
+=== Use Case: UC05 - Set a reminder for a task
+
+*MSS*
+
+1. User requests to set a task with a Reminder.
+2. BB Productive creates/updates a task and shows the view with updated task list.
+3. A reminder pops up when the specified time has elapsed.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. New task name matches that of another task.
++
+[none]
+** 1a1. BBProductive shows _"This task already exists in the task list."_ in response box.
++
+Use case ends.
+
+[discrete]
+
+=== Use Case: UC06 - Set a task to recurring
+
+*MSS*
+
+1. User requests to set a task to be a recurring task.
+2. BB Productive creates/updates a task and shows the view with updated task list.
+3. A reminder pops up when the specified time has elapsed.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. New task name matches that of another task.
++
+[none]
+** 1a1. BBProductive shows _"This task already exists in the task list."_ in response box.
++
+Use case ends.
+
+[discrete]
+
+=== Use Case: UC07 - Delete task
+
+*MSS*
+
+1.  User requests to list tasks.
+2.  BBProductive shows a list of tasks.
+3.  User requests to delete a specific person in the list.
+4.  BBProductive deletes the task.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. New task name matches that of another task.
++
+[none]
+** 1a1. BBProductive shows _"This task already exists in the task list."_ in response box.
++
+Use case ends.
+
+[none]
+* 1b. User fed in an invalid index.
++
+[none]
+** 1b1. BBProductive shows _"Invalid command format!"_ in response box.
++
+Use case ends.
+
+[none]
+* 1c. Task to be deleted is being pommed.
++
+[none]
+** 1c1. BBProductive shows _"You can't delete a task you're pom-ming!"_ in response box.
++
+Use case ends.
+
+[discrete]
+
+=== Use Case: UC08 - Sort tasks
+
+*MSS*
+
+1.  User requests to list tasks.
+2.  BBProductive shows a list of tasks.
+3.  User requests to sort the list by one or more parameters.
+4.  BBProductive creates a new view and updates the task list view.
++
+Use case ends.
+
+[discrete]
+
+=== Use Case: UC09 - Start pomodoro
+
+*MSS*
+
+1.  User requests to start pomodoro on a specific task.
+2.  BBProductive starts timer and sets task-in-progress to said task.
+3.  Pomodoro timer expires.
+4.  BBProductive sets task-in-progress to null and prompts user if user has done the task.
+5.  User replies the affirmative.
+6.  BBProductive shows view with updated task list with done task. Pet adds additional points.
+7.  BBProductive prompts user if user wants to do break time.
+8.  User replies the affirmative.
+9.  BBProductive starts break timer.
+10. Break timer expires.
+11. BBProductive returns to neutral state.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. User fed in an invalid index.
++
+[none]
+** 1a1. BBProductive shows _"Invalid command format! "_ in response box.
++
+Use case ends.
+
+[none]
+* 1b. Task specified by user already marked as done.
++
+[none]
+** 1b1. BBProductive shows _"Task has already been marked as done!"_ in response box.
++
+Use case ends.
+
+[none]
+* 5a. User replies negative.
++
+[none]
+** 5a1. BBProductive will leave the task list as is.
++
+Use case resumes at stage 7.
+
+[none]
+* 5b. User replies with answer that is neither `Y/y` nor `N/n`.
++
+[none]
+** 5b1. BBProductive will leave the task list as is.
++
+Use case resumes at stage 7.
+
+[none]
+* 8a. User replies negative.
++
+[none]
+** 8a1. BBProductive will start no timer.
++
+Use case resumes at stage 11.
+
+[discrete]
+
+=== Use Case: UC10 - View stats
+
+*MSS*
+
+1.  User requests to see the statistics tab.
+2.  BBProductive displays the view under the statistics tab.
++
+Use case ends.
+
+[discrete]
+=== Use Case: UC11 - View settings
+
+*MSS*
+
+1.  User requests to see the settings tab.
+2.  BBProductive displays the view under the settings tab.
++
+Use case ends.
+
+[discrete]
+=== Use Case: UC12 - Set settings
+
+*MSS*
+
+1.  User requests to update the app's settings.
+2.  BBProductive takes the input and updates the app's internal settings.
+3.  User requests to see the settings tab.
+4.  BBProductive displays the view under the settings tab with the updated preferences.
 +
 Use case ends.
 
