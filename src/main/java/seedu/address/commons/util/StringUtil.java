@@ -41,6 +41,12 @@ public class StringUtil {
         return Arrays.stream(wordsInPreppedSentence).anyMatch(preppedWord::equalsIgnoreCase);
     }
 
+    public static String capitalizeWord(String word) {
+        StringBuilder toCapitalize = new StringBuilder(word);
+        toCapitalize.setCharAt(0, Character.toUpperCase(toCapitalize.charAt(0)));
+        return toCapitalize.toString();
+    }
+
     /** Returns a detailed message of the t, including the stack trace. */
     public static String getDetails(Throwable t) {
         requireNonNull(t);

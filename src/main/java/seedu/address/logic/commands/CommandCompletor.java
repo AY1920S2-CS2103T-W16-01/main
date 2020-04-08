@@ -13,9 +13,11 @@ import java.util.Set;
 
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.exceptions.CompletorException;
+import seedu.address.logic.parser.AddCommandParser;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.CliSyntax;
+import seedu.address.logic.parser.EditCommandParser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.Reminder;
@@ -84,37 +86,16 @@ public class CommandCompletor {
         }
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(input, TASK_PREFIXES);
-        boolean hasReminder = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_REMINDER);
-        boolean hasPriority = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_PRIORITY);
         String prefixesAdded = "";
         
         String newCommand = String.join(" ", trimmedInputs);
 
         switch (trimmedInputs[0]) {
+
             case AddCommand.COMMAND_WORD:
+                return new AddCommandParser().completeCommand(newCommand);
             case EditCommand.COMMAND_WORD:
-                for (int i = trimmedInputs.length - 1; i > 0; i--) {
-                    String currentArgument = trimmedInputs[i];
-                    if (Reminder.isValidReminder(currentArgument) && !hasReminder) {
-                        trimmedInputs[i] =
-                                addPrefix(CliSyntax.PREFIX_REMINDER.toString(), currentArgument);
-                        hasReminder = true;
-                        prefixesAdded += CliSyntax.PREFIX_REMINDER.toString();
-                    } else if (Priority.isValidPriority(currentArgument) && !hasPriority) {
-                        // prevent autoComplete from setting task index with a priority
-                        if (trimmedInputs[0].equals("edit") && i < 2) {
-                            continue;
-                        }
-                        trimmedInputs[i] =
-                                addPrefix(CliSyntax.PREFIX_PRIORITY.toString(), currentArgument);
-                        hasPriority = true;
-                        prefixesAdded += CliSyntax.PREFIX_PRIORITY.toString();
-                    }
-                }
-                newCommand = String.join(" ", trimmedInputs);
-                prefixesAdded = prefixesAdded.length() == 0 ? "nil" : prefixesAdded;
-                feedbackToUser = String.format(COMPLETE_PREFIX_SUCCESS, prefixesAdded);
-                break;
+                return new EditCommandParser().completeCommand(newCommand);
 
             case DoneCommand.COMMAND_WORD:
             case DeleteCommand.COMMAND_WORD:

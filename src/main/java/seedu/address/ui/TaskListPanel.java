@@ -8,6 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.util.StringUtil;
 import seedu.address.model.task.Task;
 
 /** Panel containing the list of tasks. */
@@ -29,7 +30,8 @@ public class TaskListPanel extends UiPart<Region> {
     }
 
     public void setSortOrder(String sortOrder) {
-        this.tasksHeader.setText(String.format("Tasks by %s", sortOrder));
+        String capitalized = StringUtil.capitalizeWord(sortOrder);
+        this.tasksHeader.setText(String.format("Tasks by %s", capitalized));
     }
 
     /**

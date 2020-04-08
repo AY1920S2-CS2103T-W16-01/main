@@ -7,10 +7,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.TASK_PREFIXES;
 
 import java.util.Optional;
 import java.util.Set;
+
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.CompletorResult;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
@@ -81,5 +85,39 @@ public class AddCommandParser implements Parser<AddCommand> {
                 new Task(name, priority, description, tagList, optionalReminder, optionalRecurring);
 
         return new AddCommand(task);
+    }
+
+    public CompletorResult completeCommand(String input) {
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(input, TASK_PREFIXES);
+        boolean hasReminder = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_REMINDER);
+        boolean hasPriority = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_PRIORITY);
+
+        StringBuilder prefixesBuilder = new StringBuilder();
+
+        String[] trimmedInputs = input.split("\\s+");
+        
+        for (int i = trimmedInputs.length - 1; i > 0; i--) {
+            String currentArgument = trimmedInputs[i];
+            if (Reminder.isValidReminder(currentArgument) && !hasReminder) {
+                trimmedInputs[i] = CliSyntax.PREFIX_REMINDER.toString() + currentArgument;
+                hasReminder = true;
+                prefixesBuilder.append(CliSyntax.PREFIX_REMINDER.toString());
+                prefixesBuilder.append(" ");
+            } else if (Priority.isValidPriority(currentArgument) && !hasPriority) {
+                // prevent autoComplete from setting task index with a priority
+                if (trimmedInputs[0].equals("edit") && i < 2) {
+                    continue;
+                }
+                trimmedInputs[i] = CliSyntax.PREFIX_PRIORITY.toString() + currentArgument;
+                hasPriority = true;
+                prefixesBuilder.append(CliSyntax.PREFIX_PRIORITY.toString());
+                prefixesBuilder.append(" ");
+            }
+        }
+        String newCommand = String.join(" ", trimmedInputs);
+        String prefixesAdded = prefixesBuilder.length() == 0 ? "nil" : prefixesBuilder.toString();
+        String feedbackToUser = String.format(Messages.COMPLETE_PREFIX_SUCCESS, prefixesAdded);
+
+        return new CompletorResult(newCommand, feedbackToUser);
     }
 }
