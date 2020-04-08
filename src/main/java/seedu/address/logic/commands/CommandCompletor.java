@@ -19,6 +19,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.CliSyntax;
 import seedu.address.logic.parser.EditCommandParser;
 import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.SortCommandParser;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.Reminder;
 
@@ -71,7 +72,7 @@ public class CommandCompletor {
         }
 
         Optional<String> suggestedCommand =
-                getCompletedWord(trimmedInputs[0], this.commands.toArray(new String[0]));
+                StringUtil.getCompletedWord(trimmedInputs[0], this.commands.toArray(new String[0]));
 
         if (suggestedCommand.isPresent()) {
             if (trimmedInputs[0].equals(suggestedCommand.get())) {
@@ -96,7 +97,6 @@ public class CommandCompletor {
                 return new AddCommandParser().completeCommand(newCommand);
             case EditCommand.COMMAND_WORD:
                 return new EditCommandParser().completeCommand(newCommand);
-
             case DoneCommand.COMMAND_WORD:
             case DeleteCommand.COMMAND_WORD:
                 // Converts indexes that are not comma separated into comma separated
@@ -120,41 +120,9 @@ public class CommandCompletor {
                 break;
 
             case "sort":
-                String[] commaSeparatedFields = input.split("\\s*,\\s*|\\s+");
-                ArrayList<String> acceptedFields = new ArrayList<>();
-                acceptedFields.add("sort");
-                for (int i = 1; i < commaSeparatedFields.length; i++) {
-                    String currWord = commaSeparatedFields[i];
-                    Optional<String> completedWord =
-                            getCompletedWord(currWord, SortCommand.ALLOWED_SORT_FIELDS);
-                    if (completedWord.isPresent()) {
-                        acceptedFields.add(completedWord.get());
-                        feedbackToUser = COMPLETE_SUCCESS;
-                    }
-                }
-                
-                newCommand = getCommaJoinedCommand(acceptedFields.toArray(new String[0]));
-                break;
+                return new SortCommandParser().completeCommand(newCommand);
         }
         return new CompletorResult(newCommand + " ", feedbackToUser);
-    }
-
-    private String getCommaJoinedCommand(String[] words) {
-        String commaArguments = String.join(", ", getCommandArguments(words));
-        return String.format("%s %s", words[0], commaArguments);
-    }
-
-    /** Returns complete command if given partial command */
-    private Optional<String> getCompletedWord(String word, String[] possibilities) {
-        for (String matcher : possibilities) {
-            if (StringUtil.keywordMatchPhrase(word, matcher)) {
-                return Optional.of(matcher);
-            }
-            if (StringUtil.keywordMatchStartOfPhrase(word, matcher)) {
-                return Optional.of(matcher);
-            }
-        }
-        return Optional.empty();
     }
 
     /** Gets all non command arguments */

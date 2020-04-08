@@ -6,6 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -81,6 +82,7 @@ public class StringUtil {
         }
     }
 
+    //TODO shift to completorUtil.java ?
     public static boolean keywordMatchStartOfPhrase(String keyword, String phrase) {
         Pattern pattern = Pattern.compile(String.format("^%s", phrase.toLowerCase()));
         Matcher matcher = pattern.matcher(keyword.toLowerCase());
@@ -91,6 +93,24 @@ public class StringUtil {
         Pattern pattern = Pattern.compile(String.format("^%s", phrase.toLowerCase()));
         Matcher matcher = pattern.matcher(keyword.toLowerCase());
         return matcher.matches();
+    }
+
+    /** Returns complete command if given partial command */
+    public static Optional<String> getCompletedWord(String word, String[] possibilities) {
+        for (String matcher : possibilities) {
+            if (StringUtil.keywordMatchPhrase(word, matcher)) {
+                return Optional.of(matcher);
+            }
+            if (StringUtil.keywordMatchStartOfPhrase(word, matcher)) {
+                return Optional.of(matcher);
+            }
+        }
+        return Optional.empty();
+    }
+
+    public static String getCommaJoinedCommand(String[] words) {
+        String commaArguments = String.join(", ", Arrays.copyOfRange(words, 1, words.length));
+        return String.format("%s %s", words[0], commaArguments);
     }
 
     public static int limitedCompare(CharSequence left, CharSequence right, final int threshold) {
