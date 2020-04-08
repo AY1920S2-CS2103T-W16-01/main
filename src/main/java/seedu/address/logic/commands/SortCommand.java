@@ -92,7 +92,7 @@ public class SortCommand extends Command {
             public int compare(Task task1, Task task2) {
                 return task1.getName().compareTo(task2.getName());
             }
-        }.reversed();
+        };
     }
 
     private Comparator<Task> getReminderComparator() {

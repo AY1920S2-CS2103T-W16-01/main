@@ -370,12 +370,6 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
             updatePetDisplay();
-            // update because sorting returns a new list
-
-            // * Old implementation for sort
-            // taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
-            // taskListPanelPlaceholder.getChildren().clear();
-            // taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
             return commandResult;
         } catch (CommandException | ParseException e) {

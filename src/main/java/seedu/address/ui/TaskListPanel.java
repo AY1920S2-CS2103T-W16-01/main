@@ -3,6 +3,7 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
@@ -15,6 +16,7 @@ public class TaskListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(TaskListPanel.class);
 
     @FXML private ListView<Task> taskListView;
+    @FXML private Label tasksHeader;
 
     public TaskListPanel(ObservableList<Task> taskList) {
         super(FXML);
@@ -22,9 +24,12 @@ public class TaskListPanel extends UiPart<Region> {
         taskListView.setCellFactory(listView -> new TaskListViewCell());
     }
 
-    // try try new method
     public void setTaskList(ObservableList<Task> newTaskList) {
         this.taskListView.setItems(newTaskList);
+    }
+
+    public void setSortOrder(String sortOrder) {
+        this.tasksHeader.setText(String.format("Tasks %s", sortOrder));
     }
 
     /**

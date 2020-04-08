@@ -9,8 +9,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
+import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.exceptions.CompletorException;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -51,64 +51,66 @@ public class CommandCompletor {
     /**
      * Provides auto Complete for all partial command words
      *
-     * <p>For done, delete commands: Converts indexes given in a mixture of spaces and commas into
+     * For done, delete commands: Converts indexes given in a mixture of spaces and commas into
      * comma separated indexes For add and edit commands: Adds prefixes for priority and reminder
      * For pom command: adds timer prefix
-     *
-     * @param input
-     * @return returns command with completed command word, attached prefixes and convert indexes to
-     *     comma separated ones
+     * 
+     * @param input raw user input
+     * @return CompletorResult which contains both the completed message and feedback to display
+     * @throws CompletorException throws an exception when a command is invalid or 
      */
     public CompletorResult getSuggestedCommand(String input) throws CompletorException {
-        String[] trimmedInputWords = input.split("\\s+");
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(input, TASK_PREFIXES);
-        boolean hasReminder = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_REMINDER);
-        boolean hasPriority = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_PRIORITY);
-        String prefixesAdded = "", feedbackToUser = UNCHANGED_SUCCESS;
+        String[] trimmedInputs = input.split("\\s+");
+        String feedbackToUser = UNCHANGED_SUCCESS;
 
-        if (trimmedInputWords.length <= 0) {
+        if (trimmedInputs.length <= 0) {
             throw new CompletorException(COMPLETE_FAILURE_COMMAND);
         }
 
         Optional<String> suggestedCommand =
-                getCompletedWord(trimmedInputWords[0], this.commands.toArray(new String[0]));
+                getCompletedWord(trimmedInputs[0], this.commands.toArray(new String[0]));
 
         if (suggestedCommand.isPresent()) {
-            if (trimmedInputWords[0].equals(suggestedCommand.get())) {
+            if (trimmedInputs[0].equals(suggestedCommand.get())) {
                 feedbackToUser = UNCHANGED_SUCCESS;
             } else {
                 feedbackToUser = COMPLETE_SUCCESS;
             }
-            trimmedInputWords[0] = suggestedCommand.get();
+            trimmedInputs[0] = suggestedCommand.get();
         } else {
             throw new CompletorException(
-                    String.format(COMMAND_UNFOUND_FAILURE, trimmedInputWords[0]));
+                    String.format(COMMAND_UNFOUND_FAILURE, trimmedInputs[0]));
         }
 
-        String newCommand = String.join(" ", trimmedInputWords);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(input, TASK_PREFIXES);
+        boolean hasReminder = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_REMINDER);
+        boolean hasPriority = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_PRIORITY);
+        String prefixesAdded = "";
+        
+        String newCommand = String.join(" ", trimmedInputs);
 
-        switch (trimmedInputWords[0]) {
+        switch (trimmedInputs[0]) {
             case AddCommand.COMMAND_WORD:
             case EditCommand.COMMAND_WORD:
-                for (int i = trimmedInputWords.length - 1; i > 0; i--) {
-                    String currentArgument = trimmedInputWords[i];
+                for (int i = trimmedInputs.length - 1; i > 0; i--) {
+                    String currentArgument = trimmedInputs[i];
                     if (Reminder.isValidReminder(currentArgument) && !hasReminder) {
-                        trimmedInputWords[i] =
+                        trimmedInputs[i] =
                                 addPrefix(CliSyntax.PREFIX_REMINDER.toString(), currentArgument);
                         hasReminder = true;
                         prefixesAdded += CliSyntax.PREFIX_REMINDER.toString();
                     } else if (Priority.isValidPriority(currentArgument) && !hasPriority) {
                         // prevent autoComplete from setting task index with a priority
-                        if (trimmedInputWords[0].equals("edit") && i < 2) {
+                        if (trimmedInputs[0].equals("edit") && i < 2) {
                             continue;
                         }
-                        trimmedInputWords[i] =
+                        trimmedInputs[i] =
                                 addPrefix(CliSyntax.PREFIX_PRIORITY.toString(), currentArgument);
                         hasPriority = true;
                         prefixesAdded += CliSyntax.PREFIX_PRIORITY.toString();
                     }
                 }
-                newCommand = String.join(" ", trimmedInputWords);
+                newCommand = String.join(" ", trimmedInputs);
                 prefixesAdded = prefixesAdded.length() == 0 ? "nil" : prefixesAdded;
                 feedbackToUser = String.format(COMPLETE_PREFIX_SUCCESS, prefixesAdded);
                 break;
@@ -119,19 +121,19 @@ public class CommandCompletor {
                 String[] commaSeparatedIndices = input.split("\\s*,\\s*|\\s+");
                 String[] indexes = getCommandArguments(commaSeparatedIndices);
                 String commaJoinedIndexes = String.join(", ", indexes);
-                newCommand = String.format("%s %s", trimmedInputWords[0], commaJoinedIndexes);
+                newCommand = String.format("%s %s", trimmedInputs[0], commaJoinedIndexes);
                 feedbackToUser = String.format(COMPLETE_SUCCESS);
                 break;
 
             case PomCommand.COMMAND_WORD:
                 ArgumentMultimap pomArgMap = ArgumentTokenizer.tokenize(input, PREFIX_TIMER);
                 boolean hasTimer = ParserUtil.arePrefixesPresent(pomArgMap, PREFIX_TIMER);
-                if (!hasTimer && trimmedInputWords.length > 2) {
-                    trimmedInputWords[2] =
-                            addPrefix(CliSyntax.PREFIX_TIMER.toString(), trimmedInputWords[2]);
+                if (!hasTimer && trimmedInputs.length > 2) {
+                    trimmedInputs[2] =
+                            addPrefix(CliSyntax.PREFIX_TIMER.toString(), trimmedInputs[2]);
                     prefixesAdded += CliSyntax.PREFIX_TIMER.toString();
                 }
-                newCommand = String.join(" ", trimmedInputWords);
+                newCommand = String.join(" ", trimmedInputs);
                 feedbackToUser = String.format(COMPLETE_PREFIX_SUCCESS, prefixesAdded);
                 break;
 
@@ -160,15 +162,13 @@ public class CommandCompletor {
     }
 
     /** Returns complete command if given partial command */
-    private Optional<String> getCompletedWord(String firstWord, String[] possibilities) {
-        for (String word : possibilities) {
-            Pattern pattern = Pattern.compile(String.format("^%s", word));
-            Matcher matcher = pattern.matcher(firstWord.toLowerCase());
-            if (matcher.matches()) {
-                return Optional.of(word);
+    private Optional<String> getCompletedWord(String word, String[] possibilities) {
+        for (String matcher : possibilities) {
+            if (StringUtil.keywordMatchPhrase(word, matcher)) {
+                return Optional.of(matcher);
             }
-            if (matcher.hitEnd()) {
-                return Optional.of(word);
+            if (StringUtil.keywordMatchStartOfPhrase(word, matcher)) {
+                return Optional.of(matcher);
             }
         }
         return Optional.empty();
