@@ -74,36 +74,56 @@ _This section describes the Pomodoro feature in detail and contains all commands
 In the late 1980s, a gentleman named Francesco Cirillo devised a time management method called the Pomodoro Technique. Essentially, a single cycle consists of two parts, 25 minutes of work, followed by a 5 minutes break. This cycle repeats for as long as you want to get work done.
 
 ==== How do you use it?
+Trying to prevent burnout? BB productive offers you the option to try out the pomodoro tenchinique! The pomodoro technique breaks down work into manageable intervals spaced out with short breaks so as to not tired you out._
+
+To get started, follow the instructions below:
 
 ===== Command: `pom`
 
-You can activate the Pomodoro timer with a task in focus. You can add an optional timer amount field, different from the default time of 25 minutes, for that particular cycle.
+First, you can activate the Pomodoro timer with a task in focus. You can also add an optional timer amount field, different from the default time of 25 minutes, for that particular cycle.
 
-Format: `pom <index> (tm/<amount in minutes>)`
+Format: `pom <index> [tm/<amount in minutes>]`
 
 You can use the value (decimals allowed) following `tm/` to represent your desired amount of time in minutes for a particular pomodoro cycle.
+
+.Example screen when pom is successfully executed.
+image::pom_success.png[width=790]
 
 ===== Command: `pom pause`
 
 You can pause a running Pomodoro timer.
 
+.Example screen when pom is successfully paused
+image::pom_pause.png[width=790]
+
 ===== Command: `pom continue`
 
 You can resume a paused Pomodoro timer.
+
+.Example screen when pom is successfully resumed
+image::pom_continuing.png[width=790]
 
 ==== What happens when the timer's up?
 
 ===== "Done" the task
 Once the timer expires, the app will prompt you if you have finished the task. You need only respond with Yes (Y) or No (N) in order to proceed.
 
-===== Break-time
-After, the app will prompt you if you would like to begin a 5 minute break (as per the pomodoro technique). Similarly, you need to respond with Yes (Y) or No (N). Responding with No will set the app to its neutral state. Yes will cause the break timer to run.
+.Prompt when the pomodoro timer expires
+image::pom_time_expire.png[width=790]
 
-===== Back to work
-At the end of the break, the app will once again prompt you if you would like to continue. You can respond with No (N) or call the `pom` command on another undone task to continue. 
+===== Break-time
+Afterwards, the app will prompt you if you would like to begin a 5 minute break (as per the pomodoro technique). Similarly, you need to respond with Yes (Y) or No (N). Responding with No will set the app to its neutral state. Yes will start the break timer.
+
+.Prompt checking if you'd like to take a break
+image::pom_prompt_break.png[width=790]
 
 Note: You will not be able to do execute other commands during these prompts.
 
+===== Back to work
+At the end of the break, the app will return to it's "neutral" state and you can  repeat the process, if you wish.
+
+.End of pomodoro cycle screen
+image::pom_break_end.png[width=790]
 
 === Statistics (Permas)
 
