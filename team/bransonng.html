@@ -1,0 +1,257 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Branson Ng - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/BBProductiveIcon" alt="BB"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="../index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">BB Productive</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/AY1920S2-CS2103T-W16-1/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Branson Ng - Project Portfolio</h1></div><div id="content"><div id="preamble">
+<div class="sectionbody">
+<div class="imageblock" style="text-align: left">
+<div class="content">
+<img src="../images/bransonng.png" alt="bransonng" width="200">
+</div>
+</div>
+<div class="paragraph">
+<p>[<a href="http://github.com/bransonng">github</a>] [<a href="#">portfolio</a>]</p>
+</div>
+<div class="paragraph">
+<p>Role: Git expert, Integration<br>
+Responsibilities: Task Manager, AutoComplete</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="project-bb-productive"><a class="link" href="#project-bb-productive">PROJECT: BB Productive</a></h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>BBProductive is a built upon a brown field project titled AddressBook. It was done for the purpose of a software-engineering module, CS2103T with a team of 5 other students. We decided to implement a task manager and a productivity application combined in one. Apart from standard create, read, update and destroy capabilities of a task manager, BBProductive includes a “Pomodoro” timer [25 minutes work, 5 minute rest] to help users perform manageable work cycles. BBProductive also has a virtual pet that grows and changes in appearance depending on how much work the user has done.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Major Enhancement</strong>: Auto complete feature.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: When typing, users can press tab to autocomplete command words or add prefixes specific to the command.</p>
+</li>
+<li>
+<p>Justification:  As we are targeting fast typists, auto completing and allowing users to write faster would definitely be a big plus to our users.</p>
+</li>
+<li>
+<p>Highlights: Apart from simple auto completing of command words, I’ve added the functionality of adding some common prefixes for specific commands. Apart from this, I’ve decided to provide some additional visual feedback to users depending on the outcome of the auto complete. Given that it’s a separate mechanism from the commands itself, I decided to add additional text coloring to the command input field to differentiate auto complete success/error from command success/error.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Major Enhancement</strong>: Sort by multiple fields feature</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: Sorts the tasklist by multiple fields {name, priority, done, reminder}</p>
+</li>
+<li>
+<p>Justification: Most task managers have a sorting function so that users are able to see what’s more important to them at the front.</p>
+</li>
+<li>
+<p>Highlights: We’ve provided multiple fields to sort by so that users can have a more specific ordering. On the same thread, we’ve decided to provide reverse sorting orders as well. [these fields are also supported to auto complete]
+Code contributed for this:</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Major Enhancement</strong>: Modified find command to use levenshtein distance</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: Rather than the original exact fit matching, we’ve decided to expand it to be more flexible. Now tasks with partial matches or some typos will be recognized by the find command.</p>
+</li>
+<li>
+<p>Justification:Typing often leads to typos, so we’ve decided to enhance the finding command so that users will be able to find tasks they want to look for with a larger error boundary. We’ve also allowed the find command to show tasks that partially match the keywords from the start. I.e. if find tuto &#8658; a task with name tutorial will be shown</p>
+</li>
+<li>
+<p>Highlights: We referenced and used a popular Dynamic programming approach that implements the Levenshtein distance algorithm for a faster run time to ensure that the command works with lists of sizes up to 100.
+Code contributed for this:</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Minor Enhancement: Worked on migrating Address Book features to Task list features</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Changed fields like address, phone number to description and priority
+Added Done field
+Code contributed for this:</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Minor Enhancement: added multiple indexes for done and delete commands</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Allow users to mark several tasks as done or to delete several tasks in one command
+Code contributed for this:</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Minor Enhancement: Added Json classes and baseline models for Pomodoro and Pet features for other members to expand on</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Helped other members create baseline models for their features and linked it to JsonAdapted classes for storage purposes. Also modified JsonAdaptedTask to fit the new Task model.
+Code contributed for this:</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Minor Enhancement: Worked on the css styling and java FXML for revamped BBProductive look</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Made new grid layout of tasks displayed, added margins. Added priority display.
+Code contributed for this:
+Other Contributions:</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Dev Ops</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Set up team github repo</p>
+</li>
+<li>
+<p>Set up Travis CI to perform Continuous Integration on our project</p>
+</li>
+<li>
+<p>Set up auto binding of project website</p>
+</li>
+<li>
+<p>Set up auto formatting with pre-commit git hook with googleJavaFormat</p>
+</li>
+<li>
+<p>Managed git conflicts and issues across the team</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Contributions to team:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Handled elusive issue of java process not terminating when application window is closed or exited via command</p>
+</li>
+<li>
+<p>Handled git conflicts</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Community</p>
+<div class="ulist">
+<ul>
+<li>
+<p>PRs reviewed (with non-trivial comments): <a href="https://github.com/AY1920S2-CS2103T-W16-1/main/pull/272">#272</a>, <a href="https://github.com/AY1920S2-CS2103T-W16-1/main/pull/151">#151</a>, <a href="https://github.com/AY1920S2-CS2103T-W16-1/main/pull/123">#123</a>, <a href="https://github.com/AY1920S2-CS2103T-W16-1/main/pull/91">#91</a>, <a href="https://github.com/AY1920S2-CS2103T-W16-1/main/pull/272">#272</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Other contributions</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Project management:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Managed releases <code>v1.1</code> - <code>v1.4rc</code> (3 releases) on GitHub</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Enhancements to existing features:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Implemented the foundation of the new stylesheet used for the application</p>
+</li>
+<li>
+<p>Adjusted the JavaFX layout to fit the Adobe XD</p>
+</li>
+<li>
+<p>Wrote tests for both reminders and recurring tasks</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><em>{you can add/remove categories in the list above}</em></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.</em></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="project-powerpointlabs"><a class="link" href="#project-powerpointlabs">PROJECT: PowerPointLabs</a></h2>
+<div class="sectionbody">
+<hr>
+<div class="paragraph">
+<p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-08 08:41:48 UTC</div></div></div></body></html>
