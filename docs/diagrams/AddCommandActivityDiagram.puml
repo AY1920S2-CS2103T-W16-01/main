@@ -1,0 +1,20 @@
+@startuml
+(*) --> "User executes AddCommand"
+
+if ""
+  -right->[command is valid] "Create AddComand with appropriate prefixes"
+  --> "Executes AddCommand"
+  if "" then
+        -->[duplicate task in task list]"Throw exception"
+  else
+        -down->[else]"Creates new task and append to the task list"
+        -down> "Updates UI Task List and ResultDisplay to notify user"
+  endif
+  --> (*)
+else
+  ->[else] "Throw exception"
+  -down-> "Update UI ResultDisplay to notify user"
+  -down->(*)
+endif
+
+@enduml
