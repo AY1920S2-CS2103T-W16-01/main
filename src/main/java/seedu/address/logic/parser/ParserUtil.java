@@ -60,17 +60,18 @@ public class ParserUtil {
         return indexes;
     }
 
-    // function for sorting and potentially tags
+    /** Gets all unique space-separated unique words */
     public static String[] parseUniqueKeyWords(String keywords) throws ParseException {
         String trimmedKeyWords = keywords.trim();
         String[] splitKeyWords = trimmedKeyWords.split("\\s+");
-        ArrayList<String> unique = new ArrayList<>();
+        // HashSet not used as we need to retain the order of the keywords
+        ArrayList<String> uniqueWords = new ArrayList<>();
         for (String s : splitKeyWords) {
-            if (!unique.contains(s)) {
-                unique.add(s);
+            if (!uniqueWords.contains(s)) {
+                uniqueWords.add(s);
             }
         }
-        return unique.toArray(new String[0]);
+        return uniqueWords.toArray(new String[0]);
     }
 
     /**
