@@ -20,7 +20,9 @@ public class CommandBox extends UiPart<Region> {
     public static final String ERROR_STYLE_CLASS = "error";
     public static final String WARNING_STYLE_CLASS = "warning";
     public static final String SUCCESS_STYLE_CLASS = "success";
+    public static final String DEFAULT_STYLE_CLASS = "normal";
     private static final String FXML = "CommandBox.fxml";
+    private Timer scheduler;
 
     private final CommandExecutor commandExecutor;
 
@@ -29,15 +31,13 @@ public class CommandBox extends UiPart<Region> {
     public CommandBox(CommandExecutor commandExecutor, CommandSuggestor commandSuggestor) {
         super(FXML);
         this.commandExecutor = commandExecutor;
-        Timer scheduler = new Timer();
+        scheduler = new Timer();
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField
                 .textProperty()
                 .addListener(
                         (unused1, unused2, unused3) -> {
                             setStyleToDefault();
-                            scheduler.purge();
-                            // scheduler = new Timer();
                         });
 
         commandTextField.setOnKeyPressed(
@@ -53,19 +53,26 @@ public class CommandBox extends UiPart<Region> {
                                 String suggestion =
                                         commandSuggestor.suggestCommand(commandTextField.getText());
                                 commandTextField.setText(suggestion);
+                                refreshTimer();
                                 setStyleToIndicateCompletorSuccess();
-                                scheduler.schedule(getUnsetStyleTimer(SUCCESS_STYLE_CLASS), 1000);
+                                scheduler.schedule(getSetStyleToDefaultTimerTask(), 1000);
                             } catch (CompletorException e) {
+                                refreshTimer();
                                 setStyleToIndicateCompletorFailure();
-                                scheduler.schedule(getUnsetStyleTimer(WARNING_STYLE_CLASS), 1000);
+                                scheduler.schedule(getSetStyleToDefaultTimerTask(), 1000);
                             }
-                            // event.consume doesn't seem to work, the below is thus a workaround
                             commandTextField.requestFocus();
                             commandTextField.forward();
                             return;
                         }
                     }
                 });
+    }
+
+    private void refreshTimer() {
+        scheduler.cancel();
+        scheduler.purge();
+        scheduler = new Timer();
     }
 
     /** Handles the Enter button pressed event. */
@@ -79,31 +86,22 @@ public class CommandBox extends UiPart<Region> {
         }
     }
 
-    private TimerTask getUnsetStyleTimer(String style) {
+    /** Sets the command box style to use the default style. */
+    private TimerTask getSetStyleToDefaultTimerTask() {
         return new TimerTask() {
             @Override
             public void run() {
-                switch (style) {
-                    case ERROR_STYLE_CLASS:
-                        commandTextField.getStyleClass().remove(ERROR_STYLE_CLASS);
-                        break;
-                    case WARNING_STYLE_CLASS:
-                        commandTextField.getStyleClass().remove(WARNING_STYLE_CLASS);
-                        break;
-                    case SUCCESS_STYLE_CLASS:
-                        commandTextField.getStyleClass().remove(SUCCESS_STYLE_CLASS);
-                        break;
-                }
+                setStyleToDefault();
             }
         };
     }
 
-    /** Sets the command box style to use the default style. */
     private void setStyleToDefault() {
         commandTextField.getStyleClass().remove(ERROR_STYLE_CLASS);
         commandTextField.getStyleClass().remove(WARNING_STYLE_CLASS);
         commandTextField.getStyleClass().remove(SUCCESS_STYLE_CLASS);
     }
+    
 
     /** Sets the command box style to indicate a failed command. */
     private void setStyleToIndicateCommandFailure() {
