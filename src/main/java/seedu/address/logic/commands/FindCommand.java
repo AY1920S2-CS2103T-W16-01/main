@@ -32,6 +32,10 @@ public class FindCommand extends Command {
         this.predicate = predicate;
     }
 
+    /**
+     * Apart from filtering tasks that match the keywords based on edit distance derived from {@link NameContainsKeywordsPredicate}
+     * also sorts tasks in ascending order of edit distance. 
+     */
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
