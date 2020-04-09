@@ -1,20 +1,26 @@
 @startuml
-(*) --> "User executes AddCommand"
+start
+:User executes AddCommand;
 
-if ""
-  -right->[command is valid] "Create AddComand with appropriate prefixes"
-  --> "Executes AddCommand"
-  if "" then
-        -->[duplicate task in task list]"Throw exception"
-  else
-        -down->[else]"Creates new task and append to the task list"
-        -down> "Updates UI Task List and ResultDisplay to notify user"
+if () then ([command is valid])
+  : Create AddComand with appropriate prefixes;
+  : Executes AddCommand;
+  if () then ([duplicate task in task list])
+        :Update UI to display error;
+  else ([else])
+        :Creates new task;
+        if() then ([comparator is set])
+            : Add task to task list in sorted order;
+        else if() then ([ugly])
+            : ugly
+        else ([else])
+            : Add task to end of task list;
+        endif
+        :Updates UI with new task list;
   endif
-  --> (*)
-else
-  ->[else] "Throw exception"
-  -down-> "Update UI ResultDisplay to notify user"
-  -down->(*)
+else ([else])
+  :Update UI to display error;
 endif
 
+stop;
 @enduml
