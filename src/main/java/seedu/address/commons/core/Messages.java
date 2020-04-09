@@ -14,8 +14,7 @@ public class Messages {
     public static final String COMPLETE_SUCCESS = "Message auto completed: ";
     public static final String COMPLETE_PREFIX_SUCCESS =
             "Message auto completed with these prefixes %1$s";
-    public static final String UNCHANGED_SUCCESS = "Command has nothing to complete :)";
-    public static final String COMMAND_UNFOUND_FAILURE =
+    public static final String COMPLETE_UNCHANGED_SUCCESS = "Command has nothing to complete :)";
+    public static final String COMPLETE_UNFOUND_FAILURE =
             "Auto complete not possible %1$s not found!";
-    public static final String COMPLETE_FAILURE_COMMAND = "Auto complete not possible!";
 }

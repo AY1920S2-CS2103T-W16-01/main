@@ -1,37 +1,19 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMER;
-import static seedu.address.logic.parser.CliSyntax.TASK_PREFIXES;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.exceptions.CompletorException;
 import seedu.address.logic.parser.AddCommandParser;
-import seedu.address.logic.parser.ArgumentMultimap;
-import seedu.address.logic.parser.ArgumentTokenizer;
-import seedu.address.logic.parser.CliSyntax;
 import seedu.address.logic.parser.EditCommandParser;
-import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.PomCommandParser;
 import seedu.address.logic.parser.SortCommandParser;
-import seedu.address.model.task.Priority;
-import seedu.address.model.task.Reminder;
 
 /** Represents a command with hidden internal logic and the ability to be executed. */
 public class CommandCompletor {
-    public static final String COMPLETE_SUCCESS = "Message auto completed: ";
-    public static final String COMPLETE_PREFIX_SUCCESS =
-            "Message auto completed with these prefixes %1$s";
-    public static final String UNCHANGED_SUCCESS = "Command has nothing to complete :)";
-    public static final String COMMAND_UNFOUND_FAILURE =
-            "Auto complete not possible %1$s not found!";
-    public static final String COMPLETE_FAILURE_COMMAND = "Auto complete not possible!";
     private Set<String> commands = new HashSet<>();
 
     /** Add all available commands */
@@ -65,10 +47,10 @@ public class CommandCompletor {
      */
     public CompletorResult getSuggestedCommand(String input) throws CompletorException {
         String[] trimmedInputs = input.split("\\s+");
-        String feedbackToUser = UNCHANGED_SUCCESS;
+        String feedbackToUser = Messages.COMPLETE_UNCHANGED_SUCCESS;
 
         if (trimmedInputs.length <= 0) {
-            throw new CompletorException(COMPLETE_FAILURE_COMMAND);
+            throw new CompletorException(String.format(Messages.COMPLETE_UNFOUND_FAILURE, ""));
         }
 
         Optional<String> suggestedCommand =
@@ -76,19 +58,16 @@ public class CommandCompletor {
 
         if (suggestedCommand.isPresent()) {
             if (trimmedInputs[0].equals(suggestedCommand.get())) {
-                feedbackToUser = UNCHANGED_SUCCESS;
+                feedbackToUser = Messages.COMPLETE_UNCHANGED_SUCCESS;
             } else {
-                feedbackToUser = COMPLETE_SUCCESS;
+                feedbackToUser = Messages.COMPLETE_SUCCESS;
             }
             trimmedInputs[0] = suggestedCommand.get();
         } else {
             throw new CompletorException(
-                    String.format(COMMAND_UNFOUND_FAILURE, trimmedInputs[0]));
+                    String.format(Messages.COMPLETE_UNFOUND_FAILURE, trimmedInputs[0]));
         }
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(input, TASK_PREFIXES);
-        String prefixesAdded = "";
-        
         String newCommand = String.join(" ", trimmedInputs);
 
         switch (trimmedInputs[0]) {
@@ -99,39 +78,13 @@ public class CommandCompletor {
                 return new EditCommandParser().completeCommand(newCommand);
             case DoneCommand.COMMAND_WORD:
             case DeleteCommand.COMMAND_WORD:
-                // Converts indexes that are not comma separated into comma separated
-                String[] commaSeparatedIndices = input.split("\\s+");
-                String[] indexes = getCommandArguments(commaSeparatedIndices);
-                String commaJoinedIndexes = String.join(" ", indexes);
-                newCommand = String.format("%s %s", trimmedInputs[0], commaJoinedIndexes);
-                feedbackToUser = String.format(COMPLETE_SUCCESS);
-                break;
-
+                return new CompletorResult(newCommand, feedbackToUser);
             case PomCommand.COMMAND_WORD:
-                ArgumentMultimap pomArgMap = ArgumentTokenizer.tokenize(input, PREFIX_TIMER);
-                boolean hasTimer = ParserUtil.arePrefixesPresent(pomArgMap, PREFIX_TIMER);
-                if (!hasTimer && trimmedInputs.length > 2) {
-                    trimmedInputs[2] =
-                            addPrefix(CliSyntax.PREFIX_TIMER.toString(), trimmedInputs[2]);
-                    prefixesAdded += CliSyntax.PREFIX_TIMER.toString();
-                }
-                newCommand = String.join(" ", trimmedInputs);
-                feedbackToUser = String.format(COMPLETE_PREFIX_SUCCESS, prefixesAdded);
-                break;
-
-            case "sort":
+                return new PomCommandParser().completeCommand(newCommand);
+            case SortCommand.COMMAND_WORD:
                 return new SortCommandParser().completeCommand(newCommand);
         }
         return new CompletorResult(newCommand + " ", feedbackToUser);
-    }
-
-    /** Gets all non command arguments */
-    private String[] getCommandArguments(String[] splitWords) {
-        return Arrays.copyOfRange(splitWords, 1, splitWords.length);
-    }
-
-    private String addPrefix(String prefix, String arg) {
-        return String.format("%s%s", prefix, arg);
     }
 
     @Override
