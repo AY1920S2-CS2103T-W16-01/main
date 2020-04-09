@@ -257,7 +257,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    /** */
     private String suggestCommand(String commandText) throws CompletorException {
         try {
             CompletorResult completorResult = commandCompletor.getSuggestedCommand(commandText, logic.getFilteredTaskList().size());

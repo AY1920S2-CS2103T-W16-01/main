@@ -127,6 +127,7 @@ public class ModelManager implements Model {
         taskList.removeTask(target);
     }
 
+    /** sortList after task is added so that new task will follow the existing sort order */
     @Override
     public void addTask(Task task) {
         taskList.addTask(task);
@@ -134,6 +135,7 @@ public class ModelManager implements Model {
         updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
     }
 
+    /** sortList after task is edited so that edited task will follow the existing sort order */
     @Override
     public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);
@@ -158,7 +160,7 @@ public class ModelManager implements Model {
         observers.add(observer);
     }
 
-    // =========== Filtered Task List Accessors
+    // =========== Filtered Task List Methods
     // =============================================================
 
     /**
@@ -177,11 +179,15 @@ public class ModelManager implements Model {
         filteredTasks.setPredicate(predicate); 
     }
 
+    /** Used when a predicate is applied to show the more relevant serach results */
     @Override
     public void sortWithComparator(Comparator<Task> comparator) {
         this.taskList.sort(comparator);
     }
 
+    // ================ Sort list methods
+
+    /** Used when for the sort command when sorting by multiple fields */
     @Override
     public void setComparator(Comparator<Task>[] comparators) {
         requireNonNull(comparators);
@@ -237,6 +243,7 @@ public class ModelManager implements Model {
         this.petManager = petManager;
         this.petManager.setPet(this.pet);
     }
+
     // ============================ Pomodoro Manager
 
     public ReadOnlyPomodoro getPomodoro() {

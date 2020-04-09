@@ -82,13 +82,31 @@ public class StringUtil {
         }
     }
 
-    //TODO shift to completorUtil.java ?
+    /**
+     * keyword = dist, phrase = distance here is long => true
+     * keyword = distance, phrase = distance here is long => true
+     * keyword = did, phrase = distance here is long => false
+     * 
+     * @param keyword used in checking
+     * @param phrase checks if part/entire keyword is in start of phrase
+     * @return true if part of or all of keyword is at the start of phrase
+     */
     public static boolean keywordMatchStartOfPhrase(String keyword, String phrase) {
         Pattern pattern = Pattern.compile(String.format("^%s", phrase.toLowerCase()));
         Matcher matcher = pattern.matcher(keyword.toLowerCase());
         return matcher.matches() || matcher.hitEnd();
     }
 
+
+    /**
+     * keyword = distance, phrase = distance here is long => true
+     * keyword = dist, phrase = distance here is long => false
+     * keyword = did, phrase = distance here is long => false
+     * 
+     * @param keyword used in checking
+     * @param phrase checks if entire keyword is at the start of phrase
+     * @return true if entire keyword is at the start of phrase
+     */
     public static boolean keywordMatchPhrase(String keyword, String phrase) {
         Pattern pattern = Pattern.compile(String.format("^%s", phrase.toLowerCase()));
         Matcher matcher = pattern.matcher(keyword.toLowerCase());

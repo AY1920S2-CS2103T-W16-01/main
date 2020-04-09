@@ -59,6 +59,7 @@ public class CommandCompletor {
         Optional<String> suggestedCommandWord =
                 StringUtil.getCompletedWord(splitInput[0], this.commands.toArray(new String[0]));
 
+        // Handles auto completion of command and error throwing for invalid command.
         if (suggestedCommandWord.isPresent()) {
             if (splitInput[0].equals(suggestedCommandWord.get())) {
                 feedbackToUser = Messages.COMPLETE_UNCHANGED_SUCCESS;
