@@ -37,12 +37,12 @@ public class CommandCompletorTest {
     public void execute_indexAutoComplete_successful() throws Exception {
         CommandCompletor cc = new CommandCompletor();
 
-        String expectedDoneCommand = "done 1 2 7 8 9999 -10 ";
+        String expectedDoneCommand = "done 1 2 7 8 9999 -10 0.5";
         CompletorResult actualDoneCommand = cc.getSuggestedCommand("do 1 2 ", DEFAULT_LIST_SIZE);
         assertEquals(expectedDoneCommand, actualDoneCommand.getSuggestion());
 
-        String expectedDeleteCommand = "delete 1000 0.5 2 3 -20 ";
-        CompletorResult actualDeleteCommand = cc.getSuggestedCommand("del 1 2 3", DEFAULT_LIST_SIZE);
+        String expectedDeleteCommand = "delete 0 1 5 6 ";
+        CompletorResult actualDeleteCommand = cc.getSuggestedCommand("del 1 5", DEFAULT_LIST_SIZE);
         assertEquals(expectedDeleteCommand, actualDeleteCommand.getSuggestion());
     }
 
