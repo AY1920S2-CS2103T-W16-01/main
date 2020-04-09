@@ -108,11 +108,6 @@ public class StringUtil {
         return Optional.empty();
     }
 
-    public static String getCommaJoinedCommand(String[] words) {
-        String commaArguments = String.join(" ", Arrays.copyOfRange(words, 1, words.length));
-        return String.format("%s %s", words[0], commaArguments);
-    }
-
     public static int limitedCompare(CharSequence left, CharSequence right, final int threshold) {
         if (left == null || right == null) {
             throw new IllegalArgumentException("Strings must not be null");

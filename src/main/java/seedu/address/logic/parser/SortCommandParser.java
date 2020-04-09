@@ -52,7 +52,7 @@ public class SortCommandParser implements Parser<SortCommand> {
             }
         }
 
-        String newCommand = StringUtil.getCommaJoinedCommand(acceptedFields.toArray(new String[0]));
+        String newCommand = String.join(" ", acceptedFields.toArray(new String[0]));
         return new CompletorResult(newCommand, feedbackToUser);
     }
 }

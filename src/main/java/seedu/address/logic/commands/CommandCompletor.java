@@ -76,9 +76,6 @@ public class CommandCompletor {
                 return new AddCommandParser().completeCommand(newCommand);
             case EditCommand.COMMAND_WORD:
                 return new EditCommandParser().completeCommand(newCommand);
-            case DoneCommand.COMMAND_WORD:
-            case DeleteCommand.COMMAND_WORD:
-                return new CompletorResult(newCommand, feedbackToUser);
             case PomCommand.COMMAND_WORD:
                 return new PomCommandParser().completeCommand(newCommand);
             case SortCommand.COMMAND_WORD:
