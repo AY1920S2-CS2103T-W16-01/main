@@ -87,6 +87,13 @@ public class AddCommandParser implements Parser<AddCommand> {
         return new AddCommand(task);
     }
 
+    /**
+     * Uses argMultimap to detect existing prefixes used so that it won't add double prefixes.
+     * Adds priority and reminder prefixes
+     * 
+     * @param input input that has been trimmed
+     * @return CompletorResult with suggested command and feedback to display
+     */
     public CompletorResult completeCommand(String input) {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(input, TASK_PREFIXES);
         boolean hasReminder = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_REMINDER);
@@ -94,27 +101,22 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         StringBuilder prefixesBuilder = new StringBuilder();
 
-        String[] trimmedInputs = input.split("\\s+");
+        String[] splitInput = input.split("\\s+");
         
-        for (int i = trimmedInputs.length - 1; i > 0; i--) {
-            String currentArgument = trimmedInputs[i];
+        for (int i = splitInput.length - 1; i > 0; i--) {
+            String currentArgument = splitInput[i];
             if (Reminder.isValidReminder(currentArgument) && !hasReminder) {
-                trimmedInputs[i] = CliSyntax.PREFIX_REMINDER.toString() + currentArgument;
+                splitInput[i] = CliSyntax.PREFIX_REMINDER.toString() + currentArgument;
                 hasReminder = true;
-                prefixesBuilder.append(CliSyntax.PREFIX_REMINDER.toString());
-                prefixesBuilder.append(" ");
+                prefixesBuilder.append(CliSyntax.PREFIX_REMINDER.toString() + " ");
             } else if (Priority.isValidPriority(currentArgument) && !hasPriority) {
-                // prevent autoComplete from setting task index with a priority
-                if (trimmedInputs[0].equals("edit") && i < 2) {
-                    continue;
-                }
-                trimmedInputs[i] = CliSyntax.PREFIX_PRIORITY.toString() + currentArgument;
+                splitInput[i] = CliSyntax.PREFIX_PRIORITY.toString() + currentArgument;
                 hasPriority = true;
-                prefixesBuilder.append(CliSyntax.PREFIX_PRIORITY.toString());
-                prefixesBuilder.append(" ");
+                prefixesBuilder.append(CliSyntax.PREFIX_PRIORITY.toString() + " ");
             }
         }
-        String newCommand = String.join(" ", trimmedInputs);
+        
+        String newCommand = String.join(" ", splitInput);
         String prefixesAdded = prefixesBuilder.length() == 0 ? "nil" : prefixesBuilder.toString();
         String feedbackToUser = String.format(Messages.COMPLETE_PREFIX_SUCCESS, prefixesAdded);
 

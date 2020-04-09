@@ -14,7 +14,7 @@ import seedu.address.logic.parser.EditCommandParser;
 import seedu.address.logic.parser.PomCommandParser;
 import seedu.address.logic.parser.SortCommandParser;
 
-/** Represents a command with hidden internal logic and the ability to be executed. */
+/** Contains a command completor that calls upon other command parsers to complete input provided by users. */
 public class CommandCompletor {
     private Set<String> commands = new HashSet<>();
 
@@ -37,46 +37,47 @@ public class CommandCompletor {
     }
 
     /**
-     * Provides auto Complete for all partial command words
+     * Provides auto complete for all partial command words
      *
-     * For done, delete commands: Converts indexes given in a mixture of spaces and commas into
-     * comma separated indexes For add and edit commands: Adds prefixes for priority and reminder
+     * For done, delete commands: remove indices that are out of range
+     * For add and edit commands: Adds prefixes for priority and reminder
      * For pom command: adds timer prefix
      * 
      * @param input raw user input
      * @return CompletorResult which contains both the completed message and feedback to display
-     * @throws CompletorException throws an exception when a command is invalid or 
+     * @throws CompletorException throws an exception when a command is invalid 
      */
     public CompletorResult getSuggestedCommand(String input, int listSize) throws CompletorException {
-        String[] trimmedInputs = input.split("\\s+");
+        String[] splitInput = input.split("\\s+");
         String feedbackToUser = Messages.COMPLETE_UNCHANGED_SUCCESS;
 
-        if (trimmedInputs.length <= 0) {
+        if (splitInput.length <= 0) {
             throw new CompletorException(String.format(Messages.COMPLETE_UNFOUND_FAILURE, ""));
         }
 
-        Optional<String> suggestedCommand =
-                StringUtil.getCompletedWord(trimmedInputs[0], this.commands.toArray(new String[0]));
 
-        if (suggestedCommand.isPresent()) {
-            if (trimmedInputs[0].equals(suggestedCommand.get())) {
+        Optional<String> suggestedCommandWord =
+                StringUtil.getCompletedWord(splitInput[0], this.commands.toArray(new String[0]));
+
+        if (suggestedCommandWord.isPresent()) {
+            if (splitInput[0].equals(suggestedCommandWord.get())) {
                 feedbackToUser = Messages.COMPLETE_UNCHANGED_SUCCESS;
             } else {
                 feedbackToUser = Messages.COMPLETE_SUCCESS;
             }
-            trimmedInputs[0] = suggestedCommand.get();
+            splitInput[0] = suggestedCommandWord.get();
         } else {
             throw new CompletorException(
-                    String.format(Messages.COMPLETE_UNFOUND_FAILURE, trimmedInputs[0]));
+                    String.format(Messages.COMPLETE_UNFOUND_FAILURE, splitInput[0]));
         }
 
-        String newCommand = String.join(" ", trimmedInputs);
+        String newCommand = String.join(" ", splitInput);
 
-        switch (trimmedInputs[0]) {
+        switch (splitInput[0]) {
             case AddCommand.COMMAND_WORD:
                 return new AddCommandParser().completeCommand(newCommand);
             case EditCommand.COMMAND_WORD:
-                return new EditCommandParser().completeCommand(newCommand);
+                return new EditCommandParser().completeCommand(newCommand, listSize);
             case PomCommand.COMMAND_WORD:
                 return new PomCommandParser().completeCommand(newCommand);
             case SortCommand.COMMAND_WORD:
@@ -86,7 +87,7 @@ public class CommandCompletor {
             case DeleteCommand.COMMAND_WORD:
                 return new DeleteCommandParser().completeCommand(newCommand, listSize);
         }
-        return new CompletorResult(newCommand + " ", feedbackToUser);
+        return new CompletorResult(newCommand, feedbackToUser);
     }
 
     @Override

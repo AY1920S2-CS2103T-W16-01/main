@@ -18,5 +18,7 @@ public class Messages {
     public static final String COMPLETE_UNFOUND_FAILURE =
             "Auto complete not possible %1$s not found!";
     public static final String COMPLETE_INDEX_OUT_OF_RANGE =
-            "Auto complete and these indexes removed %1$s as they are out of range";
+            "Auto complete and these indexes removed %1$s as they are out of range/invalid";
+    public static final String COMPLETE_INDEX_OUT_OF_RANGE_FAILURE =  
+            "Index %1$s is out of range/invalid";
 }

@@ -17,7 +17,7 @@ public class CompletorResult {
     }
 
     public String getSuggestion() {
-        return suggestedCommand;
+        return suggestedCommand + " ";
     }
 
     public String getFeedbackToUser() {
