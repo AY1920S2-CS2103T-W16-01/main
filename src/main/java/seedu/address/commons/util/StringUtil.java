@@ -108,7 +108,15 @@ public class StringUtil {
         return Optional.empty();
     }
 
-    public static int limitedCompare(CharSequence left, CharSequence right, final int threshold) {
+    /**
+     * Returns the edit distance between the left and right strings.
+     * If distance > threshold, -1 is returned
+     * @param left string
+     * @param right string
+     * @param threshold positive integer
+     * @return integer <= threshold
+     */
+    public static int levenshteinDistanceCompare(CharSequence left, CharSequence right, final int threshold) {
         if (left == null || right == null) {
             throw new IllegalArgumentException("Strings must not be null");
         }

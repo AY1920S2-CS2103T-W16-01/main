@@ -174,25 +174,12 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
-        filteredTasks.setPredicate(
-                predicate); // predicate should now be applied and evaluate to true for certain
-                            // threshold
-        if (predicate instanceof NameContainsKeywordsPredicate) {
-            System.out.println("list called??");
-            NameContainsKeywordsPredicate namePredicate = (NameContainsKeywordsPredicate) predicate;
-            Comparator<Task> comparator =
-                    new Comparator<>() {
-                        @Override
-                        public int compare(Task task1, Task task2) {
-                            namePredicate.test(task1);
-                            int score1 = namePredicate.getScore();
-                            namePredicate.test(task2);
-                            int score2 = namePredicate.getScore();
-                            return score1 < score2 ? -1 : 1;
-                        }
-                    };
-            this.taskList.sort(comparator);
-        }
+        filteredTasks.setPredicate(predicate); 
+    }
+
+    @Override
+    public void sortWithComparator(Comparator<Task> comparator) {
+        this.taskList.sort(comparator);
     }
 
     @Override

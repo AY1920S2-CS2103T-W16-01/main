@@ -71,6 +71,8 @@ public interface Model {
 
     void sortList();
 
+    void sortWithComparator(Comparator<Task> comparator);
+
     ReadOnlyPet getPet();
 
     PetManager getPetManager();
