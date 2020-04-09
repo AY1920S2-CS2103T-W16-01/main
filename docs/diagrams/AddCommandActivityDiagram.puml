@@ -11,8 +11,6 @@ if () then ([command is valid])
         :Creates new task;
         if() then ([comparator is set])
             : Add task to task list in sorted order;
-        else if() then ([ugly])
-            : ugly
         else ([else])
             : Add task to end of task list;
         endif
