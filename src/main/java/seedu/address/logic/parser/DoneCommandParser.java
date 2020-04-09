@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.CompletorResult;
 import seedu.address.logic.commands.DoneCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -34,6 +35,12 @@ public class DoneCommandParser implements Parser<DoneCommand> {
         String feedbackToUser = Messages.COMPLETE_UNCHANGED_SUCCESS;
 
         for (int i = 1; i < splitInput.length; i++) {
+            if (!StringUtil.isNonZeroUnsignedInteger(splitInput[i])) {
+                feedbackToUser = Messages.COMPLETE_INDEX_OUT_OF_RANGE;
+                removedIndices.append(splitInput[i].toString());
+                removedIndices.append(" ");
+                continue;
+            }
             int currNumber = Integer.parseInt(splitInput[i]);
             if (currNumber > listSize) {
                 feedbackToUser = Messages.COMPLETE_INDEX_OUT_OF_RANGE;
