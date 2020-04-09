@@ -14,8 +14,10 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.Observer;
 import seedu.address.logic.PetManager;
 import seedu.address.logic.PomodoroManager;
+import seedu.address.logic.StatisticsManager;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyPet;
@@ -42,9 +44,7 @@ public class AddCommandTest {
 
         CommandResult commandResult = new AddCommand(validTask).execute(modelStub);
 
-        assertEquals(
-                String.format(AddCommand.MESSAGE_SUCCESS, validTask),
-                commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validTask), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
     }
 
@@ -54,10 +54,7 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validTask);
         ModelStub modelStub = new ModelStubWithTask(validTask);
 
-        assertThrows(
-                CommandException.class,
-                AddCommand.MESSAGE_DUPLICATE_TASK,
-                () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_TASK, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -237,13 +234,25 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setPomodoroDefaultTime(float defaultTimeInMin) {
+        public void setPomodoroTimeLeft(float timeLeft) {
             // TODO Auto-generated method stub
 
         }
 
         @Override
-        public void setPomodoroRestTime(float restTimeInMin) {
+        public void setStatisticsManager(StatisticsManager statisticsManager) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void notifyObservers() throws CommandException {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void addObserver(Observer observer) {
             // TODO Auto-generated method stub
 
         }
