@@ -260,7 +260,7 @@ public class MainWindow extends UiPart<Stage> {
     /** */
     private String suggestCommand(String commandText) throws CompletorException {
         try {
-            CompletorResult completorResult = commandCompletor.getSuggestedCommand(commandText);
+            CompletorResult completorResult = commandCompletor.getSuggestedCommand(commandText, logic.getFilteredTaskList().size());
             resultDisplay.setFeedbackToUser(completorResult.getFeedbackToUser());
             return completorResult.getSuggestion();
         } catch (CompletorException e) {

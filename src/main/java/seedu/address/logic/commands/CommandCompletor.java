@@ -8,6 +8,8 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.exceptions.CompletorException;
 import seedu.address.logic.parser.AddCommandParser;
+import seedu.address.logic.parser.DeleteCommandParser;
+import seedu.address.logic.parser.DoneCommandParser;
 import seedu.address.logic.parser.EditCommandParser;
 import seedu.address.logic.parser.PomCommandParser;
 import seedu.address.logic.parser.SortCommandParser;
@@ -45,7 +47,7 @@ public class CommandCompletor {
      * @return CompletorResult which contains both the completed message and feedback to display
      * @throws CompletorException throws an exception when a command is invalid or 
      */
-    public CompletorResult getSuggestedCommand(String input) throws CompletorException {
+    public CompletorResult getSuggestedCommand(String input, int listSize) throws CompletorException {
         String[] trimmedInputs = input.split("\\s+");
         String feedbackToUser = Messages.COMPLETE_UNCHANGED_SUCCESS;
 
@@ -79,6 +81,10 @@ public class CommandCompletor {
                 return new PomCommandParser().completeCommand(newCommand);
             case SortCommand.COMMAND_WORD:
                 return new SortCommandParser().completeCommand(newCommand);
+            case DoneCommand.COMMAND_WORD:
+                return new DoneCommandParser().completeCommand(newCommand, listSize);
+            case DeleteCommand.COMMAND_WORD:
+                return new DeleteCommandParser().completeCommand(newCommand, listSize);
         }
         return new CompletorResult(newCommand + " ", feedbackToUser);
     }

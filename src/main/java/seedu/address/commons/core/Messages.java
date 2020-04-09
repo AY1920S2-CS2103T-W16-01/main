@@ -17,4 +17,6 @@ public class Messages {
     public static final String COMPLETE_UNCHANGED_SUCCESS = "Command has nothing to complete :)";
     public static final String COMPLETE_UNFOUND_FAILURE =
             "Auto complete not possible %1$s not found!";
+    public static final String COMPLETE_INDEX_OUT_OF_RANGE =
+            "Auto complete and these indexes removed %1$s as they are out of range";
 }
