@@ -118,10 +118,12 @@ public class PomodoroManager {
 
     public void setDefaultStartTime(float defaultStartTimeInMin) {
         this.defaultStartTime = (int) (defaultStartTimeInMin * 60);
+        model.setPomodoroDefaultTime(defaultStartTimeInMin);
     }
 
     public void setRestTime(float restTimeInMin) {
         this.restTime = (int) (restTimeInMin * 60);
+        model.setPomodoroRestTime(restTimeInMin);
     }
 
     public void setTimerLabel(Label timerLabel) {
