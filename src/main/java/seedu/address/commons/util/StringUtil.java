@@ -116,32 +116,32 @@ public class StringUtil {
             throw new IllegalArgumentException("Threshold must not be negative");
         }
 
-        int n = left.length(); // length of left
-        int m = right.length(); // length of right
+        int leftLength = left.length(); // length of left
+        int rightLength = right.length(); // length of right
 
         // if one string is empty, the edit distance is necessarily the length
         // of the other
-        if (n == 0) {
-            return m <= threshold ? m : -1;
-        } else if (m == 0) {
-            return n <= threshold ? n : -1;
+        if (leftLength == 0) {
+            return rightLength <= threshold ? rightLength : -1;
+        } else if (rightLength == 0) {
+            return leftLength <= threshold ? leftLength : -1;
         }
 
-        if (n > m) {
+        if (leftLength > rightLength) {
             // swap the two strings to consume less memory
             final CharSequence tmp = left;
             left = right;
             right = tmp;
-            n = m;
-            m = right.length();
+            leftLength = rightLength;
+            rightLength = tmp.length();
         }
 
-        int[] p = new int[n + 1]; // 'previous' cost array, horizontally
-        int[] d = new int[n + 1]; // cost array, horizontally
+        int[] p = new int[leftLength + 1]; // 'previous' cost array, horizontally
+        int[] d = new int[leftLength + 1]; // cost array, horizontally
         int[] tempD; // placeholder to assist in swapping p and d
 
         // fill in starting table values
-        final int boundary = Math.min(n, threshold) + 1;
+        final int boundary = Math.min(leftLength, threshold) + 1;
         for (int i = 0; i < boundary; i++) {
             p[i] = i;
         }
@@ -151,13 +151,13 @@ public class StringUtil {
         Arrays.fill(d, Integer.MAX_VALUE);
 
         // iterates through t
-        for (int j = 1; j <= m; j++) {
+        for (int j = 1; j <= rightLength; j++) {
             final char rightJ = right.charAt(j - 1); // jth character of right
             d[0] = j;
 
             // compute stripe indices, constrain to array size
             final int min = Math.max(1, j - threshold);
-            final int max = j > Integer.MAX_VALUE - threshold ? n : Math.min(n, j + threshold);
+            final int max = j > Integer.MAX_VALUE - threshold ? leftLength : Math.min(leftLength, j + threshold);
 
             // the stripe may lead off of the table if s and t are of different
             // sizes
@@ -191,8 +191,8 @@ public class StringUtil {
         // if p[n] is greater than the threshold, there's no guarantee on it
         // being the correct
         // distance
-        if (p[n] <= threshold) {
-            return p[n];
+        if (p[leftLength] <= threshold) {
+            return p[leftLength];
         }
         return -1;
     }

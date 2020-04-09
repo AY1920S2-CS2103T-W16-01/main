@@ -8,7 +8,7 @@ import seedu.address.commons.util.StringUtil;
 /** Tests that a {@code Task}'s {@code Name} matches any of the keywords given. */
 public class NameContainsKeywordsPredicate implements Predicate<Task> {
     private final List<String> keywords;
-    private final int threshold = 3;
+    private final int threshold = 2;
     private int score = Integer.MAX_VALUE;
 
     public NameContainsKeywordsPredicate(List<String> keywords) {
