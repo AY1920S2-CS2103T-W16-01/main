@@ -189,7 +189,7 @@ public class ModelManager implements Model {
 
     /** Used when for the sort command when sorting by multiple fields */
     @Override
-    public void setComparator(Comparator<Task>[] comparators) {
+    public void setComparators(Comparator<Task>[] comparators) {
         requireNonNull(comparators);
         this.comparators = comparators;
         this.sortList();

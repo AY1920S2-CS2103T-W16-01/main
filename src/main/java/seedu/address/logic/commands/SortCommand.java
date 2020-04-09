@@ -64,7 +64,7 @@ public class SortCommand extends Command {
             }
         }
 
-        model.setComparator(temp.toArray(new Comparator[0]));
+        model.setComparators(temp.toArray(new Comparator[0]));
 
         String commandFeedback = String.format(MESSAGE_SUCCESS, String.join(" ", fields));
 
