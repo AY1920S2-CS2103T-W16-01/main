@@ -3,6 +3,8 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CompletorException;
 
 public class CommandCompletorTest {
@@ -16,12 +18,12 @@ public class CommandCompletorTest {
                         "ad n/Math Homework p/1 des/Chapter 5, Pages 1 - 3 t/forschool r/15/04/20@10:30");
         assertEquals(expectedAddCommand, actualAddCommand.getSuggestion());
 
-        String expectedDoneCommand = "done 1, 2, 3 ";
-        CompletorResult actualDoneCommand = cc.getSuggestedCommand("do 1,2,3");
+        String expectedDoneCommand = "done 1 2 3 ";
+        CompletorResult actualDoneCommand = cc.getSuggestedCommand("do 1 2 3");
         assertEquals(expectedDoneCommand, actualDoneCommand.getSuggestion());
 
-        String expectedDeleteCommand = "delete 1, 2, 3 ";
-        CompletorResult actualDeleteCommand = cc.getSuggestedCommand("del 1,2,3");
+        String expectedDeleteCommand = "delete 1 2 3 ";
+        CompletorResult actualDeleteCommand = cc.getSuggestedCommand("del 1 2 3");
         assertEquals(expectedDeleteCommand, actualDeleteCommand.getSuggestion());
 
         String expectedFindCommand = "find hello world ";
@@ -49,21 +51,13 @@ public class CommandCompletorTest {
         String actualEditIndexUnchanged =
                 cc.getSuggestedCommand("edit 2 15/04/20@10:30").getSuggestion();
         assertEquals(expectedEditIndexUnchanged, actualEditIndexUnchanged);
-
-        String expectedDoneCommand = "done 1, 2, 3 ";
-        String actualDoneCommand = cc.getSuggestedCommand("done 1   2  3").getSuggestion();
-        assertEquals(expectedDoneCommand, actualDoneCommand);
-
-        String expectedDeleteCommand = "delete 1, 2, 3 ";
-        String actualDeleteCommand = cc.getSuggestedCommand("delete 1  2  ,3").getSuggestion();
-        assertEquals(expectedDeleteCommand, actualDeleteCommand);
     }
 
     @Test
     public void execute_commandAutoComplete_unsuccessful() throws Exception {
         CommandCompletor cc = new CommandCompletor();
         String expectedAddCommand =
-                String.format(CommandCompletor.COMMAND_UNFOUND_FAILURE, "asjjj");
+                String.format(Messages.COMPLETE_UNFOUND_FAILURE, "asjjj");
         String actualAddCommand;
         try {
             actualAddCommand =
@@ -82,7 +76,7 @@ public class CommandCompletorTest {
             actualDoneCommand = e.getMessage();
         }
         String expectedDoneCommand =
-                String.format(CommandCompletor.COMMAND_UNFOUND_FAILURE, "fffsdf");
+                String.format(Messages.COMPLETE_UNFOUND_FAILURE, "fffsdf");
         assertEquals(expectedDoneCommand, actualDoneCommand);
     }
 }

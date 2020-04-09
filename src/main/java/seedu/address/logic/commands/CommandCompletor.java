@@ -71,7 +71,6 @@ public class CommandCompletor {
         String newCommand = String.join(" ", trimmedInputs);
 
         switch (trimmedInputs[0]) {
-
             case AddCommand.COMMAND_WORD:
                 return new AddCommandParser().completeCommand(newCommand);
             case EditCommand.COMMAND_WORD:
