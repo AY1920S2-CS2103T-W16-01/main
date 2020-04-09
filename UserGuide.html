@@ -3,9 +3,6 @@
 <link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="images/BBProductiveIcon" alt="BB"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">BB Productive</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link active" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/AY1920S2-CS2103T-W16-1/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>BB Productive - User Guide</h1></div><div id="content"><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>TEMP PLSSS REAL UPDATED UG HERE: <a href="https://docs.google.com/document/d/1I60enPj3FDsfB5Z92C-Q6713hL_Hhvetfa0gf1etOuw/edit?usp=sharing" class="bare">https://docs.google.com/document/d/1I60enPj3FDsfB5Z92C-Q6713hL_Hhvetfa0gf1etOuw/edit?usp=sharing</a></p>
-</div>
-<div class="paragraph">
 <p>By: <code>AY1920S2-CS2103T-W16-1</code>      Since: <code>Jan 2020</code>      Licence: <code>NUS</code></p>
 </div>
 </div>
@@ -13,17 +10,30 @@
 <div id="toctitle"></div>
 <ul class="sectlevel1">
 <li><a href="#what-is-bb-productive">1. What is BB Productive?</a></li>
-<li><a href="#about-this-document">2. About this document</a></li>
+<li><a href="#about-this-document">2. About this document</a>
+<ul class="sectlevel2">
+<li><a href="#index">2.1. Command Format</a></li>
+<li><a href="#indexes">2.2. Indexes</a></li>
+</ul>
+</li>
 <li><a href="#quick-start">3. Quick Start</a></li>
 <li><a href="#Terminology">4. Terminology</a></li>
-<li><a href="#graphical-user-interface-permas">5. Graphical User Interface (Permas)</a></li>
+<li><a href="#graphical-user-interface-permas">5. Graphical User Interface (Permas)</a>
+<ul class="sectlevel2">
+<li><a href="#pet-view">5.1. Pet View</a></li>
+<li><a href="#command-box">5.2. Command Box</a></li>
+<li><a href="#tasks-tab">5.3. Tasks Tab</a></li>
+<li><a href="#statistics-tab">5.4. Statistics Tab</a></li>
+<li><a href="#settings-tab">5.5. Settings Tab</a></li>
+</ul>
+</li>
 <li><a href="#Features">6. Features</a>
 <ul class="sectlevel2">
-<li><a href="#tasklist-branson">6.1. TaskList (Branson)</a></li>
+<li><a href="#tasklist">6.1. TaskList</a></li>
 <li><a href="#pet-fyonn">6.2. Pet (Fyonn)</a></li>
 <li><a href="#Pomodoro">6.3. Pomodoro</a></li>
 <li><a href="#statistics-permas">6.4. Statistics (Permas)</a></li>
-<li><a href="#autocomplete-branson">6.5. AutoComplete (Branson)</a></li>
+<li><a href="#autocomplete">6.5. AutoComplete</a></li>
 <li><a href="#reminders-arthur">6.6. Reminders (Arthur)</a></li>
 <li><a href="#Navigation">6.7. Navigation</a></li>
 <li><a href="#storage-permas">6.8. Storage (Permas)</a></li>
@@ -47,6 +57,45 @@
 <div class="sectionbody">
 <div class="paragraph">
 <p>BB Productive is for those who looking for motivation in their work. This app serves as a great task manager and includes a Pomodoro feature and a Pet companion. It is <strong>optimized for those who prefer to work with a Command Line Interface</strong> (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, BB Productive can get you to get tasks done faster. Interested? Jump to the <a href="#quick-start">Section 3, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
+</div>
+<div class="sect2">
+<h3 id="index"><a class="link" href="#index">2.1. Command Format</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Characters like <code>this</code> are all commands that can be used for BBPoroductive</p>
+</li>
+<li>
+<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in add <code>n/NAME</code>, <code>NAME</code> is a parameter which can be used as add <code>n/John Doe</code>.</p>
+</li>
+<li>
+<p>Items in square brackets are optional e.g <code>n/NAME [t/TAG]</code> can be used as <code>n/John Doe t/friend</code> or as <code>n/John Doe</code>.</p>
+</li>
+<li>
+<p>Items with <code>…​</code> after them can be used multiple times including zero times e.g. <code>[t/TAG]…</code>​ can be used as   (i.e. 0 times), <code>t/friend, t/friend t/family</code> etc.</p>
+</li>
+<li>
+<p>Parameters can be in any order e.g. if the command specifies <code>n/NAME p/PHONE_NUMBER</code>, <code>p/PHONE_NUMBER n/NAME</code> is also acceptable.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="indexes"><a class="link" href="#indexes">2.2. Indexes</a></h3>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Indexes refer to the current tasklist on display, it does not refer to the indices of the entire task list. Note also that indexes start from 1 and not 0.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 </div>
@@ -119,16 +168,329 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="sect1">
 <h2 id="graphical-user-interface-permas"><a class="link" href="#graphical-user-interface-permas">5. Graphical User Interface (Permas)</a></h2>
 <div class="sectionbody">
-
+<div class="paragraph">
+<p>This section explains the function of the various GUI components present in BB Productive.</p>
+</div>
+<div class="sect2">
+<h3 id="pet-view"><a class="link" href="#pet-view">5.1. Pet View</a></h3>
+<div class="paragraph">
+<p>The Pet View is where you can view your pet, its name, level and experience gained. With each task completed, the experience (XP) will increase (reflected in the progress bar too). The pet will evolve as it levels up with more XP gained, encouraging you to complete more tasks! This pet grows along with you as you become more productive! with more XP gained, encouraging you to complete more tasks! This pet grows along with you as you become more productive!</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/pet.png" alt="pet" width="300">
+</div>
+<div class="title">Figure 1. Pet</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="command-box"><a class="link" href="#command-box">5.2. Command Box</a></h3>
+<div class="paragraph">
+<p>The Command Box is the one-stop place in the app to input any and all commands to interact with the app. Simply click the box and type the command of your choice. Hit the <code>Enter</code> or <code>Return</code> key on your keyboard to execute the command. The program will respond to you using  Occasionally, the app may prompt you for your preferences via the pet dialog box, respond via the Command Box as well.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/command_box.png" alt="command box" width="300">
+</div>
+<div class="title">Figure 2. Command Box</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="tasks-tab"><a class="link" href="#tasks-tab">5.3. Tasks Tab</a></h3>
+<div class="paragraph">
+<p>The Task Tab is where you view your personal task list and the Pomodoro Timer. Any changes made to the current task list through all the commands will be displayed here! The Pomodoro Timer runs when you run the Pom Command as described in section 6.x. //TODO link</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/tasks_tab.png" alt="tasks tab" width="400">
+</div>
+<div class="title">Figure 3. Tasks Tab</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="statistics-tab"><a class="link" href="#statistics-tab">5.4. Statistics Tab</a></h3>
+<div class="paragraph">
+<p>The Statistics Tab consists of the Daiy Challenge and the Productivity Charts. They help you to visualise the progress of your productivity over the course of the past week, giving you momentum to hit your productivity goals! The usage of this tab will be discussed in more detail in section 6.x //TODO link</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/stats_tab.png" alt="stats tab" width="400">
+</div>
+<div class="title">Figure 4. Statistics Tab</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="settings-tab"><a class="link" href="#settings-tab">5.5. Settings Tab</a></h3>
+<div class="paragraph">
+<p>The Settings Tab lets you customise the program to suit your needs. In this tab, you can view and edit your configurations for Pet Name, Pomodoro Duration and Daily Challenge Target. The usage of this tab will be discussed in more detail in section 6.x //TODO link</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/settings_tab.png" alt="settings tab" width="400">
+</div>
+<div class="title">Figure 5. Settings Tab</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="Features"><a class="link" href="#Features">6. Features</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="tasklist-branson"><a class="link" href="#tasklist-branson">6.1. TaskList (Branson)</a></h3>
+<h3 id="tasklist"><a class="link" href="#tasklist">6.1. TaskList</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/tasks.png" alt="tasks" width="790">
+</div>
+</div>
+<div class="sect3">
+<h4 id="task-fields"><a class="link" href="#task-fields">6.1.1. Task Fields</a></h4>
 <div class="paragraph">
-<p>Write CRUD stuff</p>
+<p>You may use <code>add</code> and <code>edit <a href="#index">INDEX</a></code>  to begin the add and edit commands, next attach any combination of the following commands.</p>
+</div>
+<table class="tableblock frame-topbot grid-all spread">
+<caption class="title">Table 1. Task Fields</caption>
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 33.3333%;">
+<col style="width: 50.0001%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Field</th>
+<th class="tableblock halign-left valign-top">Format</th>
+<th class="tableblock halign-left valign-top">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>n/NAME</code>+
+<code>n/Any name is possible</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Name provided has to be unique in the tasklist and is used as an identifying field.</p>
+</li>
+<li>
+<p>It is the <strong>only compulsory</strong> field when creating a task.</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>[des/DESCRIPTION]</code><br>
+<code>des/Lab of weightage 20% about NP-Cmpleteness</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Optional description that accompanies a task</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Priority</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>[p/PRIORITY]</code><br>
+<code>p/1</code></code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>If not provided, task is created with the low priority.</p>
+</li>
+<li>
+<p><code>PRIORITY</code> can only be one of these numbers <code>1,2,3</code> ranging from low to high in that order.</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reminder</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>[r/REMINDER]</code><br>
+<code>r/10/06/20@12:30</code></code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>A datetime value in this format <code>DD/MM/YY@HH:mm</code>.</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Recurring tag</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>[rec/FREQUENCY]</code><br>
+<code>rec/daily</code></code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Can only be <code>DAILY</code> or <code>WEEKLY</code>.</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tag</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>[t/TAG]&#8230;&#8203;</code><br>
+<code>t/errand t/home</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>There can be multiple tags or none at all.</p>
+</li>
+<li>
+<p>Only alphanumeric characters are allowed, spaces and symbols are disallowed.</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Done</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><em>No prefix available</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>When a task is created, it is set as undone.</p>
+</li>
+<li>
+<p>Task can then be marked with <code>done INDEX</code>.</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="add-command"><a class="link" href="#add-command">6.1.2. Add Command</a></h4>
+<div class="paragraph">
+<p><code>add n/This is a new task p/3 des/We have alot of work to do today! t/This t/Is t/Fun</code><br>
+You only need the <code>n/</code> prefix when adding a new task as name fields are compulsory.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/add_success.png" alt="add success" width="790">
+</div>
+<div class="title">Figure 6. Add success</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="edit-command"><a class="link" href="#edit-command">6.1.3. Edit Command</a></h4>
+<div class="paragraph">
+<p><code>edit n/Look edited the task des/BB Productive is the best app I&#8217;ve every used t/NewTag</code><br>
+* You can edit all fields except the done field.
+* Please indicate an <code><a href="#index">INDEX</a></code> so that BB Productive knows which task to edit.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/edit_success.png" alt="edit success" width="790">
+</div>
+<div class="title">Figure 7. Edit success</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="done-command"><a class="link" href="#done-command">6.1.4. Done Command</a></h4>
+<div class="paragraph">
+<p><code>done <a href="#index">INDEX</a> INDEX&#8230;&#8203;</code>
+You can also mark multiple tasks as done by using comma separated indexes.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/done_success.png" alt="done success" width="790">
+</div>
+<div class="title">Figure 8. Done success</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="sort-command"><a class="link" href="#sort-command">6.1.5. Sort Command</a></h4>
+<div class="paragraph">
+<p><code>sort FIELD FIELD&#8230;&#8203;</code>
+You can choose to change the current ordering of your task list to something more suitable by sorting it one or more of these task fields:</p>
+</div>
+<div class="paragraph">
+<p><em>All fields with r- prepended refers to a reverse of the original.</em></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>priority &#8594; Shows task of highest priority first.</p>
+</li>
+<li>
+<p>r-priority &#8594; Shows task of lowest priority first.</p>
+</li>
+<li>
+<p>done &#8594; Shows task of undone first.</p>
+</li>
+<li>
+<p>r-done &#8594; Shows task of done first.</p>
+</li>
+<li>
+<p>date &#8594; Shows tasks with reminders closer to today first then tasks without reminders.</p>
+</li>
+<li>
+<p>r-date &#8594; Shows tasks with no remidners first then tasks with reminders further from today.</p>
+</li>
+<li>
+<p>name &#8594; Shows tasks in alphanumeric order.</p>
+</li>
+<li>
+<p>r-name &#8594; Shows tasks in reverse alphanumeric order.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/sort_success.png" alt="sort success" width="790">
+</div>
+<div class="title">Figure 9. Sort success</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="find-command"><a class="link" href="#find-command">6.1.6. Find Command</a></h4>
+<div class="paragraph">
+<p><code>find PHRASE</code>
+You can perform a search for tasks by name that are important. BB Productive will then search through the names of the tasks and bring tasks that match the <code>PHRASE</code>. It is also typo tolerant and will show tasks that differ from the <code>PHRASE</code> by a little.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/find_success.png" alt="find success" width="790">
+</div>
+<div class="title">Figure 10. Find success</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="delete-command"><a class="link" href="#delete-command">6.1.7. Delete Command</a></h4>
+<div class="paragraph">
+<p><code>delete <a href="#index">INDEX</a> INDEX&#8230;&#8203;</code>
+You can delete multiple tasks.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/delete_success.png" alt="delete success" width="790">
+</div>
+<div class="title">Figure 11. Delete success</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="clear-command"><a class="link" href="#clear-command">6.1.8. Clear Command</a></h4>
+<div class="paragraph">
+<p><code>clear</code>
+You may delete all tasks from your list by issuing a clear command.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/clear_success.png" alt="clear success" width="790">
+</div>
+<div class="title">Figure 12. Clear success</div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -171,7 +533,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="content">
 <img src="images/pom_success.png" alt="pom success" width="790">
 </div>
-<div class="title">Figure 1. Example screen when pom is successfully executed.</div>
+<div class="title">Figure 13. Example screen when pom is successfully executed.</div>
 </div>
 </div>
 <div class="sect4">
@@ -183,7 +545,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="content">
 <img src="images/pom_pause.png" alt="pom pause" width="790">
 </div>
-<div class="title">Figure 2. Example screen when pom is successfully paused</div>
+<div class="title">Figure 14. Example screen when pom is successfully paused</div>
 </div>
 </div>
 <div class="sect4">
@@ -195,7 +557,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="content">
 <img src="images/pom_continuing.png" alt="pom continuing" width="790">
 </div>
-<div class="title">Figure 3. Example screen when pom is successfully resumed</div>
+<div class="title">Figure 15. Example screen when pom is successfully resumed</div>
 </div>
 </div>
 </div>
@@ -210,7 +572,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="content">
 <img src="images/pom_time_expire.png" alt="pom time expire" width="790">
 </div>
-<div class="title">Figure 4. Prompt when the pomodoro timer expires</div>
+<div class="title">Figure 16. Prompt when the pomodoro timer expires</div>
 </div>
 </div>
 <div class="sect4">
@@ -222,7 +584,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="content">
 <img src="images/pom_prompt_break.png" alt="pom prompt break" width="790">
 </div>
-<div class="title">Figure 5. Prompt checking if you&#8217;d like to take a break</div>
+<div class="title">Figure 17. Prompt checking if you&#8217;d like to take a break</div>
 </div>
 <div class="paragraph">
 <p>Note: You will not be able to do execute other commands during these prompts.</p>
@@ -237,7 +599,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="content">
 <img src="images/pom_break_end.png" alt="pom break end" width="790">
 </div>
-<div class="title">Figure 6. End of pomodoro cycle screen</div>
+<div class="title">Figure 18. End of pomodoro cycle screen</div>
 </div>
 </div>
 </div>
@@ -245,16 +607,82 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="sect2">
 <h3 id="statistics-permas"><a class="link" href="#statistics-permas">6.4. Statistics (Permas)</a></h3>
 <div class="paragraph">
-<p>Views statistics generated through the app usage.
-stats SPEED/DONE
-SPEED : Displays average time taken to complete tasks over past week/month/year.
-DONE : Displays average number of tasks done over past week/month/year.</p>
+<p>The Statistics Tab consists of 2 features to help you keep track of your productivity. You can access this panel by using the “stats” command to switch to this tab.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/stats_tab.png" alt="stats tab" width="400">
+</div>
+<div class="title">Figure 19. Statistics Tab</div>
+</div>
+<div class="sect3">
+<h4 id="daily-challenge"><a class="link" href="#daily-challenge">6.4.1. Daily Challenge</a></h4>
+<div class="paragraph">
+<p>The Daily Challenge is a progress bar that tracks the total duration you have kept the Pomodoro running in the current day. You can customise the duration you aim to achieve on a daily basis by using the Set Command as introduced in section 6.x //TODO link. Try to clear the Daily Challenge everyday to hit your productivity goals!</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="productivity-chart"><a class="link" href="#productivity-chart">6.4.2. Productivity Chart</a></h4>
+<div class="paragraph">
+<p>The Productivity Chart tracks the number of tasks done and duration you ran the Pomodoro per day for the past 7 days. This is done so that you can track your productivity progress over time. With this information. you can make adjustments to your schedule to improve your productivity.</p>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="autocomplete-branson"><a class="link" href="#autocomplete-branson">6.5. AutoComplete (Branson)</a></h3>
+<h3 id="autocomplete"><a class="link" href="#autocomplete">6.5. AutoComplete</a></h3>
 <div class="paragraph">
-<p>Write autocomplete</p>
+<p>As much as you enjoy typing, we&#8217;ve added some extra grease to make you type even faster. You can trigger our very intelligent auto complete function by pressing <code>tab</code> on the keyboard.</p>
+</div>
+<div class="paragraph">
+<p>You can expect:<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Auto completion of command words: <code>del &#8594; delete</code></p>
+</li>
+<li>
+<p>Addition of prefixes for common values: <code>20/10/20@10:30 &#8594; r/20/10/20@10:30</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Figure 14</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Auto completion of sort fields <code>sort pri</code> &#8594; <code>sort priority</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Figure 15</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/prefix_complete.png" alt="prefix complete">
+</div>
+<div class="title">Figure 20. Prefix auto complete</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/sort_complete.png" alt="sort complete">
+</div>
+<div class="title">Figure 21. Sort auto complete</div>
+</div>
+<div class="paragraph">
+<p>If we can&#8217;t find a valid command, you will observe feedback like below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/complete_fail.png" alt="complete fail">
+</div>
+<div class="title">Figure 22. Auto complete not found</div>
 </div>
 </div>
 <div class="sect2">
@@ -311,7 +739,15 @@ DONE : Displays average number of tasks done over past week/month/year.</p>
 <div class="sect2">
 <h3 id="storage-permas"><a class="link" href="#storage-permas">6.8. Storage (Permas)</a></h3>
 <div class="paragraph">
-<p>Write storage</p>
+<p>All your progress, user preferences and settings are stored in the “data” folder. If you plan to switch devices, you may transfer your progress to another computer by copying the contents of the original device’s “data” folder to the new device’s data folder. This can be done through a thumbdrive.</p>
+</div>
+<div class="paragraph">
+<p>Please check if the following files are in the “data” folder to ensure that you are transferring the correct files!</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/storage.png" alt="storage" width="400">
+</div>
 </div>
 </div>
 </div>
@@ -323,7 +759,7 @@ DONE : Displays average number of tasks done over past week/month/year.</p>
 <p><em>The following table summarizes all the commands that you can use. Input contained with in [&#8230;&#8203;] are optional fields.</em></p>
 </div>
 <table class="tableblock frame-topbot grid-all spread">
-<caption class="title">Table 1. Command Table</caption>
+<caption class="title">Table 2. Command Table</caption>
 <colgroup>
 <col style="width: 14.2857%;">
 <col style="width: 42.8571%;">
@@ -399,4 +835,4 @@ DONE : Displays average number of tasks done over past week/month/year.</p>
 <strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous BB Productive folder.</p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-08 10:15:56 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-09 07:57:04 UTC</div></div></div></body></html>
