@@ -11,4 +11,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_TASK_TO_BE_DONED =
             "Task has already been marked as done!";
     public static final String MESSAGE_FIELD_UNKNOWN = "The fields do not exist %1$s";
+    public static final String MESSAGE_TASK_IN_PROGRESS =
+            "Task is being pommed! Please use \"pom stop\" first.";
 }

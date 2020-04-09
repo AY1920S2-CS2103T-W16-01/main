@@ -17,6 +17,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.control.Label;
 import javafx.util.Duration;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.PomCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -58,7 +59,8 @@ public class PomodoroManager {
         NONE,
         CHECK_DONE,
         CHECK_TAKE_BREAK,
-        CHECK_DONE_MIDPOM;
+        CHECK_DONE_MIDPOM,
+        CHECK_RESUME_LAST;
     }
 
     public final String CHECK_DONE_MESSAGE =
@@ -71,6 +73,10 @@ public class PomodoroManager {
     public final String CHECK_DONE_MIDPOM_MESSAGE =
             "Great! Would you like to continue with another task\n"
                     + "(pom <index>) - next task pommed with remaining time. (N) - App goes neutral.";
+
+    public final String CHECK_RESUME_LAST_MESSAGE =
+            "Welcome back! You had a task mid-pom when you left. Carry on?\n"
+                    + "(Y) - pomodoro will resume on that task. (N) - Pomodoro cancels. App neutral.";
 
     private PROMPT_STATE promptState;
 
@@ -122,8 +128,8 @@ public class PomodoroManager {
         this.timerLabel = timerLabel;
     }
 
-    public void start(float time) {
-        startTime = (int) (time);
+    public void start(float timeInSec) {
+        startTime = (int) (timeInSec);
         timeSeconds = new SimpleIntegerProperty(startTime);
         configureUi();
         configureTimer();
@@ -141,6 +147,16 @@ public class PomodoroManager {
     public void unpause() throws NullPointerException {
         try {
             timeline.play();
+        } catch (NullPointerException ne) {
+            throw ne;
+        }
+    }
+
+    public void stop() throws NullPointerException {
+        try {
+            timeline.stop();
+            reset();
+            model.setPomodoroTask(null);
         } catch (NullPointerException ne) {
             throw ne;
         }
@@ -399,10 +415,6 @@ public class PomodoroManager {
                     return commandResult;
                 }
                 try {
-                    // PomCommand pc = (PomCommand) (new
-                    // TaskListParser().parseCommand(commandText));
-                    // if continuedPom was created, user put in a valid pom request. Execute as per
-                    // normal
                     PomCommandResult pomCommandResult =
                             (PomCommandResult) logic.execute(commandText);
                     logger.info("Result: " + pomCommandResult.getFeedbackToUser());
@@ -429,6 +441,28 @@ public class PomodoroManager {
                     resultDisplay.setFeedbackToUser(message);
                     throw new ParseException(message);
                 }
+            case CHECK_RESUME_LAST:
+                if (commandTextLower.equals("y")) {
+                    CommandResult commandResult =
+                            new CommandResult("Okie doke! Pom resuming...", false, false);
+                    resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+                    // TODO: UPDATE pomodoro ETC IF NEEDED? TIMER START AGAIN, GET TIME LEFT
+                    startFromLast();
+                    setPromptState(PROMPT_STATE.NONE);
+                    mainWindow.setDefaultCommandExecutor();
+                    return commandResult;
+                } else if (commandTextLower.equals("n")) {
+                    CommandResult commandResult =
+                            new CommandResult("Alright, back to neutral!", false, false);
+                    resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+                    setPromptState(PROMPT_STATE.NONE);
+                    model.setPomodoroTask(null);
+                    reset();
+                    mainWindow.setDefaultCommandExecutor();
+                    return commandResult;
+                } else {
+                    throw new ParseException("(Please confirm)" + CHECK_RESUME_LAST_MESSAGE);
+                }
             case NONE:
             default:
                 break;
@@ -444,5 +478,33 @@ public class PomodoroManager {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    public void handleResumeLastSession() {
+        Task prevPomTask = model.getPomodoroTask();
+        if (prevPomTask == null) {
+            return;
+        }
+        resultDisplay.setFeedbackToUser(CHECK_RESUME_LAST_MESSAGE);
+        this.setPromptState(PROMPT_STATE.CHECK_RESUME_LAST); // App back to neutral
+        mainWindow.setPomCommandExecutor();
+    }
+
+    public void startFromLast() {
+        String timeLeft = model.getPomodoro().getTimeLeft();
+        Task taskToResume = model.getPomodoroTask();
+        pomodoroDisplay.setTaskInProgressText(taskToResume.getName().fullName);
+        start(Float.parseFloat(timeLeft) * 60);
+        List<Task> originList = model.getFilteredTaskList();
+        Index resumeIndex = Index.fromZeroBased(originList.indexOf(taskToResume));
+        setDoneParams(model, originList, resumeIndex.getZeroBased());
+    }
+
+    public void handleExit() {
+        if (timeSeconds == null) {
+            return;
+        }
+        float timeInMinutes = timeSeconds.floatValue() / 60;
+        model.setPomodoroTimeLeft(timeInMinutes);
     }
 }

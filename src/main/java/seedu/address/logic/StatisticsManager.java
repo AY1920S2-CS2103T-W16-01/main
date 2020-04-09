@@ -1,10 +1,10 @@
 package seedu.address.logic;
 
+import static seedu.address.model.dayData.CustomQueue.CONSTANT_SIZE;
+
 import javafx.collections.ObservableList;
 import seedu.address.model.Statistics;
 import seedu.address.model.dayData.DayData;
-
-import static seedu.address.model.dayData.CustomQueue.CONSTANT_SIZE;
 
 public class StatisticsManager {
     private Statistics statistics;
@@ -13,7 +13,7 @@ public class StatisticsManager {
     private String progressBarDailyFilepathString;
     private ObservableList<DayData> customQueue;
 
-    public StatisticsManager() { }
+    public StatisticsManager() {}
 
     public void setStatistics(Statistics statistics) {
         this.statistics = statistics;
@@ -33,7 +33,7 @@ public class StatisticsManager {
         this.progressDailyText = String.valueOf(currProgress);
         this.dailyTargetText = String.valueOf(currTarget);
 
-        int expBarPerc = (currProgress* 10)/currTarget;
+        int expBarPerc = (currProgress * 10) / currTarget;
         if (expBarPerc >= 10) {
             expBarPerc = 10;
         }

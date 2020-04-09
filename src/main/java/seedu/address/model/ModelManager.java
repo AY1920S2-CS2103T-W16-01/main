@@ -17,7 +17,6 @@ import seedu.address.logic.PetManager;
 import seedu.address.logic.PomodoroManager;
 import seedu.address.logic.StatisticsManager;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.dayData.Date;
 import seedu.address.model.dayData.DayData;
 import seedu.address.model.task.NameContainsKeywordsPredicate;
 import seedu.address.model.task.Task;
@@ -181,7 +180,7 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredTasks.setPredicate(
                 predicate); // predicate should now be applied and evaluate to true for certain
-                            // threshold
+        // threshold
         if (predicate instanceof NameContainsKeywordsPredicate) {
             System.out.println("list called??");
             NameContainsKeywordsPredicate namePredicate = (NameContainsKeywordsPredicate) predicate;
@@ -275,6 +274,10 @@ public class ModelManager implements Model {
 
     public void setPomodoroDefaultTime(float defaultTimeInMin) {
         this.pomodoro.setDefaultTime(Float.toString(defaultTimeInMin));
+    }
+
+    public void setPomodoroTimeLeft(float timeLeft) {
+        this.pomodoro.setTimeLeft(Float.toString(timeLeft));
     }
 
     public void setPomodoroManager(PomodoroManager pomodoroManager) {

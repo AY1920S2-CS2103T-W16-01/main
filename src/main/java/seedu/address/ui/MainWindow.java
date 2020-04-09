@@ -105,7 +105,11 @@ public class MainWindow extends UiPart<Stage> {
     @FXML private TabPane tabPanePlaceholder;
 
     public MainWindow(
-            Stage primaryStage, Logic logic, PomodoroManager pomodoro, PetManager petManager, StatisticsManager statisticsManager) {
+            Stage primaryStage,
+            Logic logic,
+            PomodoroManager pomodoro,
+            PetManager petManager,
+            StatisticsManager statisticsManager) {
         super(FXML, primaryStage);
 
         // Set dependencies
@@ -213,6 +217,7 @@ public class MainWindow extends UiPart<Stage> {
         pomodoro.setPomodoroDisplay(pomodoroDisplay);
         pomodoro.setResultDisplay(resultDisplay);
         pomodoro.setMainWindow(this);
+        pomodoro.handleResumeLastSession();
 
         statisticsDisplay = new StatisticsDisplay();
         statisticsPlaceholder.getChildren().add(statisticsDisplay.getRoot());
@@ -249,6 +254,7 @@ public class MainWindow extends UiPart<Stage> {
     /** Closes the application. */
     @FXML
     private void handleExit() {
+        pomodoro.handleExit();
         GuiSettings guiSettings =
                 new GuiSettings(
                         primaryStage.getWidth(),
@@ -351,7 +357,7 @@ public class MainWindow extends UiPart<Stage> {
             try {
                 PomCommandResult pomCommandResult = (PomCommandResult) commandResult;
 
-                if (!pomCommandResult.getIsPause() && !pomCommandResult.getIsContinue()) {
+                if (pomCommandResult.getIsNormal()) {
                     pomodoroDisplay.setTaskInProgressText(pomCommandResult.getPommedTask());
                     pomodoro.start(pomCommandResult.getTimerAmountInMin());
                     pomodoro.setDoneParams(
@@ -425,7 +431,8 @@ public class MainWindow extends UiPart<Stage> {
     public void updateStatisticsDisplay() {
         String dailyTargetText = statisticsManager.getDailyTargetText();
         String progressDailyText = statisticsManager.getProgressDailyText();
-        String progressBarDailyFilepathString = statisticsManager.getProgressBarDailyFilepathString();
+        String progressBarDailyFilepathString =
+                statisticsManager.getProgressBarDailyFilepathString();
         ObservableList<DayData> customQueue = statisticsManager.getCustomQueue();
 
         statisticsDisplay.setProgressTargetText(dailyTargetText);

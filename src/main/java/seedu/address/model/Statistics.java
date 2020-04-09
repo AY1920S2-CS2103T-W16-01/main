@@ -52,7 +52,7 @@ public class Statistics implements ReadOnlyStatistics {
     public String getDailyTarget() {
         return dailyTarget;
     }
-    
+
     //// list overwrite operations
 
     /** Replaces the contents of the list with {@code dayDataList}. */

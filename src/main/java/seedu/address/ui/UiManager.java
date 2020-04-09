@@ -28,7 +28,11 @@ public class UiManager implements Ui {
     private PetManager petManager;
     private StatisticsManager statisticsManager;
 
-    public UiManager(Logic logic, PomodoroManager pomodoro, PetManager petManager, StatisticsManager statisticsManager) {
+    public UiManager(
+            Logic logic,
+            PomodoroManager pomodoro,
+            PetManager petManager,
+            StatisticsManager statisticsManager) {
         super();
         this.logic = logic;
         this.pomodoro = pomodoro;
@@ -44,7 +48,8 @@ public class UiManager implements Ui {
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
         try {
-            mainWindow = new MainWindow(primaryStage, logic, pomodoro, petManager, statisticsManager);
+            mainWindow =
+                    new MainWindow(primaryStage, logic, pomodoro, petManager, statisticsManager);
             mainWindow.show(); // This should be called before creating other UI parts
             mainWindow.fillInnerParts();
 

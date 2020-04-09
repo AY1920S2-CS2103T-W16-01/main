@@ -9,8 +9,8 @@ import seedu.address.logic.Observer;
 import seedu.address.logic.PetManager;
 import seedu.address.logic.PomodoroManager;
 import seedu.address.logic.StatisticsManager;
-import seedu.address.model.dayData.DayData;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.dayData.DayData;
 import seedu.address.model.task.Task;
 
 /** The API of the Model component. */
@@ -88,6 +88,8 @@ public interface Model {
 
     void setPomodoroRestTime(float restTimeInMin);
 
+    void setPomodoroTimeLeft(float timeLeft);
+
     void setPomodoroManager(PomodoroManager pomodoroManager);
 
     void setPetManager(PetManager PetManager);
@@ -99,7 +101,7 @@ public interface Model {
     Statistics getStatistics();
 
     ObservableList<DayData> getCustomQueue();
-  
+
     /**
      * Notifies observers when a change is made. Observer in this case is the logic manager.
      *

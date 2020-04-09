@@ -43,6 +43,9 @@ public class DeleteCommand extends Command {
                 throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
             }
             Task taskToDelete = lastShownList.get(targetIndex.getZeroBased());
+            if (taskToDelete.equals(model.getPomodoroTask())) {
+                throw new CommandException(Messages.MESSAGE_TASK_IN_PROGRESS);
+            }
             toDeleteTasks.add(taskToDelete);
         }
         for (Task t : toDeleteTasks) {

@@ -33,28 +33,35 @@ public class PomCommand extends Command {
 
     private final Index targetIndex;
     private final float timerAmount;
-    private final boolean isPause;
-    private final boolean isContinue;
+    // private final boolean isPause;
+    // private final boolean isContinue;
+    // private final boolean isStop;
+
+    private final POM_TYPE pomType;
+
+    public enum POM_TYPE {
+        NORMAL,
+        PAUSE,
+        CONTINUE,
+        STOP;
+    }
 
     public PomCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
         this.timerAmount = -1;
-        this.isPause = false;
-        this.isContinue = false;
+        this.pomType = POM_TYPE.NORMAL;
     }
 
     public PomCommand(Index targetIndex, float timerAmount) {
         this.targetIndex = targetIndex;
         this.timerAmount = timerAmount * 60;
-        this.isPause = false;
-        this.isContinue = false;
+        this.pomType = POM_TYPE.NORMAL;
     }
 
-    public PomCommand(boolean isPause, boolean isContinue) {
+    public PomCommand(POM_TYPE pomType) {
         this.targetIndex = null;
         this.timerAmount = 0;
-        this.isPause = isPause;
-        this.isContinue = isContinue;
+        this.pomType = pomType;
     }
 
     @Override
@@ -63,16 +70,19 @@ public class PomCommand extends Command {
 
         PomodoroManager pm = model.getPomodoroManager();
 
-        if (isPause) {
+        if (pomType == POM_TYPE.PAUSE) {
             pm.pause();
-            return new PomCommandResult(
-                    PAUSE_MESSAGE, null, 0, model, -1, null, isPause, isContinue);
+            return new PomCommandResult(PAUSE_MESSAGE, null, 0, model, -1, null, pomType);
         }
 
-        if (isContinue) {
+        if (pomType == POM_TYPE.CONTINUE) {
             pm.unpause();
-            return new PomCommandResult(
-                    CONTINUE_MESSAGE, null, 0, model, -1, null, isPause, isContinue);
+            return new PomCommandResult(CONTINUE_MESSAGE, null, 0, model, -1, null, pomType);
+        }
+
+        if (pomType == POM_TYPE.STOP) {
+            pm.stop();
+            return new PomCommandResult(CONTINUE_MESSAGE, null, 0, model, -1, null, pomType);
         }
 
         List<Task> lastShownList = model.getFilteredTaskList();
@@ -102,8 +112,7 @@ public class PomCommand extends Command {
                 model,
                 index,
                 lastShownList,
-                isPause,
-                isContinue);
+                pomType);
     }
 
     @Override
@@ -122,7 +131,6 @@ public class PomCommand extends Command {
         PomCommand e = (PomCommand) other;
         return targetIndex.equals(e.targetIndex)
                 && ((int) timerAmount) == ((int) e.timerAmount)
-                && (isPause == e.isPause)
-                && (isContinue == e.isContinue);
+                && (pomType == e.pomType);
     }
 }
