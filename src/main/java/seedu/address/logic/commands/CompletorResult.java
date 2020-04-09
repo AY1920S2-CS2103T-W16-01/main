@@ -16,6 +16,7 @@ public class CompletorResult {
         this.suggestedCommand = requireNonNull(suggestedCommand);
     }
 
+    /** Appends space to all suggeseted commands */
     public String getSuggestion() {
         return suggestedCommand + " ";
     }

@@ -28,6 +28,12 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         }
     }
 
+    /**
+     * Removes all invalid indexes and lets user know which indexes have been removed
+     * 
+     * @param input input that has been trimmed
+     * @return CompletorResult with suggested command and feedback to display
+     */
     public CompletorResult completeCommand(String input, int listSize) {
         String[] splitInput = input.split("\\s+");
         StringBuilder newCommand = new StringBuilder("delete ");

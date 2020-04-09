@@ -43,6 +43,13 @@ public class PomCommandParser implements Parser<PomCommand> {
         }
     }
 
+    /**
+     * Uses argMultimap to detect existing prefixes used so that it won't add double prefixes.
+     * Adds timer prefix
+     * 
+     * @param input input that has been trimmed
+     * @return CompletorResult with suggested command and feedback to display
+     */
     public CompletorResult completeCommand(String input) {
         ArgumentMultimap pomArgMap = ArgumentTokenizer.tokenize(input, PREFIX_TIMER);
         boolean hasTimer = ParserUtil.arePrefixesPresent(pomArgMap, PREFIX_TIMER);
