@@ -53,7 +53,7 @@ public class CommandCompletor {
         String[] splitInput = input.split("\\s+");
         String feedbackToUser = Messages.COMPLETE_SUCCESS;
 
-        if (splitInput.length <= 0) {
+        if (splitInput.length <= 0 || splitInput[0].length() == 0) {
             throw new CompletorException(String.format(Messages.COMPLETE_UNFOUND_FAILURE, ""));
         }
 
