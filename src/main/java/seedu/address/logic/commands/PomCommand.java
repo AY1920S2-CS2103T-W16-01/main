@@ -31,30 +31,41 @@ public class PomCommand extends Command {
 
     public static final String CONTINUE_MESSAGE = "Pomodoro continuing.";
 
+    public static final String STOP_MESSAGE = "Pomodoro stopped.";
+
+    public static final String NO_POM = "Sorry, you've got no tasks being POMmed.";
+
     private final Index targetIndex;
     private final float timerAmount;
-    private final boolean isPause;
-    private final boolean isContinue;
+    // private final boolean isPause;
+    // private final boolean isContinue;
+    // private final boolean isStop;
+
+    private final POM_TYPE pomType;
+
+    public enum POM_TYPE {
+        NORMAL,
+        PAUSE,
+        CONTINUE,
+        STOP;
+    }
 
     public PomCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
         this.timerAmount = -1;
-        this.isPause = false;
-        this.isContinue = false;
+        this.pomType = POM_TYPE.NORMAL;
     }
 
     public PomCommand(Index targetIndex, float timerAmount) {
         this.targetIndex = targetIndex;
         this.timerAmount = timerAmount * 60;
-        this.isPause = false;
-        this.isContinue = false;
+        this.pomType = POM_TYPE.NORMAL;
     }
 
-    public PomCommand(boolean isPause, boolean isContinue) {
+    public PomCommand(POM_TYPE pomType) {
         this.targetIndex = null;
         this.timerAmount = 0;
-        this.isPause = isPause;
-        this.isContinue = isContinue;
+        this.pomType = pomType;
     }
 
     @Override
@@ -63,16 +74,31 @@ public class PomCommand extends Command {
 
         PomodoroManager pm = model.getPomodoroManager();
 
-        if (isPause) {
-            pm.pause();
-            return new PomCommandResult(
-                    PAUSE_MESSAGE, null, 0, model, -1, null, isPause, isContinue);
+        if (pomType == POM_TYPE.PAUSE) {
+            try {
+                pm.pause();
+                return new PomCommandResult(PAUSE_MESSAGE, null, 0, model, -1, null, pomType);
+            } catch (NullPointerException ne) {
+                return new PomCommandResult(NO_POM, null, 0, model, -1, null, pomType);
+            }
         }
 
-        if (isContinue) {
-            pm.unpause();
-            return new PomCommandResult(
-                    CONTINUE_MESSAGE, null, 0, model, -1, null, isPause, isContinue);
+        if (pomType == POM_TYPE.CONTINUE) {
+            try {
+                pm.unpause();
+                return new PomCommandResult(CONTINUE_MESSAGE, null, 0, model, -1, null, pomType);
+            } catch (NullPointerException ne) {
+                return new PomCommandResult(NO_POM, null, 0, model, -1, null, pomType);
+            }
+        }
+
+        if (pomType == POM_TYPE.STOP) {
+            try {
+                pm.stop();
+                return new PomCommandResult(STOP_MESSAGE, null, 0, model, -1, null, pomType);
+            } catch (NullPointerException ne) {
+                return new PomCommandResult(NO_POM, null, 0, model, -1, null, pomType);
+            }
         }
 
         List<Task> lastShownList = model.getFilteredTaskList();
@@ -90,20 +116,24 @@ public class PomCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_TO_BE_DONED);
         }
 
+        String resultText =
+                model.getPomodoroTask() == null
+                        ? "Pomming task: " + taskToPom.toString()
+                        : "Switched pom task: " + taskToPom.toString();
+
         // Update the pomodoro model
         model.setPomodoroTask(taskToPom);
 
         System.out.println("Hardy: " + (pm.getDefaultStartTime()));
 
         return new PomCommandResult(
-                "Pomming task: " + taskToPom.toString(),
+                resultText,
                 taskToPom.getName().toString(),
                 ((int) timerAmount) == -1 ? pm.getDefaultStartTime() : timerAmount,
                 model,
                 index,
                 lastShownList,
-                isPause,
-                isContinue);
+                pomType);
     }
 
     @Override
@@ -122,7 +152,6 @@ public class PomCommand extends Command {
         PomCommand e = (PomCommand) other;
         return targetIndex.equals(e.targetIndex)
                 && ((int) timerAmount) == ((int) e.timerAmount)
-                && (isPause == e.isPause)
-                && (isContinue == e.isContinue);
+                && (pomType == e.pomType);
     }
 }

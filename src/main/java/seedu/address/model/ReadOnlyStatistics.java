@@ -11,4 +11,6 @@ public interface ReadOnlyStatistics {
      * @return
      */
     ObservableList<DayData> getCustomQueue();
+
+    String getDailyTarget();
 }

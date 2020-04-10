@@ -23,4 +23,6 @@ public class Messages {
             "These fields removed as they are unknown:\n%1$s";
     public static final String COMPLETE_INDEX_OUT_OF_RANGE_FAILURE =
             "Index %1$s is out of range/invalid";
+    public static final String MESSAGE_TASK_IN_PROGRESS =
+            "Task is being pommed! Please use \"pom stop\" first.";
 }

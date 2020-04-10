@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.logic.PetManager;
 import seedu.address.logic.PomodoroManager;
+import seedu.address.logic.StatisticsManager;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.Pet;
@@ -58,6 +59,7 @@ public class MainApp extends Application {
     protected Config config;
     protected PomodoroManager pomodoroManager;
     protected PetManager petManager;
+    protected StatisticsManager statisticsManager;
 
     @Override
     public void init() throws Exception {
@@ -94,6 +96,8 @@ public class MainApp extends Application {
 
         PetManager petManager = new PetManager();
 
+        StatisticsManager statisticsManager = new StatisticsManager();
+
         pomodoroManager.setDefaultStartTime(
                 Float.valueOf(model.getPomodoro().getDefaultTime()).floatValue());
 
@@ -103,9 +107,11 @@ public class MainApp extends Application {
 
         model.setPetManager(petManager);
 
+        model.setStatisticsManager(statisticsManager);
+
         model.addObserver(logic);
 
-        ui = new UiManager(logic, pomodoroManager, petManager);
+        ui = new UiManager(logic, pomodoroManager, petManager, statisticsManager);
     }
 
     /**
@@ -284,6 +290,8 @@ public class MainApp extends Application {
         logger.info(
                 "============================ [ Stopping Address Book ] =============================");
         try {
+            storage.savePomodoro(model.getPomodoro());
+            storage.saveStatistics(model.getStatistics());
             storage.saveUserPrefs(model.getUserPrefs());
             System.exit(0);
         } catch (IOException e) {

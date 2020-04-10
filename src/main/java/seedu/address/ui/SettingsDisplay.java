@@ -6,6 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.logic.PetManager;
+import seedu.address.logic.StatisticsManager;
 import seedu.address.model.ReadOnlyPomodoro;
 
 public class SettingsDisplay extends UiPart<Region> {
@@ -17,7 +18,7 @@ public class SettingsDisplay extends UiPart<Region> {
 
     private ReadOnlyPomodoro pomodoro;
     private PetManager petManager;
-    private StatisticsDisplay statisticsDisplay;
+    private StatisticsManager statisticsManager;
 
     @FXML private VBox settingsPane;
     @FXML private Label petNameLabel;
@@ -28,11 +29,11 @@ public class SettingsDisplay extends UiPart<Region> {
     @FXML private TextField challengeTextField;
 
     public SettingsDisplay(
-            PetManager petManager, ReadOnlyPomodoro pomodoro, StatisticsDisplay statisticsDisplay) {
+            PetManager petManager, ReadOnlyPomodoro pomodoro, StatisticsManager statisticsManager) {
         super(FXML);
         this.pomodoro = pomodoro;
         this.petManager = petManager;
-        this.statisticsDisplay = statisticsDisplay;
+        this.statisticsManager = statisticsManager;
 
         update();
     }
@@ -44,7 +45,7 @@ public class SettingsDisplay extends UiPart<Region> {
         String duration = pomodoro.getDefaultTime();
         pomodoroTextField.setText(duration);
 
-        String dailyChallenge = statisticsDisplay.getDailyTarget();
+        String dailyChallenge = statisticsManager.getDailyTargetText();
         challengeTextField.setText(dailyChallenge);
     }
 }

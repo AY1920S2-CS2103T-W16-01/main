@@ -8,6 +8,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Observer;
 import seedu.address.logic.PetManager;
 import seedu.address.logic.PomodoroManager;
+import seedu.address.logic.StatisticsManager;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.dayData.DayData;
 import seedu.address.model.task.Task;
@@ -89,9 +90,13 @@ public interface Model {
 
     void setPomodoroRestTime(float restTimeInMin);
 
+    void setPomodoroTimeLeft(float timeLeft);
+
     void setPomodoroManager(PomodoroManager pomodoroManager);
 
     void setPetManager(PetManager PetManager);
+
+    void setStatisticsManager(StatisticsManager statisticsManager);
 
     PomodoroManager getPomodoroManager();
 

@@ -81,47 +81,6 @@ public class CustomQueueTest {
     }
 
     @Test
-    public void contains_nullDayDatathrowsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> customQueue.contains(null));
-    }
-
-    @Test
-    public void contains_DayDataNotInList_returnsFalse() {
-        assertFalse(customQueue.contains(DAYNEW));
-    }
-
-    @Test
-    public void contains_taskInList_returnsTrue() throws InvalidTableException {
-        customQueue.init(TYPICAL_STATISTICS_LATEST_LOCAL_DATE);
-        customQueue.pop();
-
-        customQueue.add(DAYNEW);
-        assertTrue(customQueue.contains(DAYNEW));
-    }
-
-    @Test
-    public void contains_dayDataWithSameIdentityFieldsInList_returnsTrue()
-            throws InvalidTableException {
-        customQueue.init(TYPICAL_STATISTICS_LATEST_LOCAL_DATE);
-        customQueue.pop();
-
-        customQueue.add(DAYNEW);
-        DayData editedDayData =
-                new DayDataBuilder(DAYNEW)
-                        .withPomDurationData(VALID_POM_DURATION_DATA)
-                        .withTasksDoneData(VALID_TASKS_DONE_DATA)
-                        .build();
-        assertTrue(customQueue.contains(editedDayData));
-    }
-
-    @Test
-    public void clear_success() throws InvalidTableException {
-        customQueue.init(TYPICAL_STATISTICS_LATEST_LOCAL_DATE);
-        customQueue.clear();
-        assertTrue(customQueue.size() == 0);
-    }
-
-    @Test
     public void add_nullDayData_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> customQueue.add(null));
     }
@@ -193,16 +152,6 @@ public class CustomQueueTest {
 
         expectedCustomQueue.add(DAYNEW2);
         assertEquals(expectedCustomQueue, customQueue);
-    }
-
-    @Test
-    public void remove_nullDayData_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> customQueue.remove(null));
-    }
-
-    @Test
-    public void remove_dayDataDoesNotExist_throwsDayDataNotFoundException() {
-        assertThrows(DayDataNotFoundException.class, () -> customQueue.remove(DAYNEW));
     }
 
     @Test
