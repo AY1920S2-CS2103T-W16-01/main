@@ -55,6 +55,8 @@ public class PomodoroManager {
 
     private LocalDateTime startDateTime, endDateTime;
 
+    private final int SECONDS_IN_A_DAY = 24 * 60 * 60;
+
     public enum PROMPT_STATE {
         NONE,
         CHECK_DONE,
@@ -132,6 +134,7 @@ public class PomodoroManager {
 
     public void start(float timeInSec) {
         startTime = (int) (timeInSec);
+        startTime = startTime > SECONDS_IN_A_DAY ? SECONDS_IN_A_DAY : startTime;
         timeSeconds = new SimpleIntegerProperty(startTime);
         configureUi();
         configureTimer();
@@ -493,6 +496,7 @@ public class PomodoroManager {
     }
 
     public void startFromLast() {
+        startDateTime = LocalDateTime.now();
         String timeLeft = model.getPomodoro().getTimeLeft();
         Task taskToResume = model.getPomodoroTask();
         pomodoroDisplay.setTaskInProgressText(taskToResume.getName().fullName);
@@ -508,5 +512,21 @@ public class PomodoroManager {
         }
         float timeInMinutes = timeSeconds.floatValue() / 60;
         model.setPomodoroTimeLeft(timeInMinutes);
+
+        // Update statistics so far
+        // Update stats
+        updateStatistics(model);
+        // model.updateDataDatesStatistics();
+        // LocalDateTime now = LocalDateTime.now();
+        // Date dateOnDone = new Date(now.format(Date.dateFormatter));
+        // Statistics stats = model.getStatistics();
+        // DayData dayData = stats.getDayDataFromDate(dateOnDone);
+        // DayData updatedDayData =
+        //         new DayData(
+        //                 dateOnDone,
+        //                 dayData.getPomDurationData(),
+        //                 dayData.getTasksDoneData());
+        //                 //new TasksDoneData("" + (dayData.getTasksDoneData().value + 1)));
+        // stats.updatesDayData(updatedDayData);
     }
 }

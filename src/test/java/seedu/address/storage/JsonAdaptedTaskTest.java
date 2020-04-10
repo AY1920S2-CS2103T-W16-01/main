@@ -45,7 +45,8 @@ public class JsonAdaptedTaskTest {
                         VALID_DESCRIPTION,
                         VALID_DONE,
                         VALID_TAGS,
-                        null, null);
+                        null,
+                        null);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
@@ -54,7 +55,13 @@ public class JsonAdaptedTaskTest {
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedTask task =
                 new JsonAdaptedTask(
-                        null, VALID_PRIORITY, VALID_DESCRIPTION, VALID_DONE, VALID_TAGS, null, null);
+                        null,
+                        VALID_PRIORITY,
+                        VALID_DESCRIPTION,
+                        VALID_DONE,
+                        VALID_TAGS,
+                        null,
+                        null);
         String expectedMessage =
                 String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
@@ -69,7 +76,8 @@ public class JsonAdaptedTaskTest {
                         VALID_DESCRIPTION,
                         VALID_DONE,
                         VALID_TAGS,
-                        null, null);
+                        null,
+                        null);
         String expectedMessage = Priority.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
@@ -87,7 +95,8 @@ public class JsonAdaptedTaskTest {
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedTask task =
-                new JsonAdaptedTask(VALID_NAME, VALID_PRIORITY, null, VALID_DONE, VALID_TAGS, null, null);
+                new JsonAdaptedTask(
+                        VALID_NAME, VALID_PRIORITY, null, VALID_DONE, VALID_TAGS, null, null);
         String expectedMessage =
                 String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
@@ -104,7 +113,8 @@ public class JsonAdaptedTaskTest {
                         VALID_DESCRIPTION,
                         VALID_DONE,
                         invalidTags,
-                        null, null);
+                        null,
+                        null);
         assertThrows(IllegalValueException.class, task::toModelType);
     }
 }

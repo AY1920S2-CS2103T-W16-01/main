@@ -291,6 +291,7 @@ public class MainApp extends Application {
                 "============================ [ Stopping Address Book ] =============================");
         try {
             storage.savePomodoro(model.getPomodoro());
+            storage.saveStatistics(model.getStatistics());
             storage.saveUserPrefs(model.getUserPrefs());
             System.exit(0);
         } catch (IOException e) {

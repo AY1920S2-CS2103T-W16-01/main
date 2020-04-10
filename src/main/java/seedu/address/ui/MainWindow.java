@@ -367,8 +367,6 @@ public class MainWindow extends UiPart<Stage> {
                 }
             } catch (ClassCastException ce) {
 
-            } catch (NullPointerException ne) {
-                resultDisplay.setFeedbackToUser("Sorry, you've got no tasks being POMmed.");
             }
 
             if (commandResult.isShowHelp()) {

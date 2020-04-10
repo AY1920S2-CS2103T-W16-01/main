@@ -31,6 +31,10 @@ public class PomCommand extends Command {
 
     public static final String CONTINUE_MESSAGE = "Pomodoro continuing.";
 
+    public static final String STOP_MESSAGE = "Pomodoro stopped.";
+
+    public static final String NO_POM = "Sorry, you've got no tasks being POMmed.";
+
     private final Index targetIndex;
     private final float timerAmount;
     // private final boolean isPause;
@@ -71,18 +75,30 @@ public class PomCommand extends Command {
         PomodoroManager pm = model.getPomodoroManager();
 
         if (pomType == POM_TYPE.PAUSE) {
-            pm.pause();
-            return new PomCommandResult(PAUSE_MESSAGE, null, 0, model, -1, null, pomType);
+            try {
+                pm.pause();
+                return new PomCommandResult(PAUSE_MESSAGE, null, 0, model, -1, null, pomType);
+            } catch (NullPointerException ne) {
+                return new PomCommandResult(NO_POM, null, 0, model, -1, null, pomType);
+            }
         }
 
         if (pomType == POM_TYPE.CONTINUE) {
-            pm.unpause();
-            return new PomCommandResult(CONTINUE_MESSAGE, null, 0, model, -1, null, pomType);
+            try {
+                pm.unpause();
+                return new PomCommandResult(CONTINUE_MESSAGE, null, 0, model, -1, null, pomType);
+            } catch (NullPointerException ne) {
+                return new PomCommandResult(NO_POM, null, 0, model, -1, null, pomType);
+            }
         }
 
         if (pomType == POM_TYPE.STOP) {
-            pm.stop();
-            return new PomCommandResult(CONTINUE_MESSAGE, null, 0, model, -1, null, pomType);
+            try {
+                pm.stop();
+                return new PomCommandResult(STOP_MESSAGE, null, 0, model, -1, null, pomType);
+            } catch (NullPointerException ne) {
+                return new PomCommandResult(NO_POM, null, 0, model, -1, null, pomType);
+            }
         }
 
         List<Task> lastShownList = model.getFilteredTaskList();
@@ -100,13 +116,18 @@ public class PomCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_TO_BE_DONED);
         }
 
+        String resultText =
+                model.getPomodoroTask() == null
+                        ? "Pomming task: " + taskToPom.toString()
+                        : "Switched pom task: " + taskToPom.toString();
+
         // Update the pomodoro model
         model.setPomodoroTask(taskToPom);
 
         System.out.println("Hardy: " + (pm.getDefaultStartTime()));
 
         return new PomCommandResult(
-                "Pomming task: " + taskToPom.toString(),
+                resultText,
                 taskToPom.getName().toString(),
                 ((int) timerAmount) == -1 ? pm.getDefaultStartTime() : timerAmount,
                 model,
