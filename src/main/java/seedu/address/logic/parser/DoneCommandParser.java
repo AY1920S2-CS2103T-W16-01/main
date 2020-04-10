@@ -45,21 +45,19 @@ public class DoneCommandParser implements Parser<DoneCommand> {
         for (int i = 1; i < splitInput.length; i++) {
             if (!StringUtil.isNonZeroUnsignedInteger(splitInput[i])) {
                 feedbackToUser = Messages.COMPLETE_INDEX_OUT_OF_RANGE_REMOVAL;
-                removedIndices.append(splitInput[i].toString());
-                removedIndices.append(" ");
+                removedIndices.append(splitInput[i].toString() + " ");
                 continue;
             }
             int currNumber = Integer.parseInt(splitInput[i]);
             if (currNumber > listSize) {
                 feedbackToUser = Messages.COMPLETE_INDEX_OUT_OF_RANGE_REMOVAL;
-                removedIndices.append(String.format("%d ", currNumber));
+                removedIndices.append(currNumber + " ");
             } else {
-                newCommand.append(String.format("%d ", currNumber));
+                newCommand.append(currNumber + " ");
             }
         }
 
         newCommand.setLength(newCommand.length() - 1);
-
         if (removedIndices.length() > 0) {
             removedIndices.setLength(removedIndices.length() - 1);
             throw new CompletorDeletionException(
