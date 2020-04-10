@@ -66,18 +66,21 @@ public class SortCommand extends Command {
             }
         }
 
-        Comparator<Task> aggregateComparator =
-                new Comparator<Task>() {
-                    @Override
-                    public int compare(Task task1, Task task2) {
-                        for (Comparator c : comparatorList) {
-                            if (c.compare(task1, task2) != 0) {
-                                return c.compare(task1, task2);
-                            }
-                        }
-                        return 0;
-                    }
-                };
+        Comparator<Task> aggregateComparator = comparatorList.get(0);
+        for (int i = 1; i < comparatorList.size(); i++) {
+            aggregateComparator = aggregateComparator.thenComparing(comparatorList.get(i));
+        }
+                // new Comparator<Task>() {
+                //     @Override
+                //     public int compare(Task task1, Task task2) {
+                //         for (Comparator c : comparatorList) {
+                //             if (c.compare(task1, task2) != 0) {
+                //                 return c.compare(task1, task2);
+                //             }
+                //         }
+                //         return 0;
+                //     }
+                // };
 
         model.setComparator(aggregateComparator);
 
