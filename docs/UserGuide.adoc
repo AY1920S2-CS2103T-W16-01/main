@@ -68,37 +68,37 @@ _This section provides a quick description for the common terminologies used in 
 *Pet*: The pet you will interact with to manage your tasks and pomodoros. You can also level up the pet by completing more tasks/pomodoros.
 
 == Graphical User Interface (Permas)
-This section explains the function of the various GUI components present in BB Productive.
+This section gives you a brief overview of the various GUI components present in BB Productive.
 
 === Pet View
-The Pet View is where you can view your pet, its name, level and experience gained. With each task completed, the experience (XP) will increase (reflected in the progress bar too). The pet will evolve as it levels up with more XP gained, encouraging you to complete more tasks! This pet grows along with you as you become more productive! with more XP gained, encouraging you to complete more tasks! This pet grows along with you as you become more productive!
+The Pet View is where you can view your pet, its name, level and experience gained. With diligent usage of BB Productive, its experience (XP) and level will increase with time. The pet will evolve as it levels up with more XP gained and take on different appearances, encouraging you to work harder! Further details on the Pet are described in section 6.x. //TODO link
 
 .Pet
-image::pet.png[width=300]
+image::pet.png[width=395]
 
 === Command Box
-The Command Box is the one-stop place in the app to input any and all commands to interact with the app. Simply click the box and type the command of your choice. Hit the `Enter` or `Return` key on your keyboard to execute the command. The program will respond to you using  Occasionally, the app may prompt you for your preferences via the pet dialog box, respond via the Command Box as well.
+The Command Box is the one-stop place for you to input any commands to interact with the app. Simply click the box and type the command of your choice. Hit the `Enter` or `Return` key on your keyboard to execute the command. The program will respond to each command through the Pet Dialog Box. Occasionally, the app may prompt you for your preferences via the Dialog Box. Simply respond via the Command Box as well!
 
 .Command Box
-image::command_box.png[width=300]
+image::command_box.png[width=395]
 
 === Tasks Tab
-The Task Tab is where you view your personal task list and the Pomodoro Timer. Any changes made to the current task list through all the commands will be displayed here! The Pomodoro Timer runs when you run the Pom Command as described in section 6.x. //TODO link
+The Task Tab is where you view your personal task list and the Pomodoro Timer. Any changes made to the task list through the commands will be reflected here! The Pomodoro Timer runs when you run the Pom Command as described in section 6.x. //TODO link
 
 .Tasks Tab
-image::tasks_tab.png[width=400]
+image::tasks_tab.png[width=790]
 
 === Statistics Tab
 The Statistics Tab consists of the Daiy Challenge and the Productivity Charts. They help you to visualise the progress of your productivity over the course of the past week, giving you momentum to hit your productivity goals! The usage of this tab will be discussed in more detail in section 6.x //TODO link
 
 .Statistics Tab
-image::stats_tab.png[width=400]
+image::stats_tab.png[width=395]
 
 === Settings Tab
 The Settings Tab lets you customise the program to suit your needs. In this tab, you can view and edit your configurations for Pet Name, Pomodoro Duration and Daily Challenge Target. The usage of this tab will be discussed in more detail in section 6.x //TODO link
 
 .Settings Tab
-image::settings_tab.png[width=400]
+image::settings_tab.png[width=395]
 
 [[Features]]
 == Features
@@ -284,16 +284,23 @@ At the end of the break, the app will return to it's "neutral" state and you can
 image::pom_break_end.png[width=790]
 
 === Statistics (Permas)
-The Statistics Tab consists of 2 features to help you keep track of your productivity. You can access this panel by using the “stats” command to switch to this tab.
+As you continue to use BB Productive, you may start to wonder how productive you have been over time. This is where our Statistics feature comes in! Simply type in the command 'stats' to access the Statistics Tab and track your productivity. Look out for the background color of the Statistics Tab. If it turns orange after you type the command this means you are on the correct tab.
+
+The Statistics Tab consists of 2 features to help you keep track of your productivity. 
 
 .Statistics Tab
 image::stats_tab.png[width=400]
 
 ==== Daily Challenge
-The Daily Challenge is a progress bar that tracks the total duration you have kept the Pomodoro running in the current day. You can customise the duration you aim to achieve on a daily basis by using the Set Command as introduced in section 6.x //TODO link. Try to clear the Daily Challenge everyday to hit your productivity goals!
+The Daily Challenge is a progress bar that tracks the total duration you have kept the Pomodoro running on the current day. The more you run the Pomodoro, the more the progress bar fills, and the closer you are to clearing the challenge! Try to clear the Daily Challenge everyday to hit your productivity goals!
+
+[IMPORTANT]
+====
+You can customise the duration you aim to achieve on a daily basis by using the Set Command as introduced in section 6.x //TODO link.
+====
 
 ==== Productivity Chart
-The Productivity Chart tracks the number of tasks done and duration you ran the Pomodoro per day for the past 7 days. This is done so that you can track your productivity progress over time. With this information. you can make adjustments to your schedule to improve your productivity.
+The Productivity Chart tracks the number of tasks done and duration you ran the Pomodoro per day for the past 7 days. You can thus track your productivity over time. With this information. you can make proper adjustments to your schedule to improve your productivity. If you start noticing the orange bars getting shorter, realise that it is time to buckle up and work harder, or else you may lose your productivity momentum! 
 
 === AutoComplete
 As much as you enjoy typing, we've added some extra grease to make you type even faster. You can trigger our very intelligent auto complete function by pressing `tab` on the keyboard.
@@ -348,9 +355,12 @@ image::settings.png[width="790"]
 === Storage (Permas)
 All your progress, user preferences and settings are stored in the “data” folder. If you plan to switch devices, you may transfer your progress to another computer by copying the contents of the original device’s “data” folder to the new device’s data folder. This can be done through a thumbdrive.
 
-Please check if the following files are in the “data” folder to ensure that you are transferring the correct files!
+[IMPORTANT]
+====
+Please check that the following files are in the “data” folder to ensure that you are transferring the correct files!
+====
 
-image::storage.png[width="400"]
+image::storage.png[width="395"]
 
 [[CommandTableSummary]]
 == Command Table Summary
