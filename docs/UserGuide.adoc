@@ -18,18 +18,59 @@ By: `AY1920S2-CS2103T-W16-1`      Since: `Jan 2020`      Licence: `NUS`
 
 == What is BB Productive?
 
-BB Productive is for those who looking for motivation in their work. This app serves as a great task manager and includes a Pomodoro feature and a Pet companion. It is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, BB Productive can get you to get tasks done faster. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
+Feeling unproductive lately? Try BB Productive! BB Productive is a productivity application that consists of three main features: a task manager, a Pomodoro timer and a Pet, to help you get rid of those unproductive days. It is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, BB Productive can help you to start your journey of productivity. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
 
 == About this document
+This document provides information about the multitude of features in BB Productive, and how you can best utilise them to your benefit.
 
-BB Productive is for those who looking for motivation in their work. This app serves as a great task manager and includes a Pomodoro feature and a Pet companion. It is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, BB Productive can get you to get tasks done faster. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
 
-[#index]
-=== Command Format
-* Characters like `this` are all commands that can be used for BBPoroductive
-* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in add `n/NAME`, `NAME` is a parameter which can be used as add `n/John Doe`.
-* Items in square brackets are optional e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-* Items with `…​` after them can be used multiple times including zero times e.g. `[t/TAG]…`​ can be used as   (i.e. 0 times), `t/friend, t/friend t/family` etc.
+Note the following symbols and formatting used in this document:
+
+Symbols:
+
+[IMPORTANT]
+This formating indicates important information.
+
+[TIP]
+This formatting indicates that this is additional information
+
+Formating:
+
+[cols=2*]
+|===
+| *Formatting*
+| *Meaning*
+| _preface_
+| A paragraph in italics indicates that the paragraph is a preface to the section below.
+| `Command`
+| A gray highlight indicates that the word is a command to be entered by the user.
+| `UPPER_CASE`
+| Words in `UPPER_CASE` are the parameters to be supplied by the user E.g. add `n/NAME`
+
+`NAME` is a parameter. It can be used as add `n/Math Homework`.
+| [Square brackets]
+|Items in square brackets are optional 
+
+E.g. `n/NAME [t/TAG]` can be used as 
+
+`n/Math HomeWork t/Urgent`
+
+or
+
+ as `n/Math Homework`
+| `…​`
+|Items with `…​` after them can be used multiple times or not used at all.             
+
+E.g. `[t/TAG]…`​ can be used as 
+
+`t/friend 
+
+or 
+
+t/friend t/family`
+|===
+
+
 * Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 === Indexes
