@@ -286,7 +286,7 @@ image::pom_break_end.png[width=790]
 === Statistics (Permas)
 As you continue to use BB Productive, you may start to wonder how productive you have been over time. This is where our Statistics feature comes in! Simply type in the command 'stats' to access the Statistics Tab and track your productivity. Look out for the background color of the Statistics Tab. If it turns orange after you type the command this means you are on the correct tab.
 
-The Statistics Tab consists of 2 features to help you keep track of your productivity. 
+The Statistics Tab consists of 2 features to help you keep track of your productivity.
 
 .Statistics Tab
 image::stats_tab.png[width=400]
@@ -300,7 +300,7 @@ You can customise the duration you aim to achieve on a daily basis by using the 
 ====
 
 ==== Productivity Chart
-The Productivity Chart tracks the number of tasks done and duration you ran the Pomodoro per day for the past 7 days. You can thus track your productivity over time. With this information. you can make proper adjustments to your schedule to improve your productivity. If you start noticing the orange bars getting shorter, realise that it is time to buckle up and work harder, or else you may lose your productivity momentum! 
+The Productivity Chart tracks the number of tasks done and duration you ran the Pomodoro per day for the past 7 days. You can thus track your productivity over time. With this information. you can make proper adjustments to your schedule to improve your productivity. If you start noticing the orange bars getting shorter, realise that it is time to buckle up and work harder, or else you may lose your productivity momentum!
 
 === AutoComplete
 As much as you enjoy typing, we've added some extra grease to make you type even faster. You can trigger our very intelligent auto complete function by pressing `tab` on the keyboard.
