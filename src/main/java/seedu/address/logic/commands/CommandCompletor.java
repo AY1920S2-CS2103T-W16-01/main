@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.exceptions.CompletorException;
@@ -14,7 +13,10 @@ import seedu.address.logic.parser.EditCommandParser;
 import seedu.address.logic.parser.PomCommandParser;
 import seedu.address.logic.parser.SortCommandParser;
 
-/** Contains a command completor that calls upon other command parsers to complete input provided by users. */
+/**
+ * Contains a command completor that calls upon other command parsers to complete input provided by
+ * users.
+ */
 public class CommandCompletor {
     private Set<String> commands = new HashSet<>();
 
@@ -39,22 +41,21 @@ public class CommandCompletor {
     /**
      * Provides auto complete for all partial command words
      *
-     * For done, delete commands: remove indices that are out of range
-     * For add and edit commands: Adds prefixes for priority and reminder
-     * For pom command: adds timer prefix
-     * 
+     * <p>For done, delete commands: remove indices that are out of range For add and edit commands:
+     * Adds prefixes for priority and reminder For pom command: adds timer prefix
+     *
      * @param input raw user input
      * @return CompletorResult which contains both the completed message and feedback to display
-     * @throws CompletorException throws an exception when a command is invalid 
+     * @throws CompletorException throws an exception when a command is invalid
      */
-    public CompletorResult getSuggestedCommand(String input, int listSize) throws CompletorException {
+    public CompletorResult getSuggestedCommand(String input, int listSize)
+            throws CompletorException {
         String[] splitInput = input.split("\\s+");
         String feedbackToUser = Messages.COMPLETE_SUCCESS;
 
         if (splitInput.length <= 0) {
             throw new CompletorException(String.format(Messages.COMPLETE_UNFOUND_FAILURE, ""));
         }
-
 
         Optional<String> suggestedCommandWord =
                 StringUtil.getCompletedWord(splitInput[0], this.commands.toArray(new String[0]));

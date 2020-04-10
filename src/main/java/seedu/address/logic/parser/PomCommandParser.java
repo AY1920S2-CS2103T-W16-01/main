@@ -4,7 +4,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMER;
 
 import java.util.Optional;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CompletorResult;
@@ -44,9 +43,9 @@ public class PomCommandParser implements Parser<PomCommand> {
     }
 
     /**
-     * Uses argMultimap to detect existing prefixes used so that it won't add double prefixes.
-     * Adds timer prefix
-     * 
+     * Uses argMultimap to detect existing prefixes used so that it won't add double prefixes. Adds
+     * timer prefix
+     *
      * @param input input that has been trimmed
      * @return CompletorResult with suggested command and feedback to display
      */
@@ -63,8 +62,9 @@ public class PomCommandParser implements Parser<PomCommand> {
         }
 
         String newCommand = String.join(" ", trimmedInputs);
-        String feedbackToUser = String.format(Messages.COMPLETE_PREFIX_SUCCESS, prefixesBuilder.toString());
-        
+        String feedbackToUser =
+                String.format(Messages.COMPLETE_PREFIX_SUCCESS, prefixesBuilder.toString());
+
         return new CompletorResult(newCommand, feedbackToUser);
     }
 }

@@ -40,6 +40,7 @@ import seedu.address.logic.commands.SortCommandResult;
 import seedu.address.logic.commands.SwitchTabCommand;
 import seedu.address.logic.commands.SwitchTabCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.exceptions.CompletorDeletionException;
 import seedu.address.logic.commands.exceptions.CompletorException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.dayData.DayData;
@@ -259,9 +260,15 @@ public class MainWindow extends UiPart<Stage> {
 
     private String suggestCommand(String commandText) throws CompletorException {
         try {
-            CompletorResult completorResult = commandCompletor.getSuggestedCommand(commandText, logic.getFilteredTaskList().size());
+            CompletorResult completorResult =
+                    commandCompletor.getSuggestedCommand(
+                            commandText, logic.getFilteredTaskList().size());
             resultDisplay.setFeedbackToUser(completorResult.getFeedbackToUser());
             return completorResult.getSuggestion();
+        } catch (CompletorDeletionException e) {
+            resultDisplay.setFeedbackToUser(e.getMessage());
+            resultDisplay.setWarning();
+            return e.getCommand();
         } catch (CompletorException e) {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;

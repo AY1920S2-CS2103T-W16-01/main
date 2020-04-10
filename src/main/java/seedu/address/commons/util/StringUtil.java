@@ -83,10 +83,9 @@ public class StringUtil {
     }
 
     /**
-     * keyword = dist, phrase = distance here is long => true
-     * keyword = distance, phrase = distance here is long => true
-     * keyword = did, phrase = distance here is long => false
-     * 
+     * keyword = dist, phrase = distance here is long => true keyword = distance, phrase = distance
+     * here is long => true keyword = did, phrase = distance here is long => false
+     *
      * @param keyword used in checking
      * @param phrase checks if part/entire keyword is in start of phrase
      * @return true if part of or all of keyword is at the start of phrase
@@ -97,36 +96,18 @@ public class StringUtil {
         return matcher.matches() || matcher.hitEnd();
     }
 
-
-    /**
-     * keyword = distance, phrase = distance here is long => true
-     * keyword = dist, phrase = distance here is long => false
-     * keyword = did, phrase = distance here is long => false
-     * 
-     * @param keyword used in checking
-     * @param phrase checks if entire keyword is at the start of phrase
-     * @return true if entire keyword is at the start of phrase
-     */
-    public static boolean keywordMatchPhrase(String keyword, String phrase) {
-        Pattern pattern = Pattern.compile(String.format("^%s", phrase.toLowerCase()));
-        Matcher matcher = pattern.matcher(keyword.toLowerCase());
-        return matcher.matches();
-    }
-
     /** Returns complete command if given partial command */
     public static Optional<String> getCompletedWord(String word, String[] possibilities) {
         for (String matcher : possibilities) {
-            if (StringUtil.keywordMatchPhrase(word, matcher)) {
-                return Optional.of(matcher);
-            }
-            if (StringUtil.keywordMatchStartOfPhrase(word, matcher)) {
+            if (StringUtil.keywordMatchStartOfPhrase(word, matcher) || word.contains(matcher)) {
                 return Optional.of(matcher);
             }
         }
         return Optional.empty();
     }
 
-    public static int levenshteinDistanceCompare(CharSequence left, CharSequence right, final int threshold) {
+    public static int levenshteinDistanceCompare(
+            CharSequence left, CharSequence right, final int threshold) {
         return LevenshteinDistance.levenshteinDistanceCompare(left, right, threshold);
     }
 }

@@ -16,9 +16,7 @@ import seedu.address.logic.Observer;
 import seedu.address.logic.PetManager;
 import seedu.address.logic.PomodoroManager;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.dayData.Date;
 import seedu.address.model.dayData.DayData;
-import seedu.address.model.task.NameContainsKeywordsPredicate;
 import seedu.address.model.task.Task;
 
 /** Represents the in-memory model of the task list data. */
@@ -176,7 +174,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
-        filteredTasks.setPredicate(predicate); 
+        filteredTasks.setPredicate(predicate);
     }
 
     /** Used when a predicate is applied to show the more relevant serach results */

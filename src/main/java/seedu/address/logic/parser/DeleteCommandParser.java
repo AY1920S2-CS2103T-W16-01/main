@@ -2,11 +2,14 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.concurrent.CompletionException;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.CompletorResult;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.exceptions.CompletorDeletionException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /** Parses input arguments and creates a new DeleteCommand object */
@@ -30,11 +33,11 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
 
     /**
      * Removes all invalid indexes and lets user know which indexes have been removed
-     * 
+     *
      * @param input input that has been trimmed
      * @return CompletorResult with suggested command and feedback to display
      */
-    public CompletorResult completeCommand(String input, int listSize) {
+    public CompletorResult completeCommand(String input, int listSize) throws CompletorDeletionException {
         String[] splitInput = input.split("\\s+");
         StringBuilder newCommand = new StringBuilder("delete ");
         StringBuilder removedIndices = new StringBuilder();
@@ -42,21 +45,24 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
 
         for (int i = 1; i < splitInput.length; i++) {
             if (!StringUtil.isNonZeroUnsignedInteger(splitInput[i])) {
-                feedbackToUser = Messages.COMPLETE_INDEX_OUT_OF_RANGE;
+                feedbackToUser = Messages.COMPLETE_INDEX_OUT_OF_RANGE_REMOVAL;
                 removedIndices.append(String.format(splitInput[i].toString()));
                 removedIndices.append(" ");
                 continue;
             }
             int currNumber = Integer.parseInt(splitInput[i]);
-            if (currNumber > listSize &&  currNumber < 0) {
-                feedbackToUser = Messages.COMPLETE_INDEX_OUT_OF_RANGE;
+            if (currNumber > listSize && currNumber < 0) {
+                feedbackToUser = Messages.COMPLETE_INDEX_OUT_OF_RANGE_REMOVAL;
                 removedIndices.append(String.format("%d ", currNumber));
             } else {
                 newCommand.append(String.format("%d ", currNumber));
             }
         }
+
         if (removedIndices.length() > 0) {
-            return new CompletorResult(newCommand.toString(), String.format(feedbackToUser, removedIndices.toString()));
+            throw new CompletorDeletionException(
+                    newCommand.toString(),
+                    String.format(feedbackToUser, removedIndices.toString()));
         } else {
             return new CompletorResult(newCommand.toString(), feedbackToUser);
         }

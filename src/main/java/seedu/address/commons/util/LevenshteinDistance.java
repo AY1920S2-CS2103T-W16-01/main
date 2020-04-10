@@ -22,32 +22,23 @@ import java.util.Arrays;
 /**
  * An algorithm for measuring the difference between two character sequences.
  *
- * <p>
- * This is the number of changes needed to change one sequence into another,
- * where each change is a single character modification (deletion, insertion
- * or substitution).
- * </p>
+ * <p>This is the number of changes needed to change one sequence into another, where each change is
+ * a single character modification (deletion, insertion or substitution).
  *
- * <p>
- * This code has been adapted from Apache Commons Lang 3.3.
- * </p>
+ * <p>This code has been adapted from Apache Commons Lang 3.3.
  *
  * @since 1.0
  */
-//@@author BransonNg-reused
-public class LevenshteinDistance  {
-    
+// @@author BransonNg-reused
+public class LevenshteinDistance {
+
     /**
-     * Find the Levenshtein distance between two CharSequences if it's less than or
-     * equal to a given threshold.
+     * Find the Levenshtein distance between two CharSequences if it's less than or equal to a given
+     * threshold.
      *
-     * <p>
-     * This implementation follows from Algorithms on Strings, Trees and
-     * Sequences by Dan Gusfield and Chas Emerick's implementation of the
-     * Levenshtein distance algorithm from <a
-     * href="http://www.merriampark.com/ld.htm"
-     * >http://www.merriampark.com/ld.htm</a>
-     * </p>
+     * <p>This implementation follows from Algorithms on Strings, Trees and Sequences by Dan
+     * Gusfield and Chas Emerick's implementation of the Levenshtein distance algorithm from <a
+     * href="http://www.merriampark.com/ld.htm" >http://www.merriampark.com/ld.htm</a>
      *
      * <pre>
      * limitedCompare(null, *, *)             = IllegalArgumentException
@@ -68,8 +59,9 @@ public class LevenshteinDistance  {
      * @param threshold the target threshold, must not be negative
      * @return result distance, or -1
      */
-    //@@auther BransonNg-reused
-    public static int levenshteinDistanceCompare(CharSequence left, CharSequence right, final int threshold) {
+    // @@auther BransonNg-reused
+    public static int levenshteinDistanceCompare(
+            CharSequence left, CharSequence right, final int threshold) {
         if (left == null || right == null) {
             throw new IllegalArgumentException("Strings must not be null");
         }
@@ -118,7 +110,10 @@ public class LevenshteinDistance  {
 
             // compute stripe indices, constrain to array size
             final int min = Math.max(1, j - threshold);
-            final int max = j > Integer.MAX_VALUE - threshold ? leftLength : Math.min(leftLength, j + threshold);
+            final int max =
+                    j > Integer.MAX_VALUE - threshold
+                            ? leftLength
+                            : Math.min(leftLength, j + threshold);
 
             // the stripe may lead off of the table if s and t are of different
             // sizes

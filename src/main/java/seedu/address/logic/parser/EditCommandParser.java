@@ -10,14 +10,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.TASK_PREFIXES;
 
-import seedu.address.model.task.Priority;
-import seedu.address.model.task.Reminder;
-
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -27,6 +23,8 @@ import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.address.logic.commands.exceptions.CompletorException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Priority;
+import seedu.address.model.task.Reminder;
 
 /** Parses input arguments and creates a new EditCommand object */
 public class EditCommandParser implements Parser<EditCommand> {
@@ -92,15 +90,16 @@ public class EditCommandParser implements Parser<EditCommand> {
         return new EditCommand(index, editTaskDescriptor);
     }
 
-     /**
-      * Uses argMultimap to detect existing prefixes used so that it won't add double prefixes.
-      * Adds priority and reminder prefixes
-      * 
-      * @param input trimmed
-      * @param listSize
-      * @return contains userFeedback and suggestedCommand
-      * @throws CompletorException throws an exception when index provided is not an int or out of list range
-      */
+    /**
+     * Uses argMultimap to detect existing prefixes used so that it won't add double prefixes. Adds
+     * priority and reminder prefixes
+     *
+     * @param input trimmed
+     * @param listSize
+     * @return contains userFeedback and suggestedCommand
+     * @throws CompletorException throws an exception when index provided is not an int or out of
+     *     list range
+     */
     public CompletorResult completeCommand(String input, int listSize) throws CompletorException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(input, TASK_PREFIXES);
         boolean hasReminder = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_REMINDER);
@@ -111,11 +110,14 @@ public class EditCommandParser implements Parser<EditCommand> {
         String[] trimmedInputs = input.split("\\s+");
 
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedInputs[1])) {
-            String errorMessage = String.format(Messages.COMPLETE_INDEX_OUT_OF_RANGE_FAILURE , trimmedInputs[1].toString());
+            String errorMessage =
+                    String.format(
+                            Messages.COMPLETE_INDEX_OUT_OF_RANGE_FAILURE,
+                            trimmedInputs[1].toString());
             throw new CompletorException(errorMessage);
         }
-        
-        for (int i = trimmedInputs.length - 1; i > 1; i--) { 
+
+        for (int i = trimmedInputs.length - 1; i > 1; i--) {
             String currentArgument = trimmedInputs[i];
             if (Reminder.isValidReminder(currentArgument) && !hasReminder) {
                 trimmedInputs[i] = CliSyntax.PREFIX_REMINDER.toString() + currentArgument;

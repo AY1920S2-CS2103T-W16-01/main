@@ -16,7 +16,8 @@ public class SortCommand extends Command {
     public static final String[] ALLOWED_SORT_FIELDS = {
         "r-priority", "r-date", "r-name", "r-done", "priority", "date", "name", "done"
     }; // TODO replace with enum
-    public static final String DISPLAY_POSSIBLE_FIELDS = "1.(r-)priority\n2.(r-)name\n3.r-)done\n4.(r-)date";
+    public static final String DISPLAY_POSSIBLE_FIELDS =
+            "1.(r-)priority\n2.(r-)name\n3.r-)done\n4.(r-)date";
 
     public static final String MESSAGE_SUCCESS = "TaskList sorted by: %1$s";
     public static final String MESSAGE_SORT_UNKNOWN = "No such field to sort by %1$s!";

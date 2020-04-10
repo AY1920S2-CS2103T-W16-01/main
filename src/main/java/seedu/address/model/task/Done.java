@@ -29,7 +29,7 @@ public class Done implements Comparable {
         this.isDone = isDone.equals(DONE);
     }
 
-    public Done() { 
+    public Done() {
         this.isDone = false;
     }
 

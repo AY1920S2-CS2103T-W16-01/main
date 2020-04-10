@@ -3,11 +3,10 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Comparator;
-
-import seedu.address.model.task.Task;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.task.NameContainsKeywordsPredicate;
+import seedu.address.model.task.Task;
 
 /**
  * Finds and lists all tasks in task list whose name contains any of the argument keywords. Keyword
@@ -33,8 +32,8 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Apart from filtering tasks that match the keywords based on edit distance derived from {@link NameContainsKeywordsPredicate}
-     * also sorts tasks in ascending order of edit distance. 
+     * Apart from filtering tasks that match the keywords based on edit distance derived from {@link
+     * NameContainsKeywordsPredicate} also sorts tasks in ascending order of edit distance.
      */
     @Override
     public CommandResult execute(Model model) {

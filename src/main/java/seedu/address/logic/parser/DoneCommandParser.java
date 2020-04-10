@@ -7,6 +7,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.CompletorResult;
 import seedu.address.logic.commands.DoneCommand;
+import seedu.address.logic.commands.exceptions.CompletorDeletionException;
+import seedu.address.logic.commands.exceptions.CompletorException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /** Parses input arguments and creates a new DoneCommand object */
@@ -30,11 +32,11 @@ public class DoneCommandParser implements Parser<DoneCommand> {
 
     /**
      * Removes all invalid indexes and lets user know which indexes have been removed
-     * 
+     *
      * @param input input that has been trimmed
      * @return CompletorResult with suggested command and feedback to display
      */
-    public CompletorResult completeCommand(String input, int listSize) {
+    public CompletorResult completeCommand(String input, int listSize) throws CompletorDeletionException {
         String[] splitInput = input.split("\\s+");
         StringBuilder newCommand = new StringBuilder("done ");
         StringBuilder removedIndices = new StringBuilder();
@@ -42,21 +44,24 @@ public class DoneCommandParser implements Parser<DoneCommand> {
 
         for (int i = 1; i < splitInput.length; i++) {
             if (!StringUtil.isNonZeroUnsignedInteger(splitInput[i])) {
-                feedbackToUser = Messages.COMPLETE_INDEX_OUT_OF_RANGE;
+                feedbackToUser = Messages.COMPLETE_INDEX_OUT_OF_RANGE_REMOVAL;
                 removedIndices.append(splitInput[i].toString());
                 removedIndices.append(" ");
                 continue;
             }
             int currNumber = Integer.parseInt(splitInput[i]);
             if (currNumber > listSize) {
-                feedbackToUser = Messages.COMPLETE_INDEX_OUT_OF_RANGE;
+                feedbackToUser = Messages.COMPLETE_INDEX_OUT_OF_RANGE_REMOVAL;
                 removedIndices.append(String.format("%d ", currNumber));
             } else {
                 newCommand.append(String.format("%d ", currNumber));
             }
         }
+
         if (removedIndices.length() > 0) {
-            return new CompletorResult(newCommand.toString(), String.format(feedbackToUser, removedIndices.toString()));
+            throw new CompletorDeletionException(
+                    newCommand.toString(),
+                    String.format(feedbackToUser, removedIndices.toString()));
         } else {
             return new CompletorResult(newCommand.toString(), feedbackToUser);
         }

@@ -10,15 +10,15 @@ public class CompletorDeletionException extends CompletorException {
     }
 
     /**
-     * Constructs a new {@code CompletorDeletionException} with the specified detail {@code message} and
-     * {@code cause}.
+     * Constructs a new {@code CompletorDeletionException} with the specified detail {@code message}
+     * and {@code cause}.
      */
     public CompletorDeletionException(String newCommand, String message, Throwable cause) {
         super(message, cause);
         this.newCommand = newCommand;
     }
-    
+
     public String getCommand() {
-        return this.newCommand;
+        return this.newCommand + " ";
     }
 }

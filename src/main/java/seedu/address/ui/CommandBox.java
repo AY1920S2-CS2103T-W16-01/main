@@ -2,7 +2,6 @@ package seedu.address.ui;
 
 import java.util.Timer;
 import java.util.TimerTask;
-import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -17,9 +16,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /** The UI component that is responsible for receiving user command inputs. */
 public class CommandBox extends UiPart<Region> {
 
-    public static final String ERROR_STYLE_CLASS = "error";
-    public static final String WARNING_STYLE_CLASS = "warning";
-    public static final String SUCCESS_STYLE_CLASS = "success";
     private static final String FXML = "CommandBox.fxml";
     private Timer scheduler;
 
@@ -38,7 +34,7 @@ public class CommandBox extends UiPart<Region> {
                 .textProperty()
                 .addListener(
                         (unused1, unused2, unused3) -> {
-                            setStyleToDefault();
+                            CssManipulator.setStyleToDefault(commandTextField);
                         });
 
         commandTextField.setOnKeyPressed(getTabKeyEventHandler());
@@ -56,17 +52,32 @@ public class CommandBox extends UiPart<Region> {
                         String suggestion =
                                 commandSuggestor.suggestCommand(commandTextField.getText());
                         commandTextField.setText(suggestion);
-                        // cancels all previous timers so that we won't have a case of previous 
+                        // cancels all previous timers so that we won't have a case of previous
                         // timers setting colors in before the 1 second of success style
-                        refreshTimer(); 
-                        setStyleToIndicateCompletorSuccess();
-                        scheduler.schedule(getSetStyleToDefaultTimerTask(), 1000);
+                        refreshTimer();
+                        CssManipulator.setStyleToIndicateSuccess(commandTextField);
+                        scheduler.schedule(
+                                new TimerTask() {
+                                    @Override
+                                    public void run() {
+                                        CssManipulator.setStyleToDefault(commandTextField);
+                                    }
+                                },
+                                1000);
                     } catch (CompletorException e) {
                         refreshTimer();
-                        setStyleToIndicateCompletorFailure();
-                        scheduler.schedule(getSetStyleToDefaultTimerTask(), 1000);
+                        CssManipulator.setStyleToIndicateFailure(commandTextField);
+                        scheduler.schedule(
+                                new TimerTask() {
+                                    @Override
+                                    public void run() {
+                                        CssManipulator.setStyleToDefault(commandTextField);
+                                    }
+                                },
+                                1000);
                     }
-                    // Below is required as event.consume() does not prevent tab from unfocussing the text field
+                    // Below is required as event.consume() does not prevent tab from unfocussing
+                    // the text field
                     commandTextField.requestFocus();
                     commandTextField.forward();
                     return;
@@ -88,59 +99,8 @@ public class CommandBox extends UiPart<Region> {
             commandExecutor.execute(commandTextField.getText());
             commandTextField.setText("");
         } catch (CommandException | ParseException e) {
-            setStyleToIndicateCommandFailure();
+            CssManipulator.setStyleToIndicateFailure(commandTextField);
         }
-    }
-
-    /** TimerTask that sets the command box style to the default style. */
-    private TimerTask getSetStyleToDefaultTimerTask() {
-        return new TimerTask() {
-            @Override
-            public void run() {
-                setStyleToDefault();
-            }
-        };
-    }
-
-    /** Remvoes all possible styles applied */
-    private void setStyleToDefault() {
-        commandTextField.getStyleClass().remove(ERROR_STYLE_CLASS);
-        commandTextField.getStyleClass().remove(WARNING_STYLE_CLASS);
-        commandTextField.getStyleClass().remove(SUCCESS_STYLE_CLASS);
-    }
-    
-
-    /** Sets the command box style to indicate a failed command. */
-    private void setStyleToIndicateCommandFailure() {
-        ObservableList<String> styleClass = commandTextField.getStyleClass();
-
-        if (styleClass.contains(ERROR_STYLE_CLASS)) {
-            return;
-        }
-
-        styleClass.add(ERROR_STYLE_CLASS);
-    }
-
-    /** Sets the command box style to indicate a failed auto complete. */
-    private void setStyleToIndicateCompletorFailure() {
-        ObservableList<String> styleClass = commandTextField.getStyleClass();
-
-        if (styleClass.contains(WARNING_STYLE_CLASS)) {
-            return;
-        }
-
-        styleClass.add(WARNING_STYLE_CLASS);
-    }
-
-    /** Sets the command box style to indicate a successful auto complete. */
-    private void setStyleToIndicateCompletorSuccess() {
-        ObservableList<String> styleClass = commandTextField.getStyleClass();
-
-        if (styleClass.contains(SUCCESS_STYLE_CLASS)) {
-            return;
-        }
-
-        styleClass.add(SUCCESS_STYLE_CLASS);
     }
 
     /** Represents a function that can execute commands. */
@@ -159,7 +119,7 @@ public class CommandBox extends UiPart<Region> {
     public interface CommandSuggestor {
         /**
          * Performs an auto complete and returns the completed command or an exception.
-         * 
+         *
          * @see seedu.address.logic.commmands.CommandCompletor#getSuggestedCommand
          */
         String suggestCommand(String commandText) throws CompletorException;

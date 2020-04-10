@@ -11,7 +11,6 @@ import static seedu.address.logic.parser.CliSyntax.TASK_PREFIXES;
 
 import java.util.Optional;
 import java.util.Set;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CompletorResult;
@@ -88,9 +87,9 @@ public class AddCommandParser implements Parser<AddCommand> {
     }
 
     /**
-     * Uses argMultimap to detect existing prefixes used so that it won't add double prefixes.
-     * Adds priority and reminder prefixes
-     * 
+     * Uses argMultimap to detect existing prefixes used so that it won't add double prefixes. Adds
+     * priority and reminder prefixes
+     *
      * @param input input that has been trimmed
      * @return CompletorResult with suggested command and feedback to display
      */
@@ -102,7 +101,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         StringBuilder prefixesBuilder = new StringBuilder();
 
         String[] splitInput = input.split("\\s+");
-        
+
         for (int i = splitInput.length - 1; i > 0; i--) {
             String currentArgument = splitInput[i];
             if (Reminder.isValidReminder(currentArgument) && !hasReminder) {
@@ -115,7 +114,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                 prefixesBuilder.append(CliSyntax.PREFIX_PRIORITY.toString() + " ");
             }
         }
-        
+
         String newCommand = String.join(" ", splitInput);
         String prefixesAdded = prefixesBuilder.length() == 0 ? "nil" : prefixesBuilder.toString();
         String feedbackToUser = String.format(Messages.COMPLETE_PREFIX_SUCCESS, prefixesAdded);
