@@ -35,7 +35,7 @@ public class DoneCommand extends Command {
                     + "Parameters: INDEX1, INDEX2 (must be positive integers)\n"
                     + "Example: "
                     + COMMAND_WORD
-                    + " 1, 2";
+                    + " 1 2";
 
     public static final String MESSAGE_DONE_TASK_SUCCESS = "Done Task(s): ";
 

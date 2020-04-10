@@ -49,7 +49,7 @@ public class CommandCompletor {
      */
     public CompletorResult getSuggestedCommand(String input, int listSize) throws CompletorException {
         String[] splitInput = input.split("\\s+");
-        String feedbackToUser = Messages.COMPLETE_UNCHANGED_SUCCESS;
+        String feedbackToUser = Messages.COMPLETE_SUCCESS;
 
         if (splitInput.length <= 0) {
             throw new CompletorException(String.format(Messages.COMPLETE_UNFOUND_FAILURE, ""));
@@ -61,11 +61,6 @@ public class CommandCompletor {
 
         // Handles auto completion of command and error throwing for invalid command.
         if (suggestedCommandWord.isPresent()) {
-            if (splitInput[0].equals(suggestedCommandWord.get())) {
-                feedbackToUser = Messages.COMPLETE_UNCHANGED_SUCCESS;
-            } else {
-                feedbackToUser = Messages.COMPLETE_SUCCESS;
-            }
             splitInput[0] = suggestedCommandWord.get();
         } else {
             throw new CompletorException(

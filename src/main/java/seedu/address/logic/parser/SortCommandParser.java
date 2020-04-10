@@ -39,7 +39,7 @@ public class SortCommandParser implements Parser<SortCommand> {
 
     public CompletorResult completeCommand(String input) {
         String[] commaSeparatedFields = input.split("\\s+");
-        String feedbackToUser = Messages.COMPLETE_UNCHANGED_SUCCESS;
+        String feedbackToUser = Messages.COMPLETE_SUCCESS;
 
         ArrayList<String> acceptedFields = new ArrayList<>();
         acceptedFields.add("sort");
@@ -48,11 +48,11 @@ public class SortCommandParser implements Parser<SortCommand> {
             Optional<String> completedWord = StringUtil.getCompletedWord(currWord, SortCommand.ALLOWED_SORT_FIELDS);
             if (completedWord.isPresent()) {
                 acceptedFields.add(completedWord.get());
-                feedbackToUser = Messages.COMPLETE_SUCCESS;
             }
         }
 
         String newCommand = String.join(" ", acceptedFields.toArray(new String[0]));
+        feedbackToUser = String.format("%s\nHere are some other fields:\n%s", feedbackToUser, SortCommand.DISPLAY_POSSIBLE_FIELDS);
         return new CompletorResult(newCommand, feedbackToUser);
     }
 }

@@ -38,7 +38,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         String[] splitInput = input.split("\\s+");
         StringBuilder newCommand = new StringBuilder("delete ");
         StringBuilder removedIndices = new StringBuilder();
-        String feedbackToUser = Messages.COMPLETE_UNCHANGED_SUCCESS;
+        String feedbackToUser = Messages.COMPLETE_SUCCESS;
 
         for (int i = 1; i < splitInput.length; i++) {
             if (!StringUtil.isNonZeroUnsignedInteger(splitInput[i])) {
