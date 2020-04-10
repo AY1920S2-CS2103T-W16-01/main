@@ -36,37 +36,49 @@ public class SortCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         // NOTE: Incorrect sort fields has been handled in SortCommandParser already
-        ArrayList<Comparator<Task>> temp = new ArrayList<>();
+        ArrayList<Comparator<Task>> comparatorList = new ArrayList<>();
         for (String field : fields) {
             switch (field) {
                 case "priority":
-                    temp.add(getPriorityComparator());
+                    comparatorList.add(getPriorityComparator());
                     break;
                 case "date":
-                    temp.add(getReminderComparator());
+                    comparatorList.add(getReminderComparator());
                     break;
                 case "name":
-                    temp.add(getNameComparator());
+                    comparatorList.add(getNameComparator());
                     break;
                 case "done":
-                    temp.add(getDoneComparator());
+                    comparatorList.add(getDoneComparator());
                     break;
                 case "r-priority":
-                    temp.add(getPriorityComparator().reversed());
+                    comparatorList.add(getPriorityComparator().reversed());
                     break;
                 case "r-date":
-                    temp.add(getReminderComparator().reversed());
+                    comparatorList.add(getReminderComparator().reversed());
                     break;
                 case "r-name":
-                    temp.add(getNameComparator().reversed());
+                    comparatorList.add(getNameComparator().reversed());
                     break;
                 case "r-done":
-                    temp.add(getDoneComparator().reversed());
+                    comparatorList.add(getDoneComparator().reversed());
                     break;
             }
         }
 
-        model.setComparators(temp.toArray(new Comparator[0]));
+        Comparator<Task> aggregateComparator = new Comparator<Task>() {
+            @Override
+            public int compare(Task task1, Task task2) {
+                for (Comparator c: comparatorList) {
+                    if (c.compare(task1, task2) != 0) {
+                        return c.compare(task1, task2);
+                    }
+                }
+                return 0;
+            }
+        };
+
+        model.setComparator(aggregateComparator);
 
         String commandFeedback = String.format(MESSAGE_SUCCESS, String.join(" ", fields));
 

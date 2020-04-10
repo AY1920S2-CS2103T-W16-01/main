@@ -30,7 +30,7 @@ public class ModelManager implements Model {
     private final Pet pet;
     private final UserPrefs userPrefs;
     private FilteredList<Task> filteredTasks;
-    private Comparator<Task>[] comparators = new Comparator[0];
+    private Comparator<Task> comparator;
 
     private PomodoroManager pomodoroManager;
     private PetManager petManager;
@@ -190,17 +190,15 @@ public class ModelManager implements Model {
 
     /** Used when for the sort command when sorting by multiple fields */
     @Override
-    public void setComparators(Comparator<Task>[] comparators) {
-        requireNonNull(comparators);
-        this.comparators = comparators;
+    public void setComparator(Comparator<Task> comparator) {
+        requireNonNull(comparator);
+        this.comparator = comparator;
         this.sortList();
     }
 
     @Override
     public void sortList() {
-        for (int i = this.comparators.length - 1; i >= 0; i--) {
-            this.taskList.sort(comparators[i]);
-        }
+        this.taskList.sort(comparator);
     }
 
     @Override

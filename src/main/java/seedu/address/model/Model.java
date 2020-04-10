@@ -68,7 +68,7 @@ public interface Model {
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
 
-    void setComparators(Comparator<Task>[] compare);
+    void setComparator(Comparator<Task> comparator);
 
     void sortList();
 

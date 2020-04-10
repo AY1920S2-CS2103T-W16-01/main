@@ -179,7 +179,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setComparators(Comparator<Task>[] comparators){
+        public void setComparator(Comparator<Task> comparator){
             throw new AssertionError("This method should not be called.");
         }
 
