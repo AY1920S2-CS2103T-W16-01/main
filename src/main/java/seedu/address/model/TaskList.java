@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Comparator;
 import java.util.List;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 
@@ -14,6 +15,7 @@ import seedu.address.model.task.UniqueTaskList;
 public class TaskList implements ReadOnlyTaskList {
 
     private final UniqueTaskList tasklist;
+    private final SortedList<Task> sortedTaskList;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,6 +26,7 @@ public class TaskList implements ReadOnlyTaskList {
      */
     {
         tasklist = new UniqueTaskList();
+        sortedTaskList = new SortedList<Task>(this.tasklist.asUnmodifiableObservableList());
     }
 
     public TaskList() {}
@@ -35,7 +38,7 @@ public class TaskList implements ReadOnlyTaskList {
     }
 
     public void sort(Comparator<Task> comparator) {
-        this.tasklist.sort(comparator);
+        this.sortedTaskList.setComparator(comparator);
     }
 
     //// list overwrite operations
@@ -94,7 +97,7 @@ public class TaskList implements ReadOnlyTaskList {
 
     @Override
     public ObservableList<Task> getTaskList() {
-        return tasklist.asUnmodifiableObservableList();
+        return sortedTaskList;
     }
 
     @Override

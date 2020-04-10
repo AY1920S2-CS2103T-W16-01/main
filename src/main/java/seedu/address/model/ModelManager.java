@@ -129,7 +129,6 @@ public class ModelManager implements Model {
     @Override
     public void addTask(Task task) {
         taskList.addTask(task);
-        this.sortList();
         updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
     }
 
@@ -138,7 +137,6 @@ public class ModelManager implements Model {
     public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);
         taskList.setTask(target, editedTask);
-        this.sortList();
         try {
             notifyObservers();
         } catch (CommandException e) {
