@@ -182,7 +182,7 @@ public class ModelManager implements Model {
 
     /** Used when a predicate is applied to show the more relevant serach results */
     @Override
-    public void sortWithComparator(Comparator<Task> comparator) {
+    public void sortSearchRelevance(Comparator<Task> comparator) {
         this.taskList.sort(comparator);
     }
 
