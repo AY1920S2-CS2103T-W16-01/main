@@ -102,7 +102,7 @@ public class StringUtil {
             if (StringUtil.keywordMatchStartOfPhrase(word, matcher) || word.contains(matcher)) {
                 return Optional.of(matcher);
             }
-            if (StringUtil.levenshteinDistanceCompare(word , matcher, 1) != -1) {
+            if (StringUtil.levenshteinDistanceCompare(word, matcher, 1) != -1) {
                 return Optional.of(matcher);
             }
         }

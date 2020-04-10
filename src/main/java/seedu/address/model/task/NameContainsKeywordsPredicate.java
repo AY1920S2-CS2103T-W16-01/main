@@ -47,7 +47,8 @@ public class NameContainsKeywordsPredicate implements Predicate<Task> {
 
         int score = Integer.MAX_VALUE;
         String joinnedKeywords = String.join(" ", keywords).toLowerCase();
-        String[] splitTaskName = task.getName().fullName.toLowerCase().split("\\s+");
+        String taskName = task.getName().fullName.toLowerCase();
+        String[] splitTaskName = taskName.split("\\s+");
 
         for (int i = 0; i < splitTaskName.length; i++) {
             if (joinnedKeywords.length() < 3) {
@@ -64,14 +65,20 @@ public class NameContainsKeywordsPredicate implements Predicate<Task> {
             }
         }
 
+        int currScore = StringUtil.levenshteinDistanceCompare(taskName, joinnedKeywords, threshold);
+        if (currScore >= 0) {
+            score = Math.min(score, currScore);
+        }
+
         for (int i = 0; i < splitTaskName.length; i++) {
             String joinnedPhrase =
                     String.join(" ", Arrays.copyOfRange(splitTaskName, i, i + keywords.size()));
-            if (StringUtil.keywordMatchStartOfPhrase(joinnedKeywords, joinnedPhrase)) {
-                score = 1;
+            if (joinnedKeywords.length() > 3
+                    && StringUtil.keywordMatchStartOfPhrase(joinnedKeywords, joinnedPhrase)) {
+                score = Math.min(1, score);
             }
             if (joinnedKeywords.equals(joinnedPhrase)) {
-                score = 0;
+                score = Math.min(0, score);
             }
         }
         return score;

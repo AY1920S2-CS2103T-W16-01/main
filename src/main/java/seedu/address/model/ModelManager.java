@@ -184,7 +184,7 @@ public class ModelManager implements Model {
     @Override
     public void sortSearchByRelevance(Comparator<Task> comparator) {
         this.taskList.sort(comparator);
-        this.taskList.sort(this.comparator);
+        // this.taskList.sort(this.comparator);
     }
 
     // ================ Sort list methods
