@@ -273,10 +273,15 @@ image::PomSequenceDiagram.png[width=790]
 ==== Implementation
 Pomosoero's features are implemented mainly in `seedu.address.logic` package. The `PomodoroManager` class is used to maniulate the timer and configure the relevant UI elements. The timer is facilitated by `javafx.animation.Timeline`.
 
+When the `PomCommand` is executed, the `PomodoroManager` will handle the actual timer systems and update the relevant entities in the app. This is evident in the following sequence diagram.
+
+.Interactions with PomodoroManager through a time cycle
+image::PomExtendedSequenceDiagram.png[width=790]
+
 Through the use of the Pomodoro feature, there are occasions where the app has to prompt the user for specific input in order to progress. This behaviour flow is represented in the _Pomodoro Acctivity_ diagram.
 
 .Pomodoro Activity Diagram
-image::PomodoroActivityDiagram.png[width=400]
+image::PomodoroActivityDiagram.png[width=395]
 
 The `PomodoroManager` maintains a  `prompt_state` indicating what the app might be prompting the user at a given time.
 
@@ -498,7 +503,7 @@ Use case ends.
 * 1b. User fed in an invalid index
 +
 [none]
-** 1a1. BBProductive shows _"Invalid command format! "_ in response box.
+** 1b1. BBProductive shows _"Invalid command format! "_ in response box.
 +
 Use case ends.
 
