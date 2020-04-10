@@ -46,10 +46,14 @@ public class NameContainsKeywordsPredicate implements Predicate<Task> {
         }
 
         int score = Integer.MAX_VALUE;
-        String joinnedKeywords = String.join(" ", keywords);
-        String[] splitTaskName = task.getName().fullName.split("\\s+");
+        String joinnedKeywords = String.join(" ", keywords).toLowerCase();
+        String[] splitTaskName = task.getName().fullName.toLowerCase().split("\\s+");
 
         for (int i = 0; i < splitTaskName.length; i++) {
+            if (joinnedKeywords.length() < 3) {
+                break;
+            }
+
             String joinnedPhrase =
                     String.join(" ", Arrays.copyOfRange(splitTaskName, i, i + keywords.size()));
             int currScore =
