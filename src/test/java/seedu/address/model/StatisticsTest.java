@@ -47,7 +47,8 @@ public class StatisticsTest {
         statistics.updateDataDates(DAYNEW.getDate().value);
 
         Statistics expectedStatistics = getTypicalStatistics();
-        expectedStatistics.update(new DayDataBuilder(DAYNEW).withPomDurationData("0").withTasksDoneData("0").build());
+        expectedStatistics.update(
+                new DayDataBuilder(DAYNEW).withPomDurationData("0").withTasksDoneData("0").build());
         assertEquals(expectedStatistics, statistics);
     }
 

@@ -30,7 +30,8 @@ class JsonSerializableDayDataList {
     /**
      * Converts a given {@code ReadOnlyStatistics} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code} JsonSerializableDayDataList}.
+     * @param source future changes to this will not affect the created {@code}
+     *     JsonSerializableDayDataList}.
      */
     public JsonSerializableDayDataList(ReadOnlyStatistics source) {
         dayDatas.addAll(
