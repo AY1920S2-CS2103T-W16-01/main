@@ -225,59 +225,67 @@ Write pet
 
 [[Pomodoro]]
 === Pomodoro
-_This section describes the Pomodoro feature in detail and contains all commands you can use to take advantage of it_
+_In this section, let's learn how you can take advantage of the Pomodoro feature to boost your productivity! Learn all the commands you can use for Pomodoro._
 
 ==== What's Pomodoro?
 In the late 1980s, a gentleman named Francesco Cirillo devised a time management method called the Pomodoro Technique. Essentially, a single cycle consists of two parts, 25 minutes of work, followed by a 5 minutes break. This cycle repeats for as long as you want to get work done.
 
-==== How do you use it?
-Trying to prevent burnout? BB productive offers you the option to try out the pomodoro tenchinique! The pomodoro technique breaks down work into manageable intervals spaced out with short breaks so as to not tired you out._
+==== Let's get started!
+BBProductive's Pomodoro feature is very easy to use. Let's take a look at the following steps!
 
-To get started, follow the instructions below:
+===== Step 1: `pom` a task to get started!
 
-===== Command: `pom`
-
-First, you can activate the Pomodoro timer with a task in focus. You can also add an optional timer amount field, different from the default time of 25 minutes, for that particular cycle.
+You can activate the Pomodoro timer and set a task you want to focus on. The default timer for a work cycle is 25 minutes. However, you can add an optional timer amount field for a particular cycle.
 
 Format: `pom <index> [tm/<amount in minutes>]`
 
-You can use the value (decimals allowed) following `tm/` to represent your desired amount of time in minutes for a particular pomodoro cycle.
+[IMPORTANT]
+====
+Indexes refer to the current tasklist on display, it does not refer to the indices of the entire task list. Note also that indexes start from 1 and not 0.
 
-.Example screen when pom is successfully executed.
+You can use the value (decimals allowed) following `tm/` to represent your desired amount of time in *minutes* for a particular pomodoro cycle.
+====
+
+After you've successfully _pommed_ a task, you can see the task's name in the bar at the top of the tasklist. The timer there will start counting down as well.
+
+.Example screen when pom is successfully executed
 image::pom_success.png[width=790]
 
-===== Command: `pom pause`
+===== Step 2: `pom pause` if you need to take a quick break.
 
-You can pause a running Pomodoro timer.
+Not exactly a break. But let's say you need to leave your desk real quick. You can pause a running Pomodoro timer by simply calling `pom pause`.
+
+Once, you've paused pomodoro, the timer will freeze and remain so until you resume in the next step.
 
 .Example screen when pom is successfully paused
 image::pom_pause.png[width=790]
 
-===== Command: `pom continue`
+===== Step 3: `pom continue` to get back to work.
 
-You can resume a paused Pomodoro timer.
+Now that you're back and ready to get back to work, simply use `pom continue` to resume for where you left off.
 
 .Example screen when pom is successfully resumed
 image::pom_continuing.png[width=790]
 
+===== Step 4: Time's up!
 
-==== What happens when the timer's up?
-
-===== "Done" the task
 Once the timer expires, the app will prompt you if you have finished the task. You need only respond with Yes (Y) or No (N) in order to proceed.
 
 .Prompt when the pomodoro timer expires
 image::pom_time_expire.png[width=790]
 
-===== Break-time
+===== Step 5: Break-time!
 Afterwards, the app will prompt you if you would like to begin a 5 minute break (as per the pomodoro technique). Similarly, you need to respond with Yes (Y) or No (N). Responding with No will set the app to its neutral state. Yes will start the break timer.
 
 .Prompt checking if you'd like to take a break
 image::pom_prompt_break.png[width=790]
 
-Note: You will not be able to do execute other commands during these prompts.
+[IMPORTANT]
+=====
+You will not be able to do execute other commands during these prompts. Please respond to the prompts to proceed.
+=====
 
-===== Back to work
+===== Back to Step 1?
 At the end of the break, the app will return to it's "neutral" state and you can  repeat the process, if you wish.
 
 .End of pomodoro cycle screen
