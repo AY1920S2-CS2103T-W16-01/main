@@ -10,6 +10,7 @@
 :experimental:
 ifdef::env-github[]
 :tip-caption: :bulb:
+:important-caption: :heavy_exclamation_mark:
 :note-caption: :information_source:
 endif::[]
 :repoURL: https://github.com/se-edu/addressbook-level3
@@ -355,7 +356,7 @@ image::settings.png[width="790"]
 === Storage (Permas)
 All your progress, user preferences and settings are stored in the “data” folder. If you plan to switch devices, you may transfer your progress to another computer by copying the contents of the original device’s “data” folder to the new device’s data folder. This can be done through a thumbdrive.
 
-[IMPORTANT]
+[TIP]
 ====
 Please check that the following files are in the “data” folder to ensure that you are transferring the correct files!
 ====
