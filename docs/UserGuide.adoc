@@ -261,8 +261,30 @@ You may delete all tasks from your list by issuing a clear command.
 .Clear success
 image::clear_success.png[width=790]
 
-=== Pet (Fyonn)
-Write pet
+=== Pet
+_This section provides information about the virtual pet_
+
+==== What's Pet?
+BB productive provides you with a virtual pet to act as your companion to motivate you to do work. It is also a visual embodiment of your productivity so as to remind you of your productivity progress. The pet achieves these functions through three components: Experience points, Evolution and Pet's Mood.
+
+==== Experience (XP) Points
+Just like in a game, the pet has experience (XP) points that is used to level up. Notice whenever a task is done, the XP increases by 5 points? You can also increase the XP by 25 points when you finish a pomodoro cycle. When the XP points accumulations to a total of 100, the pet levels up! Through this reward system, you will be motivated to start doing your work and completing them! Proceed to the next section for information about the evolution of the pet.
+
+[[.Example before a task is done]]
+
+[[.Example after a task is done]]
+
+==== Evolution
+
+The pet has three stages of in its evolution: the baby, the teenager and the dad. Each level can be achieved after every successive accumulation of 100 XP points. Can't wait to see your pet grow? Start doing work to gain more XP!
+
+[[.Example Evolution of pet]]
+
+==== Pet's Mode
+
+The pet has two moods: *Happy* and *Hangry*. When the pet is happy, that means you have been consistent in your work. Good Job! However, when the pet is hangry, that indicates that you have not been doing work for awhile. The pet acts as a visual cue to remind you when you have not been productive in awhile.
+
+[[example of different hangry modes]]
 
 [[Pomodoro]]
 === Pomodoro
