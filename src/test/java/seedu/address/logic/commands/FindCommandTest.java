@@ -75,16 +75,6 @@ public class FindCommandTest {
         assertEquals(Collections.emptyList(), model.getFilteredTaskList());
     }
 
-    @Test
-    public void execute_multipleKeywords_multipleTaskFound() {
-        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("mum tells me to");
-        FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredTaskList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(RUN, FEED_CAT, TUTORIAL_1), model.getFilteredTaskList());
-    }
-
     /** Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}. */
     private NameContainsKeywordsPredicate preparePredicate(String userInput) {
         return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));

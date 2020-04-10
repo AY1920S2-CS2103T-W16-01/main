@@ -179,7 +179,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setComparators(Comparator<Task>[] compare, String sortOrder) {
+        public void setComparators(Comparator<Task>[] comparators){
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortWithComparator(Comparator<Task>compare) {
             throw new AssertionError("This method should not be called.");
         }
 
