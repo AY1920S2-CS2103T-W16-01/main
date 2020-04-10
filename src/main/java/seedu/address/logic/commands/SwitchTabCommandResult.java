@@ -6,7 +6,7 @@ import static java.util.Objects.requireNonNull;
  * Represents the Command result for a switch tab command
  *
  * @author Hardy Shein
- * @version 0.1
+ * @version 1.4
  */
 public class SwitchTabCommandResult extends CommandResult {
 

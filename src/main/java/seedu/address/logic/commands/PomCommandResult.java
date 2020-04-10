@@ -10,7 +10,7 @@ import seedu.address.model.task.Task;
  * Represents the Command result for a pom command
  *
  * @author Hardy Shein
- * @version 0.1
+ * @version 1.4
  */
 public class PomCommandResult extends CommandResult {
 

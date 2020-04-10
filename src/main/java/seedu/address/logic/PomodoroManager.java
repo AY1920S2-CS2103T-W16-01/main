@@ -112,12 +112,12 @@ public class PomodoroManager {
         return pomodoroDisplay;
     }
 
-    /** Getter for the pomodoro's UI element. */
+    /** Setter for the pomodoro's UI element. */
     public void setResultDisplay(ResultDisplay resultDisplay) {
         this.resultDisplay = resultDisplay;
     }
 
-    /** Getter for the app's MainWindow instance. */
+    /** Setter for the app's MainWindow instance. */
     public void setMainWindow(MainWindow mainWindow) {
         this.mainWindow = mainWindow;
     }
