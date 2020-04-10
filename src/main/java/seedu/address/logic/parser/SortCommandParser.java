@@ -56,17 +56,17 @@ public class SortCommandParser implements Parser<SortCommand> {
                 removedFields.append(currWord + ", ");
             }
         }
-        
-        acceptedFields.setLength(acceptedFields.length()-1);
+
+        acceptedFields.setLength(acceptedFields.length() - 1);
         String newCommand = acceptedFields.toString();
-        
+
         if (removedFields.length() > 0) {
             removedFields.setLength(removedFields.length() - 2);
             String errorFeedback =
                     String.format(Messages.COMPLETE_UNKNOWN_SORT_FIELDS, removedFields.toString());
             throw new CompletorDeletionException(newCommand, errorFeedback);
         }
-        
+
         feedbackToUser =
                 String.format(
                         "%s\nHere are some other fields:\n%s",

@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -60,7 +61,10 @@ public class CommandBox extends UiPart<Region> {
                                 new TimerTask() {
                                     @Override
                                     public void run() {
-                                        CssManipulator.setStyleToDefault(commandTextField);
+                                        Platform.runLater(
+                                                () ->
+                                                        CssManipulator.setStyleToDefault(
+                                                                commandTextField));
                                     }
                                 },
                                 1000);
@@ -71,7 +75,10 @@ public class CommandBox extends UiPart<Region> {
                                 new TimerTask() {
                                     @Override
                                     public void run() {
-                                        CssManipulator.setStyleToDefault(commandTextField);
+                                        Platform.runLater(
+                                                () ->
+                                                        CssManipulator.setStyleToDefault(
+                                                                commandTextField));
                                     }
                                 },
                                 1000);

@@ -109,12 +109,15 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         String[] trimmedInputs = input.split("\\s+");
 
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedInputs[1])) {
-            String errorMessage =
-                    String.format(
-                            Messages.COMPLETE_INDEX_OUT_OF_RANGE_FAILURE,
-                            trimmedInputs[1].toString());
-            throw new CompletorException(errorMessage);
+        if (trimmedInputs.length > 1 && StringUtil.isNonZeroUnsignedInteger(trimmedInputs[1])) {
+            int editIndex = Integer.parseInt(trimmedInputs[1]);
+            if (editIndex > listSize) {
+                String errorMessage =
+                        String.format(
+                                Messages.COMPLETE_INDEX_OUT_OF_RANGE_FAILURE,
+                                trimmedInputs[1].toString());
+                throw new CompletorException(errorMessage);
+            }
         }
 
         for (int i = trimmedInputs.length - 1; i > 1; i--) {

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
@@ -35,7 +36,7 @@ public class ResultDisplay extends UiPart<Region> {
                 new TimerTask() {
                     @Override
                     public void run() {
-                        CssManipulator.setStyleToDefault(resultDisplay);
+                        Platform.runLater(() -> CssManipulator.setStyleToDefault(resultDisplay));
                     }
                 },
                 1000);
