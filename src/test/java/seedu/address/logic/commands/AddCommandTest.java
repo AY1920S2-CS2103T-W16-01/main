@@ -184,7 +184,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void sortSearchRelevance(Comparator<Task>compare) {
+        public void sortSearchByRelevance(Comparator<Task>compare) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -49,7 +49,7 @@ public class FindCommand extends Command {
                     }
                 };
 
-        model.sortWithComparator(comparator);
+        model.sortSearchByRelevance(comparator);
 
         return new CommandResult(
                 String.format(

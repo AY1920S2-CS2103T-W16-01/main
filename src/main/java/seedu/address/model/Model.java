@@ -72,7 +72,7 @@ public interface Model {
 
     void sortList();
 
-    void sortSearchRelevance(Comparator<Task> comparator);
+    void sortSearchByRelevance(Comparator<Task> comparator);
 
     ReadOnlyPet getPet();
 
