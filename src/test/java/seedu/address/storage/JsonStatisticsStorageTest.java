@@ -35,9 +35,9 @@ public class JsonStatisticsStorageTest {
                 .readStatistics(addToTestDataPathIfNotNull(filePath));
     }
 
-    private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
-        return prefsFileInTestDataFolder != null
-                ? TEST_DATA_FOLDER.resolve(prefsFileInTestDataFolder)
+    private Path addToTestDataPathIfNotNull(String statisticsFileInTestDataFolder) {
+        return statisticsFileInTestDataFolder != null
+                ? TEST_DATA_FOLDER.resolve(statisticsFileInTestDataFolder)
                 : null;
     }
 
@@ -54,7 +54,7 @@ public class JsonStatisticsStorageTest {
     }
 
     @Test
-    public void readTaskList_invalidAndValidDayDataStatistics_throwDataConversionException() {
+    public void readStatistics_invalidAndValidDayDataStatistics_throwDataConversionException() {
         assertThrows(
                 DataConversionException.class,
                 () -> readStatistics("invalidAndValidDayDataStatistics.json"));
@@ -87,7 +87,7 @@ public class JsonStatisticsStorageTest {
     }
 
     @Test
-    public void saveTaskList_nullTaskList_throwsNullPointerException() {
+    public void saveStatistics_nullStatistics_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveStatistics(null, "SomeFile.json"));
     }
 
