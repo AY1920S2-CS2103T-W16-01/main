@@ -321,7 +321,7 @@ The CustomQueue class implements the following methods for other components to a
 
 ==== Design considerations
 
-** Aspect: Data structure to support Statistics **
+Aspect: Data structure to support Statistics
 
 - Alternative 1 (current choice): Use a list that stores a fixed number of DayData objects, with elements being strictly 1 day apart and sorted from oldest to latest date.
     - Pros: Lightweight, does not store unnecessary data. Easy to pass data to generate graphs. Systematic removal of outdated data.
