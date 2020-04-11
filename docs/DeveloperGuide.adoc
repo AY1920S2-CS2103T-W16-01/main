@@ -315,20 +315,20 @@ The CustomQueue class enforces the following constraints.
 
 The CustomQueue class implements the following methods for other components to access or update its data:
 
-- Model#updateDataDatesStatistics() - Updates data to current day while retaining stored data.
-- Model#updatesDayDataStatistics() - Replaces existing DayData in Statistics with new DayData of the same date.
-- Model#getDayDataFromDateStatistics() - Returns the DayData object from Statistics with the specified date.
+* Model#updateDataDatesStatistics() - Updates data to current day while retaining stored data.
+* Model#updatesDayDataStatistics() - Replaces existing DayData in Statistics with new DayData of the same date.
+* Model#getDayDataFromDateStatistics() - Returns the DayData object from Statistics with the specified date.
 
 ==== Design considerations
 
-Aspect: Data structure to support Statistics
+===== Aspect: Data structure to support Statistics
 
-- Alternative 1 (current choice): Use a list that stores a fixed number of DayData objects, with elements being strictly 1 day apart and sorted from oldest to latest date.
-    - Pros: Lightweight, does not store unnecessary data. Easy to pass data to generate graphs. Systematic removal of outdated data.
-    - Cons: Need to enforce constraints in methods.
-- Alternative 2: Use a list with elements sorted from oldest to latest date.
-    - Pros: Easy to implement.
-    - Cons: Harder to pass data to generate graphs. Need to handle outdated dates.
+* **Alternative 1 (current choice):** Use a list that stores a fixed number of DayData objects, with elements being strictly 1 day apart and sorted from oldest to latest date.
+** Pros: Lightweight, does not store unnecessary data. Easy to pass data to generate graphs. Systematic removal of outdated data.
+** Cons: Need to enforce constraints in methods.
+* **Alternative 2:** Use a list with elements sorted from oldest to latest date.
+** Pros: Easy to implement.
+** Cons: Harder to pass data to generate graphs. Need to handle outdated dates.
 
 === Logging
 
