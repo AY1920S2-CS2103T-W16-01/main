@@ -54,7 +54,7 @@ public class FindCommand extends Command {
 
         model.sortSearchByRelevance(comparator);
 
-        return new CommandResult(
+        return new FindCommandResult(
                 String.format(
                         Messages.MESSAGE_TASKS_LISTED_OVERVIEW,
                         model.getFilteredTaskList().size()));

@@ -37,6 +37,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.CompletorDeletionResult;
 import seedu.address.logic.commands.CompletorResult;
 import seedu.address.logic.commands.DoneCommandResult;
+import seedu.address.logic.commands.FindCommandResult;
 import seedu.address.logic.commands.PomCommandResult;
 import seedu.address.logic.commands.SetCommandResult;
 import seedu.address.logic.commands.SortCommandResult;
@@ -303,6 +304,10 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult instanceof SortCommandResult) {
                 SortCommandResult sortCommandResult = (SortCommandResult) commandResult;
                 taskListPanel.setSortOrder(sortCommandResult.getSortOrder());
+            }
+
+            if (commandResult instanceof FindCommandResult) {
+                taskListPanel.setSortOrder("");
             }
 
             // Done Command related results
