@@ -294,6 +294,43 @@ Pomodoro has settings that can be configured by the user:
 
 This data is captured and stored in the `Pomodoro` class in `seedu.address.model`, which interacts with the app’s storage system. `PomodoroManager` also updates the `Pomodoro` model on what task is being run and the time remaining in a particular cycle. This allows the time progress to be persistent in between app closures and relaunches.
 
+=== Statistics Feature
+
+The Statistics feature is mainly supported by the Statistics class, which in turn is facilitated by the CustomQueue class. Its class diagram is given below.
+
+<Statistics class diagram>
+
+The Statistics Feature does not support any commands explicitly. The UI is updated automatically when the 'stats' command is called. The following sequence diagram shows how this is done.
+
+<Statistics sequence diagram>
+
+==== CustomQueue Implementation
+
+The CustomQueue class enforces the following constraints.
+1. Size of CustomQueue must be of `CONSTANT_SIZE` after each method call through Statistics.
+2. DayData dates in CustomQueue must be only 1 day apart between its elements, and sorted from oldest to latest date.
+
+[TIP]
+===
+`CONSTANT_SIZE` can be set to any number. In our current implementation, we chose to store data for only the past 7 days to keep statistics simple and intuitive for users.
+===
+
+The CustomQueue class implements the following methods for other components to access or update its data:
+
+- Model#updateDataDatesStatistics() - Updates data to current day while retaining stored data.
+- Model#updatesDayDataStatistics() - Replaces existing DayData in Statistics with new DayData of the same date.
+- Model#getDayDataFromDateStatistics() - Returns the DayData object from Statistics with the specified date.
+
+==== Design considerations
+
+** Aspect: Data structure to support Statistics **
+
+- Alternative 1 (current choice): Use a list that stores a fixed number of DayData objects, with elements being strictly 1 day apart and sorted from oldest to latest date.
+-- Pros: Lightweight, does not store unnecessary data. Easy to pass data to generate graphs. Systematic removal of outdated data.
+-- Cons: Need to enforce constraints in methods.
+- Alternative 2: Use a list with elements sorted from oldest to latest date.
+-- Pros: Easy to implement.
+-- Cons: Harder to pass data to generate graphs. Need to handle outdated dates.
 
 === Logging
 
@@ -697,10 +734,12 @@ Use case ends.
 == Non Functional Requirements
 
 .  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `11` or above installed.
-.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+.  Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
 .  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-.  Graphics should not be offensive to any culture in any way
-.  Product should function with CLI alone
+.  Graphics should not be offensive to any culture in any way.
+.  Product should be fully functional with CLI alone.
+.  Storage should be done in a human readable and editable format.
+.  Commands should be user-friendly.
 
 [appendix]
 == Glossary
@@ -711,7 +750,7 @@ Windows, Linux, Unix, OS-X
 [[private-contact-detail]] Private contact detail::
 A contact detail that is not meant to be shared with others
 
-[[pomodoro] Pomodoro::
+[[pomodoro]] Pomodoro::
 A time management method developed by Francesco Cirillo. Traditionally, cycles of 25 minutes of work and 5 minutes of rest.
 
 [[task]] Task::
