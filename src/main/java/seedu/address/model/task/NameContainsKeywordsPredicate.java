@@ -42,7 +42,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Task> {
      */
     public int getEditDistance(Task task) {
         if (keywords.size() == 0) {
-            return -1; //TODO maybe throw error
+            return -1; // TODO maybe throw error
         }
 
         int score = Integer.MAX_VALUE;
@@ -57,15 +57,15 @@ public class NameContainsKeywordsPredicate implements Predicate<Task> {
             if (StringUtil.keywordMatchStartOfPhrase(joinnedKeywords, joinnedPhrase)) {
                 score = Math.min(1, score);
             }
-            
+
             if (joinnedKeywords.equals(joinnedPhrase)) {
                 score = Math.min(0, score);
             }
 
             if (joinnedKeywords.length() > 2) {
                 int currScore =
-                StringUtil.levenshteinDistanceCompare(
-                    joinnedPhrase, joinnedKeywords, threshold);       
+                        StringUtil.levenshteinDistanceCompare(
+                                joinnedPhrase, joinnedKeywords, threshold);
                 if (currScore >= 0) {
                     score = Math.min(score, currScore);
                 }

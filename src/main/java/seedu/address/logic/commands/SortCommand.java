@@ -15,7 +15,7 @@ public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
     public static final String[] ALLOWED_SORT_FIELDS = {
         "r-priority", "r-date", "r-name", "r-done", "priority", "date", "name", "done"
-    }; // TODO replace with enum
+    };
     public static final String DISPLAY_POSSIBLE_FIELDS =
             "1.(r-)priority\n2.(r-)name\n3.(r-)done\n4.(r-)date";
 
@@ -70,17 +70,6 @@ public class SortCommand extends Command {
         for (int i = 1; i < comparatorList.size(); i++) {
             aggregateComparator = aggregateComparator.thenComparing(comparatorList.get(i));
         }
-                // new Comparator<Task>() {
-                //     @Override
-                //     public int compare(Task task1, Task task2) {
-                //         for (Comparator c : comparatorList) {
-                //             if (c.compare(task1, task2) != 0) {
-                //                 return c.compare(task1, task2);
-                //             }
-                //         }
-                //         return 0;
-                //     }
-                // };
 
         model.setComparator(aggregateComparator);
 

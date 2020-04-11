@@ -7,8 +7,11 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandCompletor;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CompletorResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.exceptions.CompletorException;
 import seedu.address.logic.parser.TaskListParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
@@ -26,11 +29,13 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final TaskListParser taskListParser;
+    private final CommandCompletor commandCompletor;
 
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
         taskListParser = new TaskListParser();
+        commandCompletor = new CommandCompletor();
     }
 
     @Override
@@ -66,6 +71,11 @@ public class LogicManager implements Logic {
         }
 
         return commandResult;
+    }
+
+    @Override
+    public CompletorResult suggestCommand(String userInput) throws CompletorException {
+        return commandCompletor.getSuggestedCommand(userInput, this.getFilteredTaskList().size());
     }
 
     @Override

@@ -174,7 +174,7 @@ public class ModelManager implements Model {
         return this.filteredTasks;
     }
 
-    @Override 
+    @Override
     public void showAllTasks() {
         filteredTasks.setPredicate(PREDICATE_SHOW_ALL_TASKS);
         this.sortList();
