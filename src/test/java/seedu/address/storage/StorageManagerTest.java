@@ -2,6 +2,8 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static seedu.address.testutil.TypicalPet.getTypicalPet;
+import static seedu.address.testutil.TypicalPomodoro.getTypicalPomodoro;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 
 import java.nio.file.Path;
@@ -9,6 +11,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.Pet;
+import seedu.address.model.Pomodoro;
+import seedu.address.model.ReadOnlyPet;
+import seedu.address.model.ReadOnlyPomodoro;
 import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.TaskList;
 import seedu.address.model.UserPrefs;
@@ -72,5 +78,36 @@ public class StorageManagerTest {
     @Test
     public void getTaskListFilePath() {
         assertNotNull(storageManager.getTaskListFilePath());
+    }
+
+    @Test
+    public void pomodoroReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonPomodoroStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonTaskListStorageTest} class.
+         */
+        Pomodoro original = getTypicalPomodoro();
+        storageManager.savePomodoro(original);
+        ReadOnlyPomodoro retrieved = storageManager.readPomodoro().get();
+        assertEquals(original, new Pomodoro(retrieved));
+    }
+
+    @Test
+    public void petReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonTaskListStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonTaskListStorageTest} class.
+         */
+        Pet original = getTypicalPet();
+        storageManager.savePet(original);
+        ReadOnlyPet retrieved = storageManager.readPet().get();
+        assertEquals(original, new Pet(retrieved));
+    }
+
+    @Test
+    public void getPetFilePath() {
+        assertNotNull(storageManager.getPetFilePath());
     }
 }

@@ -2,6 +2,8 @@ package seedu.address.model;
 
 import seedu.address.model.task.Task;
 
+import java.util.Objects;
+
 public class Pomodoro implements ReadOnlyPomodoro {
     private static final String DEFAULT_TIME = "25.0";
     private static final String DEFAULT_REST = "5.0";
@@ -84,5 +86,22 @@ public class Pomodoro implements ReadOnlyPomodoro {
         return String.format(
                 "Hi running task is: %s! my timeleft is %s and my default time is %s",
                 runningTask == null ? "No tasks!" : runningTask.toString(), timeLeft, defaultTime);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Pomodoro)) {
+            return false;
+        }
+
+        Pomodoro otherPomodoro = (Pomodoro) other;
+        return getDefaultTime().equals(otherPomodoro.getDefaultTime())
+                && getRestTime().equals(otherPomodoro.getRestTime())
+                && Objects.equals(getTimeLeft(), otherPomodoro.getTimeLeft()) // can be null
+                && Objects.equals(getRunningTask(), otherPomodoro.getRunningTask()); // can be null
     }
 }

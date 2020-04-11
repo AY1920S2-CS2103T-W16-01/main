@@ -110,4 +110,21 @@ public class Pet implements ReadOnlyPet {
     public String toString() {
         return String.format("Hi I'm pet %s! my Exp is %s and my level is %s", name, exp, level);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Pet)) {
+            return false;
+        }
+        Pet otherPet = (Pet) other;
+        return name.equals(otherPet.name)
+                && exp.equals(otherPet.exp)
+                && level.equals(otherPet.level)
+                && mood.equals(otherPet.mood)
+                && lastDoneTaskTime.equals((otherPet.lastDoneTaskTime));
+    }
 }

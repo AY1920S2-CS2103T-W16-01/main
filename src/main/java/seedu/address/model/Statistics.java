@@ -155,9 +155,17 @@ public class Statistics implements ReadOnlyStatistics {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Statistics // instanceof handles nulls
-                        && customQueue.equals(((Statistics) other).customQueue));
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Statistics)) {
+            return false;
+        }
+
+        Statistics otherStatistics = (Statistics) other;
+        return getCustomQueue().equals(otherStatistics.getCustomQueue())
+                && getDailyTarget().equals(otherStatistics.getDailyTarget());
     }
 
     @Override

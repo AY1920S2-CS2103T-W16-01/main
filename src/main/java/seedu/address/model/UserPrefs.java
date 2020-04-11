@@ -48,21 +48,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return taskListFilePath;
     }
 
-    public Path getPetFilePath() {
-        return petFilePath;
-    }
-
-    public Path getPomodoroFilePath() {
-        return pomodoroFilePath;
-    }
-
-    public Path getStatisticsFilePath() {
-        return statisticsFilePath;
-    }
-
     public void setTaskListFilePath(Path taskListFilePath) {
         requireNonNull(taskListFilePath);
         this.taskListFilePath = taskListFilePath;
+    }
+
+    public Path getPetFilePath() {
+        return petFilePath;
     }
 
     public void setPetFilePath(Path petFilePath) {
@@ -70,9 +62,17 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.petFilePath = petFilePath;
     }
 
+    public Path getPomodoroFilePath() {
+        return pomodoroFilePath;
+    }
+
     public void setPomodoroFilePath(Path pomodoroFilePath) {
         requireNonNull(pomodoroFilePath);
         this.pomodoroFilePath = pomodoroFilePath;
+    }
+
+    public Path getStatisticsFilePath() {
+        return statisticsFilePath;
     }
 
     public void setStatisticsFilePath(Path statisticsFilePath) {
