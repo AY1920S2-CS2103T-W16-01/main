@@ -90,20 +90,26 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         }
 
         UserPrefs o = (UserPrefs) other;
-
-        return guiSettings.equals(o.guiSettings) && taskListFilePath.equals(o.taskListFilePath);
+        return guiSettings.equals(o.guiSettings)
+                && taskListFilePath.equals(o.taskListFilePath)
+                && petFilePath.equals(o.petFilePath)
+                && pomodoroFilePath.equals(o.pomodoroFilePath)
+                && statisticsFilePath.equals(o.statisticsFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, taskListFilePath);
+        return Objects.hash(guiSettings, taskListFilePath, petFilePath, pomodoroFilePath, statisticsFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + taskListFilePath);
+        sb.append("\nLocal task list file location : " + taskListFilePath);
+        sb.append("\nLocal pet file location : " + petFilePath);
+        sb.append("\nLocal pomodoro file location : " + pomodoroFilePath);
+        sb.append("\nLocal statistics file location : " + statisticsFilePath);
         return sb.toString();
     }
 }
