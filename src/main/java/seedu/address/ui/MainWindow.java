@@ -307,7 +307,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult instanceof FindCommandResult) {
-                taskListPanel.setSortOrder("");
+                taskListPanel.removeSortOrder();
             }
 
             // Done Command related results

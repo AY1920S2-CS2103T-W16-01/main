@@ -43,6 +43,9 @@ public class StringUtil {
     }
 
     public static String capitalizeWord(String word) {
+        if (word.length() == 0) {
+            return word;
+        }
         StringBuilder toCapitalize = new StringBuilder(word);
         toCapitalize.setCharAt(0, Character.toUpperCase(toCapitalize.charAt(0)));
         return toCapitalize.toString();
