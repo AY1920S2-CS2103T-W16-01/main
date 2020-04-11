@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 import javafx.collections.ObservableList;
@@ -18,6 +19,7 @@ import seedu.address.logic.PomodoroManager;
 import seedu.address.logic.StatisticsManager;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.dayData.DayData;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 
 /** Represents the in-memory model of the task list data. */
@@ -29,6 +31,7 @@ public class ModelManager implements Model {
     private final Statistics statistics;
     private final Pet pet;
     private final UserPrefs userPrefs;
+    private final TagSet tagSet;
     private FilteredList<Task> filteredTasks;
     private Comparator<Task> comparator;
 
@@ -50,6 +53,7 @@ public class ModelManager implements Model {
         logger.fine("Initializing with Task List: " + taskList + " and user prefs " + userPrefs);
 
         this.taskList = new TaskList(taskList);
+        this.tagSet = new TagSet(taskList);
         this.pet = new Pet(pet); // initialize a pet as a model
         this.pomodoro = new Pomodoro(pomodoro); // initialize a pomodoro as a model
         this.statistics = new Statistics(statistics); // initialize a Statistics as a model
@@ -111,7 +115,18 @@ public class ModelManager implements Model {
 
     @Override
     public void setTaskList(ReadOnlyTaskList taskList) {
+        this.tagSet.populateTag(taskList);
         this.taskList.resetData(taskList);
+    }
+
+    @Override
+    public Set<Tag> getTagSet() {
+        return this.tagSet.getTags();
+    }
+
+    @Override
+    public boolean hasTag(Tag t) {
+        return this.tagSet.contains(t);
     }
 
     @Override
@@ -127,6 +142,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteTask(Task target) {
+        this.tagSet.removeTask(target);
         taskList.removeTask(target);
     }
 
@@ -134,6 +150,7 @@ public class ModelManager implements Model {
     @Override
     public void addTask(Task task) {
         taskList.addTask(task);
+        this.tagSet.addTask(task);
         updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
     }
 
@@ -141,6 +158,8 @@ public class ModelManager implements Model {
     @Override
     public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);
+        this.tagSet.addTask(editedTask);
+        this.tagSet.removeTask(target);
         taskList.setTask(target, editedTask);
         try {
             notifyObservers();

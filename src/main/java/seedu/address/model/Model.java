@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.Set;
 import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -11,6 +12,7 @@ import seedu.address.logic.PomodoroManager;
 import seedu.address.logic.StatisticsManager;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.dayData.DayData;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 
 /** The API of the Model component. */
@@ -50,6 +52,10 @@ public interface Model {
 
     /** Adds the given task. {@code task} must not already exist in the task list. */
     void addTask(Task task);
+
+    Set<Tag> getTagSet();
+
+    boolean hasTag(Tag t);
 
     /**
      * Replaces the given task {@code target} with {@code editedTask}. {@code target} must exist in

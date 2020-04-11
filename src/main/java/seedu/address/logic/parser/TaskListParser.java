@@ -19,6 +19,7 @@ import seedu.address.logic.commands.PomCommand;
 import seedu.address.logic.commands.SetCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.SwitchTabCommand;
+import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /** Parses user input. */
@@ -89,6 +90,9 @@ public class TaskListParser {
 
             case SortCommand.COMMAND_WORD:
                 return new SortCommandParser().parse(arguments);
+
+            case TagCommand.COMMAND_WORD:
+                return new TagCommand();
 
             default:
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

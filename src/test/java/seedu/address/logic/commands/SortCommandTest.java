@@ -71,7 +71,7 @@ public class SortCommandTest {
     public void execute_sortWithFindDone_successful() throws Exception {
         String[] prioritySort = {"priority"};
 
-        new FindCommandParser().parse("Reminder").execute(modelStub);
+        new FindCommandParser().parse(" n/Reminder").execute(modelStub);
         CommandResult commandResult = new SortCommand(prioritySort).execute(modelStub);
         TaskList stubList = new TaskList();
         ModelStub tempModelStub = new ModelStub();

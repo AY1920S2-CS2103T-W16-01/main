@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Set;
 import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
@@ -27,6 +28,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.Statistics;
 import seedu.address.model.TaskList;
 import seedu.address.model.dayData.DayData;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
 
@@ -115,6 +117,16 @@ public class AddCommandTest {
 
         @Override
         public void setTaskListFilePath(Path taskListFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Set<Tag> getTagSet() {
+            throw new AssertionError("This method should not be called.");
+        }
+        
+        @Override
+        public boolean hasTag(Tag t) {
             throw new AssertionError("This method should not be called.");
         }
 

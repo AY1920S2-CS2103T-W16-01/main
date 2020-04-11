@@ -1,17 +1,27 @@
 package seedu.address.model.task;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.tag.Tag;
 
 /** Tests that a {@code Task}'s {@code Name} matches any of the keywords given. */
 public class NameContainsKeywordsPredicate implements Predicate<Task> {
     private final List<String> keywords;
+    private final Set<Tag> tags;
     private final int threshold = 1;
 
-    public NameContainsKeywordsPredicate(List<String> keywords) {
+    public NameContainsKeywordsPredicate(List<String> keywords, Set<Tag> tags) { //if second list is available
         this.keywords = keywords;
+        this.tags = tags;
+    }
+
+    public NameContainsKeywordsPredicate(List<String> keywords) { //if second list is available
+        this.keywords = keywords;
+        this.tags = new HashSet();
     }
 
     /**
@@ -21,7 +31,24 @@ public class NameContainsKeywordsPredicate implements Predicate<Task> {
     @Override
     public boolean test(Task task) { // change test to return an int value as the edit distance
         int score = getEditDistance(task);
-        return score != -1 && score != Integer.MAX_VALUE;
+        boolean hasTag = false;
+        for (Tag t: tags) {
+            if (task.hasTag(t)) {
+                hasTag = true;
+                break;
+            }
+        }
+        return (score != -1 && score != Integer.MAX_VALUE) || hasTag;
+    }
+
+    public int countTag(Task task) {
+        int count = 0;
+        for (Tag t: tags) {
+            if (task.hasTag(t)) {
+                count += 1;
+            }
+        }
+        return count;
     }
 
     /**
