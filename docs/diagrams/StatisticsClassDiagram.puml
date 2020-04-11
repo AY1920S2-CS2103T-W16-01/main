@@ -1,0 +1,24 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Class Statistics
+class DailyTarget
+Class CustomQueue
+Class DayData
+Class Date
+Class PomDurationData
+Class TasksDoneData
+
+Statistics ..|> ReadOnlyStatistics
+
+Statistics o--> "1" CustomQueue
+Statistics o--> "1" DailyTarget
+CustomQueue o--> "7" DayData
+DayData *--> Date
+DayData *--> PomDurationData
+DayData *--> TasksDoneData
+
+@enduml
