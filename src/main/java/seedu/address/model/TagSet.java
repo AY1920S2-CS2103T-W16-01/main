@@ -55,4 +55,14 @@ public class TagSet {
             });
         }
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Tag t: tagCount.keySet()) {
+            sb.append(t.toString().toLowerCase());
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
 }
