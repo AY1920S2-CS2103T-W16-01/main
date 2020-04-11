@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.exceptions.CompletorDeletionException;
 import seedu.address.logic.commands.exceptions.CompletorException;
 
 public class CommandCompletorTest {
@@ -40,23 +39,17 @@ public class CommandCompletorTest {
     public void execute_indexAutoComplete_successful() throws Exception {
         CommandCompletor cc = new CommandCompletor();
 
-        String expectedDoneCommand = "done 1 2 7 8 9999 -10 0.5";
-        try {
-            CompletorResult actualDoneCommand =
-                    cc.getSuggestedCommand("do 1 2 ", DEFAULT_LIST_SIZE);
-            actualDoneCommand.getSuggestion();
-        } catch (CompletorDeletionException err) {
-            assertEquals(expectedDoneCommand, err.getCommand());
-        }
+        String expectedDoneCommand = "done 1 2 ";
+        CompletorResult actualDoneCommand =
+                cc.getSuggestedCommand("do 1 2 7 8 9999 -10 0.5", DEFAULT_LIST_SIZE);
+        assertEquals(expectedDoneCommand, actualDoneCommand.getSuggestion());
+        assertEquals(actualDoneCommand instanceof CompletorDeletionResult, true);
 
-        String expectedDeleteCommand = "delete 0 1 5 6 ";
-        try {
-            CompletorResult actualDeleteCommand =
-                    cc.getSuggestedCommand("del 1 5", DEFAULT_LIST_SIZE);
-            actualDeleteCommand.getSuggestion();
-        } catch (CompletorDeletionException err) {
-            assertEquals(expectedDeleteCommand, err.getCommand());
-        }
+        String expectedDeleteCommand = "delete 1 5 ";
+        CompletorResult actualDeleteCommand =
+                cc.getSuggestedCommand("del 0 01 5 6", DEFAULT_LIST_SIZE);
+        assertEquals(expectedDeleteCommand, actualDeleteCommand.getSuggestion());
+        assertEquals(actualDeleteCommand instanceof CompletorDeletionResult, true);
     }
 
     @Test

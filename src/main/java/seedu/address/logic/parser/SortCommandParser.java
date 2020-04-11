@@ -6,9 +6,9 @@ import java.util.Arrays;
 import java.util.Optional;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.CompletorDeletionResult;
 import seedu.address.logic.commands.CompletorResult;
 import seedu.address.logic.commands.SortCommand;
-import seedu.address.logic.commands.exceptions.CompletorDeletionException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /** Parses input arguments and creates a new SortCommand object */
@@ -40,7 +40,7 @@ public class SortCommandParser implements Parser<SortCommand> {
         return new SortCommand(validFields); // should be
     }
 
-    public CompletorResult completeCommand(String input) throws CompletorDeletionException {
+    public CompletorResult completeCommand(String input) {
         String[] splitFields = input.split("\\s+");
         String feedbackToUser = Messages.COMPLETE_SUCCESS;
         StringBuilder removedFields = new StringBuilder();
@@ -64,7 +64,7 @@ public class SortCommandParser implements Parser<SortCommand> {
             removedFields.setLength(removedFields.length() - 2);
             String errorFeedback =
                     String.format(Messages.COMPLETE_UNKNOWN_SORT_FIELDS, removedFields.toString());
-            throw new CompletorDeletionException(newCommand, errorFeedback);
+            return new CompletorDeletionResult(newCommand, errorFeedback);
         }
 
         feedbackToUser =

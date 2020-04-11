@@ -5,9 +5,9 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.CompletorDeletionResult;
 import seedu.address.logic.commands.CompletorResult;
 import seedu.address.logic.commands.DoneCommand;
-import seedu.address.logic.commands.exceptions.CompletorDeletionException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /** Parses input arguments and creates a new DoneCommand object */
@@ -35,8 +35,7 @@ public class DoneCommandParser implements Parser<DoneCommand> {
      * @param input input that has been trimmed
      * @return CompletorResult with suggested command and feedback to display
      */
-    public CompletorResult completeCommand(String input, int listSize)
-            throws CompletorDeletionException {
+    public CompletorResult completeCommand(String input, int listSize) {
         String[] splitInput = input.split("\\s+");
         StringBuilder newCommand = new StringBuilder("done ");
         StringBuilder removedIndices = new StringBuilder();
@@ -60,7 +59,7 @@ public class DoneCommandParser implements Parser<DoneCommand> {
         newCommand.setLength(newCommand.length() - 1);
         if (removedIndices.length() > 0) {
             removedIndices.setLength(removedIndices.length() - 1);
-            throw new CompletorDeletionException(
+            return new CompletorDeletionResult(
                     newCommand.toString(),
                     String.format(feedbackToUser, removedIndices.toString()));
         } else {

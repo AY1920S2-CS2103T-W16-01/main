@@ -36,9 +36,9 @@ public class CompletorResult {
             return false;
         }
 
-        CompletorResult CompletormmandResult = (CompletorResult) other;
-        return feedbackToUser.equals(CompletormmandResult.feedbackToUser)
-                && suggestedCommand == CompletormmandResult.suggestedCommand;
+        CompletorResult result = (CompletorResult) other;
+        return feedbackToUser.equals(result.feedbackToUser)
+                && suggestedCommand == result.suggestedCommand;
     }
 
     @Override

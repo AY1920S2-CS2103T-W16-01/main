@@ -6,7 +6,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.CompletorResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.exceptions.CompletorDeletionException;
 import seedu.address.logic.commands.exceptions.CompletorException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyPomodoro;
@@ -32,10 +31,8 @@ public interface Logic extends Observer {
      * @param userInput Input from user
      * @return the result of completion
      * @throws CompletorException If no command is detected
-     * @throws CompletorDeletionException If part of input is deleted
      */
-    CompletorResult suggestCommand(String userInput)
-            throws CompletorException, CompletorDeletionException;
+    CompletorResult suggestCommand(String userInput) throws CompletorException;
 
     /**
      * Returns the TaskList.

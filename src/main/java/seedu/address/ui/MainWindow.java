@@ -34,6 +34,7 @@ import seedu.address.logic.PomodoroManager;
 import seedu.address.logic.StatisticsManager;
 import seedu.address.logic.commands.CommandCompletor;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CompletorDeletionResult;
 import seedu.address.logic.commands.CompletorResult;
 import seedu.address.logic.commands.DoneCommandResult;
 import seedu.address.logic.commands.PomCommandResult;
@@ -42,7 +43,6 @@ import seedu.address.logic.commands.SortCommandResult;
 import seedu.address.logic.commands.SwitchTabCommand;
 import seedu.address.logic.commands.SwitchTabCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.exceptions.CompletorDeletionException;
 import seedu.address.logic.commands.exceptions.CompletorException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.dayData.DayData;
@@ -272,11 +272,10 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CompletorResult completorResult = logic.suggestCommand(commandText);
             resultDisplay.setFeedbackToUser(completorResult.getFeedbackToUser());
+            if (completorResult instanceof CompletorDeletionResult) {
+                resultDisplay.setWarning();
+            }
             return completorResult.getSuggestion();
-        } catch (CompletorDeletionException e) {
-            resultDisplay.setFeedbackToUser(e.getMessage());
-            resultDisplay.setWarning();
-            return e.getCommand();
         } catch (CompletorException e) {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
