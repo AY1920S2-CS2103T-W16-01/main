@@ -1,19 +1,10 @@
 package seedu.address.model.task;
 
-import static java.util.Objects.requireNonNull;
-
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Optional;
-import java.util.Set;
-import java.util.Timer;
-import java.util.TimerTask;
-import javafx.application.Platform;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Model;
-import seedu.address.model.tag.Tag;
 
 public class Recurring {
     private final RecurType type;
@@ -54,30 +45,18 @@ public class Recurring {
         }
     }
 
-    /**
-     * Returns a copy of the task that is being reset with everything being the same except for
-     * whether the method is Done
-     *
-     * @param taskToReset
-     * @return copied task with done set to undone
-     */
-    public Task resetDone(Task taskToReset) {
-        assert taskToReset != null;
+    public boolean shouldUpdateReminder(LocalDateTime reminderDateTime) {
+        Duration duration = Duration.between(LocalDateTime.now(), reminderDateTime);
+        boolean hasPassed = duration.getSeconds() < 0;
+        return hasPassed;
+    }
 
-        Name updatedName = taskToReset.getName();
-        Priority updatedPriority = taskToReset.getPriority();
-        Description updatedDescription = taskToReset.getDescription();
-        Set<Tag> updatedTags = taskToReset.getTags();
-        Optional<Reminder> sameOptReminder = taskToReset.getOptionalReminder();
-        Optional<Recurring> sameOptRecurring = taskToReset.getOptionalRecurring();
-        return new Task(
-                updatedName,
-                updatedPriority,
-                updatedDescription,
-                new Done("N"),
-                updatedTags,
-                sameOptReminder,
-                sameOptRecurring);
+    public LocalDateTime getUpdatedReminderTime(Reminder currentReminder) {
+        LocalDateTime currentDateTime = currentReminder.getDateTime();
+        if (shouldUpdateReminder(currentDateTime)) {
+            currentDateTime = currentDateTime.plusDays(type.getDayInterval());
+        }
+        return currentDateTime;
     }
 
     /** Returns true if a given string is a valid name. */
@@ -90,33 +69,17 @@ public class Recurring {
         return StringUtil.getTitleCase(type.name());
     }
 
-    public TimerTask generateTimerTask(Model model, Task taskToReset) {
-
-        return new TimerTask() {
-            @Override
-            public void run() {
-                Platform.runLater(
-                        () -> {
-                            requireNonNull(model);
-
-                            if (taskToReset.getDone().getIsDone()) {
-                                Task resetedTask = resetDone(taskToReset);
-                                model.setTask(taskToReset, resetedTask);
-                            }
-                        });
-            }
-        };
+    public long getDelayToFirstTrigger() {
+        // long delay = Duration.between(
+        //                 LocalDateTime.now(),
+        //                 referenceDateTime.plusDays(type.getDayInterval()))
+        //         .getSeconds();
+        // return delay >= 0 ? delay * 1000 : 0;
+        return 60000l; // for testing
     }
 
-    public void triggerRecurring(Model model, Task taskToReset) {
-        TimerTask repeatedTask = generateTimerTask(model, taskToReset);
-        Timer timer = new Timer("Timer");
-        long period = type.getInterval();
-        long delayToFirstTrigger =
-                Duration.between(LocalDateTime.now(), referenceDateTime).getSeconds();
-        delayToFirstTrigger = delayToFirstTrigger >= 0 ? delayToFirstTrigger * 1000 : 0;
-        timer.scheduleAtFixedRate(
-                repeatedTask, delayToFirstTrigger, period); // might run twice in the first time
+    public long getPeriod() {
+        return type.getInterval();
     }
 
     @Override

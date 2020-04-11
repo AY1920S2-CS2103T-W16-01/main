@@ -131,6 +131,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setTaskSaver(TaskSaver taskSaver) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addTask(Task task) {
             throw new AssertionError("This method should not be called.");
         }

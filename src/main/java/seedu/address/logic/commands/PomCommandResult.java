@@ -6,6 +6,12 @@ import java.util.List;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
+/**
+ * Represents the Command result for a pom command
+ *
+ * @author Hardy Shein
+ * @version 1.4
+ */
 public class PomCommandResult extends CommandResult {
 
     private final String pommedTask;

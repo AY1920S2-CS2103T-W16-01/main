@@ -80,6 +80,10 @@ public class Reminder implements Comparable {
         }
     }
 
+    public LocalDateTime getDateTime() {
+        return reminderDateTime;
+    }
+
     /** @return the delay */
     public long getDelay() {
         return delay;

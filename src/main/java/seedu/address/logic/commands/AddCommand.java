@@ -64,7 +64,7 @@ public class AddCommand extends Command {
         }
 
         model.addTask(toAdd);
-        toAdd.triggerRecurringIfPresent(model);
+        // toAdd.triggerRecurringIfPresent(model, indexOfNewTask);
         // ^ Sample use of model to adjust objects
         // model.setPetName("Jeff");
         // model.setPomodoroTask(toAdd);

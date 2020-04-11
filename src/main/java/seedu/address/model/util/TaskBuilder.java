@@ -46,6 +46,8 @@ public class TaskBuilder {
         description = taskToCopy.getDescription();
         done = taskToCopy.getDone();
         tags = new HashSet<>(taskToCopy.getTags());
+        reminder = taskToCopy.getOptionalReminder();
+        recurring = taskToCopy.getOptionalRecurring();
     }
 
     /** Sets the {@code Name} of the {@code Task} that we are building. */
@@ -77,6 +79,11 @@ public class TaskBuilder {
 
     public TaskBuilder withDone() {
         this.done = new Done(Done.DONE);
+        return this;
+    }
+
+    public TaskBuilder withDone(Done done) {
+        this.done = done;
         return this;
     }
 

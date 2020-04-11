@@ -1,8 +1,6 @@
 package seedu.address.model.dayData;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.storage.JsonAdaptedDayDataTest.VALID_POM_DURATION_DATA;
 import static seedu.address.storage.JsonAdaptedDayDataTest.VALID_TASKS_DONE_DATA;
 import static seedu.address.testutil.Assert.assertThrows;

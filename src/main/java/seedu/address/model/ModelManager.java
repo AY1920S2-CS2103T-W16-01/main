@@ -7,8 +7,12 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Set;
+import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -39,6 +43,9 @@ public class ModelManager implements Model {
     private PetManager petManager;
     private StatisticsManager statisticsManager;
     private ArrayList<Observer> observers;
+    private HashMap<Task, TimerTask> recurringTimerTasks = new HashMap<>();
+    private Timer recurringTimer = new Timer();
+    private TaskSaver taskSaver;
 
     /** Initializes a ModelManager with the given taskList and userPrefs. */
     public ModelManager(
@@ -54,6 +61,7 @@ public class ModelManager implements Model {
 
         this.taskList = new TaskList(taskList);
         this.tagSet = new TagSet(taskList);
+        this.setRecurringTimers();
         this.pet = new Pet(pet); // initialize a pet as a model
         this.pomodoro = new Pomodoro(pomodoro); // initialize a pomodoro as a model
         this.statistics = new Statistics(statistics); // initialize a Statistics as a model
@@ -114,9 +122,56 @@ public class ModelManager implements Model {
     // ================================================================================
 
     @Override
+    public void setTaskSaver(TaskSaver taskSaver) {
+        this.taskSaver = taskSaver;
+    }
+
+    private void setRecurringTimers() {
+        this.recurringTimer.cancel();
+        this.recurringTimer = new Timer();
+        this.recurringTimerTasks.clear();
+        for (Task t : this.taskList.getTaskList()) {
+            if (t.getOptionalRecurring().isPresent()) {
+                TimerTask tt = this.generateTimerTask(t);
+                recurringTimerTasks.put(t, tt);
+                this.recurringTimer.scheduleAtFixedRate(
+                        tt, t.getDelayToFirstTrigger(), t.getRecurPeriod());
+            }
+        }
+    }
+
+    private TimerTask generateTimerTask(Task t) {
+        return new TimerTask() {
+            @Override
+            public void run() {
+                Platform.runLater(
+                        () -> {
+                            setTask(t, t.getRecurredTask());
+                        });
+            }
+        };
+    }
+
+    private void cancelTimerTask(Task t) {
+        if (this.recurringTimerTasks.containsKey(t)) {
+            this.recurringTimerTasks.get(t).cancel();
+        }
+    }
+
+    private void setTimer(Task t) {
+        if (t.getOptionalRecurring().isPresent()) {
+            TimerTask tt = this.generateTimerTask(t);
+            recurringTimerTasks.put(t, tt);
+            this.recurringTimer.scheduleAtFixedRate(
+                    tt, t.getDelayToFirstTrigger(), t.getRecurPeriod());
+        }
+    }
+
+    @Override
     public void setTaskList(ReadOnlyTaskList taskList) {
         this.tagSet.populateTag(taskList);
         this.taskList.resetData(taskList);
+        this.setRecurringTimers();
     }
 
     @Override
@@ -146,11 +201,18 @@ public class ModelManager implements Model {
         taskList.removeTask(target);
     }
 
-    /** sortList after task is added so that new task will follow the existing sort order */
+    // @Override
+    // public Index getIndexOfNewTask() {
+    //     List<Task> lastShownTask = getFilteredTaskList();
+    //     return Index.fromZeroBased(lastShownTask.size());
+    // }
+
     @Override
     public void addTask(Task task) {
         taskList.addTask(task);
         this.tagSet.addTask(task);
+        this.sortList();
+        setTimer(task);
         updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
     }
 
@@ -161,10 +223,11 @@ public class ModelManager implements Model {
         this.tagSet.addTask(editedTask);
         this.tagSet.removeTask(target);
         taskList.setTask(target, editedTask);
-        try {
-            notifyObservers();
-        } catch (CommandException e) {
-            e.printStackTrace();
+        cancelTimerTask(target);
+        setTimer(editedTask);
+        this.sortList();
+        if (taskSaver != null) {
+            this.taskSaver.saveTask(this.taskList);
         }
     }
 

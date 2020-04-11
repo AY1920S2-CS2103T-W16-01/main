@@ -26,7 +26,7 @@ public class StatisticsManager {
      * @param dayDatas current dayDatas information.
      */
     public void updateStatisticsDisplayValues(ObservableList<DayData> dayDatas) {
-        assert(statistics != null);
+        assert (statistics != null);
 
         this.dayDatas = dayDatas;
         DayData latestDayData = dayDatas.get(CONSTANT_SIZE - 1);

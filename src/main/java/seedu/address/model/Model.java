@@ -41,6 +41,13 @@ public interface Model {
     /** Replaces task list data with the data in {@code taskList}. */
     void setTaskList(ReadOnlyTaskList taskList);
 
+    @FunctionalInterface
+    public interface TaskSaver {
+        void saveTask(TaskList tasklist);
+    }
+
+    void setTaskSaver(TaskSaver taskSaver);
+
     /** Returns the TaskList */
     ReadOnlyTaskList getTaskList();
 

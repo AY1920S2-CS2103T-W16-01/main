@@ -100,8 +100,8 @@ public class EditCommand extends Command {
                     .setTaskInProgressText(editedTask.getName().toString());
         }
 
-        model.showAllTasks();
-        editedTask.triggerRecurringIfPresent(model);
+        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        // editedTask.triggerRecurringIfPresent(model, index);
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
 

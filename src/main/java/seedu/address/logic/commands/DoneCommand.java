@@ -22,6 +22,7 @@ import seedu.address.model.task.Done;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.Recurring;
+import seedu.address.model.task.Reminder;
 import seedu.address.model.task.Task;
 
 /** Deletes a task identified using it's displayed index from the task list. */
@@ -112,14 +113,18 @@ public class DoneCommand extends Command {
         Priority updatedPriority = taskToEdit.getPriority();
         Description updatedDescription = taskToEdit.getDescription();
         Set<Tag> updatedTags = taskToEdit.getTags();
+        Optional<Reminder> optionalReminder = Optional.empty();
         Optional<Recurring> optionalRecurring = taskToEdit.getOptionalRecurring();
-
+        if (optionalRecurring.isPresent()) {
+            optionalReminder = taskToEdit.getOptionalReminder();
+        }
         return new Task(
                 updatedName,
                 updatedPriority,
                 updatedDescription,
                 new Done("Y"),
                 updatedTags,
+                optionalReminder,
                 optionalRecurring);
     }
 
