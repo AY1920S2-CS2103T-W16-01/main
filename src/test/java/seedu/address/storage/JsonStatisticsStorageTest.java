@@ -54,7 +54,7 @@ public class JsonStatisticsStorageTest {
     }
 
     @Test
-    public void readTaskList_invalidAndValidDayDataStatistics_throwDataConversionException() {
+    public void readStatistics_invalidAndValidDayDataStatistics_throwDataConversionException() {
         assertThrows(
                 DataConversionException.class,
                 () -> readStatistics("invalidAndValidDayDataStatistics.json"));
@@ -87,7 +87,7 @@ public class JsonStatisticsStorageTest {
     }
 
     @Test
-    public void saveTaskList_nullTaskList_throwsNullPointerException() {
+    public void saveStatistics_nullStatistics_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveStatistics(null, "SomeFile.json"));
     }
 

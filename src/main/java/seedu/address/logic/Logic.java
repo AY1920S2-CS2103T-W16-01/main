@@ -10,11 +10,10 @@ import seedu.address.logic.commands.exceptions.CompletorException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyPomodoro;
 import seedu.address.model.ReadOnlyTaskList;
-import seedu.address.model.dayData.DayData;
 import seedu.address.model.task.Task;
 
 /** API of the Logic component */
-public interface Logic extends Observer {
+public interface Logic {
     /**
      * Executes the command and returns the result.
      *
@@ -52,8 +51,6 @@ public interface Logic extends Observer {
 
     /** Set the user prefs' GUI settings. */
     void setGuiSettings(GuiSettings guiSettings);
-
-    ObservableList<DayData> getCustomQueue();
 
     ReadOnlyPomodoro getPomodoro();
 }

@@ -11,6 +11,7 @@ import seedu.address.logic.PetManager;
 import seedu.address.logic.PomodoroManager;
 import seedu.address.logic.StatisticsManager;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.dayData.Date;
 import seedu.address.model.dayData.DayData;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
@@ -115,18 +116,20 @@ public interface Model {
 
     PomodoroManager getPomodoroManager();
 
-    Statistics getStatistics();
-
-    ObservableList<DayData> getCustomQueue();
+    ReadOnlyStatistics getStatistics();
 
     /**
-     * Notifies observers when a change is made. Observer in this case is the logic manager.
+     * Notifies observers when a change is made. Observer in this case is the MainWindow.
      *
      * @throws CommandException
      */
-    void notifyObservers() throws CommandException;
+    void notifyMainWindow(String input) throws CommandException;
 
     void addObserver(Observer observer);
 
-    public void updateDataDatesStatistics();
+    void updateDataDatesStatistics();
+
+    void updatesDayDataStatistics(DayData dayData);
+
+    DayData getDayDataFromDateStatistics(Date date);
 }

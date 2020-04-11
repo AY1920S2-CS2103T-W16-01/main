@@ -109,9 +109,9 @@ public class MainApp extends Application {
 
         model.setStatisticsManager(statisticsManager);
 
-        model.addObserver(logic);
-
         ui = new UiManager(logic, pomodoroManager, petManager, statisticsManager);
+
+        model.addObserver(ui);
     }
 
     /**

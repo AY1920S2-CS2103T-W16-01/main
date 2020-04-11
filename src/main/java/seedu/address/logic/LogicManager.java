@@ -18,7 +18,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyPomodoro;
 import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.TaskList;
-import seedu.address.model.dayData.DayData;
 import seedu.address.model.task.Task;
 import seedu.address.storage.Storage;
 
@@ -95,10 +94,6 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Task> getFilteredTaskList() {
         ObservableList<Task> tasklist = model.getFilteredTaskList();
-        // for (int i = 0; i < tasklist.size(); i++) {
-        //     Task currentTask = tasklist.get(i);
-        //     currentTask.triggerRecurringIfPresent(model, Index.fromZeroBased(i));
-        // }
         return tasklist;
     }
 
@@ -118,21 +113,16 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<DayData> getCustomQueue() {
-        return model.getCustomQueue();
-    }
-
-    @Override
     public ReadOnlyPomodoro getPomodoro() {
         return model.getPomodoro();
     }
 
-    @Override
-    public void update() throws CommandException {
-        try {
-            storage.saveTaskList(model.getTaskList());
-        } catch (IOException ioe) {
-            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
-        }
-    }
+    // @Override
+    // public void update() throws CommandException {
+    //     try {
+    //         storage.saveTaskList(model.getTaskList());
+    //     } catch (IOException ioe) {
+    //         throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+    //     }
+    // }
 }

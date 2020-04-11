@@ -41,7 +41,7 @@ public class AddCommand extends Command {
                     + PREFIX_TAG
                     + "forSchool "
                     + PREFIX_REMINDER
-                    + "15/04/20@10:30";
+                    + "15/04/21@10:30";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list";
@@ -64,7 +64,6 @@ public class AddCommand extends Command {
         }
 
         model.addTask(toAdd);
-        // toAdd.triggerRecurringIfPresent(model, indexOfNewTask);
         // ^ Sample use of model to adjust objects
         // model.setPetName("Jeff");
         // model.setPomodoroTask(toAdd);

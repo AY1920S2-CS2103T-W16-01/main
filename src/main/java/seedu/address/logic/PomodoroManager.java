@@ -23,7 +23,6 @@ import seedu.address.logic.commands.PomCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.Statistics;
 import seedu.address.model.dayData.Date;
 import seedu.address.model.dayData.DayData;
 import seedu.address.model.dayData.PomDurationData;
@@ -290,9 +289,9 @@ public class PomodoroManager {
     public void updateStatistics(Model model) {
         requireNonNull(startDateTime);
         endDateTime = LocalDateTime.now();
-        model.getStatistics().updateDataDates();
+        model.updateDataDatesStatistics();
         List<DayData> newDayDatas = generateUpdatedDayData(startDateTime, endDateTime);
-        newDayDatas.forEach(dayData -> model.getStatistics().updatesDayData(dayData));
+        newDayDatas.forEach(dayData -> model.updatesDayDataStatistics(dayData));
     }
 
     /**
@@ -335,7 +334,7 @@ public class PomodoroManager {
                                     ChronoUnit.MINUTES);
             Date date = new Date(tempDateTime.format(Date.dateFormatter));
             System.out.println(date.toString());
-            DayData currDayData = model.getStatistics().getDayDataFromDate(date);
+            DayData currDayData = model.getDayDataFromDateStatistics(date);
             PomDurationData updatedPomDuration =
                     new PomDurationData("" + (currDayData.getPomDurationData().value + minutes));
             DayData updatedDayData =
@@ -347,7 +346,7 @@ public class PomodoroManager {
         // Handle last day
         int minutes = (int) tempDateTime.until(endDateTime, ChronoUnit.MINUTES);
         Date date = new Date(tempDateTime.format(Date.dateFormatter));
-        DayData currDayData = model.getStatistics().getDayDataFromDate(date);
+        DayData currDayData = model.getDayDataFromDateStatistics(date);
         PomDurationData updatedPomDuration =
                 new PomDurationData("" + (currDayData.getPomDurationData().value + minutes));
         DayData updatedDayData =
@@ -451,14 +450,13 @@ public class PomodoroManager {
 
         LocalDateTime now = LocalDateTime.now();
         Date dateOnDone = new Date(now.format(Date.dateFormatter));
-        Statistics stats = model.getStatistics();
-        DayData dayData = stats.getDayDataFromDate(dateOnDone);
+        DayData dayData = model.getDayDataFromDateStatistics(dateOnDone);
         DayData updatedDayData =
                 new DayData(
                         dateOnDone,
                         dayData.getPomDurationData(),
                         new TasksDoneData("" + (dayData.getTasksDoneData().value + 1)));
-        stats.updatesDayData(updatedDayData);
+        model.updatesDayDataStatistics(updatedDayData);
         clearDoneParams();
     }
 

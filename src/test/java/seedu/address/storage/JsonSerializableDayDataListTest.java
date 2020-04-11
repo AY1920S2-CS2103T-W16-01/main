@@ -19,8 +19,6 @@ public class JsonSerializableDayDataListTest {
             TEST_DATA_FOLDER.resolve("typicalDayDatas.json");
     private static final Path INVALID_DAY_DATA_FILE =
             TEST_DATA_FOLDER.resolve("invalidDayData.json");
-    // private static final Path DUPLICATE_DAY_DATA_FILE =
-    // TEST_DATA_FOLDER.resolve("duplicateTask.json");
 
     @Test
     public void toModelType_typicalDayDataFile_success() throws Exception {
@@ -39,16 +37,4 @@ public class JsonSerializableDayDataListTest {
                         .get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
-
-    // Todo
-    /*
-    @Test
-    public void toModelType_duplicateTasks_throwsIllegalValueException() throws Exception {
-        JsonSerializableTaskList dataFromFile =
-                JsonUtil.readJsonFile(DUPLICATE_TASK_FILE, JsonSerializableTaskList.class).get();
-        assertThrows(
-                IllegalValueException.class,
-                JsonSerializableTaskList.MESSAGE_DUPLICATE_TASK,
-                dataFromFile::toModelType);
-    } */
 }

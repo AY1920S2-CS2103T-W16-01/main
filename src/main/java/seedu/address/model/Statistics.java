@@ -10,6 +10,7 @@ import seedu.address.model.dayData.Date;
 import seedu.address.model.dayData.DayData;
 import seedu.address.model.dayData.exceptions.DayDataNotFoundException;
 import seedu.address.model.dayData.exceptions.InvalidTableException;
+import seedu.address.model.settings.DailyTarget;
 
 /**
  * Stores information with respect to StatisticsDisplay. Wraps all DayData objects through
@@ -17,9 +18,10 @@ import seedu.address.model.dayData.exceptions.InvalidTableException;
  */
 public class Statistics implements ReadOnlyStatistics {
 
+    public static final String DEFAULT_DAILY_TARGET = "100";
+
     private final CustomQueue customQueue;
-    private final String DEFAULT_DAILY_TARGET = "100";
-    private String dailyTarget;
+    private DailyTarget dailyTarget;
 
     public Statistics() {
         customQueue = new CustomQueue();
@@ -27,7 +29,7 @@ public class Statistics implements ReadOnlyStatistics {
             customQueue.init();
         } catch (InvalidTableException e) {
         }
-        this.dailyTarget = DEFAULT_DAILY_TARGET;
+        this.dailyTarget = new DailyTarget(DEFAULT_DAILY_TARGET);
     }
 
     /**
@@ -41,7 +43,7 @@ public class Statistics implements ReadOnlyStatistics {
             customQueue.init(localDate);
         } catch (InvalidTableException e) {
         }
-        this.dailyTarget = DEFAULT_DAILY_TARGET;
+        this.dailyTarget = new DailyTarget(DEFAULT_DAILY_TARGET);
     }
 
     /** Creates a Statistics using the DayDatas and dailyTarget in {@code toBeCopied}. */
@@ -56,10 +58,11 @@ public class Statistics implements ReadOnlyStatistics {
     /**
      * Sets daily target to new value.
      *
-     * @param dailyTarget dailyTarget to be set.
+     * @param dailyTargetValue dailyTarget to be set.
      */
-    public void setDailyTarget(String dailyTarget) {
-        this.dailyTarget = dailyTarget;
+    public void setDailyTarget(String dailyTargetValue) {
+        requireNonNull(dailyTargetValue);
+        this.dailyTarget = new DailyTarget(dailyTargetValue);
     }
 
     /**
@@ -67,7 +70,7 @@ public class Statistics implements ReadOnlyStatistics {
      *
      * @return current daily target value.
      */
-    public String getDailyTarget() {
+    public DailyTarget getDailyTarget() {
         return dailyTarget;
     }
 

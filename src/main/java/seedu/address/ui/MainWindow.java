@@ -7,12 +7,12 @@ import static seedu.address.logic.commands.SwitchTabCommand.TASKS_TAB_INDEX;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Logger;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -360,8 +360,7 @@ public class MainWindow extends UiPart<Stage> {
                         .getSelectionModel()
                         .select(switchTabCommandResult.getTabToSwitchIndex());
                 if (switchTabCommandResult.getTabToSwitchIndex() == STATS_TAB_INDEX) {
-                    ObservableList<DayData> customQueue = logic.getCustomQueue();
-                    statisticsManager.updateStatisticsDisplayValues(customQueue);
+                    statisticsManager.updateStatisticsDisplayValues();
                     this.updateStatisticsDisplay();
                 }
             } catch (ClassCastException ce) {
@@ -403,6 +402,10 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    public void displayRecurring(String recurringFeedback) {
+        resultDisplay.setFeedbackToUser(recurringFeedback);
+    }
+
     public void setPomCommandExecutor() {
         commandBox = new CommandBox(this::pomExecuteCommand, this::suggestCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
@@ -439,7 +442,7 @@ public class MainWindow extends UiPart<Stage> {
         String progressDailyText = statisticsManager.getProgressDailyText();
         String progressBarDailyFilepathString =
                 statisticsManager.getProgressBarDailyFilepathString();
-        ObservableList<DayData> customQueue = statisticsManager.getCustomQueue();
+        List<DayData> customQueue = statisticsManager.getCustomQueue();
 
         statisticsDisplay.setProgressTargetText(dailyTargetText);
         statisticsDisplay.setProgressDailyText(progressDailyText);

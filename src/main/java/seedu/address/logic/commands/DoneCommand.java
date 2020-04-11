@@ -12,7 +12,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.PomodoroManager;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.Statistics;
 import seedu.address.model.dayData.Date;
 import seedu.address.model.dayData.DayData;
 import seedu.address.model.dayData.TasksDoneData;
@@ -131,14 +130,13 @@ public class DoneCommand extends Command {
     private static void updateStatisticsRegularDone(Model model) {
         model.updateDataDatesStatistics();
         Date dateOnDone = getCurrentDate();
-        Statistics stats = model.getStatistics();
-        DayData dayData = stats.getDayDataFromDate(dateOnDone);
+        DayData dayData = model.getDayDataFromDateStatistics(dateOnDone);
         DayData updatedDayData =
                 new DayData(
                         dateOnDone,
                         dayData.getPomDurationData(),
                         new TasksDoneData("" + (dayData.getTasksDoneData().value + 1)));
-        stats.updatesDayData(updatedDayData);
+        model.updatesDayDataStatistics(updatedDayData);
     }
 
     private static void updateStatisticsPomDone(Model model) {
