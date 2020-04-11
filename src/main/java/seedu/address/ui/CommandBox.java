@@ -1,8 +1,5 @@
 package seedu.address.ui;
 
-import java.util.Timer;
-import java.util.TimerTask;
-import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -18,7 +15,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class CommandBox extends UiPart<Region> {
 
     private static final String FXML = "CommandBox.fxml";
-    private Timer scheduler;
 
     private final CommandExecutor commandExecutor;
     private final CommandSuggestor commandSuggestor;
@@ -29,7 +25,6 @@ public class CommandBox extends UiPart<Region> {
         super(FXML);
         this.commandExecutor = commandExecutor;
         this.commandSuggestor = commandSuggestor;
-        scheduler = new Timer();
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField
                 .textProperty()
@@ -55,33 +50,9 @@ public class CommandBox extends UiPart<Region> {
                         commandTextField.setText(suggestion);
                         // cancels all previous timers so that we won't have a case of previous
                         // timers setting colors in before the 1 second of success style
-                        refreshTimer();
                         CssManipulator.setStyleToIndicateSuccess(commandTextField);
-                        scheduler.schedule(
-                                new TimerTask() {
-                                    @Override
-                                    public void run() {
-                                        Platform.runLater(
-                                                () ->
-                                                        CssManipulator.setStyleToDefault(
-                                                                commandTextField));
-                                    }
-                                },
-                                1000);
                     } catch (CompletorException e) {
-                        refreshTimer();
                         CssManipulator.setStyleToIndicateFailure(commandTextField);
-                        scheduler.schedule(
-                                new TimerTask() {
-                                    @Override
-                                    public void run() {
-                                        Platform.runLater(
-                                                () ->
-                                                        CssManipulator.setStyleToDefault(
-                                                                commandTextField));
-                                    }
-                                },
-                                1000);
                     }
                     // Below is required as event.consume() does not prevent tab from unfocussing
                     // the text field
@@ -91,12 +62,6 @@ public class CommandBox extends UiPart<Region> {
                 }
             }
         };
-    }
-
-    private void refreshTimer() {
-        scheduler.cancel();
-        scheduler.purge();
-        scheduler = new Timer();
     }
 
     /** Handles the Enter button pressed event. */
