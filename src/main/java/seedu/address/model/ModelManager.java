@@ -183,7 +183,11 @@ public class ModelManager implements Model {
     /** Used when a predicate is applied to show the more relevant serach results */
     @Override
     public void sortSearchByRelevance(Comparator<Task> comparator) {
-        Comparator<Task> searchThenNormalOrder = comparator.thenComparing(this.comparator);
+        requireAllNonNull(comparator);
+        Comparator<Task> searchThenNormalOrder = comparator;
+        if (this.comparator != null) {
+            searchThenNormalOrder = searchThenNormalOrder.thenComparing(this.comparator);
+        }
         this.taskList.sort(searchThenNormalOrder);
     }
 
