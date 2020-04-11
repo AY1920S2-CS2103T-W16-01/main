@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.Set;
 import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
@@ -23,6 +24,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.Statistics;
 import seedu.address.model.dayData.Date;
 import seedu.address.model.dayData.DayData;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 
 public class SetCommandTest {
@@ -120,7 +122,22 @@ public class SetCommandTest {
         }
 
         @Override
+        public boolean hasTag(Tag t) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Set<Tag> getTagSet() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredTaskList(Predicate<Task> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+        
+        @Override
+        public void showAllTasks() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -140,7 +157,12 @@ public class SetCommandTest {
         }
 
         @Override
-        public void setComparator(Comparator<Task>[] compare) {
+        public void setComparator(Comparator<Task> compare) {
+            throw new AssertionError("This method should not be called.");
+        }
+        
+        @Override
+        public void sortSearchByRelevance(Comparator<Task> comparator) {
             throw new AssertionError("This method should not be called.");
         }
 
