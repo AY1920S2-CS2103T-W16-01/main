@@ -310,10 +310,8 @@ The CustomQueue class enforces the following constraints.
 1. Size of CustomQueue must be of `CONSTANT_SIZE` after each method call through Statistics.
 2. DayData dates in CustomQueue must be only 1 day apart between its elements, and sorted from oldest to latest date.
 
-[TIP]
-===
+[NOTE]
 `CONSTANT_SIZE` can be set to any number. In our current implementation, we chose to store data for only the past 7 days to keep statistics simple and intuitive for users.
-===
 
 The CustomQueue class implements the following methods for other components to access or update its data:
 
@@ -326,11 +324,11 @@ The CustomQueue class implements the following methods for other components to a
 ** Aspect: Data structure to support Statistics **
 
 - Alternative 1 (current choice): Use a list that stores a fixed number of DayData objects, with elements being strictly 1 day apart and sorted from oldest to latest date.
--- Pros: Lightweight, does not store unnecessary data. Easy to pass data to generate graphs. Systematic removal of outdated data.
--- Cons: Need to enforce constraints in methods.
+ - Pros: Lightweight, does not store unnecessary data. Easy to pass data to generate graphs. Systematic removal of outdated data.
+ - Cons: Need to enforce constraints in methods.
 - Alternative 2: Use a list with elements sorted from oldest to latest date.
--- Pros: Easy to implement.
--- Cons: Harder to pass data to generate graphs. Need to handle outdated dates.
+ - Pros: Easy to implement.
+ - Cons: Harder to pass data to generate graphs. Need to handle outdated dates.
 
 === Logging
 
