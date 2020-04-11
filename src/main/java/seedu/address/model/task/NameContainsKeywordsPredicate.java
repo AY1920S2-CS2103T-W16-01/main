@@ -42,7 +42,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Task> {
      */
     public int getEditDistance(Task task) {
         if (keywords.size() == 0) {
-            return -1;
+            return -1; //TODO maybe throw error
         }
 
         int score = Integer.MAX_VALUE;
@@ -51,34 +51,24 @@ public class NameContainsKeywordsPredicate implements Predicate<Task> {
         String[] splitTaskName = taskName.split("\\s+");
 
         for (int i = 0; i < splitTaskName.length; i++) {
-            if (joinnedKeywords.length() < 3) {
-                break;
-            }
-
             String joinnedPhrase =
                     String.join(" ", Arrays.copyOfRange(splitTaskName, i, i + keywords.size()));
-            int currScore =
-                    StringUtil.levenshteinDistanceCompare(
-                            joinnedPhrase, joinnedKeywords, threshold);
-            if (currScore >= 0) {
-                score = Math.min(score, currScore);
-            }
-        }
 
-        int currScore = StringUtil.levenshteinDistanceCompare(taskName, joinnedKeywords, threshold);
-        if (currScore >= 0) {
-            score = Math.min(score, currScore);
-        }
-
-        for (int i = 0; i < splitTaskName.length; i++) {
-            String joinnedPhrase =
-                    String.join(" ", Arrays.copyOfRange(splitTaskName, i, i + keywords.size()));
-            if (joinnedKeywords.length() > 3
-                    && StringUtil.keywordMatchStartOfPhrase(joinnedKeywords, joinnedPhrase)) {
+            if (StringUtil.keywordMatchStartOfPhrase(joinnedKeywords, joinnedPhrase)) {
                 score = Math.min(1, score);
             }
+            
             if (joinnedKeywords.equals(joinnedPhrase)) {
                 score = Math.min(0, score);
+            }
+
+            if (joinnedKeywords.length() > 2) {
+                int currScore =
+                StringUtil.levenshteinDistanceCompare(
+                    joinnedPhrase, joinnedKeywords, threshold);       
+                if (currScore >= 0) {
+                    score = Math.min(score, currScore);
+                }
             }
         }
         return score;

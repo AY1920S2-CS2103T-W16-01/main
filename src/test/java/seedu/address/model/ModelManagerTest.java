@@ -3,7 +3,6 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTasks.HOMEWORK10;
 import static seedu.address.testutil.TypicalTasks.LAB_3;
@@ -135,7 +134,7 @@ public class ModelManagerTest {
                                 taskList, new Pet(), new Pomodoro(), new Statistics(), userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        modelManager.showAllTasks();
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

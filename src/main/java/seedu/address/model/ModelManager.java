@@ -174,6 +174,12 @@ public class ModelManager implements Model {
         return this.filteredTasks;
     }
 
+    @Override 
+    public void showAllTasks() {
+        filteredTasks.setPredicate(PREDICATE_SHOW_ALL_TASKS);
+        this.sortList();
+    }
+
     @Override
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
@@ -203,7 +209,9 @@ public class ModelManager implements Model {
 
     @Override
     public void sortList() {
-        this.taskList.sort(comparator);
+        if (comparator != null) {
+            this.taskList.sort(comparator);
+        }
     }
 
     @Override

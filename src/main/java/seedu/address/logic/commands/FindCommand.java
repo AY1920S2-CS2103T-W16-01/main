@@ -45,6 +45,9 @@ public class FindCommand extends Command {
                     public int compare(Task task1, Task task2) {
                         int score1 = predicate.getEditDistance(task1);
                         int score2 = predicate.getEditDistance(task2);
+                        if (score1 == score2) {
+                            return 0;
+                        }
                         return score1 < score2 ? -1 : 1;
                     }
                 };
