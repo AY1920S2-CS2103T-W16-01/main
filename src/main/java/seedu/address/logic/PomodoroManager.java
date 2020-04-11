@@ -19,8 +19,11 @@ import javafx.scene.control.Label;
 import javafx.util.Duration;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.PomCommand;
 import seedu.address.logic.commands.PomCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.PomCommandParser;
+import seedu.address.logic.parser.TaskListParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.dayData.Date;
@@ -217,6 +220,7 @@ public class PomodoroManager {
         try {
             timeline.stop();
             reset();
+            timeline = null;
             model.setPomodoroTask(null);
         } catch (NullPointerException ne) {
             throw ne;
@@ -428,6 +432,7 @@ public class PomodoroManager {
     private void clearDoneParams() {
         this.originList = null;
         this.taskIndex = -1;
+        model.setPomodoroTask(null);
     }
 
     /** Actions taken to "done" a task that was being pommed. */
@@ -447,6 +452,8 @@ public class PomodoroManager {
         model.setTask(taskToEdit, editedTask);
         // Update stats
         model.updateDataDatesStatistics();
+
+        timeline = null;
 
         LocalDateTime now = LocalDateTime.now();
         Date dateOnDone = new Date(now.format(Date.dateFormatter));
@@ -536,6 +543,9 @@ public class PomodoroManager {
                     return commandResult;
                 }
                 try {
+                    PomCommand pc = 
+                        (PomCommand)(new TaskListParser().parseCommand(commandText));
+
                     PomCommandResult pomCommandResult =
                             (PomCommandResult) logic.execute(commandText);
                     logger.info("Result: " + pomCommandResult.getFeedbackToUser());
@@ -631,8 +641,11 @@ public class PomodoroManager {
             return;
         }
         float timeInMinutes = timeSeconds.floatValue() / 60;
+        
         model.setPomodoroTimeLeft(timeInMinutes);
-        // Update statistics so far
-        updateStatistics(model);
+        if (model.getPomodoroTask() != null) {
+            // Update statistics so far
+            updateStatistics(model);
+        }
     }
 }

@@ -407,8 +407,12 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     public void setPomCommandExecutor() {
-        commandBox = new CommandBox(this::pomExecuteCommand, this::suggestCommand);
+        commandBox = new CommandBox(this::pomExecuteCommand, this::pomSuggestCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    private String pomSuggestCommand(String commandText) {
+        return commandText;
     }
 
     public void setDefaultCommandExecutor() {
