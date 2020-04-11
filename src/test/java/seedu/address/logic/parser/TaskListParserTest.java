@@ -82,7 +82,7 @@ public class TaskListParserTest {
                 (FindCommand)
                         parser.parseCommand(
                                 FindCommand.COMMAND_WORD
-                                        + " "
+                                        + " n/"
                                         + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }

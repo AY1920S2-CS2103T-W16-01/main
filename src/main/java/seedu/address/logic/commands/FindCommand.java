@@ -43,8 +43,8 @@ public class FindCommand extends Command {
                 new Comparator<>() {
                     @Override
                     public int compare(Task task1, Task task2) {
-                        int score1 = predicate.getEditDistance(task1);
-                        int score2 = predicate.getEditDistance(task2);
+                        int score1 = predicate.getEditDistance(task1) - predicate.countTag(task1);
+                        int score2 = predicate.getEditDistance(task2) - predicate.countTag(task2);
                         if (score1 == score2) {
                             return 0;
                         }
