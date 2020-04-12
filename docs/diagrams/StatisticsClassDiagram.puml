@@ -1,0 +1,76 @@
+@startuml
+
+
+Class Statistics {
+- customQueue : CustomQueue
+- dailyTarget : DailyTarget
++ getDailyTarget()
++ setDailyTarget(String dailyTarget)
++ setDayDatas(List<DayData> dayDatas)
++ updateDataDates()
++ updateDataDates()
++ updateDataDates(LocalDate localDate)
++ updateDayData(DayData dayData)
++ getDayDataFromDate(Date date)
++ update(DayData dayData)
+}
+class DailyTarget {
++ value : String
++ isValidDailyTarget(String test)
++ isEmpty()
+}
+Class CustomQueue {
+- internalList : ObservableList<DayData>
+- internalUnmodifiableList : ObservableList<DayData>
++ init()
++ init(LocalDate localDate)
++ updateDataDatesCustom()
++ updateDataDatesCustom(LocalDate localDate)
++ updateDayDataCustom(DayData dayData)
++ getDayDataFromDateCustom(Date date)
++ add(DayData toAdd)
++ pop()
++ setDayData(DayData target, DayData editedDayData)
++ setDayDatas(List<DayData> dayDatas)
++ setDayDatas(CustomQueue replacement)
++ asUnmodifiableObservableList()
+- getLatestDayData()
++ {static} tableConstraintsAreEnforced(List<DayData> dayDatas)
+}
+Class DayData {
+- date : Date
+- pomDurationData : PomDurationData
+- tasksDoneData : TasksDoneData
++ getDate()
++ getPomDurationData()
++ getTasksDoneData()
+}
+Class Date {
++ value : LocalDate
++ {static} isValidDate(String test)
++ toPrint()
+}
+Class PomDurationData {
++ value : Integer
++ {static} isValidPomDurationData(String test)
+}
+Class TasksDoneData {
++ value : Integer
++ {static} isValidTasksDoneData(String test)
+}
+Interface ReadOnlyStatistics {
++ getCustomQueue()
++ getDailyTarget()
+}
+
+Statistics ..|> ReadOnlyStatistics
+
+Statistics o--> "1" CustomQueue
+Statistics o--> "1" DailyTarget
+CustomQueue o--> "7" DayData
+DayData *--> "1" Date
+DayData *--> "1" PomDurationData
+DayData *--> "1" TasksDoneData
+
+@enduml
+
