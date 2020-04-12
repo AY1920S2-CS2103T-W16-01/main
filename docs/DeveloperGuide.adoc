@@ -298,11 +298,13 @@ This data is captured and stored in the `Pomodoro` class in `seedu.address.model
 
 The Statistics feature is mainly supported by the Statistics class, which in turn is facilitated by the CustomQueue class. Its class diagram is given below.
 
-<Statistics class diagram>
+.Class Diagram of the Statistics Component
+image::StatisticsClassDiagram.png[]
 
-The Statistics Feature does not support any commands explicitly. The UI is updated automatically when the 'stats' command is called. The following sequence diagram shows how this is done.
+The Statistics feature does not support any commands explicitly. The UI is updated automatically when the 'stats' command is called. The following sequence diagram shows StatisticsDisplay is updated.
 
-<Statistics sequence diagram>
+.Sequence Diagram of how Statistics
+image::StatisticsUiSequenceDiagram.png[]
 
 ==== CustomQueue Implementation
 
@@ -320,6 +322,15 @@ The CustomQueue class implements the following methods for other components to a
 * Model#getDayDataFromDateStatistics() - Returns the DayData object from Statistics with the specified date.
 
 ==== Design considerations
+
+===== Aspect: when to update StatisticsDisplay
+
+* **Alternative 1 (current choice):** Update when the user runs the command to view Statistics
+** Pros: Easy to implement.
+** Cons: Progress can only be viewed at the Statistics tab.
+* **Alternative 2:** Update when any changes are made to Statistics.
+** Pros: In the event of future developments, any component of Statistics can be displayed at all times.
+** Cons: Need to keep track of all instances that can modify Statistics' values.
 
 ===== Aspect: Data structure to support Statistics
 

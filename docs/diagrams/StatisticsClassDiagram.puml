@@ -17,8 +17,8 @@ Statistics ..|> ReadOnlyStatistics
 Statistics o--> "1" CustomQueue
 Statistics o--> "1" DailyTarget
 CustomQueue o--> "7" DayData
-DayData *--> Date
-DayData *--> PomDurationData
-DayData *--> TasksDoneData
+DayData *--> "1" Date
+DayData *--> "1" PomDurationData
+DayData *--> "1" TasksDoneData
 
 @enduml
