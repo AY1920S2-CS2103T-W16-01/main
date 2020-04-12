@@ -14,17 +14,23 @@ import seedu.address.model.Statistics;
 import seedu.address.model.dayData.CustomQueue;
 import seedu.address.model.dayData.DayData;
 import seedu.address.model.dayData.exceptions.InvalidTableException;
+import seedu.address.model.settings.DailyTarget;
 
-/** An Immutable CustomQueue that is serializable to JSON format. */
+/** An immutable Statistics that is serializable to JSON format. */
 @JsonRootName(value = "statistics")
-class JsonSerializableDayDataList {
+class JsonSerializableStatistics {
+
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Statistics' %s field is missing!";
     private final List<JsonAdaptedDayData> dayDatas = new ArrayList<>();
+    private final String dailyTarget;
 
     /** Constructs a {@code JsonSerializableTaskList} with the given tasks. */
     @JsonCreator
-    public JsonSerializableDayDataList(
-            @JsonProperty("dayDatas") List<JsonAdaptedDayData> dayDatas) {
+    public JsonSerializableStatistics(
+            @JsonProperty("dayDatas") List<JsonAdaptedDayData> dayDatas,
+            @JsonProperty("dailyTarget") String dailyTarget) {
         this.dayDatas.addAll(dayDatas);
+        this.dailyTarget = dailyTarget;
     }
 
     /**
@@ -33,12 +39,14 @@ class JsonSerializableDayDataList {
      * @param source future changes to this will not affect the created {@code}
      *     JsonSerializableDayDataList}.
      */
-    public JsonSerializableDayDataList(ReadOnlyStatistics source) {
+    public JsonSerializableStatistics(ReadOnlyStatistics source) {
+        dailyTarget = source.getDailyTarget().value;
         dayDatas.addAll(
                 source.getCustomQueue()
                         .stream()
                         .map(JsonAdaptedDayData::new)
                         .collect(Collectors.toList()));
+
     }
 
     /**
@@ -55,11 +63,20 @@ class JsonSerializableDayDataList {
             dayDataList.add(dayData);
         }
 
+        if (dailyTarget == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, DailyTarget.class.getSimpleName()));
+        }
+        if (!DailyTarget.isValidDailyTarget(dailyTarget)) {
+            throw new IllegalValueException(DailyTarget.MESSAGE_CONSTRAINTS);
+        }
+
         if (!tableConstraintsAreEnforced(dayDataList)) {
             throw new InvalidTableException(CustomQueue.MESSAGE_CONSTRAINTS);
         } else {
             Statistics statistics = new Statistics();
             statistics.setDayDatas(dayDataList);
+            statistics.setDailyTarget(dailyTarget);
             return statistics;
         }
     }

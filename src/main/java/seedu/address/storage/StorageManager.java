@@ -28,13 +28,13 @@ public class StorageManager implements Storage {
             TaskListStorage taskListStorage,
             PetStorage petStorage,
             PomodoroStorage pomodoroStorage,
-            StatisticsStorage dayDataListStorage,
+            StatisticsStorage statisticsStorage,
             UserPrefsStorage userPrefsStorage) {
         super();
         this.taskListStorage = taskListStorage;
         this.petStorage = petStorage;
         this.pomodoroStorage = pomodoroStorage;
-        this.statisticsStorage = dayDataListStorage;
+        this.statisticsStorage = statisticsStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 

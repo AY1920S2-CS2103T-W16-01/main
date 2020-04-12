@@ -8,6 +8,7 @@ public class DailyTarget implements Comparable {
             "Daily Target should be more than 0 mins and does not exceed 720 mins, and it should not be blank";
     // 720/60 = 12. It is no longer productive to be doing work straight for more than 12 hours per
     // day
+
     public static final String VALIDATION_REGEX =
             "^([0-9]|[1-9][0-9]|[1-6][0-9][0-9]|7[0-1][0-9]|720)$";
     public final String value;

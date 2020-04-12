@@ -27,5 +27,6 @@
     "date" : "2020-03-23",
     "pomDurationData" : "0",
     "tasksDoneData" : "0"
-  } ]
+  } ],
+  "dailyTarget" : "100"
 }

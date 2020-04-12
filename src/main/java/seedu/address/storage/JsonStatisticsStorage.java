@@ -44,8 +44,8 @@ public class JsonStatisticsStorage implements StatisticsStorage {
             throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableDayDataList> jsonSerializableDayDataList =
-                JsonUtil.readJsonFile(filePath, JsonSerializableDayDataList.class);
+        Optional<JsonSerializableStatistics> jsonSerializableDayDataList =
+                JsonUtil.readJsonFile(filePath, JsonSerializableStatistics.class);
         if (!jsonSerializableDayDataList.isPresent()) {
             return Optional.empty();
         }
@@ -76,6 +76,6 @@ public class JsonStatisticsStorage implements StatisticsStorage {
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableDayDataList(statistics), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableStatistics(statistics), filePath);
     }
 }
