@@ -25,8 +25,9 @@
 <li><a href="#sorting">3.1. Sorting</a></li>
 <li><a href="#autocomplete">3.2. AutoComplete</a></li>
 <li><a href="#Pomodoro">3.3. Pomodoro</a></li>
-<li><a href="#logging">3.4. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.5. Configuration</a></li>
+<li><a href="#statistics-feature">3.4. Statistics Feature</a></li>
+<li><a href="#logging">3.5. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a></li>
@@ -445,14 +446,140 @@ First our Model accepts an array of Comparators which it will iterate through fr
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.4. Logging</a></h3>
+<h3 id="statistics-feature"><a class="link" href="#statistics-feature">3.4. Statistics Feature</a></h3>
+<div class="paragraph">
+<p>The Statistics feature is mainly supported by the Statistics class, which in turn is facilitated by the CustomQueue class. Its class diagram is given below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/StatisticsClassDiagram.png" alt="StatisticsClassDiagram">
+</div>
+<div class="title">Figure 14. Class Diagram of the Statistics Component</div>
+</div>
+<div class="paragraph">
+<p>The Statistics feature does not support any commands explicitly. The UI is updated automatically when the 'stats' command is called. The following sequence diagram shows StatisticsDisplay is updated.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/StatisticsUiSequenceDiagram.png" alt="StatisticsUiSequenceDiagram">
+</div>
+<div class="title">Figure 15. Sequence Diagram of how Statistics</div>
+</div>
+<div class="sect3">
+<h4 id="customqueue-implementation"><a class="link" href="#customqueue-implementation">3.4.1. CustomQueue Implementation</a></h4>
+<div class="paragraph">
+<p>The CustomQueue class enforces the following constraints.
+1. Size of CustomQueue must be of <code>CONSTANT_SIZE</code> after each method call through Statistics.
+2. DayData dates in CustomQueue must be only 1 day apart between its elements, and sorted from oldest to latest date.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>CONSTANT_SIZE</code> can be set to any number. In our current implementation, we chose to store data for only the past 7 days to keep statistics simple and intuitive for users.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The CustomQueue class implements the following methods for other components to access or update its data:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Model#updateDataDatesStatistics() - Updates data to current day while retaining stored data.</p>
+</li>
+<li>
+<p>Model#updatesDayDataStatistics() - Replaces existing DayData in Statistics with new DayData of the same date.</p>
+</li>
+<li>
+<p>Model#getDayDataFromDateStatistics() - Returns the DayData object from Statistics with the specified date.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">3.4.2. Design considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-when-to-update-statisticsdisplay"><a class="link" href="#aspect-when-to-update-statisticsdisplay">Aspect: when to update StatisticsDisplay</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Update when the user runs the command to view Statistics</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement.</p>
+</li>
+<li>
+<p>Cons: Progress can only be viewed at the Statistics tab.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Update when any changes are made to Statistics.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: In the event of future developments, any component of Statistics can be displayed at all times.</p>
+</li>
+<li>
+<p>Cons: Need to keep track of all instances that can modify Statistics' values.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-data-structure-to-support-statistics"><a class="link" href="#aspect-data-structure-to-support-statistics">Aspect: Data structure to support Statistics</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Use a list that stores a fixed number of DayData objects, with elements being strictly 1 day apart and sorted from oldest to latest date.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Lightweight, does not store unnecessary data. Easy to pass data to generate graphs. Systematic removal of outdated data.</p>
+</li>
+<li>
+<p>Cons: Need to enforce constraints in methods.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Use a list with elements sorted from oldest to latest date.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement.</p>
+</li>
+<li>
+<p>Cons: Harder to pass data to generate graphs. Need to handle outdated dates.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging"><a class="link" href="#logging">3.5. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.5, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.6, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -483,7 +610,7 @@ First our Model accepts an array of Comparators which it will iterate through fr
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.5. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.6. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -709,7 +836,7 @@ First our Model accepts an array of Comparators which it will iterate through fr
 <div class="content">
 <img src="images/use_cases.png" alt="use cases" width="790">
 </div>
-<div class="title">Figure 14. Use case diagram for BBProductive</div>
+<div class="title">Figure 16. Use case diagram for BBProductive</div>
 </div>
 <h3 id="use-case-uc01-view-tasks" class="discrete">Use Case: UC01 - View tasks</h3>
 <div class="paragraph">
@@ -1273,16 +1400,22 @@ First our Model accepts an array of Comparators which it will iterate through fr
 <p>Should work on any <a href="#mainstream-os">mainstream OS</a> as long as it has Java <code>11</code> or above installed.</p>
 </li>
 <li>
-<p>Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.</p>
+<p>Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.</p>
 </li>
 <li>
 <p>A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.</p>
 </li>
 <li>
-<p>Graphics should not be offensive to any culture in any way</p>
+<p>Graphics should not be offensive to any culture in any way.</p>
 </li>
 <li>
-<p>Product should function with CLI alone</p>
+<p>Product should be fully functional with CLI alone.</p>
+</li>
+<li>
+<p>Storage should be done in a human readable and editable format.</p>
+</li>
+<li>
+<p>Commands should be user-friendly.</p>
 </li>
 </ol>
 </div>
@@ -1301,7 +1434,7 @@ First our Model accepts an array of Comparators which it will iterate through fr
 <dd>
 <p>A contact detail that is not meant to be shared with others</p>
 </dd>
-<dt class="hdlist1">[[pomodoro] Pomodoro</dt>
+<dt class="hdlist1"><a id="pomodoro"></a> Pomodoro</dt>
 <dd>
 <p>A time management method developed by Francesco Cirillo. Traditionally, cycles of 25 minutes of work and 5 minutes of rest.</p>
 </dd>
@@ -1463,4 +1596,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-12 14:24:20 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-12 14:26:16 UTC</div></div></div></body></html>
