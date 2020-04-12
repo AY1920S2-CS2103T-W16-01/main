@@ -360,7 +360,6 @@ public class MainWindow extends UiPart<Stage> {
                 }
 
                 settingsDisplay.update();
-                tabPanePlaceholder.getSelectionModel().select(SETTINGS_TAB_INDEX);
 
             } catch (ClassCastException ce) {
 
