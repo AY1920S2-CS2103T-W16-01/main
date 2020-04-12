@@ -387,13 +387,22 @@ First our Model accepts an array of Comparators which it will iterate through fr
 <p>Pomosoero&#8217;s features are implemented mainly in <code>seedu.address.logic</code> package. The <code>PomodoroManager</code> class is used to maniulate the timer and configure the relevant UI elements. The timer is facilitated by <code>javafx.animation.Timeline</code>.</p>
 </div>
 <div class="paragraph">
+<p>When the <code>PomCommand</code> is executed, the <code>PomodoroManager</code> will handle the actual timer systems and update the relevant entities in the app. This is evident in the following sequence diagram.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/PomExtendedSequenceDiagram.png" alt="PomExtendedSequenceDiagram" width="790">
+</div>
+<div class="title">Figure 12. Interactions with PomodoroManager through a time cycle</div>
+</div>
+<div class="paragraph">
 <p>Through the use of the Pomodoro feature, there are occasions where the app has to prompt the user for specific input in order to progress. This behaviour flow is represented in the <em>Pomodoro Acctivity</em> diagram.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/PomodoroActivityDiagram.png" alt="PomodoroActivityDiagram" width="400">
+<img src="images/PomodoroActivityDiagram.png" alt="PomodoroActivityDiagram" width="395">
 </div>
-<div class="title">Figure 12. Pomodoro Activity Diagram</div>
+<div class="title">Figure 13. Pomodoro Activity Diagram</div>
 </div>
 <div class="paragraph">
 <p>The <code>PomodoroManager</code> maintains a  <code>prompt_state</code> indicating what the app might be prompting the user at a given time.</p>
@@ -700,7 +709,7 @@ First our Model accepts an array of Comparators which it will iterate through fr
 <div class="content">
 <img src="images/use_cases.png" alt="use cases" width="790">
 </div>
-<div class="title">Figure 13. Use case diagram for BBProductive</div>
+<div class="title">Figure 14. Use case diagram for BBProductive</div>
 </div>
 <h3 id="use-case-uc01-view-tasks" class="discrete">Use Case: UC01 - View tasks</h3>
 <div class="paragraph">
@@ -874,7 +883,7 @@ First our Model accepts an array of Comparators which it will iterate through fr
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a1. BBProductive shows <em>"Invalid command format! "</em> in response box.</p>
+<p>1b1. BBProductive shows <em>"Invalid command format! "</em> in response box.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -1454,4 +1463,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-12 14:09:41 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-12 14:24:20 UTC</div></div></div></body></html>
