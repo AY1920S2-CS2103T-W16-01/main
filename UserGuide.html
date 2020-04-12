@@ -5,6 +5,12 @@
 <div class="paragraph">
 <p>By: <code>AY1920S2-CS2103T-W16-1</code>      Since: <code>Jan 2020</code>      Licence: <code>NUS</code></p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/CoverPage.png" alt="CoverPage" width="790">
+</div>
+<div class="title">Figure 1. Cover Page of User Guide.</div>
+</div>
 </div>
 <div id="toc" class="toc">
 <div id="toctitle"></div>
@@ -34,9 +40,10 @@
 <li><a href="#Pomodoro">6.3. Pomodoro</a></li>
 <li><a href="#statistics-permas">6.4. Statistics (Permas)</a></li>
 <li><a href="#autocomplete">6.5. AutoComplete</a></li>
-<li><a href="#reminders-arthur">6.6. Reminders (Arthur)</a></li>
-<li><a href="#Navigation">6.7. Navigation</a></li>
-<li><a href="#storage-permas">6.8. Storage (Permas)</a></li>
+<li><a href="#reminders">6.6. Reminders</a></li>
+<li><a href="#recurring">6.7. Recurring</a></li>
+<li><a href="#Navigation">6.8. Navigation</a></li>
+<li><a href="#storage-permas">6.9. Storage (Permas)</a></li>
 </ul>
 </li>
 <li><a href="#CommandTableSummary">7. Command Table Summary</a></li>
@@ -102,13 +109,17 @@
 <div class="sect1">
 <h2 id="quick-start"><a class="link" href="#quick-start">3. Quick Start</a></h2>
 <div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>This section provides a quick guide on firing up BB Productive. Follow the steps below to install and launch BB Productive:</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
 <p>Ensure you have Java <code>11</code> or above installed in your Computer.</p>
 </li>
 <li>
-<p>Download the latest <code>bb_productive.jar</code> <a href="https://github.com/se-edu/addressbook-level3/releases">here</a>.</p>
+<p>Download the latest <code>bb_productive.jar</code> <a href="https://github.com/AY1920S2-CS2103T-W16-1/main/releases">here</a>.</p>
 </li>
 <li>
 <p>Copy the file to the folder you want to use as the home folder for your BB Productive.</p>
@@ -119,6 +130,7 @@
 <div class="content">
 <img src="images/Ui.png" alt="Ui" width="790">
 </div>
+<div class="title">Figure 2. Image of User Interface on boot.</div>
 </div>
 </li>
 <li>
@@ -130,7 +142,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p><strong><code>add</code></strong><code>n/Do math homework 1-2 r/DD/MM/YY@HH:MM</code> : adds a task of name <code>Do math homework</code> to the Task List with a date and time that follows the r/ prefix and a <code>pages 1-2</code> description.</p>
+<p><strong><code>add</code></strong><code>n/Do math homework des/pages 1-2 r/11/11/21@23:59</code> : adds a task of name <code>Do math homework</code> to the Task List with a date and time that follows the r/ prefix and a <code>pages 1-2</code> description.</p>
 </li>
 <li>
 <p><strong><code>delete</code></strong><code>3</code> : deletes the 3rd task shown in the list</p>
@@ -145,6 +157,9 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p>Refer to <a href="#Features">Section 6, &#8220;Features&#8221;</a> for details of each command.</p>
 </li>
 </ol>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -169,42 +184,42 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <h2 id="graphical-user-interface-permas"><a class="link" href="#graphical-user-interface-permas">5. Graphical User Interface (Permas)</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This section explains the function of the various GUI components present in BB Productive.</p>
+<p>This section gives you a brief overview of the various GUI components present in BB Productive.</p>
 </div>
 <div class="sect2">
 <h3 id="pet-view"><a class="link" href="#pet-view">5.1. Pet View</a></h3>
 <div class="paragraph">
-<p>The Pet View is where you can view your pet, its name, level and experience gained. With each task completed, the experience (XP) will increase (reflected in the progress bar too). The pet will evolve as it levels up with more XP gained, encouraging you to complete more tasks! This pet grows along with you as you become more productive! with more XP gained, encouraging you to complete more tasks! This pet grows along with you as you become more productive!</p>
+<p>The Pet View is where you can view your pet, its name, level and experience gained. With diligent usage of BB Productive, its experience (XP) and level will increase with time. The pet will evolve as it levels up with more XP gained and take on different appearances, encouraging you to work harder! Further details on the Pet are described in section 6.x. //TODO link</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/pet.png" alt="pet" width="300">
+<img src="images/pet.png" alt="pet" width="395">
 </div>
-<div class="title">Figure 1. Pet</div>
+<div class="title">Figure 3. Pet</div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="command-box"><a class="link" href="#command-box">5.2. Command Box</a></h3>
 <div class="paragraph">
-<p>The Command Box is the one-stop place in the app to input any and all commands to interact with the app. Simply click the box and type the command of your choice. Hit the <code>Enter</code> or <code>Return</code> key on your keyboard to execute the command. The program will respond to you using  Occasionally, the app may prompt you for your preferences via the pet dialog box, respond via the Command Box as well.</p>
+<p>The Command Box is the one-stop place for you to input any commands to interact with the app. Simply click the box and type the command of your choice. Hit the <code>Enter</code> or <code>Return</code> key on your keyboard to execute the command. The program will respond to each command through the Pet Dialog Box. Occasionally, the app may prompt you for your preferences via the Dialog Box. Simply respond via the Command Box as well!</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/command_box.png" alt="command box" width="300">
+<img src="images/command_box.png" alt="command box" width="395">
 </div>
-<div class="title">Figure 2. Command Box</div>
+<div class="title">Figure 4. Command Box</div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="tasks-tab"><a class="link" href="#tasks-tab">5.3. Tasks Tab</a></h3>
 <div class="paragraph">
-<p>The Task Tab is where you view your personal task list and the Pomodoro Timer. Any changes made to the current task list through all the commands will be displayed here! The Pomodoro Timer runs when you run the Pom Command as described in section 6.x. //TODO link</p>
+<p>The Task Tab is where you view your personal task list and the Pomodoro Timer. Any changes made to the task list through the commands will be reflected here! The Pomodoro Timer runs when you run the Pom Command as described in section 6.x. //TODO link</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/tasks_tab.png" alt="tasks tab" width="400">
+<img src="images/tasks_tab.png" alt="tasks tab" width="790">
 </div>
-<div class="title">Figure 3. Tasks Tab</div>
+<div class="title">Figure 5. Tasks Tab</div>
 </div>
 </div>
 <div class="sect2">
@@ -214,9 +229,9 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/stats_tab.png" alt="stats tab" width="400">
+<img src="images/stats_tab.png" alt="stats tab" width="395">
 </div>
-<div class="title">Figure 4. Statistics Tab</div>
+<div class="title">Figure 6. Statistics Tab</div>
 </div>
 </div>
 <div class="sect2">
@@ -226,9 +241,9 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/settings_tab.png" alt="settings tab" width="400">
+<img src="images/settings_tab.png" alt="settings tab" width="395">
 </div>
-<div class="title">Figure 5. Settings Tab</div>
+<div class="title">Figure 7. Settings Tab</div>
 </div>
 </div>
 </div>
@@ -379,7 +394,7 @@ You only need the <code>n/</code> prefix when adding a new task as name fields a
 <div class="content">
 <img src="images/add_success.png" alt="add success" width="790">
 </div>
-<div class="title">Figure 6. Add success</div>
+<div class="title">Figure 8. Add success</div>
 </div>
 </div>
 <div class="sect3">
@@ -393,7 +408,7 @@ You only need the <code>n/</code> prefix when adding a new task as name fields a
 <div class="content">
 <img src="images/edit_success.png" alt="edit success" width="790">
 </div>
-<div class="title">Figure 7. Edit success</div>
+<div class="title">Figure 9. Edit success</div>
 </div>
 </div>
 <div class="sect3">
@@ -406,7 +421,7 @@ You can also mark multiple tasks as done by using comma separated indexes.</p>
 <div class="content">
 <img src="images/done_success.png" alt="done success" width="790">
 </div>
-<div class="title">Figure 8. Done success</div>
+<div class="title">Figure 10. Done success</div>
 </div>
 </div>
 <div class="sect3">
@@ -450,7 +465,7 @@ You can choose to change the current ordering of your task list to something mor
 <div class="content">
 <img src="images/sort_success.png" alt="sort success" width="790">
 </div>
-<div class="title">Figure 9. Sort success</div>
+<div class="title">Figure 11. Sort success</div>
 </div>
 </div>
 <div class="sect3">
@@ -463,7 +478,7 @@ You can perform a search for tasks by name that are important. BB Productive wil
 <div class="content">
 <img src="images/find_success.png" alt="find success" width="790">
 </div>
-<div class="title">Figure 10. Find success</div>
+<div class="title">Figure 12. Find success</div>
 </div>
 </div>
 <div class="sect3">
@@ -476,7 +491,7 @@ You can delete multiple tasks.</p>
 <div class="content">
 <img src="images/delete_success.png" alt="delete success" width="790">
 </div>
-<div class="title">Figure 11. Delete success</div>
+<div class="title">Figure 13. Delete success</div>
 </div>
 </div>
 <div class="sect3">
@@ -489,7 +504,7 @@ You may delete all tasks from your list by issuing a clear command.</p>
 <div class="content">
 <img src="images/clear_success.png" alt="clear success" width="790">
 </div>
-<div class="title">Figure 12. Clear success</div>
+<div class="title">Figure 14. Clear success</div>
 </div>
 </div>
 </div>
@@ -502,7 +517,7 @@ You may delete all tasks from your list by issuing a clear command.</p>
 <div class="sect2">
 <h3 id="Pomodoro"><a class="link" href="#Pomodoro">6.3. Pomodoro</a></h3>
 <div class="paragraph">
-<p><em>This section describes the Pomodoro feature in detail and contains all commands you can use to take advantage of it</em></p>
+<p><em>In this section, let&#8217;s learn how you can take advantage of the Pomodoro feature to boost your productivity! Learn all the commands you can use for Pomodoro.</em></p>
 </div>
 <div class="sect3">
 <h4 id="what-s-pomodoro"><a class="link" href="#what-s-pomodoro">6.3.1. What&#8217;s Pomodoro?</a></h4>
@@ -511,60 +526,74 @@ You may delete all tasks from your list by issuing a clear command.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="how-do-you-use-it"><a class="link" href="#how-do-you-use-it">6.3.2. How do you use it?</a></h4>
+<h4 id="let-s-get-started"><a class="link" href="#let-s-get-started">6.3.2. Let&#8217;s get started!</a></h4>
 <div class="paragraph">
-<p>Trying to prevent burnout? BB productive offers you the option to try out the pomodoro tenchinique! The pomodoro technique breaks down work into manageable intervals spaced out with short breaks so as to not tired you out._</p>
-</div>
-<div class="paragraph">
-<p>To get started, follow the instructions below:</p>
+<p>BBProductive&#8217;s Pomodoro feature is very easy to use. Let&#8217;s take a look at the following steps!</p>
 </div>
 <div class="sect4">
-<h5 id="command-code-pom-code"><a class="link" href="#command-code-pom-code">Command: <code>pom</code></a></h5>
+<h5 id="step-1-code-pom-code-a-task-to-get-started"><a class="link" href="#step-1-code-pom-code-a-task-to-get-started">Step 1: <code>pom</code> a task to get started!</a></h5>
 <div class="paragraph">
-<p>First, you can activate the Pomodoro timer with a task in focus. You can also add an optional timer amount field, different from the default time of 25 minutes, for that particular cycle.</p>
+<p>You can activate the Pomodoro timer and set a task you want to focus on. The default timer for a work cycle is 25 minutes. However, you can add an optional timer amount field for a particular cycle.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>pom &lt;index&gt; [tm/&lt;amount in minutes&gt;]</code></p>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>You can use the value (decimals allowed) following <code>tm/</code> to represent your desired amount of time in minutes for a particular pomodoro cycle.</p>
+<p>Indexes refer to the current tasklist on display, it does not refer to the indices of the entire task list. Note also that indexes start from 1 and not 0.</p>
+</div>
+<div class="paragraph">
+<p>You can use the value (decimals allowed) following <code>tm/</code> to represent your desired amount of time in <strong>minutes</strong> for a particular pomodoro cycle.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>After you&#8217;ve successfully <em>pommed</em> a task, you can see the task&#8217;s name in the bar at the top of the tasklist. The timer there will start counting down as well.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/pom_success.png" alt="pom success" width="790">
 </div>
-<div class="title">Figure 13. Example screen when pom is successfully executed.</div>
+<div class="title">Figure 15. Example screen when pom is successfully executed</div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="command-code-pom-pause-code"><a class="link" href="#command-code-pom-pause-code">Command: <code>pom pause</code></a></h5>
+<h5 id="step-2-code-pom-pause-code-if-you-need-to-take-a-quick-break"><a class="link" href="#step-2-code-pom-pause-code-if-you-need-to-take-a-quick-break">Step 2: <code>pom pause</code> if you need to take a quick break.</a></h5>
 <div class="paragraph">
-<p>You can pause a running Pomodoro timer.</p>
+<p>Not exactly a break. But let&#8217;s say you need to leave your desk real quick. You can pause a running Pomodoro timer by simply calling <code>pom pause</code>.</p>
+</div>
+<div class="paragraph">
+<p>Once, you&#8217;ve paused pomodoro, the timer will freeze and remain so until you resume in the next step.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/pom_pause.png" alt="pom pause" width="790">
 </div>
-<div class="title">Figure 14. Example screen when pom is successfully paused</div>
+<div class="title">Figure 16. Example screen when pom is successfully paused</div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="command-code-pom-continue-code"><a class="link" href="#command-code-pom-continue-code">Command: <code>pom continue</code></a></h5>
+<h5 id="step-3-code-pom-continue-code-to-get-back-to-work"><a class="link" href="#step-3-code-pom-continue-code-to-get-back-to-work">Step 3: <code>pom continue</code> to get back to work.</a></h5>
 <div class="paragraph">
-<p>You can resume a paused Pomodoro timer.</p>
+<p>Now that you&#8217;re back and ready to get back to work, simply use <code>pom continue</code> to resume for where you left off.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/pom_continuing.png" alt="pom continuing" width="790">
 </div>
-<div class="title">Figure 15. Example screen when pom is successfully resumed</div>
+<div class="title">Figure 17. Example screen when pom is successfully resumed</div>
 </div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="what-happens-when-the-timer-s-up"><a class="link" href="#what-happens-when-the-timer-s-up">6.3.3. What happens when the timer&#8217;s up?</a></h4>
 <div class="sect4">
-<h5 id="done-the-task"><a class="link" href="#done-the-task">"Done" the task</a></h5>
+<h5 id="step-4-time-s-up"><a class="link" href="#step-4-time-s-up">Step 4: Time&#8217;s up!</a></h5>
 <div class="paragraph">
 <p>Once the timer expires, the app will prompt you if you have finished the task. You need only respond with Yes (Y) or No (N) in order to proceed.</p>
 </div>
@@ -572,11 +601,11 @@ You may delete all tasks from your list by issuing a clear command.</p>
 <div class="content">
 <img src="images/pom_time_expire.png" alt="pom time expire" width="790">
 </div>
-<div class="title">Figure 16. Prompt when the pomodoro timer expires</div>
+<div class="title">Figure 18. Prompt when the pomodoro timer expires</div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="break-time"><a class="link" href="#break-time">Break-time</a></h5>
+<h5 id="step-5-break-time"><a class="link" href="#step-5-break-time">Step 5: Break-time!</a></h5>
 <div class="paragraph">
 <p>Afterwards, the app will prompt you if you would like to begin a 5 minute break (as per the pomodoro technique). Similarly, you need to respond with Yes (Y) or No (N). Responding with No will set the app to its neutral state. Yes will start the break timer.</p>
 </div>
@@ -584,14 +613,25 @@ You may delete all tasks from your list by issuing a clear command.</p>
 <div class="content">
 <img src="images/pom_prompt_break.png" alt="pom prompt break" width="790">
 </div>
-<div class="title">Figure 17. Prompt checking if you&#8217;d like to take a break</div>
+<div class="title">Figure 19. Prompt checking if you&#8217;d like to take a break</div>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>Note: You will not be able to do execute other commands during these prompts.</p>
+<p>You will not be able to do execute other commands during these prompts. Please respond to the prompts to proceed.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect4">
-<h5 id="back-to-work"><a class="link" href="#back-to-work">Back to work</a></h5>
+<h5 id="back-to-step-1"><a class="link" href="#back-to-step-1">Back to Step 1?</a></h5>
 <div class="paragraph">
 <p>At the end of the break, the app will return to it&#8217;s "neutral" state and you can  repeat the process, if you wish.</p>
 </div>
@@ -599,7 +639,7 @@ You may delete all tasks from your list by issuing a clear command.</p>
 <div class="content">
 <img src="images/pom_break_end.png" alt="pom break end" width="790">
 </div>
-<div class="title">Figure 18. End of pomodoro cycle screen</div>
+<div class="title">Figure 20. End of pomodoro cycle screen</div>
 </div>
 </div>
 </div>
@@ -607,24 +647,41 @@ You may delete all tasks from your list by issuing a clear command.</p>
 <div class="sect2">
 <h3 id="statistics-permas"><a class="link" href="#statistics-permas">6.4. Statistics (Permas)</a></h3>
 <div class="paragraph">
-<p>The Statistics Tab consists of 2 features to help you keep track of your productivity. You can access this panel by using the “stats” command to switch to this tab.</p>
+<p>As you continue to use BB Productive, you may start to wonder how productive you have been over time. This is where our Statistics feature comes in! Simply type in the command 'stats' to access the Statistics Tab and track your productivity. Look out for the background color of the Statistics Tab. If it turns orange after you type the command this means you are on the correct tab.</p>
+</div>
+<div class="paragraph">
+<p>The Statistics Tab consists of 2 features to help you keep track of your productivity.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/stats_tab.png" alt="stats tab" width="400">
 </div>
-<div class="title">Figure 19. Statistics Tab</div>
+<div class="title">Figure 21. Statistics Tab</div>
 </div>
 <div class="sect3">
 <h4 id="daily-challenge"><a class="link" href="#daily-challenge">6.4.1. Daily Challenge</a></h4>
 <div class="paragraph">
-<p>The Daily Challenge is a progress bar that tracks the total duration you have kept the Pomodoro running in the current day. You can customise the duration you aim to achieve on a daily basis by using the Set Command as introduced in section 6.x //TODO link. Try to clear the Daily Challenge everyday to hit your productivity goals!</p>
+<p>The Daily Challenge is a progress bar that tracks the total duration you have kept the Pomodoro running on the current day. The more you run the Pomodoro, the more the progress bar fills, and the closer you are to clearing the challenge! Try to clear the Daily Challenge everyday to hit your productivity goals!</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You can customise the duration you aim to achieve on a daily basis by using the Set Command as introduced in section 6.x //TODO link.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
 <h4 id="productivity-chart"><a class="link" href="#productivity-chart">6.4.2. Productivity Chart</a></h4>
 <div class="paragraph">
-<p>The Productivity Chart tracks the number of tasks done and duration you ran the Pomodoro per day for the past 7 days. This is done so that you can track your productivity progress over time. With this information. you can make adjustments to your schedule to improve your productivity.</p>
+<p>The Productivity Chart tracks the number of tasks done and duration you ran the Pomodoro per day for the past 7 days. You can thus track your productivity over time. With this information. you can make proper adjustments to your schedule to improve your productivity. If you start noticing the orange bars getting shorter, realise that it is time to buckle up and work harder, or else you may lose your productivity momentum!</p>
 </div>
 </div>
 </div>
@@ -667,13 +724,13 @@ You may delete all tasks from your list by issuing a clear command.</p>
 <div class="content">
 <img src="images/prefix_complete.png" alt="prefix complete">
 </div>
-<div class="title">Figure 20. Prefix auto complete</div>
+<div class="title">Figure 22. Prefix auto complete</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/sort_complete.png" alt="sort complete">
 </div>
-<div class="title">Figure 21. Sort auto complete</div>
+<div class="title">Figure 23. Sort auto complete</div>
 </div>
 <div class="paragraph">
 <p>If we can&#8217;t find a valid command, you will observe feedback like below:</p>
@@ -682,22 +739,149 @@ You may delete all tasks from your list by issuing a clear command.</p>
 <div class="content">
 <img src="images/complete_fail.png" alt="complete fail">
 </div>
-<div class="title">Figure 22. Auto complete not found</div>
+<div class="title">Figure 24. Auto complete not found</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="reminders-arthur"><a class="link" href="#reminders-arthur">6.6. Reminders (Arthur)</a></h3>
+<h3 id="reminders"><a class="link" href="#reminders">6.6. Reminders</a></h3>
+<div class="sect3">
+<h4 id="what-s-a-reminder"><a class="link" href="#what-s-a-reminder">6.6.1. What&#8217;s a reminder?</a></h4>
 <div class="paragraph">
-<p>Write reminders</p>
+<p>BBProductive provides an avenue to remember to do time sensitive tasks in the form of reminders. When the time for the reminder has arrived, BBProductive alerts you to do the task! Never forget to do buy milk or any other time sensitive task ever again!</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="how-do-you-use-it"><a class="link" href="#how-do-you-use-it">6.6.2. How do you use it?</a></h4>
+<div class="paragraph">
+<p>Add a reminder to your task by adding <code>r/DD/MM/YY@HH:MM</code> when editing or adding a task. A pop up containing the task name and description will then appear reminding you to complete the task at the specified date and time.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="command-code-r-dd-mm-yy-hh-mm-code"><a class="link" href="#command-code-r-dd-mm-yy-hh-mm-code">6.6.3. Command <code>r/DD/MM/YY@HH:MM</code></a></h4>
+<div class="sect4">
+<h5 id="add-task-with-reminder"><a class="link" href="#add-task-with-reminder">Add Task with reminder</a></h5>
+<div class="paragraph">
+<p>Add task with reminder with the following command <code>add n/&lt;name&gt; r/DD/MM/YY@HH:MM</code>. You can also include the other flags such as <code>t/</code>, <code>des/</code> and more.</p>
+</div>
+<div class="paragraph">
+<p>For example: <code>add n/Buy Milk r/11/11/20@23:59</code> as shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/reminder_add.png" alt="reminder add" width="395">
+</div>
+<div class="title">Figure 25. Input for adding a task with reminder.</div>
+</div>
+<div class="paragraph">
+<p>Results in a task with the reminder&#8217;s date in the task card.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/reminder_add_success.png" alt="reminder add success" width="790">
+</div>
+<div class="title">Figure 26. Success for adding a task with reminder.</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="edit-task-with-reminder"><a class="link" href="#edit-task-with-reminder">Edit Task with reminder</a></h5>
+<div class="paragraph">
+<p>Edit a task to include a reminder with the following command <code>edit &lt;index&gt; r/DD/MM/YY@HH:MM</code>. You can also include the other flags such as <code>t/</code>, <code>des/</code> and more.</p>
+</div>
+<div class="paragraph">
+<p>For example: <code>edit 1 r/01/11/20@11:59</code> as shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/reminder_edit.png" alt="reminder edit" width="395">
+</div>
+<div class="title">Figure 27. Input for editing task to have reminder or edit reminder itself.</div>
+</div>
+<div class="paragraph">
+<p>Results in a task with the reminder&#8217;s date in the task card.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/reminder_edit_success.png" alt="reminder edit success" width="790">
+</div>
+<div class="title">Figure 28. Success for editing task&#8217;s reminder.</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Navigation"><a class="link" href="#Navigation">6.7. Navigation</a></h3>
+<h3 id="recurring"><a class="link" href="#recurring">6.7. Recurring</a></h3>
+<div class="sect3">
+<h4 id="what-s-recurring"><a class="link" href="#what-s-recurring">6.7.1. What&#8217;s Recurring?</a></h4>
+<div class="paragraph">
+<p>Recurring tasks allows you to have repeated tasks either every day or every week. This means the task previously set as done will be set as unfinished. Furthermore, if there is a reminder set, recurring tasks is smart enough to change the reminder date according to the interval you set. This means a reminder that has already been triggered for a daily recurring task will also fire again the following day.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="how-do-you-use-it-2"><a class="link" href="#how-do-you-use-it-2">6.7.2. How do you use it?</a></h4>
+<div class="paragraph">
+<p>Add a recurring attribute to your task by adding <code>rec/d</code> for daily recurring tasks or <code>rec/w</code> for weekly. This will trigger the recurring behaviour for the task including the task&#8217;s done and reminder attribute.</p>
+</div>
+<div class="sect4">
+<h5 id="command-code-rec-d-code-or-code-rec-w-code"><a class="link" href="#command-code-rec-d-code-or-code-rec-w-code">Command <code>rec/d</code> or <code>rec/w</code></a></h5>
+
+</div>
+<div class="sect4">
+<h5 id="add-task-with-recurring"><a class="link" href="#add-task-with-recurring">Add Task with recurring</a></h5>
+<div class="paragraph">
+<p>Add task with recurring with the following command <code>add n/&lt;name&gt; rec/d</code> or <code>add n/&lt;name&gt; rec/w</code>. You can also include the other flags such as <code>t/</code>, <code>des/</code> and more.</p>
+</div>
+<div class="paragraph">
+<p>For example: <code>add n/Buy Milk rec/d</code> as shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/recurring_add.png" alt="recurring add" width="395">
+</div>
+<div class="title">Figure 29. Input for adding recurring attribute to task.</div>
+</div>
+<div class="paragraph">
+<p>Results in a task with the recurring attribute in the task card.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/recurring_add_success.png" alt="recurring add success" width="790">
+</div>
+<div class="title">Figure 30. Success for adding recurring attribute to task.</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="edit-task-with-recurring"><a class="link" href="#edit-task-with-recurring">Edit Task with recurring</a></h5>
+<div class="paragraph">
+<p>Edit a task to include a recurring with the following command <code>edit &lt;index&gt; rec/d</code> or <code>edit &lt;index&gt; rec/w</code>. You can also include the other flags such as <code>t/</code>, <code>des/</code> and more.</p>
+</div>
+<div class="paragraph">
+<p>For example: <code>edit 1 rec/d</code> as shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/recurring_edit.png" alt="recurring edit" width="395">
+</div>
+<div class="title">Figure 31. Input for editing recurring attribute to task.</div>
+</div>
+<div class="paragraph">
+<p>Results in a task with the reminder&#8217;s date in the specific task card.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/recurring_edit_success.png" alt="recurring edit success" width="790">
+</div>
+<div class="title">Figure 32. Success for editing recurring attribute to task.</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Navigation"><a class="link" href="#Navigation">6.8. Navigation</a></h3>
 <div class="paragraph">
 <p><em>This section shows all the commands to navigate the app. There are multiple tabs that can be shown: tasklist, statistics and settings.</em></p>
 </div>
 <div class="sect3">
-<h4 id="commands"><a class="link" href="#commands">6.7.1. Commands</a></h4>
+<h4 id="commands"><a class="link" href="#commands">6.8.1. Commands</a></h4>
 <div class="sect4">
 <h5 id="tasks"><a class="link" href="#tasks">Tasks</a></h5>
 <div class="paragraph">
@@ -737,16 +921,27 @@ You may delete all tasks from your list by issuing a clear command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="storage-permas"><a class="link" href="#storage-permas">6.8. Storage (Permas)</a></h3>
+<h3 id="storage-permas"><a class="link" href="#storage-permas">6.9. Storage (Permas)</a></h3>
 <div class="paragraph">
 <p>All your progress, user preferences and settings are stored in the “data” folder. If you plan to switch devices, you may transfer your progress to another computer by copying the contents of the original device’s “data” folder to the new device’s data folder. This can be done through a thumbdrive.</p>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>Please check if the following files are in the “data” folder to ensure that you are transferring the correct files!</p>
+<p>Please check that the following files are in the “data” folder to ensure that you are transferring the correct files!</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/storage.png" alt="storage" width="400">
+<img src="images/storage.png" alt="storage" width="395">
 </div>
 </div>
 </div>
@@ -835,4 +1030,4 @@ You may delete all tasks from your list by issuing a clear command.</p>
 <strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous BB Productive folder.</p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-09 07:57:04 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-12 14:09:41 UTC</div></div></div></body></html>
