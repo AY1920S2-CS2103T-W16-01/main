@@ -15,15 +15,15 @@ public class JsonSerializableStatisticsTest {
 
     private static final Path TEST_DATA_FOLDER =
             Paths.get("src", "test", "data", "JsonSerializableStatisticsTest");
-    private static final Path TYPICAL_DAY_DATA_FILE =
-            TEST_DATA_FOLDER.resolve("typicalDayDatas.json");
-    private static final Path INVALID_DAY_DATA_FILE =
-            TEST_DATA_FOLDER.resolve("invalidDayData.json");
+    private static final Path TYPICAL_STATISTICS_FILE =
+            TEST_DATA_FOLDER.resolve("typicalStatistics.json");
+    private static final Path INVALID_STATISTICS_FILE =
+            TEST_DATA_FOLDER.resolve("invalidStatistics.json");
 
     @Test
-    public void toModelType_typicalDayDataFile_success() throws Exception {
+    public void toModelType_typicalStatisticsFile_success() throws Exception {
         JsonSerializableStatistics dataFromFile =
-                JsonUtil.readJsonFile(TYPICAL_DAY_DATA_FILE, JsonSerializableStatistics.class)
+                JsonUtil.readJsonFile(TYPICAL_STATISTICS_FILE, JsonSerializableStatistics.class)
                         .get();
         Statistics statisticsFromFile = dataFromFile.toModelType();
         Statistics typicalStatistics = TypicalDayDatas.getTypicalStatistics();
@@ -31,9 +31,9 @@ public class JsonSerializableStatisticsTest {
     }
 
     @Test
-    public void toModelType_invalidDayDataFile_throwsIllegalValueException() throws Exception {
+    public void toModelType_invalidStatisticsFile_throwsIllegalValueException() throws Exception {
         JsonSerializableStatistics dataFromFile =
-                JsonUtil.readJsonFile(INVALID_DAY_DATA_FILE, JsonSerializableStatistics.class)
+                JsonUtil.readJsonFile(INVALID_STATISTICS_FILE, JsonSerializableStatistics.class)
                         .get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
