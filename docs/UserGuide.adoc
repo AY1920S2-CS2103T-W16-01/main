@@ -72,6 +72,8 @@ _This section provides a quick description for the common terminologies used in 
 
 *Pet*: The pet you will interact with to manage your tasks and pomodoros. You can also level up the pet by completing more tasks/pomodoros.
 
+//tag::ui[]
+
 == Graphical User Interface (Permas)
 This section gives you a brief overview of the various GUI components present in BB Productive.
 
@@ -104,6 +106,8 @@ The Settings Tab lets you customise the program to suit your needs. In this tab,
 
 .Settings Tab
 image::settings_tab.png[width=395]
+
+//end::ui[]
 
 [[Features]]
 == Features
@@ -298,6 +302,7 @@ At the end of the break, the app will return to it's "neutral" state and you can
 image::pom_break_end.png[width=790]
 
 // end::pomodoro[]
+//tag::statistics[]
 
 === Statistics (Permas)
 As you continue to use BB Productive, you may start to wonder how productive you have been over time. This is where our Statistics feature comes in! Simply type in the command 'stats' to access the Statistics Tab and track your productivity. Look out for the background color of the Statistics Tab. If it turns orange after you type the command this means you are on the correct tab.
@@ -317,6 +322,8 @@ You can customise the duration you aim to achieve on a daily basis by using the 
 
 ==== Productivity Chart
 The Productivity Chart tracks the number of tasks done and duration you ran the Pomodoro per day for the past 7 days. You can thus track your productivity over time. With this information. you can make proper adjustments to your schedule to improve your productivity. If you start noticing the orange bars getting shorter, realise that it is time to buckle up and work harder, or else you may lose your productivity momentum!
+
+//end::statistics[]
 
 === AutoComplete
 As much as you enjoy typing, we've added some extra grease to make you type even faster. You can trigger our very intelligent auto complete function by pressing `tab` on the keyboard.
@@ -437,6 +444,7 @@ Use the `settings` command to view the _Settings_ tab. The orange background on 
 
 image::settings.png[width="790"]
 
+// tag::storage[]
 === Storage (Permas)
 All your progress, user preferences and settings are stored in the “data” folder. If you plan to switch devices, you may transfer your progress to another computer by copying the contents of the original device’s “data” folder to the new device’s data folder. This can be done through a thumbdrive.
 
@@ -447,6 +455,7 @@ Please check that the following files are in the “data” folder to ensure tha
 
 image::storage.png[width="395"]
 
+// end::storage[]
 // tag::commandtablesummary[]
 [[CommandTableSummary]]
 == Command Table Summary
