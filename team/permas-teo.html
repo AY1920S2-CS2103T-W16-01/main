@@ -10,7 +10,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="project-bb-productive-level-3"><a class="link" href="#project-bb-productive-level-3">PROJECT: BB Productive - Level 3</a></h2>
+<h2 id="project-bbproductive"><a class="link" href="#project-bbproductive">PROJECT: BBProductive</a></h2>
 <div class="sectionbody">
 <hr>
 </div>
@@ -19,30 +19,30 @@
 <h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>My team consisting of 5 software engineering students were tasked to enhance a basic command line interface desktop addressbook application for our Software Engineering project. We decided to morph it into a gamified productivity cum task manager application called BBProductive. BBProductive provides CRUD functionalities for tasks and offers a built-in Pomodoro that keeps a user focused on work for fixed intervals. It also provides a virtual pet that grows with more work done by using the Pomodoro or completing tasks.</p>
+<p>BBProductive is a gamified productivity app cum task manager. It provides CRUD functionalities for tasks and offers a built-in Pomodoro that keeps a user focused on work for fixed intervals. BBProductive also offers a virtual pet that grows along with the user&#8217;s productivity.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>This section shows a summary of my coding, documentation and other helpful contributions to the team project.</p>
-</div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>: added the ability for the user to track their app usage.</p>
+<p><strong>Code contributed</strong>: [<a href="https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=permas&amp;sort=totalCommits%20dsc&amp;sortWithin=title&amp;since=2020-02-14&amp;timeframe=commit&amp;mergegroup=false&amp;groupSelect=groupByRepos&amp;breakdown=false&amp;tabOpen=true&amp;tabType=authorship&amp;tabAuthor=Permas-Teo&amp;tabRepo=AY1920S2-CS2103T-W16-1%2Fmain%5Bmaster%5D">View on RepoSense</a>]</p>
+</li>
+<li>
+<p><strong>Major enhancement</strong>: Added the ability for the user to track their app usage.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: The “stats” command allows the user to view the statistics panel. Firstly, it displays the Daily Challenge, which tracks the total duration the user ran the Pomodoro on the current day. Secondly, it contains 2 bar graphs that tracks the number of tasks done and total duration the Pomodoro was run for the past 7 days.</p>
+<p>What it does: Generates data for the user to view in the statistics tab. Firstly, it displays the Daily Challenge, which tracks the total time the user ran the Pomodoro on the current day in an aesthetic progress bar. Secondly, it contains 2 bar graphs that tracks the number of tasks done and total duration the Pomodoro was run for the past 7 days.</p>
 </li>
 <li>
 <p>Justification: The user can keep track of their progress for the day as well as over the past week, and make necessary adjustments to ensure that they maintain their productivity.</p>
 </li>
 <li>
-<p>Highlights: This implementation was challenging as the data structure for storing this information had to be well considered. I want to keep track of data only in the past n (7) days while accounting for usage across different days. I defined the CustomQueue data structure that initialises with 7 DayData objects to store information for the past 7 days. It carries information over to a new day by popping the oldest day’s DayData from the head of the queue, and adding the new day’s DayData at the end of the queue.</p>
+<p>Highlights: This implementation was challenging as the data structure for storing this information had to be well considered. I want to keep track of data only in the past n (7) days while accounting for usage across different days. I defined the CustomQueue data structure to store the data while enforcing table constraints to minimise memory usage and provide ease of use for the data to be displayed. Non-trivial storage classes and helper methods to access and update CustomQueue had to be defined as well.</p>
 </li>
 </ul>
 </div>
@@ -56,7 +56,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Managed release <code>v1.2.1</code> on GitHub</p>
+<p>Managed release <code>v1.2.1</code> on GitHub.</p>
 </li>
 </ul>
 </div>
@@ -66,32 +66,42 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Morphed the basic GUI layout from addressbook to BBProductive by implementing PetDisplay, PomodoroDisplay and StatisticsDisplay.</p>
+<p>Morphed the basic GUI layout from addressbook to BBProductive by implementing PetDisplay, PomodoroDisplay and StatisticsDisplay. Relevant PRs: [<a href="https://github.com/AY1920S2-CS2103T-W16-1/main/pull/84">#84</a>] [<a href="https://github.com/AY1920S2-CS2103T-W16-1/main/pull/88">#88</a>] [<a href="https://github.com/AY1920S2-CS2103T-W16-1/main/pull/90">#90</a> [<a href="https://github.com/AY1920S2-CS2103T-W16-1/main/pull/120">#120</a>]</p>
 </li>
 <li>
-<p>Set up storage functionality for statistics.json as well as non-trivial helper methods to access and update the file.</p>
+<p>Update tests for morphing addressbook. Relevant PRs: [<a href="https://github.com/AY1920S2-CS2103T-W16-1/main/pull/77">#77</a>] [<a href="https://github.com/AY1920S2-CS2103T-W16-1/main/pull/78">#78</a>] [<a href="https://github.com/AY1920S2-CS2103T-W16-1/main/pull/87/files">#87</a>]</p>
 </li>
 <li>
-<p>Wrote additional test cases for existing features.</p>
+<p>Add additional tests to increase test coverage. [<a href="https://github.com/AY1920S2-CS2103T-W16-1/main/pull/321">#321</a>]</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
 <p>Documentation:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated documentation for UI, Statistics, User Stories and Non-Functional Requirements in Developer Guide.</p>
+</li>
+<li>
+<p>Updated documentation for GUI and Statistics and Storage in User Guide.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p>Community:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>PRs reviewed (with non-trivial review comments):</p>
+<p>Collaborate with teammates to tie in non-trivial features: [<a href="https://github.com/AY1920S2-CS2103T-W16-1/main/pull/123">#123</a>]</p>
 </li>
 <li>
-<p>Reported bugs and suggestions for other teams in the class</p>
+<p>PRs reviewed (with non-trivial review comments): [<a href="https://github.com/AY1920S2-CS2103T-W16-1/main/pull/311">#311</a>] [<a href="https://github.com/AY1920S2-CS2103T-W16-1/main/pull/85">#85</a>] [<a href="https://github.com/AY1920S2-CS2103T-W16-1/main/pull/147">#147</a>]</p>
 </li>
 <li>
-<p>Some parts of the history feature I added was adopted by several other class mates</p>
+<p>Reported bugs and suggestions for other teams in the class: [<a href="https://github.com/Permas-Teo/ped/issues">link to issues</a>]</p>
 </li>
 </ul>
 </div>
@@ -132,4 +142,4 @@
 </tbody>
 </table>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-12 16:03:27 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-12 16:08:41 UTC</div></div></div></body></html>
