@@ -72,7 +72,7 @@ _This section provides a quick description for the common terminologies used in 
 
 *Pet*: The pet you will interact with to manage your tasks and pomodoros. You can also level up the pet by completing more tasks/pomodoros.
 
-//tag::ui[]
+//tag::gui[]
 
 == Graphical User Interface (Permas)
 This section gives you a brief overview of the various GUI components present in BB Productive.
@@ -107,7 +107,7 @@ The Settings Tab lets you customise the program to suit your needs. In this tab,
 .Settings Tab
 image::settings_tab.png[width=395]
 
-//end::ui[]
+//end::gui[]
 
 [[Features]]
 == Features
