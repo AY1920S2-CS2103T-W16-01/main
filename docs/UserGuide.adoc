@@ -78,7 +78,7 @@ _This section provides a quick description for the common terminologies used in 
 This section gives you a brief overview of the various GUI components present in BB Productive.
 
 === Pet View
-The Pet View is where you can view your pet, its name, level and experience gained. With diligent usage of BB Productive, its experience (XP) and level will increase with time. The pet will evolve as it levels up with more XP gained and take on different appearances, encouraging you to work harder! Further details on the Pet are described in section 6.x. //TODO link
+The Pet View is where you can view your pet, its name, level and experience gained. With diligent usage of BB Productive, its experience (XP) and level will increase with time. The pet will evolve as it levels up and take on different appearances, encouraging you to work harder! Further details of the Pet are described [here](#pet)
 
 .Pet
 image::pet.png[width=395]
@@ -90,19 +90,19 @@ The Command Box is the one-stop place for you to input any commands to interact 
 image::command_box.png[width=395]
 
 === Tasks Tab
-The Task Tab is where you view your personal task list and the Pomodoro Timer. Any changes made to the task list through the commands will be reflected here! The Pomodoro Timer runs when you run the Pom Command as described in section 6.x. //TODO link
+The Task Tab is where you view your personal task list and the Pomodoro Timer. Any changes made to the task list through the commands will be reflected here! The Pomodoro Timer runs when you run the Pom Command as described [here](#Pomodoro).
 
 .Tasks Tab
 image::tasks_tab.png[width=790]
 
 === Statistics Tab
-The Statistics Tab consists of the Daiy Challenge and the Productivity Charts. They help you to visualise the progress of your productivity over the course of the past week, giving you momentum to hit your productivity goals! The usage of this tab will be discussed in more detail in section 6.x //TODO link
+The Statistics Tab consists of the Daiy Challenge and the Productivity Charts. They help you to visualise the progress of your productivity over the course of the past week, giving you momentum to hit your productivity goals! The usage of this tab will be discussed in more detail [here](#statistics).
 
 .Statistics Tab
 image::stats_tab.png[width=395]
 
 === Settings Tab
-The Settings Tab lets you customise the program to suit your needs. In this tab, you can view and edit your configurations for Pet Name, Pomodoro Duration and Daily Challenge Target. The usage of this tab will be discussed in more detail in section 6.x //TODO link
+The Settings Tab lets you customise the program to suit your needs. In this tab, you can view and edit your configurations for Pet Name, Pomodoro Duration and Daily Challenge Target. The usage of this tab will be discussed in more detail [here](#settings).
 
 .Settings Tab
 image::settings_tab.png[width=395]
@@ -229,7 +229,7 @@ You may delete all tasks from your list by issuing a clear command.
 .Clear success
 image::clear_success.png[width=790]
 
-=== Pet (Fyonn)
+=== Pet
 Write pet
 
 // tag::pomodoro[]
@@ -304,7 +304,7 @@ image::pom_break_end.png[width=790]
 // end::pomodoro[]
 //tag::statistics[]
 
-=== Statistics (Permas)
+=== Statistics
 As you continue to use BB Productive, you may start to wonder how productive you have been over time. This is where our Statistics feature comes in! Simply type in the command 'stats' to access the Statistics Tab and track your productivity. Look out for the background color of the Statistics Tab. If it turns orange after you type the command this means you are on the correct tab.
 
 The Statistics Tab consists of 2 features to help you keep track of your productivity.
