@@ -2,9 +2,8 @@ package seedu.address.model;
 
 import java.util.HashMap;
 import java.util.Set;
-
-import seedu.address.model.task.Task;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 
 /**
  * Wraps all data at the address-book level Duplicates are not allowed (by .isSameTask comparison)
@@ -20,7 +19,7 @@ public class TagSet {
 
     public void populateTag(ReadOnlyTaskList taskList) {
         tagCount.clear();
-        for (Task t: taskList.getTaskList()) {
+        for (Task t : taskList.getTaskList()) {
             addTask(t);
         }
     }
@@ -35,31 +34,35 @@ public class TagSet {
 
     public void addTask(Task task) {
         Set<Tag> tags = task.getTags();
-        for (Tag t: tags) {
+        for (Tag t : tags) {
             tagCount.computeIfAbsent(t, (tag) -> 0);
-            tagCount.compute(t, (tag, count) -> {
-                return count + 1;
-            });
+            tagCount.compute(
+                    t,
+                    (tag, count) -> {
+                        return count + 1;
+                    });
         }
     }
 
     public void removeTask(Task task) {
         Set<Tag> tags = task.getTags();
-        for (Tag t: tags) {
+        for (Tag t : tags) {
             tagCount.computeIfAbsent(t, (tag) -> 1); // just in case
-            tagCount.compute(t, (tag, count) -> {
-                if (count - 1 == 0) {
-                    return null;
-                }
-                return count - 1;
-            });
+            tagCount.compute(
+                    t,
+                    (tag, count) -> {
+                        if (count - 1 == 0) {
+                            return null;
+                        }
+                        return count - 1;
+                    });
         }
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (Tag t: tagCount.keySet()) {
+        for (Tag t : tagCount.keySet()) {
             sb.append(t.toString().toLowerCase());
             sb.append("\n");
         }

@@ -2,9 +2,9 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static seedu.address.testutil.TypicalDayDatas.getTypicalStatistics;
 import static seedu.address.testutil.TypicalPet.getTypicalPet;
 import static seedu.address.testutil.TypicalPomodoro.getTypicalPomodoro;
-import static seedu.address.testutil.TypicalDayDatas.getTypicalStatistics;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 
 import java.nio.file.Path;
@@ -113,7 +113,7 @@ public class StorageManagerTest {
     public void getPetFilePath() {
         assertNotNull(storageManager.getPetFilePath());
     }
-      
+
     @Test
     public void statisticsReadSave() throws Exception {
         /*

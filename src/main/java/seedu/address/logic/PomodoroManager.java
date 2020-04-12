@@ -22,7 +22,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.PomCommand;
 import seedu.address.logic.commands.PomCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.PomCommandParser;
 import seedu.address.logic.parser.TaskListParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
@@ -543,8 +542,7 @@ public class PomodoroManager {
                     return commandResult;
                 }
                 try {
-                    PomCommand pc = 
-                        (PomCommand)(new TaskListParser().parseCommand(commandText));
+                    PomCommand pc = (PomCommand) (new TaskListParser().parseCommand(commandText));
 
                     PomCommandResult pomCommandResult =
                             (PomCommandResult) logic.execute(commandText);
@@ -641,7 +639,7 @@ public class PomodoroManager {
             return;
         }
         float timeInMinutes = timeSeconds.floatValue() / 60;
-        
+
         model.setPomodoroTimeLeft(timeInMinutes);
         if (model.getPomodoroTask() != null) {
             // Update statistics so far

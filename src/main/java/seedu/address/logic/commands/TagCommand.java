@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Set;
-
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
 
@@ -18,7 +17,7 @@ public class TagCommand extends Command {
         requireNonNull(model);
         Set<Tag> tagSet = model.getTagSet();
         StringBuilder sb = new StringBuilder();
-        for (Tag t: tagSet) {
+        for (Tag t : tagSet) {
             sb.append(t.toString() + "\n");
         }
         return new CommandResult(MESSAGE_SUCCESS + sb.toString());

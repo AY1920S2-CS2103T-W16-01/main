@@ -14,12 +14,13 @@ public class NameContainsKeywordsPredicate implements Predicate<Task> {
     private final Set<Tag> tags;
     private final int threshold = 1;
 
-    public NameContainsKeywordsPredicate(List<String> keywords, Set<Tag> tags) { //if second list is available
+    public NameContainsKeywordsPredicate(
+            List<String> keywords, Set<Tag> tags) { // if second list is available
         this.keywords = keywords;
         this.tags = tags;
     }
 
-    public NameContainsKeywordsPredicate(List<String> keywords) { //if second list is available
+    public NameContainsKeywordsPredicate(List<String> keywords) { // if second list is available
         this.keywords = keywords;
         this.tags = new HashSet();
     }
@@ -32,7 +33,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Task> {
     public boolean test(Task task) { // change test to return an int value as the edit distance
         int score = getEditDistance(task);
         boolean hasTag = false;
-        for (Tag t: tags) {
+        for (Tag t : tags) {
             if (task.hasTag(t)) {
                 hasTag = true;
                 break;
@@ -43,7 +44,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Task> {
 
     public int countTag(Task task) {
         int count = 0;
-        for (Tag t: tags) {
+        for (Tag t : tags) {
             if (task.hasTag(t)) {
                 count += 1;
             }

@@ -33,7 +33,7 @@ public class TaskListPanel extends UiPart<Region> {
         String capitalized = StringUtil.capitalizeWord(sortOrder);
         this.tasksHeader.setText(String.format("Tasks by %s", capitalized));
     }
-    
+
     public void removeSortOrder() {
         this.tasksHeader.setText("Tasks");
     }

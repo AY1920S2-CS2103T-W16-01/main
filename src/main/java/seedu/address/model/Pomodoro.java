@@ -1,8 +1,7 @@
 package seedu.address.model;
 
-import seedu.address.model.task.Task;
-
 import java.util.Objects;
+import seedu.address.model.task.Task;
 
 public class Pomodoro implements ReadOnlyPomodoro {
     private static final String DEFAULT_TIME = "25.0";

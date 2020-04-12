@@ -99,7 +99,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, taskListFilePath, petFilePath, pomodoroFilePath, statisticsFilePath);
+        return Objects.hash(
+                guiSettings, taskListFilePath, petFilePath, pomodoroFilePath, statisticsFilePath);
     }
 
     @Override

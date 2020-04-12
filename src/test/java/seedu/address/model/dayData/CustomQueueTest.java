@@ -51,8 +51,7 @@ public class CustomQueueTest {
     public void updateDayDataCustom_nonexistentDayDatathrowsDayDataNotFoundException()
             throws InvalidTableException {
         customQueue.init(VALID_LOCAL_DATE);
-        assertThrows(
-                DayDataNotFoundException.class, () -> customQueue.updateDayDataCustom(DAYNEW));
+        assertThrows(DayDataNotFoundException.class, () -> customQueue.updateDayDataCustom(DAYNEW));
     }
 
     @Test
