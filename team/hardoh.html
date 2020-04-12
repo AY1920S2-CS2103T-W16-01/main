@@ -10,7 +10,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="project-bb-productive-level-3"><a class="link" href="#project-bb-productive-level-3">PROJECT: BB Productive - Level 3</a></h2>
+<h2 id="project-bbproductive"><a class="link" href="#project-bbproductive">PROJECT: BBProductive</a></h2>
 <div class="sectionbody">
 <hr>
 </div>
@@ -41,47 +41,915 @@
 <li>
 <p>Highlights: First, the basic command parser provided by AB3 gave me a good foundation to branch from. I had to adapt the parser to accept multiple types of input (i.e. I accept “pom 1” and “pom pause” for example). Second, building the actual pomodoro feature required me to use JavaFX’s Timeline class. The Timeline class adequately served my requirements for the Pomodoro work and rest cycles. Lastly, to handle prompts during pomodoro cycles, I decided to swap the “Command Executor” that exists in the Main Window class so I could better encapsulate Pomodoro related responses.</p>
 </li>
+<li>
+<p>Relevant PRs: [<a href="https://github.com/AY1920S2-CS2103T-W16-1/main/pull/92">#92</a>], [<a href="https://github.com/AY1920S2-CS2103T-W16-1/main/pull/126">#126</a>], [<a href="https://github.com/AY1920S2-CS2103T-W16-1/main/pull/146">#146</a>, [<a href="https://github.com/AY1920S2-CS2103T-W16-1/main/pull/147">#147</a>], [<a href="https://github.com/AY1920S2-CS2103T-W16-1/main/pull/262">#262</a>], [<a href="https://github.com/AY1920S2-CS2103T-W16-1/main/pull/263">#263</a>], [<a href="https://github.com/AY1920S2-CS2103T-W16-1/main/pull/269">#269</a>]</p>
+</li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>: added a switch tabs command that allows the user to navigate to between the tabs.</p>
+<p><strong>Minor enhancement</strong>: I added a switch tabs command that allows the user to navigate to between the tabs.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Relevant PR: [<a href="https://github.com/AY1920S2-CS2103T-W16-1/main/pull/127">#127</a>]</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>] <em>{give links to collated code files}</em></p>
+<p><strong>My code contributions on RepoSense</strong>: [<a href="https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=&amp;sort=totalCommits%20dsc&amp;sortWithin=title&amp;since=2020-02-14&amp;timeframe=commit&amp;mergegroup=false&amp;groupSelect=groupByRepos&amp;breakdown=false&amp;tabOpen=true&amp;tabType=authorship&amp;tabAuthor=Hardoh&amp;tabRepo=AY1920S2-CS2103T-W16-1%2Fmain%5Bmaster%5D">RepoSense</a>]</p>
 </li>
 <li>
 <p><strong>Other contributions</strong>:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Project management:</p>
-</li>
-<li>
 <p>Documentation:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Did cosmetic tweaks to existing contents of the User Guide: <a href="https://github.com">#14</a></p>
 </li>
 </ul>
 </div>
 </li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="Pomodoro"><a class="link" href="#Pomodoro">Pomodoro</a></h3>
+<div class="paragraph">
+<p><em>In this section, let&#8217;s learn how you can take advantage of the Pomodoro feature to boost your productivity! Learn all the commands you can use for Pomodoro.</em></p>
+</div>
+<div class="sect3">
+<h4 id="what-s-pomodoro"><a class="link" href="#what-s-pomodoro">What&#8217;s Pomodoro?</a></h4>
+<div class="paragraph">
+<p>In the late 1980s, a gentleman named Francesco Cirillo devised a time management method called the Pomodoro Technique. Essentially, a single cycle consists of two parts, 25 minutes of work, followed by a 5 minutes break. This cycle repeats for as long as you want to get work done.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="let-s-get-started"><a class="link" href="#let-s-get-started">Let&#8217;s get started!</a></h4>
+<div class="paragraph">
+<p>BBProductive&#8217;s Pomodoro feature is very easy to use. Let&#8217;s take a look at the following steps!</p>
+</div>
+<div class="sect4">
+<h5 id="step-1-code-pom-code-a-task-to-get-started"><a class="link" href="#step-1-code-pom-code-a-task-to-get-started">Step 1: <code>pom</code> a task to get started!</a></h5>
+<div class="paragraph">
+<p>You can activate the Pomodoro timer and set a task you want to focus on. The default timer for a work cycle is 25 minutes. However, you can add an optional timer amount field for a particular cycle.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>pom &lt;index&gt; [tm/&lt;amount in minutes&gt;]</code></p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Indexes refer to the current tasklist on display, it does not refer to the indices of the entire task list. Note also that indexes start from 1 and not 0.</p>
+</div>
+<div class="paragraph">
+<p>You can use the value (decimals allowed) following <code>tm/</code> to represent your desired amount of time in <strong>minutes</strong> for a particular pomodoro cycle.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>After you&#8217;ve successfully <em>pommed</em> a task, you can see the task&#8217;s name in the bar at the top of the tasklist. The timer there will start counting down as well.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/pom_success.png" alt="pom success" width="790">
+</div>
+<div class="title">Figure 1. Example screen when pom is successfully executed</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="step-2-code-pom-pause-code-if-you-need-to-take-a-quick-break"><a class="link" href="#step-2-code-pom-pause-code-if-you-need-to-take-a-quick-break">Step 2: <code>pom pause</code> if you need to take a quick break.</a></h5>
+<div class="paragraph">
+<p>Not exactly a break. But let&#8217;s say you need to leave your desk real quick. You can pause a running Pomodoro timer by simply calling <code>pom pause</code>.</p>
+</div>
+<div class="paragraph">
+<p>Once, you&#8217;ve paused pomodoro, the timer will freeze and remain so until you resume in the next step.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/pom_pause.png" alt="pom pause" width="790">
+</div>
+<div class="title">Figure 2. Example screen when pom is successfully paused</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="step-3-code-pom-continue-code-to-get-back-to-work"><a class="link" href="#step-3-code-pom-continue-code-to-get-back-to-work">Step 3: <code>pom continue</code> to get back to work.</a></h5>
+<div class="paragraph">
+<p>Now that you&#8217;re back and ready to get back to work, simply use <code>pom continue</code> to resume for where you left off.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/pom_continuing.png" alt="pom continuing" width="790">
+</div>
+<div class="title">Figure 3. Example screen when pom is successfully resumed</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="step-4-time-s-up"><a class="link" href="#step-4-time-s-up">Step 4: Time&#8217;s up!</a></h5>
+<div class="paragraph">
+<p>Once the timer expires, the app will prompt you if you have finished the task. You need only respond with Yes (Y) or No (N) in order to proceed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/pom_time_expire.png" alt="pom time expire" width="790">
+</div>
+<div class="title">Figure 4. Prompt when the pomodoro timer expires</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="step-5-break-time"><a class="link" href="#step-5-break-time">Step 5: Break-time!</a></h5>
+<div class="paragraph">
+<p>Afterwards, the app will prompt you if you would like to begin a 5 minute break (as per the pomodoro technique). Similarly, you need to respond with Yes (Y) or No (N). Responding with No will set the app to its neutral state. Yes will start the break timer.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/pom_prompt_break.png" alt="pom prompt break" width="790">
+</div>
+<div class="title">Figure 5. Prompt checking if you&#8217;d like to take a break</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You will not be able to do execute other commands during these prompts. Please respond to the prompts to proceed.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="back-to-step-1"><a class="link" href="#back-to-step-1">Back to Step 1?</a></h5>
+<div class="paragraph">
+<p>At the end of the break, the app will return to it&#8217;s "neutral" state and you can  repeat the process, if you wish.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/pom_break_end.png" alt="pom break end" width="790">
+</div>
+<div class="title">Figure 6. End of pomodoro cycle screen</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="CommandTableSummary"><a class="link" href="#CommandTableSummary">Command Table Summary</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>The following table summarizes all the commands that you can use. Input contained with in [&#8230;&#8203;] are optional fields.</em></p>
+</div>
+<table class="tableblock frame-topbot grid-all spread">
+<caption class="title">Table 1. Command Table</caption>
+<colgroup>
+<col style="width: 14.2857%;">
+<col style="width: 42.8571%;">
+<col style="width: 42.8572%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Format</th>
+<th class="tableblock halign-left valign-top">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Add</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add n/&lt;item index&gt; [des/&lt;task description&gt;] [p/&lt;priority value&gt;] [r/&lt;reminder’s date and time&gt;] [t/&lt;tag1&gt; t/&lt;tag2&gt;&#8230;&#8203;]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add n/Finish Quiz des/Pages 3-5 p/1 r/20/03/20@19:30 t/cs2100</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Edit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>edit INDEX [n/NAME] [des/DESCRIPTION] [p/PRIORITY] [r/REMINDER] [t/TAG]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>edit 2 r/10/03/21@13:00</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Done</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>done INDEX</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>done 5</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Delete</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete INDEX</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete 7</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Clear</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>clear</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>clear</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pom</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pom INDEX [tm/TIME IN MINUTES]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pom 4 tm/45</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sort</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sort FIELD1 FIELD2 FIELD3 &#8230;&#8203;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sort done, priority</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tasks</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tasks</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tasks</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stats</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>stats</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>stats</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Settings</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>settings</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>settings</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>I also contributed content to BBProductive&#8217;s Developer Guide.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="Pomodoro"><a class="link" href="#Pomodoro">Pomodoro</a></h3>
+<div class="paragraph">
+<p>Pomodoro is activated by the <code>pom</code> command. It follows the same execution flow as many of the other commands in BBProductive.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/PomSequenceDiagram.png" alt="PomSequenceDiagram" width="790">
+</div>
+<div class="title">Figure 7. Interactions Inside Logic Component for the pom 1 command</div>
+</div>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<div class="paragraph">
+<p>Pomosoero&#8217;s features are implemented mainly in <code>seedu.address.logic</code> package. The <code>PomodoroManager</code> class is used to maniulate the timer and configure the relevant UI elements. The timer is facilitated by <code>javafx.animation.Timeline</code>.</p>
+</div>
+<div class="paragraph">
+<p>When the <code>PomCommand</code> is executed, the <code>PomodoroManager</code> will handle the actual timer systems and update the relevant entities in the app. This is evident in the following sequence diagram.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/PomExtendedSequenceDiagram.png" alt="PomExtendedSequenceDiagram" width="790">
+</div>
+<div class="title">Figure 8. Interactions with PomodoroManager through a time cycle</div>
+</div>
+<div class="paragraph">
+<p>Through the use of the Pomodoro feature, there are occasions where the app has to prompt the user for specific input in order to progress. This behaviour flow is represented in the <em>Pomodoro Acctivity</em> diagram.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/PomodoroActivityDiagram.png" alt="PomodoroActivityDiagram" width="395">
+</div>
+<div class="title">Figure 9. Pomodoro Activity Diagram</div>
+</div>
+<div class="paragraph">
+<p>The <code>PomodoroManager</code> maintains a  <code>prompt_state</code> indicating what the app might be prompting the user at a given time.</p>
+</div>
+<div class="paragraph">
+<p><strong>Pomodoro Prompt States</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>NONE</code>: There is no particular prompt happening. The default state when the app is in the neutral state. (i.e. No pomodoro running.)</p>
+</li>
+<li>
+<p><code>CHECK_DONE</code>: This state occurs when a timer expires during a Pomodoro cycle.</p>
+</li>
+<li>
+<p><code>CHECK_TAKE_BREAK</code>: This state occurs after user response has been received in the CHECK_DONE state.</p>
+</li>
+<li>
+<p><code>CHECK_DONE_MIDPOM</code>: This state occurs when the user calls done on a task that is the Pomodoro running task.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Pomodoro has settings that can be configured by the user:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Pomodoro Time: This defines how long the Pomodoro work period is. The default is 25 minutes.</p>
+</li>
+<li>
+<p>Break Time: This defines how long the breaks last in between Pomodoro periods. The default is 5 minutes.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This data is captured and stored in the <code>Pomodoro</code> class in <code>seedu.address.model</code>, which interacts with the app’s storage system. <code>PomodoroManager</code> also updates the <code>Pomodoro</code> model on what task is being run and the time remaining in a particular cycle. This allows the time progress to be persistent in between app closures and relaunches.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="UseCases"><a class="link" href="#UseCases">Use Cases</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>(For all use cases below, the <strong>System</strong> is <code>BBProductive</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/use_cases.png" alt="use cases" width="790">
+</div>
+<div class="title">Figure 10. Use case diagram for BBProductive</div>
+</div>
+<h3 id="use-case-uc01-view-tasks" class="discrete">Use Case: UC01 - View tasks</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to see the task list.</p>
+</li>
+<li>
+<p>BB Productive displays the view under the tasks tab.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<h3 id="use-case-uc02-add-task" class="discrete">Use Case: UC02 - Add task</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to add a task to the task list.</p>
+</li>
+<li>
+<p>BB Productive shows view with updated task list.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a. Task of the same name already exists.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. BBProductive shows <em>"This task already exists in the task list"</em> in response box.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-uc03-done-task" class="discrete">Use Case: UC03 - Done task</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to set a task to done.</p>
+</li>
+<li>
+<p>BB Productive shows view with updated task list.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a. Task specified by user already marked as done.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. BBProductive shows <em>"Task has already been marked as done!"</em> in response box.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1b. User fed in an invalid index.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1b1. BBProductive shows <em>"Invalid command format! "</em> in response box.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a. A pommed task is among the tasks to be set to done.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>2a1. BBProductive prompts user if they want to <code>pom</code> another task, or <code>N</code> to return the app to neutral.</p>
+</li>
+<li>
+<p>2a2. If user <code>pom</code> another task, use case resumes at stage 2 of UC09.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-uc04-edit-task" class="discrete">Use Case: UC04 - Edit task</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to update a task with updated fields and informs the task list.</p>
+</li>
+<li>
+<p>BB Productive shows view with updated task list.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a. New task name matches that of another task.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. BBProductive shows <em>"This task already exists in the task list."</em> in response box.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1b. User fed in an invalid index</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1b1. BBProductive shows <em>"Invalid command format! "</em> in response box.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-uc05-set-a-reminder-for-a-task" class="discrete">Use Case: UC05 - Set a reminder for a task</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to set a task with a Reminder.</p>
+</li>
+<li>
+<p>BB Productive creates/updates a task and shows the view with updated task list.</p>
+</li>
+<li>
+<p>A reminder pops up when the specified time has elapsed.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a. New task name matches that of another task.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. BBProductive shows <em>"This task already exists in the task list."</em> in response box.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-uc06-set-a-task-to-recurring" class="discrete">Use Case: UC06 - Set a task to recurring</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to set a task to be a recurring task.</p>
+</li>
+<li>
+<p>BB Productive creates/updates a task and shows the view with updated task list.</p>
+</li>
+<li>
+<p>A reminder pops up when the specified time has elapsed.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a. New task name matches that of another task.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. BBProductive shows <em>"This task already exists in the task list."</em> in response box.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-uc07-delete-task" class="discrete">Use Case: UC07 - Delete task</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to list tasks.</p>
+</li>
+<li>
+<p>BBProductive shows a list of tasks.</p>
+</li>
+<li>
+<p>User requests to delete a specific person in the list.</p>
+</li>
+<li>
+<p>BBProductive deletes the task.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a. New task name matches that of another task.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. BBProductive shows <em>"This task already exists in the task list."</em> in response box.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1b. User fed in an invalid index.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1b1. BBProductive shows <em>"Invalid command format!"</em> in response box.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1c. Task to be deleted is being pommed.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1c1. BBProductive shows <em>"You can&#8217;t delete a task you&#8217;re pom-ming!"</em> in response box.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-uc08-sort-tasks" class="discrete">Use Case: UC08 - Sort tasks</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to list tasks.</p>
+</li>
+<li>
+<p>BBProductive shows a list of tasks.</p>
+</li>
+<li>
+<p>User requests to sort the list by one or more parameters.</p>
+</li>
+<li>
+<p>BBProductive creates a new view and updates the task list view.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<h3 id="use-case-uc09-start-pomodoro" class="discrete">Use Case: UC09 - Start pomodoro</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to start pomodoro on a specific task.</p>
+</li>
+<li>
+<p>BBProductive starts timer and sets task-in-progress to said task.</p>
+</li>
+<li>
+<p>Pomodoro timer expires.</p>
+</li>
+<li>
+<p>BBProductive sets task-in-progress to null and prompts user if user has done the task.</p>
+</li>
+<li>
+<p>User replies the affirmative.</p>
+</li>
+<li>
+<p>BBProductive shows view with updated task list with done task. Pet adds additional points.</p>
+</li>
+<li>
+<p>BBProductive prompts user if user wants to do break time.</p>
+</li>
+<li>
+<p>User replies the affirmative.</p>
+</li>
+<li>
+<p>BBProductive starts break timer.</p>
+</li>
+<li>
+<p>Break timer expires.</p>
+</li>
+<li>
+<p>BBProductive returns to neutral state.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a. User fed in an invalid index.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. BBProductive shows <em>"Invalid command format! "</em> in response box.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1b. Task specified by user already marked as done.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1b1. BBProductive shows <em>"Task has already been marked as done!"</em> in response box.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>5a. User replies negative.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>5a1. BBProductive will leave the task list as is.</p>
+<div class="paragraph">
+<p>Use case resumes at stage 7.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>5b. User replies with answer that is neither <code>Y/y</code> nor <code>N/n</code>.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>5b1. BBProductive will leave the task list as is.</p>
+<div class="paragraph">
+<p>Use case resumes at stage 7.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>8a. User replies negative.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>8a1. BBProductive will start no timer.</p>
+<div class="paragraph">
+<p>Use case resumes at stage 11.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h3 id="use-case-uc10-view-stats" class="discrete">Use Case: UC10 - View stats</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to see the statistics tab.</p>
+</li>
+<li>
+<p>BBProductive displays the view under the statistics tab.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<h3 id="use-case-uc11-view-settings" class="discrete">Use Case: UC11 - View settings</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to see the settings tab.</p>
+</li>
+<li>
+<p>BBProductive displays the view under the settings tab.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<h3 id="use-case-uc12-set-settings" class="discrete">Use Case: UC12 - Set settings</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to update the app&#8217;s settings.</p>
+</li>
+<li>
+<p>BBProductive takes the input and updates the app&#8217;s internal settings.</p>
+</li>
+<li>
+<p>User requests to see the settings tab.</p>
+</li>
+<li>
+<p>BBProductive displays the view under the settings tab with the updated preferences.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+<div class="ulist">
+<ul>
 <li>
 <p>Community:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com">#12</a>, <a href="https://github.com">#32</a>, <a href="https://github.com">#19</a>, <a href="https://github.com">#42</a></p>
+<p>PRs reviewed (with non-trivial review comments): [<a href="https://github.com/AY1920S2-CS2103T-W16-1/main/pull/288">#288</a>]</p>
 </li>
 <li>
-<p>Contributed to forum discussions (examples:  <a href="https://github.com">1</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>, <a href="https://github.com">4</a>)</p>
+<p>Collaborate with teammates to tie in non-trivial features: [<a href="https://github.com/AY1920S2-CS2103T-W16-1/main/pull/123">#123</a>]</p>
 </li>
 <li>
-<p>Reported bugs and suggestions for other teams in the class (examples:  <a href="https://github.com">1</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>)</p>
-</li>
-<li>
-<p>Some parts of the history feature I added was adopted by several other class mates (<a href="https://github.com">1</a>, <a href="https://github.com">2</a>)</p>
+<p>Reported bugs and suggestions for other teams in the class (examples: [<a href="https://github.com/AY1920S2-CS2103T-F11-1/main/issues/192">#192</a>], [<a href="https://github.com/AY1920S2-CS2103T-F11-1/main/issues/193">#193</a>], [<a href="https://github.com/AY1920S2-CS2103T-F11-1/main/issues/194">#194</a>])</p>
 </li>
 </ul>
 </div>
@@ -89,7 +957,7 @@
 </ul>
 </div>
 </li>
-</ul>
+</ol>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-12 14:47:58 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-12 16:03:27 UTC</div></div></div></body></html>
