@@ -5,7 +5,7 @@
 
 image::hardoh.png[width="150", align="left"]
 
-== PROJECT: BB Productive - Level 3
+== PROJECT: BBProductive
 
 ---
 
@@ -20,17 +20,29 @@ My 5-man strong team of software-engineering students were tasked to take a basi
 ** Justification: The Pomodoro technique is a productivity framework we decided to adopt as it has been championed by various sites and creatives. It was also voted one of the most popular techniques on LifeHacker.
 ** Highlights: First, the basic command parser provided by AB3 gave me a good foundation to branch from. I had to adapt the parser to accept multiple types of input (i.e. I accept “pom 1” and “pom pause” for example). Second, building the actual pomodoro feature required me to use JavaFX’s Timeline class. The Timeline class adequately served my requirements for the Pomodoro work and rest cycles. Lastly, to handle prompts during pomodoro cycles, I decided to swap the “Command Executor” that exists in the Main Window class so I could better encapsulate Pomodoro related responses.
 
-* *Minor enhancement*: added a switch tabs command that allows the user to navigate to between the tabs.
+** Relevant PRs: [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/92[#92]], [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/126[#126]], [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/146[#146], [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/147[#147]], [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/262[#262]], [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/263[#263]], [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/269[#269]]
 
-* *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
+* *Minor enhancement*: I added a switch tabs command that allows the user to navigate to between the tabs.
+** Relevant PR: [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/127[#127]]
+
+* *My code contributions on RepoSense*: [https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=&sort=totalCommits%20dsc&sortWithin=title&since=2020-02-14&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=Hardoh&tabRepo=AY1920S2-CS2103T-W16-1%2Fmain%5Bmaster%5D[RepoSense]]
 
 * *Other contributions*:
-
-** Project management:
 ** Documentation:
-*** Did cosmetic tweaks to existing contents of the User Guide: https://github.com[#14]
+|===
+|_Given below are sections I contributed to the User Guide._
+|===
+include::../UserGuide.adoc[tag=pomodoro]
+include::../UserGuide.adoc[tag=commandtablesummary]
+
+I also contributed content to BBProductive's Developer Guide.
+|===
+|_Given below are sections I contributed to the Developer Guide._
+|===
+include::../DeveloperGuide.adoc[tag=pomodoro]
+include::../DeveloperGuide.adoc[tag=usecase]
+
 ** Community:
-*** PRs reviewed (with non-trivial review comments): https://github.com[#12], https://github.com[#32], https://github.com[#19], https://github.com[#42]
-*** Contributed to forum discussions (examples:  https://github.com[1], https://github.com[2], https://github.com[3], https://github.com[4])
-*** Reported bugs and suggestions for other teams in the class (examples:  https://github.com[1], https://github.com[2], https://github.com[3])
-*** Some parts of the history feature I added was adopted by several other class mates (https://github.com[1], https://github.com[2])
+*** PRs reviewed (with non-trivial review comments): [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/288[#288]]
+*** Collaborate with teammates to tie in non-trivial features: [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/123[#123]]
+*** Reported bugs and suggestions for other teams in the class (examples: [https://github.com/AY1920S2-CS2103T-F11-1/main/issues/192[#192]], [https://github.com/AY1920S2-CS2103T-F11-1/main/issues/193[#193]], [https://github.com/AY1920S2-CS2103T-F11-1/main/issues/194[#194]])
