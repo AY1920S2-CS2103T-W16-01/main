@@ -299,13 +299,27 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            tabPanePlaceholder.getSelectionModel().select(TASKS_TAB_INDEX);
 
+            // Handle tabs
+            int tabIndexToSwitch = getTabIndexFromCommand(commandResult);
+            tabPanePlaceholder.getSelectionModel().select(tabIndexToSwitch);
+            tabPanePlaceholder
+                    .getSelectionModel()
+                    .select(tabIndexToSwitch);
+
+            // Update StatisticsDisplay when stats tab is selected
+            if (tabIndexToSwitch == STATS_TAB_INDEX) {
+                statisticsManager.updateStatisticsDisplayValues();
+                this.updateStatisticsDisplay();
+            }
+
+            // Sort Command related results
             if (commandResult instanceof SortCommandResult) {
                 SortCommandResult sortCommandResult = (SortCommandResult) commandResult;
                 taskListPanel.setSortOrder(sortCommandResult.getSortOrder());
             }
 
+            // Find Command related results
             if (commandResult instanceof FindCommandResult) {
                 taskListPanel.removeSortOrder();
             }
@@ -321,7 +335,7 @@ public class MainWindow extends UiPart<Stage> {
 
             }
 
-            // set Command related results
+            // Set Command related results
             try {
                 SetCommandResult setCommandResult = (SetCommandResult) commandResult;
 
@@ -350,20 +364,6 @@ public class MainWindow extends UiPart<Stage> {
 
             } catch (ClassCastException ce) {
 
-            }
-
-            // Switch tabs related results
-            try {
-                SwitchTabCommandResult switchTabCommandResult =
-                        (SwitchTabCommandResult) commandResult;
-                tabPanePlaceholder
-                        .getSelectionModel()
-                        .select(switchTabCommandResult.getTabToSwitchIndex());
-                if (switchTabCommandResult.getTabToSwitchIndex() == STATS_TAB_INDEX) {
-                    statisticsManager.updateStatisticsDisplayValues();
-                    this.updateStatisticsDisplay();
-                }
-            } catch (ClassCastException ce) {
             }
 
             // Pomodoro related results
@@ -494,6 +494,29 @@ public class MainWindow extends UiPart<Stage> {
                 Date.from(petManager.getTimeForHangry().atZone(ZoneId.systemDefault()).toInstant());
         timer.schedule(timerTask, timeForMoodChange);
         petManager.updateDisplayElements();
+    }
+
+    /**
+     * Returns an appropriate tab index to switch to based on commands.
+     *
+     * @param commandResult the command called.
+     * @return index of tab to switch to.
+     */
+    private int getTabIndexFromCommand(CommandResult commandResult) {
+        int result = TASKS_TAB_INDEX; // default
+        if (commandResult instanceof SwitchTabCommandResult) {
+            try {
+                SwitchTabCommandResult switchTabCommandResult =
+                        (SwitchTabCommandResult) commandResult;
+                result = switchTabCommandResult.getTabToSwitchIndex(); // switch to tab in SwitchTabCommandResult
+            } catch (ClassCastException ce) {
+            }
+        } else if (commandResult instanceof SetCommandResult) {
+            result = SETTINGS_TAB_INDEX; // switch to settings tab for settings related commands.
+        } else {
+            result = TASKS_TAB_INDEX; // switch to tasks tab for tasks related commands
+        }
+        return result;
     }
 
     @FXML
