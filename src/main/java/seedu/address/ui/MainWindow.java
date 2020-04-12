@@ -360,7 +360,6 @@ public class MainWindow extends UiPart<Stage> {
                 }
 
                 settingsDisplay.update();
-                tabPanePlaceholder.getSelectionModel().select(SETTINGS_TAB_INDEX);
 
             } catch (ClassCastException ce) {
 
@@ -503,7 +502,7 @@ public class MainWindow extends UiPart<Stage> {
      * @return index of tab to switch to.
      */
     private int getTabIndexFromCommand(CommandResult commandResult) {
-        int result = TASKS_TAB_INDEX; // default
+        int result = TASKS_TAB_INDEX; // default: switch to tasks tab for tasks related commands
         if (commandResult instanceof SwitchTabCommandResult) {
             try {
                 SwitchTabCommandResult switchTabCommandResult =
@@ -513,8 +512,6 @@ public class MainWindow extends UiPart<Stage> {
             }
         } else if (commandResult instanceof SetCommandResult) {
             result = SETTINGS_TAB_INDEX; // switch to settings tab for settings related commands.
-        } else {
-            result = TASKS_TAB_INDEX; // switch to tasks tab for tasks related commands
         }
         return result;
     }
