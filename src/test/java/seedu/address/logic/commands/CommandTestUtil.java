@@ -135,8 +135,7 @@ public class CommandTestUtil {
 
         Task task = model.getFilteredTaskList().get(targetIndex.getZeroBased());
         final String name = task.getName().fullName;
-        model.updateFilteredTaskList(
-                new NameContainsKeywordsPredicate(Arrays.asList(name)));
+        model.updateFilteredTaskList(new NameContainsKeywordsPredicate(Arrays.asList(name)));
         assertEquals(task, model.getFilteredTaskList().get(0));
     }
 }

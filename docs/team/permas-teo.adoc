@@ -51,6 +51,7 @@ include::../UserGuide.adoc[tag=statistics]
 
 include::../UserGuide.adoc[tag=storage]
 
+
 == Contributions to the Developer Guide
 
 |===
@@ -62,3 +63,4 @@ include::../DeveloperGuide.adoc[tag=ui]
 include::../DeveloperGuide.adoc[tag=statistics]
 
 include::../DeveloperGuide.adoc[tag=nfr]
+

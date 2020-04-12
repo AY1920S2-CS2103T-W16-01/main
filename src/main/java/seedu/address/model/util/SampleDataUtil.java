@@ -57,7 +57,7 @@ public class SampleDataUtil {
                     .build();
 
     public static Task[] getSampleTasks() {
-        return new Task[] {TASK1, TASK2, TASK3,TASK4,TASK5,TASK6,TASK7 };
+        return new Task[] {TASK1, TASK2, TASK3, TASK4, TASK5, TASK6, TASK7};
     }
 
     public static ReadOnlyTaskList getSampleTaskList() {

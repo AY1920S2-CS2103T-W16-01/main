@@ -131,8 +131,7 @@ public class StringUtil {
 
             // compute stripe indices, constrain to array size
             final int min = Math.max(1, j - threshold);
-            final int max = j > Integer.MAX_VALUE - threshold ? n : Math.min(
-                    n, j + threshold);
+            final int max = j > Integer.MAX_VALUE - threshold ? n : Math.min(n, j + threshold);
 
             // the stripe may lead off of the table if s and t are of different
             // sizes

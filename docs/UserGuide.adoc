@@ -13,9 +13,12 @@ ifdef::env-github[]
 :important-caption: :heavy_exclamation_mark:
 :note-caption: :information_source:
 endif::[]
-:repoURL: https://github.com/se-edu/addressbook-level3
+:repoURL: https://github.com/AY1920S2-CS2103T-W16-1/main
 
 By: `AY1920S2-CS2103T-W16-1`      Since: `Jan 2020`      Licence: `NUS`
+
+.Cover Page of User Guide.
+image::CoverPage.png[width="790"]
 
 == What is BB Productive?
 
@@ -40,19 +43,20 @@ Indexes refer to the current tasklist on display, it does not refer to the indic
 ====
 
 == Quick Start
-
+- This section provides a quick guide on firing up BB Productive. Follow the steps below to install and launch BB Productive:
 .  Ensure you have Java `11` or above installed in your Computer.
 .  Download the latest `bb_productive.jar` link:{repoURL}/releases[here].
 .  Copy the file to the folder you want to use as the home folder for your BB Productive.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
+.Image of User Interface on boot.
 image::Ui.png[width="790"]
 +
 .  Type the command in the Pet Chat (Command box) and press kbd:[Enter] to execute it. +
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
-* **`add`**`n/Do math homework 1-2 r/DD/MM/YY@HH:MM` : adds a task of name `Do math homework` to the Task List with a date and time that follows the r/ prefix and a `pages 1-2` description.
+* **`add`**`n/Do math homework des/pages 1-2 r/11/11/21@23:59` : adds a task of name `Do math homework` to the Task List with a date and time that follows the r/ prefix and a `pages 1-2` description.
 * **`delete`**`3` : deletes the 3rd task shown in the list
 * *`exit`* : exits the app
 
@@ -226,59 +230,67 @@ Write pet
 
 [[Pomodoro]]
 === Pomodoro
-_This section describes the Pomodoro feature in detail and contains all commands you can use to take advantage of it_
+_In this section, let's learn how you can take advantage of the Pomodoro feature to boost your productivity! Learn all the commands you can use for Pomodoro._
 
 ==== What's Pomodoro?
 In the late 1980s, a gentleman named Francesco Cirillo devised a time management method called the Pomodoro Technique. Essentially, a single cycle consists of two parts, 25 minutes of work, followed by a 5 minutes break. This cycle repeats for as long as you want to get work done.
 
-==== How do you use it?
-Trying to prevent burnout? BB productive offers you the option to try out the pomodoro tenchinique! The pomodoro technique breaks down work into manageable intervals spaced out with short breaks so as to not tired you out._
+==== Let's get started!
+BBProductive's Pomodoro feature is very easy to use. Let's take a look at the following steps!
 
-To get started, follow the instructions below:
+===== Step 1: `pom` a task to get started!
 
-===== Command: `pom`
-
-First, you can activate the Pomodoro timer with a task in focus. You can also add an optional timer amount field, different from the default time of 25 minutes, for that particular cycle.
+You can activate the Pomodoro timer and set a task you want to focus on. The default timer for a work cycle is 25 minutes. However, you can add an optional timer amount field for a particular cycle.
 
 Format: `pom <index> [tm/<amount in minutes>]`
 
-You can use the value (decimals allowed) following `tm/` to represent your desired amount of time in minutes for a particular pomodoro cycle.
+[IMPORTANT]
+====
+Indexes refer to the current tasklist on display, it does not refer to the indices of the entire task list. Note also that indexes start from 1 and not 0.
 
-.Example screen when pom is successfully executed.
+You can use the value (decimals allowed) following `tm/` to represent your desired amount of time in *minutes* for a particular pomodoro cycle.
+====
+
+After you've successfully _pommed_ a task, you can see the task's name in the bar at the top of the tasklist. The timer there will start counting down as well.
+
+.Example screen when pom is successfully executed
 image::pom_success.png[width=790]
 
-===== Command: `pom pause`
+===== Step 2: `pom pause` if you need to take a quick break.
 
-You can pause a running Pomodoro timer.
+Not exactly a break. But let's say you need to leave your desk real quick. You can pause a running Pomodoro timer by simply calling `pom pause`.
+
+Once, you've paused pomodoro, the timer will freeze and remain so until you resume in the next step.
 
 .Example screen when pom is successfully paused
 image::pom_pause.png[width=790]
 
-===== Command: `pom continue`
+===== Step 3: `pom continue` to get back to work.
 
-You can resume a paused Pomodoro timer.
+Now that you're back and ready to get back to work, simply use `pom continue` to resume for where you left off.
 
 .Example screen when pom is successfully resumed
 image::pom_continuing.png[width=790]
 
+===== Step 4: Time's up!
 
-==== What happens when the timer's up?
-
-===== "Done" the task
 Once the timer expires, the app will prompt you if you have finished the task. You need only respond with Yes (Y) or No (N) in order to proceed.
 
 .Prompt when the pomodoro timer expires
 image::pom_time_expire.png[width=790]
 
-===== Break-time
+===== Step 5: Break-time!
 Afterwards, the app will prompt you if you would like to begin a 5 minute break (as per the pomodoro technique). Similarly, you need to respond with Yes (Y) or No (N). Responding with No will set the app to its neutral state. Yes will start the break timer.
 
 .Prompt checking if you'd like to take a break
 image::pom_prompt_break.png[width=790]
 
-Note: You will not be able to do execute other commands during these prompts.
+[IMPORTANT]
+=====
+You will not be able to do execute other commands during these prompts. Please respond to the prompts to proceed.
+=====
 
-===== Back to work
+===== Back to Step 1?
 At the end of the break, the app will return to it's "neutral" state and you can  repeat the process, if you wish.
 
 .End of pomodoro cycle screen
@@ -324,8 +336,77 @@ If we can't find a valid command, you will observe feedback like below:
 .Auto complete not found
 image::complete_fail.png[]
 
-=== Reminders (Arthur)
-Write reminders
+
+=== Reminders
+
+==== What's a reminder?
+BBProductive provides an avenue to remember to do time sensitive tasks in the form of reminders. When the time for the reminder has arrived, BBProductive alerts you to do the task! Never forget to do buy milk or any other time sensitive task ever again!
+
+==== How do you use it?
+Add a reminder to your task by adding `r/DD/MM/YY@HH:MM` when editing or adding a task. A pop up containing the task name and description will then appear reminding you to complete the task at the specified date and time.
+
+==== Command `r/DD/MM/YY@HH:MM`
+===== Add Task with reminder
+Add task with reminder with the following command `add n/<name> r/DD/MM/YY@HH:MM`. You can also include the other flags such as `t/`, `des/` and more.
+
+For example: `add n/Buy Milk r/11/11/20@23:59` as shown below.
+
+.Input for adding a task with reminder.
+image::reminder_add.png[width=395]
+
+Results in a task with the reminder's date in the task card.
+
+.Success for adding a task with reminder.
+image::reminder_add_success.png[width=790]
+
+===== Edit Task with reminder
+Edit a task to include a reminder with the following command `edit <index> r/DD/MM/YY@HH:MM`. You can also include the other flags such as `t/`, `des/` and more.
+
+For example: `edit 1 r/01/11/20@11:59` as shown below.
+
+.Input for editing task to have reminder or edit reminder itself.
+image::reminder_edit.png[width=395]
+
+Results in a task with the reminder's date in the task card.
+
+.Success for editing task's reminder.
+image::reminder_edit_success.png[width=790]
+
+=== Recurring
+
+==== What's Recurring?
+Recurring tasks allows you to have repeated tasks either every day or every week. This means the task previously set as done will be set as unfinished. Furthermore, if there is a reminder set, recurring tasks is smart enough to change the reminder date according to the interval you set. This means a reminder that has already been triggered for a daily recurring task will also fire again the following day.
+
+==== How do you use it?
+Add a recurring attribute to your task by adding `rec/d` for daily recurring tasks or `rec/w` for weekly. This will trigger the recurring behaviour for the task including the task's done and reminder attribute.
+
+===== Command `rec/d` or `rec/w`
+===== Add Task with recurring
+Add task with recurring with the following command `add n/<name> rec/d` or `add n/<name> rec/w`. You can also include the other flags such as `t/`, `des/` and more.
+
+For example: `add n/Buy Milk rec/d` as shown below.
+
+.Input for adding recurring attribute to task.
+image::recurring_add.png[width=395]
+
+Results in a task with the recurring attribute in the task card.
+
+.Success for adding recurring attribute to task.
+image::recurring_add_success.png[width=790]
+
+===== Edit Task with recurring
+Edit a task to include a recurring with the following command `edit <index> rec/d` or `edit <index> rec/w`. You can also include the other flags such as `t/`, `des/` and more.
+
+For example: `edit 1 rec/d` as shown below.
+
+.Input for editing recurring attribute to task.
+image::recurring_edit.png[width=395]
+
+Results in a task with the reminder's date in the specific task card.
+
+.Success for editing recurring attribute to task.
+image::recurring_edit_success.png[width=790]
+
 
 [[Navigation]]
 === Navigation
