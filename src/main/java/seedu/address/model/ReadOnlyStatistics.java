@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.dayData.DayData;
+import seedu.address.model.settings.DailyTarget;
 
 public interface ReadOnlyStatistics {
     /**
@@ -12,5 +13,5 @@ public interface ReadOnlyStatistics {
      */
     ObservableList<DayData> getCustomQueue();
 
-    String getDailyTarget();
+    DailyTarget getDailyTarget();
 }

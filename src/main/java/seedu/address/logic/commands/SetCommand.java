@@ -71,4 +71,25 @@ public class SetCommand extends Command {
 
         return new SetCommandResult(MESSAGE_SUCCESS, petName, pomDuration, dailyTarget);
     }
+
+    public PetName getPetName() {
+        return this.petName;
+    }
+
+    public PomDuration getPomDuration() {
+        return this.pomDuration;
+    }
+
+    public DailyTarget getDailyTarget() {
+        return this.dailyTarget;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddCommand // instanceof handles nulls
+                        && petName.equals(((SetCommand) other).getPetName())
+                        && pomDuration.equals(((SetCommand) other).getPomDuration())
+                        && dailyTarget.equals(((SetCommand) other).getDailyTarget()));
+    }
 }

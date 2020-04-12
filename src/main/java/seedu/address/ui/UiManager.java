@@ -94,4 +94,9 @@ public class UiManager implements Ui {
         Platform.exit();
         System.exit(1);
     }
+
+    @Override
+    public void update(String input) {
+        mainWindow.displayRecurring(input);
+    }
 }

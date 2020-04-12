@@ -19,11 +19,13 @@ import javafx.scene.control.Label;
 import javafx.util.Duration;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.PomCommand;
 import seedu.address.logic.commands.PomCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.PomCommandParser;
+import seedu.address.logic.parser.TaskListParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.Statistics;
 import seedu.address.model.dayData.Date;
 import seedu.address.model.dayData.DayData;
 import seedu.address.model.dayData.PomDurationData;
@@ -218,6 +220,7 @@ public class PomodoroManager {
         try {
             timeline.stop();
             reset();
+            timeline = null;
             model.setPomodoroTask(null);
         } catch (NullPointerException ne) {
             throw ne;
@@ -290,9 +293,9 @@ public class PomodoroManager {
     public void updateStatistics(Model model) {
         requireNonNull(startDateTime);
         endDateTime = LocalDateTime.now();
-        model.getStatistics().updateDataDates();
+        model.updateDataDatesStatistics();
         List<DayData> newDayDatas = generateUpdatedDayData(startDateTime, endDateTime);
-        newDayDatas.forEach(dayData -> model.getStatistics().updateDayData(dayData));
+        newDayDatas.forEach(dayData -> model.updatesDayDataStatistics(dayData));
     }
 
     /**
@@ -335,7 +338,7 @@ public class PomodoroManager {
                                     ChronoUnit.MINUTES);
             Date date = new Date(tempDateTime.format(Date.dateFormatter));
             System.out.println(date.toString());
-            DayData currDayData = model.getStatistics().getDayDataFromDate(date);
+            DayData currDayData = model.getDayDataFromDateStatistics(date);
             PomDurationData updatedPomDuration =
                     new PomDurationData("" + (currDayData.getPomDurationData().value + minutes));
             DayData updatedDayData =
@@ -347,7 +350,7 @@ public class PomodoroManager {
         // Handle last day
         int minutes = (int) tempDateTime.until(endDateTime, ChronoUnit.MINUTES);
         Date date = new Date(tempDateTime.format(Date.dateFormatter));
-        DayData currDayData = model.getStatistics().getDayDataFromDate(date);
+        DayData currDayData = model.getDayDataFromDateStatistics(date);
         PomDurationData updatedPomDuration =
                 new PomDurationData("" + (currDayData.getPomDurationData().value + minutes));
         DayData updatedDayData =
@@ -429,6 +432,7 @@ public class PomodoroManager {
     private void clearDoneParams() {
         this.originList = null;
         this.taskIndex = -1;
+        model.setPomodoroTask(null);
     }
 
     /** Actions taken to "done" a task that was being pommed. */
@@ -449,16 +453,17 @@ public class PomodoroManager {
         // Update stats
         model.updateDataDatesStatistics();
 
+        timeline = null;
+
         LocalDateTime now = LocalDateTime.now();
         Date dateOnDone = new Date(now.format(Date.dateFormatter));
-        Statistics stats = model.getStatistics();
-        DayData dayData = stats.getDayDataFromDate(dateOnDone);
+        DayData dayData = model.getDayDataFromDateStatistics(dateOnDone);
         DayData updatedDayData =
                 new DayData(
                         dateOnDone,
                         dayData.getPomDurationData(),
                         new TasksDoneData("" + (dayData.getTasksDoneData().value + 1)));
-        stats.updateDayData(updatedDayData);
+        model.updatesDayDataStatistics(updatedDayData);
         clearDoneParams();
     }
 
@@ -538,6 +543,9 @@ public class PomodoroManager {
                     return commandResult;
                 }
                 try {
+                    PomCommand pc = 
+                        (PomCommand)(new TaskListParser().parseCommand(commandText));
+
                     PomCommandResult pomCommandResult =
                             (PomCommandResult) logic.execute(commandText);
                     logger.info("Result: " + pomCommandResult.getFeedbackToUser());
@@ -633,8 +641,11 @@ public class PomodoroManager {
             return;
         }
         float timeInMinutes = timeSeconds.floatValue() / 60;
+        
         model.setPomodoroTimeLeft(timeInMinutes);
-        // Update statistics so far
-        updateStatistics(model);
+        if (model.getPomodoroTask() != null) {
+            // Update statistics so far
+            updateStatistics(model);
+        }
     }
 }

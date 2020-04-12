@@ -2,7 +2,7 @@ package seedu.address.ui;
 
 import static seedu.address.model.dayData.CustomQueue.CONSTANT_SIZE;
 
-import javafx.collections.ObservableList;
+import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
@@ -47,7 +47,7 @@ public class StatisticsDisplay extends UiPart<Region> {
         progressTarget.setText(progressTargetText + PROGRESS_UNITS);
     }
 
-    public void updateGraphs(ObservableList<DayData> customQueue) {
+    public void updateGraphs(List<DayData> customQueue) {
         XYChart.Series<String, Integer> dataSeriesPomDurationData = new XYChart.Series<>();
         XYChart.Series<String, Integer> dataSeriesTasksDoneData = new XYChart.Series<>();
 

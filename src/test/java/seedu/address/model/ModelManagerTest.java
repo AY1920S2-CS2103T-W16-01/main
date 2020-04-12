@@ -3,7 +3,6 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTasks.HOMEWORK10;
 import static seedu.address.testutil.TypicalTasks.LAB_3;
@@ -25,6 +24,7 @@ public class ModelManagerTest {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
         assertEquals(new TaskList(), new TaskList(modelManager.getTaskList()));
+        assertEquals(new Statistics(), modelManager.getStatistics());
     }
 
     @Test
@@ -94,6 +94,11 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void setStatisticsManager_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setStatisticsManager(null));
+    }
+
+    @Test
     public void equals() {
         TaskList taskList = new TaskListBuilder().withTask(HOMEWORK10).withTask(LAB_3).build();
         TaskList differentTaskList = new TaskList();
@@ -135,7 +140,7 @@ public class ModelManagerTest {
                                 taskList, new Pet(), new Pomodoro(), new Statistics(), userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        modelManager.showAllTasks();
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

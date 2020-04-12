@@ -8,16 +8,23 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.TASK_PREFIXES;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.CompletorResult;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
+import seedu.address.logic.commands.exceptions.CompletorException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Priority;
+import seedu.address.model.task.Reminder;
 
 /** Parses input arguments and creates a new EditCommand object */
 public class EditCommandParser implements Parser<EditCommand> {
@@ -81,6 +88,57 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         return new EditCommand(index, editTaskDescriptor);
+    }
+
+    /**
+     * Uses argMultimap to detect existing prefixes used so that it won't add double prefixes. Adds
+     * priority and reminder prefixes
+     *
+     * @param input trimmed
+     * @param listSize
+     * @return contains userFeedback and suggestedCommand
+     * @throws CompletorException throws an exception when index provided is not an int or out of
+     *     list range
+     */
+    public CompletorResult completeCommand(String input, int listSize) throws CompletorException {
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(input, TASK_PREFIXES);
+        boolean hasReminder = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_REMINDER);
+        boolean hasPriority = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_PRIORITY);
+
+        StringBuilder prefixesBuilder = new StringBuilder();
+
+        String[] trimmedInputs = input.split("\\s+");
+
+        if (trimmedInputs.length > 1 && StringUtil.isNonZeroUnsignedInteger(trimmedInputs[1])) {
+            int editIndex = Integer.parseInt(trimmedInputs[1]);
+            if (editIndex > listSize) {
+                String errorMessage =
+                        String.format(
+                                Messages.COMPLETE_INDEX_OUT_OF_RANGE_FAILURE,
+                                trimmedInputs[1].toString());
+                throw new CompletorException(errorMessage);
+            }
+        }
+
+        for (int i = trimmedInputs.length - 1; i > 1; i--) {
+            String currentArgument = trimmedInputs[i];
+            if (Reminder.isValidReminder(currentArgument) && !hasReminder) {
+                trimmedInputs[i] = CliSyntax.PREFIX_REMINDER.toString() + currentArgument;
+                hasReminder = true;
+                prefixesBuilder.append(CliSyntax.PREFIX_REMINDER.toString());
+                prefixesBuilder.append(" ");
+            } else if (Priority.isValidPriority(currentArgument) && !hasPriority) {
+                trimmedInputs[i] = CliSyntax.PREFIX_PRIORITY.toString() + currentArgument;
+                hasPriority = true;
+                prefixesBuilder.append(CliSyntax.PREFIX_PRIORITY.toString());
+                prefixesBuilder.append(" ");
+            }
+        }
+        String newCommand = String.join(" ", trimmedInputs);
+        String prefixesAdded = prefixesBuilder.length() == 0 ? "nil" : prefixesBuilder.toString();
+        String feedbackToUser = String.format(Messages.COMPLETE_PREFIX_SUCCESS, prefixesAdded);
+
+        return new CompletorResult(newCommand, feedbackToUser);
     }
 
     /**

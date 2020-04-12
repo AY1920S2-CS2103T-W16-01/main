@@ -147,6 +147,7 @@ public class CustomQueue implements Iterable<DayData> {
 
     /** Removes oldest DayData from head of the queue. */
     public void pop() {
+        assert (internalList.size() > 0);
         internalList.remove(0);
     }
 
@@ -222,8 +223,7 @@ public class CustomQueue implements Iterable<DayData> {
     }
 
     /** Returns true if {@code internalList} table constraints are enforced. */
-    public static boolean tableConstraintsAreEnforced(List<DayData> dayDatas)
-            throws InvalidTableException {
+    public static boolean tableConstraintsAreEnforced(List<DayData> dayDatas) {
         if (dayDatas == null) {
             return false;
         }

@@ -29,9 +29,7 @@ public class Done implements Comparable {
         this.isDone = isDone.equals(DONE);
     }
 
-    public
-    Done() { // TODO maybe don't need, but i don't get why we should use a TaskBuilder to inject
-        // default values
+    public Done() {
         this.isDone = false;
     }
 

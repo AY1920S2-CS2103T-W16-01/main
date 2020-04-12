@@ -4,15 +4,16 @@ import java.nio.file.Path;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CompletorResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.exceptions.CompletorException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyPomodoro;
 import seedu.address.model.ReadOnlyTaskList;
-import seedu.address.model.dayData.DayData;
 import seedu.address.model.task.Task;
 
 /** API of the Logic component */
-public interface Logic extends Observer {
+public interface Logic {
     /**
      * Executes the command and returns the result.
      *
@@ -22,6 +23,15 @@ public interface Logic extends Observer {
      * @throws ParseException If an error occurs during parsing.
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
+
+    /**
+     * Attempts to complete user's input
+     *
+     * @param userInput Input from user
+     * @return the result of completion
+     * @throws CompletorException If no command is detected
+     */
+    CompletorResult suggestCommand(String userInput) throws CompletorException;
 
     /**
      * Returns the TaskList.
@@ -41,8 +51,6 @@ public interface Logic extends Observer {
 
     /** Set the user prefs' GUI settings. */
     void setGuiSettings(GuiSettings guiSettings);
-
-    ObservableList<DayData> getCustomQueue();
 
     ReadOnlyPomodoro getPomodoro();
 }

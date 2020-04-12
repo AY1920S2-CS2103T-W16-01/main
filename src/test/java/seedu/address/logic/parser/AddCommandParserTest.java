@@ -5,6 +5,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_TASK
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_TASK2;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PRIORITY_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_RECURRING;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_REMINDER;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_REMINDER_PAST;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -14,10 +15,12 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_DESC_TASK1;
 import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_DESC_TASK2;
+import static seedu.address.logic.commands.CommandTestUtil.RECURRING;
 import static seedu.address.logic.commands.CommandTestUtil.REMINDER;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HELP;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_MA1521;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_TASK2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RECURRING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REMINDER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HELP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MA1521;
@@ -26,11 +29,13 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import static seedu.address.testutil.TypicalTasks.TASK1;
 import static seedu.address.testutil.TypicalTasks.TASK2;
 
+import java.time.LocalDateTime;
 import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
+import seedu.address.model.task.Recurring;
 import seedu.address.model.task.Reminder;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
@@ -123,6 +128,51 @@ public class AddCommandParserTest {
                         + TAG_DESC_HELP
                         + REMINDER,
                 new AddCommand(expectedTaskReminderTags));
+
+        // with recurring
+        Task expectedTaskRecurring =
+                new TaskBuilder(TASK2)
+                        .withTags()
+                        .withRecurring(VALID_RECURRING, LocalDateTime.now())
+                        .build();
+        assertParseSuccess(
+                parser,
+                NAME_DESC_TASK2 + PRIORITY_DESC_TASK2 + DESCRIPTION_DESC_TASK2 + RECURRING,
+                new AddCommand(expectedTaskRecurring));
+
+        // with recurring and reminder
+        Task expectedTaskRecurRem =
+                new TaskBuilder(TASK2)
+                        .withTags()
+                        .withReminder(VALID_REMINDER)
+                        .withRecurring(VALID_RECURRING, LocalDateTime.now())
+                        .build();
+        assertParseSuccess(
+                parser,
+                NAME_DESC_TASK2
+                        + PRIORITY_DESC_TASK2
+                        + DESCRIPTION_DESC_TASK2
+                        + REMINDER
+                        + RECURRING,
+                new AddCommand(expectedTaskRecurRem));
+
+        // with recurring, reminder and tags
+        Task expectedTaskEverything =
+                new TaskBuilder(TASK2)
+                        .withTags(VALID_TAG_HELP, VALID_TAG_MA1521)
+                        .withReminder(VALID_REMINDER)
+                        .withRecurring(VALID_RECURRING, LocalDateTime.now())
+                        .build();
+        assertParseSuccess(
+                parser,
+                NAME_DESC_TASK2
+                        + PRIORITY_DESC_TASK2
+                        + DESCRIPTION_DESC_TASK2
+                        + TAG_DESC_MA1521
+                        + TAG_DESC_HELP
+                        + REMINDER
+                        + RECURRING,
+                new AddCommand(expectedTaskEverything));
     }
 
     @Test
@@ -213,5 +263,15 @@ public class AddCommandParserTest {
                         + VALID_TAG_HELP
                         + INVALID_REMINDER_PAST,
                 Reminder.MESSAGE_CONSTRAINTS_PAST);
+
+        // invalid recurring due to wrong format
+        assertParseFailure(
+                parser,
+                NAME_DESC_TASK2
+                        + PRIORITY_DESC_TASK2
+                        + DESCRIPTION_DESC_TASK2
+                        + VALID_TAG_HELP
+                        + INVALID_RECURRING,
+                Recurring.MESSAGE_CONSTRAINTS);
     }
 }

@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Done;
@@ -46,6 +47,8 @@ public class TaskBuilder {
         description = taskToCopy.getDescription();
         done = taskToCopy.getDone();
         tags = new HashSet<>(taskToCopy.getTags());
+        reminder = taskToCopy.getOptionalReminder();
+        recurring = taskToCopy.getOptionalRecurring();
     }
 
     /** Sets the {@code Name} of the {@code Task} that we are building. */
@@ -94,6 +97,30 @@ public class TaskBuilder {
             this.reminder = Optional.of(new Reminder(dateTime));
         } catch (InvalidReminderException e) {
             this.reminder = Optional.empty();
+        }
+        return this;
+    }
+
+    /** Sets reminder as optional.empty for task builder. */
+    public TaskBuilder withReminder() {
+        this.reminder = Optional.empty();
+        return this;
+    }
+
+    public TaskBuilder withRecurring(String recurrStringStorage) {
+        try {
+            this.recurring = Optional.of(new Recurring(recurrStringStorage));
+        } catch (ParseException e) {
+            this.recurring = Optional.empty();
+        }
+        return this;
+    }
+
+    public TaskBuilder withRecurring(String recurrString, LocalDateTime referenceDateTime) {
+        try {
+            this.recurring = Optional.of(new Recurring(recurrString, referenceDateTime));
+        } catch (ParseException e) {
+            this.recurring = Optional.empty();
         }
         return this;
     }

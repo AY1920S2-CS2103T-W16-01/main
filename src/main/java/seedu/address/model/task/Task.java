@@ -159,6 +159,10 @@ public class Task {
         return optionalRecurring;
     }
 
+    public boolean hasTag(Tag t) {
+        return tags.contains(t);
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException} if
      * modification is attempted.

@@ -13,9 +13,9 @@ import seedu.address.logic.parser.FindCommandParser;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyPet;
 import seedu.address.model.ReadOnlyPomodoro;
+import seedu.address.model.ReadOnlyStatistics;
 import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.Statistics;
 import seedu.address.model.TaskList;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
@@ -71,7 +71,7 @@ public class SortCommandTest {
     public void execute_sortWithFindDone_successful() throws Exception {
         String[] prioritySort = {"priority"};
 
-        new FindCommandParser().parse("Reminder").execute(modelStub);
+        new FindCommandParser().parse(" n/Reminder").execute(modelStub);
         CommandResult commandResult = new SortCommand(prioritySort).execute(modelStub);
         TaskList stubList = new TaskList();
         ModelStub tempModelStub = new ModelStub();
@@ -240,7 +240,7 @@ public class SortCommandTest {
         }
 
         @Override
-        public Statistics getStatistics() {
+        public ReadOnlyStatistics getStatistics() {
             throw new AssertionError("This method should not be called.");
         }
     }

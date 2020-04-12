@@ -15,14 +15,16 @@ public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
     public static final String[] ALLOWED_SORT_FIELDS = {
         "r-priority", "r-date", "r-name", "r-done", "priority", "date", "name", "done"
-    }; // TODO replace with enum
+    };
+    public static final String DISPLAY_POSSIBLE_FIELDS =
+            "1.(r-)priority\n2.(r-)name\n3.(r-)done\n4.(r-)date";
 
     public static final String MESSAGE_SUCCESS = "TaskList sorted by: %1$s";
     public static final String MESSAGE_SORT_UNKNOWN = "No such field to sort by %1$s!";
     public static final String MESSAGE_USAGE =
             String.format(
-                    "%1$s -> Sorts tasklist by one or multiple fields such as\n%2$s \nExample: %1$s done, priority",
-                    COMMAND_WORD, String.join(" | ", ALLOWED_SORT_FIELDS));
+                    "%1$s -> Sorts tasklist by one or multiple fields form these choices:\n%2$s \nExample: %1$s done priority",
+                    COMMAND_WORD, DISPLAY_POSSIBLE_FIELDS);
 
     private String[] fields;
 
@@ -34,38 +36,46 @@ public class SortCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         // NOTE: Incorrect sort fields has been handled in SortCommandParser already
-        ArrayList<Comparator<Task>> temp = new ArrayList<>();
+        ArrayList<Comparator<Task>> comparatorList = new ArrayList<>();
         for (String field : fields) {
             switch (field) {
                 case "priority":
-                    temp.add(getPriorityComparator());
+                    comparatorList.add(getPriorityComparator());
                     break;
                 case "date":
-                    temp.add(getReminderComparator());
+                    comparatorList.add(getReminderComparator());
                     break;
                 case "name":
-                    temp.add(getNameComparator());
+                    comparatorList.add(getNameComparator());
                     break;
                 case "done":
-                    temp.add(getDoneComparator());
+                    comparatorList.add(getDoneComparator());
                     break;
                 case "r-priority":
-                    temp.add(getPriorityComparator().reversed());
+                    comparatorList.add(getPriorityComparator().reversed());
                     break;
                 case "r-date":
-                    temp.add(getReminderComparator().reversed());
+                    comparatorList.add(getReminderComparator().reversed());
                     break;
                 case "r-name":
-                    temp.add(getNameComparator().reversed());
+                    comparatorList.add(getNameComparator().reversed());
                     break;
                 case "r-done":
-                    temp.add(getDoneComparator().reversed());
+                    comparatorList.add(getDoneComparator().reversed());
                     break;
             }
         }
 
-        model.setComparator(temp.toArray(new Comparator[0]));
-        return new CommandResult(String.format(MESSAGE_SUCCESS, String.join(" ", fields)));
+        Comparator<Task> aggregateComparator = comparatorList.get(0);
+        for (int i = 1; i < comparatorList.size(); i++) {
+            aggregateComparator = aggregateComparator.thenComparing(comparatorList.get(i));
+        }
+
+        model.setComparator(aggregateComparator);
+
+        String commandFeedback = String.format(MESSAGE_SUCCESS, String.join(" ", fields));
+
+        return new SortCommandResult(commandFeedback, fields[0]);
     }
 
     private Comparator<Task> getPriorityComparator() {
@@ -92,7 +102,7 @@ public class SortCommand extends Command {
             public int compare(Task task1, Task task2) {
                 return task1.getName().compareTo(task2.getName());
             }
-        }.reversed();
+        };
     }
 
     private Comparator<Task> getReminderComparator() {

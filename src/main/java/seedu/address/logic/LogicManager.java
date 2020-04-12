@@ -7,15 +7,17 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandCompletor;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CompletorResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.exceptions.CompletorException;
 import seedu.address.logic.parser.TaskListParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyPomodoro;
 import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.TaskList;
-import seedu.address.model.dayData.DayData;
 import seedu.address.model.task.Task;
 import seedu.address.storage.Storage;
 
@@ -27,12 +29,14 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final TaskListParser taskListParser;
+    private final CommandCompletor commandCompletor;
 
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
         this.model.setTaskSaver(this::taskSaver);
         taskListParser = new TaskListParser();
+        commandCompletor = new CommandCompletor();
     }
 
     private void taskSaver(TaskList tasklist) {
@@ -78,6 +82,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public CompletorResult suggestCommand(String userInput) throws CompletorException {
+        return commandCompletor.getSuggestedCommand(userInput, this.getFilteredTaskList().size());
+    }
+
+    @Override
     public ReadOnlyTaskList getTaskList() {
         return model.getTaskList();
     }
@@ -85,10 +94,6 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Task> getFilteredTaskList() {
         ObservableList<Task> tasklist = model.getFilteredTaskList();
-        // for (int i = 0; i < tasklist.size(); i++) {
-        //     Task currentTask = tasklist.get(i);
-        //     currentTask.triggerRecurringIfPresent(model, Index.fromZeroBased(i));
-        // }
         return tasklist;
     }
 
@@ -108,21 +113,16 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<DayData> getCustomQueue() {
-        return model.getCustomQueue();
-    }
-
-    @Override
     public ReadOnlyPomodoro getPomodoro() {
         return model.getPomodoro();
     }
 
-    @Override
-    public void update() throws CommandException {
-        try {
-            storage.saveTaskList(model.getTaskList());
-        } catch (IOException ioe) {
-            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
-        }
-    }
+    // @Override
+    // public void update() throws CommandException {
+    //     try {
+    //         storage.saveTaskList(model.getTaskList());
+    //     } catch (IOException ioe) {
+    //         throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+    //     }
+    // }
 }
