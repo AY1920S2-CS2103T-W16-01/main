@@ -263,6 +263,7 @@ To implement this, we've augmented the UniqueTaskList and TaskList with a functi
 .Activity diagram of auto complete
 image::AutoCompleteActivityDiagram.png[]
 
+//tag::pomodoro[]
 [[Pomodoro]]
 === Pomodoro
 Pomodoro is activated by the `pom` command. It follows the same execution flow as many of the other commands in BBProductive.
@@ -298,6 +299,8 @@ Pomodoro has settings that can be configured by the user:
 * Break Time: This defines how long the breaks last in between Pomodoro periods. The default is 5 minutes.
 
 This data is captured and stored in the `Pomodoro` class in `seedu.address.model`, which interacts with the app’s storage system. `PomodoroManager` also updates the `Pomodoro` model on what task is being run and the time remaining in a particular cycle. This allows the time progress to be persistent in between app closures and relaunches.
+
+//end::pomodoro[]
 
 === Statistics Feature
 
@@ -446,6 +449,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |=======================================================================
 
 [appendix]
+//tag::usecase[]
 [[UseCases]]
 == Use Cases
 
@@ -743,6 +747,8 @@ Use case ends.
 4.  BBProductive displays the view under the settings tab with the updated preferences.
 +
 Use case ends.
+
+//end::usecase[]
 
 [appendix]
 == Non Functional Requirements
