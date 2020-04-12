@@ -102,7 +102,7 @@ public class CustomQueue implements Iterable<DayData> {
      *
      * @param dayData new DayData object to replace.
      */
-    public void updatesDayDataCustom(DayData dayData) throws DayDataNotFoundException {
+    public void updateDayDataCustom(DayData dayData) throws DayDataNotFoundException {
         requireNonNull(dayData);
 
         Date currDate = dayData.getDate();

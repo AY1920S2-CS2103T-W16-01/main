@@ -138,7 +138,7 @@ public class DoneCommand extends Command {
                         dateOnDone,
                         dayData.getPomDurationData(),
                         new TasksDoneData("" + (dayData.getTasksDoneData().value + 1)));
-        stats.updatesDayData(updatedDayData);
+        stats.updateDayData(updatedDayData);
     }
 
     private static void updateStatisticsPomDone(Model model) {

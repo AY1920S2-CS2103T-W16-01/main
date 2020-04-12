@@ -115,9 +115,9 @@ public class Statistics implements ReadOnlyStatistics {
      *
      * @param dayData new DayData object to replace.
      */
-    public void updatesDayData(DayData dayData) {
+    public void updateDayData(DayData dayData) {
         try {
-            customQueue.updatesDayDataCustom(dayData);
+            customQueue.updateDayDataCustom(dayData);
         } catch (DayDataNotFoundException e) {
         }
     }

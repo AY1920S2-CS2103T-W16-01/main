@@ -39,18 +39,18 @@ public class CustomQueueTest {
     }
 
     @Test
-    public void updatesDayDataCustom_nullLocalDatethrowsNullPointerException()
+    public void updateDayDataCustom_nullLocalDatethrowsNullPointerException()
             throws InvalidTableException {
         customQueue.init(VALID_LOCAL_DATE);
-        assertThrows(NullPointerException.class, () -> customQueue.updatesDayDataCustom(null));
+        assertThrows(NullPointerException.class, () -> customQueue.updateDayDataCustom(null));
     }
 
     @Test
-    public void updatesDayDataCustom_nonexistentDayDatathrowsDayDataNotFoundException()
+    public void updateDayDataCustom_nonexistentDayDatathrowsDayDataNotFoundException()
             throws InvalidTableException {
         customQueue.init(VALID_LOCAL_DATE);
         assertThrows(
-                DayDataNotFoundException.class, () -> customQueue.updatesDayDataCustom(DAYNEW));
+                DayDataNotFoundException.class, () -> customQueue.updateDayDataCustom(DAYNEW));
     }
 
     @Test

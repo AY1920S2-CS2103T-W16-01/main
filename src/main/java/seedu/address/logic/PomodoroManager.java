@@ -292,7 +292,7 @@ public class PomodoroManager {
         endDateTime = LocalDateTime.now();
         model.getStatistics().updateDataDates();
         List<DayData> newDayDatas = generateUpdatedDayData(startDateTime, endDateTime);
-        newDayDatas.forEach(dayData -> model.getStatistics().updatesDayData(dayData));
+        newDayDatas.forEach(dayData -> model.getStatistics().updateDayData(dayData));
     }
 
     /**
@@ -458,7 +458,7 @@ public class PomodoroManager {
                         dateOnDone,
                         dayData.getPomDurationData(),
                         new TasksDoneData("" + (dayData.getTasksDoneData().value + 1)));
-        stats.updatesDayData(updatedDayData);
+        stats.updateDayData(updatedDayData);
         clearDoneParams();
     }
 
