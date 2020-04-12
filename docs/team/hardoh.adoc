@@ -22,7 +22,7 @@ My 5-man strong team of software-engineering students were tasked to take a basi
 
 ** Relevant PRs: [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/92[#92]], [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/126[#126]], [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/146[#146], [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/147[#147]], [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/262[#262]], [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/263[#263]], [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/269[#269]]
 
-* *Minor enhancement*: I added a switch tabs command that allows the user to navigate to between the tabs. 
+* *Minor enhancement*: I added a switch tabs command that allows the user to navigate to between the tabs.
 ** Relevant PR: [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/127[#127]]
 
 * *My code contributions on RepoSense*: [https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=&sort=totalCommits%20dsc&sortWithin=title&since=2020-02-14&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=Hardoh&tabRepo=AY1920S2-CS2103T-W16-1%2Fmain%5Bmaster%5D[RepoSense]]
