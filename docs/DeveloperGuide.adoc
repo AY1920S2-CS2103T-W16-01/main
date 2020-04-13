@@ -182,7 +182,7 @@ Step 2. `TaskListParser` creates an `AddCommandParser` to parse this input. `Add
 
 Step 3. `AddCommandParser` returns a new `AddCommand` with the newly created `Task` as its only argument to `LogicManager`.
 
-Step 4. `AddCommand` executes. It checks if the `TaskList` contains a duplicate `Task` to it through `Model#hasTask`. If a duplicate `Task` exists, a `DuplicateTaskException` is thrown. If not, it adds the new `Task` into the `Tasklist` through `Model#addTask`.
+Step 4. `AddCommand` executes. It checks if the `TaskList` contains a duplicate `Task` to it through `Model#hasTask`. If a duplicate `Task` exists, a `CommandException` is thrown. If not, it adds the new `Task` into the `Tasklist` through `Model#addTask`.
 
 Step 5. `AddCommand` creates and return the resulting `CommandResult` to the `Ui`.
 
