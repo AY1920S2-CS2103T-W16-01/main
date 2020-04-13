@@ -195,6 +195,48 @@
 </div>
 </div>
 <div class="sect2">
+<h3 id="statistics"><a class="link" href="#statistics">Statistics</a></h3>
+<div class="paragraph">
+<p><a id="statistics"></a>
+As you continue to use BB Productive, you may start to wonder how productive you have been over time. This is where our Statistics feature comes in! Simply type in the command 'stats' to access the Statistics Tab and track your productivity. Look out for the background color of the "Statistics" Tab. If it turns orange after you run the command, you are on the correct tab.</p>
+</div>
+<div class="paragraph">
+<p>The Statistics Tab consists of the following 2 features to help you keep track of your productivity. From the figure below, the Daily Challenge is the progress bar near the top of the screen and the Productivity Charts are the 2 bar charts below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/stats_tab.png" alt="stats tab" width="400">
+</div>
+<div class="title">Figure 6. Statistics Tab</div>
+</div>
+<div class="sect3">
+<h4 id="daily-challenge"><a class="link" href="#daily-challenge">Daily Challenge</a></h4>
+<div class="paragraph">
+<p>The Daily Challenge tracks the total duration you have kept the Pomodoro running on the current day. The more you run the Pomodoro, the more the progress bar fills, and the closer you are to clearing the challenge! Try to clear the Daily Challenge every day to hit your productivity goals!</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You can customise the duration you aim to achieve on a daily basis by using the Set Command as described <a href="#settings">here</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="productivity-charts"><a class="link" href="#productivity-charts">Productivity Charts</a></h4>
+<div class="paragraph">
+<p>The Productivity Charts tracks 2 main data points daily. Firstly, it tracks the number of tasks you have completed. Secondly, it tracks the total duration you ran the Pomodoro. With this information, you can gauge your productivity over time and make proper adjustments to your schedule to improve your productivity. If you start noticing the orange bars getting shorter, realize that it is time to buckle up and work harder, or else you may lose your productivity momentum!</p>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="storage"><a class="link" href="#storage">Storage</a></h3>
 <div class="paragraph">
 <p>All your progress, user preferences and settings are stored in the “data” folder. If you plan to switch devices, you may transfer your progress to another computer by copying the contents of the original device’s “data” folder to the new device’s data folder. This can be done through a thumbdrive.</p>
@@ -206,7 +248,7 @@
 <div class="content">
 <img src="../images/storage.png" alt="storage" width="395">
 </div>
-<div class="title">Figure 6. Files in data folder</div>
+<div class="title">Figure 7. Files in data folder</div>
 </div>
 </div>
 </div>
@@ -230,7 +272,7 @@
 <div class="content">
 <img src="../images/UiClassDiagram.png" alt="UiClassDiagram">
 </div>
-<div class="title">Figure 7. Structure of the UI Component</div>
+<div class="title">Figure 8. Structure of the UI Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="{repoURL}/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
@@ -310,7 +352,7 @@ The user can specify multiple `Tag`s.
 <div class="content">
 <img src="../images/AddSequenceDiagram.png" alt="AddSequenceDiagram">
 </div>
-<div class="title">Figure 8. Add Command Sequence Diagram</div>
+<div class="title">Figure 9. Add Command Sequence Diagram</div>
 </div>
 <div class="paragraph">
 <p>The following activity diagram summarises what happens when the <code>AddCommand</code> is executed.</p>
@@ -319,7 +361,7 @@ The user can specify multiple `Tag`s.
 <div class="content">
 <img src="../images/AddCommandActivityDiagram.png" alt="AddCommandActivityDiagram">
 </div>
-<div class="title">Figure 9. Add Command Activity Diagram</div>
+<div class="title">Figure 10. Add Command Activity Diagram</div>
 </div>
 </div>
 </div>
@@ -341,7 +383,7 @@ The user can specify multiple `Tag`s.
 <div class="content">
 <img src="../images/SwitchTabActivityDiagram.png" alt="SwitchTabActivityDiagram">
 </div>
-<div class="title">Figure 10. Activity Diagram of Tab Switches</div>
+<div class="title">Figure 11. Activity Diagram of Tab Switches</div>
 </div>
 <div class="paragraph">
 <p>The following sequence diagram shows how the SwitchTabCommand updates the tab in the UI.</p>
@@ -350,7 +392,7 @@ The user can specify multiple `Tag`s.
 <div class="content">
 <img src="../images/SwitchTabSequenceDiagram.png" alt="SwitchTabSequenceDiagram">
 </div>
-<div class="title">Figure 11. Sequence Diagram of SwitchTabCommand</div>
+<div class="title">Figure 12. Sequence Diagram of SwitchTabCommand</div>
 </div>
 </div>
 <div class="sect2">
@@ -370,7 +412,7 @@ The user can specify multiple `Tag`s.
 <div class="content">
 <img src="../images/ReminderSequenceDiagram.png" alt="ReminderSequenceDiagram" width="790">
 </div>
-<div class="title">Figure 12. Reminder Sequence Diagram</div>
+<div class="title">Figure 13. Reminder Sequence Diagram</div>
 </div>
 </div>
 </div>
@@ -383,7 +425,7 @@ The user can specify multiple `Tag`s.
 <div class="content">
 <img src="../images/RecurringActivityDiagram.png" alt="RecurringActivityDiagram" width="790">
 </div>
-<div class="title">Figure 13. Recurring Activity Diagram</div>
+<div class="title">Figure 14. Recurring Activity Diagram</div>
 </div>
 <div class="sect3">
 <h4 id="implementation-3"><a class="link" href="#implementation-3">Implementation</a></h4>
@@ -424,7 +466,7 @@ The user can specify multiple `Tag`s.
 <div class="content">
 <img src="../images/SwitchTabActivityDiagram.png" alt="SwitchTabActivityDiagram">
 </div>
-<div class="title">Figure 14. Activity Diagram of Tab Switches</div>
+<div class="title">Figure 15. Activity Diagram of Tab Switches</div>
 </div>
 <div class="paragraph">
 <p>The mechanism of how <code>SwitchTabCommand</code> updates the <code>Ui</code> is described below.</p>
@@ -445,7 +487,7 @@ The user can specify multiple `Tag`s.
 <div class="content">
 <img src="../images/SwitchTabSequenceDiagram.png" alt="SwitchTabSequenceDiagram">
 </div>
-<div class="title">Figure 15. Sequence Diagram of SwitchTabCommand</div>
+<div class="title">Figure 16. Sequence Diagram of SwitchTabCommand</div>
 </div>
 </div>
 <div class="sect2">
@@ -474,7 +516,7 @@ The user can specify multiple `Tag`s.
 <div class="content">
 <img src="../images/StatisticsClassDiagram.png" alt="StatisticsClassDiagram">
 </div>
-<div class="title">Figure 16. Class Diagram of the Statistics Component</div>
+<div class="title">Figure 17. Class Diagram of the Statistics Component</div>
 </div>
 <div class="paragraph">
 <p>The <code>CustomQueue</code> class enforces the following constraints:</p>
@@ -536,7 +578,7 @@ The user can specify multiple `Tag`s.
 <div class="content">
 <img src="../images/StatisticsUiSequenceDiagram.png" alt="StatisticsUiSequenceDiagram">
 </div>
-<div class="title">Figure 17. Sequence Diagram of how Statistics</div>
+<div class="title">Figure 18. Sequence Diagram of how Statistics</div>
 </div>
 </div>
 <div class="sect3">
@@ -620,7 +662,7 @@ The user can specify multiple `Tag`s.
 <div class="content">
 <img src="../images/PetClassDiagram.png" alt="PetClassDiagram">
 </div>
-<div class="title">Figure 18. Pet Class Diagram</div>
+<div class="title">Figure 19. Pet Class Diagram</div>
 </div>
 <div class="paragraph">
 <p>To exemplify the implementation for the components of the XP points and the evolution of the pet, an example usage scenario is given below.</p>
@@ -640,7 +682,7 @@ The user can specify multiple `Tag`s.
 <div class="content">
 <img src="../images/PetSequenceDiagram.png" alt="PetSequenceDiagram">
 </div>
-<div class="title">Figure 19. Pet Sequence Diagram</div>
+<div class="title">Figure 20. Pet Sequence Diagram</div>
 </div>
 <div class="paragraph">
 <p>Step 3. Following the update of XP points, MainWindow also updates the mood of the pet. Supposedly, the pet is originally in "HANGRY" mood, MainWindow will call "MainWindow#updateMoodWhenDone" method to change the pet&#8217;s mood to Happy. It will also update the time of the last done task and reschedules a new timertask so that the pet will turn "Hangry" at the correct time. Lastly, this method also updates the elements</p>
@@ -655,7 +697,7 @@ The user can specify multiple `Tag`s.
 <div class="content">
 <img src="../images/UpdatePetDisplaySequenceDiagram.png" alt="UpdatePetDisplaySequenceDiagram">
 </div>
-<div class="title">Figure 20. update PetDisplay Diagram</div>
+<div class="title">Figure 21. update PetDisplay Diagram</div>
 </div>
 </div>
 <div class="sect3">
@@ -669,7 +711,7 @@ The user can specify multiple `Tag`s.
 <div class="content">
 <img src="../images/SetClassDiagram.png" alt="SetClassDiagram">
 </div>
-<div class="title">Figure 21. Set command class diagram</div>
+<div class="title">Figure 22. Set command class diagram</div>
 </div>
 <div class="paragraph">
 <p>The Set Commands can be used to customise the features in BB Productive. It can be used to customised the name of the pet, the duration for pomodoro and the daily challenge target so as to better cater to the needs of the user.</p>
@@ -684,7 +726,7 @@ The user can specify multiple `Tag`s.
 <div class="content">
 <img src="../images/SetCommandSequenceDiagram.png" alt="SetCommandSequenceDiagram">
 </div>
-<div class="title">Figure 22. Set command sequence diagram</div>
+<div class="title">Figure 23. Set command sequence diagram</div>
 </div>
 <div class="paragraph">
 <p>Step 2. Logic calls upon the method <code>SetCommand#execute</code> which eventually calls the methods <code>Model#SetPetName</code> and <code>Model#setPomodoroDefaultTime</code>. A SetCommandResult object is return once these methods are executed.</p>
@@ -696,7 +738,7 @@ The user can specify multiple `Tag`s.
 <div class="content">
 <img src="../images/SetCommandUpdatingUi.png" alt="SetCommandUpdatingUi">
 </div>
-<div class="title">Figure 23. set command updating Ui</div>
+<div class="title">Figure 24. set command updating Ui</div>
 </div>
 <div class="sect3">
 <h4 id="design-consideration-2"><a class="link" href="#design-consideration-2">Design Consideration</a></h4>
@@ -962,7 +1004,7 @@ The user can specify multiple `Tag`s.
 <div class="content">
 <img src="../images/use_cases.png" alt="use cases" width="790">
 </div>
-<div class="title">Figure 24. Use case diagram for BBProductive</div>
+<div class="title">Figure 25. Use case diagram for BBProductive</div>
 </div>
 <h3 id="use-case-uc01-view-tasks" class="discrete">Use Case: UC01 - View tasks</h3>
 <div class="paragraph">
@@ -2400,4 +2442,4 @@ Expected: The Pomodoro duration on the current day should increase by 1.</p>
 </ol>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 15:37:16 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 15:37:34 UTC</div></div></div></body></html>
