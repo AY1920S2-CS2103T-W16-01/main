@@ -70,14 +70,12 @@ or
 t/friend t/family`
 |===
 
-
-* Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-=== Indexes
 [IMPORTANT]
 ====
 Indexes refer to the current tasklist on display, it does not refer to the indices of the entire task list. Note also that indexes start from 1 and not 0.
 ====
+[TIP]
+Parameters can be in any order e.g. if the command specifies `pet/PETNAME pom/POMDURATION`, `pom/POMDURATION pet/PETNAME` is also acceptable.
 
 == Quick Start
 
@@ -408,6 +406,30 @@ Use the `settings` command to view the _Settings_ tab. The orange background on 
 
 image::settings.png[width="790"]
 
+=== Set Commands
+_This section explains how to use the set commands_
+
+Tired of the name "BB"? Is 25 minutes of pomodoro time too short for you? Want to achieve more with the daily challenge? BB productive provides you with the option to customise the various features! Simply, use the set commands to customise it the way you want.
+
+command: `set [pet/PETNAME] [pom/POMDURATION] [daily/DAILYTARGET]`
+
+[TIP]
+Parameters can be in any order e.g. if the command specifies `pet/PETNAME pom/POMDURATION`, `pom/POMDURATION pet/PETNAME` is also acceptable.
+
+Take for example, you would like the name to be "Momu", the pomodoro duration to be 30 mins and the daily challenge target to be 150 minutes. Run this command:
+
+eg. Command `set pet/Momu pom/30 daily/150`
+
+//screenshot of running commanad
+
+//success message + success name + success pom
+
+[IMPORTANT]
+Take note that there are restrictions in the values you can set.  
+Pet Name: Only alphanumerics are allowed
+Pomodoro Duration : The maximum amount is 60 minutes so as to prevent you from burning out
+Daily Target: The maximun amount is 720 minutes
+
 === Storage (Permas)
 All your progress, user preferences and settings are stored in the “data” folder. If you plan to switch devices, you may transfer your progress to another computer by copying the contents of the original device’s “data” folder to the new device’s data folder. This can be done through a thumbdrive.
 
@@ -463,6 +485,10 @@ _The following table summarizes all the commands that you can use. Input contain
 |Settings
 |settings
 |settings
+
+|Set
+|Set [pet/PETNAME] [pom/POMDURATION] [daily/DAILYTARGET]
+|Set pet/momu pom/30 daily/150
 
 |===
 
