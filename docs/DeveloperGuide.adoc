@@ -410,7 +410,15 @@ This behaviour is represented in the following activity diagram.
 .Activity Diagram of Tab Switches
 image::SwitchTabActivityDiagram.png[]
 
-The following sequence diagram shows how the SwitchTabCommand updates the tab in the UI.
+The mechanism of how `SwitchTabCommand` updates the UI is described below.
+
+Step 1. `MainWindow` executes the user input through logic and retrieves the `SwitchTabCommandResult commandResult` from Logic.
+
+Step 2. `MainWindow` retrieves the `tabToSwitchIndex` from `commandResult`.
+
+Step 3. `MainWindow` updates the `tabToSwitchIndex` tab through `tabPanePlaceholder`.
+
+The following sequence diagram shows how `SwitchTabCommand` updates the tab in the UI.
 
 .Sequence Diagram of SwitchTabCommand
 image::SwitchTabSequenceDiagram.png[]
@@ -420,31 +428,13 @@ image::SwitchTabSequenceDiagram.png[]
 The Statistics feature allows the user to view information about their number of tasks completed and Pomodoro duration ran on a daily basis for the past `CONSTANT_SIZE` days.
 
 [NOTE]
-`CONSTANT_SIZE` can be set to any number for any future developments. In our current implementation, we chose to store data for only the past 7 days to keep statistics simple and intuitive for users.
+`CONSTANT_SIZE` can be set to any number for any future developments. In our current implementation, we chose to store data for only the past 7 days to keep Statistics simple and intuitive for users.
 
 ==== Implementation
-The Statistics feature is mainly supported by the Statistics class, which in turn is facilitated by the CustomQueue class. Its class diagram is given below.
+The Statistics feature is mainly supported by the `Statistics` class, which in turn is facilitated by the `CustomQueue` class. Its class diagram is given below.
 
 .Class Diagram of the Statistics Component
 image::StatisticsClassDiagram.png[]
-
-The Statistics feature does not support any explicit commands. Instead, the UI is updated and displayed when the SwitchTabCommand 'stats' is called.
-
-Step 1. MainWindow receives the SwitchTabCommandResult commandResult from Logic.
-
-Step 2. MainWindow calls StatisticsManager#updateStatisticsDisplayValues() which retrieve the latest Statistics from Model and generates the display information.
-
-Step 3. MainWindow then retrieves these display information from StatisticsManager and sets this information in StatisticsDisplay.
-
-[NOTE]
-SwitchTabCommand also switches the focused tab to the Statistics tab to display the results to the user.
-
-The following sequence diagram shows how the statistics is updated to the display.
-
-.Sequence Diagram of how Statistics
-image::StatisticsUiSequenceDiagram.png[]
-
-==== CustomQueue Implementation
 
 The `CustomQueue` class enforces the following constraints.
 1. Size of `CustomQueue` must be of `CONSTANT_SIZE` after each method call through `Statistics`.
@@ -452,20 +442,27 @@ The `CustomQueue` class enforces the following constraints.
 
 The `CustomQueue` class implements the following methods for other components to access or update its data:
 
-* Model#updateDataDatesStatistics() - Updates data to current day while retaining stored data.
-* Model#updatesDayDataStatistics() - Replaces existing DayData in Statistics with new DayData of the same date.
-* Model#getDayDataFromDateStatistics() - Returns the DayData object from Statistics with the specified date.
+* `Model#updateDataDatesStatistics()` - Updates data to current day while retaining stored data.
+* `Model#updatesDayDataStatistics()` - Replaces existing DayData in Statistics with new DayData of the same date.
+* `Model#getDayDataFromDateStatistics()` - Returns the DayData object from Statistics with the specified date.
+
+The Statistics feature does not support any explicit commands. Instead, the UI is updated and displayed when the SwitchTabCommand 'stats' is called. The mechanism of this behaviour is described below.
+
+Step 1. `MainWindow` receives the `SwitchTabCommandResult commandResult` from `Logic`.
+
+Step 2. `MainWindow` calls `StatisticsManager#updateStatisticsDisplayValues()` which retrieve the latest `Statistics` from `Model` and generates the display information.
+
+Step 3. `MainWindow` then retrieves these display information from `StatisticsManager` and sets this information in `StatisticsDisplay`.
+
+[NOTE]
+`SwitchTabCommand` also switches the focused tab to the `Statistics` tab to display the results to the user.
+
+The following sequence diagram shows how the `Statistics` is updated to the display.
+
+.Sequence Diagram of how Statistics
+image::StatisticsUiSequenceDiagram.png[]
 
 ==== Design considerations
-
-===== Aspect: when to update StatisticsDisplay
-
-* **Alternative 1 (current choice):** Update when the user runs the command to view Statistics
-** Pros: Easy to implement.
-** Cons: Progress can only be viewed at the Statistics tab.
-* **Alternative 2:** Update when any changes are made to Statistics.
-** Pros: In the event of future developments, any component of Statistics can be displayed at all times.
-** Cons: Need to keep track of all instances that can modify Statistics' values.
 
 ===== Aspect: Data structure to support Statistics
 
@@ -475,6 +472,15 @@ The `CustomQueue` class implements the following methods for other components to
 * **Alternative 2:** Use a list with elements sorted from oldest to latest date.
 ** Pros: Easy to implement.
 ** Cons: Harder to pass data to generate graphs. Need to handle outdated dates.
+
+===== Aspect: when to update StatisticsDisplay
+
+* **Alternative 1 (current choice):** Update when the user runs the command to view Statistics
+** Pros: Easy to implement.
+** Cons: Progress can only be viewed at the Statistics tab.
+* **Alternative 2:** Update when any changes are made to Statistics.
+** Pros: In the event of future developments, any component of Statistics can be displayed at all times.
+** Cons: Need to keep track of all instances that can modify Statistics' values.
 
 //end::statistics[]
 
