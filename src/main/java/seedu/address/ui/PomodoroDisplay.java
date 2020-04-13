@@ -61,22 +61,4 @@ public class PomodoroDisplay extends UiPart<Region> {
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
     }
-
-    @Override
-    public boolean equals(Object other) {
-        // short circuit if same object
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof PomodoroDisplay)) {
-            return false;
-        }
-
-        // state check
-        PomodoroDisplay card = (PomodoroDisplay) other;
-        return taskInProgress.getText().equals(card.taskInProgress.getText())
-                && timer.getText().equals(card.timer.getText());
-    }
 }

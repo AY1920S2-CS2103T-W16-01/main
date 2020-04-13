@@ -19,27 +19,15 @@ public class DayData {
     }
 
     public Date getDate() {
-        return this.date;
+        return date;
     }
 
     public PomDurationData getPomDurationData() {
-        return this.pomDurationData;
+        return pomDurationData;
     }
 
     public TasksDoneData getTasksDoneData() {
-        return this.tasksDoneData;
-    }
-
-    /**
-     * Returns true if both dayDatas has the same Date field. his defines a weaker notion of
-     * equality between two dayDatas.
-     */
-    public boolean isSameDayData(DayData otherDayData) {
-        if (otherDayData == this) {
-            return true;
-        }
-
-        return otherDayData != null && otherDayData.getDate().equals(getDate());
+        return tasksDoneData;
     }
 
     /**
@@ -71,19 +59,4 @@ public class DayData {
                 + " tasksDone: "
                 + getTasksDoneData();
     }
-
-    /*
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public void setPomDurationData(PomDurationData pomDurationData) {
-        this.pomDurationData = pomDurationData;
-    }
-
-    public void setTasksDoneData(TasksDoneData tasksDoneData) {
-        this.tasksDoneData = tasksDoneData;
-    }
-    */
-
 }

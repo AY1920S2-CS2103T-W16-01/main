@@ -1,0 +1,59 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":TabPanePlaceHolder" as TabPanePlaceHolder UI_COLOR
+participant ":SingleSelectionModel" as SingleSelectionModel UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SwitchTabCommand" as SwitchTabCommand LOGIC_COLOR
+participant ":SwitchTabCommandResult" as SwitchTabCommandResult LOGIC_COLOR
+end box
+
+[-> MainWindow : executeCommand("settings")
+activate MainWindow
+
+MainWindow -> LogicManager :  execute("settings")
+activate LogicManager
+
+LogicManager -> SwitchTabCommand :  execute()
+activate SwitchTabCommand
+
+create SwitchTabCommandResult
+SwitchTabCommand -> SwitchTabCommandResult :  SwitchTabCommandResult()
+activate SwitchTabCommandResult
+
+SwitchTabCommandResult --> SwitchTabCommand :
+deactivate SwitchTabCommandResult
+
+SwitchTabCommand --> LogicManager :
+deactivate SwitchTabCommand
+
+LogicManager --> MainWindow :  commandResult
+deactivate LogicManager
+
+MainWindow -> SwitchTabCommandResult :  getTabToSwitchIndex()
+activate SwitchTabCommandResult
+
+SwitchTabCommandResult --> MainWindow :  tabToSwitchIndex
+deactivate SwitchTabCommandResult
+
+MainWindow -> TabPanePlaceHolder :  getSelectionModel()
+activate TabPanePlaceHolder
+
+TabPanePlaceHolder -> SingleSelectionModel :  select(tabToSwitchIndex )
+activate SingleSelectionModel
+
+SingleSelectionModel --> TabPanePlaceHolder :
+deactivate SingleSelectionModel
+
+TabPanePlaceHolder --> MainWindow :
+deactivate TabPanePlaceHolder
+
+
+[<--MainWindow: commandResult
+deactivate MainWindow
+@enduml

@@ -52,7 +52,7 @@ public class NameContainsKeywordsPredicateTest {
 
         // Only one matching keyword
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Bob", "consultation"));
-        assertTrue(predicate.test(new TaskBuilder().withName("Alice consultation").build()));
+        assertFalse(predicate.test(new TaskBuilder().withName("Alice consultation").build()));
 
         // Mixed-case keywords
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("aLIce", "cOnsultation"));

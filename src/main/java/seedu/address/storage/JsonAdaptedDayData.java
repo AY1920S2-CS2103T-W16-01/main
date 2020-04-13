@@ -35,15 +35,11 @@ class JsonAdaptedDayData {
         tasksDoneData = source.getTasksDoneData().toString();
     }
 
-    public String getDateJson() {
-        return date;
-    }
-
     /**
      * Converts this Jackson-friendly adapted task object into the model's {@code DayData} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted
-     *     task.
+     *     dayData.
      */
     public DayData toModelType() throws IllegalValueException {
         if (date == null) {

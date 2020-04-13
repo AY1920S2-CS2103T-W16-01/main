@@ -16,8 +16,9 @@ public class CompletorResult {
         this.suggestedCommand = requireNonNull(suggestedCommand);
     }
 
+    /** Appends space to all suggeseted commands */
     public String getSuggestion() {
-        return suggestedCommand;
+        return suggestedCommand + " ";
     }
 
     public String getFeedbackToUser() {
@@ -35,9 +36,9 @@ public class CompletorResult {
             return false;
         }
 
-        CompletorResult CompletormmandResult = (CompletorResult) other;
-        return feedbackToUser.equals(CompletormmandResult.feedbackToUser)
-                && suggestedCommand == CompletormmandResult.suggestedCommand;
+        CompletorResult result = (CompletorResult) other;
+        return feedbackToUser.equals(result.feedbackToUser)
+                && suggestedCommand == result.suggestedCommand;
     }
 
     @Override

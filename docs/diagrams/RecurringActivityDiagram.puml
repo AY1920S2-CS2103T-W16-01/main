@@ -1,0 +1,40 @@
+@startuml
+start
+:User calls Add or Edit Command with Recurring flag;
+
+
+partition CommandExecution {
+    if (task is added) then
+        if (task added has recurring) then
+            : Task with recurring is added;
+        else
+            : Task without recurring is added to model;
+            stop;
+        endif
+    else (tas)
+        if (task edited has recurring) then
+            : Change the recurring to a different value;
+        else
+            : Add the recurring attribute;
+        endif
+    endif
+}
+
+partition RecurringExecution {
+    if (task is Done) then
+        : task is marked as unfinished;
+    else (task is not done)
+    endif
+
+    if (task has reminder) then
+        if (reminder has been triggered already) then
+        : task's reminder is incremented by the stipulated time;
+        endif
+    else (task does not have reminder)
+    endif
+
+    : task is edited and sent to the model;
+}
+
+stop;
+@enduml

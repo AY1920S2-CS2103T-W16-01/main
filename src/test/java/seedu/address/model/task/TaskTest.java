@@ -32,7 +32,7 @@ public class TaskTest {
 
         // different priority -> returns false
         Task editedAlice = new TaskBuilder(HOMEWORK10).withPriority(VALID_PRIORITY_TASK2).build();
-        assertFalse(HOMEWORK10.isSameTask(editedAlice));
+        assertTrue(HOMEWORK10.isSameTask(editedAlice));
 
         // different name -> returns false
         editedAlice = new TaskBuilder(HOMEWORK10).withName(VALID_NAME_TASK2).build();
@@ -46,14 +46,14 @@ public class TaskTest {
                         .build();
         assertTrue(HOMEWORK10.isSameTask(editedAlice));
 
-        // same name, different attributes -> returns false
+        // same name, different attributes -> returns true
         editedAlice =
                 new TaskBuilder(HOMEWORK10)
                         .withPriority(VALID_PRIORITY_TASK2)
                         .withDescription(VALID_DESCRIPTION_TASK2)
                         .withTags(VALID_TAG_MA1521)
                         .build();
-        assertFalse(HOMEWORK10.isSameTask(editedAlice));
+        assertTrue(HOMEWORK10.isSameTask(editedAlice));
 
         // same name, same priority, different attributes -> returns true
         editedAlice =

@@ -189,6 +189,12 @@
 	-fx-text-fill: #707070;
 }
 
+.recurring {
+	-fx-text-fill: #707070;
+	-fx-font-family: "SofiaProRegular";
+	-fx-font-size: 13px;
+}
+
 #priority {
 	-fx-text-alignment: right;
 }
