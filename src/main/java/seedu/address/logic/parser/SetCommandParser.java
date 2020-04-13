@@ -8,11 +8,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_POM;
 import java.util.stream.Stream;
 import seedu.address.logic.commands.SetCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.settings.DailyTarget;
 import seedu.address.model.settings.PetName;
+import seedu.address.model.settings.PomDuration;
 
 public class SetCommandParser implements Parser<SetCommand> {
 
     public SetCommand parse(String args) throws ParseException {
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_PET, PREFIX_POM, PREFIX_DAILY);
 
@@ -24,23 +27,38 @@ public class SetCommandParser implements Parser<SetCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetCommand.MESSAGE_USAGE));
         }
 
-        PetName petName =
-                (argMultimap.getValue(PREFIX_PET).isEmpty())
-                        ? ParserUtil.parsePetName("")
-                        : ParserUtil.parsePetName(argMultimap.getValue(PREFIX_PET).get());
+        PetName petName;
+        PomDuration pomDuration;
+        DailyTarget dailyTarget;
 
-        // PomDuration pomDuration =
-        //         (argMultimap.getValue(PREFIX_POM).isEmpty())
-        //                 ? ParserUtil.parsePomDuration("")
-        //                 : ParserUtil.parsePomDuration(argMultimap.getValue(PREFIX_POM).get());
+        if (arePrefixesPresent(argMultimap, PREFIX_PET)) {
+            petName =
+                    (argMultimap.getValue(PREFIX_PET).isEmpty())
+                            ? ParserUtil.parsePetName("")
+                            : ParserUtil.parsePetName(argMultimap.getValue(PREFIX_PET).get());
+        } else {
+            petName = new PetName("");
+        }
 
-        // DailyTarget dailyTarget =
-        //         (argMultimap.getValue(PREFIX_DAILY).isEmpty())
-        //                 ? ParserUtil.parseDailyTarget("")
-        //                 : ParserUtil.parseDailyTarget(argMultimap.getValue(PREFIX_DAILY).get());
+        if (arePrefixesPresent(argMultimap, PREFIX_POM)) {
+            pomDuration =
+                    (argMultimap.getValue(PREFIX_POM).isEmpty())
+                            ? ParserUtil.parsePomDuration("")
+                            : ParserUtil.parsePomDuration(argMultimap.getValue(PREFIX_POM).get());
+        } else {
+            pomDuration = new PomDuration("");
+        }
 
-        // return new SetCommand(petName, pomDuration, dailyTarget);
-        return new SetCommand(petName);
+        if (arePrefixesPresent(argMultimap, PREFIX_DAILY)) {
+            dailyTarget =
+                    (argMultimap.getValue(PREFIX_DAILY).isEmpty())
+                            ? ParserUtil.parseDailyTarget("")
+                            : ParserUtil.parseDailyTarget(argMultimap.getValue(PREFIX_DAILY).get());
+        } else {
+            dailyTarget = new DailyTarget("");
+        }
+
+        return new SetCommand(petName, pomDuration, dailyTarget);
     }
 
     private static boolean arePrefixesPresent(

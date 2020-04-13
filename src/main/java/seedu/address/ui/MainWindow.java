@@ -1,17 +1,18 @@
 package seedu.address.ui;
 
+import static seedu.address.logic.commands.SwitchTabCommand.SETTINGS_TAB_INDEX;
 import static seedu.address.logic.commands.SwitchTabCommand.STATS_TAB_INDEX;
 import static seedu.address.logic.commands.SwitchTabCommand.TASKS_TAB_INDEX;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Logger;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -30,17 +31,23 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.PetManager;
 import seedu.address.logic.PomodoroManager;
+import seedu.address.logic.StatisticsManager;
 import seedu.address.logic.commands.CommandCompletor;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CompletorDeletionResult;
 import seedu.address.logic.commands.CompletorResult;
 import seedu.address.logic.commands.DoneCommandResult;
 import seedu.address.logic.commands.PomCommandResult;
+import seedu.address.logic.commands.SetCommandResult;
 import seedu.address.logic.commands.SwitchTabCommand;
 import seedu.address.logic.commands.SwitchTabCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.exceptions.CompletorException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.dayData.DayData;
+import seedu.address.model.settings.DailyTarget;
+import seedu.address.model.settings.PetName;
+import seedu.address.model.settings.PomDuration;
 import seedu.address.model.task.Reminder;
 
 /**
@@ -61,6 +68,7 @@ public class MainWindow extends UiPart<Stage> {
     private CommandCompletor commandCompletor;
     private PomodoroManager pomodoro;
     private PetManager petManager;
+    private StatisticsManager statisticsManager;
 
     // Independent Ui parts residing in this Ui container
     private TaskListPanel taskListPanel;
@@ -98,7 +106,11 @@ public class MainWindow extends UiPart<Stage> {
     @FXML private TabPane tabPanePlaceholder;
 
     public MainWindow(
-            Stage primaryStage, Logic logic, PomodoroManager pomodoro, PetManager petManager) {
+            Stage primaryStage,
+            Logic logic,
+            PomodoroManager pomodoro,
+            PetManager petManager,
+            StatisticsManager statisticsManager) {
         super(FXML, primaryStage);
 
         // Set dependencies
@@ -106,6 +118,7 @@ public class MainWindow extends UiPart<Stage> {
         this.logic = logic;
         this.pomodoro = pomodoro;
         this.petManager = petManager;
+        this.statisticsManager = statisticsManager;
         this.commandCompletor = new CommandCompletor();
 
         // Configure the UI
@@ -132,10 +145,6 @@ public class MainWindow extends UiPart<Stage> {
 
     public Stage getPrimaryStage() {
         return primaryStage;
-    }
-
-    public StatisticsDisplay getStatisticsDisplay() {
-        return statisticsDisplay;
     }
 
     private void setAccelerators() {
@@ -209,15 +218,13 @@ public class MainWindow extends UiPart<Stage> {
         pomodoro.setPomodoroDisplay(pomodoroDisplay);
         pomodoro.setResultDisplay(resultDisplay);
         pomodoro.setMainWindow(this);
+        pomodoro.handleResumeLastSession();
 
         statisticsDisplay = new StatisticsDisplay();
         statisticsPlaceholder.getChildren().add(statisticsDisplay.getRoot());
 
-        settingsDisplay = new SettingsDisplay(petManager, logic.getPomodoro());
+        settingsDisplay = new SettingsDisplay(petManager, logic.getPomodoro(), statisticsManager);
         settingsPlaceholder.getChildren().add(settingsDisplay.getRoot());
-
-        // tabPanePlaceholder.getSelectionModel().select(1);
-
     }
 
     /** Sets the default size based on {@code guiSettings}. */
@@ -248,6 +255,7 @@ public class MainWindow extends UiPart<Stage> {
     /** Closes the application. */
     @FXML
     private void handleExit() {
+        pomodoro.handleExit();
         GuiSettings guiSettings =
                 new GuiSettings(
                         primaryStage.getWidth(),
@@ -259,15 +267,13 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public TaskListPanel getTaskListPanel() {
-        return taskListPanel;
-    }
-
-    /** */
     private String suggestCommand(String commandText) throws CompletorException {
         try {
-            CompletorResult completorResult = commandCompletor.getSuggestedCommand(commandText);
+            CompletorResult completorResult = logic.suggestCommand(commandText);
             resultDisplay.setFeedbackToUser(completorResult.getFeedbackToUser());
+            if (completorResult instanceof CompletorDeletionResult) {
+                resultDisplay.setWarning();
+            }
             return completorResult.getSuggestion();
         } catch (CompletorException e) {
             resultDisplay.setFeedbackToUser(e.getMessage());
@@ -291,40 +297,63 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            tabPanePlaceholder.getSelectionModel().select(TASKS_TAB_INDEX);
+            taskListPanel.setSortOrder(logic.getTaskList().getSortOrder());
 
             // Done Command related results
-            try {
-                DoneCommandResult doneCommandResult = (DoneCommandResult) commandResult;
-                //// increment Pet EXP after completing a task
+            if (commandResult instanceof DoneCommandResult) {
+                // increment Pet EXP after completing a task
                 petManager.incrementExp();
                 updateMoodWhenDoneTask();
                 updatePetDisplay();
-            } catch (ClassCastException ce) {
-
             }
 
-            // Swap to tasks tab
-            tabPanePlaceholder.getSelectionModel().select(TASKS_TAB_INDEX);
+            // set Command related results
+            if (commandResult instanceof SetCommandResult) {
+                SetCommandResult setCommandResult = (SetCommandResult) commandResult;
+
+                PetName petName = setCommandResult.getPetName();
+                PomDuration pomDuration = setCommandResult.getPomDuration();
+                DailyTarget dailyTarget = setCommandResult.getDailyTarget();
+
+                if (!petName.isEmpty()) {
+                    updatePetDisplay();
+                }
+
+                if (!pomDuration.isEmpty()) {
+                    String str = pomDuration.toString();
+                    float f = Float.parseFloat(str);
+                    pomodoro.setDefaultStartTime(f);
+                    pomodoroDisplay.setDefaultTimeText(pomodoro.getDefaultStartTimeAsString());
+                    pomodoroDisplay.setTimerText(pomodoro.getDefaultStartTimeAsString());
+                }
+
+                if (!dailyTarget.isEmpty()) {
+                    statisticsManager.setDailyTargetText(dailyTarget.toString());
+                }
+
+                settingsDisplay.update();
+                tabPanePlaceholder.getSelectionModel().select(SETTINGS_TAB_INDEX);
+            }
 
             // Switch tabs related results
-            try {
+            if (commandResult instanceof SwitchTabCommandResult) {
                 SwitchTabCommandResult switchTabCommandResult =
                         (SwitchTabCommandResult) commandResult;
                 tabPanePlaceholder
                         .getSelectionModel()
                         .select(switchTabCommandResult.getTabToSwitchIndex());
                 if (switchTabCommandResult.getTabToSwitchIndex() == STATS_TAB_INDEX) {
-                    ObservableList<DayData> customQueue = logic.getCustomQueue();
-                    statisticsDisplay.updateGraphs(customQueue);
+                    statisticsManager.updateStatisticsDisplayValues();
+                    this.updateStatisticsDisplay();
                 }
-            } catch (ClassCastException ce) {
             }
 
             // Pomodoro related results
-            try {
+            if (commandResult instanceof PomCommandResult) {
                 PomCommandResult pomCommandResult = (PomCommandResult) commandResult;
 
-                if (!pomCommandResult.getIsPause() && !pomCommandResult.getIsContinue()) {
+                if (pomCommandResult.getIsNormal()) {
                     pomodoroDisplay.setTaskInProgressText(pomCommandResult.getPommedTask());
                     pomodoro.start(pomCommandResult.getTimerAmountInMin());
                     pomodoro.setDoneParams(
@@ -332,10 +361,6 @@ public class MainWindow extends UiPart<Stage> {
                             pomCommandResult.getOriginList(),
                             pomCommandResult.getTaskIndex());
                 }
-            } catch (ClassCastException ce) {
-
-            } catch (NullPointerException ne) {
-                resultDisplay.setFeedbackToUser("Sorry, you've got no tasks being POMmed.");
             }
 
             if (commandResult.isShowHelp()) {
@@ -343,17 +368,12 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isExit()) {
+                hasStarted = false;
                 timer.cancel();
                 timer.purge();
                 handleExit();
             }
             updatePetDisplay();
-            // update because sorting returns a new list
-
-            // * Old implementation for sort
-            // taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
-            // taskListPanelPlaceholder.getChildren().clear();
-            // taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
             return commandResult;
         } catch (CommandException | ParseException e) {
@@ -363,9 +383,17 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    public void displayRecurring(String recurringFeedback) {
+        resultDisplay.setFeedbackToUser(recurringFeedback);
+    }
+
     public void setPomCommandExecutor() {
-        commandBox = new CommandBox(this::pomExecuteCommand, this::suggestCommand);
+        commandBox = new CommandBox(this::pomExecuteCommand, this::pomSuggestCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    private String pomSuggestCommand(String commandText) {
+        return commandText;
     }
 
     public void setDefaultCommandExecutor() {
@@ -392,6 +420,19 @@ public class MainWindow extends UiPart<Stage> {
         petDisplay.setExpBarText(expBarInt);
         petDisplay.setExpBarImage(expBarImage);
         petDisplay.setPetImage(petImage);
+    }
+
+    public void updateStatisticsDisplay() {
+        String dailyTargetText = statisticsManager.getDailyTargetText();
+        String progressDailyText = statisticsManager.getProgressDailyText();
+        String progressBarDailyFilepathString =
+                statisticsManager.getProgressBarDailyFilepathString();
+        List<DayData> customQueue = statisticsManager.getCustomQueue();
+
+        statisticsDisplay.setProgressTargetText(dailyTargetText);
+        statisticsDisplay.setProgressDailyText(progressDailyText);
+        statisticsDisplay.setProgressBarDailyFilepathString(progressBarDailyFilepathString);
+        statisticsDisplay.updateGraphs(customQueue);
     }
 
     public void updateMoodWhenLogIn() {
@@ -436,6 +477,35 @@ public class MainWindow extends UiPart<Stage> {
         petManager.updateDisplayElements();
     }
 
+    /**
+     * Returns an appropriate tab index to switch to based on commands.
+     *
+     * @param commandResult the command called.
+     * @return index of tab to switch to.
+     */
+    private int getTabIndexFromCommand(CommandResult commandResult) {
+        int tabToSwitchIndex =
+                TASKS_TAB_INDEX; // default: switch to tasks tab for tasks related commands
+        if (commandResult instanceof SwitchTabCommandResult) {
+            SwitchTabCommandResult switchTabCommandResult = (SwitchTabCommandResult) commandResult;
+            tabToSwitchIndex =
+                    switchTabCommandResult
+                            .getTabToSwitchIndex(); // switch to tab in SwitchTabCommandResult
+        } else if (commandResult instanceof SetCommandResult) {
+            tabToSwitchIndex =
+                    SETTINGS_TAB_INDEX; // switch to settings tab for settings related commands.
+        }
+        return tabToSwitchIndex;
+    }
+
+    /**
+     * Triggers reminder to display as a pop up after time delay based on the reminder given in
+     * argument.
+     *
+     * @param reminder
+     * @param name
+     * @param description
+     */
     @FXML
     public static void triggerReminder(Reminder reminder, String name, String description) {
         long delay = reminder.getDelay();
@@ -451,10 +521,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     @FXML
-    /**
-     * Is triggered at the delayed time in Duke itself.
-     * https://thecodinginterface.com/blog/javafx-alerts-and-dialogs/#informational-alert
-     */
+    /** Displays the reminder's name and description as a javaFX alert. */
     public static void showReminder(String name, String description) {
         var alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Reminder");

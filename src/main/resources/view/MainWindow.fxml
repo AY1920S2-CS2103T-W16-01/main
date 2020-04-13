@@ -47,23 +47,23 @@
                             </VBox>
                             <TabPane fx:id="tabPanePlaceholder" minWidth="840.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="200.0" tabMaxWidth="200.0" tabMinHeight="30.0" tabMinWidth="120.0">
                                 <tabs>
-                           <Tab disable="true" text="                                                                                                                                                                         ">
-                              <content>
-                                 <VBox fx:id="taskList1" prefWidth="340.0">
-                                    <padding>
-                                       <Insets bottom="10" left="10" right="10" top="10" />
-                                    </padding>
-                                    <children>
-                                       <StackPane fx:id="pomodoroPlaceholder1" mouseTransparent="true">
-                                          <padding>
-                                             <Insets bottom="20" top="10" />
-                                          </padding>
-                                       </StackPane>
-                                       <StackPane fx:id="taskListPanelPlaceholder1" VBox.vgrow="ALWAYS" />
-                                    </children>
-                                 </VBox>
-                              </content>
-                           </Tab>
+                                    <Tab disable="true" text="                                                                                                                                                                         ">
+                                        <content>
+                                            <VBox fx:id="taskList1" prefWidth="340.0">
+                                                <padding>
+                                                <Insets bottom="10" left="10" right="10" top="10" />
+                                                </padding>
+                                                <children>
+                                                <StackPane fx:id="pomodoroPlaceholder1" mouseTransparent="true">
+                                                    <padding>
+                                                        <Insets bottom="20" top="10" />
+                                                    </padding>
+                                                </StackPane>
+                                                <StackPane fx:id="taskListPanelPlaceholder1" VBox.vgrow="ALWAYS" />
+                                                </children>
+                                            </VBox>
+                                        </content>
+                                    </Tab>
                                     <Tab text="Tasks">
                                         <content>
                                             <VBox fx:id="taskList" prefWidth="340.0">

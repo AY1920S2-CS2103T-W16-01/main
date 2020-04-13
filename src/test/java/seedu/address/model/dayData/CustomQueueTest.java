@@ -41,18 +41,17 @@ public class CustomQueueTest {
     }
 
     @Test
-    public void updatesDayDataCustom_nullLocalDatethrowsNullPointerException()
+    public void updateDayDataCustom_nullLocalDatethrowsNullPointerException()
             throws InvalidTableException {
         customQueue.init(VALID_LOCAL_DATE);
-        assertThrows(NullPointerException.class, () -> customQueue.updatesDayDataCustom(null));
+        assertThrows(NullPointerException.class, () -> customQueue.updateDayDataCustom(null));
     }
 
     @Test
-    public void updatesDayDataCustom_nonexistentDayDatathrowsDayDataNotFoundException()
+    public void updateDayDataCustom_nonexistentDayDatathrowsDayDataNotFoundException()
             throws InvalidTableException {
         customQueue.init(VALID_LOCAL_DATE);
-        assertThrows(
-                DayDataNotFoundException.class, () -> customQueue.updatesDayDataCustom(DAYNEW));
+        assertThrows(DayDataNotFoundException.class, () -> customQueue.updateDayDataCustom(DAYNEW));
     }
 
     @Test
@@ -78,47 +77,6 @@ public class CustomQueueTest {
         DayData day0Empty =
                 new DayDataBuilder(DAY0).withPomDurationData("0").withTasksDoneData("0").build();
         assertEquals(day0Empty, customQueue.getDayDataFromDateCustom(day0Empty.getDate()));
-    }
-
-    @Test
-    public void contains_nullDayDatathrowsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> customQueue.contains(null));
-    }
-
-    @Test
-    public void contains_DayDataNotInList_returnsFalse() {
-        assertFalse(customQueue.contains(DAYNEW));
-    }
-
-    @Test
-    public void contains_taskInList_returnsTrue() throws InvalidTableException {
-        customQueue.init(TYPICAL_STATISTICS_LATEST_LOCAL_DATE);
-        customQueue.pop();
-
-        customQueue.add(DAYNEW);
-        assertTrue(customQueue.contains(DAYNEW));
-    }
-
-    @Test
-    public void contains_dayDataWithSameIdentityFieldsInList_returnsTrue()
-            throws InvalidTableException {
-        customQueue.init(TYPICAL_STATISTICS_LATEST_LOCAL_DATE);
-        customQueue.pop();
-
-        customQueue.add(DAYNEW);
-        DayData editedDayData =
-                new DayDataBuilder(DAYNEW)
-                        .withPomDurationData(VALID_POM_DURATION_DATA)
-                        .withTasksDoneData(VALID_TASKS_DONE_DATA)
-                        .build();
-        assertTrue(customQueue.contains(editedDayData));
-    }
-
-    @Test
-    public void clear_success() throws InvalidTableException {
-        customQueue.init(TYPICAL_STATISTICS_LATEST_LOCAL_DATE);
-        customQueue.clear();
-        assertTrue(customQueue.size() == 0);
     }
 
     @Test
@@ -196,16 +154,6 @@ public class CustomQueueTest {
     }
 
     @Test
-    public void remove_nullDayData_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> customQueue.remove(null));
-    }
-
-    @Test
-    public void remove_dayDataDoesNotExist_throwsDayDataNotFoundException() {
-        assertThrows(DayDataNotFoundException.class, () -> customQueue.remove(DAYNEW));
-    }
-
-    @Test
     public void setDayDatas_nullCustomQueue_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> customQueue.setDayDatas((CustomQueue) null));
     }
@@ -238,5 +186,23 @@ public class CustomQueueTest {
         assertThrows(
                 UnsupportedOperationException.class,
                 () -> customQueue.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void tableConstraintsAreEnforced_validTable_returnsTrue() throws InvalidTableException {
+        customQueue.init(TYPICAL_STATISTICS_LATEST_LOCAL_DATE);
+        assertTrue(
+                customQueue.tableConstraintsAreEnforced(
+                        customQueue.asUnmodifiableObservableList()));
+    }
+
+    @Test
+    public void tableConstraintsAreEnforced_invalidTable_returnsFalse()
+            throws InvalidTableException {
+        customQueue.init(TYPICAL_STATISTICS_LATEST_LOCAL_DATE);
+        customQueue.add(DAY0);
+        assertFalse(
+                customQueue.tableConstraintsAreEnforced(
+                        customQueue.asUnmodifiableObservableList()));
     }
 }

@@ -5,6 +5,12 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
+/**
+ * This class represents the Command for the "tasks, stats and settings" input by the user.
+ *
+ * @author Hardy Shein
+ * @version 1.4
+ */
 public class SwitchTabCommand extends Command {
 
     public static final String TASKS_COMMAND_WORD = "tasks";
@@ -23,10 +29,21 @@ public class SwitchTabCommand extends Command {
 
     private final int tabIndexToSwitch;
 
+    /**
+     * SwitchTabCommand constructor.
+     *
+     * @param tabIndexToSwitch indicating the index of the UI element to swap to.
+     */
     public SwitchTabCommand(int tabIndexToSwitch) {
         this.tabIndexToSwitch = tabIndexToSwitch;
     }
 
+    /**
+     * Executes switch tab behaviour.
+     *
+     * @param model of the app's current state.
+     * @return the CommandResult resulting for the execution of a SwitchTabCommand instance.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

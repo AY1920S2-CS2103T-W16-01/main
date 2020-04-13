@@ -5,13 +5,13 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.PomodoroManager;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.Statistics;
 import seedu.address.model.dayData.Date;
 import seedu.address.model.dayData.DayData;
 import seedu.address.model.dayData.TasksDoneData;
@@ -20,6 +20,8 @@ import seedu.address.model.task.Description;
 import seedu.address.model.task.Done;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
+import seedu.address.model.task.Recurring;
+import seedu.address.model.task.Reminder;
 import seedu.address.model.task.Task;
 
 /** Deletes a task identified using it's displayed index from the task list. */
@@ -33,7 +35,7 @@ public class DoneCommand extends Command {
                     + "Parameters: INDEX1, INDEX2 (must be positive integers)\n"
                     + "Example: "
                     + COMMAND_WORD
-                    + " 1, 2";
+                    + " 1 2";
 
     public static final String MESSAGE_DONE_TASK_SUCCESS = "Done Task(s): ";
 
@@ -110,22 +112,31 @@ public class DoneCommand extends Command {
         Priority updatedPriority = taskToEdit.getPriority();
         Description updatedDescription = taskToEdit.getDescription();
         Set<Tag> updatedTags = taskToEdit.getTags();
-
+        Optional<Reminder> optionalReminder = Optional.empty();
+        Optional<Recurring> optionalRecurring = taskToEdit.getOptionalRecurring();
+        if (optionalRecurring.isPresent()) {
+            optionalReminder = taskToEdit.getOptionalReminder();
+        }
         return new Task(
-                updatedName, updatedPriority, updatedDescription, new Done("Y"), updatedTags);
+                updatedName,
+                updatedPriority,
+                updatedDescription,
+                new Done("Y"),
+                updatedTags,
+                optionalReminder,
+                optionalRecurring);
     }
 
     private static void updateStatisticsRegularDone(Model model) {
         model.updateDataDatesStatistics();
         Date dateOnDone = getCurrentDate();
-        Statistics stats = model.getStatistics();
-        DayData dayData = stats.getDayDataFromDate(dateOnDone);
+        DayData dayData = model.getDayDataFromDateStatistics(dateOnDone);
         DayData updatedDayData =
                 new DayData(
                         dateOnDone,
                         dayData.getPomDurationData(),
                         new TasksDoneData("" + (dayData.getTasksDoneData().value + 1)));
-        stats.updatesDayData(updatedDayData);
+        model.updatesDayDataStatistics(updatedDayData);
     }
 
     private static void updateStatisticsPomDone(Model model) {

@@ -1,5 +1,6 @@
 package seedu.address.model;
 
+import java.util.Objects;
 import seedu.address.model.task.Task;
 
 public class Pomodoro implements ReadOnlyPomodoro {
@@ -55,6 +56,10 @@ public class Pomodoro implements ReadOnlyPomodoro {
         this.restTime = restTime;
     }
 
+    public void setTimeLeft(String timeLeft) {
+        this.timeLeft = timeLeft;
+    }
+
     @Override
     public Task getRunningTask() {
         return this.runningTask;
@@ -80,5 +85,22 @@ public class Pomodoro implements ReadOnlyPomodoro {
         return String.format(
                 "Hi running task is: %s! my timeleft is %s and my default time is %s",
                 runningTask == null ? "No tasks!" : runningTask.toString(), timeLeft, defaultTime);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Pomodoro)) {
+            return false;
+        }
+
+        Pomodoro otherPomodoro = (Pomodoro) other;
+        return getDefaultTime().equals(otherPomodoro.getDefaultTime())
+                && getRestTime().equals(otherPomodoro.getRestTime())
+                && Objects.equals(getTimeLeft(), otherPomodoro.getTimeLeft()) // can be null
+                && Objects.equals(getRunningTask(), otherPomodoro.getRunningTask()); // can be null
     }
 }

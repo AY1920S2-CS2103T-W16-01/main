@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 
@@ -14,6 +16,8 @@ import seedu.address.model.task.UniqueTaskList;
 public class TaskList implements ReadOnlyTaskList {
 
     private final UniqueTaskList tasklist;
+    private final SortedList<Task> sortedTaskList;
+    private Optional<String> sortOrder;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,6 +28,8 @@ public class TaskList implements ReadOnlyTaskList {
      */
     {
         tasklist = new UniqueTaskList();
+        sortedTaskList = new SortedList<Task>(this.tasklist.asUnmodifiableObservableList());
+        sortOrder = Optional.empty();
     }
 
     public TaskList() {}
@@ -34,11 +40,22 @@ public class TaskList implements ReadOnlyTaskList {
         resetData(toBeCopied);
     }
 
-    public void sort(Comparator<Task> comparator) {
-        this.tasklist.sort(comparator);
+    public void setComparator(Comparator<Task> comparator) {
+        this.sortedTaskList.setComparator(comparator);
     }
 
-    //// list overwrite operations
+    public void setSortOrder(String sortOrder) {
+        this.sortOrder = Optional.of(sortOrder);
+        if (sortOrder.length() == 0) {
+            this.sortOrder = Optional.empty();
+        }
+    }
+
+    public Optional<String> getSortOrder() {
+        return sortOrder;
+    }
+
+    // list overwrite operations
 
     /**
      * Replaces the contents of the task list with {@code tasks}. {@code tasks} must not contain
@@ -55,7 +72,7 @@ public class TaskList implements ReadOnlyTaskList {
         setTasks(newData.getTaskList());
     }
 
-    //// task-level operations
+    // task-level operations
 
     /** Returns true if a task with the same identity as {@code task} exists in the task list. */
     public boolean hasTask(Task task) {
@@ -94,7 +111,7 @@ public class TaskList implements ReadOnlyTaskList {
 
     @Override
     public ObservableList<Task> getTaskList() {
-        return tasklist.asUnmodifiableObservableList();
+        return sortedTaskList;
     }
 
     @Override

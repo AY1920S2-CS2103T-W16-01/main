@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -17,6 +18,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
+import seedu.address.model.task.Recurring;
 import seedu.address.model.task.Reminder;
 import seedu.address.model.task.exceptions.InvalidReminderException;
 
@@ -47,7 +49,7 @@ public class ParserUtil {
      */
     public static Index[] parseIndices(String oneBasedIndices) throws ParseException {
         String trimmedIndices = oneBasedIndices.trim();
-        String[] splitIndices = trimmedIndices.split("\\s*,\\s*");
+        String[] splitIndices = trimmedIndices.split("\\s+");
         Index[] indexes = new Index[splitIndices.length];
         for (int i = 0; i < splitIndices.length; i++) {
             if (!StringUtil.isNonZeroUnsignedInteger(splitIndices[i])) {
@@ -58,17 +60,18 @@ public class ParserUtil {
         return indexes;
     }
 
-    // function for sorting and potentially tags
+    /** Gets all unique space-separated unique words */
     public static String[] parseUniqueKeyWords(String keywords) throws ParseException {
         String trimmedKeyWords = keywords.trim();
-        String[] splitKeyWords = trimmedKeyWords.split("\\s*,\\s*");
-        ArrayList<String> unique = new ArrayList<>();
+        String[] splitKeyWords = trimmedKeyWords.split("\\s+");
+        // HashSet not used as we need to retain the order of the keywords
+        ArrayList<String> uniqueWords = new ArrayList<>();
         for (String s : splitKeyWords) {
-            if (!unique.contains(s)) {
-                unique.add(s);
+            if (!uniqueWords.contains(s)) {
+                uniqueWords.add(s);
             }
         }
-        return unique.toArray(new String[0]);
+        return uniqueWords.toArray(new String[0]);
     }
 
     /**
@@ -86,6 +89,15 @@ public class ParserUtil {
             throw new ParseException(Reminder.MESSAGE_CONSTRAINTS);
         }
         return new Reminder(reminderString);
+    }
+
+    public static Recurring parseRecurring(String recurringString) throws ParseException {
+        requireNonNull(recurringString);
+        String trimmedRecurring = recurringString.trim();
+        if (!Recurring.isValidRecurring(trimmedRecurring)) {
+            throw new ParseException(Recurring.MESSAGE_CONSTRAINTS);
+        }
+        return new Recurring(trimmedRecurring, LocalDateTime.now());
     }
 
     /**
