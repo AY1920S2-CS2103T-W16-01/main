@@ -307,6 +307,21 @@ This data is captured and stored in the `Pomodoro` class in `seedu.address.model
 //end::pomodoro[]
 //tag::statistics[]
 
+=== Switch Tab Feature
+
+The Switch tab feature allows the user to traverse between the Tasks, Statistics and Settings tabs.
+
+The user can switch tabs through 2 main methods:
+1. User calls a valid SwitchTabCommand that displays the appropriate tab defined.
+2. User calls a valid command that changes the display of Tab B while he or she is on Tab A. In this scenario, Tab B will display automatically.
+
+This behaviour is represented in the following activity diagram.
+
+.Activity Diagram of Tab Switches
+image::SwitchTabActivityDiagram.png[]
+
+The following sequence diagram shows how the SwitchTabCommand updates the tab in the UI.
+
 === Statistics Feature
 
 The Statistics feature allows the user to view information about their number of tasks completed and Pomodoro duration ran on a daily basis for the past `CONSTANT_SIZE` days.
@@ -314,6 +329,7 @@ The Statistics feature allows the user to view information about their number of
 [NOTE]
 `CONSTANT_SIZE` can be set to any number for any future developments. In our current implementation, we chose to store data for only the past 7 days to keep statistics simple and intuitive for users.
 
+==== Implementation
 The Statistics feature is mainly supported by the Statistics class, which in turn is facilitated by the CustomQueue class. Its class diagram is given below.
 
 .Class Diagram of the Statistics Component
