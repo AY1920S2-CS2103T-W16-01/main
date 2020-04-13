@@ -407,7 +407,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="title">Figure 11. Sequence of executing a sort command</div>
 </div>
 <div class="paragraph">
-<p>The sort command takes in a list of fields and generates FieldComparators as seen in the diagram and then uses Comparator.thenComparing to aggregate the comparators. The first field provided will be of the highest sort order. The Model will then set the aggregated comparator on the <code>TaskList</code>.</p>
+<p>The sort command takes in a list of fields and generates FieldComparators as seen in the diagram and then uses Comparator.thenComparing to aggregate the comparators. The first field provided will be of the highest sort order. The <code>Model</code> will then set the aggregated comparator on the <code>TaskList</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -416,7 +416,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="title">Figure 12. Class diagram of SortedList</div>
 </div>
 <div class="paragraph">
-<p>We use a new SortedList from JavaFx within TaskList because FilteredList does not allow for sorting. As such we have the FilteredList reference the SortedList and the SortedList refernce the UniqueTaskList. By warpping the lists around another, this allows the SortedList and FilteredList to read changes to the UniqueTaskList and perform the appropriate filtering and sorting.</p>
+<p>We use a new <code>SortedList</code> from JavaFx within <code>TaskList</code> because <code>FilteredList</code> does not allow for sorting. As such we have the <code>FilteredList</code> reference the <code>SortedList</code> and the <code>SortedList</code> refernce the <code>UniqueTaskList</code>. By warpping the lists around another, this allows the <code>SortedList</code> and <code>FilteredList</code> to read changes to the <code>UniqueTaskList</code> and perform the appropriate filtering and sorting.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -425,7 +425,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="title">Figure 13. Sequence of initializing the Sorted List</div>
 </div>
 <div class="paragraph">
-<p>Due to the requirements mentioned, this is how we generate our FilteredList. We set FilteredList to reference the SortedList and then the SortedList to reference the UniqueTaskList.</p>
+<p>Due to the requirements mentioned, this is how we generate our <code>FilteredList</code>. We set <code>FilteredList</code> to reference the <code>SortedList</code> and then the <code>SortedList</code> to reference the <code>UniqueTaskList</code>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -434,12 +434,10 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="content">
 <img src="images/SortUiSequenceDiagram.png" alt="SortUiSequenceDiagram">
 </div>
+<div class="title">Figure 14. Sequence of how sort updates the UI</div>
 </div>
 <div class="paragraph">
-<p>Meanwhile to update the UI on the newest sorting order, the latest sortOrder is set on the <code>TaskList</code>. The LogicManager is then able to access the sort order through the Model and provide the <code>MainWindow</code> with the sort order. The MainWindow then sets it on the <code>TaskListPanel</code>.</p>
-</div>
-<div class="paragraph">
-<p>SortCommandResult extends CommandResult and contains an additional String attribute <code>sortOrder</code>.</p>
+<p>Meanwhile to update the UI on the newest sorting order, the latest sortOrder is set on the <code>TaskList</code>. The <code>LogicManager</code> is then able to access the sort order from the <code>TaskList</code> throgh the <code>Model</code> and provide the <code>MainWindow</code> with the sort order. The <code>MainWindow</code> then sets it on the <code>TaskListPanel</code>.</p>
 </div>
 </div>
 </div>
@@ -450,49 +448,52 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 </div>
 <div class="sect3">
 <h4 id="implementation-4"><a class="link" href="#implementation-4">3.3.1. Implementation</a></h4>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="https://github.com/AY1920S2-CS2103T-W16-1/main/src/main/java/seedu/address/logic/commands/CommandCompletor.java"><code>CommandCompletor.java</code></a></p>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ACSequenceDiagram.png" alt="ACSequenceDiagram">
 </div>
-<div class="title">Figure 14. AutoComplete Sequence Diagram</div>
+<div class="title">Figure 15. AutoComplete Sequence Diagram</div>
 </div>
 <div class="paragraph">
-<p>When a user presses tab on the command line, a key event handler in the CommandBox calls the suggestCommand function of MainWindow with the user input. The MainWindow then passes the user input through the LogicManager to the CommandCompletor.<br></p>
+<p>When a user presses tab on the command line, a key event handler in the <code>CommandBox</code> calls the suggestCommand function of <code>MainWindow</code> with the user input. The <code>MainWindow</code> then passes the user input through the <code>LogicManager</code> to the CommandCompletor.<br></p>
 </div>
 <div class="paragraph">
-<p>The input is pass through the LogicManager so that we can get TaskList details from the LogicManager and transfer it to the CommandCompletor (e.g. taskList length). The CommandCompletor then parses the input and returns one of three things which lead to different changes to the UI:</p>
+<p>The input is pass through the <code>LogicManager</code> so that we can get TaskList details from the <code>LogicManager</code> and transfer it to the CommandCompletor (e.g. taskList length). The CommandCompletor then parses the input and returns one of three things which lead to different changes to the UI:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>CompletorResult</p>
+<p><code>CompletorResult</code></p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Will cause CommandBox to setSuccess on CommandTextField</p>
+<p>Will cause <code>CommandBox</code> to setSuccess on <code>CommandTextField</code></p>
 </li>
 </ol>
 </div>
 </li>
 <li>
-<p>CompletorDeletionResult [inherits from CompletorResult]</p>
+<p><code>CompletorDeletionResult</code> [inherits from <code>CompletorResult</code>]</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
 <p>Contains deleted input which will be shown as feedback</p>
 </li>
 <li>
-<p>Will cause MainWindow to call setWarning on ResultDisplay</p>
+<p>Will cause <code>MainWindow</code> to call setWarning on <code>ResultDisplay</code></p>
 </li>
 </ol>
 </div>
 </li>
 <li>
-<p>CompletorException</p>
+<p><code>CompletorException</code></p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Will cause CommandBox to setFailure on CommandTextField</p>
+<p>Will cause <code>CommandBox</code> to setFailure on <code>CommandTextField</code></p>
 </li>
 </ol>
 </div>
@@ -506,7 +507,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="content">
 <img src="images/ACActivityDiagram.png" alt="ACActivityDiagram" width="790">
 </div>
-<div class="title">Figure 15. Activity diagram of auto complete</div>
+<div class="title">Figure 16. Activity diagram of auto complete</div>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -532,7 +533,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 </tr>
 </table>
 </div>
-<div class="paragraph">
+<div id="criteria" class="paragraph">
 <p>The above diagram provides a big picture overview of decisions <code>CommandCompletor</code> goes through when processing user input.</p>
 </div>
 <div class="olist arabic">
@@ -557,7 +558,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>If the input is an add/edit/pom command then CommandCompletor will attempt to add prefixes.</p>
+<p>If the input is an add/edit/pom command then <code>CommandCompletor</code> will attempt to add prefixes.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -591,7 +592,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Auto completion of fields is performed based on the <a href="#completion criteria">[completion criteria]</a></p>
+<p>Auto completion of fields is performed based on the <a href="#criteria">criteria</a></p>
 </li>
 <li>
 <p>If the field is not recongized, then it is removed</p>
@@ -611,7 +612,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Known Command UI displayed when:</p>
+<p>Known Command UI is displayed when:</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -646,7 +647,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="olist lowerroman">
 <ol class="lowerroman" type="i">
 <li>
-<p>CompletorException` is raised</p>
+<p><code>CompletorException</code> is raised</p>
 </li>
 </ol>
 </div>
@@ -663,7 +664,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="content">
 <img src="images/ACSuccess.png" alt="ACSuccess" width="600">
 </div>
-<div class="title">Figure 16. AutoComplete Success UI</div>
+<div class="title">Figure 17. AutoComplete Success UI</div>
 </div>
 <div class="ulist">
 <ul>
@@ -692,7 +693,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="content">
 <img src="images/ACFailure.png" alt="ACFailure" width="500">
 </div>
-<div class="title">Figure 17. AutoComplete Failure UI</div>
+<div class="title">Figure 18. AutoComplete Failure UI</div>
 </div>
 <div class="ulist">
 <ul>
@@ -727,128 +728,209 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 </div>
 </div>
 <div class="paragraph">
-<p>Similar to before, we iterate through the arguments and we remove indexes that are either out of the displayed TaskList&#8217;s size or that is not a positive integer. We then append it to a removed list so that we can inform the user what input has been removed.</p>
+<p>Similar to before, we iterate through the arguments and we remove indexes that are either out of the displayed <code>TaskList</code> size or that is not a positive integer. We then append it to a removed list so that we can inform the user what input has been removed.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="sort-field-completion"><a class="link" href="#sort-field-completion">3.3.8. Sort field Completion</a></h4>
 <div class="paragraph">
-<p>Sort field completion is done by iterating through all arguments word by word and performing the auto complete checks against all possible sort fields. The auto complete checks were the same as the above <a href="#completion criteria">[completion criteria]</a>.</p>
+<p>Sort field completion is done by iterating through all arguments word by word and performing the auto complete checks against all possible sort fields. The auto complete checks were the same as the above <a href="#criteria">criteria</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="enhanced-find"><a class="link" href="#enhanced-find">3.4. Enhanced Find</a></h3>
 <div class="paragraph">
-<p>We&#8217;ve built upon the existing find function in AB-3 to filter tasks based on phrases instead of words.</p>
+<p>We&#8217;ve built upon the existing find function in AB-3 to filter tasks based on phrases (with some degree of typing errors) and based on task tags.</p>
 </div>
 <div class="sect3">
 <h4 id="implementation-5"><a class="link" href="#implementation-5">3.4.1. Implementation</a></h4>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="https://github.com/AY1920S2-CS2103T-W16-1/main/src/main/java/seedu/address/logic/commands/FindCommand.java"><code>FindCommand.java</code></a></p>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="images/FindSequenceDiagram.png" alt="FindSequenceDiagram">
 </div>
-<div class="title">Figure 18. Find Command Sequence diagram</div>
+<div class="title">Figure 19. Find Command Sequence diagram</div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>After setting the predicate on the model and FilteredList, the FilteredList will apply the Test method of the predicate.</p>
+<p>After setting the predicate on the model and <code>FilteredList</code>, the <code>FilteredList</code> will apply the Test method of the predicate.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Scoring will be discussed in the next section.</p>
+<p>The test method calculates a score for every task and only displays tasks with score &lt; 2.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>A comparator is then retrived from the Predicate and is then used to display more relevant search results to the user</p>
+<p>A comparator is then retrived from the Predicate by comparing Tasks based on their score and is used to sort the filtered list to show the more relevant searches first</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Lower scores means a more relevant task to the search term.</p>
 </li>
 <li>
-<p>Any existing comparator set is removed when <code>setSearchResultOrder</code> is called on Model</p>
+<p>Tasks with lower scores will preceed those with higher scores based on the comparator.</p>
 </li>
 </ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Any existing comparator set by previous sort commands is replaced by the find command&#8217;s relevance comparator.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
 <h4 id="predicate"><a class="link" href="#predicate">3.4.2. Predicate</a></h4>
 <div class="paragraph">
-<div class="title">Scoring decision</div>
-<p>All tasks will initially have a score of 2 and based on the below criteria, the score will be adjusted. Only tasks with scores &lt; 2 will be displayed.</p>
+<p><strong>API</strong> : <a href="https://github.com/AY1920S2-CS2103T-W16-1/main/src/main/java/seedu/address/model/task/NameContainsKeywordsPredicate.java"><code>NameContainsKeywordsPredicate.java</code></a></p>
+</div>
+<div class="sect4">
+<h5 id="scoring-decision"><a class="link" href="#scoring-decision">Scoring decision</a></h5>
+<div class="paragraph">
+<p>The score is first initialized to 2 and is later replaced by name score if the name score is lower than 2. We then subtract tag score from it to get the final score.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/PredicateSequenceDiagram.png" alt="PredicateSequenceDiagram">
 </div>
+<div class="title">Figure 20. Overview of predicate sequence</div>
+</div>
 </div>
 <div class="sect4">
 <h5 id="name-scoring"><a class="link" href="#name-scoring">Name scoring</a></h5>
+<div class="paragraph">
+<p>Please refer to the above&#8217;s name score group</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>The name score of a task is the minimum score of all chunks of the name</p>
+<p>The name score of a task is the minimum score of all chunks of a task.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>A chunk is a String subsequence of the task name that has the same number of words as the search term</p>
+<p>A chunk is a String subsequence of the task name that has the same number of words as the search term.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>We iterate through all chunks of the task name and calculate a score for each chunk</p>
+<p>We iterate through all chunks of the task name and calculate a score for each chunk.</p>
+</li>
+<li>
+<p>Here is how we set the score for each chunk:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>The minimum of these scores is set as the task&#8217;s overall name score</p>
+<p>edit distance between one of the chunks and the search term &lt; 2, chunk score is set to 1.</p>
 </li>
 <li>
-<p>a smaller score means a more relevant task</p>
+<p>search term matches the start of one of the chunks, chunk score is set to 1.</p>
+</li>
+<li>
+<p>one of the chunks is the same as the search term, chunk score is set to 0.</p>
+</li>
+<li>
+<p>else chunk score is 2.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>The calculation of a chunk is decided by:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>edit distance between one of the chunks and the search term &lt; 2, score is set to 1</p>
-</li>
-<li>
-<p>search term matches the start of one of the chunks, score is set to 1</p>
-</li>
-<li>
-<p>one of the chunks is the same as the search term, score is set to 0</p>
+<p>We then get the minimum of these chunk scores.</p>
 </li>
 </ul>
 </div>
-</li>
-</ul>
+<div class="imageblock">
+<div class="content">
+<img src="images/PredicateNameSequenceDiagram.png" alt="PredicateNameSequenceDiagram">
+</div>
+<div class="title">Figure 21. Name scoring in predicate</div>
 </div>
 </div>
 <div class="sect4">
 <h5 id="tag-scoring"><a class="link" href="#tag-scoring">Tag scoring</a></h5>
 <div class="paragraph">
-<p>Tag scoring is carried out on top of name scoring. For every tag in the search term that appears in a Task, we decrement the Task&#8217;s name score by 1.</p>
+<p>For every tag in the search term that appears in a Task, we increment the tag score by 1.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/PredicateTagSequenceDiagram.png" alt="PredicateTagSequenceDiagram">
+</div>
+<div class="title">Figure 22. Tag scoring in predicate</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="final-score"><a class="link" href="#final-score">Final score</a></h5>
 <div class="paragraph">
-<p>The combination of name and tag score is then used as a Task&#8217;s final score in determining it&#8217;s relevance in the search results.</p>
+<p>final score = name score - tag score. Search results are displayed in ascending order of final score.</p>
 </div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="other-considerations"><a class="link" href="#other-considerations">3.4.3. Other Considerations</a></h4>
-<div class="ulist">
-<ul>
+<div class="sect4">
+<h5 id="design-considerations"><a class="link" href="#design-considerations">Design considerations</a></h5>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>We chose to not use edit distance for search terms of string length less than 3 as this would bring about alot of false positives given that that the edit distance between words of length &lt; 3 will easily be 1</p>
+<p>The idea is to first ensure that tasks that are too different are not shown while allowing some degree of typo error on the user&#8217;s end when searching for a task.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>This is supported by the use of edit distance and a small threshold.</p>
+</li>
+</ol>
+</div>
 </li>
 <li>
-<p>We also chose to display task names who&#8217;s start matches the search term for ease of usage even though the edit distance could be significant.</p>
+<p>Next we also wanted the user to be able to find a task name without searching the full name.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>We show tasks who have a chunk who&#8217;s start matches the search term.</p>
 </li>
-</ul>
+</ol>
+</div>
+</li>
+<li>
+<p>We also wanted to allow users to search by tags.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Thus tag score is introduced.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>While the score helps to determine which tasks to show, it serves another job in providing the search relevance so that while accommodating for some degree of error from user input, they are still seeing what&#8217;s more relevant first.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Users can also narrow their search by performing find with more tags or a more complete task name so that only that task has a chunk that matches.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>We chose to not use edit distance for search terms of string length less than 3 as this would bring about alot of false positives given that that the edit distance between words of length &lt; 3 will easily be 1.</p>
+</li>
+</ol>
+</div>
 </div>
 </div>
 </div>
@@ -861,7 +943,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="content">
 <img src="images/PomSequenceDiagram.png" alt="PomSequenceDiagram" width="790">
 </div>
-<div class="title">Figure 19. Interactions Inside Logic Component for the pom 1 command</div>
+<div class="title">Figure 23. Interactions Inside Logic Component for the pom 1 command</div>
 </div>
 <div class="sect3">
 <h4 id="implementation-6"><a class="link" href="#implementation-6">3.5.1. Implementation</a></h4>
@@ -875,7 +957,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="content">
 <img src="images/PomExtendedSequenceDiagram.png" alt="PomExtendedSequenceDiagram" width="790">
 </div>
-<div class="title">Figure 20. Interactions with PomodoroManager through a time cycle</div>
+<div class="title">Figure 24. Interactions with PomodoroManager through a time cycle</div>
 </div>
 <div class="paragraph">
 <p>Through the use of the Pomodoro feature, there are occasions where the app has to prompt the user for specific input in order to progress. This behaviour flow is represented in the <em>Pomodoro Acctivity</em> diagram.</p>
@@ -884,7 +966,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="content">
 <img src="images/PomodoroActivityDiagram.png" alt="PomodoroActivityDiagram" width="395">
 </div>
-<div class="title">Figure 21. Pomodoro Activity Diagram</div>
+<div class="title">Figure 25. Pomodoro Activity Diagram</div>
 </div>
 <div class="paragraph">
 <p>The <code>PomodoroManager</code> maintains a  <code>prompt_state</code> indicating what the app might be prompting the user at a given time.</p>
@@ -943,7 +1025,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="content">
 <img src="images/SwitchTabActivityDiagram.png" alt="SwitchTabActivityDiagram">
 </div>
-<div class="title">Figure 22. Activity Diagram of Tab Switches</div>
+<div class="title">Figure 26. Activity Diagram of Tab Switches</div>
 </div>
 <div class="paragraph">
 <p>The following sequence diagram shows how the SwitchTabCommand updates the tab in the UI.</p>
@@ -952,7 +1034,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="content">
 <img src="images/SwitchTabSequenceDiagram.png" alt="SwitchTabSequenceDiagram">
 </div>
-<div class="title">Figure 23. Sequence Diagram of SwitchTabCommand</div>
+<div class="title">Figure 27. Sequence Diagram of SwitchTabCommand</div>
 </div>
 </div>
 <div class="sect2">
@@ -972,7 +1054,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="content">
 <img src="images/ReminderSequenceDiagram.png" alt="ReminderSequenceDiagram" width="790">
 </div>
-<div class="title">Figure 24. Reminder Sequence Diagram</div>
+<div class="title">Figure 28. Reminder Sequence Diagram</div>
 </div>
 </div>
 </div>
@@ -985,7 +1067,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="content">
 <img src="images/RecurringActivityDiagram.png" alt="RecurringActivityDiagram" width="790">
 </div>
-<div class="title">Figure 25. Recurring Activity Diagram</div>
+<div class="title">Figure 29. Recurring Activity Diagram</div>
 </div>
 <div class="sect3">
 <h4 id="implementation-8"><a class="link" href="#implementation-8">3.8.1. Implementation</a></h4>
@@ -1026,7 +1108,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="content">
 <img src="images/SwitchTabActivityDiagram.png" alt="SwitchTabActivityDiagram">
 </div>
-<div class="title">Figure 26. Activity Diagram of Tab Switches</div>
+<div class="title">Figure 30. Activity Diagram of Tab Switches</div>
 </div>
 <div class="paragraph">
 <p>The following sequence diagram shows how the SwitchTabCommand updates the tab in the UI.</p>
@@ -1035,7 +1117,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="content">
 <img src="images/SwitchTabSequenceDiagram.png" alt="SwitchTabSequenceDiagram">
 </div>
-<div class="title">Figure 27. Sequence Diagram of SwitchTabCommand</div>
+<div class="title">Figure 31. Sequence Diagram of SwitchTabCommand</div>
 </div>
 </div>
 <div class="sect2">
@@ -1064,7 +1146,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="content">
 <img src="images/StatisticsClassDiagram.png" alt="StatisticsClassDiagram">
 </div>
-<div class="title">Figure 28. Class Diagram of the Statistics Component</div>
+<div class="title">Figure 32. Class Diagram of the Statistics Component</div>
 </div>
 <div class="paragraph">
 <p>The Statistics feature does not support any explicit commands. Instead, the UI is updated and displayed when the SwitchTabCommand 'stats' is called.</p>
@@ -1097,7 +1179,7 @@ SwitchTabCommand also switches the focused tab to the Statistics tab to display 
 <div class="content">
 <img src="images/StatisticsUiSequenceDiagram.png" alt="StatisticsUiSequenceDiagram">
 </div>
-<div class="title">Figure 29. Sequence Diagram of how Statistics</div>
+<div class="title">Figure 33. Sequence Diagram of how Statistics</div>
 </div>
 </div>
 <div class="sect3">
@@ -1125,7 +1207,7 @@ SwitchTabCommand also switches the focused tab to the Statistics tab to display 
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.10.3. Design considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.10.3. Design considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-when-to-update-statisticsdisplay"><a class="link" href="#aspect-when-to-update-statisticsdisplay">Aspect: when to update StatisticsDisplay</a></h5>
 <div class="ulist">
@@ -1453,7 +1535,7 @@ SwitchTabCommand also switches the focused tab to the Statistics tab to display 
 <div class="content">
 <img src="images/use_cases.png" alt="use cases" width="790">
 </div>
-<div class="title">Figure 30. Use case diagram for BBProductive</div>
+<div class="title">Figure 34. Use case diagram for BBProductive</div>
 </div>
 <h3 id="use-case-uc01-view-tasks" class="discrete">Use Case: UC01 - View tasks</h3>
 <div class="paragraph">
@@ -2505,4 +2587,4 @@ Expected: After 60 seconds, the done is set back to unfinished, with the tick be
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 14:18:32 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 14:22:36 UTC</div></div></div></body></html>
