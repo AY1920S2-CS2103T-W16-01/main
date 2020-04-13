@@ -22,16 +22,17 @@
 </li>
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#sort">3.1. Sort</a></li>
-<li><a href="#autocomplete">3.2. AutoComplete</a></li>
-<li><a href="#enhanced-find">3.3. Enhanced Find</a></li>
-<li><a href="#Pomodoro">3.4. Pomodoro</a></li>
-<li><a href="#reminders">3.5. Reminders</a></li>
-<li><a href="#recurring">3.6. Recurring</a></li>
-<li><a href="#switch-tab-feature">3.7. Switch Tab Feature</a></li>
-<li><a href="#statistics-feature">3.8. Statistics Feature</a></li>
-<li><a href="#logging">3.9. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.10. Configuration</a></li>
+<li><a href="#tasklist">3.1. TaskList</a></li>
+<li><a href="#sort">3.2. Sort</a></li>
+<li><a href="#autocomplete">3.3. AutoComplete</a></li>
+<li><a href="#enhanced-find">3.4. Enhanced Find</a></li>
+<li><a href="#Pomodoro">3.5. Pomodoro</a></li>
+<li><a href="#reminders">3.6. Reminders</a></li>
+<li><a href="#recurring">3.7. Recurring</a></li>
+<li><a href="#switch-tab-feature">3.8. Switch Tab Feature</a></li>
+<li><a href="#statistics-feature">3.9. Statistics Feature</a></li>
+<li><a href="#logging">3.10. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.11. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a></li>
@@ -349,9 +350,24 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="sort"><a class="link" href="#sort">3.1. Sort</a></h3>
+<h3 id="tasklist"><a class="link" href="#tasklist">3.1. TaskList</a></h3>
 <div class="sect3">
-<h4 id="implementation-2"><a class="link" href="#implementation-2">3.1.1. Implementation</a></h4>
+<h4 id="add-permas"><a class="link" href="#add-permas">3.1.1. Add(Permas)</a></h4>
+
+</div>
+<div class="sect3">
+<h4 id="edit-arthur"><a class="link" href="#edit-arthur">3.1.2. Edit(Arthur)</a></h4>
+
+</div>
+<div class="sect3">
+<h4 id="done-and-delete-fyon"><a class="link" href="#done-and-delete-fyon">3.1.3. Done and Delete (Fyon)</a></h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="sort"><a class="link" href="#sort">3.2. Sort</a></h3>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">3.2.1. Implementation</a></h4>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/AY1920S2-CS2103T-W16-1/main/src/main/java/seedu/address/logic/commands/SortCommand.java"><code>SortCommand.java</code></a></p>
 </div>
@@ -384,7 +400,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 </div>
 </div>
 <div class="sect3">
-<h4 id="updating-ui"><a class="link" href="#updating-ui">3.1.2. Updating UI</a></h4>
+<h4 id="updating-ui"><a class="link" href="#updating-ui">3.2.2. Updating UI</a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/SortUiSequenceDiagram.png" alt="SortUiSequenceDiagram">
@@ -399,12 +415,12 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 </div>
 </div>
 <div class="sect2">
-<h3 id="autocomplete"><a class="link" href="#autocomplete">3.2. AutoComplete</a></h3>
+<h3 id="autocomplete"><a class="link" href="#autocomplete">3.3. AutoComplete</a></h3>
 <div class="paragraph">
 <p>Auto complete is triggered when users press tab while focussed on the command line.</p>
 </div>
 <div class="sect3">
-<h4 id="implementation-3"><a class="link" href="#implementation-3">3.2.1. Implementation</a></h4>
+<h4 id="implementation-3"><a class="link" href="#implementation-3">3.3.1. Implementation</a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/ACSequenceDiagram.png" alt="ACSequenceDiagram">
@@ -456,7 +472,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 </div>
 </div>
 <div class="sect3">
-<h4 id="auto-complete-overview"><a class="link" href="#auto-complete-overview">3.2.2. Auto Complete Overview</a></h4>
+<h4 id="auto-complete-overview"><a class="link" href="#auto-complete-overview">3.3.2. Auto Complete Overview</a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/ACActivityDiagram.png" alt="ACActivityDiagram" width="790">
@@ -559,7 +575,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 </div>
 </div>
 <div class="sect3">
-<h4 id="auto-complete-output"><a class="link" href="#auto-complete-output">3.2.3. Auto Complete output:</a></h4>
+<h4 id="auto-complete-output"><a class="link" href="#auto-complete-output">3.3.3. Auto Complete output:</a></h4>
 <div class="paragraph">
 <p>As seen from the activity diagram above:</p>
 </div>
@@ -613,7 +629,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 </div>
 </div>
 <div class="sect3">
-<h4 id="known-command-ui"><a class="link" href="#known-command-ui">3.2.4. Known Command UI</a></h4>
+<h4 id="known-command-ui"><a class="link" href="#known-command-ui">3.3.4. Known Command UI</a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/ACSuccess.png" alt="ACSuccess" width="600">
@@ -642,7 +658,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 </div>
 </div>
 <div class="sect3">
-<h4 id="unknown-command-ui"><a class="link" href="#unknown-command-ui">3.2.5. Unknown Command UI</a></h4>
+<h4 id="unknown-command-ui"><a class="link" href="#unknown-command-ui">3.3.5. Unknown Command UI</a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/ACFailure.png" alt="ACFailure" width="500">
@@ -664,7 +680,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 </div>
 </div>
 <div class="sect3">
-<h4 id="prefix-completion"><a class="link" href="#prefix-completion">3.2.6. Prefix Completion</a></h4>
+<h4 id="prefix-completion"><a class="link" href="#prefix-completion">3.3.6. Prefix Completion</a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/ACPrefixActivityDiagram.png" alt="ACPrefixActivityDiagram">
@@ -675,7 +691,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 </div>
 </div>
 <div class="sect3">
-<h4 id="index-completion"><a class="link" href="#index-completion">3.2.7. Index Completion</a></h4>
+<h4 id="index-completion"><a class="link" href="#index-completion">3.3.7. Index Completion</a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/ACIndexActivityDiagram.png" alt="ACIndexActivityDiagram">
@@ -686,19 +702,19 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 </div>
 </div>
 <div class="sect3">
-<h4 id="sort-field-completion"><a class="link" href="#sort-field-completion">3.2.8. Sort field Completion</a></h4>
+<h4 id="sort-field-completion"><a class="link" href="#sort-field-completion">3.3.8. Sort field Completion</a></h4>
 <div class="paragraph">
 <p>Sort field completion is done by iterating through all arguments word by word and performing the auto complete checks against all possible sort fields. The auto complete checks were the same as the above <a href="#completion criteria">[completion criteria]</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="enhanced-find"><a class="link" href="#enhanced-find">3.3. Enhanced Find</a></h3>
+<h3 id="enhanced-find"><a class="link" href="#enhanced-find">3.4. Enhanced Find</a></h3>
 <div class="paragraph">
 <p>We&#8217;ve built upon the existing find function in AB-3 to filter tasks based on phrases instead of words.</p>
 </div>
 <div class="sect3">
-<h4 id="implementation-4"><a class="link" href="#implementation-4">3.3.1. Implementation</a></h4>
+<h4 id="implementation-4"><a class="link" href="#implementation-4">3.4.1. Implementation</a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/FindSequenceDiagram.png" alt="FindSequenceDiagram">
@@ -727,7 +743,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 </div>
 </div>
 <div class="sect3">
-<h4 id="predicate"><a class="link" href="#predicate">3.3.2. Predicate</a></h4>
+<h4 id="predicate"><a class="link" href="#predicate">3.4.2. Predicate</a></h4>
 <div class="paragraph">
 <div class="title">Scoring decision</div>
 <p>All tasks will initially have a score of 2 and based on the below criteria, the score will be adjusted. Only tasks with scores &lt; 2 will be displayed.</p>
@@ -794,7 +810,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 </div>
 </div>
 <div class="sect3">
-<h4 id="other-considerations"><a class="link" href="#other-considerations">3.3.3. Other Considerations</a></h4>
+<h4 id="other-considerations"><a class="link" href="#other-considerations">3.4.3. Other Considerations</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -808,7 +824,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 </div>
 </div>
 <div class="sect2">
-<h3 id="Pomodoro"><a class="link" href="#Pomodoro">3.4. Pomodoro</a></h3>
+<h3 id="Pomodoro"><a class="link" href="#Pomodoro">3.5. Pomodoro</a></h3>
 <div class="paragraph">
 <p>Pomodoro is activated by the <code>pom</code> command. It follows the same execution flow as many of the other commands in BBProductive.</p>
 </div>
@@ -819,7 +835,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="title">Figure 17. Interactions Inside Logic Component for the pom 1 command</div>
 </div>
 <div class="sect3">
-<h4 id="implementation-5"><a class="link" href="#implementation-5">3.4.1. Implementation</a></h4>
+<h4 id="implementation-5"><a class="link" href="#implementation-5">3.5.1. Implementation</a></h4>
 <div class="paragraph">
 <p>Pomosoero&#8217;s features are implemented mainly in <code>seedu.address.logic</code> package. The <code>PomodoroManager</code> class is used to maniulate the timer and configure the relevant UI elements. The timer is facilitated by <code>javafx.animation.Timeline</code>.</p>
 </div>
@@ -882,12 +898,12 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 </div>
 </div>
 <div class="sect2">
-<h3 id="reminders"><a class="link" href="#reminders">3.5. Reminders</a></h3>
+<h3 id="reminders"><a class="link" href="#reminders">3.6. Reminders</a></h3>
 <div class="paragraph">
 <p>The user&#8217;s reminder functionality is achieved by calculating the time delay from the current time and the time from the user input. This time delay as well as the Task name and description is passed to the MainWindow for the reminder to be triggered as a pop up at the right time.</p>
 </div>
 <div class="sect3">
-<h4 id="implementation-6"><a class="link" href="#implementation-6">3.5.1. Implementation</a></h4>
+<h4 id="implementation-6"><a class="link" href="#implementation-6">3.6.1. Implementation</a></h4>
 <div class="paragraph">
 <p>A <code>DateTimeFormatter</code> is used to parse the date time from the user input, which is just the date in the r/ flag when adding or editing a task, into a <code>LocalDateTime</code> object. This <code>LocalDateTime</code> is used to store the date and time information. When the reminder is instantiated, a <code>setDelay</code> method is called setting in motion the calculation of time delay between the current time and the reminder time, and triggering of reminder on the <code>MainWindow</code>. The reminder class is stored as an <code>Optional</code> in the Task class itself.</p>
 </div>
@@ -903,7 +919,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 </div>
 </div>
 <div class="sect2">
-<h3 id="recurring"><a class="link" href="#recurring">3.6. Recurring</a></h3>
+<h3 id="recurring"><a class="link" href="#recurring">3.7. Recurring</a></h3>
 <div class="paragraph">
 <p>The user&#8217;s recurring tasks functionality is twofold. Resetting the task to be unfinished after the stipulated time interval and resetting the task&#8217;s reminder date according to the stipulated time interval. The behaviour for this recurring feature is mainly represented in the activity diagram below.</p>
 </div>
@@ -914,7 +930,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="title">Figure 21. Recurring Activity Diagram</div>
 </div>
 <div class="sect3">
-<h4 id="implementation-7"><a class="link" href="#implementation-7">3.6.1. Implementation</a></h4>
+<h4 id="implementation-7"><a class="link" href="#implementation-7">3.7.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The logic is mainly implemented in the <code>Recurring</code> class and <code>ModelManager</code> class in <code>seedu.address.model</code>, which interacts with the app’s storage system especially with respect to task storage. This <code>Recurring</code> instance is stored in <code>Task</code> as an optional field.</p>
 </div>
@@ -942,7 +958,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 </div>
 </div>
 <div class="sect2">
-<h3 id="switch-tab-feature"><a class="link" href="#switch-tab-feature">3.7. Switch Tab Feature</a></h3>
+<h3 id="switch-tab-feature"><a class="link" href="#switch-tab-feature">3.8. Switch Tab Feature</a></h3>
 <div class="paragraph">
 <p>The Switch tab feature allows the user to traverse between the Tasks, Statistics and Settings tabs.</p>
 </div>
@@ -971,7 +987,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 </div>
 </div>
 <div class="sect2">
-<h3 id="statistics-feature"><a class="link" href="#statistics-feature">3.8. Statistics Feature</a></h3>
+<h3 id="statistics-feature"><a class="link" href="#statistics-feature">3.9. Statistics Feature</a></h3>
 <div class="paragraph">
 <p>The Statistics feature allows the user to view information about their number of tasks completed and Pomodoro duration ran on a daily basis for the past <code>CONSTANT_SIZE</code> days.</p>
 </div>
@@ -988,7 +1004,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 </table>
 </div>
 <div class="sect3">
-<h4 id="implementation-8"><a class="link" href="#implementation-8">3.8.1. Implementation</a></h4>
+<h4 id="implementation-8"><a class="link" href="#implementation-8">3.9.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The Statistics feature is mainly supported by the Statistics class, which in turn is facilitated by the CustomQueue class. Its class diagram is given below.</p>
 </div>
@@ -1033,7 +1049,7 @@ SwitchTabCommand also switches the focused tab to the Statistics tab to display 
 </div>
 </div>
 <div class="sect3">
-<h4 id="customqueue-implementation"><a class="link" href="#customqueue-implementation">3.8.2. CustomQueue Implementation</a></h4>
+<h4 id="customqueue-implementation"><a class="link" href="#customqueue-implementation">3.9.2. CustomQueue Implementation</a></h4>
 <div class="paragraph">
 <p>The <code>CustomQueue</code> class enforces the following constraints.
 1. Size of <code>CustomQueue</code> must be of <code>CONSTANT_SIZE</code> after each method call through <code>Statistics</code>.
@@ -1057,7 +1073,7 @@ SwitchTabCommand also switches the focused tab to the Statistics tab to display 
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.8.3. Design considerations</a></h4>
+<h4 id="design-considerations"><a class="link" href="#design-considerations">3.9.3. Design considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-when-to-update-statisticsdisplay"><a class="link" href="#aspect-when-to-update-statisticsdisplay">Aspect: when to update StatisticsDisplay</a></h5>
 <div class="ulist">
@@ -1127,14 +1143,14 @@ SwitchTabCommand also switches the focused tab to the Statistics tab to display 
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.9. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.10. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.10, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.11, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1165,7 +1181,7 @@ SwitchTabCommand also switches the focused tab to the Statistics tab to display 
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.10. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.11. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2439,4 +2455,4 @@ Expected: After 60 seconds, the done is set back to unfinished, with the tick be
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 09:23:12 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 10:10:04 UTC</div></div></div></body></html>
