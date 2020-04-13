@@ -172,7 +172,8 @@ public class ModelManager implements Model {
                                 Task recurredTask = t.getRecurredTask();
                                 setTask(t, recurredTask);
                                 String recurredString =
-                                        Recurring.MESSAGE_RECURRING_TASK_SUCCESS + recurredTask.toString();
+                                        Recurring.MESSAGE_RECURRING_TASK_SUCCESS
+                                                + recurredTask.toString();
                                 notifyMainWindow(recurredString);
                             }
                         });
