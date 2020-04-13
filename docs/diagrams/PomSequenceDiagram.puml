@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TaskListParser" as TaskListParser LOGIC_COLOR
+participant ":PomCommandParser" as PomCommandParser LOGIC_COLOR
+participant "p:PomCommand" as PomCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("pom 1")
+activate LogicManager
+
+LogicManager -> TaskListParser : parseCommand("pom 1")
+activate TaskListParser
+
+create PomCommandParser
+TaskListParser -> PomCommandParser
+activate PomCommandParser
+
+PomCommandParser --> TaskListParser
+deactivate PomCommandParser
+
+TaskListParser -> PomCommandParser : parse("1")
+activate PomCommandParser
+
+create PomCommand
+PomCommandParser -> PomCommand
+activate PomCommand
+
+PomCommand --> PomCommandParser : p
+deactivate PomCommand
+
+PomCommandParser --> TaskListParser : p
+deactivate PomCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+PomCommandParser -[hidden]-> TaskListParser
+destroy PomCommandParser
+
+TaskListParser --> LogicManager : p
+deactivate TaskListParser
+
+LogicManager -> PomCommand : execute()
+activate PomCommand
+
+PomCommand -> Model : get(1)
+activate Model
+
+Model --> PomCommand : taskToPom
+deactivate Model
+
+PomCommand -> Model : setPomodoroTask(taskToPom)
+activate Model
+
+Model --> PomCommand
+deactivate Model
+
+create CommandResult
+PomCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> PomCommand
+deactivate CommandResult
+
+PomCommand --> LogicManager : result
+deactivate PomCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

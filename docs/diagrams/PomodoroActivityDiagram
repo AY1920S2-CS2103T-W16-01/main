@@ -1,0 +1,34 @@
+@startuml
+start
+:User calls 'pom' command;
+
+
+partition CommandExecution {
+    if (<index> is an undone task) then ([task is pommed])
+        : Pomodoro timer counts down;
+        : Timer ends;
+    else
+        : Prompt user of invalid action;
+        stop;
+    endif
+}
+
+partition PomodoroEnd {
+    :Prompt: "Have you done the task?";
+
+    if (User says 'Y') then
+        : Update task in model to be done;
+    else (['N'])
+    endif
+
+    :Prompt: "Would you like to take a break?";
+
+    if (User says 'Y') then
+        : Rest timer counts down;
+        : Timer ends;
+    else (['N'])
+    endif
+}
+
+stop;
+@enduml

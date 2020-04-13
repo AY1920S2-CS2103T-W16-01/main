@@ -1,0 +1,91 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TaskListParser" as TaskListParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant "a:AddCommand" as AddCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "t:Task" as Task MODEL_COLOR
+participant "r:Reminder" as Reminder MODEL_COLOR
+participant ":MainWindow" as MainWindow MODEL_COLOR
+end box
+
+[-> LogicManager : execute("delete 1")
+activate LogicManager
+activate MainWindow
+
+LogicManager -> TaskListParser : parseCommand("add n/test r/15/03/20@13:32")
+activate TaskListParser
+
+create AddCommandParser
+TaskListParser -> AddCommandParser
+activate AddCommandParser
+
+create Task
+AddCommandParser --> Task
+activate Task
+
+create Reminder
+Task --> Reminder
+activate Reminder
+
+Reminder --> MainWindow : setDelay()
+
+MainWindow --> MainWindow : triggerReminder(reminder, name, description)
+
+MainWindow --> Reminder
+Reminder --> Task
+deactivate Reminder
+
+AddCommandParser --> TaskListParser
+deactivate AddCommandParser
+
+TaskListParser -> AddCommandParser : parse("n/test r/15/03/20@13:32")
+activate AddCommandParser
+
+create AddCommand
+AddCommandParser -> AddCommand
+activate AddCommand
+
+AddCommand --> AddCommandParser : a
+deactivate AddCommand
+
+AddCommandParser --> TaskListParser : a
+deactivate AddCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCommandParser -[hidden]-> TaskListParser
+destroy AddCommandParser
+
+TaskListParser --> LogicManager : a
+deactivate TaskListParser
+
+LogicManager -> AddCommand : execute()
+activate AddCommand
+
+AddCommand -> Model : addTask(task)
+activate Model
+
+Model --> AddCommand
+deactivate Model
+
+create CommandResult
+AddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddCommand
+deactivate CommandResult
+
+AddCommand --> LogicManager : result
+deactivate AddCommand
+
+[<--Task
+[<--MainWindow
+[<--LogicManager
+deactivate LogicManager
+@enduml
