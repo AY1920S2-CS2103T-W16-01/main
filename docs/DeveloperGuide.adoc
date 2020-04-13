@@ -243,14 +243,21 @@ _{Explain here how the data encryption feature will be implemented}_
 // end::dataencryption[]
 
 === Pet
-//image:: PetClassDiagram.png
+
+==== Implementation
 The pet feature aims to provide a virtual pet for the app in order to motivate the user. The pet has three main components: the XP points, the evolution and the mood. To facilitate this function, a Pet class is created to represent the pet. A PetManager class is created to manage the pet via communications from MainWindow. Lastly, a PetDisplay class is created to handle the UI of the pet.
+
+image::PetClassDiagram.png[]
 
 To exemplify the implementation for the components of the XP points and the evolution of the pet, an example usage scenario is given below.
 
 Step 1. User finishes a task. User calls the done command for a task. MainWindow would execute this command and generate a DoneCommandResult object
 
+image::DoneCommandSequenceDiagram.png[]
+
 Step 2. The MainWindow will update PetManager to increase XP points after the DoneCommandResult Object is received. This is done by calling the method `PetManager#incrementExp`. PetManager would then update XP points of Pet by calling `Pet#incrementExp`. This method also checks whether the XP points have reached the milestones for the levels and will update the level of the pet accordingly.
+
+image::PetSequenceDiagram.png[]
 
 Step 3. Following the update of XP points, MainWindow also updates the mood of the pet. Supposedly, the pet is originally in "HANGRY" mood, MainWindow will call "MainWindow#updateMoodWhenDone" method to change the pet's mood to Happy. It will also update the time of the last done task and reschedules a new timertask so that the pet will turn "Hangry" at the correct time. Lastly, this method also updates the elements
 
@@ -258,10 +265,9 @@ Step 4. MainWindow would then update the string of the filepaths for the respect
 
 Step 5. Lastly, MainWindow will the update PetDisplay. The user will then see the UI be updated accodingly. For example, the progress bar would increase.
 
-done command -> increment EXP
-increment EXP (more thanevel milestone) -> update UI
+image::UpdatePetDisplaySequenceDiagram.png[]
 
-==== Implementation
+==== Design Consideration
 
 === Logging
 
