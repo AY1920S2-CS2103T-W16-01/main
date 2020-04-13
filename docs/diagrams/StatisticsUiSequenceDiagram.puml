@@ -1,0 +1,46 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":StatisticsDisplay" as StatisticsDisplay UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":StatisticsManager" as StatisticsManager LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Statistics" as Statistics MODEL_COLOR_T1
+end box
+
+[-> MainWindow : commandRestult
+activate MainWindow
+
+opt is SortCommandResult
+MainWindow -> StatisticsManager: updateStatisticsDisplayValues()
+activate StatisticsManager
+
+StatisticsManager -> Statistics: get Statistics info
+activate Statistics
+
+Statistics --> StatisticsManager: Statistics info
+deactivate Statistics
+
+StatisticsManager --> MainWindow
+deactivate StatisticsManager
+
+MainWindow -> StatisticsManager: get Statistics display info
+activate StatisticsManager
+
+StatisticsManager --> MainWindow: Statistics display info
+deactivate StatisticsManager
+
+MainWindow -> StatisticsDisplay: set Statistics display info
+activate StatisticsDisplay
+StatisticsDisplay --> MainWindow:
+deactivate StatisticsDisplay
+
+[<--MainWindow: commandResult
+deactivate MainWindow
+@enduml

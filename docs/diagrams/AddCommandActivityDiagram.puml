@@ -1,0 +1,24 @@
+@startuml
+start
+:User executes AddCommand;
+
+if () then ([command is valid])
+  : Create AddComand with appropriate prefixes;
+  : Executes AddCommand;
+  if () then ([duplicate task in task list])
+        :Update UI to display error;
+  else ([else])
+        :Creates new task;
+        if() then ([comparator is set])
+            : Add task to task list in sorted order;
+        else ([else])
+            : Add task to the head of task list;
+        endif
+        :Updates UI with new task list;
+  endif
+else ([else])
+  :Update UI to display error;
+endif
+
+stop;
+@enduml

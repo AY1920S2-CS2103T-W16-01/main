@@ -6,21 +6,25 @@ import java.util.List;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
+/**
+ * Represents the Command result for a pom command
+ *
+ * @author Hardy Shein
+ * @version 1.4
+ */
 public class PomCommandResult extends CommandResult {
 
     private final String pommedTask;
 
     private final float timerAmount;
 
-    private final boolean isPause;
-
-    private final boolean isContinue;
-
     private final Model model;
 
     private final int taskIndex;
 
     private List<Task> originList;
+
+    private final PomCommand.POM_TYPE pomType;
 
     /** Constructs a {@code PomCommandResult} with the specified fields. */
     public PomCommandResult(
@@ -30,14 +34,12 @@ public class PomCommandResult extends CommandResult {
             Model model,
             int taskIndex,
             List<Task> originList,
-            boolean isPause,
-            boolean isContinue) {
+            PomCommand.POM_TYPE pomType) {
         super(requireNonNull(feedbackToUser), false, false);
         this.pommedTask = pommedTask;
         this.timerAmount = timerAmount;
         this.model = requireNonNull(model);
-        this.isPause = requireNonNull(isPause);
-        this.isContinue = requireNonNull(isContinue);
+        this.pomType = requireNonNull(pomType);
         this.taskIndex = taskIndex;
         this.originList = originList;
     }
@@ -51,11 +53,19 @@ public class PomCommandResult extends CommandResult {
     }
 
     public boolean getIsPause() {
-        return isPause;
+        return pomType == PomCommand.POM_TYPE.PAUSE;
     }
 
     public boolean getIsContinue() {
-        return isContinue;
+        return pomType == PomCommand.POM_TYPE.CONTINUE;
+    }
+
+    public boolean getIsStop() {
+        return pomType == PomCommand.POM_TYPE.STOP;
+    }
+
+    public boolean getIsNormal() {
+        return pomType == PomCommand.POM_TYPE.NORMAL;
     }
 
     public Model getModel() {

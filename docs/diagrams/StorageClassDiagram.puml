@@ -1,46 +1,22 @@
 @startuml
 !include style.puml
 skinparam arrowThickness 1.1
-skinparam arrowColor STORAGE_COLOR
-skinparam classBackgroundColor STORAGE_COLOR
-
-Interface Storage <<Interface>>
-Interface UserPrefsStorage <<Interface>>
-Interface TaskListStorage <<Interface>>
-Interface PetStorage <<Interface>>
-Interface PomodoroStorage <<Interface>>
-Interface StatisticsStorage <<Interface>>
-
-Class StorageManager
-Class JsonUserPrefsStorage
-Class JsonTaskListStorage
-class JsonPetStorage
-class JsonPomodoroStorage
-class JsonStatisticsStorage
-class JsonSerializableDayDataList
-class JsonAdaptedDayData
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
 
 
-StorageManager .left.|> Storage
-StorageManager o-right-> UserPrefsStorage
-StorageManager o--> TaskListStorage
-StorageManager o--> PetStorage
-StorageManager o--> PomodoroStorage
-StorageManager o--> StatisticsStorage
 
-JsonPetStorage .up.|> PetStorage
-JsonPetStorage .down.> JsonAdaptedPet
+Class ModelManager
+Class TaskList
+Class UniqueTaskList
+Class FilteredTaskList
+Class SortedList
 
-JsonPomodoroStorage .up.|> PomodoroStorage
-JsonPomodoroStorage .down.> JsonAdaptedPomodoro
+ModelManager o-> TaskList
+ModelManager o-> FilteredTaskList
+FilteredTaskList ..> SortedList
+TaskList o-> UniqueTaskList
+TaskList o-> SortedList
+SortedList ..> UniqueTaskList
 
-JsonStatisticsStorage .up.|> StatisticsStorage
-JsonStatisticsStorage ..> JsonSerializableDayDataList
-JsonSerializableDayDataList ..> JsonAdaptedDayData
-
-JsonUserPrefsStorage .left.|> UserPrefsStorage
-JsonTaskListStorage .up.|> TaskListStorage
-JsonTaskListStorage .down.> JsonSerializableTaskList
-JsonSerializableTaskList ..> JsonAdaptedTask
-JsonAdaptedTask ..> JsonAdaptedTag
 @enduml

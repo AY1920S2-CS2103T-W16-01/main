@@ -1,0 +1,20 @@
+@startuml
+start
+:User executes Command;
+
+if () then ([command is valid])
+  : Creates appropriate Command with appropriate prefixes;
+  : Executes Command;
+  if () then ([command is a SwitchTabCommand])
+        :Display tab specified in command in UI;
+  else if () then ([command is a SetCommand])
+        : Display Settings tab in UI;
+  else ([else])
+        : Display Tasks tab in UI;
+  endif
+else ([else])
+  :Update UI to display error;
+endif
+
+stop;
+@enduml

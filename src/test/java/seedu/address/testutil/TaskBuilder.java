@@ -4,11 +4,13 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Done;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
+import seedu.address.model.task.Recurring;
 import seedu.address.model.task.Reminder;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.exceptions.InvalidReminderException;
@@ -28,6 +30,7 @@ public class TaskBuilder {
     private Done done;
     private Optional<Reminder> reminder = Optional.empty();
     private Set<Tag> tags;
+    private Optional<Recurring> recurring = Optional.empty();
 
     public TaskBuilder() {
         name = new Name(DEFAULT_NAME);
@@ -44,6 +47,8 @@ public class TaskBuilder {
         description = taskToCopy.getDescription();
         done = taskToCopy.getDone();
         tags = new HashSet<>(taskToCopy.getTags());
+        reminder = taskToCopy.getOptionalReminder();
+        recurring = taskToCopy.getOptionalRecurring();
     }
 
     /** Sets the {@code Name} of the {@code Task} that we are building. */
@@ -96,7 +101,31 @@ public class TaskBuilder {
         return this;
     }
 
+    /** Sets reminder as optional.empty for task builder. */
+    public TaskBuilder withReminder() {
+        this.reminder = Optional.empty();
+        return this;
+    }
+
+    public TaskBuilder withRecurring(String recurrStringStorage) {
+        try {
+            this.recurring = Optional.of(new Recurring(recurrStringStorage));
+        } catch (ParseException e) {
+            this.recurring = Optional.empty();
+        }
+        return this;
+    }
+
+    public TaskBuilder withRecurring(String recurrString, LocalDateTime referenceDateTime) {
+        try {
+            this.recurring = Optional.of(new Recurring(recurrString, referenceDateTime));
+        } catch (ParseException e) {
+            this.recurring = Optional.empty();
+        }
+        return this;
+    }
+
     public Task build() {
-        return new Task(name, priority, description, done, tags, reminder);
+        return new Task(name, priority, description, done, tags, reminder, recurring);
     }
 }

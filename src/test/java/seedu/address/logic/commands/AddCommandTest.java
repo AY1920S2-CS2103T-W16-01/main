@@ -14,16 +14,21 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.Observer;
 import seedu.address.logic.PetManager;
 import seedu.address.logic.PomodoroManager;
+import seedu.address.logic.StatisticsManager;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyPet;
 import seedu.address.model.ReadOnlyPomodoro;
+import seedu.address.model.ReadOnlyStatistics;
 import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.Statistics;
 import seedu.address.model.TaskList;
+import seedu.address.model.dayData.Date;
+import seedu.address.model.dayData.DayData;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
 
@@ -116,12 +121,22 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addTask(Task task) {
+        public String[] getTagNames() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void sortList() {
+        public boolean hasTag(Tag t) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTaskSaver(TaskSaver taskSaver) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTask(Task task) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -156,6 +171,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void showAllTasks() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredTaskList(Predicate<Task> predicate) {
             throw new AssertionError("This method should not be called.");
         }
@@ -176,7 +196,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setComparator(Comparator<Task>[] compare) {
+        public void setComparator(Comparator<Task> comparator, String sortOrder) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setSearchResultOrder(Comparator<Task> compare) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -206,12 +231,22 @@ public class AddCommandTest {
         }
 
         @Override
-        public Statistics getStatistics() {
+        public ReadOnlyStatistics getStatistics() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateDataDatesStatistics() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updatesDayDataStatistics(DayData dayData) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public DayData getDayDataFromDateStatistics(Date date) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -227,6 +262,28 @@ public class AddCommandTest {
 
         @Override
         public void setPomodoroRestTime(float restTimeInMin) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setPomodoroTimeLeft(float timeLeft) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void setStatisticsManager(StatisticsManager statisticsManager) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void notifyMainWindow(String inputString) throws CommandException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addObserver(Observer observer) {
             throw new AssertionError("This method should not be called.");
         }
     }

@@ -1,0 +1,76 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":PomodoroManager" as PomodoroManager LOGIC_COLOR
+participant "timerLabel:Label" as timerLabel LOGIC_COLOR
+participant ":Timeline" as Timeline LOGIC_COLOR
+participant ":PetManager" as PetManager LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":Statistics" as Statistics MODEL_COLOR
+end box
+
+[-> PomodoroManager : start(time)
+activate PomodoroManager
+
+PomodoroManager -> PomodoroManager : configureUi()
+activate PomodoroManager
+PomodoroManager -> timerLabel : bind()
+activate timerLabel
+timerLabel --> PomodoroManager
+deactivate timerLabel
+deactivate PomodoroManager
+
+PomodoroManager -> PomodoroManager : configureTimer()
+activate PomodoroManager
+PomodoroManager -> Timeline : setOnFinished()
+activate Timeline
+Timeline --> PomodoroManager
+deactivate Timeline
+deactivate PomodoroManager
+
+[<--PomodoroManager
+deactivate PomodoroManager
+
+Timeline -> PomodoroManager: TimeOut
+activate Timeline
+activate PomodoroManager
+PomodoroManager -> PetManager : incrementPomExp()
+activate PetManager
+PetManager --> PomodoroManager
+deactivate PetManager
+
+PomodoroManager -> PomodoroManager : updateStatistics()
+activate PomodoroManager
+PomodoroManager -> Model : getStatistics()
+activate Model
+Model --> PomodoroManager : s
+deactivate Model
+
+PomodoroManager -> Statistics : updateDataDates()
+activate Statistics
+Statistics --> PomodoroManager
+deactivate Statistics
+
+PomodoroManager -> PomodoroManager : generateUpdatedDayData()
+activate PomodoroManager
+PomodoroManager --> PomodoroManager : dayDatas
+deactivate PomodoroManager
+
+loop for each dayData
+PomodoroManager -> Statistics : updatesDayData()
+activate Statistics
+Statistics --> PomodoroManager
+deactivate Statistics
+end
+
+deactivate PomodoroManager
+
+deactivate PomodoroManager
+
+PomodoroManager --> Timeline
+deactivate Timeline
+@enduml

@@ -14,10 +14,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1, 2")
+[-> LogicManager : execute("delete 1 2")
 activate LogicManager
 
-LogicManager -> TaskListParser : parseCommand("delete 1, 2")
+LogicManager -> TaskListParser : parseCommand("delete 1 2")
 activate TaskListParser
 
 create DeleteCommandParser
@@ -27,10 +27,10 @@ activate DeleteCommandParser
 DeleteCommandParser --> TaskListParser
 deactivate DeleteCommandParser
 
-TaskListParser -> DeleteCommandParser : parse("1, 2")
+TaskListParser -> DeleteCommandParser : parse("1 2")
 activate DeleteCommandParser
 
-DeleteCommandParser -> ParserUtil :parseIndices("1, 2")
+DeleteCommandParser -> ParserUtil :parseIndices("1 2")
 activate ParserUtil
 
 ParserUtil -> DeleteCommandParser :Index[] indexes

@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.InvalidPetException;
 import seedu.address.model.ReadOnlyPet;
 import seedu.address.model.ReadOnlyPomodoro;
 import seedu.address.model.ReadOnlyStatistics;
@@ -28,13 +29,13 @@ public class StorageManager implements Storage {
             TaskListStorage taskListStorage,
             PetStorage petStorage,
             PomodoroStorage pomodoroStorage,
-            StatisticsStorage dayDataListStorage,
+            StatisticsStorage statisticsStorage,
             UserPrefsStorage userPrefsStorage) {
         super();
         this.taskListStorage = taskListStorage;
         this.petStorage = petStorage;
         this.pomodoroStorage = pomodoroStorage;
-        this.statisticsStorage = dayDataListStorage;
+        this.statisticsStorage = statisticsStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -91,13 +92,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyPet> readPet() throws DataConversionException, IOException {
+    public Optional<ReadOnlyPet> readPet()
+            throws DataConversionException, IOException, InvalidPetException {
         return readPet(petStorage.getPetFilePath());
     }
 
     @Override
     public Optional<ReadOnlyPet> readPet(Path filePath)
-            throws DataConversionException, IOException {
+            throws DataConversionException, IOException, InvalidPetException {
         logger.fine("Attempting to read data from file: " + filePath);
         return petStorage.readPet(filePath);
     }

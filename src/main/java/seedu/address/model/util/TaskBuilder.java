@@ -4,11 +4,13 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Done;
 import seedu.address.model.task.Name;
 import seedu.address.model.task.Priority;
+import seedu.address.model.task.Recurring;
 import seedu.address.model.task.Reminder;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.exceptions.InvalidReminderException;
@@ -26,6 +28,7 @@ public class TaskBuilder {
     private Description description;
     private Done done;
     private Optional<Reminder> reminder = Optional.empty();
+    private Optional<Recurring> recurring = Optional.empty();
     private Set<Tag> tags;
 
     public TaskBuilder() {
@@ -43,6 +46,8 @@ public class TaskBuilder {
         description = taskToCopy.getDescription();
         done = taskToCopy.getDone();
         tags = new HashSet<>(taskToCopy.getTags());
+        reminder = taskToCopy.getOptionalReminder();
+        recurring = taskToCopy.getOptionalRecurring();
     }
 
     /** Sets the {@code Name} of the {@code Task} that we are building. */
@@ -77,6 +82,11 @@ public class TaskBuilder {
         return this;
     }
 
+    public TaskBuilder withDone(Done done) {
+        this.done = done;
+        return this;
+    }
+
     public TaskBuilder withReminder(LocalDateTime dateTime) {
         try {
             this.reminder = Optional.of(new Reminder(dateTime));
@@ -95,7 +105,16 @@ public class TaskBuilder {
         return this;
     }
 
+    public TaskBuilder withRecurring(String recurringString, LocalDateTime referenceDateTime) {
+        try {
+            this.recurring = Optional.of(new Recurring(recurringString, referenceDateTime));
+        } catch (ParseException e) {
+            this.reminder = Optional.empty();
+        }
+        return this;
+    }
+
     public Task build() {
-        return new Task(name, priority, description, done, tags, reminder);
+        return new Task(name, priority, description, done, tags, reminder, recurring);
     }
 }

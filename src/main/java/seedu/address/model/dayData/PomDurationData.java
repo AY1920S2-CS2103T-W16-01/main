@@ -21,7 +21,7 @@ public class PomDurationData {
     /**
      * Constructs a {@code PomDurationData}.
      *
-     * @param pomDurationData A valid priority number.
+     * @param pomDurationData A valid PomDurationData.
      */
     public PomDurationData(String pomDurationData) {
         requireNonNull(pomDurationData);
@@ -29,7 +29,7 @@ public class PomDurationData {
         value = Integer.valueOf(pomDurationData);
     }
 
-    /** Returns true if a given string is a valid priority number. */
+    /** Returns true if a given string is a valid PomDurationData. */
     public static boolean isValidPomDurationData(String test) {
         try {
             int i = Integer.parseInt(test);
@@ -49,10 +49,5 @@ public class PomDurationData {
         return other == this // short circuit if same object
                 || (other instanceof PomDurationData // instanceof handles nulls
                         && value.equals(((PomDurationData) other).value)); // state check
-    }
-
-    @Override
-    public int hashCode() {
-        return value.hashCode();
     }
 }

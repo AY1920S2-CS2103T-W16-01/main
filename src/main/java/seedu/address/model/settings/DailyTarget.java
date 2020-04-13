@@ -1,17 +1,20 @@
 package seedu.address.model.settings;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class DailyTarget implements Comparable {
 
-    public static final String MESSAGE_CONSTRAINTS = "Daily Target should not exceed 720 mins";
-    public static final String VALIDATION_REGEX = "[1-720]";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Daily Target should be more than 0 mins and does not exceed 720 mins, and it should not be blank";
+    // 720/60 = 12. It is no longer productive to be doing work straight for more than 12 hours per
+    // day
+
+    public static final String VALIDATION_REGEX =
+            "^([0-9]|[1-9][0-9]|[1-6][0-9][0-9]|7[0-1][0-9]|720)$";
     public final String value;
 
     public DailyTarget(String dailyTarget) {
         requireNonNull(dailyTarget);
-        checkArgument(isValidDailyTarget(dailyTarget), MESSAGE_CONSTRAINTS);
         value = dailyTarget;
     }
 
