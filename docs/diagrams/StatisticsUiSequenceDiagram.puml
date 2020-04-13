@@ -21,7 +21,7 @@ opt is SortCommandResult
 MainWindow -> StatisticsManager: updateStatisticsDisplayValues()
 activate StatisticsManager
 
-StatisticsManager --> Statistics: get Statistics info
+StatisticsManager -> Statistics: get Statistics info
 activate Statistics
 
 Statistics --> StatisticsManager: Statistics info

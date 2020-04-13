@@ -322,6 +322,9 @@ image::SwitchTabActivityDiagram.png[]
 
 The following sequence diagram shows how the SwitchTabCommand updates the tab in the UI.
 
+.Sequence Diagram of SwitchTabCommand
+image::SwitchTabSequenceDiagram.png[]
+
 === Statistics Feature
 
 The Statistics feature allows the user to view information about their number of tasks completed and Pomodoro duration ran on a daily basis for the past `CONSTANT_SIZE` days.

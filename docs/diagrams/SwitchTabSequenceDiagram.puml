@@ -26,10 +26,10 @@ create SwitchTabCommandResult
 SwitchTabCommand -> SwitchTabCommandResult :  SwitchTabCommandResult()
 activate SwitchTabCommandResult
 
-SwitchTabCommandResult --> SwitchTabCommand :  commandResult
+SwitchTabCommandResult --> SwitchTabCommand :
 deactivate SwitchTabCommandResult
 
-SwitchTabCommand --> LogicManager :  commandResult
+SwitchTabCommand --> LogicManager :
 deactivate SwitchTabCommand
 
 LogicManager --> MainWindow :  commandResult
@@ -38,13 +38,13 @@ deactivate LogicManager
 MainWindow -> SwitchTabCommandResult :  getTabToSwitchIndex()
 activate SwitchTabCommandResult
 
-SwitchTabCommandResult --> MainWindow :  result
+SwitchTabCommandResult --> MainWindow :  tabToSwitchIndex
 deactivate SwitchTabCommandResult
 
 MainWindow -> TabPanePlaceHolder :  getSelectionModel()
 activate TabPanePlaceHolder
 
-TabPanePlaceHolder -> SingleSelectionModel :  select()
+TabPanePlaceHolder -> SingleSelectionModel :  select(tabToSwitchIndex )
 activate SingleSelectionModel
 
 SingleSelectionModel --> TabPanePlaceHolder :
