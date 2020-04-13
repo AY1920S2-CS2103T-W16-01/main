@@ -161,7 +161,42 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 === TaskList
+
+//tag::add[]
 ==== Add(Permas)
+
+===== Implementation
+The Add feature allows the user to add a `Task`. Its only compulsory field is `Name`. `Description`, `Priority`, `Reminder`, `Recurring` and `Tag` are optional fields.
+
+[NOTE]
+Default `Priority` of 'low' is assigned if it is not specified.
+
+[NOTE]
+The user can specify multiple `Tag`s.
+
+The mechanism of how `SwitchTabCommand` updates the `Ui` is described below through an example usage.
+
+Step 1. The user executes `add n/Homework 1 des/Read up on Semaphotes p/3` to add a new `Task`. `LogicManager` calls execute on this inputs.
+
+Step 2. `TaskListParser` creates an `AddCommandParser` to parse this input. `AddCommandParser` creates the relevant objects for the fields specified in input. Based on the input, it creates a `Task` with its assigned `Name`, `Priority` and `Description`.
+
+Step 3. `AddCommandParser` returns a new `AddCommand` with the newly created `Task` as its only argument to `LogicManager`.
+
+Step 4. `AddCommand` executes. It checks if the `TaskList` contains a duplicate `Task` to it through `Model#hasTask`. If a duplicate `Task` exists, a `DuplicateTaskException` is thrown. If not, it adds the new `Task` into the `Tasklist` through `Model#addTask`.
+
+Step 5. `AddCommand` creates and return the resulting `CommandResult` to the `Ui`.
+
+The following sequence diagram shows how the `AddCommand` is executed.
+
+.Add Command Sequence Diagram
+image::AddSequenceDiagram.png[]
+
+The following activity diagram summarises what happens when the `AddCommand` is executed.
+
+.Add Command Activity Diagram
+image::AddCommandActivityDiagram.png[]
+
+//end::add[]
 
 ==== Edit(Arthur)
 
@@ -409,7 +444,7 @@ image::TaskClassDiagram.png[width=790]
 The Switch tab feature allows the user to traverse between the Tasks, Statistics and Settings tabs.
 
 The user can switch tabs through 2 main methods:
-1. User calls a valid SwitchTabCommand that displays the appropriate tab defined.
+1. User calls a valid `SwitchTabCommand` that displays the appropriate tab defined.
 2. User calls a valid command that changes the display of Tab B while he or she is on Tab A. In this scenario, Tab B will display automatically.
 
 This behaviour is represented in the following activity diagram.
@@ -417,15 +452,15 @@ This behaviour is represented in the following activity diagram.
 .Activity Diagram of Tab Switches
 image::SwitchTabActivityDiagram.png[]
 
-The mechanism of how `SwitchTabCommand` updates the UI is described below.
+The mechanism of how `SwitchTabCommand` updates the `Ui` is described below.
 
-Step 1. `MainWindow` executes the user input through logic and retrieves the `SwitchTabCommandResult commandResult` from Logic.
+Step 1. `MainWindow` executes the user input through logic and retrieves the `SwitchTabCommandResult commandResult` from `Logic`.
 
 Step 2. `MainWindow` retrieves the `tabToSwitchIndex` from `commandResult`.
 
 Step 3. `MainWindow` updates the `tabToSwitchIndex` tab through `tabPanePlaceholder`.
 
-The following sequence diagram shows how `SwitchTabCommand` updates the tab in the UI.
+The following sequence diagram shows how `SwitchTabCommand` updates the tab in the `Ui`.
 
 .Sequence Diagram of SwitchTabCommand
 image::SwitchTabSequenceDiagram.png[]
@@ -443,17 +478,18 @@ The Statistics feature is mainly supported by the `Statistics` class, which in t
 .Class Diagram of the Statistics Component
 image::StatisticsClassDiagram.png[]
 
-The `CustomQueue` class enforces the following constraints.
+The `CustomQueue` class enforces the following constraints:
+
 1. Size of `CustomQueue` must be of `CONSTANT_SIZE` after each method call through `Statistics`.
 2. DayData dates in `CustomQueue` must be only 1 day apart between its elements, and sorted from oldest to latest date.
 
 The `CustomQueue` class implements the following methods for other components to access or update its data:
 
-* `Model#updateDataDatesStatistics()` - Updates data to current day while retaining stored data.
-* `Model#updatesDayDataStatistics()` - Replaces existing DayData in Statistics with new DayData of the same date.
-* `Model#getDayDataFromDateStatistics()` - Returns the DayData object from Statistics with the specified date.
+* `Model#updateDataDatesStatistics` - Updates data to current day while retaining stored data.
+* `Model#updatesDayDataStatistics` - Replaces existing DayData in Statistics with new DayData of the same date.
+* `Model#getDayDataFromDateStatistics` - Returns the DayData object from Statistics with the specified date.
 
-The Statistics feature does not support any explicit commands. Instead, the UI is updated and displayed when the SwitchTabCommand 'stats' is called. The mechanism of this behaviour is described below.
+The Statistics feature does not support any explicit commands. Instead, `Ui` is updated and displayed when the SwitchTabCommand 'stats' is called. The mechanism of this behaviour is described below.
 
 Step 1. `MainWindow` receives the `SwitchTabCommandResult commandResult` from `Logic`.
 

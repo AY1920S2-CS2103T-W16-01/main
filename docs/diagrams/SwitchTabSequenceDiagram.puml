@@ -26,13 +26,13 @@ create SwitchTabCommandResult
 SwitchTabCommand -> SwitchTabCommandResult :  SwitchTabCommandResult()
 activate SwitchTabCommandResult
 
-SwitchTabCommandResult --> SwitchTabCommand :
+SwitchTabCommandResult --> SwitchTabCommand : commandResult
 deactivate SwitchTabCommandResult
 
-SwitchTabCommand --> LogicManager :
+SwitchTabCommand --> LogicManager : commandResult
 deactivate SwitchTabCommand
 
-LogicManager --> MainWindow :  commandResult
+LogicManager --> MainWindow : commandResult
 deactivate LogicManager
 
 MainWindow -> SwitchTabCommandResult :  getTabToSwitchIndex()
