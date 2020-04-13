@@ -269,6 +269,9 @@ image::UpdatePetDisplaySequenceDiagram.png[]
 
 ==== Design Consideration
 
+=== Set Commands
+The Set Commands can be used to customise the features in BB Productive. It can be used to customised the name of the pet, the duration for pomodoro and the daily challenge target so as to better cater to the needs of the user.
+
 === Logging
 
 We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.

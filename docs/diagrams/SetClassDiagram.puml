@@ -1,0 +1,74 @@
+@startuml
+
+class SetCommand {
+- petName : PetName
+- pomDuration : PomDuration
+- dailyTarget : DailyTarget
++ <u>execute(Model) : SetCommandResult
++getPetName() : PetName
++getPomDuration() : PomDuration
++getDailyTarget() : DailyTarget
+}
+
+class PetName{
+- fullName : String
++<u>isValidPetName(String) : boolean
++ isEmpty() : boolean
+}
+
+class PomDuration {
+- value : String
++ <u>isValidPomDuration(String) : boolean
++ isEmpty() : boolean
+}
+
+class DailyTarget {
+-value : String
++<u>isValidDailyTarget(String) : boolean
++ isEmpty() : boolean
+}
+
+class SetCommandParser {
+- petName : PetName
+- pomDuration : PomDuration
+- dailyTarget : DailyTarget
++ parse(String) : Setcommand
+}
+
+Interface Parser {
++ parse(String) : T
+}
+
+abstract class Command {
++ {abstract} execute(Model): CommandResult
+}
+
+class SetCommandResult {
+- petName : PetName
+- pomDuration : PomDuration
+- dailyTarget : DailyTarget
++getPetName() : PetName
++getPomDuration() : PomDuration
++getDailyTarget() : DailyTarget
+}
+
+class CommandResult {
+-feedbacktoUser  
+}
+
+CommandResult <|-- SetCommandResult
+Parser <|.. SetCommandParser
+Command <|-- SetCommand
+
+SetCommandResult o-- DailyTarget
+SetCommandParser *-- DailyTarget
+SetCommand o-- DailyTarget
+
+SetCommandResult o-- PetName
+SetCommandParser *-- PetName
+SetCommand o-- PetName
+
+SetCommandResult o-- PomDuration
+SetCommandParser *-- PomDuration
+SetCommand o-- PomDuration
+@enduml
