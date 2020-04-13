@@ -88,7 +88,7 @@ Indexes refer to the current tasklist on display, it does not refer to the indic
 
 //tag::gui[]
 
-== Graphical User Interface (Permas)
+== Graphical User Interface
 This section gives you a brief overview of the various GUI components present in BB Productive.
 
 === Pet View
@@ -273,7 +273,7 @@ image::clear_success.png[width=790]
 
 //end::TaskList[]
 
-=== Pet (Fyonn)
+=== Pet
 anchor:pet[]
 
 Write pet
