@@ -309,26 +309,39 @@ This data is captured and stored in the `Pomodoro` class in `seedu.address.model
 
 === Statistics Feature
 
+The Statistics feature allows the user to view information about their number of tasks completed and Pomodoro duration ran on a daily basis for the past `CONSTANT_SIZE` days.
+
+[NOTE]
+`CONSTANT_SIZE` can be set to any number for any future developments. In our current implementation, we chose to store data for only the past 7 days to keep statistics simple and intuitive for users.
+
 The Statistics feature is mainly supported by the Statistics class, which in turn is facilitated by the CustomQueue class. Its class diagram is given below.
 
 .Class Diagram of the Statistics Component
 image::StatisticsClassDiagram.png[]
 
-The Statistics feature does not support any commands explicitly. The UI is updated automatically when the 'stats' command is called. The following sequence diagram shows StatisticsDisplay is updated.
+The Statistics feature does not support any explicit commands. Instead, the UI is updated and displayed when the SwitchTabCommand 'stats' is called.
+
+Step 1. MainWindow receives the SwitchTabCommandResult commandResult from Logic.
+
+Step 2. MainWindow calls StatisticsManager#updateStatisticsDisplayValues() which retrieve the latest Statistics from Model and generates the display information.
+
+Step 3. MainWindow then retrieves these display information from StatisticsManager and sets this information in StatisticsDisplay.
+
+[NOTE]
+SwitchTabCommand also switches the focused tab to the Statistics tab to display the results to the user.
+
+The following sequence diagram shows how the statistics is updated to the display.
 
 .Sequence Diagram of how Statistics
 image::StatisticsUiSequenceDiagram.png[]
 
 ==== CustomQueue Implementation
 
-The CustomQueue class enforces the following constraints.
-1. Size of CustomQueue must be of `CONSTANT_SIZE` after each method call through Statistics.
-2. DayData dates in CustomQueue must be only 1 day apart between its elements, and sorted from oldest to latest date.
+The `CustomQueue` class enforces the following constraints.
+1. Size of `CustomQueue` must be of `CONSTANT_SIZE` after each method call through `Statistics`.
+2. DayData dates in `CustomQueue` must be only 1 day apart between its elements, and sorted from oldest to latest date.
 
-[NOTE]
-`CONSTANT_SIZE` can be set to any number. In our current implementation, we chose to store data for only the past 7 days to keep statistics simple and intuitive for users.
-
-The CustomQueue class implements the following methods for other components to access or update its data:
+The `CustomQueue` class implements the following methods for other components to access or update its data:
 
 * Model#updateDataDatesStatistics() - Updates data to current day while retaining stored data.
 * Model#updatesDayDataStatistics() - Replaces existing DayData in Statistics with new DayData of the same date.
