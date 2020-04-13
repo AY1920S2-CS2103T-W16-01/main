@@ -21,7 +21,7 @@ Role: Team Lead
 
 === Fyonn Oh
 image::fyonnoh.png[width="150", align="left"]
-{empty}[http://github.com/fyonnoh[github]] [<<hardoh#, portfolio>>]
+{empty}[http://github.com/fyonnoh[github]] [<<fyonnoh#, portfolio>>]
 
 Role: Documentation, Code Quality
 
@@ -29,7 +29,7 @@ Role: Documentation, Code Quality
 
 === Permas Teo
 image::permas-teo.png[width="150", align="left"]
-{empty}[http://github.com/permas-teo[github]] [<<hardoh#, portfolio>>]
+{empty}[http://github.com/permas-teo[github]] [<<permas-teo#, portfolio>>]
 
 Role: Deliverables, Testing
 
@@ -37,7 +37,7 @@ Role: Deliverables, Testing
 
 === Arthur Lee
 image::artlee06.png[width="150", align="left"]
-{empty}[http://github.com/artlee06[github]] [<<hardoh#, portfolio>>]
+{empty}[http://github.com/artlee06[github]] [<<artlee06#, portfolio>>]
 
 Role: Ui/Design, Scheduling and tracking
 

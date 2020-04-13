@@ -26,7 +26,7 @@ BBProductive is a gamified productivity app cum task manager. It provides CRUD f
 ** Project management:
 *** Managed release `v1.2.1` on GitHub.
 ** Enhancements to existing features:
-*** Morphed the basic GUI layout from addressbook to BBProductive by implementing PetDisplay, PomodoroDisplay and StatisticsDisplay. Relevant PRs: [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/84[#84]] [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/88[#88]] [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/90[#90] [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/120[#120]]
+*** Morphed the basic GUI layout from addressbook to BBProductive by implementing PetDisplay, PomodoroDisplay and StatisticsDisplay. Relevant PRs: [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/84[#84]] [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/88[#88]] [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/90[#90]]
 *** Update tests for morphing addressbook. Relevant PRs: [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/77[#77]] [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/78[#78]] [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/87/files[#87]]
 *** Add additional tests to increase test coverage. [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/321[#321]]
 ** Documentation:

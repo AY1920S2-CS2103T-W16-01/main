@@ -30,29 +30,14 @@ deactivate Task
 
 Predicate -> Predicate: score = 2
 
-loop chunks of task name
-    Predicate -> StringUtil: limitedCompare(chunk,\n search, threshold)
-    activate StringUtil
-    StringUtil -> Predicate: editDistance
-    deactivate StringUtil
-
-    alt search matches start of chunk
-        Predicate -> Predicate: temp = 1
-    else edit distance between search and chunk < 2
-        Predicate -> Predicate: temp = 1
-    else search equals chunk
-        Predicate -> Predicate: temp = 0
-    end
-
-    opt temp < score
-        Predicate -> Predicate: score = temp
-    end
+group name score
+    Predicate-[hidden]-> StringUtil
+    Predicate-[hidden]-> StringUtil
 end
 
-loop tags of search term
-    opt tag exists in taskList
-        Predicate -> Predicate: score -= 1
-    end
+group tag score
+    Predicate-[hidden]-> Task
+    Predicate-[hidden]-> Task
 end
 
 alt score < 2
@@ -65,3 +50,32 @@ deactivate Predicate
 [<--FilteredList
 deactivate FilteredList
 @enduml
+
+loop tags of search term
+        Predicate -> Task: hasTag(tag)
+        activate Task
+        Task -> Predicate
+        deactivate Task
+        opt Task contains tag
+            Predicate -> Predicate: score -= 1
+        end
+    end
+
+loop chunks of task name
+    Predicate -> StringUtil: limitedCompare(chunk,\n search, threshold)
+    activate StringUtil
+    StringUtil -> Predicate: editDistance
+    deactivate StringUtil
+
+    alt search matches start of chunk
+        Predicate -> Predicate: temp = 1
+    else edit distance < 2
+        Predicate -> Predicate: temp = 1
+    else search equals chunk
+        Predicate -> Predicate: temp = 0
+    end
+
+    opt temp < score
+        Predicate -> Predicate: score = temp
+    end
+end

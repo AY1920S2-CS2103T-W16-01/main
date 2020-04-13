@@ -3,6 +3,8 @@
 :imagesDir: ../images
 :stylesDir: ../stylesheets
 
+image::artlee06.png[width="150", align="left"]
+
 == PROJECT: BB Productive
 
 ---

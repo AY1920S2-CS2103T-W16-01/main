@@ -9,7 +9,7 @@ participant "sorted:SortedList" as SortedList MODEL_COLOR
 participant "filtered:FilteredList" as FilteredList MODEL_COLOR
 end box
 
-[-> Model : getFilteredTaskList(readOnlyTaskList)
+[-> Model : getFilteredTaskList\n(readOnlyTaskList)
 activate Model
 
 create TaskList
@@ -47,4 +47,3 @@ end ref
 [<--Model: filtered
 deactivate Model
 @enduml
-

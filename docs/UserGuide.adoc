@@ -41,7 +41,7 @@ BB Productive is for those who looking for motivation in their work. This app se
 Indexes refer to the current tasklist on display, it does not refer to the indices of the entire task list. Note also that indexes start from 1 and not 0.
 ====
 
-// tag::quickStart[]
+//tag::quickStart[]
 == Quick Start
 - This section provides a quick guide on firing up BB Productive.
 
@@ -67,7 +67,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 .  Refer to <<Features>> for details of each command.
 
-// end::quickStart[]
+//end::quickStart[]
 
 [#index]
 [[Terminology]]
@@ -233,6 +233,13 @@ _All fields with r- prepended refers to a reverse of the original._
 . name -> Shows tasks in alphanumeric order.
 . r-name -> Shows tasks in reverse alphanumeric order.
 
+[NOTE]
+====
+Sort order is removed after any find command is applied. +
+It however remains when any other task commands are applied - add, edit, done, delete, etc. +
+Also sort orders are not retained after closing the application
+====
+
 .Sort success
 image::sort_success.png[width=790]
 
@@ -246,11 +253,16 @@ Oh my after sorting, you still have so many tasks! You can perform a search for 
 * For phrase searching, it is slightly typo tolerant and will show tasks that differ from the `PHRASE` by a little.
 * However, tag names provided must be an exact match (ignoring case).
 
+[NOTE]
+====
+Filtered selection is unapplied when the `add` or `edit` commands are used
+====
+
 .Find success
 image::find_success.png[width=790]
 
 ==== Tag Command
-===== Command :`tag`
+===== Command : `tag`
 
 Hmmm, I wonder what types of tasks I have! You can view all existing tags in BB Productive by entering the Tag command!
 
@@ -278,7 +290,7 @@ anchor:pet[]
 
 Write pet
 
-// tag::pomodoro[]
+//tag::pomodoro[]
 [[Pomodoro]]
 === Pomodoro
 anchor:pomodoro[]
@@ -348,7 +360,7 @@ At the end of the break, the app will return to it's "neutral" state and you can
 .End of pomodoro cycle screen
 image::pom_break_end.png[width=790]
 
-// end::pomodoro[]
+//end::pomodoro[]
 //tag::statistics[]
 
 === Statistics
@@ -401,7 +413,7 @@ image::complete_fail.png[]
 
 //end::AutoComplete[]
 
-// tag::reminder[]
+//tag::reminder[]
 
 === Reminders
 
@@ -457,9 +469,9 @@ image::EditTaskReminderDown.png[width=395]
 .Success for editing task's reminder.
 image::reminder_edit_success.png[width=790]
 
-// end::reminder[]
+//end::reminder[]
 
-// tag::recurring[]
+//tag::recurring[]
 === Recurring
 
 ==== What's Recurring?
@@ -540,7 +552,7 @@ image::recurring_behaviour_new_reminder_resultDisplay(Bottom).png[width=395]
 .Task has been reset shown on task card with updated reminder time of 14th April 2020 at 9:32PM.
 image::recurring_behaviour_new_reminder.png[width=790]
 
-// end::recurring[]
+//end::recurring[]
 
 [[Navigation]]
 === Navigation
@@ -568,7 +580,7 @@ Use the `settings` command to view the _Settings_ tab. The orange background on 
 
 image::settings.png[width="790"]
 
-// tag::storage[]
+//tag::storage[]
 === Storage (Permas)
 All your progress, user preferences and settings are stored in the “data” folder. If you plan to switch devices, you may transfer your progress to another computer by copying the contents of the original device’s “data” folder to the new device’s data folder. This can be done through a thumbdrive.
 
@@ -579,8 +591,8 @@ Please check that the following files are in the “data” folder to ensure tha
 
 image::storage.png[width="395"]
 
-// end::storage[]
-// tag::commandtablesummary[]
+//end::storage[]
+//tag::commandtablesummary[]
 [[CommandTableSummary]]
 == Command Table Summary
 _The following table summarizes all the commands that you can use. Input contained with in [...] are optional fields._
@@ -640,7 +652,7 @@ _The following table summarizes all the commands that you can use. Input contain
 
 |===
 
-// end::commandtablesummary[]
+//end::commandtablesummary[]
 
 == FAQ
 

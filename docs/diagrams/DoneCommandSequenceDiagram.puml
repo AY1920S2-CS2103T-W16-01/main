@@ -1,0 +1,65 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":DoneCommandParser" as DoneCommandParser LOGIC_COLOR
+participant ":DoneCommand" as DoneCommand LOGIC_COLOR
+participant ":DoneCommandResult" as DoneCommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("Done 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("Done 1")
+activate AddressBookParser
+
+create DoneCommandParser
+AddressBookParser -> DoneCommandParser
+activate DoneCommandParser
+
+DoneCommandParser --> AddressBookParser
+deactivate DoneCommandParser
+
+AddressBookParser -> DoneCommandParser : parse("1")
+activate DoneCommandParser
+
+create DoneCommand
+DoneCommandParser -> DoneCommand
+activate DoneCommand
+
+DoneCommand --> DoneCommandParser
+deactivate DoneCommand
+
+DoneCommandParser --> AddressBookParser
+deactivate DoneCommandParser
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+LogicManager -> DoneCommand : execute()
+activate DoneCommand
+
+DoneCommand -> Model : DonePerson(1)
+activate Model
+
+Model --> DoneCommand
+deactivate Model
+
+create DoneCommandResult
+DoneCommand -> DoneCommandResult
+activate DoneCommandResult
+
+DoneCommandResult --> DoneCommand
+deactivate DoneCommandResult
+
+DoneCommand --> LogicManager
+deactivate DoneCommand
+[<-- LogicManager
+
+@enduml
