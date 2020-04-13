@@ -320,7 +320,6 @@ Oh my it's been a productive month, time to start on a clean slate. You may dele
 .Clear success
 image::clear_success.png[width=790]
 
-<<<<<<< HEAD
 === Pet
 _This section provides information about the virtual pet_
 
@@ -330,27 +329,24 @@ BB productive provides you with a virtual pet to act as your companion to motiva
 ==== Experience (XP) Points
 Just like in a game, the pet has experience (XP) points that is used to level up. Notice whenever a task is done, the XP increases by 5 points? You can also increase the XP by 25 points when you finish a pomodoro cycle. When the XP points accumulations to a total of 100, the pet levels up! Through this reward system, you will be motivated to start doing your work and completing them! Proceed to the next section for information about the evolution of the pet.
 
-[[.Example before a task is done]]
+.Done Before
+image::UG_Done_before.png[width=790]
 
-[[.Example after a task is done]]
+.Done Afrer
+image::UG_Done_Finish.png[width=790]
 
 ==== Evolution
 
 The pet has three stages of in its evolution: the baby, the teenager and the dad. Each level can be achieved after every successive accumulation of 100 XP points. Can't wait to see your pet grow? Start doing work to gain more XP!
 
-[[.Example Evolution of pet]]
+.Evolution of Pet
+image::BBProductiveGrowing.png[width=790]
 
 ==== Pet's Mode
 
 The pet has two moods: *Happy* and *Hangry*. When the pet is happy, that means you have been consistent in your work. Good Job! However, when the pet is hangry, that indicates that you have not been doing work for awhile. The pet acts as a visual cue to remind you when you have not been productive in awhile.
 
 [[example of different hangry modes]]
-=======
-//end::TaskList[]
-
-=== Pet (Fyonn)
-Write pet
->>>>>>> 4e5e97d1755cab1924c931a0844b9913279f0fbc
 
 // tag::pomodoro[]
 [[Pomodoro]]
@@ -405,7 +401,7 @@ Once the timer expires, the app will prompt you if you have finished the task. Y
 image::pom_time_expire.png[width=790]
 
 ===== Step 5: Break-time!
-Afterwards, the app will prompt you if you would like to begin a 5 minute break (as per the pomodoro technique). Similarly, you need to respond with Yes (Y) or No (N). Responding with No will set the app to its neutral state. Yes will start the break timer.
+Afterwards, the app will prompt you if you would like to begin a 5 minute break (as per the pomodoro technique). Similarly, you need to respond with Yes (Y) or No (N). Responding with No will set the app to its neutral state. Yes will start the break timer. 
 
 .Prompt checking if you'd like to take a break
 image::pom_prompt_break.png[width=790]
@@ -641,7 +637,6 @@ Use the `settings` command to view the _Settings_ tab. The orange background on 
 
 image::settings.png[width="790"]
 
-<<<<<<< HEAD
 === Set Commands
 _This section explains how to use the set commands_
 
@@ -656,9 +651,18 @@ Take for example, you would like the name to be "Momu", the pomodoro duration to
 
 eg. Command `set pet/Momu pom/30 daily/150`
 
-//screenshot of running commanad
+.Set before
+image::UG_Set_Before.png[width="790"]
 
-//success message + success name + success pom
+Once, the set is successful, you will this success message being displayed.
+
+.set success message
+image::UG_set_successmessage.png[width="790"]
+
+This is the view you will be seeing after running the set command. As you can see the pet name, pomodoro duration and daily challenge target have been changed! 
+
+.Set after
+image::UG_Set_After.png[width="790"]
 
 [IMPORTANT]
 Take note that there are restrictions in the values you can set.  
@@ -666,9 +670,6 @@ Pet Name: Only alphanumerics are allowed
 Pomodoro Duration : The maximum amount is 60 minutes so as to prevent you from burning out
 Daily Target: The maximun amount is 720 minutes
 
-=======
-// tag::storage[]
->>>>>>> 4e5e97d1755cab1924c931a0844b9913279f0fbc
 === Storage (Permas)
 All your progress, user preferences and settings are stored in the “data” folder. If you plan to switch devices, you may transfer your progress to another computer by copying the contents of the original device’s “data” folder to the new device’s data folder. This can be done through a thumbdrive.
 
@@ -734,15 +735,12 @@ _The following table summarizes all the commands that you can use. Input contain
 |settings
 |settings
 
-<<<<<<< HEAD
 |Set
 |Set [pet/PETNAME] [pom/POMDURATION] [daily/DAILYTARGET]
 |Set pet/momu pom/30 daily/150
-=======
 |Clear
 |clear
 |clear
->>>>>>> 4e5e97d1755cab1924c931a0844b9913279f0fbc
 
 |===
 
