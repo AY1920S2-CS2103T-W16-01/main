@@ -1,0 +1,85 @@
+@startuml
+!include style.puml
+box Logic LOGIC_COLOR_T1
+	participant ":LogicManager" LOGIC_COLOR
+	participant "lastShownList:TaskListParser" LOGIC_COLOR
+	participant "parser:EditCommandParser" LOGIC_COLOR
+	participant ":EditCommand" LOGIC_COLOR
+	participant ":CommandResult" LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+	participant ":Model" MODEL_COLOR
+	participant "lastShownList:TaskList" MODEL_COLOR
+end box
+
+[-> ":LogicManager" : execute("edit 1 ...")
+activate ":LogicManager"
+
+":LogicManager" -> "lastShownList:TaskListParser" : parseCommand("edit 1 ...")
+activate "lastShownList:TaskListParser"
+
+create "parser:EditCommandParser"
+"lastShownList:TaskListParser" -> "parser:EditCommandParser"
+activate "parser:EditCommandParser"
+"parser:EditCommandParser" --> "lastShownList:TaskListParser"
+deactivate "parser:EditCommandParser"
+
+"lastShownList:TaskListParser" -> "parser:EditCommandParser" : parse("...")
+activate "parser:EditCommandParser"
+
+create ":EditCommand"
+"parser:EditCommandParser" -> ":EditCommand"
+activate ":EditCommand"
+":EditCommand" --> "parser:EditCommandParser" : editCommand
+deactivate ":EditCommand"
+
+"parser:EditCommandParser" --> "lastShownList:TaskListParser" : editCommand
+deactivate "parser:EditCommandParser"
+destroy "parser:EditCommandParser"
+
+"lastShownList:TaskListParser" --> ":LogicManager" : editCommand
+deactivate "lastShownList:TaskListParser"
+
+":LogicManager" -> ":EditCommand" : execute()
+activate ":EditCommand"
+":EditCommand" -> ":Model" : getFilteredlastShownList:TaskList()
+activate ":Model"
+":Model" --> ":EditCommand" : lastShownList
+deactivate ":Model"
+
+":EditCommand" -> "lastShownList:TaskList" : get()
+activate "lastShownList:TaskList"
+"lastShownList:TaskList" --> ":EditCommand" : taskToEdit
+deactivate "lastShownList:TaskList"
+
+opt :Task edited is not a duplicate
+":EditCommand" -> ":Model" : setTask(taskToEdit, editedTask)
+activate ":Model"
+":Model" -> "lastShownList:TaskList" : setTask(taskToEdit, editedTask)
+activate "lastShownList:TaskList"
+
+"lastShownList:TaskList" --> ":Model" :
+deactivate "lastShownList:TaskList"
+":Model" --> ":EditCommand" :
+deactivate ":Model"
+
+":EditCommand" -> ":Model" : updateFilteredTaskList()
+
+activate ":Model"
+":Model" --> ":EditCommand" :
+deactivate ":Model"
+
+end
+
+create ":CommandResult"
+":EditCommand" -> ":CommandResult"
+activate ":CommandResult"
+":CommandResult" --> ":EditCommand" : commandResult
+deactivate ":CommandResult"
+":EditCommand" --> ":LogicManager" : commandResult
+deactivate ":EditCommand"
+destroy ":EditCommand"
+
+[<-- ":LogicManager"
+@enduml

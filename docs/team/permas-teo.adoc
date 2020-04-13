@@ -11,15 +11,14 @@ image::permas-teo.png[width="150", align="left"]
 
 == Overview
 
-BBProductive is a gamified productivity app cum task manager. It provides CRUD functionalities for tasks and offers a built-in Pomodoro that keeps a user focused on work for fixed intervals. BBProductive also offers a virtual pet that grows along with the user's productivity.
-
+BBProductive is a gamified productivity app cum task manager. It provides CRUD functionalities for tasks and offers a built-in Pomodoro that helps a user focus on work at regular intervals. BBProductive also offers a virtual pet that grows along with the user's productivity.
 
 == Summary of contributions
 
 * *Code contributed*: [https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=permas&sort=totalCommits%20dsc&sortWithin=title&since=2020-02-14&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=Permas-Teo&tabRepo=AY1920S2-CS2103T-W16-1%2Fmain%5Bmaster%5D[View on RepoSense]]
 
 * *Major enhancement*: Added the ability for the user to track their app usage.
-** What it does: Generates data for the user to view in the statistics tab. Firstly, it displays the Daily Challenge, which tracks the total time the user ran the Pomodoro on the current day in an aesthetic progress bar. Secondly, it contains 2 bar graphs that tracks the number of tasks done and total duration the Pomodoro was run for the past 7 days.
+** What it does: Generates data for the user to view in the statistics tab. Firstly, it displays the Daily Challenge, which tracks the total time the user ran the Pomodoro on the current day in an aesthetic progress bar. Secondly, it contains 2 bar graphs that track the number of tasks done and the total duration the user runs the Pomodoro for the past 7 days.
 ** Justification: The user can keep track of their progress for the day as well as over the past week, and make necessary adjustments to ensure that they maintain their productivity.
 ** Highlights: This implementation was challenging as the data structure for storing this information had to be well considered. I want to keep track of data only in the past n (7) days while accounting for usage across different days. I defined the CustomQueue data structure to store the data while enforcing table constraints to minimise memory usage and provide ease of use for the data to be displayed. Non-trivial storage classes and helper methods to access and update CustomQueue had to be defined as well.
 * *Other contributions*:
@@ -31,8 +30,8 @@ BBProductive is a gamified productivity app cum task manager. It provides CRUD f
 *** Update tests for morphing addressbook. Relevant PRs: [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/77[#77]] [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/78[#78]] [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/87/files[#87]]
 *** Add additional tests to increase test coverage. [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/321[#321]]
 ** Documentation:
-*** Updated documentation for UI, Statistics, User Stories and Non-Functional Requirements in Developer Guide.
-*** Updated documentation for GUI and Statistics and Storage in User Guide.
+*** Updated documentation for Add Feature, Switch Tab Feature, Statistics Feature, User Stories and Non-Functional Requirements in Developer Guide.
+*** Updated documentation for GUI, Statistics and Storage in User Guide.
 ** Community:
 *** Collaborate with teammates to tie in non-trivial features: [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/123[#123]]
 *** PRs reviewed (with non-trivial review comments): [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/311[#311]] [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/85[#85]] [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/147[#147]]
@@ -59,6 +58,8 @@ include::../UserGuide.adoc[tag=storage]
 |===
 
 include::../DeveloperGuide.adoc[tag=ui]
+
+include::../DeveloperGuide.adoc[tag=add]
 
 include::../DeveloperGuide.adoc[tag=statistics]
 

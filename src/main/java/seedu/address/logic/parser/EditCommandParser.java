@@ -37,7 +37,6 @@ public class EditCommandParser implements Parser<EditCommand> {
                         PREFIX_DESCRIPTION,
                         PREFIX_TAG,
                         PREFIX_REMINDER);
-
         Index index;
 
         try {

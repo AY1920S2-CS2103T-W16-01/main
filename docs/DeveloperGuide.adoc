@@ -163,7 +163,7 @@ This section describes some noteworthy details on how certain features are imple
 === TaskList
 
 //tag::add[]
-==== Add(Permas)
+==== Add
 
 ===== Implementation
 The Add feature allows the user to add a `Task`. Its only compulsory field is `Name`. `Description`, `Priority`, `Reminder`, `Recurring` and `Tag` are optional fields.
