@@ -19,7 +19,7 @@
 <h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>BBProductive is a gamified productivity app cum task manager. It provides CRUD functionalities for tasks and offers a built-in Pomodoro that keeps a user focused on work for fixed intervals. BBProductive also offers a virtual pet that grows along with the user&#8217;s productivity.</p>
+<p>BBProductive is a gamified productivity app cum task manager. It provides CRUD functionalities for tasks and offers a built-in Pomodoro that helps a user focus on work at regular intervals. BBProductive also offers a virtual pet that grows along with the user&#8217;s productivity.</p>
 </div>
 </div>
 </div>
@@ -36,7 +36,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: Generates data for the user to view in the statistics tab. Firstly, it displays the Daily Challenge, which tracks the total time the user ran the Pomodoro on the current day in an aesthetic progress bar. Secondly, it contains 2 bar graphs that tracks the number of tasks done and total duration the Pomodoro was run for the past 7 days.</p>
+<p>What it does: Generates data for the user to view in the statistics tab. Firstly, it displays the Daily Challenge, which tracks the total time the user ran the Pomodoro on the current day in an aesthetic progress bar. Secondly, it contains 2 bar graphs that track the number of tasks done and the total duration the user runs the Pomodoro for the past 7 days.</p>
 </li>
 <li>
 <p>Justification: The user can keep track of their progress for the day as well as over the past week, and make necessary adjustments to ensure that they maintain their productivity.</p>
@@ -82,10 +82,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Updated documentation for UI, Statistics, User Stories and Non-Functional Requirements in Developer Guide.</p>
+<p>Updated documentation for Add Feature, Switch Tab Feature, Statistics Feature, User Stories and Non-Functional Requirements in Developer Guide.</p>
 </li>
 <li>
-<p>Updated documentation for GUI and Statistics and Storage in User Guide.</p>
+<p>Updated documentation for GUI, Statistics and Storage in User Guide.</p>
 </li>
 </ul>
 </div>
@@ -306,6 +306,75 @@ As you continue to use BB Productive, you may start to wonder how productive you
 </li>
 </ul>
 </div>
+<div class="sect3">
+<h4 id="add"><a class="link" href="#add">Add</a></h4>
+<div class="sect4">
+<h5 id="implementation"><a class="link" href="#implementation">Implementation</a></h5>
+<div class="paragraph">
+<p>The Add feature allows the user to add a <code>Task</code>. Its only compulsory field is <code>Name</code>. <code>Description</code>, <code>Priority</code>, <code>Reminder</code>, <code>Recurring</code> and <code>Tag</code> are optional fields.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Default <code>Priority</code> of 'low' is assigned if it is not specified.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The user can specify multiple `Tag`s.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The mechanism of how <code>SwitchTabCommand</code> updates the <code>Ui</code> is described below through an example usage.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. The user executes <code>add n/Homework 1 des/Read up on Semaphotes p/3</code> to add a new <code>Task</code>. <code>LogicManager</code> calls execute on this inputs.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. <code>TaskListParser</code> creates an <code>AddCommandParser</code> to parse this input. <code>AddCommandParser</code> creates the relevant objects for the fields specified in input. Based on the input, it creates a <code>Task</code> with its assigned <code>Name</code>, <code>Priority</code> and <code>Description</code>.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. <code>AddCommandParser</code> returns a new <code>AddCommand</code> with the newly created <code>Task</code> as its only argument to <code>LogicManager</code>.</p>
+</div>
+<div class="paragraph">
+<p>Step 4. <code>AddCommand</code> executes. It checks if the <code>TaskList</code> contains a duplicate <code>Task</code> to it through <code>Model#hasTask</code>. If a duplicate <code>Task</code> exists, a <code>CommandException</code> is thrown. If not, it adds the new <code>Task</code> into the <code>Tasklist</code> through <code>Model#addTask</code>.</p>
+</div>
+<div class="paragraph">
+<p>Step 5. <code>AddCommand</code> creates and return the resulting <code>CommandResult</code> to the <code>Ui</code>.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the <code>AddCommand</code> is executed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddSequenceDiagram.png" alt="AddSequenceDiagram">
+</div>
+<div class="title">Figure 8. Add Command Sequence Diagram</div>
+</div>
+<div class="paragraph">
+<p>The following activity diagram summarises what happens when the <code>AddCommand</code> is executed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddCommandActivityDiagram.png" alt="AddCommandActivityDiagram">
+</div>
+<div class="title">Figure 9. Add Command Activity Diagram</div>
+</div>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="switch-tab-feature"><a class="link" href="#switch-tab-feature">Switch Tab Feature</a></h3>
@@ -324,7 +393,7 @@ As you continue to use BB Productive, you may start to wonder how productive you
 <div class="content">
 <img src="../images/SwitchTabActivityDiagram.png" alt="SwitchTabActivityDiagram">
 </div>
-<div class="title">Figure 8. Activity Diagram of Tab Switches</div>
+<div class="title">Figure 10. Activity Diagram of Tab Switches</div>
 </div>
 <div class="paragraph">
 <p>The following sequence diagram shows how the SwitchTabCommand updates the tab in the UI.</p>
@@ -333,7 +402,7 @@ As you continue to use BB Productive, you may start to wonder how productive you
 <div class="content">
 <img src="../images/SwitchTabSequenceDiagram.png" alt="SwitchTabSequenceDiagram">
 </div>
-<div class="title">Figure 9. Sequence Diagram of SwitchTabCommand</div>
+<div class="title">Figure 11. Sequence Diagram of SwitchTabCommand</div>
 </div>
 </div>
 <div class="sect2">
@@ -342,7 +411,7 @@ As you continue to use BB Productive, you may start to wonder how productive you
 <p>The user&#8217;s reminder functionality is achieved by calculating the time delay from the current time and the time from the user input. This time delay as well as the Task name and description is passed to the MainWindow for the reminder to be triggered as a pop up at the right time.</p>
 </div>
 <div class="sect3">
-<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
 <div class="paragraph">
 <p>A <code>DateTimeFormatter</code> is used to parse the date time from the user input, which is just the date in the r/ flag when adding or editing a task, into a <code>LocalDateTime</code> object. This <code>LocalDateTime</code> is used to store the date and time information. When the reminder is instantiated, a <code>setDelay</code> method is called setting in motion the calculation of time delay between the current time and the reminder time, and triggering of reminder on the <code>MainWindow</code>. The reminder class is stored as an <code>Optional</code> in the Task class itself.</p>
 </div>
@@ -353,7 +422,7 @@ As you continue to use BB Productive, you may start to wonder how productive you
 <div class="content">
 <img src="../images/ReminderSequenceDiagram.png" alt="ReminderSequenceDiagram" width="790">
 </div>
-<div class="title">Figure 10. Reminder Sequence Diagram</div>
+<div class="title">Figure 12. Reminder Sequence Diagram</div>
 </div>
 </div>
 </div>
@@ -366,10 +435,10 @@ As you continue to use BB Productive, you may start to wonder how productive you
 <div class="content">
 <img src="../images/RecurringActivityDiagram.png" alt="RecurringActivityDiagram" width="790">
 </div>
-<div class="title">Figure 11. Recurring Activity Diagram</div>
+<div class="title">Figure 13. Recurring Activity Diagram</div>
 </div>
 <div class="sect3">
-<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
+<h4 id="implementation-3"><a class="link" href="#implementation-3">Implementation</a></h4>
 <div class="paragraph">
 <p>The logic is mainly implemented in the <code>Recurring</code> class and <code>ModelManager</code> class in <code>seedu.address.model</code>, which interacts with the app’s storage system especially with respect to task storage. This <code>Recurring</code> instance is stored in <code>Task</code> as an optional field.</p>
 </div>
@@ -397,7 +466,7 @@ As you continue to use BB Productive, you may start to wonder how productive you
 </div>
 <div class="paragraph">
 <p>The user can switch tabs through 2 main methods:
-1. User calls a valid SwitchTabCommand that displays the appropriate tab defined.
+1. User calls a valid <code>SwitchTabCommand</code> that displays the appropriate tab defined.
 2. User calls a valid command that changes the display of Tab B while he or she is on Tab A. In this scenario, Tab B will display automatically.</p>
 </div>
 <div class="paragraph">
@@ -407,16 +476,28 @@ As you continue to use BB Productive, you may start to wonder how productive you
 <div class="content">
 <img src="../images/SwitchTabActivityDiagram.png" alt="SwitchTabActivityDiagram">
 </div>
-<div class="title">Figure 12. Activity Diagram of Tab Switches</div>
+<div class="title">Figure 14. Activity Diagram of Tab Switches</div>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram shows how the SwitchTabCommand updates the tab in the UI.</p>
+<p>The mechanism of how <code>SwitchTabCommand</code> updates the <code>Ui</code> is described below.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. <code>MainWindow</code> executes the user input through logic and retrieves the <code>SwitchTabCommandResult commandResult</code> from <code>Logic</code>.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. <code>MainWindow</code> retrieves the <code>tabToSwitchIndex</code> from <code>commandResult</code>.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. <code>MainWindow</code> updates the <code>tabToSwitchIndex</code> tab through <code>tabPanePlaceholder</code>.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how <code>SwitchTabCommand</code> updates the tab in the <code>Ui</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/SwitchTabSequenceDiagram.png" alt="SwitchTabSequenceDiagram">
 </div>
-<div class="title">Figure 13. Sequence Diagram of SwitchTabCommand</div>
+<div class="title">Figure 15. Sequence Diagram of SwitchTabCommand</div>
 </div>
 </div>
 <div class="sect2">
@@ -431,33 +512,62 @@ As you continue to use BB Productive, you may start to wonder how productive you
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<code>CONSTANT_SIZE</code> can be set to any number for any future developments. In our current implementation, we chose to store data for only the past 7 days to keep statistics simple and intuitive for users.
+<code>CONSTANT_SIZE</code> can be set to any number for any future developments. In our current implementation, we chose to store data for only the past 7 days to keep Statistics simple and intuitive for users.
 </td>
 </tr>
 </table>
 </div>
 <div class="sect3">
-<h4 id="implementation-3"><a class="link" href="#implementation-3">Implementation</a></h4>
+<h4 id="implementation-4"><a class="link" href="#implementation-4">Implementation</a></h4>
 <div class="paragraph">
-<p>The Statistics feature is mainly supported by the Statistics class, which in turn is facilitated by the CustomQueue class. Its class diagram is given below.</p>
+<p>The Statistics feature is mainly supported by the <code>Statistics</code> class, which in turn is facilitated by the <code>CustomQueue</code> class. Its class diagram is given below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/StatisticsClassDiagram.png" alt="StatisticsClassDiagram">
 </div>
-<div class="title">Figure 14. Class Diagram of the Statistics Component</div>
+<div class="title">Figure 16. Class Diagram of the Statistics Component</div>
 </div>
 <div class="paragraph">
-<p>The Statistics feature does not support any explicit commands. Instead, the UI is updated and displayed when the SwitchTabCommand 'stats' is called.</p>
+<p>The <code>CustomQueue</code> class enforces the following constraints:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Size of <code>CustomQueue</code> must be of <code>CONSTANT_SIZE</code> after each method call through <code>Statistics</code>.</p>
+</li>
+<li>
+<p>DayData dates in <code>CustomQueue</code> must be only 1 day apart between its elements, and sorted from oldest to latest date.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
-<p>Step 1. MainWindow receives the SwitchTabCommandResult commandResult from Logic.</p>
+<p>The <code>CustomQueue</code> class implements the following methods for other components to access or update its data:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Model#updateDataDatesStatistics</code> - Updates data to current day while retaining stored data.</p>
+</li>
+<li>
+<p><code>Model#updatesDayDataStatistics</code> - Replaces existing DayData in Statistics with new DayData of the same date.</p>
+</li>
+<li>
+<p><code>Model#getDayDataFromDateStatistics</code> - Returns the DayData object from Statistics with the specified date.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>Step 2. MainWindow calls StatisticsManager#updateStatisticsDisplayValues() which retrieve the latest Statistics from Model and generates the display information.</p>
+<p>The Statistics feature does not support any explicit commands. Instead, <code>Ui</code> is updated and displayed when the SwitchTabCommand 'stats' is called. The mechanism of this behaviour is described below.</p>
 </div>
 <div class="paragraph">
-<p>Step 3. MainWindow then retrieves these display information from StatisticsManager and sets this information in StatisticsDisplay.</p>
+<p>Step 1. <code>MainWindow</code> receives the <code>SwitchTabCommandResult commandResult</code> from <code>Logic</code>.</p>
+</div>
+<div class="paragraph">
+<p>Step 2. <code>MainWindow</code> calls <code>StatisticsManager#updateStatisticsDisplayValues()</code> which retrieve the latest <code>Statistics</code> from <code>Model</code> and generates the display information.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. <code>MainWindow</code> then retrieves these display information from <code>StatisticsManager</code> and sets this information in <code>StatisticsDisplay</code>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -466,80 +576,23 @@ As you continue to use BB Productive, you may start to wonder how productive you
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-SwitchTabCommand also switches the focused tab to the Statistics tab to display the results to the user.
+<code>SwitchTabCommand</code> also switches the focused tab to the <code>Statistics</code> tab to display the results to the user.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram shows how the statistics is updated to the display.</p>
+<p>The following sequence diagram shows how the <code>Statistics</code> is updated to the display.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/StatisticsUiSequenceDiagram.png" alt="StatisticsUiSequenceDiagram">
 </div>
-<div class="title">Figure 15. Sequence Diagram of how Statistics</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="customqueue-implementation"><a class="link" href="#customqueue-implementation">CustomQueue Implementation</a></h4>
-<div class="paragraph">
-<p>The <code>CustomQueue</code> class enforces the following constraints.
-1. Size of <code>CustomQueue</code> must be of <code>CONSTANT_SIZE</code> after each method call through <code>Statistics</code>.
-2. DayData dates in <code>CustomQueue</code> must be only 1 day apart between its elements, and sorted from oldest to latest date.</p>
-</div>
-<div class="paragraph">
-<p>The <code>CustomQueue</code> class implements the following methods for other components to access or update its data:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Model#updateDataDatesStatistics() - Updates data to current day while retaining stored data.</p>
-</li>
-<li>
-<p>Model#updatesDayDataStatistics() - Replaces existing DayData in Statistics with new DayData of the same date.</p>
-</li>
-<li>
-<p>Model#getDayDataFromDateStatistics() - Returns the DayData object from Statistics with the specified date.</p>
-</li>
-</ul>
+<div class="title">Figure 17. Sequence Diagram of how Statistics</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">Design considerations</a></h4>
-<div class="sect4">
-<h5 id="aspect-when-to-update-statisticsdisplay"><a class="link" href="#aspect-when-to-update-statisticsdisplay">Aspect: when to update StatisticsDisplay</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Update when the user runs the command to view Statistics</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Easy to implement.</p>
-</li>
-<li>
-<p>Cons: Progress can only be viewed at the Statistics tab.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Update when any changes are made to Statistics.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: In the event of future developments, any component of Statistics can be displayed at all times.</p>
-</li>
-<li>
-<p>Cons: Need to keep track of all instances that can modify Statistics' values.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
 <div class="sect4">
 <h5 id="aspect-data-structure-to-support-statistics"><a class="link" href="#aspect-data-structure-to-support-statistics">Aspect: Data structure to support Statistics</a></h5>
 <div class="ulist">
@@ -566,6 +619,39 @@ SwitchTabCommand also switches the focused tab to the Statistics tab to display 
 </li>
 <li>
 <p>Cons: Harder to pass data to generate graphs. Need to handle outdated dates.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-when-to-update-statisticsdisplay"><a class="link" href="#aspect-when-to-update-statisticsdisplay">Aspect: when to update StatisticsDisplay</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Update when the user runs the command to view Statistics</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement.</p>
+</li>
+<li>
+<p>Cons: Progress can only be viewed at the Statistics tab.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Update when any changes are made to Statistics.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: In the event of future developments, any component of Statistics can be displayed at all times.</p>
+</li>
+<li>
+<p>Cons: Need to keep track of all instances that can modify Statistics' values.</p>
 </li>
 </ul>
 </div>
@@ -834,7 +920,7 @@ SwitchTabCommand also switches the focused tab to the Statistics tab to display 
 <div class="content">
 <img src="../images/use_cases.png" alt="use cases" width="790">
 </div>
-<div class="title">Figure 16. Use case diagram for BBProductive</div>
+<div class="title">Figure 18. Use case diagram for BBProductive</div>
 </div>
 <h3 id="use-case-uc01-view-tasks" class="discrete">Use Case: UC01 - View tasks</h3>
 <div class="paragraph">
@@ -1916,4 +2002,4 @@ Expected: After 60 seconds, the done is set back to unfinished, with the tick be
 </ol>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 14:22:36 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 14:25:39 UTC</div></div></div></body></html>
