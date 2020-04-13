@@ -63,7 +63,17 @@ public class ModelManager implements Model {
         this.taskList = new TaskList(taskList);
         this.tagSet = new TagSet(taskList);
         this.setRecurringTimers();
-        this.pet = new Pet(pet); // initialize a pet as a model
+
+        Pet tempPet;
+
+        try {
+            tempPet = new Pet(pet);
+        } catch (InvalidPetException e) {
+            tempPet = new Pet();
+            logger.info(e.toString());
+        }
+        this.pet = tempPet;
+
         this.pomodoro = new Pomodoro(pomodoro); // initialize a pomodoro as a model
         this.statistics = new Statistics(statistics); // initialize a Statistics as a model
         logger.info(String.format("Initializing with Statistics: %s", this.statistics.toString()));

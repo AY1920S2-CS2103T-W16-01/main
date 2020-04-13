@@ -46,7 +46,6 @@ class JsonSerializableStatistics {
                         .stream()
                         .map(JsonAdaptedDayData::new)
                         .collect(Collectors.toList()));
-
     }
 
     /**

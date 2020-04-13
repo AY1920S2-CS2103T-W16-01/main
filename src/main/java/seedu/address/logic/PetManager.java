@@ -1,5 +1,7 @@
 package seedu.address.logic;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDateTime;
 import seedu.address.model.Pet;
 
@@ -20,6 +22,7 @@ public class PetManager {
     public PetManager() {}
 
     public void setPet(Pet pet) {
+        requireNonNull(pet);
         this.pet = pet;
         this.lastDoneTaskTime = LocalDateTime.parse(pet.getLastDoneTaskTime());
         // use this for ACTUAL
@@ -34,7 +37,6 @@ public class PetManager {
 
     public void incrementExp() {
         this.pet.incrementExp();
-        updateDisplayElements();
     }
 
     public void updateLastDoneTaskWhenDone() {
@@ -77,7 +79,11 @@ public class PetManager {
                             : "/images/pet/level2hangry.png");
             petImage = str;
         } else {
-            petImage = "/images/pet/level3.png";
+            String str =
+                    (mood.equals(HAPPY_MOOD_STRING)
+                            ? "/images/pet/level3.png"
+                            : "/images/pet/level3hangry.png");
+            petImage = str;
         }
 
         int expBarPerc = expBarInt / 10;

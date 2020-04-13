@@ -301,14 +301,11 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             // Handle tabs
-            int tabIndexToSwitch = getTabIndexFromCommand(commandResult);
-            tabPanePlaceholder.getSelectionModel().select(tabIndexToSwitch);
-            tabPanePlaceholder
-                    .getSelectionModel()
-                    .select(tabIndexToSwitch);
+            int tabToSwitchIndex = getTabIndexFromCommand(commandResult);
+            tabPanePlaceholder.getSelectionModel().select(tabToSwitchIndex);
 
             // Update StatisticsDisplay when stats tab is selected
-            if (tabIndexToSwitch == STATS_TAB_INDEX) {
+            if (tabToSwitchIndex == STATS_TAB_INDEX) {
                 statisticsManager.updateStatisticsDisplayValues();
                 this.updateStatisticsDisplay();
             }
@@ -502,18 +499,14 @@ public class MainWindow extends UiPart<Stage> {
      * @return index of tab to switch to.
      */
     private int getTabIndexFromCommand(CommandResult commandResult) {
-        int result = TASKS_TAB_INDEX; // default: switch to tasks tab for tasks related commands
+        int tabToSwitchIndex = TASKS_TAB_INDEX; // default: switch to tasks tab for tasks related commands
         if (commandResult instanceof SwitchTabCommandResult) {
-            try {
-                SwitchTabCommandResult switchTabCommandResult =
-                        (SwitchTabCommandResult) commandResult;
-                result = switchTabCommandResult.getTabToSwitchIndex(); // switch to tab in SwitchTabCommandResult
-            } catch (ClassCastException ce) {
-            }
+                SwitchTabCommandResult switchTabCommandResult = (SwitchTabCommandResult) commandResult;
+                tabToSwitchIndex = switchTabCommandResult.getTabToSwitchIndex(); // switch to tab in SwitchTabCommandResult
         } else if (commandResult instanceof SetCommandResult) {
-            result = SETTINGS_TAB_INDEX; // switch to settings tab for settings related commands.
+            tabToSwitchIndex = SETTINGS_TAB_INDEX; // switch to settings tab for settings related commands.
         }
-        return result;
+        return tabToSwitchIndex;
     }
 
     @FXML
