@@ -19,12 +19,13 @@
 <li><a href="#about-this-document">2. About this document</a>
 <ul class="sectlevel2">
 <li><a href="#command-format">2.1. Command Format</a></li>
+<li><a href="#indexes">2.2. Indexes</a></li>
 </ul>
 </li>
 <li><a href="#quick-start">3. Quick Start</a></li>
 <li><a href="#index">4. Terminology</a>
 <ul class="sectlevel2">
-<li><a href="#indexes">4.1. Indexes</a></li>
+<li><a href="#indexes-2">4.1. Indexes</a></li>
 </ul>
 </li>
 <li><a href="#graphical-user-interface-permas">5. Graphical User Interface (Permas)</a>
@@ -45,8 +46,10 @@
 <li><a href="#autocomplete">6.5. AutoComplete</a></li>
 <li><a href="#reminders">6.6. Reminders</a></li>
 <li><a href="#recurring">6.7. Recurring</a></li>
-<li><a href="#Navigation">6.8. Navigation</a></li>
-<li><a href="#storage-permas">6.9. Storage (Permas)</a></li>
+<li><a href="#recurring-behaviour-when-task-is-marked-as-done">6.8. Recurring behaviour when task is marked as done</a></li>
+<li><a href="#recurring-behaviour-when-task-has-reminder">6.9. Recurring behaviour when task has reminder</a></li>
+<li><a href="#Navigation">6.10. Navigation</a></li>
+<li><a href="#storage-permas">6.11. Storage (Permas)</a></li>
 </ul>
 </li>
 <li><a href="#CommandTableSummary">7. Command Table Summary</a></li>
@@ -90,6 +93,23 @@
 </ul>
 </div>
 </div>
+<div class="sect2">
+<h3 id="indexes"><a class="link" href="#indexes">2.2. Indexes</a></h3>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Indexes refer to the current tasklist on display, it does not refer to the indices of the entire task list. Note also that indexes start from 1 and not 0.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -98,33 +118,34 @@
 <div class="ulist">
 <ul>
 <li>
-<p>This section provides a quick guide on firing up BB Productive. Follow the steps below to install and launch BB Productive:</p>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Ensure you have Java <code>11</code> or above installed in your Computer.</p>
+<p>This section provides a quick guide on firing up BB Productive.</p>
 </li>
-<li>
-<p>Download the latest <code>bb_productive.jar</code> <a href="https://github.com/AY1920S2-CS2103T-W16-1/main/releases">here</a>.</p>
-</li>
-<li>
-<p>Copy the file to the folder you want to use as the home folder for your BB Productive.</p>
-</li>
-<li>
-<p>Double-click the file to start the app. The GUI should appear in a few seconds.</p>
+</ul>
+</div>
 <div class="imageblock">
 <div class="content">
-<img src="images/Ui.png" alt="Ui" width="790">
+<img src="images/BBProductiveQuickStart_Graphic.png" alt="BBProductiveQuickStart Graphic" width="790">
 </div>
-<div class="title">Figure 2. Image of User Interface on boot.</div>
+<div class="title">Figure 2. Overview of BBproductive features</div>
 </div>
-</li>
-<li>
-<p>Type the command in the Pet Chat (Command box) and press <kbd>Enter</kbd> to execute it.<br>
-e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> will open the help window.</p>
-</li>
-<li>
-<p>Some example commands you can try:</p>
+<div class="paragraph">
+<p>Follow the steps below to install and launch BB Productive:
+.  Ensure you have Java <code>11</code> or above installed in your Computer.
+.  Download the latest <code>bb_productive.jar</code> <a href="https://github.com/AY1920S2-CS2103T-W16-1/main/releases">here</a>.
+.  Copy the file to the folder you want to use as the home folder for your BB Productive.
+.  Double-click the file to start the app. The GUI should appear in a few seconds.</p>
+</div>
+<div class="paragraph">
+<p>+
+.Image of User Interface on boot.
+image::Ui.png[width="790"]</p>
+</div>
+<div class="paragraph">
+<p>+
+.  Type the command in the Pet Chat (Command box) and press <kbd>Enter</kbd> to execute it.<br>
+e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> will open the help window.
+.  Some example commands you can try:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -135,10 +156,8 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </li>
 <li>
 <p><strong><code>exit</code></strong> : exits the app</p>
-</li>
-</ul>
-</div>
-</li>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
 <p>Refer to <a href="#Features">Section 6, &#8220;Features&#8221;</a> for details of each command.</p>
 </li>
@@ -165,7 +184,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p><strong>Pet</strong>: The pet you will interact with to manage your tasks and pomodoros. You can also level up the pet by completing more tasks/pomodoros.</p>
 </div>
 <div class="sect2">
-<h3 id="indexes"><a class="link" href="#indexes">4.1. Indexes</a></h3>
+<h3 id="indexes-2"><a class="link" href="#indexes-2">4.1. Indexes</a></h3>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -851,7 +870,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="sect3">
 <h4 id="how-do-you-use-it"><a class="link" href="#how-do-you-use-it">6.6.2. How do you use it?</a></h4>
 <div class="paragraph">
-<p>Add a reminder to your task by adding <code>r/DD/MM/YY@HH:MM</code> when editing or adding a task. A pop up containing the task name and description will then appear reminding you to complete the task at the specified date and time.</p>
+<p>Add a reminder to your task by adding <code>r/DD/MM/YY@HH:mm</code> when editing or adding a task. A pop up containing the task name and description will then appear reminding you to complete the task at the specified date and time.</p>
 </div>
 </div>
 <div class="sect3">
@@ -859,7 +878,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="sect4">
 <h5 id="add-task-with-reminder"><a class="link" href="#add-task-with-reminder">Add Task with reminder</a></h5>
 <div class="paragraph">
-<p>Add task with reminder with the following command <code>add n/&lt;name&gt; r/DD/MM/YY@HH:MM</code>. You can also include the other flags such as <code>t/</code>, <code>des/</code> and more.</p>
+<p>Add task with reminder with the following command <code>add n/&lt;name&gt; r/DD/MM/YY@HH:mm</code>. You can also include the other flags such as <code>t/</code>, <code>des/</code> and more.</p>
 </div>
 <div class="paragraph">
 <p>For example: <code>add n/Buy Milk r/11/11/20@23:59</code> as shown below.</p>
@@ -871,13 +890,35 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="title">Figure 28. Input for adding a task with reminder.</div>
 </div>
 <div class="paragraph">
-<p>Results in a task with the reminder&#8217;s date in the task card.</p>
+<p>This results in a task with the reminder&#8217;s date in the task card.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/reminder_add_success.png" alt="reminder add success" width="790">
 </div>
 <div class="title">Figure 29. Success for adding a task with reminder.</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Firstly, the format for the date must adhere strictly to the <code>r/DD/MM/YY@HH:mm</code> format or else it will not be recognized.</p>
+</li>
+<li>
+<p>Secondly, the date can only be set in the future and not the past.<br>
+An error message will be shown on the result display if either of the 2 aforementioned issues are breached. This applies for editing as task to have a reminder as well.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect4">
@@ -938,13 +979,33 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="title">Figure 32. Input for adding recurring attribute to task.</div>
 </div>
 <div class="paragraph">
-<p>Results in a task with the recurring attribute in the task card.</p>
+<p>Results in a task with the recurring attribute in the task card as well as result display giving feedback.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/recurring_add_success_resultDisplay.png" alt="recurring add success resultDisplay" width="396">
+</div>
+<div class="title">Figure 33. Success for adding recurring attribute shown on result display.</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/recurring_add_success.png" alt="recurring add success" width="790">
 </div>
-<div class="title">Figure 33. Success for adding recurring attribute to task.</div>
+<div class="title">Figure 34. Success for adding recurring attribute to task card.</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The format for recurring is strictly <code>rec/d</code> or <code>rec/w</code> as there is only daily and weekly recurring tasks. Any other input will be recognized as invalid and an error message will be shown on the result display.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect4">
@@ -959,7 +1020,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="content">
 <img src="images/recurring_edit.png" alt="recurring edit" width="395">
 </div>
-<div class="title">Figure 34. Input for editing recurring attribute to task.</div>
+<div class="title">Figure 35. Input for editing recurring attribute to task.</div>
 </div>
 <div class="paragraph">
 <p>Results in a task with the reminder&#8217;s date in the specific task card.</p>
@@ -968,18 +1029,72 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="content">
 <img src="images/recurring_edit_success.png" alt="recurring edit success" width="790">
 </div>
-<div class="title">Figure 35. Success for editing recurring attribute to task.</div>
+<div class="title">Figure 36. Success for editing recurring attribute to task.</div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Navigation"><a class="link" href="#Navigation">6.8. Navigation</a></h3>
+<h3 id="recurring-behaviour-when-task-is-marked-as-done"><a class="link" href="#recurring-behaviour-when-task-is-marked-as-done">6.8. Recurring behaviour when task is marked as done</a></h3>
+<div class="paragraph">
+<p>Mark a task as done as you would normally using the command <code>done &lt;index&gt;</code>. For a recurring task, after the stipulated amount of time(either daily or weekly), the task will be reset as undone.</p>
+</div>
+<div class="paragraph">
+<p>For example: <code>done 1</code>. After a day&#8217;s worth of time, the task will be set from done to undone.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/recurring_behaviour_done.png" alt="recurring behaviour done" width="790">
+</div>
+<div class="title">Figure 37. Task initially marked as done on task card.</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/recurring_behaviour_undone_resultDisplay.png" alt="recurring behaviour undone resultDisplay" width="395">
+</div>
+<div class="title">Figure 38. Task has been reset shown on result display.</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/recurring_behaviour_undone.png" alt="recurring behaviour undone" width="790">
+</div>
+<div class="title">Figure 39. Task has been reset shown on task card.</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="recurring-behaviour-when-task-has-reminder"><a class="link" href="#recurring-behaviour-when-task-has-reminder">6.9. Recurring behaviour when task has reminder</a></h3>
+<div class="paragraph">
+<p>Add a reminder as you would normally using the command <code>edit &lt;index&gt; r/DD/MM/YY@HH:mm</code> or <code>add n/&lt;name&gt; r/DD/MM/YY@HH:mm rec/&lt;type&gt;</code> if you are adding the task. For a recurring task, after the stipulated amount of time(either daily or weekly), the reminder will increment by the time interval if it has been triggered. This means the reminder will be incremented by 1 day if the time interval is daily, and 7 days if the time interval is weekly.</p>
+</div>
+<div class="paragraph">
+<p>For example: <code>done 1</code>. After a day&#8217;s worth of time, the task will be set from done to undone.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/recurring_behaviour_reminder.png" alt="recurring behaviour reminder" width="790">
+</div>
+<div class="title">Figure 40. Task initially has a reminder for 13th April 2020 at 12:41PM.</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/recurring_behaviour_new_reminder_resultDisplay.png" alt="recurring behaviour new reminder resultDisplay" width="395">
+</div>
+<div class="title">Figure 41. Task has been reset shown on result display with updated reminder time of 14th April 2020 at 12:41PM.</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/recurring_behaviour_new_reminder.png" alt="recurring behaviour new reminder" width="790">
+</div>
+<div class="title">Figure 42. Task has been reset shown on task card with updated reminder time of 14th April 2020 at 12:41PM..</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Navigation"><a class="link" href="#Navigation">6.10. Navigation</a></h3>
 <div class="paragraph">
 <p><em>This section shows all the commands to navigate the app. There are multiple tabs that can be shown: tasklist, statistics and settings.</em></p>
 </div>
 <div class="sect3">
-<h4 id="commands"><a class="link" href="#commands">6.8.1. Commands</a></h4>
+<h4 id="commands"><a class="link" href="#commands">6.10.1. Commands</a></h4>
 <div class="sect4">
 <h5 id="tasks"><a class="link" href="#tasks">Tasks</a></h5>
 <div class="paragraph">
@@ -1019,7 +1134,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 </div>
 <div class="sect2">
-<h3 id="storage-permas"><a class="link" href="#storage-permas">6.9. Storage (Permas)</a></h3>
+<h3 id="storage-permas"><a class="link" href="#storage-permas">6.11. Storage (Permas)</a></h3>
 <div class="paragraph">
 <p>All your progress, user preferences and settings are stored in the “data” folder. If you plan to switch devices, you may transfer your progress to another computer by copying the contents of the original device’s “data” folder to the new device’s data folder. This can be done through a thumbdrive.</p>
 </div>
@@ -1138,4 +1253,4 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous BB Productive folder.</p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 09:13:17 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 09:23:12 UTC</div></div></div></body></html>
