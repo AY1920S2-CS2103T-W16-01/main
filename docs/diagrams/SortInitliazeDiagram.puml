@@ -1,0 +1,50 @@
+@startuml
+!include style.puml
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "list:TaskList" as TaskList MODEL_COLOR
+participant "unique:UniqueTaskList" as UniqueTaskList MODEL_COLOR
+participant "sorted:SortedList" as SortedList MODEL_COLOR
+participant "filtered:FilteredList" as FilteredList MODEL_COLOR
+end box
+
+[-> Model : getFilteredTaskList(readOnlyTaskList)
+activate Model
+
+create TaskList
+Model -> TaskList: readOnlyTaskList
+activate TaskList
+
+create UniqueTaskList
+TaskList -> UniqueTaskList: readOnlyTaskList
+activate UniqueTaskList
+
+UniqueTaskList -> TaskList: asUnmodifiableObservableList
+deactivate UniqueTaskList
+
+create SortedList
+TaskList -> SortedList: unique
+activate SortedList
+
+SortedList -> TaskList: sorted
+deactivate SortedList
+
+TaskList -> Model: sorted
+deactivate TaskList
+
+create FilteredList
+Model -> FilteredList: sorted
+activate FilteredList
+FilteredList -> Model: filtered
+deactivate FilteredList
+
+ref over Model, TaskList
+All CRUD operations on TaskList
+end ref
+
+
+[<--Model: filtered
+deactivate Model
+@enduml
+

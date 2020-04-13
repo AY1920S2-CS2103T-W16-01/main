@@ -15,26 +15,28 @@ Responsibilities: Task Manager, AutoComplete
 
 == Overview
 
-BBProductive is a built upon a brown field project titled AddressBook. It was done for the purpose of a software-engineering module, CS2103T with a team of 5 other students. We decided to implement a task manager and a productivity application combined in one. Apart from standard create, read, update and destroy capabilities of a task manager, BBProductive includes a “Pomodoro” timer [25 minutes work, 5 minute rest] to help users perform manageable work cycles. BBProductive also has a virtual pet that grows and changes in appearance depending on how much work the user has done.
+BBProductive is built upon a brown field project titled AddressBook. It was done for the purpose of a software-engineering module, CS2103T with a team of 5 other students. We decided to implement a task manager and a productivity application combined in one. Apart from the standard create, read, update and destroy capabilities of a task manager, BBProductive includes a “Pomodoro” timer [25 minutes work, 5 minute rest] to help users perform manageable work cycles. BBProductive also has a virtual pet that grows and changes in appearance depending on how much work the user has done. The pet serves to complement the pomodoro features by providing an incentive for users to work.
 
 == Summary of contributions
 
 
 * *Major Enhancement*: Auto complete feature.
-** What it does: When typing, users can press tab to autocomplete command words or add prefixes specific to the command.
+** What it does: When typing, users can press tab to autocomplete command words or add prefixes specific to the command. It also removes invalid indexes for done/delete commands.
 ** Justification:  As we are targeting fast typists, auto completing and allowing users to write faster would definitely be a big plus to our users.
-** Highlights: Apart from simple auto completing of command words, I’ve added the functionality of adding some common prefixes for specific commands. Apart from this, I’ve decided to provide some additional visual feedback to users depending on the outcome of the auto complete. Given that it’s a separate mechanism from the commands itself, I decided to add additional text coloring to the command input field to differentiate auto complete success/error from command success/error.
+** Highlights: I’ve decided to provide some additional visual feedback to users depending on the outcome of the auto complete. Given that it’s a separate mechanism from the commands itself, I decided to add additional text coloring to the command input field and result display to differentiate auto complete success/warning/error from command error feedback.
+* Code contributed for this:
 
 * *Major Enhancement*: Sort by multiple fields feature
 ** What it does: Sorts the tasklist by multiple fields {name, priority, done, reminder}
 ** Justification: Most task managers have a sorting function so that users are able to see what’s more important to them at the front.
-** Highlights: We’ve provided multiple fields to sort by so that users can have a more specific ordering. On the same thread, we’ve decided to provide reverse sorting orders as well. [these fields are also supported to auto complete]
-Code contributed for this:
+** Highlights: We’ve provided multiple fields to sort by so that users can have a more specific ordering. On the same thread, we’ve decided to provide reverse sorting orders as well.
+* Code contributed for this:
 
-* *Major Enhancement*: Modified find command to use levenshtein distance
-** What it does: Rather than the original exact fit matching, we’ve decided to expand it to be more flexible. Now tasks with partial matches or some typos will be recognized by the find command.
-** Justification:Typing often leads to typos, so we’ve decided to enhance the finding command so that users will be able to find tasks they want to look for with a larger error boundary. We’ve also allowed the find command to show tasks that partially match the keywords from the start. I.e. if find tuto => a task with name tutorial will be shown
-** Highlights: We referenced and used a popular Dynamic programming approach that implements the Levenshtein distance algorithm for a faster run time to ensure that the command works with lists of sizes up to 100.
+* *Major Enhancement*: Modified find command
+** What it does: Rather than the original exact fit matching, we’ve decided to expand it to be more flexible. Now Tasks names whose start matches the search term or that has some typos will be recognized by the find command. Also we've added searching by tags.
+** Justification:Typing often leads to typos, so we’ve decided to enhance the finding command so that users will be able to find tasks they want to look for with some error boundary. We’ve also allowed the find command to show tasks that have names who's start matches the keywords.
+*** i.e. `find tuto` => a task with name `tutorial 1 CS2106` will be shown
+** Highlights: We used a popular Dynamic programming approach that implements the Levenshtein distance algorithm to achieve a faster run time for scalability purposes.
 Code contributed for this:
 
 * Minor Enhancement: Worked on migrating Address Book features to Task list features
@@ -42,17 +44,18 @@ Code contributed for this:
 Added Done field
 Code contributed for this:
 
-* Minor Enhancement: added multiple indexes for done and delete commands
+* Minor Enhancement: added for done and delete commands for mulitple indexes
 ** Allow users to mark several tasks as done or to delete several tasks in one command
 Code contributed for this:
 
 * Minor Enhancement: Added Json classes and baseline models for Pomodoro and Pet features for other members to expand on
 ** Helped other members create baseline models for their features and linked it to JsonAdapted classes for storage purposes. Also modified JsonAdaptedTask to fit the new Task model.
-Code contributed for this:
+** Code contributed for this:
 
-* Minor Enhancement: Worked on the css styling and java FXML for revamped BBProductive look
+* Minor Enhancement: Worked on the css styling and java FXML for the revamped BBProductive look
 ** Made new grid layout of tasks displayed, added margins. Added priority display.
-Code contributed for this:
+** Code contributed for this:
+
 Other Contributions:
 
 * Dev Ops
@@ -60,24 +63,13 @@ Other Contributions:
 ** Set up Travis CI to perform Continuous Integration on our project
 ** Set up auto binding of project website
 ** Set up auto formatting with pre-commit git hook with googleJavaFormat
-** Managed git conflicts and issues across the team
 * Contributions to team:
-** Handled elusive issue of java process not terminating when application window is closed or exited via command
 ** Handled git conflicts
-* Community
 ** PRs reviewed (with non-trivial comments): https://github.com/AY1920S2-CS2103T-W16-1/main/pull/272[#272], https://github.com/AY1920S2-CS2103T-W16-1/main/pull/151[#151], https://github.com/AY1920S2-CS2103T-W16-1/main/pull/123[#123], https://github.com/AY1920S2-CS2103T-W16-1/main/pull/91[#91], https://github.com/AY1920S2-CS2103T-W16-1/main/pull/272[#272]
+** Also helped to write code to refactor https://github.com/AY1920S2-CS2103T-W16-1/main/pull/272[#272]
 
-* *Other contributions*:
-
-** Project management:
-*** Managed releases `v1.1` - `v1.4rc` (3 releases) on GitHub
-** Enhancements to existing features:
-*** Implemented the foundation of the new stylesheet used for the application
-*** Adjusted the JavaFX layout to fit the Adobe XD
-*** Wrote tests for both reminders and recurring tasks
-
-
-_{you can add/remove categories in the list above}_
+* Project management:
+** Managed releases `v1.1` - `v1.4rc` (3 releases) on GitHub
 
 == Contributions to the User Guide
 
@@ -86,19 +78,14 @@ _{you can add/remove categories in the list above}_
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
-include::../UserGuide.adoc[tag=delete]
-
-include::../UserGuide.adoc[tag=dataencryption]
+include::../UserGuide.adoc[tag=TaskList]
+include::../UserGuide.adoc[tag=AutoComplete]
 
 == Contributions to the Developer Guide
+
+include::../DeveloperGuide.adoc[tag=branson]
+include::../DeveloperGuide.adoc[tag=Glossary]
 
 |===
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
-
-
-== PROJECT: PowerPointLabs
-
----
-
-_{Optionally, you may include other projects in your portfolio.}_

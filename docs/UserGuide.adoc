@@ -28,19 +28,12 @@ BB Productive is for those who looking for motivation in their work. This app se
 
 BB Productive is for those who looking for motivation in their work. This app serves as a great task manager and includes a Pomodoro feature and a Pet companion. It is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, BB Productive can get you to get tasks done faster. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
 
-[#index]
 === Command Format
 * Characters like `this` are all commands that can be used for BBPoroductive
 * Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in add `n/NAME`, `NAME` is a parameter which can be used as add `n/John Doe`.
 * Items in square brackets are optional e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 * Items with `…​` after them can be used multiple times including zero times e.g. `[t/TAG]…`​ can be used as   (i.e. 0 times), `t/friend, t/friend t/family` etc.
 * Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-=== Indexes
-[IMPORTANT]
-====
-Indexes refer to the current tasklist on display, it does not refer to the indices of the entire task list. Note also that indexes start from 1 and not 0.
-====
 
 == Quick Start
 - This section provides a quick guide on firing up BB Productive. Follow the steps below to install and launch BB Productive:
@@ -62,6 +55,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 .  Refer to <<Features>> for details of each command.
 
+[#index]
 [[Terminology]]
 == Terminology
 _This section provides a quick description for the common terminologies used in this user guide._
@@ -71,6 +65,12 @@ _This section provides a quick description for the common terminologies used in 
 *Pomodoro*: A productivity technique that consists of doing focused work for 25 minutes followed by a 5 minute break. This technique prevents you from tiring out while doing work.
 
 *Pet*: The pet you will interact with to manage your tasks and pomodoros. You can also level up the pet by completing more tasks/pomodoros.
+
+=== Indexes
+[IMPORTANT]
+====
+Indexes refer to the current tasklist on display, it does not refer to the indices of the entire task list. Note also that indexes start from 1 and not 0.
+====
 
 //tag::gui[]
 
@@ -112,11 +112,17 @@ image::settings_tab.png[width=395]
 [[Features]]
 == Features
 
+//tag::TaskList[]
 === TaskList
 image::tasks.png[width=790]
 
 ==== Task Fields
-You may use `add` and `edit <<index, INDEX>>`  to begin the add and edit commands, next attach any combination of the following commands.
+Use `add` and `edit <<index, INDEX>>` attached with any combination of the following task field prefixes to perform them. These prefixes can be in any order.
+
+[NOTE]
+====
+Constraints for fields are _italicized_ in the Format column.
+====
 
 .Task Fields
 [cols="1,2m,3m", frame="topbot",options="header"]
@@ -124,42 +130,47 @@ You may use `add` and `edit <<index, INDEX>>`  to begin the add and edit command
 |Field |Format |Notes
 
 |Name
-a|`n/NAME`+
+a|`n/NAME` +
 `n/Any name is possible`
+_alphanumeric characters and spaces_
 a|
 * Name provided has to be unique in the tasklist and is used as an identifying field.
 * It is the **only compulsory** field when creating a task.
 
 |Description
 a|`[des/DESCRIPTION]` +
-`des/Lab of weightage 20% about NP-Cmpleteness`
-a|* Optional description that accompanies a task
+`des/Lab of weightage 20% on NP-Completeness`
+a|* Description that accompanies a task
 
 |Priority
 |`[p/PRIORITY]` +
-`p/1`
+`p/1` +
+_1 or 2 or 3_
 a|
 * If not provided, task is created with the low priority.
 * `PRIORITY` can only be one of these numbers `1,2,3` ranging from low to high in that order.
 
 |Reminder
 |`[r/REMINDER]` +
-`r/10/06/20@12:30`
+`r/10/06/20@12:30` +
+_DD/MM/YY@HH:mm_
 a|
 * A datetime value in this format `DD/MM/YY@HH:mm`.
 
 |Recurring tag
 |`[rec/FREQUENCY]` +
-`rec/daily`
+`rec/d` +
+_d or w_
 a|
-* Can only be `DAILY` or `WEEKLY`.
+* Options are _`d`_ or _`w`_ which respectively are daily or weekly.
 
 |Tag
 a|`[t/TAG]...` +
-`t/errand t/home`
+`t/errand t/home` +
+_alphanumeric characters only_
 a|
 * There can be multiple tags or none at all.
-* Only alphanumeric characters are allowed, spaces and symbols are disallowed.
+* spaces and symbols are disallowed.
 
 |Done
 a|_No prefix available_
@@ -169,14 +180,17 @@ a|
 |===
 
 ==== Add Command
-`add n/This is a new task p/3 des/We have alot of work to do today! t/This t/Is t/Fun` +
-You only need the `n/` prefix when adding a new task as name fields are compulsory. +
+===== Command: `add n/This is a new task p/3 des/We have alot of work to do today! t/This t/Is t/Fun`
+
+Alright, time to start your productivity journey! You only need the `n/` prefix when adding a new task as only the name field is compulsory. Let's add our very first task!
 
 .Add success
 image::add_success.png[width=790]
 
 ==== Edit Command
-`edit n/Look edited the task des/BB Productive is the best app I've every used t/NewTag` +
+===== Command: `edit n/Look edited the task des/BB Productive is the best app I've every used t/NewTag`
+Oh, looks like you've made a mistake, don't worry you can edit your tasks. But first a few things to take note of:
+
 * You can edit all fields except the done field.
 * Please indicate an `<<index, INDEX>>` so that BB Productive knows which task to edit.
 
@@ -184,22 +198,22 @@ image::add_success.png[width=790]
 image::edit_success.png[width=790]
 
 ==== Done Command
-`done <<index, INDEX>> INDEX...`
-You can also mark multiple tasks as done by using comma separated indexes.
+===== Command: `done <<index, INDEX>> INDEX...`
+After some hardwork, you've finished a task, so now let's mark it as done. You can also mark multiple tasks as done by using space to separate those <<index, indexes>>.
 
 .Done success
 image::done_success.png[width=790]
 
 ==== Sort Command
-`sort FIELD FIELD...`
-You can choose to change the current ordering of your task list to something more suitable by sorting it one or more of these task fields:
+===== Command: `sort FIELD FIELD...`
+Oh boy, after a couple of hours, you have filled your day with so many activities! You can choose to change the current ordering of your task list to something more suitable by sorting it by one or more of these task fields:
 
 _All fields with r- prepended refers to a reverse of the original._
 
 . priority -> Shows task of highest priority first.
 . r-priority -> Shows task of lowest priority first.
-. done -> Shows task of undone first.
-. r-done -> Shows task of done first.
+. done -> Shows undone tasks first.
+. r-done -> Shows done tasks first.
 . date -> Shows tasks with reminders closer to today first then tasks without reminders.
 . r-date -> Shows tasks with no remidners first then tasks with reminders further from today.
 . name -> Shows tasks in alphanumeric order.
@@ -209,27 +223,43 @@ _All fields with r- prepended refers to a reverse of the original._
 image::sort_success.png[width=790]
 
 ==== Find Command
-`find PHRASE`
-You can perform a search for tasks by name that are important. BB Productive will then search through the names of the tasks and bring tasks that match the `PHRASE`. It is also typo tolerant and will show tasks that differ from the `PHRASE` by a little.
+===== Command: `find PHRASE`
+===== Command: `find t/TAG t/TAG...`
+===== Command: `find PHRASE t/TAG...`
+Oh my after sorting, you still have so many tasks! You can perform a search for tasks by name or tag to find the tasks most important to you.
+
+* You can choose to search by both name and tag, just name or just tag.
+* For phrase searching, it is slightly typo tolerant and will show tasks that differ from the `PHRASE` by a little.
+* However, tag names provided must be an exact match (ignoring case).
 
 .Find success
 image::find_success.png[width=790]
 
+==== Tag Command
+===== Command :`tag`
+
+Hmmm, I wonder what types of tasks I have! You can view all existing tags in BB Productive by entering the Tag command!
+
+.Tags success
+image::tag_success.png[width=790]
+
 ==== Delete Command
-`delete <<index, INDEX>> INDEX...`
-You can delete multiple tasks.
+===== Command: `delete <<index, INDEX>> INDEX...`
+Oh my, my task list is getting overcrowded... Luckily, you can use the delete command to delete one or more tasks.
 
 .Delete success
 image::delete_success.png[width=790]
 
 ==== Clear Command
-`clear`
-You may delete all tasks from your list by issuing a clear command.
+===== Command: `clear`
+Oh my it's been a productive month, time to start on a clean slate. You may delete all tasks from your list by issuing a clear command.
 
 .Clear success
 image::clear_success.png[width=790]
 
-=== Pet
+//end::TaskList[]
+
+=== Pet (Fyonn)
 Write pet
 
 // tag::pomodoro[]
@@ -325,27 +355,34 @@ The Productivity Chart tracks the number of tasks done and duration you ran the 
 
 //end::statistics[]
 
+//tag::AutoComplete[]
 === AutoComplete
-As much as you enjoy typing, we've added some extra grease to make you type even faster. You can trigger our very intelligent auto complete function by pressing `tab` on the keyboard.
+As much as you enjoy typing, we've added some extra grease to help you type even faster. You can trigger our very intelligent auto complete function by pressing `tab` on the keyboard.
 
 You can expect: +
 
 * Auto completion of command words: `del -> delete`
+
+.Command word auto complete
+image::AC_command.png[]
 * Addition of prefixes for common values: `20/10/20@10:30 -> r/20/10/20@10:30`
-** Figure 14
-* Auto completion of sort fields `sort pri` -> `sort priority`
-** Figure 15
 
 .Prefix auto complete
 image::prefix_complete.png[]
+* Auto completion of sort fields `sort pri` -> `sort priority`
+
 .Sort auto complete
 image::sort_complete.png[]
+* Removal of indexes that are invalid [not a positive integer or out of the tasklist's size]
 
-If we can't find a valid command, you will observe feedback like below:
+.Done index removal
+image::AC_removal_success.png[]
+* If we can't find a valid command, you will observe feedback like below:
 
 .Auto complete not found
 image::complete_fail.png[]
 
+//end::AutoComplete[]
 
 === Reminders
 
@@ -417,7 +454,6 @@ Results in a task with the reminder's date in the specific task card.
 .Success for editing recurring attribute to task.
 image::recurring_edit_success.png[width=790]
 
-
 [[Navigation]]
 === Navigation
 _This section shows all the commands to navigate the app. There are multiple tabs that can be shown: tasklist, statistics and settings._
@@ -467,32 +503,36 @@ _The following table summarizes all the commands that you can use. Input contain
 |Command |Format |Example
 
 |Add
-|add n/<item index> [des/<task description>] [p/<priority value>] [r/<reminder’s date and time>] [t/<tag1> t/<tag2>...]
-|add n/Finish Quiz des/Pages 3-5 p/1 r/20/03/20@19:30 t/cs2100
+|add n/NAME [des/DESCRIPTION] [p/PRIORITY] [r/REMINDER] [rec/FREQUENCY] [t/TAG...]
+|add n/Finish Quiz des/Pages 3-5 p/1 r/20/03/20@19:30 rec/d t/cs2100 t/school
 
 |Edit
-|edit INDEX [n/NAME] [des/DESCRIPTION] [p/PRIORITY] [r/REMINDER] [t/TAG]
+|edit INDEX [n/NAME] [des/DESCRIPTION] [p/PRIORITY] [r/REMINDER] [rec/FREQUENCY] [t/TAG...]
 |edit 2 r/10/03/21@13:00
 
 |Done
 |done INDEX
-|done 5
+|done 5 6 7
 
 |Delete
 |delete INDEX
-|delete 7
-
-|Clear
-|clear
-|clear
+|delete 1 2 3 7
 
 |Pom
 |pom INDEX [tm/TIME IN MINUTES]
 |pom 4 tm/45
 
+|find
+|find PHRASE [t/TAG...]
+|find mum tells me to t/MA1521
+
+|Tag
+|tag
+|tag
+
 |Sort
 |sort FIELD1 FIELD2 FIELD3 ...
-|sort done, priority
+|sort done priority r-done
 
 |Tasks
 |tasks
@@ -505,6 +545,10 @@ _The following table summarizes all the commands that you can use. Input contain
 |Settings
 |settings
 |settings
+
+|Clear
+|clear
+|clear
 
 |===
 

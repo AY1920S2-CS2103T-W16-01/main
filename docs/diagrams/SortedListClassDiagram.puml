@@ -1,0 +1,13 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Model *-right-> "1" TaskList
+TaskList *-right-> "1" UniqueTaskList
+TaskList o--> "1" SortedList
+SortedList ..> UniqueTaskList: ObservableList <
+Model o--> "1" FilteredList
+FilteredList ..> SortedList
+@enduml
