@@ -161,6 +161,10 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 === TaskList
+Shown below is a high level overview of task class and related classes. This is represented in a class diagram.
+
+.Task Class Diagram with all aforementioned attributes including recurring and reminder
+image::TaskClassDiagram.png[width=790]
 ==== Add(Permas)
 
 // tag::editTaskList[]
@@ -411,8 +415,6 @@ Additionally, a flag has been made to check if the task needs to be changed, if 
 
 Recurring is stored as a string in the `JsonAdaptedTask`. This string contains the LocalDateTime information for the reference date as well as the type of interval itself. A special constructor for this string is used to reconstruct the recurring attribute when reading from storage.
 
-.Task Class Diagram with all aforementioned attributes including recurring and reminder
-image::TaskClassDiagram.png[width=790]
 // end::recurring[]
 
 //tag::statistics[]
