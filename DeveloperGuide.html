@@ -22,12 +22,13 @@
 </li>
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#sorting">3.1. Sorting</a></li>
+<li><a href="#sort">3.1. Sort</a></li>
 <li><a href="#autocomplete">3.2. AutoComplete</a></li>
-<li><a href="#Pomodoro">3.3. Pomodoro</a></li>
-<li><a href="#statistics-feature">3.4. Statistics Feature</a></li>
-<li><a href="#logging">3.5. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
+<li><a href="#enhanced-find">3.3. Enhanced Find</a></li>
+<li><a href="#Pomodoro">3.4. Pomodoro</a></li>
+<li><a href="#statistics-feature">3.5. Statistics Feature</a></li>
+<li><a href="#logging">3.6. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.7. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a></li>
@@ -341,7 +342,12 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="sorting"><a class="link" href="#sorting">3.1. Sorting</a></h3>
+<h3 id="sort"><a class="link" href="#sort">3.1. Sort</a></h3>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">3.1.1. Implementation</a></h4>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/commands/SortCommand.java"><code>SortCommand.java</code></a></p>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="images/SortSequenceDiagram.png" alt="SortSequenceDiagram">
@@ -349,30 +355,453 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="title">Figure 9. Sequence of executing a sort command</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/commands/SortCommand.java"><code>SortCommand.java</code></a></p>
+<p>The sort command takes in a list of fields and generates FieldComparators as seen in the diagram and then uses Comparator.thenComparing to aggregate the comparators. The first field provided will be of the highest sort order. The Model will then set the aggregated comparator on the <code>TaskList</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SortedListClassDiagram.png" alt="SortedListClassDiagram">
+</div>
+<div class="title">Figure 10. Class diagram of SortedList</div>
+</div>
+<div class="paragraph">
+<p>We use a new SortedList from JavaFx within TaskList because FilteredList does not allow for sorting. As such we have the FilteredList reference the SortedList and the SortedList refernce the UniqueTaskList. By warpping the lists around another, this allows the SortedList and FilteredList to read changes to the UniqueTaskList and perform the appropriate filtering and sorting.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SortInitliazeDiagram.png" alt="SortInitliazeDiagram">
+</div>
+<div class="title">Figure 11. Sequence of initializing the Sorted List</div>
+</div>
+<div class="paragraph">
+<p>Due to the requirements mentioned, this is how we generate our FilteredList. We set FilteredList to reference the SortedList and then the SortedList to reference the UniqueTaskList.</p>
+</div>
 </div>
 <div class="sect3">
-<h4 id="implementation-2"><a class="link" href="#implementation-2">3.1.1. Implementation</a></h4>
-<div class="paragraph">
-<p>The tasklist has no default sorting set on it. It will only be sorted when the sort command is used like so <code>sort {field1}, {field2}, &#8230;&#8203;</code>.
-First our Model accepts an array of Comparators which it will iterate through from the back to ensure that the first comparator is the highest sort order.</p>
+<h4 id="updating-ui"><a class="link" href="#updating-ui">3.1.2. Updating UI</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/SortUiSequenceDiagram.png" alt="SortUiSequenceDiagram">
+</div>
 </div>
 <div class="paragraph">
-<p>To implement this, we&#8217;ve augmented the UniqueTaskList and TaskList with a function setComparator. This allows us to set several comparators on the taskList to perform multi level sorting while maintaing the ObservableList which JavaFX can then use to update the UI.</p>
+<p>Meanwhile to update the UI on the newest sorting order, the latest sortOrder is set on the <code>TaskList</code>. The LogicManager is then able to access the sort order through the Model and provide the <code>MainWindow</code> with the sort order. The MainWindow then sets it on the <code>TaskListPanel</code>.</p>
+</div>
+<div class="paragraph">
+<p>SortCommandResult extends CommandResult and contains an additional String attribute <code>sortOrder</code>.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="autocomplete"><a class="link" href="#autocomplete">3.2. AutoComplete</a></h3>
+<div class="paragraph">
+<p>Auto complete is triggered when users press tab while focussed on the command line.</p>
+</div>
+<div class="sect3">
+<h4 id="implementation-3"><a class="link" href="#implementation-3">3.2.1. Implementation</a></h4>
 <div class="imageblock">
 <div class="content">
-<img src="images/AutoCompleteActivityDiagram.png" alt="AutoCompleteActivityDiagram">
+<img src="images/ACSequenceDiagram.png" alt="ACSequenceDiagram">
 </div>
-<div class="title">Figure 10. Activity diagram of auto complete</div>
+<div class="title">Figure 12. AutoComplete Sequence Diagram</div>
+</div>
+<div class="paragraph">
+<p>When a user presses tab on the command line, a key event handler in the CommandBox calls the suggestCommand function of MainWindow with the user input. The MainWindow then passes the user input through the LogicManager to the CommandCompletor.<br></p>
+</div>
+<div class="paragraph">
+<p>The input is pass through the LogicManager so that we can get TaskList details from the LogicManager and transfer it to the CommandCompletor (e.g. taskList length). The CommandCompletor then parses the input and returns one of three things which lead to different changes to the UI:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>CompletorResult</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Will cause CommandBox to setSuccess on CommandTextField</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>CompletorDeletionResult [inherits from CompletorResult]</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Contains deleted input which will be shown as feedback</p>
+</li>
+<li>
+<p>Will cause MainWindow to call setWarning on ResultDisplay</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>CompletorException</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Will cause CommandBox to setFailure on CommandTextField</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="auto-complete-overview"><a class="link" href="#auto-complete-overview">3.2.2. Auto Complete Overview</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/ACActivityDiagram.png" alt="ACActivityDiagram" width="790">
+</div>
+<div class="title">Figure 13. Activity diagram of auto complete</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Auto completion of a word happens when either:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>the input matches the start of a target word</p>
+</li>
+<li>
+<p>the edit distance between the input and the target &lt; 2.</p>
+</li>
+</ol>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The above diagram provides a big picture overview of decisions <code>CommandCompletor</code> goes through when processing user input.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>It attempts to complete the command word as in the callout above</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>if command word is unrecognized, <code>CommandCompletor</code> throws a <code>CompletorException</code> which leads to Unknown Command UI</p>
+</li>
+<li>
+<p>else it performs argument checks and auto completes as necessary</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="sect4">
+<h5 id="argument-checks-overview"><a class="link" href="#argument-checks-overview">Argument checks overview</a></h5>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If the input is an add/edit/pom command then CommandCompletor will attempt to add prefixes.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>add/edit command &#8594; add priority and reminder prefixes</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Edit auto complete will only add prefixes after the second word to avoid adding a prefix to the compulsory INDEX field of edit commands</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>pom command &#8594; add timer prefix</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>If input is a delete/done command</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>remove any invalid indices that are greater than the length of the displayed task list or that are not a positive integer</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>If input is a sort command</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Auto completion of fields is performed based on the <a href="#completion criteria">[completion criteria]</a></p>
+</li>
+<li>
+<p>If the field is not recongized, then it is removed</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="auto-complete-output"><a class="link" href="#auto-complete-output">3.2.3. Auto Complete output:</a></h4>
+<div class="paragraph">
+<p>As seen from the activity diagram above:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Known Command UI displayed when:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Any kind of completion has happened or nothing has changed for the input</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><code>CompletorResult</code> is returned</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Any input is deleted (invalid index or sort field)</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><code>CompletorDeletionResult</code> is returned</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Unknown Command UI is displayed when:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Command word provided is not recognized</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>CompletorException` is raised</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="known-command-ui"><a class="link" href="#known-command-ui">3.2.4. Known Command UI</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/ACSuccess.png" alt="ACSuccess" width="600">
+</div>
+<div class="title">Figure 14. AutoComplete Success UI</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>CommandTextField</code> is set to green</p>
+</li>
+<li>
+<p><code>CommandTextField</code> text is replaced by the suggested command</p>
+</li>
+<li>
+<p>Feedback is also provided on what changes have been made</p>
+<div class="ulist">
+<ul>
+<li>
+<p>If input has been removed, <code>ResultDisplay</code> is set to orange</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="unknown-command-ui"><a class="link" href="#unknown-command-ui">3.2.5. Unknown Command UI</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/ACFailure.png" alt="ACFailure" width="500">
+</div>
+<div class="title">Figure 15. AutoComplete Failure UI</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>CommandTextField</code> is set to red</p>
+</li>
+<li>
+<p><code>CommandTextField</code> text is unchanged</p>
+</li>
+<li>
+<p>Feedback is provided that command word is not recognized</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="prefix-completion"><a class="link" href="#prefix-completion">3.2.6. Prefix Completion</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/ACPrefixActivityDiagram.png" alt="ACPrefixActivityDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>Here we take a closer look at how prefix completion is implemented. We iterate through every word of the user&#8217;s input and then check if the word is a valid task field. If it is, we append the prefix and update the hasPrefix boolean to true so that we don&#8217;t append duplicate prefixes. The input is then updated and we continue iterating.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="index-completion"><a class="link" href="#index-completion">3.2.7. Index Completion</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/ACIndexActivityDiagram.png" alt="ACIndexActivityDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>Similar to before, we iterate through the arguments and we remove indexes that are either out of the displayed TaskList&#8217;s size or that is not a positive integer. We then append it to a removed list so that we can inform the user what input has been removed.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="sort-field-completion"><a class="link" href="#sort-field-completion">3.2.8. Sort field Completion</a></h4>
+<div class="paragraph">
+<p>Sort field completion is done by iterating through all arguments word by word and performing the auto complete checks against all possible sort fields. The auto complete checks were the same as the above <a href="#completion criteria">[completion criteria]</a>.</p>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Pomodoro"><a class="link" href="#Pomodoro">3.3. Pomodoro</a></h3>
+<h3 id="enhanced-find"><a class="link" href="#enhanced-find">3.3. Enhanced Find</a></h3>
+<div class="paragraph">
+<p>We&#8217;ve built upon the existing find function in AB-3 to filter tasks based on phrases instead of words.</p>
+</div>
+<div class="sect3">
+<h4 id="implementation-4"><a class="link" href="#implementation-4">3.3.1. Implementation</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/FindSequenceDiagram.png" alt="FindSequenceDiagram">
+</div>
+<div class="title">Figure 16. Find Command Sequence diagram</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>After setting the predicate on the model and FilteredList, the FilteredList will apply the Test method of the predicate.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Scoring will be discussed in the next section.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>A comparator is then retrived from the Predicate and is then used to display more relevant search results to the user</p>
+</li>
+<li>
+<p>Any existing comparator set is removed when <code>setSearchResultOrder</code> is called on Model</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="predicate"><a class="link" href="#predicate">3.3.2. Predicate</a></h4>
+<div class="paragraph">
+<div class="title">Scoring decision</div>
+<p>All tasks will initially have a score of 2 and based on the below criteria, the score will be adjusted. Only tasks with scores &lt; 2 will be displayed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/PredicateSequenceDiagram.png" alt="PredicateSequenceDiagram">
+</div>
+</div>
+<div class="sect4">
+<h5 id="name-scoring"><a class="link" href="#name-scoring">Name scoring</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p>The name score of a task is the minimum score of all chunks of the name</p>
+<div class="ulist">
+<ul>
+<li>
+<p>A chunk is a String subsequence of the task name that has the same number of words as the search term</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>We iterate through all chunks of the task name and calculate a score for each chunk</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The minimum of these scores is set as the task&#8217;s overall name score</p>
+</li>
+<li>
+<p>a smaller score means a more relevant task</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The calculation of a chunk is decided by:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>edit distance between one of the chunks and the search term &lt; 2, score is set to 1</p>
+</li>
+<li>
+<p>search term matches the start of one of the chunks, score is set to 1</p>
+</li>
+<li>
+<p>one of the chunks is the same as the search term, score is set to 0</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="tag-scoring"><a class="link" href="#tag-scoring">Tag scoring</a></h5>
+<div class="paragraph">
+<p>Tag scoring is carried out on top of name scoring. For every tag in the search term that appears in a Task, we decrement the Task&#8217;s name score by 1.</p>
+</div>
+<div class="paragraph">
+<p>The combination of name and tag score is then used as a Task&#8217;s final score in determining it&#8217;s relevance in the search results.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="other-considerations"><a class="link" href="#other-considerations">3.3.3. Other Considerations</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>We chose to not use edit distance for search terms of string length less than 3 as this would bring about alot of false positives given that that the edit distance between words of length &lt; 3 will easily be 1</p>
+</li>
+<li>
+<p>We also chose to display task names who&#8217;s start matches the search term for ease of usage even though the edit distance could be significant.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Pomodoro"><a class="link" href="#Pomodoro">3.4. Pomodoro</a></h3>
 <div class="paragraph">
 <p>Pomodoro is activated by the <code>pom</code> command. It follows the same execution flow as many of the other commands in BBProductive.</p>
 </div>
@@ -380,10 +809,10 @@ First our Model accepts an array of Comparators which it will iterate through fr
 <div class="content">
 <img src="images/PomSequenceDiagram.png" alt="PomSequenceDiagram" width="790">
 </div>
-<div class="title">Figure 11. Interactions Inside Logic Component for the pom 1 command</div>
+<div class="title">Figure 17. Interactions Inside Logic Component for the pom 1 command</div>
 </div>
 <div class="sect3">
-<h4 id="implementation-3"><a class="link" href="#implementation-3">3.3.1. Implementation</a></h4>
+<h4 id="implementation-5"><a class="link" href="#implementation-5">3.4.1. Implementation</a></h4>
 <div class="paragraph">
 <p>Pomosoero&#8217;s features are implemented mainly in <code>seedu.address.logic</code> package. The <code>PomodoroManager</code> class is used to maniulate the timer and configure the relevant UI elements. The timer is facilitated by <code>javafx.animation.Timeline</code>.</p>
 </div>
@@ -394,7 +823,7 @@ First our Model accepts an array of Comparators which it will iterate through fr
 <div class="content">
 <img src="images/PomExtendedSequenceDiagram.png" alt="PomExtendedSequenceDiagram" width="790">
 </div>
-<div class="title">Figure 12. Interactions with PomodoroManager through a time cycle</div>
+<div class="title">Figure 18. Interactions with PomodoroManager through a time cycle</div>
 </div>
 <div class="paragraph">
 <p>Through the use of the Pomodoro feature, there are occasions where the app has to prompt the user for specific input in order to progress. This behaviour flow is represented in the <em>Pomodoro Acctivity</em> diagram.</p>
@@ -403,7 +832,7 @@ First our Model accepts an array of Comparators which it will iterate through fr
 <div class="content">
 <img src="images/PomodoroActivityDiagram.png" alt="PomodoroActivityDiagram" width="395">
 </div>
-<div class="title">Figure 13. Pomodoro Activity Diagram</div>
+<div class="title">Figure 19. Pomodoro Activity Diagram</div>
 </div>
 <div class="paragraph">
 <p>The <code>PomodoroManager</code> maintains a  <code>prompt_state</code> indicating what the app might be prompting the user at a given time.</p>
@@ -446,7 +875,7 @@ First our Model accepts an array of Comparators which it will iterate through fr
 </div>
 </div>
 <div class="sect2">
-<h3 id="statistics-feature"><a class="link" href="#statistics-feature">3.4. Statistics Feature</a></h3>
+<h3 id="statistics-feature"><a class="link" href="#statistics-feature">3.5. Statistics Feature</a></h3>
 <div class="paragraph">
 <p>The Statistics feature is mainly supported by the Statistics class, which in turn is facilitated by the CustomQueue class. Its class diagram is given below.</p>
 </div>
@@ -454,7 +883,7 @@ First our Model accepts an array of Comparators which it will iterate through fr
 <div class="content">
 <img src="images/StatisticsClassDiagram.png" alt="StatisticsClassDiagram">
 </div>
-<div class="title">Figure 14. Class Diagram of the Statistics Component</div>
+<div class="title">Figure 20. Class Diagram of the Statistics Component</div>
 </div>
 <div class="paragraph">
 <p>The Statistics feature does not support any commands explicitly. The UI is updated automatically when the 'stats' command is called. The following sequence diagram shows StatisticsDisplay is updated.</p>
@@ -463,10 +892,10 @@ First our Model accepts an array of Comparators which it will iterate through fr
 <div class="content">
 <img src="images/StatisticsUiSequenceDiagram.png" alt="StatisticsUiSequenceDiagram">
 </div>
-<div class="title">Figure 15. Sequence Diagram of how Statistics</div>
+<div class="title">Figure 21. Sequence Diagram of how Statistics</div>
 </div>
 <div class="sect3">
-<h4 id="customqueue-implementation"><a class="link" href="#customqueue-implementation">3.4.1. CustomQueue Implementation</a></h4>
+<h4 id="customqueue-implementation"><a class="link" href="#customqueue-implementation">3.5.1. CustomQueue Implementation</a></h4>
 <div class="paragraph">
 <p>The CustomQueue class enforces the following constraints.
 1. Size of CustomQueue must be of <code>CONSTANT_SIZE</code> after each method call through Statistics.
@@ -502,7 +931,7 @@ First our Model accepts an array of Comparators which it will iterate through fr
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.4.2. Design considerations</a></h4>
+<h4 id="design-considerations"><a class="link" href="#design-considerations">3.5.2. Design considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-when-to-update-statisticsdisplay"><a class="link" href="#aspect-when-to-update-statisticsdisplay">Aspect: when to update StatisticsDisplay</a></h5>
 <div class="ulist">
@@ -572,14 +1001,14 @@ First our Model accepts an array of Comparators which it will iterate through fr
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.5. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.6. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.6, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.7, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -610,7 +1039,7 @@ First our Model accepts an array of Comparators which it will iterate through fr
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.6. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.7. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -836,7 +1265,7 @@ First our Model accepts an array of Comparators which it will iterate through fr
 <div class="content">
 <img src="images/use_cases.png" alt="use cases" width="790">
 </div>
-<div class="title">Figure 16. Use case diagram for BBProductive</div>
+<div class="title">Figure 22. Use case diagram for BBProductive</div>
 </div>
 <h3 id="use-case-uc01-view-tasks" class="discrete">Use Case: UC01 - View tasks</h3>
 <div class="paragraph">
@@ -1424,30 +1853,100 @@ First our Model accepts an array of Comparators which it will iterate through fr
 <div class="sect1">
 <h2 id="glossary"><a class="link" href="#glossary">Appendix E: Glossary</a></h2>
 <div class="sectionbody">
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><a id="mainstream-os"></a> Mainstream OS</dt>
-<dd>
-<p>Windows, Linux, Unix, OS-X</p>
-</dd>
-<dt class="hdlist1"><a id="private-contact-detail"></a> Private contact detail</dt>
-<dd>
-<p>A contact detail that is not meant to be shared with others</p>
-</dd>
-<dt class="hdlist1"><a id="pomodoro"></a> Pomodoro</dt>
-<dd>
-<p>A time management method developed by Francesco Cirillo. Traditionally, cycles of 25 minutes of work and 5 minutes of rest.</p>
-</dd>
-<dt class="hdlist1"><a id="task"></a> Task</dt>
-<dd>
-<p>A snippet of text specified by the user that can be tracked (done/time spent).</p>
-</dd>
-<dt class="hdlist1"><a id="pet"></a> Pet</dt>
-<dd>
-<p>A cute little companion whom the player can care for and accessorise with more tasks being done.</p>
-</dd>
-</dl>
-</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Term</th>
+<th class="tableblock halign-left valign-top">Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mainstream OS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Windows, Linux, Unix, OS-X</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pomodoro <a id="pomodoro"></a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A time management method developed by Francesco Cirillo. Traditionally, cycles of 25 minutes of work and 5 minutes of rest.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Task <a id="task"></a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A snippet of text specified by the user that can be tracked (done/time spent).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pet <a id="pet"></a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A cute little companion whom the player can care for and accessorise with more tasks being done.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CLI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Command Line Interface - a typing interface which is used to interact with the application</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Command</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Executes user input in the application</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CommandBox</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UI component that takes in user input</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ResultDisplay</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UI component that displays the feedback to the user</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FXML</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">XML-based user interface markup language for defining user interface of a JaxaFX application</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TaskListCard</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UI component that displays information on an item</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TaskListPanel</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UI component that displays list of items</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JavaFX</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Software platform for creating and delivering desktop applications and rich Internet applications</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JSON</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An open-standard file format that uses human-readable text to transmit data objects consisting of attribute–value pairs and array data types</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Logic</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Handles user input for the application and returns the application’s output</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MainWindow</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provides the basic application layout containing a pet and CLI sidebar and a task list interface with pomodoro timer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Model</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Represents and exposes data in the task list, pet, pomodoro and statistics</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Parser</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Converts user input into a Command object</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ReadOnlyTaskList</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provides an unmodifiable view of a task list</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Storage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Manages data of the pet, pomodoro, tasklist and statistics in local storage</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Edit distance</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integer calculated with the levenshtein distance that represents the number of changes to get from one string to another</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect1">
@@ -1596,4 +2095,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 03:40:01 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 08:40:37 UTC</div></div></div></body></html>

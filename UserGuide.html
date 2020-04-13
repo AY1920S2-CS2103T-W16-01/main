@@ -18,12 +18,15 @@
 <li><a href="#what-is-bb-productive">1. What is BB Productive?</a></li>
 <li><a href="#about-this-document">2. About this document</a>
 <ul class="sectlevel2">
-<li><a href="#index">2.1. Command Format</a></li>
-<li><a href="#indexes">2.2. Indexes</a></li>
+<li><a href="#command-format">2.1. Command Format</a></li>
 </ul>
 </li>
 <li><a href="#quick-start">3. Quick Start</a></li>
-<li><a href="#Terminology">4. Terminology</a></li>
+<li><a href="#index">4. Terminology</a>
+<ul class="sectlevel2">
+<li><a href="#indexes">4.1. Indexes</a></li>
+</ul>
+</li>
 <li><a href="#graphical-user-interface-permas">5. Graphical User Interface (Permas)</a>
 <ul class="sectlevel2">
 <li><a href="#pet-view">5.1. Pet View</a></li>
@@ -66,7 +69,7 @@
 <p>BB Productive is for those who looking for motivation in their work. This app serves as a great task manager and includes a Pomodoro feature and a Pet companion. It is <strong>optimized for those who prefer to work with a Command Line Interface</strong> (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, BB Productive can get you to get tasks done faster. Interested? Jump to the <a href="#quick-start">Section 3, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
 </div>
 <div class="sect2">
-<h3 id="index"><a class="link" href="#index">2.1. Command Format</a></h3>
+<h3 id="command-format"><a class="link" href="#command-format">2.1. Command Format</a></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -85,23 +88,6 @@
 <p>Parameters can be in any order e.g. if the command specifies <code>n/NAME p/PHONE_NUMBER</code>, <code>p/PHONE_NUMBER n/NAME</code> is also acceptable.</p>
 </li>
 </ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="indexes"><a class="link" href="#indexes">2.2. Indexes</a></h3>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Indexes refer to the current tasklist on display, it does not refer to the indices of the entire task list. Note also that indexes start from 1 and not 0.</p>
-</div>
-</td>
-</tr>
-</table>
 </div>
 </div>
 </div>
@@ -164,7 +150,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 </div>
 <div class="sect1">
-<h2 id="Terminology"><a class="link" href="#Terminology">4. Terminology</a></h2>
+<h2 id="index"><a class="link" href="#index">4. Terminology</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><em>This section provides a quick description for the common terminologies used in this user guide.</em></p>
@@ -177,6 +163,23 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 <div class="paragraph">
 <p><strong>Pet</strong>: The pet you will interact with to manage your tasks and pomodoros. You can also level up the pet by completing more tasks/pomodoros.</p>
+</div>
+<div class="sect2">
+<h3 id="indexes"><a class="link" href="#indexes">4.1. Indexes</a></h3>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Indexes refer to the current tasklist on display, it does not refer to the indices of the entire task list. Note also that indexes start from 1 and not 0.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 </div>
@@ -261,7 +264,21 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="sect3">
 <h4 id="task-fields"><a class="link" href="#task-fields">6.1.1. Task Fields</a></h4>
 <div class="paragraph">
-<p>You may use <code>add</code> and <code>edit <a href="#index">INDEX</a></code>  to begin the add and edit commands, next attach any combination of the following commands.</p>
+<p>Use <code>add</code> and <code>edit <a href="#index">INDEX</a></code> attached with any combination of the following task field prefixes to perform them. These prefixes can be in any order.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Constraints for fields are <em>italicized</em> in the Format column.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <table class="tableblock frame-topbot grid-all spread">
 <caption class="title">Table 1. Task Fields</caption>
@@ -281,8 +298,9 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Name</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><code>n/NAME</code>+
-<code>n/Any name is possible</code></p>
+<p><code>n/NAME</code><br>
+<code>n/Any name is possible</code>
+<em>alphanumeric characters and spaces</em></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="ulist">
 <ul>
@@ -299,12 +317,12 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p><code>[des/DESCRIPTION]</code><br>
-<code>des/Lab of weightage 20% about NP-Cmpleteness</code></p>
+<code>des/Lab of weightage 20% on NP-Completeness</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="ulist">
 <ul>
 <li>
-<p>Optional description that accompanies a task</p>
+<p>Description that accompanies a task</p>
 </li>
 </ul>
 </div></div></td>
@@ -312,7 +330,8 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Priority</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>[p/PRIORITY]</code><br>
-<code>p/1</code></code></p></td>
+<code>p/1</code><br>
+<em>1 or 2 or 3</em></code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="ulist">
 <ul>
 <li>
@@ -327,7 +346,8 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Reminder</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>[r/REMINDER]</code><br>
-<code>r/10/06/20@12:30</code></code></p></td>
+<code>r/10/06/20@12:30</code><br>
+<em>DD/MM/YY@HH:mm</em></code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="ulist">
 <ul>
 <li>
@@ -339,11 +359,12 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Recurring tag</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>[rec/FREQUENCY]</code><br>
-<code>rec/daily</code></code></p></td>
+<code>rec/d</code><br>
+<em>d or w</em></code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="ulist">
 <ul>
 <li>
-<p>Can only be <code>DAILY</code> or <code>WEEKLY</code>.</p>
+<p>Options are <em>`d`</em> or <em>`w`</em> which respectively are daily or weekly.</p>
 </li>
 </ul>
 </div></div></td>
@@ -352,7 +373,8 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <td class="tableblock halign-left valign-top"><p class="tableblock">Tag</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p><code>[t/TAG]&#8230;&#8203;</code><br>
-<code>t/errand t/home</code></p>
+<code>t/errand t/home</code><br>
+<em>alphanumeric characters only</em></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="ulist">
 <ul>
@@ -360,7 +382,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p>There can be multiple tags or none at all.</p>
 </li>
 <li>
-<p>Only alphanumeric characters are allowed, spaces and symbols are disallowed.</p>
+<p>spaces and symbols are disallowed.</p>
 </li>
 </ul>
 </div></div></td>
@@ -386,9 +408,10 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 <div class="sect3">
 <h4 id="add-command"><a class="link" href="#add-command">6.1.2. Add Command</a></h4>
+<div class="sect4">
+<h5 id="command-code-add-n-this-is-a-new-task-p-3-des-we-have-alot-of-work-to-do-today-t-this-t-is-t-fun-code"><a class="link" href="#command-code-add-n-this-is-a-new-task-p-3-des-we-have-alot-of-work-to-do-today-t-this-t-is-t-fun-code">Command: <code>add n/This is a new task p/3 des/We have alot of work to do today! t/This t/Is t/Fun</code></a></h5>
 <div class="paragraph">
-<p><code>add n/This is a new task p/3 des/We have alot of work to do today! t/This t/Is t/Fun</code><br>
-You only need the <code>n/</code> prefix when adding a new task as name fields are compulsory.<br></p>
+<p>Alright, time to start your productivity journey! You only need the <code>n/</code> prefix when adding a new task as only the name field is compulsory. Let&#8217;s add our very first task!</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -397,12 +420,23 @@ You only need the <code>n/</code> prefix when adding a new task as name fields a
 <div class="title">Figure 8. Add success</div>
 </div>
 </div>
+</div>
 <div class="sect3">
 <h4 id="edit-command"><a class="link" href="#edit-command">6.1.3. Edit Command</a></h4>
+<div class="sect4">
+<h5 id="command-code-edit-n-look-edited-the-task-des-bb-productive-is-the-best-app-i-ve-every-used-t-newtag-code"><a class="link" href="#command-code-edit-n-look-edited-the-task-des-bb-productive-is-the-best-app-i-ve-every-used-t-newtag-code">Command: <code>edit n/Look edited the task des/BB Productive is the best app I&#8217;ve every used t/NewTag</code></a></h5>
 <div class="paragraph">
-<p><code>edit n/Look edited the task des/BB Productive is the best app I&#8217;ve every used t/NewTag</code><br>
-* You can edit all fields except the done field.
-* Please indicate an <code><a href="#index">INDEX</a></code> so that BB Productive knows which task to edit.</p>
+<p>Oh, looks like you&#8217;ve made a mistake, don&#8217;t worry you can edit your tasks. But first a few things to take note of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You can edit all fields except the done field.</p>
+</li>
+<li>
+<p>Please indicate an <code><a href="#index">INDEX</a></code> so that BB Productive knows which task to edit.</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -411,11 +445,13 @@ You only need the <code>n/</code> prefix when adding a new task as name fields a
 <div class="title">Figure 9. Edit success</div>
 </div>
 </div>
+</div>
 <div class="sect3">
 <h4 id="done-command"><a class="link" href="#done-command">6.1.4. Done Command</a></h4>
+<div class="sect4">
+<h5 id="command-code-done-a-href-index-index-a-index-code"><a class="link" href="#command-code-done-a-href-index-index-a-index-code">Command: <code>done <a href="#index">INDEX</a> INDEX&#8230;&#8203;</code></a></h5>
 <div class="paragraph">
-<p><code>done <a href="#index">INDEX</a> INDEX&#8230;&#8203;</code>
-You can also mark multiple tasks as done by using comma separated indexes.</p>
+<p>After some hardwork, you&#8217;ve finished a task, so now let&#8217;s mark it as done. You can also mark multiple tasks as done by using space to separate those <a href="#index">indexes</a>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -424,11 +460,13 @@ You can also mark multiple tasks as done by using comma separated indexes.</p>
 <div class="title">Figure 10. Done success</div>
 </div>
 </div>
+</div>
 <div class="sect3">
 <h4 id="sort-command"><a class="link" href="#sort-command">6.1.5. Sort Command</a></h4>
+<div class="sect4">
+<h5 id="command-code-sort-field-field-code"><a class="link" href="#command-code-sort-field-field-code">Command: <code>sort FIELD FIELD&#8230;&#8203;</code></a></h5>
 <div class="paragraph">
-<p><code>sort FIELD FIELD&#8230;&#8203;</code>
-You can choose to change the current ordering of your task list to something more suitable by sorting it one or more of these task fields:</p>
+<p>Oh boy, after a couple of hours, you have filled your day with so many activities! You can choose to change the current ordering of your task list to something more suitable by sorting it by one or more of these task fields:</p>
 </div>
 <div class="paragraph">
 <p><em>All fields with r- prepended refers to a reverse of the original.</em></p>
@@ -442,10 +480,10 @@ You can choose to change the current ordering of your task list to something mor
 <p>r-priority &#8594; Shows task of lowest priority first.</p>
 </li>
 <li>
-<p>done &#8594; Shows task of undone first.</p>
+<p>done &#8594; Shows undone tasks first.</p>
 </li>
 <li>
-<p>r-done &#8594; Shows task of done first.</p>
+<p>r-done &#8594; Shows done tasks first.</p>
 </li>
 <li>
 <p>date &#8594; Shows tasks with reminders closer to today first then tasks without reminders.</p>
@@ -468,11 +506,34 @@ You can choose to change the current ordering of your task list to something mor
 <div class="title">Figure 11. Sort success</div>
 </div>
 </div>
+</div>
 <div class="sect3">
 <h4 id="find-command"><a class="link" href="#find-command">6.1.6. Find Command</a></h4>
+<div class="sect4">
+<h5 id="command-code-find-phrase-code"><a class="link" href="#command-code-find-phrase-code">Command: <code>find PHRASE</code></a></h5>
+
+</div>
+<div class="sect4">
+<h5 id="command-code-find-t-tag-t-tag-code"><a class="link" href="#command-code-find-t-tag-t-tag-code">Command: <code>find t/TAG t/TAG&#8230;&#8203;</code></a></h5>
+
+</div>
+<div class="sect4">
+<h5 id="command-code-find-phrase-t-tag-code"><a class="link" href="#command-code-find-phrase-t-tag-code">Command: <code>find PHRASE t/TAG&#8230;&#8203;</code></a></h5>
 <div class="paragraph">
-<p><code>find PHRASE</code>
-You can perform a search for tasks by name that are important. BB Productive will then search through the names of the tasks and bring tasks that match the <code>PHRASE</code>. It is also typo tolerant and will show tasks that differ from the <code>PHRASE</code> by a little.</p>
+<p>Oh my after sorting, you still have so many tasks! You can perform a search for tasks by name or tag to find the tasks most important to you.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You can choose to search by both name and tag, just name or just tag.</p>
+</li>
+<li>
+<p>For phrase searching, it is slightly typo tolerant and will show tasks that differ from the <code>PHRASE</code> by a little.</p>
+</li>
+<li>
+<p>However, tag names provided must be an exact match (ignoring case).</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -481,30 +542,50 @@ You can perform a search for tasks by name that are important. BB Productive wil
 <div class="title">Figure 12. Find success</div>
 </div>
 </div>
+</div>
 <div class="sect3">
-<h4 id="delete-command"><a class="link" href="#delete-command">6.1.7. Delete Command</a></h4>
+<h4 id="tag-command"><a class="link" href="#tag-command">6.1.7. Tag Command</a></h4>
+<div class="sect4">
+<h5 id="command-tag"><a class="link" href="#command-tag">Command :`tag`</a></h5>
 <div class="paragraph">
-<p><code>delete <a href="#index">INDEX</a> INDEX&#8230;&#8203;</code>
-You can delete multiple tasks.</p>
+<p>Hmmm, I wonder what types of tasks I have! You can view all existing tags in BB Productive by entering the Tag command!</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/tag_success.png" alt="tag success" width="790">
+</div>
+<div class="title">Figure 13. Tags success</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="delete-command"><a class="link" href="#delete-command">6.1.8. Delete Command</a></h4>
+<div class="sect4">
+<h5 id="command-code-delete-a-href-index-index-a-index-code"><a class="link" href="#command-code-delete-a-href-index-index-a-index-code">Command: <code>delete <a href="#index">INDEX</a> INDEX&#8230;&#8203;</code></a></h5>
+<div class="paragraph">
+<p>Oh my, my task list is getting overcrowded&#8230;&#8203; Luckily, you can use the delete command to delete one or more tasks.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/delete_success.png" alt="delete success" width="790">
 </div>
-<div class="title">Figure 13. Delete success</div>
+<div class="title">Figure 14. Delete success</div>
+</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="clear-command"><a class="link" href="#clear-command">6.1.8. Clear Command</a></h4>
+<h4 id="clear-command"><a class="link" href="#clear-command">6.1.9. Clear Command</a></h4>
+<div class="sect4">
+<h5 id="command-code-clear-code"><a class="link" href="#command-code-clear-code">Command: <code>clear</code></a></h5>
 <div class="paragraph">
-<p><code>clear</code>
-You may delete all tasks from your list by issuing a clear command.</p>
+<p>Oh my it&#8217;s been a productive month, time to start on a clean slate. You may delete all tasks from your list by issuing a clear command.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/clear_success.png" alt="clear success" width="790">
 </div>
-<div class="title">Figure 14. Clear success</div>
+<div class="title">Figure 15. Clear success</div>
+</div>
 </div>
 </div>
 </div>
@@ -562,7 +643,7 @@ You may delete all tasks from your list by issuing a clear command.</p>
 <div class="content">
 <img src="images/pom_success.png" alt="pom success" width="790">
 </div>
-<div class="title">Figure 15. Example screen when pom is successfully executed</div>
+<div class="title">Figure 16. Example screen when pom is successfully executed</div>
 </div>
 </div>
 <div class="sect4">
@@ -577,7 +658,7 @@ You may delete all tasks from your list by issuing a clear command.</p>
 <div class="content">
 <img src="images/pom_pause.png" alt="pom pause" width="790">
 </div>
-<div class="title">Figure 16. Example screen when pom is successfully paused</div>
+<div class="title">Figure 17. Example screen when pom is successfully paused</div>
 </div>
 </div>
 <div class="sect4">
@@ -589,7 +670,7 @@ You may delete all tasks from your list by issuing a clear command.</p>
 <div class="content">
 <img src="images/pom_continuing.png" alt="pom continuing" width="790">
 </div>
-<div class="title">Figure 17. Example screen when pom is successfully resumed</div>
+<div class="title">Figure 18. Example screen when pom is successfully resumed</div>
 </div>
 </div>
 <div class="sect4">
@@ -601,7 +682,7 @@ You may delete all tasks from your list by issuing a clear command.</p>
 <div class="content">
 <img src="images/pom_time_expire.png" alt="pom time expire" width="790">
 </div>
-<div class="title">Figure 18. Prompt when the pomodoro timer expires</div>
+<div class="title">Figure 19. Prompt when the pomodoro timer expires</div>
 </div>
 </div>
 <div class="sect4">
@@ -613,7 +694,7 @@ You may delete all tasks from your list by issuing a clear command.</p>
 <div class="content">
 <img src="images/pom_prompt_break.png" alt="pom prompt break" width="790">
 </div>
-<div class="title">Figure 19. Prompt checking if you&#8217;d like to take a break</div>
+<div class="title">Figure 20. Prompt checking if you&#8217;d like to take a break</div>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -639,7 +720,7 @@ You may delete all tasks from your list by issuing a clear command.</p>
 <div class="content">
 <img src="images/pom_break_end.png" alt="pom break end" width="790">
 </div>
-<div class="title">Figure 20. End of pomodoro cycle screen</div>
+<div class="title">Figure 21. End of pomodoro cycle screen</div>
 </div>
 </div>
 </div>
@@ -656,7 +737,7 @@ You may delete all tasks from your list by issuing a clear command.</p>
 <div class="content">
 <img src="images/stats_tab.png" alt="stats tab" width="400">
 </div>
-<div class="title">Figure 21. Statistics Tab</div>
+<div class="title">Figure 22. Statistics Tab</div>
 </div>
 <div class="sect3">
 <h4 id="daily-challenge"><a class="link" href="#daily-challenge">6.4.1. Daily Challenge</a></h4>
@@ -688,7 +769,7 @@ You may delete all tasks from your list by issuing a clear command.</p>
 <div class="sect2">
 <h3 id="autocomplete"><a class="link" href="#autocomplete">6.5. AutoComplete</a></h3>
 <div class="paragraph">
-<p>As much as you enjoy typing, we&#8217;ve added some extra grease to make you type even faster. You can trigger our very intelligent auto complete function by pressing <code>tab</code> on the keyboard.</p>
+<p>As much as you enjoy typing, we&#8217;ve added some extra grease to help you type even faster. You can trigger our very intelligent auto complete function by pressing <code>tab</code> on the keyboard.</p>
 </div>
 <div class="paragraph">
 <p>You can expect:<br></p>
@@ -698,25 +779,18 @@ You may delete all tasks from your list by issuing a clear command.</p>
 <li>
 <p>Auto completion of command words: <code>del &#8594; delete</code></p>
 </li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AC_command.png" alt="AC command">
+</div>
+<div class="title">Figure 23. Command word auto complete</div>
+</div>
+<div class="ulist">
+<ul>
 <li>
 <p>Addition of prefixes for common values: <code>20/10/20@10:30 &#8594; r/20/10/20@10:30</code></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Figure 14</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Auto completion of sort fields <code>sort pri</code> &#8594; <code>sort priority</code></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Figure 15</p>
-</li>
-</ul>
-</div>
 </li>
 </ul>
 </div>
@@ -724,22 +798,46 @@ You may delete all tasks from your list by issuing a clear command.</p>
 <div class="content">
 <img src="images/prefix_complete.png" alt="prefix complete">
 </div>
-<div class="title">Figure 22. Prefix auto complete</div>
+<div class="title">Figure 24. Prefix auto complete</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Auto completion of sort fields <code>sort pri</code> &#8594; <code>sort priority</code></p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/sort_complete.png" alt="sort complete">
 </div>
-<div class="title">Figure 23. Sort auto complete</div>
+<div class="title">Figure 25. Sort auto complete</div>
 </div>
-<div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
+<p>Removal of indexes that are invalid [not a positive integer or out of the tasklist&#8217;s size]</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AC_removal_success.png" alt="AC removal success">
+</div>
+<div class="title">Figure 26. Done index removal</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
 <p>If we can&#8217;t find a valid command, you will observe feedback like below:</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/complete_fail.png" alt="complete fail">
 </div>
-<div class="title">Figure 24. Auto complete not found</div>
+<div class="title">Figure 27. Auto complete not found</div>
 </div>
 </div>
 <div class="sect2">
@@ -770,7 +868,7 @@ You may delete all tasks from your list by issuing a clear command.</p>
 <div class="content">
 <img src="images/reminder_add.png" alt="reminder add" width="395">
 </div>
-<div class="title">Figure 25. Input for adding a task with reminder.</div>
+<div class="title">Figure 28. Input for adding a task with reminder.</div>
 </div>
 <div class="paragraph">
 <p>Results in a task with the reminder&#8217;s date in the task card.</p>
@@ -779,7 +877,7 @@ You may delete all tasks from your list by issuing a clear command.</p>
 <div class="content">
 <img src="images/reminder_add_success.png" alt="reminder add success" width="790">
 </div>
-<div class="title">Figure 26. Success for adding a task with reminder.</div>
+<div class="title">Figure 29. Success for adding a task with reminder.</div>
 </div>
 </div>
 <div class="sect4">
@@ -794,7 +892,7 @@ You may delete all tasks from your list by issuing a clear command.</p>
 <div class="content">
 <img src="images/reminder_edit.png" alt="reminder edit" width="395">
 </div>
-<div class="title">Figure 27. Input for editing task to have reminder or edit reminder itself.</div>
+<div class="title">Figure 30. Input for editing task to have reminder or edit reminder itself.</div>
 </div>
 <div class="paragraph">
 <p>Results in a task with the reminder&#8217;s date in the task card.</p>
@@ -803,7 +901,7 @@ You may delete all tasks from your list by issuing a clear command.</p>
 <div class="content">
 <img src="images/reminder_edit_success.png" alt="reminder edit success" width="790">
 </div>
-<div class="title">Figure 28. Success for editing task&#8217;s reminder.</div>
+<div class="title">Figure 31. Success for editing task&#8217;s reminder.</div>
 </div>
 </div>
 </div>
@@ -837,7 +935,7 @@ You may delete all tasks from your list by issuing a clear command.</p>
 <div class="content">
 <img src="images/recurring_add.png" alt="recurring add" width="395">
 </div>
-<div class="title">Figure 29. Input for adding recurring attribute to task.</div>
+<div class="title">Figure 32. Input for adding recurring attribute to task.</div>
 </div>
 <div class="paragraph">
 <p>Results in a task with the recurring attribute in the task card.</p>
@@ -846,7 +944,7 @@ You may delete all tasks from your list by issuing a clear command.</p>
 <div class="content">
 <img src="images/recurring_add_success.png" alt="recurring add success" width="790">
 </div>
-<div class="title">Figure 30. Success for adding recurring attribute to task.</div>
+<div class="title">Figure 33. Success for adding recurring attribute to task.</div>
 </div>
 </div>
 <div class="sect4">
@@ -861,7 +959,7 @@ You may delete all tasks from your list by issuing a clear command.</p>
 <div class="content">
 <img src="images/recurring_edit.png" alt="recurring edit" width="395">
 </div>
-<div class="title">Figure 31. Input for editing recurring attribute to task.</div>
+<div class="title">Figure 34. Input for editing recurring attribute to task.</div>
 </div>
 <div class="paragraph">
 <p>Results in a task with the reminder&#8217;s date in the specific task card.</p>
@@ -870,7 +968,7 @@ You may delete all tasks from your list by issuing a clear command.</p>
 <div class="content">
 <img src="images/recurring_edit_success.png" alt="recurring edit success" width="790">
 </div>
-<div class="title">Figure 32. Success for editing recurring attribute to task.</div>
+<div class="title">Figure 35. Success for editing recurring attribute to task.</div>
 </div>
 </div>
 </div>
@@ -970,28 +1068,23 @@ You may delete all tasks from your list by issuing a clear command.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Add</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add n/&lt;item index&gt; [des/&lt;task description&gt;] [p/&lt;priority value&gt;] [r/&lt;reminder’s date and time&gt;] [t/&lt;tag1&gt; t/&lt;tag2&gt;&#8230;&#8203;]</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add n/Finish Quiz des/Pages 3-5 p/1 r/20/03/20@19:30 t/cs2100</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add n/NAME [des/DESCRIPTION] [p/PRIORITY] [r/REMINDER] [rec/FREQUENCY] [t/TAG&#8230;&#8203;]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add n/Finish Quiz des/Pages 3-5 p/1 r/20/03/20@19:30 rec/d t/cs2100 t/school</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Edit</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>edit INDEX [n/NAME] [des/DESCRIPTION] [p/PRIORITY] [r/REMINDER] [t/TAG]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>edit INDEX [n/NAME] [des/DESCRIPTION] [p/PRIORITY] [r/REMINDER] [rec/FREQUENCY] [t/TAG&#8230;&#8203;]</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>edit 2 r/10/03/21@13:00</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Done</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>done INDEX</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>done 5</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>done 5 6 7</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Delete</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete INDEX</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete 7</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Clear</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>clear</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>clear</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete 1 2 3 7</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pom</p></td>
@@ -999,9 +1092,19 @@ You may delete all tasks from your list by issuing a clear command.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>pom 4 tm/45</code></p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">find</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>find PHRASE [t/TAG&#8230;&#8203;]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>find mum tells me to t/MA1521</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tag</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tag</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tag</code></p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Sort</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>sort FIELD1 FIELD2 FIELD3 &#8230;&#8203;</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sort done, priority</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sort done priority r-done</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Tasks</p></td>
@@ -1018,6 +1121,11 @@ You may delete all tasks from your list by issuing a clear command.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>settings</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>settings</code></p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Clear</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>clear</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>clear</code></p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -1030,4 +1138,4 @@ You may delete all tasks from your list by issuing a clear command.</p>
 <strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous BB Productive folder.</p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 03:40:01 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 08:40:37 UTC</div></div></div></body></html>

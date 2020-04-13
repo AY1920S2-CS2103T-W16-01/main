@@ -27,7 +27,7 @@ Responsibilities: Task Manager, AutoComplete</p>
 <h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>BBProductive is a built upon a brown field project titled AddressBook. It was done for the purpose of a software-engineering module, CS2103T with a team of 5 other students. We decided to implement a task manager and a productivity application combined in one. Apart from standard create, read, update and destroy capabilities of a task manager, BBProductive includes a “Pomodoro” timer [25 minutes work, 5 minute rest] to help users perform manageable work cycles. BBProductive also has a virtual pet that grows and changes in appearance depending on how much work the user has done.</p>
+<p>BBProductive is built upon a brown field project titled AddressBook. It was done for the purpose of a software-engineering module, CS2103T with a team of 5 other students. We decided to implement a task manager and a productivity application combined in one. Apart from the standard create, read, update and destroy capabilities of a task manager, BBProductive includes a “Pomodoro” timer [25 minutes work, 5 minute rest] to help users perform manageable work cycles. BBProductive also has a virtual pet that grows and changes in appearance depending on how much work the user has done. The pet serves to complement the pomodoro features by providing an incentive for users to work.</p>
 </div>
 </div>
 </div>
@@ -41,16 +41,19 @@ Responsibilities: Task Manager, AutoComplete</p>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: When typing, users can press tab to autocomplete command words or add prefixes specific to the command.</p>
+<p>What it does: When typing, users can press tab to autocomplete command words or add prefixes specific to the command. It also removes invalid indexes for done/delete commands.</p>
 </li>
 <li>
 <p>Justification:  As we are targeting fast typists, auto completing and allowing users to write faster would definitely be a big plus to our users.</p>
 </li>
 <li>
-<p>Highlights: Apart from simple auto completing of command words, I’ve added the functionality of adding some common prefixes for specific commands. Apart from this, I’ve decided to provide some additional visual feedback to users depending on the outcome of the auto complete. Given that it’s a separate mechanism from the commands itself, I decided to add additional text coloring to the command input field to differentiate auto complete success/error from command success/error.</p>
+<p>Highlights: I’ve decided to provide some additional visual feedback to users depending on the outcome of the auto complete. Given that it’s a separate mechanism from the commands itself, I decided to add additional text coloring to the command input field and result display to differentiate auto complete success/warning/error from command error feedback.</p>
 </li>
 </ul>
 </div>
+</li>
+<li>
+<p>Code contributed for this:</p>
 </li>
 <li>
 <p><strong>Major Enhancement</strong>: Sort by multiple fields feature</p>
@@ -63,24 +66,33 @@ Responsibilities: Task Manager, AutoComplete</p>
 <p>Justification: Most task managers have a sorting function so that users are able to see what’s more important to them at the front.</p>
 </li>
 <li>
-<p>Highlights: We’ve provided multiple fields to sort by so that users can have a more specific ordering. On the same thread, we’ve decided to provide reverse sorting orders as well. [these fields are also supported to auto complete]
-Code contributed for this:</p>
+<p>Highlights: We’ve provided multiple fields to sort by so that users can have a more specific ordering. On the same thread, we’ve decided to provide reverse sorting orders as well.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Major Enhancement</strong>: Modified find command to use levenshtein distance</p>
+<p>Code contributed for this:</p>
+</li>
+<li>
+<p><strong>Major Enhancement</strong>: Modified find command</p>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: Rather than the original exact fit matching, we’ve decided to expand it to be more flexible. Now tasks with partial matches or some typos will be recognized by the find command.</p>
+<p>What it does: Rather than the original exact fit matching, we’ve decided to expand it to be more flexible. Now Tasks names whose start matches the search term or that has some typos will be recognized by the find command. Also we&#8217;ve added searching by tags.</p>
 </li>
 <li>
-<p>Justification:Typing often leads to typos, so we’ve decided to enhance the finding command so that users will be able to find tasks they want to look for with a larger error boundary. We’ve also allowed the find command to show tasks that partially match the keywords from the start. I.e. if find tuto &#8658; a task with name tutorial will be shown</p>
+<p>Justification:Typing often leads to typos, so we’ve decided to enhance the finding command so that users will be able to find tasks they want to look for with some error boundary. We’ve also allowed the find command to show tasks that have names who&#8217;s start matches the keywords.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>i.e. <code>find tuto</code> &#8658; a task with name <code>tutorial 1 CS2106</code> will be shown</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p>Highlights: We referenced and used a popular Dynamic programming approach that implements the Levenshtein distance algorithm for a faster run time to ensure that the command works with lists of sizes up to 100.
+<p>Highlights: We used a popular Dynamic programming approach that implements the Levenshtein distance algorithm to achieve a faster run time for scalability purposes.
 Code contributed for this:</p>
 </li>
 </ul>
@@ -99,7 +111,7 @@ Code contributed for this:</p>
 </div>
 </li>
 <li>
-<p>Minor Enhancement: added multiple indexes for done and delete commands</p>
+<p>Minor Enhancement: added for done and delete commands for mulitple indexes</p>
 <div class="ulist">
 <ul>
 <li>
@@ -114,24 +126,34 @@ Code contributed for this:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Helped other members create baseline models for their features and linked it to JsonAdapted classes for storage purposes. Also modified JsonAdaptedTask to fit the new Task model.
-Code contributed for this:</p>
+<p>Helped other members create baseline models for their features and linked it to JsonAdapted classes for storage purposes. Also modified JsonAdaptedTask to fit the new Task model.</p>
+</li>
+<li>
+<p>Code contributed for this:</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Minor Enhancement: Worked on the css styling and java FXML for revamped BBProductive look</p>
+<p>Minor Enhancement: Worked on the css styling and java FXML for the revamped BBProductive look</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Made new grid layout of tasks displayed, added margins. Added priority display.
-Code contributed for this:
-Other Contributions:</p>
+<p>Made new grid layout of tasks displayed, added margins. Added priority display.</p>
+</li>
+<li>
+<p>Code contributed for this:</p>
 </li>
 </ul>
 </div>
 </li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Other Contributions:</p>
+</div>
+<div class="ulist">
+<ul>
 <li>
 <p>Dev Ops</p>
 <div class="ulist">
@@ -148,9 +170,6 @@ Other Contributions:</p>
 <li>
 <p>Set up auto formatting with pre-commit git hook with googleJavaFormat</p>
 </li>
-<li>
-<p>Managed git conflicts and issues across the team</p>
-</li>
 </ul>
 </div>
 </li>
@@ -159,28 +178,17 @@ Other Contributions:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Handled elusive issue of java process not terminating when application window is closed or exited via command</p>
-</li>
-<li>
 <p>Handled git conflicts</p>
 </li>
-</ul>
-</div>
-</li>
-<li>
-<p>Community</p>
-<div class="ulist">
-<ul>
 <li>
 <p>PRs reviewed (with non-trivial comments): <a href="https://github.com/AY1920S2-CS2103T-W16-1/main/pull/272">#272</a>, <a href="https://github.com/AY1920S2-CS2103T-W16-1/main/pull/151">#151</a>, <a href="https://github.com/AY1920S2-CS2103T-W16-1/main/pull/123">#123</a>, <a href="https://github.com/AY1920S2-CS2103T-W16-1/main/pull/91">#91</a>, <a href="https://github.com/AY1920S2-CS2103T-W16-1/main/pull/272">#272</a></p>
 </li>
+<li>
+<p>Also helped to write code to refactor <a href="https://github.com/AY1920S2-CS2103T-W16-1/main/pull/272">#272</a></p>
+</li>
 </ul>
 </div>
 </li>
-<li>
-<p><strong>Other contributions</strong>:</p>
-<div class="ulist">
-<ul>
 <li>
 <p>Project management:</p>
 <div class="ulist">
@@ -191,29 +199,7 @@ Other Contributions:</p>
 </ul>
 </div>
 </li>
-<li>
-<p>Enhancements to existing features:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Implemented the foundation of the new stylesheet used for the application</p>
-</li>
-<li>
-<p>Adjusted the JavaFX layout to fit the Adobe XD</p>
-</li>
-<li>
-<p>Wrote tests for both reminders and recurring tasks</p>
-</li>
 </ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><em>{you can add/remove categories in the list above}</em></p>
 </div>
 </div>
 </div>
@@ -230,11 +216,877 @@ Other Contributions:</p>
 </tr>
 </tbody>
 </table>
+<div class="sect2">
+<h3 id="tasklist"><a class="link" href="#tasklist">TaskList</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/tasks.png" alt="tasks" width="790">
+</div>
+</div>
+<div class="sect3">
+<h4 id="task-fields"><a class="link" href="#task-fields">Task Fields</a></h4>
+<div class="paragraph">
+<p>Use <code>add</code> and <code>edit <a href="#index">INDEX</a></code> attached with any combination of the following task field prefixes to perform them. These prefixes can be in any order.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Constraints for fields are <em>italicized</em> in the Format column.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-topbot grid-all spread">
+<caption class="title">Table 1. Task Fields</caption>
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 33.3333%;">
+<col style="width: 50.0001%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Field</th>
+<th class="tableblock halign-left valign-top">Format</th>
+<th class="tableblock halign-left valign-top">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>n/NAME</code><br>
+<code>n/Any name is possible</code>
+<em>alphanumeric characters and spaces</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Name provided has to be unique in the tasklist and is used as an identifying field.</p>
+</li>
+<li>
+<p>It is the <strong>only compulsory</strong> field when creating a task.</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>[des/DESCRIPTION]</code><br>
+<code>des/Lab of weightage 20% on NP-Completeness</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Description that accompanies a task</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Priority</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>[p/PRIORITY]</code><br>
+<code>p/1</code><br>
+<em>1 or 2 or 3</em></code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>If not provided, task is created with the low priority.</p>
+</li>
+<li>
+<p><code>PRIORITY</code> can only be one of these numbers <code>1,2,3</code> ranging from low to high in that order.</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reminder</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>[r/REMINDER]</code><br>
+<code>r/10/06/20@12:30</code><br>
+<em>DD/MM/YY@HH:mm</em></code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>A datetime value in this format <code>DD/MM/YY@HH:mm</code>.</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Recurring tag</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>[rec/FREQUENCY]</code><br>
+<code>rec/d</code><br>
+<em>d or w</em></code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Options are <em>`d`</em> or <em>`w`</em> which respectively are daily or weekly.</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tag</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>[t/TAG]&#8230;&#8203;</code><br>
+<code>t/errand t/home</code><br>
+<em>alphanumeric characters only</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>There can be multiple tags or none at all.</p>
+</li>
+<li>
+<p>spaces and symbols are disallowed.</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Done</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><em>No prefix available</em></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>When a task is created, it is set as undone.</p>
+</li>
+<li>
+<p>Task can then be marked with <code>done INDEX</code>.</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="add-command"><a class="link" href="#add-command">Add Command</a></h4>
+<div class="sect4">
+<h5 id="command-code-add-n-this-is-a-new-task-p-3-des-we-have-alot-of-work-to-do-today-t-this-t-is-t-fun-code"><a class="link" href="#command-code-add-n-this-is-a-new-task-p-3-des-we-have-alot-of-work-to-do-today-t-this-t-is-t-fun-code">Command: <code>add n/This is a new task p/3 des/We have alot of work to do today! t/This t/Is t/Fun</code></a></h5>
+<div class="paragraph">
+<p>Alright, time to start your productivity journey! You only need the <code>n/</code> prefix when adding a new task as only the name field is compulsory. Let&#8217;s add our very first task!</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/add_success.png" alt="add success" width="790">
+</div>
+<div class="title">Figure 1. Add success</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="edit-command"><a class="link" href="#edit-command">Edit Command</a></h4>
+<div class="sect4">
+<h5 id="command-code-edit-n-look-edited-the-task-des-bb-productive-is-the-best-app-i-ve-every-used-t-newtag-code"><a class="link" href="#command-code-edit-n-look-edited-the-task-des-bb-productive-is-the-best-app-i-ve-every-used-t-newtag-code">Command: <code>edit n/Look edited the task des/BB Productive is the best app I&#8217;ve every used t/NewTag</code></a></h5>
+<div class="paragraph">
+<p>Oh, looks like you&#8217;ve made a mistake, don&#8217;t worry you can edit your tasks. But first a few things to take note of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You can edit all fields except the done field.</p>
+</li>
+<li>
+<p>Please indicate an <code><a href="#index">INDEX</a></code> so that BB Productive knows which task to edit.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/edit_success.png" alt="edit success" width="790">
+</div>
+<div class="title">Figure 2. Edit success</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="done-command"><a class="link" href="#done-command">Done Command</a></h4>
+<div class="sect4">
+<h5 id="command-code-done-a-href-index-index-a-index-code"><a class="link" href="#command-code-done-a-href-index-index-a-index-code">Command: <code>done <a href="#index">INDEX</a> INDEX&#8230;&#8203;</code></a></h5>
+<div class="paragraph">
+<p>After some hardwork, you&#8217;ve finished a task, so now let&#8217;s mark it as done. You can also mark multiple tasks as done by using space to separate those <a href="#index">indexes</a>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/done_success.png" alt="done success" width="790">
+</div>
+<div class="title">Figure 3. Done success</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="sort-command"><a class="link" href="#sort-command">Sort Command</a></h4>
+<div class="sect4">
+<h5 id="command-code-sort-field-field-code"><a class="link" href="#command-code-sort-field-field-code">Command: <code>sort FIELD FIELD&#8230;&#8203;</code></a></h5>
+<div class="paragraph">
+<p>Oh boy, after a couple of hours, you have filled your day with so many activities! You can choose to change the current ordering of your task list to something more suitable by sorting it by one or more of these task fields:</p>
+</div>
+<div class="paragraph">
+<p><em>All fields with r- prepended refers to a reverse of the original.</em></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>priority &#8594; Shows task of highest priority first.</p>
+</li>
+<li>
+<p>r-priority &#8594; Shows task of lowest priority first.</p>
+</li>
+<li>
+<p>done &#8594; Shows undone tasks first.</p>
+</li>
+<li>
+<p>r-done &#8594; Shows done tasks first.</p>
+</li>
+<li>
+<p>date &#8594; Shows tasks with reminders closer to today first then tasks without reminders.</p>
+</li>
+<li>
+<p>r-date &#8594; Shows tasks with no remidners first then tasks with reminders further from today.</p>
+</li>
+<li>
+<p>name &#8594; Shows tasks in alphanumeric order.</p>
+</li>
+<li>
+<p>r-name &#8594; Shows tasks in reverse alphanumeric order.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/sort_success.png" alt="sort success" width="790">
+</div>
+<div class="title">Figure 4. Sort success</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="find-command"><a class="link" href="#find-command">Find Command</a></h4>
+<div class="sect4">
+<h5 id="command-code-find-phrase-code"><a class="link" href="#command-code-find-phrase-code">Command: <code>find PHRASE</code></a></h5>
+
+</div>
+<div class="sect4">
+<h5 id="command-code-find-t-tag-t-tag-code"><a class="link" href="#command-code-find-t-tag-t-tag-code">Command: <code>find t/TAG t/TAG&#8230;&#8203;</code></a></h5>
+
+</div>
+<div class="sect4">
+<h5 id="command-code-find-phrase-t-tag-code"><a class="link" href="#command-code-find-phrase-t-tag-code">Command: <code>find PHRASE t/TAG&#8230;&#8203;</code></a></h5>
+<div class="paragraph">
+<p>Oh my after sorting, you still have so many tasks! You can perform a search for tasks by name or tag to find the tasks most important to you.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You can choose to search by both name and tag, just name or just tag.</p>
+</li>
+<li>
+<p>For phrase searching, it is slightly typo tolerant and will show tasks that differ from the <code>PHRASE</code> by a little.</p>
+</li>
+<li>
+<p>However, tag names provided must be an exact match (ignoring case).</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/find_success.png" alt="find success" width="790">
+</div>
+<div class="title">Figure 5. Find success</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="tag-command"><a class="link" href="#tag-command">Tag Command</a></h4>
+<div class="sect4">
+<h5 id="command-tag"><a class="link" href="#command-tag">Command :`tag`</a></h5>
+<div class="paragraph">
+<p>Hmmm, I wonder what types of tasks I have! You can view all existing tags in BB Productive by entering the Tag command!</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/tag_success.png" alt="tag success" width="790">
+</div>
+<div class="title">Figure 6. Tags success</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="delete-command"><a class="link" href="#delete-command">Delete Command</a></h4>
+<div class="sect4">
+<h5 id="command-code-delete-a-href-index-index-a-index-code"><a class="link" href="#command-code-delete-a-href-index-index-a-index-code">Command: <code>delete <a href="#index">INDEX</a> INDEX&#8230;&#8203;</code></a></h5>
+<div class="paragraph">
+<p>Oh my, my task list is getting overcrowded&#8230;&#8203; Luckily, you can use the delete command to delete one or more tasks.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/delete_success.png" alt="delete success" width="790">
+</div>
+<div class="title">Figure 7. Delete success</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="clear-command"><a class="link" href="#clear-command">Clear Command</a></h4>
+<div class="sect4">
+<h5 id="command-code-clear-code"><a class="link" href="#command-code-clear-code">Command: <code>clear</code></a></h5>
+<div class="paragraph">
+<p>Oh my it&#8217;s been a productive month, time to start on a clean slate. You may delete all tasks from your list by issuing a clear command.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/clear_success.png" alt="clear success" width="790">
+</div>
+<div class="title">Figure 8. Clear success</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="autocomplete"><a class="link" href="#autocomplete">AutoComplete</a></h3>
+<div class="paragraph">
+<p>As much as you enjoy typing, we&#8217;ve added some extra grease to help you type even faster. You can trigger our very intelligent auto complete function by pressing <code>tab</code> on the keyboard.</p>
+</div>
+<div class="paragraph">
+<p>You can expect:<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Auto completion of command words: <code>del &#8594; delete</code></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AC_command.png" alt="AC command">
+</div>
+<div class="title">Figure 9. Command word auto complete</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Addition of prefixes for common values: <code>20/10/20@10:30 &#8594; r/20/10/20@10:30</code></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/prefix_complete.png" alt="prefix complete">
+</div>
+<div class="title">Figure 10. Prefix auto complete</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Auto completion of sort fields <code>sort pri</code> &#8594; <code>sort priority</code></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/sort_complete.png" alt="sort complete">
+</div>
+<div class="title">Figure 11. Sort auto complete</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Removal of indexes that are invalid [not a positive integer or out of the tasklist&#8217;s size]</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AC_removal_success.png" alt="AC removal success">
+</div>
+<div class="title">Figure 12. Done index removal</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If we can&#8217;t find a valid command, you will observe feedback like below:</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/complete_fail.png" alt="complete fail">
+</div>
+<div class="title">Figure 13. Auto complete not found</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="sort"><a class="link" href="#sort">Sort</a></h3>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="{repoURL}/src/main/java/seedu/address/logic/commands/SortCommand.java"><code>SortCommand.java</code></a></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SortSequenceDiagram.png" alt="SortSequenceDiagram">
+</div>
+<div class="title">Figure 14. Sequence of executing a sort command</div>
+</div>
+<div class="paragraph">
+<p>The sort command takes in a list of fields and generates FieldComparators as seen in the diagram and then uses Comparator.thenComparing to aggregate the comparators. The first field provided will be of the highest sort order. The Model will then set the aggregated comparator on the <code>TaskList</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SortedListClassDiagram.png" alt="SortedListClassDiagram">
+</div>
+<div class="title">Figure 15. Class diagram of SortedList</div>
+</div>
+<div class="paragraph">
+<p>We use a new SortedList from JavaFx within TaskList because FilteredList does not allow for sorting. As such we have the FilteredList reference the SortedList and the SortedList refernce the UniqueTaskList. By warpping the lists around another, this allows the SortedList and FilteredList to read changes to the UniqueTaskList and perform the appropriate filtering and sorting.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SortInitliazeDiagram.png" alt="SortInitliazeDiagram">
+</div>
+<div class="title">Figure 16. Sequence of initializing the Sorted List</div>
+</div>
+<div class="paragraph">
+<p>Due to the requirements mentioned, this is how we generate our FilteredList. We set FilteredList to reference the SortedList and then the SortedList to reference the UniqueTaskList.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="updating-ui"><a class="link" href="#updating-ui">Updating UI</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="../images/SortUiSequenceDiagram.png" alt="SortUiSequenceDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>Meanwhile to update the UI on the newest sorting order, the latest sortOrder is set on the <code>TaskList</code>. The LogicManager is then able to access the sort order through the Model and provide the <code>MainWindow</code> with the sort order. The MainWindow then sets it on the <code>TaskListPanel</code>.</p>
+</div>
+<div class="paragraph">
+<p>SortCommandResult extends CommandResult and contains an additional String attribute <code>sortOrder</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="autocomplete-2"><a class="link" href="#autocomplete-2">AutoComplete</a></h3>
+<div class="paragraph">
+<p>Auto complete is triggered when users press tab while focussed on the command line.</p>
+</div>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ACSequenceDiagram.png" alt="ACSequenceDiagram">
+</div>
+<div class="title">Figure 17. AutoComplete Sequence Diagram</div>
+</div>
+<div class="paragraph">
+<p>When a user presses tab on the command line, a key event handler in the CommandBox calls the suggestCommand function of MainWindow with the user input. The MainWindow then passes the user input through the LogicManager to the CommandCompletor.<br></p>
+</div>
+<div class="paragraph">
+<p>The input is pass through the LogicManager so that we can get TaskList details from the LogicManager and transfer it to the CommandCompletor (e.g. taskList length). The CommandCompletor then parses the input and returns one of three things which lead to different changes to the UI:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>CompletorResult</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Will cause CommandBox to setSuccess on CommandTextField</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>CompletorDeletionResult [inherits from CompletorResult]</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Contains deleted input which will be shown as feedback</p>
+</li>
+<li>
+<p>Will cause MainWindow to call setWarning on ResultDisplay</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>CompletorException</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Will cause CommandBox to setFailure on CommandTextField</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="auto-complete-overview"><a class="link" href="#auto-complete-overview">Auto Complete Overview</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ACActivityDiagram.png" alt="ACActivityDiagram" width="790">
+</div>
+<div class="title">Figure 18. Activity diagram of auto complete</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Auto completion of a word happens when either:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>the input matches the start of a target word</p>
+</li>
+<li>
+<p>the edit distance between the input and the target &lt; 2.</p>
+</li>
+</ol>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The above diagram provides a big picture overview of decisions <code>CommandCompletor</code> goes through when processing user input.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>It attempts to complete the command word as in the callout above</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>if command word is unrecognized, <code>CommandCompletor</code> throws a <code>CompletorException</code> which leads to Unknown Command UI</p>
+</li>
+<li>
+<p>else it performs argument checks and auto completes as necessary</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="sect4">
+<h5 id="argument-checks-overview"><a class="link" href="#argument-checks-overview">Argument checks overview</a></h5>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If the input is an add/edit/pom command then CommandCompletor will attempt to add prefixes.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>add/edit command &#8594; add priority and reminder prefixes</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Edit auto complete will only add prefixes after the second word to avoid adding a prefix to the compulsory INDEX field of edit commands</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>pom command &#8594; add timer prefix</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>If input is a delete/done command</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>remove any invalid indices that are greater than the length of the displayed task list or that are not a positive integer</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>If input is a sort command</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Auto completion of fields is performed based on the <a href="#completion criteria">[completion criteria]</a></p>
+</li>
+<li>
+<p>If the field is not recongized, then it is removed</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="auto-complete-output"><a class="link" href="#auto-complete-output">Auto Complete output:</a></h4>
+<div class="paragraph">
+<p>As seen from the activity diagram above:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Known Command UI displayed when:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Any kind of completion has happened or nothing has changed for the input</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><code>CompletorResult</code> is returned</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Any input is deleted (invalid index or sort field)</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p><code>CompletorDeletionResult</code> is returned</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Unknown Command UI is displayed when:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Command word provided is not recognized</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>CompletorException` is raised</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="known-command-ui"><a class="link" href="#known-command-ui">Known Command UI</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ACSuccess.png" alt="ACSuccess" width="600">
+</div>
+<div class="title">Figure 19. AutoComplete Success UI</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>CommandTextField</code> is set to green</p>
+</li>
+<li>
+<p><code>CommandTextField</code> text is replaced by the suggested command</p>
+</li>
+<li>
+<p>Feedback is also provided on what changes have been made</p>
+<div class="ulist">
+<ul>
+<li>
+<p>If input has been removed, <code>ResultDisplay</code> is set to orange</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="unknown-command-ui"><a class="link" href="#unknown-command-ui">Unknown Command UI</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ACFailure.png" alt="ACFailure" width="500">
+</div>
+<div class="title">Figure 20. AutoComplete Failure UI</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>CommandTextField</code> is set to red</p>
+</li>
+<li>
+<p><code>CommandTextField</code> text is unchanged</p>
+</li>
+<li>
+<p>Feedback is provided that command word is not recognized</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="prefix-completion"><a class="link" href="#prefix-completion">Prefix Completion</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ACPrefixActivityDiagram.png" alt="ACPrefixActivityDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>Here we take a closer look at how prefix completion is implemented. We iterate through every word of the user&#8217;s input and then check if the word is a valid task field. If it is, we append the prefix and update the hasPrefix boolean to true so that we don&#8217;t append duplicate prefixes. The input is then updated and we continue iterating.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="index-completion"><a class="link" href="#index-completion">Index Completion</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ACIndexActivityDiagram.png" alt="ACIndexActivityDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>Similar to before, we iterate through the arguments and we remove indexes that are either out of the displayed TaskList&#8217;s size or that is not a positive integer. We then append it to a removed list so that we can inform the user what input has been removed.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="sort-field-completion"><a class="link" href="#sort-field-completion">Sort field Completion</a></h4>
+<div class="paragraph">
+<p>Sort field completion is done by iterating through all arguments word by word and performing the auto complete checks against all possible sort fields. The auto complete checks were the same as the above <a href="#completion criteria">[completion criteria]</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhanced-find"><a class="link" href="#enhanced-find">Enhanced Find</a></h3>
+<div class="paragraph">
+<p>We&#8217;ve built upon the existing find function in AB-3 to filter tasks based on phrases instead of words.</p>
+</div>
+<div class="sect3">
+<h4 id="implementation-3"><a class="link" href="#implementation-3">Implementation</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="../images/FindSequenceDiagram.png" alt="FindSequenceDiagram">
+</div>
+<div class="title">Figure 21. Find Command Sequence diagram</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>After setting the predicate on the model and FilteredList, the FilteredList will apply the Test method of the predicate.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Scoring will be discussed in the next section.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>A comparator is then retrived from the Predicate and is then used to display more relevant search results to the user</p>
+</li>
+<li>
+<p>Any existing comparator set is removed when <code>setSearchResultOrder</code> is called on Model</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="predicate"><a class="link" href="#predicate">Predicate</a></h4>
+<div class="paragraph">
+<div class="title">Scoring decision</div>
+<p>All tasks will initially have a score of 2 and based on the below criteria, the score will be adjusted. Only tasks with scores &lt; 2 will be displayed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/PredicateSequenceDiagram.png" alt="PredicateSequenceDiagram">
+</div>
+</div>
+<div class="sect4">
+<h5 id="name-scoring"><a class="link" href="#name-scoring">Name scoring</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p>The name score of a task is the minimum score of all chunks of the name</p>
+<div class="ulist">
+<ul>
+<li>
+<p>A chunk is a String subsequence of the task name that has the same number of words as the search term</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>We iterate through all chunks of the task name and calculate a score for each chunk</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The minimum of these scores is set as the task&#8217;s overall name score</p>
+</li>
+<li>
+<p>a smaller score means a more relevant task</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The calculation of a chunk is decided by:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>edit distance between one of the chunks and the search term &lt; 2, score is set to 1</p>
+</li>
+<li>
+<p>search term matches the start of one of the chunks, score is set to 1</p>
+</li>
+<li>
+<p>one of the chunks is the same as the search term, score is set to 0</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="tag-scoring"><a class="link" href="#tag-scoring">Tag scoring</a></h5>
+<div class="paragraph">
+<p>Tag scoring is carried out on top of name scoring. For every tag in the search term that appears in a Task, we decrement the Task&#8217;s name score by 1.</p>
+</div>
+<div class="paragraph">
+<p>The combination of name and tag score is then used as a Task&#8217;s final score in determining it&#8217;s relevance in the search results.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="other-considerations"><a class="link" href="#other-considerations">Other Considerations</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>We chose to not use edit distance for search terms of string length less than 3 as this would bring about alot of false positives given that that the edit distance between words of length &lt; 3 will easily be 1</p>
+</li>
+<li>
+<p>We also chose to display task names who&#8217;s start matches the search term for ease of usage even though the edit distance could be significant.</p>
+</li>
+</ul>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 100%;">
@@ -247,12 +1099,5 @@ Other Contributions:</p>
 </table>
 </div>
 </div>
-<div class="sect1">
-<h2 id="project-powerpointlabs"><a class="link" href="#project-powerpointlabs">PROJECT: PowerPointLabs</a></h2>
-<div class="sectionbody">
-<hr>
-<div class="paragraph">
-<p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
 </div>
-</div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 03:40:01 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 08:40:38 UTC</div></div></div></body></html>

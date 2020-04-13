@@ -237,28 +237,23 @@
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Add</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add n/&lt;item index&gt; [des/&lt;task description&gt;] [p/&lt;priority value&gt;] [r/&lt;reminder’s date and time&gt;] [t/&lt;tag1&gt; t/&lt;tag2&gt;&#8230;&#8203;]</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add n/Finish Quiz des/Pages 3-5 p/1 r/20/03/20@19:30 t/cs2100</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add n/NAME [des/DESCRIPTION] [p/PRIORITY] [r/REMINDER] [rec/FREQUENCY] [t/TAG&#8230;&#8203;]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>add n/Finish Quiz des/Pages 3-5 p/1 r/20/03/20@19:30 rec/d t/cs2100 t/school</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Edit</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>edit INDEX [n/NAME] [des/DESCRIPTION] [p/PRIORITY] [r/REMINDER] [t/TAG]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>edit INDEX [n/NAME] [des/DESCRIPTION] [p/PRIORITY] [r/REMINDER] [rec/FREQUENCY] [t/TAG&#8230;&#8203;]</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>edit 2 r/10/03/21@13:00</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Done</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>done INDEX</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>done 5</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>done 5 6 7</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Delete</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete INDEX</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete 7</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Clear</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>clear</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>clear</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete 1 2 3 7</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pom</p></td>
@@ -266,9 +261,19 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>pom 4 tm/45</code></p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">find</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>find PHRASE [t/TAG&#8230;&#8203;]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>find mum tells me to t/MA1521</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tag</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tag</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tag</code></p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Sort</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>sort FIELD1 FIELD2 FIELD3 &#8230;&#8203;</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sort done, priority</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sort done priority r-done</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Tasks</p></td>
@@ -284,6 +289,11 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">Settings</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>settings</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>settings</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Clear</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>clear</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>clear</code></p></td>
 </tr>
 </tbody>
 </table>
@@ -960,4 +970,4 @@
 </ol>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 03:40:01 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 08:40:38 UTC</div></div></div></body></html>
