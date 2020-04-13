@@ -409,7 +409,7 @@ image::settings.png[width="790"]
 === Set Commands
 _This section explains how to use the set commands_
 
-Tired of the name "BB"? Is 25 minutes of pomodoro time too short for you? Want to achieve more with the daily challenge? BB productive provides you with the option to customise the various features! Simply, use the set commands to customise it the way you want.
+Tired of the name "BB"? Is 25 minutes of pomodoro time too short for you? Want to achieve more with the daily challenge? BB productive provides you with the option to customise the various features! Simply use the set commands to customise it the way you want.
 
 command: `set [pet/PETNAME] [pom/POMDURATION] [daily/DAILYTARGET]`
 
