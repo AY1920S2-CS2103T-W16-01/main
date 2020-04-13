@@ -5,8 +5,14 @@ import java.util.Comparator;
 import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.Observer;
 import seedu.address.logic.PetManager;
 import seedu.address.logic.PomodoroManager;
+import seedu.address.logic.StatisticsManager;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.dayData.Date;
+import seedu.address.model.dayData.DayData;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 
 /** The API of the Model component. */
@@ -35,6 +41,13 @@ public interface Model {
     /** Replaces task list data with the data in {@code taskList}. */
     void setTaskList(ReadOnlyTaskList taskList);
 
+    @FunctionalInterface
+    public interface TaskSaver {
+        void saveTask(TaskList tasklist);
+    }
+
+    void setTaskSaver(TaskSaver taskSaver);
+
     /** Returns the TaskList */
     ReadOnlyTaskList getTaskList();
 
@@ -46,6 +59,12 @@ public interface Model {
 
     /** Adds the given task. {@code task} must not already exist in the task list. */
     void addTask(Task task);
+
+    /** Returns an array of strings containing names of all tags in tasklist */
+    public String[] getTagNames();
+
+    /** Checks if a tag is present */
+    boolean hasTag(Tag t);
 
     /**
      * Replaces the given task {@code target} with {@code editedTask}. {@code target} must exist in
@@ -64,9 +83,16 @@ public interface Model {
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
 
-    void setComparator(Comparator<Task>[] compare);
+    /** Sets FilteredList's predicate to show all tasks */
+    void showAllTasks();
 
-    void sortList();
+    /** Sets comparator on tasklist and also the dominant sort order */
+    void setComparator(Comparator<Task> comparator, String sortOrder);
+
+    /** Set sort order after find command has been performed */
+    void setSearchResultOrder(Comparator<Task> comaprator);
+
+    // void sortSearchByRelevance(Comparator<Task> comparator);
 
     ReadOnlyPet getPet();
 
@@ -84,13 +110,30 @@ public interface Model {
 
     void setPomodoroRestTime(float restTimeInMin);
 
+    void setPomodoroTimeLeft(float timeLeft);
+
     void setPomodoroManager(PomodoroManager pomodoroManager);
 
     void setPetManager(PetManager PetManager);
 
+    void setStatisticsManager(StatisticsManager statisticsManager);
+
     PomodoroManager getPomodoroManager();
 
-    Statistics getStatistics();
+    ReadOnlyStatistics getStatistics();
 
-    public void updateDataDatesStatistics();
+    /**
+     * Notifies observers when a change is made. Observer in this case is the MainWindow.
+     *
+     * @throws CommandException
+     */
+    void notifyMainWindow(String input) throws CommandException;
+
+    void addObserver(Observer observer);
+
+    void updateDataDatesStatistics();
+
+    void updatesDayDataStatistics(DayData dayData);
+
+    DayData getDayDataFromDateStatistics(Date date);
 }

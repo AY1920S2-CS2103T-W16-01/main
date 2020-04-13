@@ -19,6 +19,7 @@ public class Pet implements ReadOnlyPet {
     public String lastDoneTaskTime;
 
     public Pet(String name, String exp, String level, String mood, String lastDoneTaskTime) {
+
         this.name = name;
         this.exp = exp;
         this.level = level;
@@ -26,16 +27,21 @@ public class Pet implements ReadOnlyPet {
         this.lastDoneTaskTime = lastDoneTaskTime;
     }
 
-    public Pet(ReadOnlyPet source) {
-        this.exp = source.getExp();
-        this.level = source.getLevel();
-        this.name = source.getName();
-        this.mood = source.getMood();
-        this.lastDoneTaskTime = source.getLastDoneTaskTime();
+    public Pet(ReadOnlyPet source) throws InvalidPetException {
+        this(
+                source.getName(),
+                source.getExp(),
+                source.getLevel(),
+                source.getMood(),
+                source.getLastDoneTaskTime());
     }
 
     public Pet() {
-        this(DEFAULT_NAME, DEFAULT_EXP, DEFAULT_LEVEL, DEFAULT_MOOD, DEFAULT_LAST_DONE_TASK_TIME);
+        this.name = DEFAULT_NAME;
+        this.exp = DEFAULT_EXP;
+        this.level = DEFAULT_LEVEL;
+        this.mood = DEFAULT_MOOD;
+        this.lastDoneTaskTime = DEFAULT_LAST_DONE_TASK_TIME;
     }
 
     public void setName(String name) {
@@ -104,6 +110,24 @@ public class Pet implements ReadOnlyPet {
             this.lastDoneTaskTime = DEFAULT_LAST_DONE_TASK_TIME;
         }
         return this.lastDoneTaskTime;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        } else {
+            if (other instanceof Pet) {
+                Pet otherPet = (Pet) other;
+                return (this.name.equals(otherPet.getName())
+                        && this.level.equals(otherPet.getLevel())
+                        && this.exp.equals(otherPet.getExp())
+                        && this.mood.equals(otherPet.getMood())
+                        && this.lastDoneTaskTime.equals(otherPet.getLastDoneTaskTime()));
+            } else {
+                return false;
+            }
+        }
     }
 
     @Override

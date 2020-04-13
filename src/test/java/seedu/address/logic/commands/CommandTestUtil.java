@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -32,6 +33,7 @@ public class CommandTestUtil {
     public static final String VALID_TAG_MA1521 = "MA1521";
     public static final String VALID_TAG_HELP = "HELP";
     public static final String VALID_REMINDER = "15/03/21@16:07";
+    public static final String VALID_RECURRING = "d";
 
     public static final String NAME_DESC_TASK1 = " " + PREFIX_NAME + VALID_NAME_TASK1;
     public static final String NAME_DESC_TASK2 = " " + PREFIX_NAME + VALID_NAME_TASK2;
@@ -44,6 +46,7 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HELP = " " + PREFIX_TAG + VALID_TAG_HELP;
     public static final String TAG_DESC_MA1521 = " " + PREFIX_TAG + VALID_TAG_MA1521;
     public static final String REMINDER = " " + PREFIX_REMINDER + VALID_REMINDER;
+    public static final String RECURRING = " " + PREFIX_RECURRING + VALID_RECURRING;
 
     public static final String INVALID_NAME_DESC =
             " " + PREFIX_NAME + "math&"; // '&' not allowed in names
@@ -55,6 +58,7 @@ public class CommandTestUtil {
             " " + PREFIX_REMINDER + "15/03/20@@@16:07"; // invalid date
     public static final String INVALID_REMINDER_PAST =
             " " + PREFIX_REMINDER + "15/03/20@16:07"; // invalid date
+    public static final String INVALID_RECURRING = " " + PREFIX_RECURRING + "m"; // invalid format
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -134,7 +138,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredTaskList().size());
 
         Task task = model.getFilteredTaskList().get(targetIndex.getZeroBased());
-        final String name = task.getName().fullName;
+        final String[] name = task.getName().fullName.split("\\s+");
         model.updateFilteredTaskList(new NameContainsKeywordsPredicate(Arrays.asList(name)));
         assertEquals(task, model.getFilteredTaskList().get(0));
     }

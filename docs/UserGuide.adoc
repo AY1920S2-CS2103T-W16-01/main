@@ -622,3 +622,20 @@ _The following table summarizes all the commands that you can use. Input contain
 
 *Q*: How do I transfer my data to another Computer? +
 *A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous BB Productive folder.
+
+== Command Summary
+
+* *Add* `add n/Do math homework des/pages 1-2 r/DD/MM/YY@HH:mm t/tag1 tag2` +
+e.g. `add n/Do math homework d/pages 1-2 r/09/08/20@12:30 t/Difficult InProgress`
+* *Edit* : `edit INDEX [n/NAME] [des/DESCRIPTION] [r/REMINDER]` +
+e.g. `edit 2 n/Add Buy Feature ld/2020-03-04`
+* *Delete* : `delete INDEX` +
+e.g. `delete 3`
+* *Find* : `find KEYWORD [MORE_KEYWORDS]` +
+e.g. `find Quiz Essay`
+* *Statistics* : `stats`
+* *Pom* : `pom 2 tm/5`
+* *List* : `list`
+* *Help* : `help`
+* *Clear* : `clear`
+* *Exit* : `exit`

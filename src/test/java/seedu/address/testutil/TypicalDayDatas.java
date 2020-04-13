@@ -73,9 +73,8 @@ public class TypicalDayDatas {
     /** Returns an {@code TaskList} with all the typical tasks. */
     public static Statistics getTypicalStatistics() {
         Statistics statistics = new Statistics();
-        statistics.clearList(); // workaround to create empty list
         for (DayData dayData : getTypicalDayDatas()) {
-            statistics.addDayData(dayData);
+            statistics.update(dayData);
         }
         return statistics;
     }

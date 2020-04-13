@@ -14,7 +14,7 @@ import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyStatistics;
 import seedu.address.model.dayData.exceptions.InvalidTableException;
 
-/** A class to access TaskList data stored as a json file on the hard disk. */
+/** A class to access Statistics data stored as a json file on the hard disk. */
 public class JsonStatisticsStorage implements StatisticsStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonStatisticsStorage.class);
@@ -34,13 +34,18 @@ public class JsonStatisticsStorage implements StatisticsStorage {
         return readStatistics(filePath);
     }
 
-    /** Similar to {@link #readStatistics()}. */
+    /**
+     * Similar to {@link #readStatistics()}.
+     *
+     * @param filePath location of the data. Cannot be null.
+     * @throws DataConversionException if the file is not in the correct format.
+     */
     public Optional<ReadOnlyStatistics> readStatistics(Path filePath)
             throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableDayDataList> jsonSerializableDayDataList =
-                JsonUtil.readJsonFile(filePath, JsonSerializableDayDataList.class);
+        Optional<JsonSerializableStatistics> jsonSerializableDayDataList =
+                JsonUtil.readJsonFile(filePath, JsonSerializableStatistics.class);
         if (!jsonSerializableDayDataList.isPresent()) {
             return Optional.empty();
         }
@@ -71,6 +76,6 @@ public class JsonStatisticsStorage implements StatisticsStorage {
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableDayDataList(statistics), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableStatistics(statistics), filePath);
     }
 }
