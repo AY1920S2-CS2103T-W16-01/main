@@ -1,0 +1,84 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":MainWindow" as MainWindow LOGIC_COLOR
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":PetManager" as PetManager MODEL_COLOR
+participant ":Pet" as Pet MODEL_COLOR
+end box
+
+box Ui UI_COLOR_T1
+participant ":PetDisplay" as PetDisplay UI_COLOR
+end box
+
+[-> MainWindow : executeCommand("Done 1")
+activate MainWindow
+
+MainWindow-> LogicManager : execute("Done 1")
+activate LogicManager
+
+ref over LogicManager, Model
+Done Squence Diagram
+end ref
+
+LogicManager --> MainWindow : commandResult
+deactivate LogicManager
+
+MainWindow -> PetManager : incrementExp()
+activate PetManager
+
+PetManager -> Pet : incrementExp()
+activate Pet
+
+Pet --> PetManager
+deactivate Pet
+
+PetManager --> MainWindow
+deactivate PetManager
+
+MainWindow -> MainWindow : updateMoodWhenDoneTask()
+activate MainWindow
+
+MainWindow -> PetManager : changeToHappy()
+activate PetManager
+
+PetManager -> Pet : changeHappy()
+activate Pet
+
+Pet --> PetManager
+deactivate Pet
+
+PetManager --> MainWindow
+deactivate PetManager
+
+MainWindow -> PetManager : updateLastDoneTaskWhenDone()
+activate PetManager
+
+PetManager -> Pet : setlastDoneTaskTime(lastDoneTaskTime)
+activate Pet
+
+Pet --> PetManager
+deactivate Pet
+
+PetManager --> MainWindow
+deactivate PetManager
+
+MainWindow -> PetManager : updateDisplayELements()
+activate PetManager
+
+PetManager --> MainWindow
+deactivate PetManager
+
+ref over MainWindow, PetDisplay
+update PetDisplay
+end ref
+
+[<--MainWindow
+deactivate MainWindow
+
+@enduml

@@ -1,0 +1,70 @@
+@startuml
+
+package Model <<Rectangle>> {
+Class Pet {
+- name : String
+- exp : String
+- level : String
+- mood : String
+- lastDoneTaskTime : String
++ incrementExp()
++ incrementPomExp()
++ changeHangry()
++ changeHappy()
++ updateDataDates()
++ updateDataDates()
++ setName(String name)
++ setLastDoneTaskTime(String lastDoneTaskTime)
+}
+
+Interface ReadOnlyPet {
++ getName() : String
++ getLevel() : String
++ getExp() : String
++ getMood() : String
++ getLastDoneTaskTime() : String
+}
+}
+
+package Logic <<Rectangle>> {
+class PetManager {
+- pet : Pet
+- petImage : String
+- expBarImage : String
+- expBarText : String
+- levelText : String
+- lastDoneTaskTime : LocalDateTime
+- timeForHangry : LocalDateTime
++ setPet(Pet)
++ incrementExp()
++ incrementPomExp()
++ updateLastDoneTaskWhenDone()
++ updateDisplayElements()
++ getPetName : String
++ getLevelText : String
++ getExpBarInt : String
++ getExpBarImage : String
++ getExpPetImage : String
++ getMood : String
++ getTimeForHangry : LocalDateTime
+}
+}
+
+package Ui <<Rectangle>> {
+class PetDisplay {
+- petFilepath : String
+- expBarFilepath : String
+- expBarText : String
+- levelText : String
+- petName : String
++ setPetImage(String path)
++ setExpBarImage(String path)
++ setExpBarText(String expBarInt)
++ setLevelText(String levelText)
++ setPetName(String petName)
+}
+}
+
+Pet ..|> ReadOnlyPet
+PetManager o--> "1" Pet
+@enduml

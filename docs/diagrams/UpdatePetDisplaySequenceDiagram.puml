@@ -1,0 +1,81 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":MainWindow" as MainWindow LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":PetManager" as PetManager MODEL_COLOR
+end box
+
+box UI UI_COLOR_T1
+participant ":PetDisplay" as PetDisplay UI_COLOR
+end box
+
+[-> MainWindow : updatePetDisplay
+activate MainWindow
+
+MainWindow -> PetManager : getPetName()
+activate PetManager
+
+PetManager --> MainWindow
+deactivate PetManager
+
+MainWindow -> PetManager : getLevelName()
+activate PetManager
+
+PetManager --> MainWindow
+deactivate PetManager
+
+MainWindow -> PetManager : getExpBarInt()
+activate PetManager
+
+PetManager --> MainWindow
+deactivate PetManager
+
+MainWindow -> PetManager : getExpBarImage()
+activate PetManager
+
+PetManager --> MainWindow
+deactivate PetManager
+
+MainWindow -> PetManager : getPetImage()
+activate PetManager
+
+PetManager --> MainWindow
+deactivate PetManager
+
+MainWindow -> PetDisplay : setPetName()
+activate PetDisplay
+
+PetDisplay --> MainWindow
+deactivate PetDisplay
+
+MainWindow -> PetDisplay : setLevelText()
+activate PetDisplay
+
+PetDisplay --> MainWindow
+deactivate PetDisplay
+
+MainWindow -> PetDisplay : setExpBarText()
+activate PetDisplay
+
+PetDisplay --> MainWindow
+deactivate PetDisplay
+
+MainWindow -> PetDisplay : setExpBarImage()
+activate PetDisplay
+
+PetDisplay --> MainWindow
+deactivate PetDisplay
+
+MainWindow -> PetDisplay : setPetImage()
+activate PetDisplay
+
+PetDisplay --> MainWindow
+deactivate PetDisplay
+
+[<--MainWindow
+deactivate MainWindow
+@enduml
