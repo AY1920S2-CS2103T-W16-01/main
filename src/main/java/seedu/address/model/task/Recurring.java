@@ -19,7 +19,7 @@ public class Recurring {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Recurring should be in the format d or w, for eg: rec/d";
-    public static final String MESSAGE_RECURRING_TASK_SUCCESS = "Recurring Task: %1$s";
+    public static final String MESSAGE_RECURRING_TASK_SUCCESS = "Recurring task has been reset:\n";
 
     public static final String VALIDATION_REGEX = "[dw]";
     public static final DateTimeFormatter stringFormatter =

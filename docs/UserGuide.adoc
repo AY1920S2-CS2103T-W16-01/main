@@ -88,11 +88,11 @@ Indexes refer to the current tasklist on display, it does not refer to the indic
 
 //tag::gui[]
 
-== Graphical User Interface (Permas)
+== Graphical User Interface
 This section gives you a brief overview of the various GUI components present in BB Productive.
 
 === Pet View
-The Pet View is where you can view your pet, its name, level and experience gained. With diligent usage of BB Productive, its experience (XP) and level will increase with time. The pet will evolve as it levels up and take on different appearances, encouraging you to work harder! Further details of the Pet are described [here](#pet)
+The Pet View is where you can view your pet, its name, level, and experience gained. With diligent usage of BB Productive, its experience (XP) and level will increase with time. The pet will evolve as it levels up and takes on different appearances, encouraging you to work harder! Further details of the Pet are described <<pet, here>>.
 
 .Pet
 image::pet.png[width=395]
@@ -104,19 +104,19 @@ The Command Box is the one-stop place for you to input any commands to interact 
 image::command_box.png[width=395]
 
 === Tasks Tab
-The Task Tab is where you view your personal task list and the Pomodoro Timer. Any changes made to the task list through the commands will be reflected here! The Pomodoro Timer runs when you run the Pom Command as described [here](#Pomodoro).
+The Task Tab is where you view your task list and the Pomodoro Timer. Any changes made to the task list through the commands will be reflected here! The Pomodoro Timer runs when you run the Pom Command as described <<pomodoro, here>>.
 
 .Tasks Tab
 image::tasks_tab.png[width=790]
 
 === Statistics Tab
-The Statistics Tab consists of the Daiy Challenge and the Productivity Charts. They help you to visualise the progress of your productivity over the course of the past week, giving you momentum to hit your productivity goals! The usage of this tab will be discussed in more detail [here](#statistics).
+The Statistics Tab consists of the Daily Challenge and the Productivity Charts. They help you to visualize the progress of your productivity over the past week, giving you the momentum to hit your productivity goals! You can find out more about this tab <<statistics, here>>.
 
 .Statistics Tab
 image::stats_tab.png[width=395]
 
 === Settings Tab
-The Settings Tab lets you customise the program to suit your needs. In this tab, you can view and edit your configurations for Pet Name, Pomodoro Duration and Daily Challenge Target. The usage of this tab will be discussed in more detail [here](#settings).
+The Settings Tab lets you customize the program to suit your needs. In this tab, you can view and edit your configurations for Pet Name, Pomodoro Duration, and Daily Challenge Target.
 
 .Settings Tab
 image::settings_tab.png[width=395]
@@ -273,12 +273,15 @@ image::clear_success.png[width=790]
 
 //end::TaskList[]
 
-=== Pet (Fyonn)
+=== Pet
+anchor:pet[]
+
 Write pet
 
 // tag::pomodoro[]
 [[Pomodoro]]
 === Pomodoro
+anchor:pomodoro[]
 _In this section, let's learn how you can take advantage of the Pomodoro feature to boost your productivity! Learn all the commands you can use for Pomodoro._
 
 ==== What's Pomodoro?
@@ -349,24 +352,24 @@ image::pom_break_end.png[width=790]
 //tag::statistics[]
 
 === Statistics
-As you continue to use BB Productive, you may start to wonder how productive you have been over time. This is where our Statistics feature comes in! Simply type in the command 'stats' to access the Statistics Tab and track your productivity. Look out for the background color of the Statistics Tab. If it turns orange after you type the command this means you are on the correct tab.
+anchor:statistics[]
+As you continue to use BB Productive, you may start to wonder how productive you have been over time. This is where our Statistics feature comes in! Simply type in the command 'stats' to access the Statistics Tab and track your productivity. Look out for the background color of the "Statistics" Tab. If it turns orange after you run the command, you are on the correct tab.
 
-The Statistics Tab consists of 2 features to help you keep track of your productivity.
+The Statistics Tab consists of the following 2 features to help you keep track of your productivity. From the figure below, the Daily Challenge is the progress bar near the top of the screen and the Productivity Charts are the 2 bar charts below.
 
 .Statistics Tab
 image::stats_tab.png[width=400]
 
 ==== Daily Challenge
-The Daily Challenge is a progress bar that tracks the total duration you have kept the Pomodoro running on the current day. The more you run the Pomodoro, the more the progress bar fills, and the closer you are to clearing the challenge! Try to clear the Daily Challenge everyday to hit your productivity goals!
+The Daily Challenge tracks the total duration you have kept the Pomodoro running on the current day. The more you run the Pomodoro, the more the progress bar fills, and the closer you are to clearing the challenge! Try to clear the Daily Challenge every day to hit your productivity goals!
 
 [IMPORTANT]
 ====
-You can customise the duration you aim to achieve on a daily basis by using the Set Command as introduced in section 6.x //TODO link.
+You can customise the duration you aim to achieve on a daily basis by using the Set Command.
 ====
 
-==== Productivity Chart
-The Productivity Chart tracks the number of tasks done and duration you ran the Pomodoro per day for the past 7 days. You can thus track your productivity over time. With this information. you can make proper adjustments to your schedule to improve your productivity. If you start noticing the orange bars getting shorter, realise that it is time to buckle up and work harder, or else you may lose your productivity momentum!
-
+==== Productivity Charts
+The Productivity Charts tracks 2 main data points daily. Firstly, it tracks the number of tasks you have completed. Secondly, it tracks the total duration you ran the Pomodoro. With this information, you can gauge your productivity over time and make proper adjustments to your schedule to improve your productivity. If you start noticing the orange bars getting shorter, realize that it is time to buckle up and work harder, or else you may lose your productivity momentum!
 //end::statistics[]
 
 //tag::AutoComplete[]
@@ -417,9 +420,15 @@ For example: `add n/Buy Milk r/11/11/20@23:59` as shown below.
 .Input for adding a task with reminder.
 image::reminder_add.png[width=395]
 
-This results in a task with the reminder's date in the task card.
+This results in a task with the reminder's date in the task card as well as result display giving feedback.
 
-.Success for adding a task with reminder.
+.Success for adding a task with reminder on result display(top).
+image::AddTaskReminderUp.png[width=395]
+
+.Success for adding a task with reminder on result display(scroll to bottom).
+image::AddTaskReminderDown.png[width=395]
+
+.Success for adding a task with reminder(top).
 image::reminder_add_success.png[width=790]
 
 [IMPORTANT]
@@ -437,7 +446,13 @@ For example: `edit 1 r/01/11/20@11:59` as shown below.
 .Input for editing task to have reminder or edit reminder itself.
 image::reminder_edit.png[width=395]
 
-Results in a task with the reminder's date in the task card.
+Results in a task with the reminder's date in the task card as well as result display giving feedback.
+
+.Success for editing a task with reminder on result display(top).
+image::EditTaskReminderUp.png[width=395]
+
+.Success for editing a task with reminder on result display(scroll to bottom).
+image::EditTaskReminderDown.png[width=395]
 
 .Success for editing task's reminder.
 image::reminder_edit_success.png[width=790]
@@ -464,8 +479,11 @@ image::recurring_add.png[width=395]
 
 Results in a task with the recurring attribute in the task card as well as result display giving feedback.
 
-.Success for adding recurring attribute shown on result display.
-image::recurring_add_success_resultDisplay.png[width=396]
+.Success for adding a task with recurring attribute on result display(top).
+image::AddTaskRecurringUp.png[width=395]
+
+.Success for adding a task with recurring attribute on result display(scroll to bottom).
+image::AddTaskRecurringDown.png[width=395]
 
 .Success for adding recurring attribute to task card.
 image::recurring_add_success.png[width=790]
@@ -478,15 +496,18 @@ The format for recurring is strictly `rec/d` or `rec/w` as there is only daily a
 ===== Edit Task with recurring
 Edit a task to include a recurring with the following command `edit <index> rec/d` or `edit <index> rec/w`. You can also include the other flags such as `t/`, `des/` and more.
 
-For example: `edit 1 rec/d` as shown below.
+For example: `edit 1 rec/w` as shown below.
 
 .Input for editing recurring attribute to task.
 image::recurring_edit.png[width=395]
 
 Results in a task with the reminder's date in the specific task card.
 
-.Success for editing recurring attribute to task.
-image::recurring_edit_success.png[width=790]
+.Success for editing a task with recurring attribute on result display(top).
+image::EditTaskRecurringUp.png[width=395]
+
+.Success for editing a task with recurring attribute on result display(scroll to bottom).
+image::EditTaskRecurringDown.png[width=395]
 
 === Recurring behaviour when task is marked as done
 Mark a task as done as you would normally using the command `done <index>`. For a recurring task, after the stipulated amount of time(either daily or weekly), the task will be reset as undone.
@@ -507,13 +528,16 @@ Add a reminder as you would normally using the command `edit <index> r/DD/MM/YY@
 
 For example: `done 1`. After a day's worth of time, the task will be set from done to undone.
 
-.Task initially has a reminder for 13th April 2020 at 12:41PM.
+.Task initially has a reminder for 13th April 2020 at 9:32PM.
 image::recurring_behaviour_reminder.png[width=790]
 
-.Task has been reset shown on result display with updated reminder time of 14th April 2020 at 12:41PM.
-image::recurring_behaviour_new_reminder_resultDisplay.png[width=395]
+.Task has been reset shown on result display with updated reminder time of 14th April 2020 at 9:32PM(top).
+image::recurring_behaviour_new_reminder_resultDisplay(Top).png[width=395]
 
-.Task has been reset shown on task card with updated reminder time of 14th April 2020 at 12:41PM..
+.Task has been reset shown on result display with updated reminder time of 14th April 2020 at 9:32PM(scroll to bottom).
+image::recurring_behaviour_new_reminder_resultDisplay(Bottom).png[width=395]
+
+.Task has been reset shown on task card with updated reminder time of 14th April 2020 at 9:32PM.
 image::recurring_behaviour_new_reminder.png[width=790]
 
 // end::recurring[]

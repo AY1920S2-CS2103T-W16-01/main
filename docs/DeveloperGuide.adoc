@@ -162,6 +162,15 @@ This section describes some noteworthy details on how certain features are imple
 
 === TaskList
 
+
+Shown below is a high level overview of task class and related classes. This is represented in a class diagram.
+
+.Task Class Diagram with all aforementioned attributes including recurring and reminder
+image::TaskClassDiagram.png[width=790]
+
+
+// tag::editTaskList[]
+
 //tag::add[]
 ==== Add
 
@@ -198,7 +207,19 @@ image::AddCommandActivityDiagram.png[]
 
 //end::add[]
 
-==== Edit(Arthur)
+==== Edit
+The edit feature allows the user to edit the task, adding or updating fields in a task accordingly.
+
+===== Implementation
+The edit command is done in 2 parts. `EditCommandParser` as well as `EditCommand` itself.
+
+`EditCommandParser` parses the user input including the `index` and the relevant prefixes that will be edited. This is done by checking the prefixes for each of the different task fields and calling the relevant parser for it. The parser then returns the relevant field, be it `name`, `priority`, `reminder` etc and this is set in the `EditTaskDescriptor` instance. This `EditTaskDescriptor` instance is a container for the updated fields. This instance is passed in the constructor of a new `EditCommand`.
+
+`EditCommand` is executed. During execution, an edited task is created from retrieving the stored updated fields data from `EditTaskDescriptor` and copying the field from the original task to edit for the unchanged fields. This updated task is set in the `Model` for storage. Subsequently, a new `CommandResult` is generated to display that the task has been edited in the result display to the user. The general flow of `EditCommand` and `EditCommandParser` can be seen in the sequence diagram below.
+
+.Sequence of executing an edit command
+image::EditSequenceDiagram.png[]
+// tag::editTaskList[]
 
 ==== Done and Delete (Fyon)
 
@@ -398,6 +419,25 @@ Pomodoro has settings that can be configured by the user:
 
 This data is captured and stored in the `Pomodoro` class in `seedu.address.model`, which interacts with the app’s storage system. `PomodoroManager` also updates the `Pomodoro` model on what task is being run and the time remaining in a particular cycle. This allows the time progress to be persistent in between app closures and relaunches.
 //end::pomodoro[]
+//tag::statistics[]
+
+=== Switch Tab Feature
+
+The Switch tab feature allows the user to traverse between the Tasks, Statistics and Settings tabs.
+
+The user can switch tabs through 2 main methods:
+1. User calls a valid SwitchTabCommand that displays the appropriate tab defined.
+2. User calls a valid command that changes the display of Tab B while he or she is on Tab A. In this scenario, Tab B will display automatically.
+
+This behaviour is represented in the following activity diagram.
+
+.Activity Diagram of Tab Switches
+image::SwitchTabActivityDiagram.png[]
+
+The following sequence diagram shows how the SwitchTabCommand updates the tab in the UI.
+
+.Sequence Diagram of SwitchTabCommand
+image::SwitchTabSequenceDiagram.png[]
 
 // tag::reminder[]
 === Reminders
@@ -433,8 +473,6 @@ Additionally, a flag has been made to check if the task needs to be changed, if 
 
 Recurring is stored as a string in the `JsonAdaptedTask`. This string contains the LocalDateTime information for the reference date as well as the type of interval itself. A special constructor for this string is used to reconstruct the recurring attribute when reading from storage.
 
-.Task Class Diagram with all aforementioned attributes including recurring and reminder
-image::TaskClassDiagram.png[width=790]
 // end::recurring[]
 
 //tag::statistics[]
@@ -1145,8 +1183,8 @@ Expected: After 60 seconds, the done is set back to unfinished, with the tick be
 
 
 _{ more test cases ... }_
-
 === Saving data
+
 
 . Dealing with missing/corrupted data files
 
