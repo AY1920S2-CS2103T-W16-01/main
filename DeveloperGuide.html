@@ -52,7 +52,6 @@
 <li><a href="#editing-a-task">G.4. Editing a task</a></li>
 <li><a href="#adding-and-triggering-a-reminder-for-the-task">G.5. Adding and triggering a reminder for the task</a></li>
 <li><a href="#adding-a-recurring-attribute-to-a-task">G.6. Adding a recurring attribute to a task</a></li>
-<li><a href="#saving-data">G.7. Saving data</a></li>
 </ul>
 </li>
 </ul>
@@ -357,7 +356,27 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 </div>
 <div class="sect3">
 <h4 id="edit-arthur"><a class="link" href="#edit-arthur">3.1.2. Edit(Arthur)</a></h4>
-
+<div class="paragraph">
+<p>The edit feature allows the user to edit the task, adding or updating fields in a task accordingly.</p>
+</div>
+<div class="sect4">
+<h5 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h5>
+<div class="paragraph">
+<p>The edit command is done in 2 parts. <code>EditCommandParser</code> as well as <code>EditCommand</code> itself.</p>
+</div>
+<div class="paragraph">
+<p><code>EditCommandParser</code> parses the user input including the <code>index</code> and the relevant prefixes that will be edited. This is done by checking the prefixes for each of the different task fields and calling the relevant parser for it. The parser then returns the relevant field, be it <code>name</code>, <code>priority</code>, <code>reminder</code> etc and this is set in the <code>EditTaskDescriptor</code> instance. This <code>EditTaskDescriptor</code> instance is a container for the updated fields. This instance is passed in the constructor of a new <code>EditCommand</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>EditCommand</code> is executed. During execution, an edited task is created from retrieving the stored updated fields data from <code>EditTaskDescriptor</code> and copying the field from the original task to edit for the unchanged fields. This updated task is set in the <code>Model</code> for storage. Subsequently, a new <code>CommandResult</code> is generated to display that the task has been edited in the result display to the user. The general flow of <code>EditCommand</code> and <code>EditCommandParser</code> can be seen in the sequence diagram below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/EditSequenceDiagram.png" alt="EditSequenceDiagram">
+</div>
+<div class="title">Figure 9. Sequence of executing an edit command</div>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="done-and-delete-fyon"><a class="link" href="#done-and-delete-fyon">3.1.3. Done and Delete (Fyon)</a></h4>
@@ -367,7 +386,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="sect2">
 <h3 id="sort"><a class="link" href="#sort">3.2. Sort</a></h3>
 <div class="sect3">
-<h4 id="implementation-2"><a class="link" href="#implementation-2">3.2.1. Implementation</a></h4>
+<h4 id="implementation-3"><a class="link" href="#implementation-3">3.2.1. Implementation</a></h4>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/AY1920S2-CS2103T-W16-1/main/src/main/java/seedu/address/logic/commands/SortCommand.java"><code>SortCommand.java</code></a></p>
 </div>
@@ -375,7 +394,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="content">
 <img src="images/SortSequenceDiagram.png" alt="SortSequenceDiagram">
 </div>
-<div class="title">Figure 9. Sequence of executing a sort command</div>
+<div class="title">Figure 10. Sequence of executing a sort command</div>
 </div>
 <div class="paragraph">
 <p>The sort command takes in a list of fields and generates FieldComparators as seen in the diagram and then uses Comparator.thenComparing to aggregate the comparators. The first field provided will be of the highest sort order. The Model will then set the aggregated comparator on the <code>TaskList</code>.</p>
@@ -384,7 +403,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="content">
 <img src="images/SortedListClassDiagram.png" alt="SortedListClassDiagram">
 </div>
-<div class="title">Figure 10. Class diagram of SortedList</div>
+<div class="title">Figure 11. Class diagram of SortedList</div>
 </div>
 <div class="paragraph">
 <p>We use a new SortedList from JavaFx within TaskList because FilteredList does not allow for sorting. As such we have the FilteredList reference the SortedList and the SortedList refernce the UniqueTaskList. By warpping the lists around another, this allows the SortedList and FilteredList to read changes to the UniqueTaskList and perform the appropriate filtering and sorting.</p>
@@ -393,7 +412,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="content">
 <img src="images/SortInitliazeDiagram.png" alt="SortInitliazeDiagram">
 </div>
-<div class="title">Figure 11. Sequence of initializing the Sorted List</div>
+<div class="title">Figure 12. Sequence of initializing the Sorted List</div>
 </div>
 <div class="paragraph">
 <p>Due to the requirements mentioned, this is how we generate our FilteredList. We set FilteredList to reference the SortedList and then the SortedList to reference the UniqueTaskList.</p>
@@ -420,12 +439,12 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <p>Auto complete is triggered when users press tab while focussed on the command line.</p>
 </div>
 <div class="sect3">
-<h4 id="implementation-3"><a class="link" href="#implementation-3">3.3.1. Implementation</a></h4>
+<h4 id="implementation-4"><a class="link" href="#implementation-4">3.3.1. Implementation</a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/ACSequenceDiagram.png" alt="ACSequenceDiagram">
 </div>
-<div class="title">Figure 12. AutoComplete Sequence Diagram</div>
+<div class="title">Figure 13. AutoComplete Sequence Diagram</div>
 </div>
 <div class="paragraph">
 <p>When a user presses tab on the command line, a key event handler in the CommandBox calls the suggestCommand function of MainWindow with the user input. The MainWindow then passes the user input through the LogicManager to the CommandCompletor.<br></p>
@@ -477,7 +496,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="content">
 <img src="images/ACActivityDiagram.png" alt="ACActivityDiagram" width="790">
 </div>
-<div class="title">Figure 13. Activity diagram of auto complete</div>
+<div class="title">Figure 14. Activity diagram of auto complete</div>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -634,7 +653,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="content">
 <img src="images/ACSuccess.png" alt="ACSuccess" width="600">
 </div>
-<div class="title">Figure 14. AutoComplete Success UI</div>
+<div class="title">Figure 15. AutoComplete Success UI</div>
 </div>
 <div class="ulist">
 <ul>
@@ -663,7 +682,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="content">
 <img src="images/ACFailure.png" alt="ACFailure" width="500">
 </div>
-<div class="title">Figure 15. AutoComplete Failure UI</div>
+<div class="title">Figure 16. AutoComplete Failure UI</div>
 </div>
 <div class="ulist">
 <ul>
@@ -714,12 +733,12 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <p>We&#8217;ve built upon the existing find function in AB-3 to filter tasks based on phrases instead of words.</p>
 </div>
 <div class="sect3">
-<h4 id="implementation-4"><a class="link" href="#implementation-4">3.4.1. Implementation</a></h4>
+<h4 id="implementation-5"><a class="link" href="#implementation-5">3.4.1. Implementation</a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/FindSequenceDiagram.png" alt="FindSequenceDiagram">
 </div>
-<div class="title">Figure 16. Find Command Sequence diagram</div>
+<div class="title">Figure 17. Find Command Sequence diagram</div>
 </div>
 <div class="ulist">
 <ul>
@@ -832,10 +851,10 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="content">
 <img src="images/PomSequenceDiagram.png" alt="PomSequenceDiagram" width="790">
 </div>
-<div class="title">Figure 17. Interactions Inside Logic Component for the pom 1 command</div>
+<div class="title">Figure 18. Interactions Inside Logic Component for the pom 1 command</div>
 </div>
 <div class="sect3">
-<h4 id="implementation-5"><a class="link" href="#implementation-5">3.5.1. Implementation</a></h4>
+<h4 id="implementation-6"><a class="link" href="#implementation-6">3.5.1. Implementation</a></h4>
 <div class="paragraph">
 <p>Pomosoero&#8217;s features are implemented mainly in <code>seedu.address.logic</code> package. The <code>PomodoroManager</code> class is used to maniulate the timer and configure the relevant UI elements. The timer is facilitated by <code>javafx.animation.Timeline</code>.</p>
 </div>
@@ -846,7 +865,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="content">
 <img src="images/PomExtendedSequenceDiagram.png" alt="PomExtendedSequenceDiagram" width="790">
 </div>
-<div class="title">Figure 18. Interactions with PomodoroManager through a time cycle</div>
+<div class="title">Figure 19. Interactions with PomodoroManager through a time cycle</div>
 </div>
 <div class="paragraph">
 <p>Through the use of the Pomodoro feature, there are occasions where the app has to prompt the user for specific input in order to progress. This behaviour flow is represented in the <em>Pomodoro Acctivity</em> diagram.</p>
@@ -855,7 +874,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="content">
 <img src="images/PomodoroActivityDiagram.png" alt="PomodoroActivityDiagram" width="395">
 </div>
-<div class="title">Figure 19. Pomodoro Activity Diagram</div>
+<div class="title">Figure 20. Pomodoro Activity Diagram</div>
 </div>
 <div class="paragraph">
 <p>The <code>PomodoroManager</code> maintains a  <code>prompt_state</code> indicating what the app might be prompting the user at a given time.</p>
@@ -903,7 +922,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <p>The user&#8217;s reminder functionality is achieved by calculating the time delay from the current time and the time from the user input. This time delay as well as the Task name and description is passed to the MainWindow for the reminder to be triggered as a pop up at the right time.</p>
 </div>
 <div class="sect3">
-<h4 id="implementation-6"><a class="link" href="#implementation-6">3.6.1. Implementation</a></h4>
+<h4 id="implementation-7"><a class="link" href="#implementation-7">3.6.1. Implementation</a></h4>
 <div class="paragraph">
 <p>A <code>DateTimeFormatter</code> is used to parse the date time from the user input, which is just the date in the r/ flag when adding or editing a task, into a <code>LocalDateTime</code> object. This <code>LocalDateTime</code> is used to store the date and time information. When the reminder is instantiated, a <code>setDelay</code> method is called setting in motion the calculation of time delay between the current time and the reminder time, and triggering of reminder on the <code>MainWindow</code>. The reminder class is stored as an <code>Optional</code> in the Task class itself.</p>
 </div>
@@ -914,7 +933,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="content">
 <img src="images/ReminderSequenceDiagram.png" alt="ReminderSequenceDiagram" width="790">
 </div>
-<div class="title">Figure 20. Reminder Sequence Diagram</div>
+<div class="title">Figure 21. Reminder Sequence Diagram</div>
 </div>
 </div>
 </div>
@@ -927,10 +946,10 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="content">
 <img src="images/RecurringActivityDiagram.png" alt="RecurringActivityDiagram" width="790">
 </div>
-<div class="title">Figure 21. Recurring Activity Diagram</div>
+<div class="title">Figure 22. Recurring Activity Diagram</div>
 </div>
 <div class="sect3">
-<h4 id="implementation-7"><a class="link" href="#implementation-7">3.7.1. Implementation</a></h4>
+<h4 id="implementation-8"><a class="link" href="#implementation-8">3.7.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The logic is mainly implemented in the <code>Recurring</code> class and <code>ModelManager</code> class in <code>seedu.address.model</code>, which interacts with the app’s storage system especially with respect to task storage. This <code>Recurring</code> instance is stored in <code>Task</code> as an optional field.</p>
 </div>
@@ -953,7 +972,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="content">
 <img src="images/TaskClassDiagram.png" alt="TaskClassDiagram" width="790">
 </div>
-<div class="title">Figure 22. Task Class Diagram with all aforementioned attributes including recurring and reminder</div>
+<div class="title">Figure 23. Task Class Diagram with all aforementioned attributes including recurring and reminder</div>
 </div>
 </div>
 </div>
@@ -974,7 +993,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="content">
 <img src="images/SwitchTabActivityDiagram.png" alt="SwitchTabActivityDiagram">
 </div>
-<div class="title">Figure 23. Activity Diagram of Tab Switches</div>
+<div class="title">Figure 24. Activity Diagram of Tab Switches</div>
 </div>
 <div class="paragraph">
 <p>The following sequence diagram shows how the SwitchTabCommand updates the tab in the UI.</p>
@@ -983,7 +1002,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="content">
 <img src="images/SwitchTabSequenceDiagram.png" alt="SwitchTabSequenceDiagram">
 </div>
-<div class="title">Figure 24. Sequence Diagram of SwitchTabCommand</div>
+<div class="title">Figure 25. Sequence Diagram of SwitchTabCommand</div>
 </div>
 </div>
 <div class="sect2">
@@ -1004,7 +1023,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 </table>
 </div>
 <div class="sect3">
-<h4 id="implementation-8"><a class="link" href="#implementation-8">3.9.1. Implementation</a></h4>
+<h4 id="implementation-9"><a class="link" href="#implementation-9">3.9.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The Statistics feature is mainly supported by the Statistics class, which in turn is facilitated by the CustomQueue class. Its class diagram is given below.</p>
 </div>
@@ -1012,7 +1031,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="content">
 <img src="images/StatisticsClassDiagram.png" alt="StatisticsClassDiagram">
 </div>
-<div class="title">Figure 25. Class Diagram of the Statistics Component</div>
+<div class="title">Figure 26. Class Diagram of the Statistics Component</div>
 </div>
 <div class="paragraph">
 <p>The Statistics feature does not support any explicit commands. Instead, the UI is updated and displayed when the SwitchTabCommand 'stats' is called.</p>
@@ -1045,7 +1064,7 @@ SwitchTabCommand also switches the focused tab to the Statistics tab to display 
 <div class="content">
 <img src="images/StatisticsUiSequenceDiagram.png" alt="StatisticsUiSequenceDiagram">
 </div>
-<div class="title">Figure 26. Sequence Diagram of how Statistics</div>
+<div class="title">Figure 27. Sequence Diagram of how Statistics</div>
 </div>
 </div>
 <div class="sect3">
@@ -1401,7 +1420,7 @@ SwitchTabCommand also switches the focused tab to the Statistics tab to display 
 <div class="content">
 <img src="images/use_cases.png" alt="use cases" width="790">
 </div>
-<div class="title">Figure 27. Use case diagram for BBProductive</div>
+<div class="title">Figure 28. Use case diagram for BBProductive</div>
 </div>
 <h3 id="use-case-uc01-view-tasks" class="discrete">Use Case: UC01 - View tasks</h3>
 <div class="paragraph">
@@ -2431,11 +2450,9 @@ Expected: After 60 seconds, the done is set back to unfinished, with the tick be
 </ol>
 </div>
 <div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
+<p><em>{ more test cases &#8230;&#8203; }</em>
+=== Saving data</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">G.7. Saving data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2455,4 +2472,4 @@ Expected: After 60 seconds, the done is set back to unfinished, with the tick be
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 12:07:50 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 13:46:06 UTC</div></div></div></body></html>
