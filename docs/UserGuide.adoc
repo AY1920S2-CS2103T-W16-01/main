@@ -92,7 +92,7 @@ Indexes refer to the current tasklist on display, it does not refer to the indic
 This section gives you a brief overview of the various GUI components present in BB Productive.
 
 === Pet View
-The Pet View is where you can view your pet, its name, level and experience gained. With diligent usage of BB Productive, its experience (XP) and level will increase with time. The pet will evolve as it levels up and take on different appearances, encouraging you to work harder! Further details of the Pet are described [here](#pet)
+The Pet View is where you can view your pet, its name, level, and experience gained. With diligent usage of BB Productive, its experience (XP) and level will increase with time. The pet will evolve as it levels up and takes on different appearances, encouraging you to work harder! Further details of the Pet are described <<pet, here>>.
 
 .Pet
 image::pet.png[width=395]
@@ -104,19 +104,19 @@ The Command Box is the one-stop place for you to input any commands to interact 
 image::command_box.png[width=395]
 
 === Tasks Tab
-The Task Tab is where you view your personal task list and the Pomodoro Timer. Any changes made to the task list through the commands will be reflected here! The Pomodoro Timer runs when you run the Pom Command as described [here](#Pomodoro).
+The Task Tab is where you view your task list and the Pomodoro Timer. Any changes made to the task list through the commands will be reflected here! The Pomodoro Timer runs when you run the Pom Command as described <<pomodoro, here>>.
 
 .Tasks Tab
 image::tasks_tab.png[width=790]
 
 === Statistics Tab
-The Statistics Tab consists of the Daiy Challenge and the Productivity Charts. They help you to visualise the progress of your productivity over the course of the past week, giving you momentum to hit your productivity goals! The usage of this tab will be discussed in more detail [here](#statistics).
+The Statistics Tab consists of the Daily Challenge and the Productivity Charts. They help you to visualize the progress of your productivity over the past week, giving you the momentum to hit your productivity goals! You can find out more about this tab <<statistics, here>>.
 
 .Statistics Tab
 image::stats_tab.png[width=395]
 
 === Settings Tab
-The Settings Tab lets you customise the program to suit your needs. In this tab, you can view and edit your configurations for Pet Name, Pomodoro Duration and Daily Challenge Target. The usage of this tab will be discussed in more detail [here](#settings).
+The Settings Tab lets you customize the program to suit your needs. In this tab, you can view and edit your configurations for Pet Name, Pomodoro Duration, and Daily Challenge Target.
 
 .Settings Tab
 image::settings_tab.png[width=395]
@@ -274,11 +274,14 @@ image::clear_success.png[width=790]
 //end::TaskList[]
 
 === Pet (Fyonn)
+anchor:pet[]
+
 Write pet
 
 // tag::pomodoro[]
 [[Pomodoro]]
 === Pomodoro
+anchor:pomodoro[]
 _In this section, let's learn how you can take advantage of the Pomodoro feature to boost your productivity! Learn all the commands you can use for Pomodoro._
 
 ==== What's Pomodoro?
@@ -349,24 +352,24 @@ image::pom_break_end.png[width=790]
 //tag::statistics[]
 
 === Statistics
-As you continue to use BB Productive, you may start to wonder how productive you have been over time. This is where our Statistics feature comes in! Simply type in the command 'stats' to access the Statistics Tab and track your productivity. Look out for the background color of the Statistics Tab. If it turns orange after you type the command this means you are on the correct tab.
+anchor:statistics[]
+As you continue to use BB Productive, you may start to wonder how productive you have been over time. This is where our Statistics feature comes in! Simply type in the command 'stats' to access the Statistics Tab and track your productivity. Look out for the background color of the "Statistics" Tab. If it turns orange after you run the command, you are on the correct tab.
 
-The Statistics Tab consists of 2 features to help you keep track of your productivity.
+The Statistics Tab consists of the following 2 features to help you keep track of your productivity. From the figure below, the Daily Challenge is the progress bar near the top of the screen and the Productivity Charts are the 2 bar charts below.
 
 .Statistics Tab
 image::stats_tab.png[width=400]
 
 ==== Daily Challenge
-The Daily Challenge is a progress bar that tracks the total duration you have kept the Pomodoro running on the current day. The more you run the Pomodoro, the more the progress bar fills, and the closer you are to clearing the challenge! Try to clear the Daily Challenge everyday to hit your productivity goals!
+The Daily Challenge tracks the total duration you have kept the Pomodoro running on the current day. The more you run the Pomodoro, the more the progress bar fills, and the closer you are to clearing the challenge! Try to clear the Daily Challenge every day to hit your productivity goals!
 
 [IMPORTANT]
 ====
-You can customise the duration you aim to achieve on a daily basis by using the Set Command as introduced in section 6.x //TODO link.
+You can customise the duration you aim to achieve on a daily basis by using the Set Command.
 ====
 
-==== Productivity Chart
-The Productivity Chart tracks the number of tasks done and duration you ran the Pomodoro per day for the past 7 days. You can thus track your productivity over time. With this information. you can make proper adjustments to your schedule to improve your productivity. If you start noticing the orange bars getting shorter, realise that it is time to buckle up and work harder, or else you may lose your productivity momentum!
-
+==== Productivity Charts
+The Productivity Charts tracks 2 main data points daily. Firstly, it tracks the number of tasks you have completed. Secondly, it tracks the total duration you ran the Pomodoro. With this information, you can gauge your productivity over time and make proper adjustments to your schedule to improve your productivity. If you start noticing the orange bars getting shorter, realize that it is time to buckle up and work harder, or else you may lose your productivity momentum!
 //end::statistics[]
 
 //tag::AutoComplete[]
