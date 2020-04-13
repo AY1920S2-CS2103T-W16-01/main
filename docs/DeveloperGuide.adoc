@@ -1193,3 +1193,33 @@ _{ more test cases ... }_
 _{ more test cases ... }_
 
 // end::manualTesting[]
+
+=== Switching tabs
+. Switching tabs by using the SwitchTabCommands. +
+.. Run the command `stats`
+Expected: The right screen displays the 'Statistics' tab. The 'Statistics' tab should have an orange background to indicate selection.
+
+. Switching tabs by using other Commands. +
+.. Run the command `stats`.
+.. Take note that the right screen displays the 'Statistics' tab.
+.. Run the command `set daily/50`. This is a SetCommand, and the right screen should automatically display the 'Settings' tab.
+Expected: The right screen displays the 'Statistics' tab. The 'Statistics' tab should have an orange background to indicate selection.
+
+=== Checking Statistics
+. Check done tabulation
+.. Run the command `stats`.
+.. Take note of the number of tasks done on the current day.
+.. Run the command `clear`.
+.. Run the command `add n/new task`.
+.. Run the command `done 1`.
+.. Run the command `stats` again.
+Expected: The number of tasks done on the current day should increase by 1.
+
+. Check Pomodoro duration tabulation
+.. Run the command `stats`.
+.. Take note of the Pomodoro duration on the current day.
+.. Run the command `clear`.
+.. Run the command `add n/new task`.
+.. Run the command `pom 1 tm/1`. This runs the Pomodoro for 1 minute.
+.. Run the command `stats` again.
+Expected: The Pomodoro duration on the current day should increase by 1.
