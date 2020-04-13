@@ -1,9 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>BBProductive - Developer Guide</title><link rel="stylesheet" href="stylesheets/gh-pages.css">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>BB Productive - Developer Guide</title><link rel="stylesheet" href="stylesheets/gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="images/BBProductiveIcon" alt="BB"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">BB Productive</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link active" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/AY1920S2-CS2103T-W16-1/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>BBProductive - Developer Guide</h1></div><div id="content"><div id="preamble">
+<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">BB Productive</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link active" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/AY1920S2-CS2103T-W16-1/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>BB Productive - Developer Guide</h1></div><div id="content"><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>By: <code>Team SE-EDU</code>      Since: <code>Jun 2016</code>      Licence: <code>MIT</code></p>
+<p>By: <code>Team CS2103T-W16-1</code>      Since: <code>Mar 2020</code></p>
 </div>
 </div>
 <div id="toc" class="toc">
@@ -32,8 +32,10 @@
 <li><a href="#recurring">3.8. Recurring</a></li>
 <li><a href="#switch-tab-feature-2">3.9. Switch Tab Feature</a></li>
 <li><a href="#statistics-feature">3.10. Statistics Feature</a></li>
-<li><a href="#logging">3.11. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.12. Configuration</a></li>
+<li><a href="#pet">3.11. Pet</a></li>
+<li><a href="#set-commands">3.12. Set Commands</a></li>
+<li><a href="#logging">3.13. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.14. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a></li>
@@ -53,6 +55,12 @@
 <li><a href="#editing-a-task">G.4. Editing a task</a></li>
 <li><a href="#adding-and-triggering-a-reminder-for-the-task">G.5. Adding and triggering a reminder for the task</a></li>
 <li><a href="#adding-a-recurring-attribute-to-a-task">G.6. Adding a recurring attribute to a task</a></li>
+<li><a href="#sorting-the-task-list">G.7. Sorting the task list</a></li>
+<li><a href="#finding-a-task">G.8. Finding a task</a></li>
+<li><a href="#auto-complete">G.9. Auto complete</a></li>
+<li><a href="#activating-pomodoro">G.10. Activating Pomodoro</a></li>
+<li><a href="#switching-tabs">G.11. Switching tabs</a></li>
+<li><a href="#checking-statistics">G.12. Checking Statistics</a></li>
 </ul>
 </li>
 </ul>
@@ -460,6 +468,20 @@ The user can specify multiple `Tag`s.
 </div>
 <div class="sect2">
 <h3 id="sort"><a class="link" href="#sort">3.2. Sort</a></h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The sort order is not maintained after the application closes</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="sect3">
 <h4 id="implementation-4"><a class="link" href="#implementation-4">3.2.1. Implementation</a></h4>
 <div class="paragraph">
@@ -807,6 +829,20 @@ The user can specify multiple `Tag`s.
 <h3 id="enhanced-find"><a class="link" href="#enhanced-find">3.4. Enhanced Find</a></h3>
 <div class="paragraph">
 <p>We&#8217;ve built upon the existing find function in AB-3 to filter tasks based on phrases (with some degree of typing errors) and based on task tags.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The filtered list is not maintained after the application closes</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="sect3">
 <h4 id="implementation-6"><a class="link" href="#implementation-6">3.4.1. Implementation</a></h4>
@@ -1200,7 +1236,7 @@ The user can specify multiple `Tag`s.
 <div class="sect2">
 <h3 id="statistics-feature"><a class="link" href="#statistics-feature">3.10. Statistics Feature</a></h3>
 <div class="paragraph">
-<p>The Statistics feature allows the user to view information about their number of tasks completed and Pomodoro duration ran on a daily basis for the past <code>CONSTANT_SIZE</code> days.</p>
+<p>The Statistics feature allows the user to view information about their number of tasks completed and Pomodoro duration ran (in minutes) on a daily basis for the past <code>CONSTANT_SIZE</code> days.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1359,14 +1395,108 @@ The user can specify multiple `Tag`s.
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.11. Logging</a></h3>
+<h3 id="pet"><a class="link" href="#pet">3.11. Pet</a></h3>
+<div class="sect3">
+<h4 id="implementation-11"><a class="link" href="#implementation-11">3.11.1. Implementation</a></h4>
+<div class="paragraph">
+<p>The pet feature aims to provide a virtual pet for the app in order to motivate the user. The pet has three main components: the XP points, the evolution and the mood. To facilitate this function, a Pet class is created to represent the pet. A PetManager class is created to manage the pet via communications from MainWindow. Lastly, a PetDisplay class is created to handle the UI of the pet.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/PetClassDiagram.png" alt="PetClassDiagram">
+</div>
+<div class="title">Figure 36. Pet Class Diagram</div>
+</div>
+<div class="paragraph">
+<p>To exemplify the implementation for the components of the XP points and the evolution of the pet, an example usage scenario is given below.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. User finishes a task. User calls the done command for the task. MainWindow would execute this command and generate a DoneCommandResult object</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/DoneCommandSequenceDiagram.png" alt="DoneCommandSequenceDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>Step 2. The MainWindow will update PetManager to increase XP points after the DoneCommandResult Object is received. This is done by calling the method <code>PetManager#incrementExp</code>. PetManager would then update XP points of Pet by calling <code>Pet#incrementExp</code>. This method also checks whether the XP points have reached the milestones for the levels and will update the level of the pet accordingly.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/PetSequenceDiagram.png" alt="PetSequenceDiagram">
+</div>
+<div class="title">Figure 37. Pet Sequence Diagram</div>
+</div>
+<div class="paragraph">
+<p>Step 3. Following the update of XP points, MainWindow also updates the mood of the pet. Supposedly, the pet is originally in "HANGRY" mood, MainWindow will call "MainWindow#updateMoodWhenDone" method to change the pet&#8217;s mood to Happy. It will also update the time of the last done task and reschedules a new timertask so that the pet will turn "Hangry" at the correct time. Lastly, this method also updates the elements</p>
+</div>
+<div class="paragraph">
+<p>Step 4. MainWindow would then update the string of the filepaths for the respective UI elements in PetDisplay by executing the method <code>PetManager#updateDisplayElements</code>.</p>
+</div>
+<div class="paragraph">
+<p>Step 5. Lastly, MainWindow will the update PetDisplay. The user will then see the UI be updated accodingly. For example, the progress bar would increase.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UpdatePetDisplaySequenceDiagram.png" alt="UpdatePetDisplaySequenceDiagram">
+</div>
+<div class="title">Figure 38. update PetDisplay Diagram</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-consideration"><a class="link" href="#design-consideration">3.11.2. Design Consideration</a></h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="set-commands"><a class="link" href="#set-commands">3.12. Set Commands</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/SetClassDiagram.png" alt="SetClassDiagram">
+</div>
+<div class="title">Figure 39. Set command class diagram</div>
+</div>
+<div class="paragraph">
+<p>The Set Commands can be used to customise the features in BB Productive. It can be used to customised the name of the pet, the duration for pomodoro and the daily challenge target so as to better cater to the needs of the user.</p>
+</div>
+<div class="paragraph">
+<p>Below is an example scenario when the user runs the set command.</p>
+</div>
+<div class="paragraph">
+<p>Step 1. User runs the command "Set pet/momu pom/30 daily/150". MainWindow will take the user input and call upon LogicManager to pasrse it. LogicManager will the call AddressBookParser which in creates a SetcommandParser object and then parse the user argument. A SetCommand object is then executed and returned to logic.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SetCommandSequenceDiagram.png" alt="SetCommandSequenceDiagram">
+</div>
+<div class="title">Figure 40. Set command sequence diagram</div>
+</div>
+<div class="paragraph">
+<p>Step 2. Logic calls upon the method <code>SetCommand#execute</code> which eventually calls the methods <code>Model#SetPetName</code> and <code>Model#setPomodoroDefaultTime</code>. A SetCommandResult object is return once these methods are executed.</p>
+</div>
+<div class="paragraph">
+<p>Step 3. Upon receiving the SetCommandResult object, MainWindow then calls the method <code>MainWindow:UpdatePetDisplay</code> to update the UI for Pet. It also calls <code>PomodormoManager#SetDefaultStartTime</code> and <code>PomdooroDisplay#setTimerText</code> to update the Ui of pomodoro. Lastly, <code>StatisticsManager#setDailyTarget</code> is called to update the value of the dailyTargetText.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SetCommandUpdatingUi.png" alt="SetCommandUpdatingUi">
+</div>
+<div class="title">Figure 41. set command updating Ui</div>
+</div>
+<div class="sect3">
+<h4 id="design-consideration-2"><a class="link" href="#design-consideration-2">3.12.1. Design Consideration</a></h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging"><a class="link" href="#logging">3.13. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.12, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.14, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1397,7 +1527,7 @@ The user can specify multiple `Tag`s.
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.12. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.14. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -1617,7 +1747,7 @@ The user can specify multiple `Tag`s.
 <div class="content">
 <img src="images/use_cases.png" alt="use cases" width="790">
 </div>
-<div class="title">Figure 36. Use case diagram for BBProductive</div>
+<div class="title">Figure 42. Use case diagram for BBProductive</div>
 </div>
 <h3 id="use-case-uc01-view-tasks" class="discrete">Use Case: UC01 - View tasks</h3>
 <div class="paragraph">
@@ -2646,6 +2776,268 @@ Expected: After 60 seconds, the done is set back to unfinished, with the tick be
 </li>
 </ol>
 </div>
+</div>
+<div class="sect2">
+<h3 id="sorting-the-task-list"><a class="link" href="#sorting-the-task-list">G.7. Sorting the task list</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add a bunch of tasks with different priorities, reminder dates and done values</p>
+</li>
+<li>
+<p>Next perform sorts of various permutations of {(r-)priority, (r-)name, (r-)done, (r-)date} with spaces in between</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>sort fields that appear first are of higher priority than those that appear less</p>
+</li>
+<li>
+<p>Expect the sort order of the tasklist to change, please reference our user guide for the specific changes to the tasklist if unsure</p>
+</li>
+<li>
+<p>also expect the UI to change to display the most recent sort order</p>
+</li>
+<li>
+<p>e.g. sort name priority &#8594; UI shows Tasks by name</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Note that sort order is not maintained after application closes</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="finding-a-task"><a class="link" href="#finding-a-task">G.8. Finding a task</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add a bunch of tasks with names with phrases that overlap and tags as well</p>
+</li>
+<li>
+<p>Next you can perform one of the three permutations</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><code>find phrase</code></p>
+</li>
+<li>
+<p><code>find phrase [t/TAG]&#8230;&#8203;</code></p>
+</li>
+<li>
+<p><code>find t/TAG [t/TAG]&#8230;&#8203;</code></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Expected order of search results: [those mentioned first should appear first]</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>tasks that have multiple tag matches</p>
+</li>
+<li>
+<p>tasks that have full name match and tag match</p>
+</li>
+<li>
+<p>tasks that have full name match or 2 tag matches</p>
+</li>
+<li>
+<p>tasks that match a tag or phrase is partially matched</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>tasks that don&#8217;t meet any of the above won&#8217;t be shown</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="auto-complete"><a class="link" href="#auto-complete">G.9. Auto complete</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>UI changes</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Any known command words will have command text field set to green</p>
+</li>
+<li>
+<p>Any unknown command words will have command text field set to red</p>
+</li>
+<li>
+<p>Any input deletion or invalid indexes will have the result display set to orange</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Test the command words</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>try partial start matches: <code>fi</code> &#8594; <code>find</code></p>
+</li>
+<li>
+<p>try typo matches: <code>fand</code> &#8594; <code>find</code></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>All command word partial matches should work</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><code>asdf</code> &#8594; <code>asdf</code></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>[command text field set to red]</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>try misspelled words by 1 character: <code>fand</code> &#8594; <code>find</code></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Test prefix completion</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Add: <code>add 20/10/20@10:30 3</code> &#8594; <code>add r/20/10/20@10:30 p/3</code></p>
+</li>
+<li>
+<p>Edit: <code>edit 2 20/10/20@10:30 1</code> &#8594; <code>edit 2 r/20/10/20@10:30 p/1</code></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Ensure that the date values are valid</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Pom: <code>pom 2 2.5</code> &#8594; <code>pom 2 tm/2.5</code></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Test index checking</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Edit: <code>edit -2</code> &#8594; <code>edit -2</code></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>[result display shown to user and turned orange]</p>
+</li>
+<li>
+<p>any non positive integer or integers outside of the displayed task list&#8217;s size will trigger the same deletion and feedback</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>delete/done: <code>done -2 a 1999 2</code> &#8594; <code>done 2</code></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>[result display also set to orange]</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Sort field completion</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>sort: <code>sort na prioruty blabla</code> &#8594; <code>sort name priority</code></p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>result display set to orange if input has been deleted</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="activating-pomodoro"><a class="link" href="#activating-pomodoro">G.10. Activating Pomodoro</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Activating Pomodoro.<br></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Run the command <code>pom 1</code></p>
+</li>
+<li>
+<p>Take note of the index of that task.<br>
+Expected: Pomodoro timer will start counting down from 25:00 minutes (default). Upon expiry of the time, app will prompt user in the response bubble, asking if done or no.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Activating Pomodoro with special time.<br></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Run the command <code>pom 1 tm/0.5</code></p>
+</li>
+<li>
+<p>Take note of the index of that task<br>
+Expected: Pomodoro timer will start counting down from 00:30 minutes. Upon expiry of the time, app will prompt user in the response bubble, asking if done or no.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Pausing and Resuming Pomodoro.<br></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Run the command <code>pom 2</code></p>
+</li>
+<li>
+<p>Then, run the command <code>pom pause</code>.</p>
+</li>
+<li>
+<p>Then, run the command <code>pom continue</code>.<br>
+Expected: After the firs command, Pomodoro timer will start counting down from 25:00 minutes (default). After <code>pom pause</code>, the timer will pause. After <code>pom continue</code>, timer will resume.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
 <div class="paragraph">
 <p><em>{ more test cases &#8230;&#8203; }</em>
 === Saving data</p>
@@ -2668,5 +3060,99 @@ Expected: After 60 seconds, the done is set back to unfinished, with the tick be
 <p><em>{ more test cases &#8230;&#8203; }</em></p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="switching-tabs"><a class="link" href="#switching-tabs">G.11. Switching tabs</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Switching tabs by using the SwitchTabCommands.<br></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Run the command <code>stats</code>
+Expected: The right screen displays the 'Statistics' tab. The 'Statistics' tab should have an orange background to indicate selection.</p>
+</li>
+</ol>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 14:32:48 UTC</div></div></div></body></html>
+</li>
+<li>
+<p>Switching tabs by using other Commands.<br></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Run the command <code>stats</code>.</p>
+</li>
+<li>
+<p>Take note that the right screen displays the 'Statistics' tab.</p>
+</li>
+<li>
+<p>Run the command <code>set daily/50</code>. This is a SetCommand, and the right screen should automatically display the 'Settings' tab.
+Expected: The right screen displays the 'Statistics' tab. The 'Statistics' tab should have an orange background to indicate selection.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="checking-statistics"><a class="link" href="#checking-statistics">G.12. Checking Statistics</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Check done tabulation</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Run the command <code>stats</code>.</p>
+</li>
+<li>
+<p>Take note of the number of tasks done on the current day.</p>
+</li>
+<li>
+<p>Run the command <code>clear</code>.</p>
+</li>
+<li>
+<p>Run the command <code>add n/new task</code>.</p>
+</li>
+<li>
+<p>Run the command <code>done 1</code>.</p>
+</li>
+<li>
+<p>Run the command <code>stats</code> again.
+Expected: The number of tasks done on the current day should increase by 1.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Check Pomodoro duration tabulation</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Run the command <code>stats</code>.</p>
+</li>
+<li>
+<p>Take note of the Pomodoro duration on the current day.</p>
+</li>
+<li>
+<p>Run the command <code>clear</code>.</p>
+</li>
+<li>
+<p>Run the command <code>add n/new task</code>.</p>
+</li>
+<li>
+<p>Run the command <code>pom 1 tm/1</code>. This runs the Pomodoro for 1 minute.</p>
+</li>
+<li>
+<p>Run the command <code>stats</code> again.
+Expected: The Pomodoro duration on the current day should increase by 1.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 15:30:47 UTC</div></div></div></body></html>

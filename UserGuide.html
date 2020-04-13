@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>BB Productive - User Guide</title><link rel="stylesheet" href="stylesheets/gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="images/BBProductiveIcon" alt="BB"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">BB Productive</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link active" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/AY1920S2-CS2103T-W16-1/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>BB Productive - User Guide</h1></div><div id="content"><div id="preamble">
+<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">BB Productive</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link active" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/AY1920S2-CS2103T-W16-1/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>BB Productive - User Guide</h1></div><div id="content"><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>By: <code>AY1920S2-CS2103T-W16-1</code>      Since: <code>Jan 2020</code>      Licence: <code>NUS</code></p>
@@ -16,16 +16,11 @@
 <div id="toctitle"></div>
 <ul class="sectlevel1">
 <li><a href="#what-is-bb-productive">1. What is BB Productive?</a></li>
-<li><a href="#about-this-document">2. About this document</a>
-<ul class="sectlevel2">
-<li><a href="#command-format">2.1. Command Format</a></li>
-<li><a href="#indexes">2.2. Indexes</a></li>
-</ul>
-</li>
+<li><a href="#about-this-document">2. About this document</a></li>
 <li><a href="#quick-start">3. Quick Start</a></li>
 <li><a href="#index">4. Terminology</a>
 <ul class="sectlevel2">
-<li><a href="#indexes-2">4.1. Indexes</a></li>
+<li><a href="#indexes">4.1. Indexes</a></li>
 </ul>
 </li>
 <li><a href="#graphical-user-interface">5. Graphical User Interface</a>
@@ -49,7 +44,8 @@
 <li><a href="#recurring-behaviour-when-task-is-marked-as-done">6.8. Recurring behaviour when task is marked as done</a></li>
 <li><a href="#recurring-behaviour-when-task-has-reminder">6.9. Recurring behaviour when task has reminder</a></li>
 <li><a href="#Navigation">6.10. Navigation</a></li>
-<li><a href="#storage-permas">6.11. Storage (Permas)</a></li>
+<li><a href="#set-commands">6.11. Set Commands</a></li>
+<li><a href="#storage">6.12. Storage</a></li>
 </ul>
 </li>
 <li><a href="#CommandTableSummary">7. Command Table Summary</a></li>
@@ -62,7 +58,7 @@
 <h2 id="what-is-bb-productive"><a class="link" href="#what-is-bb-productive">1. What is BB Productive?</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>BB Productive is for those who looking for motivation in their work. This app serves as a great task manager and includes a Pomodoro feature and a Pet companion. It is <strong>optimized for those who prefer to work with a Command Line Interface</strong> (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, BB Productive can get you to get tasks done faster. Interested? Jump to the <a href="#quick-start">Section 3, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
+<p>Feeling unproductive lately? Try BB Productive! BB Productive is a productivity application that consists of three main features: a task manager, a Pomodoro timer and a Pet, to help you get rid of those unproductive days. It is <strong>optimized for those who prefer to work with a Command Line Interface</strong> (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, BB Productive can help you to start your journey of productivity. Interested? Jump to the <a href="#quick-start">Section 3, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
 </div>
 </div>
 </div>
@@ -70,32 +66,82 @@
 <h2 id="about-this-document"><a class="link" href="#about-this-document">2. About this document</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>BB Productive is for those who looking for motivation in their work. This app serves as a great task manager and includes a Pomodoro feature and a Pet companion. It is <strong>optimized for those who prefer to work with a Command Line Interface</strong> (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, BB Productive can get you to get tasks done faster. Interested? Jump to the <a href="#quick-start">Section 3, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
+<p>This document provides information about the multitude of features in BB Productive, and how you can best utilise them to your benefit.</p>
 </div>
-<div class="sect2">
-<h3 id="command-format"><a class="link" href="#command-format">2.1. Command Format</a></h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Characters like <code>this</code> are all commands that can be used for BBPoroductive</p>
-</li>
-<li>
-<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in add <code>n/NAME</code>, <code>NAME</code> is a parameter which can be used as add <code>n/John Doe</code>.</p>
-</li>
-<li>
-<p>Items in square brackets are optional e.g <code>n/NAME [t/TAG]</code> can be used as <code>n/John Doe t/friend</code> or as <code>n/John Doe</code>.</p>
-</li>
-<li>
-<p>Items with <code>…​</code> after them can be used multiple times including zero times e.g. <code>[t/TAG]…</code>​ can be used as   (i.e. 0 times), <code>t/friend, t/friend t/family</code> etc.</p>
-</li>
-<li>
-<p>Parameters can be in any order e.g. if the command specifies <code>n/NAME p/PHONE_NUMBER</code>, <code>p/PHONE_NUMBER n/NAME</code> is also acceptable.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>Note the following symbols and formatting used in this document:</p>
 </div>
+<div class="paragraph">
+<p>Symbols:</p>
 </div>
-<div class="sect2">
-<h3 id="indexes"><a class="link" href="#indexes">2.2. Indexes</a></h3>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+This formating indicates important information.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+This formatting indicates that this is additional information
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Formating:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Formatting</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Meaning</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>preface</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A paragraph in italics indicates that the paragraph is a preface to the section below.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Command</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A gray highlight indicates that the word is a command to be entered by the user.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>UPPER_CASE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user E.g. add <code>n/NAME</code></p>
+<p class="tableblock"><code>NAME</code> is a parameter. It can be used as add <code>n/Math Homework</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[Square brackets]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Items in square brackets are optional</p>
+<p class="tableblock">E.g. <code>n/NAME [t/TAG]</code> can be used as</p>
+<p class="tableblock"><code>n/Math HomeWork t/Urgent</code></p>
+<p class="tableblock">or</p>
+<p class="tableblock"> as <code>n/Math Homework</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>…​</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Items with <code>…​</code> after them can be used multiple times or not used at all.</p>
+<p class="tableblock">E.g. <code>[t/TAG]…</code>​ can be used as</p>
+<p class="tableblock"><code>t/friend</p>
+<p class="tableblock">or</p>
+<p class="tableblock">t/friend t/family</code></p></td>
+</tr>
+</tbody>
+</table>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -110,6 +156,17 @@
 </tr>
 </table>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Parameters can be in any order e.g. if the command specifies <code>pet/PETNAME pom/POMDURATION</code>, <code>pom/POMDURATION pet/PETNAME</code> is also acceptable.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -185,7 +242,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p><strong>Pet</strong>: The pet you will interact with to manage your tasks and pomodoros. You can also level up the pet by completing more tasks/pomodoros.</p>
 </div>
 <div class="sect2">
-<h3 id="indexes-2"><a class="link" href="#indexes-2">4.1. Indexes</a></h3>
+<h3 id="indexes"><a class="link" href="#indexes">4.1. Indexes</a></h3>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -528,7 +585,8 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <td class="content">
 <div class="paragraph">
 <p>Sort order is removed after any find command is applied.<br>
-It however remains when any other task commands are applied - add, edit, done, delete, etc.</p>
+It however remains when any other task commands are applied - add, edit, done, delete, etc.<br>
+Also sort orders are not retained after closing the application</p>
 </div>
 </td>
 </tr>
@@ -641,10 +699,53 @@ It however remains when any other task commands are applied - add, edit, done, d
 <div class="sect2">
 <h3 id="pet"><a class="link" href="#pet">6.2. Pet</a></h3>
 <div class="paragraph">
-<p><a id="pet"></a></p>
+<p><a id="pet"></a>
+<em>This section provides information about the virtual pet</em></p>
+</div>
+<div class="sect3">
+<h4 id="what-s-pet"><a class="link" href="#what-s-pet">6.2.1. What&#8217;s Pet?</a></h4>
+<div class="paragraph">
+<p>BB productive provides you with a virtual pet to act as your companion to motivate you to do work. It is also a visual embodiment of your productivity so as to remind you of your productivity progress. The pet achieves these functions through three components: Experience points, Evolution and Pet&#8217;s Mood.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="experience-xp-points"><a class="link" href="#experience-xp-points">6.2.2. Experience (XP) Points</a></h4>
+<div class="paragraph">
+<p>Just like in a game, the pet has experience (XP) points that is used to level up. Notice whenever a task is done, the XP increases by 5 points? You can also increase the XP by 25 points when you finish a pomodoro cycle. When the XP points accumulations to a total of 100, the pet levels up! Through this reward system, you will be motivated to start doing your work and completing them! Proceed to the next section for information about the evolution of the pet.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_Done_before.png" alt="UG Done before" width="790">
+</div>
+<div class="title">Figure 16. Done Before</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_Done_Finish.png" alt="UG Done Finish" width="790">
+</div>
+<div class="title">Figure 17. Done Afrer</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="evolution"><a class="link" href="#evolution">6.2.3. Evolution</a></h4>
+<div class="paragraph">
+<p>The pet has three stages of in its evolution: the baby, the teenager and the dad. Each level can be achieved after every successive accumulation of 100 XP points. Can&#8217;t wait to see your pet grow? Start doing work to gain more XP!</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/BBProductiveGrowing.png" alt="BBProductiveGrowing" width="790">
+</div>
+<div class="title">Figure 18. Evolution of Pet</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="pet-s-mode"><a class="link" href="#pet-s-mode">6.2.4. Pet&#8217;s Mode</a></h4>
+<div class="paragraph">
+<p>The pet has two moods: <strong>Happy</strong> and <strong>Hangry</strong>. When the pet is happy, that means you have been consistent in your work. Good Job! However, when the pet is hangry, that indicates that you have not been doing work for awhile. The pet acts as a visual cue to remind you when you have not been productive in awhile.</p>
 </div>
 <div class="paragraph">
-<p>Write pet</p>
+<p>[[example of different hangry modes]]</p>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -696,7 +797,7 @@ It however remains when any other task commands are applied - add, edit, done, d
 <div class="content">
 <img src="images/pom_success.png" alt="pom success" width="790">
 </div>
-<div class="title">Figure 16. Example screen when pom is successfully executed</div>
+<div class="title">Figure 19. Example screen when pom is successfully executed</div>
 </div>
 </div>
 <div class="sect4">
@@ -711,7 +812,7 @@ It however remains when any other task commands are applied - add, edit, done, d
 <div class="content">
 <img src="images/pom_pause.png" alt="pom pause" width="790">
 </div>
-<div class="title">Figure 17. Example screen when pom is successfully paused</div>
+<div class="title">Figure 20. Example screen when pom is successfully paused</div>
 </div>
 </div>
 <div class="sect4">
@@ -723,7 +824,7 @@ It however remains when any other task commands are applied - add, edit, done, d
 <div class="content">
 <img src="images/pom_continuing.png" alt="pom continuing" width="790">
 </div>
-<div class="title">Figure 18. Example screen when pom is successfully resumed</div>
+<div class="title">Figure 21. Example screen when pom is successfully resumed</div>
 </div>
 </div>
 <div class="sect4">
@@ -735,7 +836,7 @@ It however remains when any other task commands are applied - add, edit, done, d
 <div class="content">
 <img src="images/pom_time_expire.png" alt="pom time expire" width="790">
 </div>
-<div class="title">Figure 19. Prompt when the pomodoro timer expires</div>
+<div class="title">Figure 22. Prompt when the pomodoro timer expires</div>
 </div>
 </div>
 <div class="sect4">
@@ -747,7 +848,7 @@ It however remains when any other task commands are applied - add, edit, done, d
 <div class="content">
 <img src="images/pom_prompt_break.png" alt="pom prompt break" width="790">
 </div>
-<div class="title">Figure 20. Prompt checking if you&#8217;d like to take a break</div>
+<div class="title">Figure 23. Prompt checking if you&#8217;d like to take a break</div>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -773,7 +874,7 @@ It however remains when any other task commands are applied - add, edit, done, d
 <div class="content">
 <img src="images/pom_break_end.png" alt="pom break end" width="790">
 </div>
-<div class="title">Figure 21. End of pomodoro cycle screen</div>
+<div class="title">Figure 24. End of pomodoro cycle screen</div>
 </div>
 </div>
 </div>
@@ -791,22 +892,22 @@ As you continue to use BB Productive, you may start to wonder how productive you
 <div class="content">
 <img src="images/stats_tab.png" alt="stats tab" width="400">
 </div>
-<div class="title">Figure 22. Statistics Tab</div>
+<div class="title">Figure 25. Statistics Tab</div>
 </div>
 <div class="sect3">
 <h4 id="daily-challenge"><a class="link" href="#daily-challenge">6.4.1. Daily Challenge</a></h4>
 <div class="paragraph">
 <p>The Daily Challenge tracks the total duration you have kept the Pomodoro running on the current day. The more you run the Pomodoro, the more the progress bar fills, and the closer you are to clearing the challenge! Try to clear the Daily Challenge every day to hit your productivity goals!</p>
 </div>
-<div class="admonitionblock important">
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="Important"></i>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>You can customise the duration you aim to achieve on a daily basis by using the Set Command.</p>
+<p>You can customise the duration you aim to achieve on a daily basis by using the Set Command as described <a href="#settings">here</a>.</p>
 </div>
 </td>
 </tr>
@@ -839,7 +940,7 @@ As you continue to use BB Productive, you may start to wonder how productive you
 <div class="content">
 <img src="images/AC_command.png" alt="AC command">
 </div>
-<div class="title">Figure 23. Command word auto complete</div>
+<div class="title">Figure 26. Command word auto complete</div>
 </div>
 <div class="ulist">
 <ul>
@@ -852,7 +953,7 @@ As you continue to use BB Productive, you may start to wonder how productive you
 <div class="content">
 <img src="images/prefix_complete.png" alt="prefix complete">
 </div>
-<div class="title">Figure 24. Prefix auto complete</div>
+<div class="title">Figure 27. Prefix auto complete</div>
 </div>
 <div class="ulist">
 <ul>
@@ -865,7 +966,7 @@ As you continue to use BB Productive, you may start to wonder how productive you
 <div class="content">
 <img src="images/sort_complete.png" alt="sort complete">
 </div>
-<div class="title">Figure 25. Sort auto complete</div>
+<div class="title">Figure 28. Sort auto complete</div>
 </div>
 <div class="ulist">
 <ul>
@@ -878,7 +979,7 @@ As you continue to use BB Productive, you may start to wonder how productive you
 <div class="content">
 <img src="images/AC_removal_success.png" alt="AC removal success">
 </div>
-<div class="title">Figure 26. Done index removal</div>
+<div class="title">Figure 29. Done index removal</div>
 </div>
 <div class="ulist">
 <ul>
@@ -891,7 +992,7 @@ As you continue to use BB Productive, you may start to wonder how productive you
 <div class="content">
 <img src="images/complete_fail.png" alt="complete fail">
 </div>
-<div class="title">Figure 27. Auto complete not found</div>
+<div class="title">Figure 30. Auto complete not found</div>
 </div>
 </div>
 <div class="sect2">
@@ -922,7 +1023,7 @@ As you continue to use BB Productive, you may start to wonder how productive you
 <div class="content">
 <img src="images/reminder_add.png" alt="reminder add" width="395">
 </div>
-<div class="title">Figure 28. Input for adding a task with reminder.</div>
+<div class="title">Figure 31. Input for adding a task with reminder.</div>
 </div>
 <div class="paragraph">
 <p>This results in a task with the reminder&#8217;s date in the task card as well as result display giving feedback.</p>
@@ -931,19 +1032,19 @@ As you continue to use BB Productive, you may start to wonder how productive you
 <div class="content">
 <img src="images/AddTaskReminderUp.png" alt="AddTaskReminderUp" width="395">
 </div>
-<div class="title">Figure 29. Success for adding a task with reminder on result display(top).</div>
+<div class="title">Figure 32. Success for adding a task with reminder on result display(top).</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/AddTaskReminderDown.png" alt="AddTaskReminderDown" width="395">
 </div>
-<div class="title">Figure 30. Success for adding a task with reminder on result display(scroll to bottom).</div>
+<div class="title">Figure 33. Success for adding a task with reminder on result display(scroll to bottom).</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/reminder_add_success.png" alt="reminder add success" width="790">
 </div>
-<div class="title">Figure 31. Success for adding a task with reminder(top).</div>
+<div class="title">Figure 34. Success for adding a task with reminder(top).</div>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -980,7 +1081,7 @@ An error message will be shown on the result display if either of the 2 aforemen
 <div class="content">
 <img src="images/reminder_edit.png" alt="reminder edit" width="395">
 </div>
-<div class="title">Figure 32. Input for editing task to have reminder or edit reminder itself.</div>
+<div class="title">Figure 35. Input for editing task to have reminder or edit reminder itself.</div>
 </div>
 <div class="paragraph">
 <p>Results in a task with the reminder&#8217;s date in the task card as well as result display giving feedback.</p>
@@ -989,19 +1090,19 @@ An error message will be shown on the result display if either of the 2 aforemen
 <div class="content">
 <img src="images/EditTaskReminderUp.png" alt="EditTaskReminderUp" width="395">
 </div>
-<div class="title">Figure 33. Success for editing a task with reminder on result display(top).</div>
+<div class="title">Figure 36. Success for editing a task with reminder on result display(top).</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/EditTaskReminderDown.png" alt="EditTaskReminderDown" width="395">
 </div>
-<div class="title">Figure 34. Success for editing a task with reminder on result display(scroll to bottom).</div>
+<div class="title">Figure 37. Success for editing a task with reminder on result display(scroll to bottom).</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/reminder_edit_success.png" alt="reminder edit success" width="790">
 </div>
-<div class="title">Figure 35. Success for editing task&#8217;s reminder.</div>
+<div class="title">Figure 38. Success for editing task&#8217;s reminder.</div>
 </div>
 </div>
 </div>
@@ -1035,7 +1136,7 @@ An error message will be shown on the result display if either of the 2 aforemen
 <div class="content">
 <img src="images/recurring_add.png" alt="recurring add" width="395">
 </div>
-<div class="title">Figure 36. Input for adding recurring attribute to task.</div>
+<div class="title">Figure 39. Input for adding recurring attribute to task.</div>
 </div>
 <div class="paragraph">
 <p>Results in a task with the recurring attribute in the task card as well as result display giving feedback.</p>
@@ -1044,19 +1145,19 @@ An error message will be shown on the result display if either of the 2 aforemen
 <div class="content">
 <img src="images/AddTaskRecurringUp.png" alt="AddTaskRecurringUp" width="395">
 </div>
-<div class="title">Figure 37. Success for adding a task with recurring attribute on result display(top).</div>
+<div class="title">Figure 40. Success for adding a task with recurring attribute on result display(top).</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/AddTaskRecurringDown.png" alt="AddTaskRecurringDown" width="395">
 </div>
-<div class="title">Figure 38. Success for adding a task with recurring attribute on result display(scroll to bottom).</div>
+<div class="title">Figure 41. Success for adding a task with recurring attribute on result display(scroll to bottom).</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/recurring_add_success.png" alt="recurring add success" width="790">
 </div>
-<div class="title">Figure 39. Success for adding recurring attribute to task card.</div>
+<div class="title">Figure 42. Success for adding recurring attribute to task card.</div>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -1085,7 +1186,7 @@ An error message will be shown on the result display if either of the 2 aforemen
 <div class="content">
 <img src="images/recurring_edit.png" alt="recurring edit" width="395">
 </div>
-<div class="title">Figure 40. Input for editing recurring attribute to task.</div>
+<div class="title">Figure 43. Input for editing recurring attribute to task.</div>
 </div>
 <div class="paragraph">
 <p>Results in a task with the reminder&#8217;s date in the specific task card.</p>
@@ -1094,13 +1195,13 @@ An error message will be shown on the result display if either of the 2 aforemen
 <div class="content">
 <img src="images/EditTaskRecurringUp.png" alt="EditTaskRecurringUp" width="395">
 </div>
-<div class="title">Figure 41. Success for editing a task with recurring attribute on result display(top).</div>
+<div class="title">Figure 44. Success for editing a task with recurring attribute on result display(top).</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/EditTaskRecurringDown.png" alt="EditTaskRecurringDown" width="395">
 </div>
-<div class="title">Figure 42. Success for editing a task with recurring attribute on result display(scroll to bottom).</div>
+<div class="title">Figure 45. Success for editing a task with recurring attribute on result display(scroll to bottom).</div>
 </div>
 </div>
 </div>
@@ -1117,19 +1218,19 @@ An error message will be shown on the result display if either of the 2 aforemen
 <div class="content">
 <img src="images/recurring_behaviour_done.png" alt="recurring behaviour done" width="790">
 </div>
-<div class="title">Figure 43. Task initially marked as done on task card.</div>
+<div class="title">Figure 46. Task initially marked as done on task card.</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/recurring_behaviour_undone_resultDisplay.png" alt="recurring behaviour undone resultDisplay" width="395">
 </div>
-<div class="title">Figure 44. Task has been reset shown on result display.</div>
+<div class="title">Figure 47. Task has been reset shown on result display.</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/recurring_behaviour_undone.png" alt="recurring behaviour undone" width="790">
 </div>
-<div class="title">Figure 45. Task has been reset shown on task card.</div>
+<div class="title">Figure 48. Task has been reset shown on task card.</div>
 </div>
 </div>
 <div class="sect2">
@@ -1144,25 +1245,25 @@ An error message will be shown on the result display if either of the 2 aforemen
 <div class="content">
 <img src="images/recurring_behaviour_reminder.png" alt="recurring behaviour reminder" width="790">
 </div>
-<div class="title">Figure 46. Task initially has a reminder for 13th April 2020 at 9:32PM.</div>
+<div class="title">Figure 49. Task initially has a reminder for 13th April 2020 at 9:32PM.</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/recurring_behaviour_new_reminder_resultDisplay(Top).png" alt="recurring behaviour new reminder resultDisplay(Top)" width="395">
 </div>
-<div class="title">Figure 47. Task has been reset shown on result display with updated reminder time of 14th April 2020 at 9:32PM(top).</div>
+<div class="title">Figure 50. Task has been reset shown on result display with updated reminder time of 14th April 2020 at 9:32PM(top).</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/recurring_behaviour_new_reminder_resultDisplay(Bottom).png" alt="recurring behaviour new reminder resultDisplay(Bottom)" width="395">
 </div>
-<div class="title">Figure 48. Task has been reset shown on result display with updated reminder time of 14th April 2020 at 9:32PM(scroll to bottom).</div>
+<div class="title">Figure 51. Task has been reset shown on result display with updated reminder time of 14th April 2020 at 9:32PM(scroll to bottom).</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/recurring_behaviour_new_reminder.png" alt="recurring behaviour new reminder" width="790">
 </div>
-<div class="title">Figure 49. Task has been reset shown on task card with updated reminder time of 14th April 2020 at 9:32PM.</div>
+<div class="title">Figure 52. Task has been reset shown on task card with updated reminder time of 14th April 2020 at 9:32PM.</div>
 </div>
 </div>
 <div class="sect2">
@@ -1211,9 +1312,16 @@ An error message will be shown on the result display if either of the 2 aforemen
 </div>
 </div>
 <div class="sect2">
-<h3 id="storage-permas"><a class="link" href="#storage-permas">6.11. Storage (Permas)</a></h3>
+<h3 id="set-commands"><a class="link" href="#set-commands">6.11. Set Commands</a></h3>
 <div class="paragraph">
-<p>All your progress, user preferences and settings are stored in the “data” folder. If you plan to switch devices, you may transfer your progress to another computer by copying the contents of the original device’s “data” folder to the new device’s data folder. This can be done through a thumbdrive.</p>
+<p><a id="settings"></a>
+<em>This section explains how to use the set commands</em></p>
+</div>
+<div class="paragraph">
+<p>Tired of the name "BB"? Is 25 minutes of pomodoro time too short for you? Want to achieve more with the daily challenge? BB productive provides you with the option to customise the various features! Simply use the set commands to customise it the way you want.</p>
+</div>
+<div class="paragraph">
+<p>command: <code>set [pet/PETNAME] [pom/POMDURATION] [daily/DAILYTARGET]</code></p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1222,17 +1330,70 @@ An error message will be shown on the result display if either of the 2 aforemen
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-<div class="paragraph">
-<p>Please check that the following files are in the “data” folder to ensure that you are transferring the correct files!</p>
-</div>
+Parameters can be in any order e.g. if the command specifies <code>pet/PETNAME pom/POMDURATION</code>, <code>pom/POMDURATION pet/PETNAME</code> is also acceptable.
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>Take for example, you would like the name to be "Momu", the pomodoro duration to be 30 mins and the daily challenge target to be 150 minutes. Run this command:</p>
+</div>
+<div class="paragraph">
+<p>eg. Command <code>set pet/Momu pom/30 daily/150</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_Set_Before.png" alt="UG Set Before" width="790">
+</div>
+<div class="title">Figure 53. Set before</div>
+</div>
+<div class="paragraph">
+<p>Once, the set is successful, you will this success message being displayed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_set_successmessage.png" alt="UG set successmessage" width="790">
+</div>
+<div class="title">Figure 54. set success message</div>
+</div>
+<div class="paragraph">
+<p>This is the view you will be seeing after running the set command. As you can see the pet name, pomodoro duration and daily challenge target have been changed!</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UG_Set_After.png" alt="UG Set After" width="790">
+</div>
+<div class="title">Figure 55. Set after</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Take note that there are restrictions in the values you can set.
+Pet Name: Only alphanumerics are allowed
+Pomodoro Duration : The maximum amount is 60 minutes so as to prevent you from burning out
+Daily Target: The maximun amount is 720 minutes
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="storage"><a class="link" href="#storage">6.12. Storage</a></h3>
+<div class="paragraph">
+<p>All your progress, user preferences and settings are stored in the “data” folder. If you plan to switch devices, you may transfer your progress to another computer by copying the contents of the original device’s “data” folder to the new device’s data folder. This can be done through a thumbdrive.</p>
+</div>
+<div class="paragraph">
+<p>Please check that the following files are in the “data” folder to ensure that you are transferring the correct files!</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/storage.png" alt="storage" width="395">
 </div>
+<div class="title">Figure 56. Files in data folder</div>
 </div>
 </div>
 </div>
@@ -1314,6 +1475,11 @@ An error message will be shown on the result display if either of the 2 aforemen
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>settings</code></p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Set</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Set [pet/PETNAME] [pom/POMDURATION] [daily/DAILYTARGET]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Set pet/momu pom/30 daily/150</code></p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Clear</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>clear</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>clear</code></p></td>
@@ -1373,4 +1539,4 @@ e.g. <code>find Quiz Essay</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 14:32:48 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 15:30:47 UTC</div></div></div></body></html>
