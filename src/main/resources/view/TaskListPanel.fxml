@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 
 <VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <Label graphicTextGap="1.0" text="Tasks" textFill="#453fe9">
+   <Label fx:id="tasksHeader" graphicTextGap="1.0" text="Tasks" textFill="#453fe9">
       <font>
          <Font size="24.0" />
       </font>

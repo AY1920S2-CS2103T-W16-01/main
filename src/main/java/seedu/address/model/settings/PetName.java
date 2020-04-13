@@ -1,17 +1,16 @@
 package seedu.address.model.settings;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class PetName implements Comparable {
 
-    public static final String MESSAGE_CONSTRAINTS = "NANIIII";
-    public static final String VALIDATION_REGEX = "^[a-zA-Z0-9]+$";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Pet Names should only contain alphanumeric characters and spaces, and it should not be blank";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     public final String fullName;
 
     public PetName(String petName) {
         requireNonNull(petName);
-        checkArgument(isValidPetName(petName), MESSAGE_CONSTRAINTS);
         fullName = petName;
     }
 

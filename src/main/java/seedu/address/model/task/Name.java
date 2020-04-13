@@ -59,6 +59,6 @@ public class Name implements Comparable {
             return 0;
         }
         Name other = (Name) obj;
-        return other.fullName.compareToIgnoreCase(this.fullName);
+        return this.fullName.compareToIgnoreCase(other.fullName);
     }
 }

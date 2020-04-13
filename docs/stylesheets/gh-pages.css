@@ -18,7 +18,7 @@
     padding-top: 0;
 }
 
-/* Overrides for asciidoctor.css */
+/* Overrides for asciidoctor.css stylesheet */
 
 a {
     color: #0074c7;
@@ -62,7 +62,7 @@ table.tableblock > .title,
 .ulist > .title,
 .qlist > .title,
 .hdlist > .title {
-    color: rgb(197, 90, 17);
+    color: #453FE9;
 }
 
 @media screen {

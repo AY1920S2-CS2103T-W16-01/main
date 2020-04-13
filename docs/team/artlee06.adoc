@@ -3,7 +3,7 @@
 :imagesDir: ../images
 :stylesDir: ../stylesheets
 
-== PROJECT: BB Productive - Level 3
+== PROJECT: BB Productive
 
 ---
 
@@ -21,50 +21,62 @@ My team of 5 Computer Science students, including myself, aimed to build a produ
 * *Major enhancement*: I added the ability to have recurring tasks.
 ** What it does: The “rec/” flag allows the user to make the task reappear on a daily or weekly basis.
 ** Justification:  In the event users have a repeatable task that occurs on a weekly basis, he can set the task as either daily or weekly recurring to ensure the task is set as undone after the stipulated time interval. (daily or weekly)
-** Highlights: This enhancement works with the AddCommand or EditCommand and is optional as well. This implementation was challenging due to how it requires to be deeply intertwined in the application’s logic and model manager, this resulted in me applying the observer design pattern to facilitate further communication between the logic and model manager.
+** Highlights: This enhancement works with the AddCommand or EditCommand and is optional as well. This implementation was challenging due to how it requires to be deeply intertwined in the application’s MainWindow and model manager in order to display the fact that recurring behaviour has happened on the result display. This resulted in me applying the observer design pattern to facilitate further communication between the MainWindow and model manager.
 
-* *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
+* *My code contributions on RepoSense*: [https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=&sort=totalCommits%20dsc&sortWithin=title&since=2020-02-14&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=artlee06&tabRepo=AY1920S2-CS2103T-W16-1%2Fmain%5Bmaster%5D[RepoSense]]
 
 * *Other contributions*:
 
 ** Project management:
-*** Managed releases `v1.1` - `v1.4rc` (3 releases) on GitHub
+*** Managed milestones `v1.1` - `v1.4rc` (3 milestones) on GitHub
+
 ** Enhancements to existing features:
 *** Implemented the foundation of the new stylesheet used for the application
-*** Adjusted the JavaFX layout to fit the Adobe XD
+*** Adjusted the JavaFX layout to fit the Adobe XD mockup
 *** Wrote tests for both reminders and recurring tasks
 
+
+** Design:
+*** I was primarily responsible for the design and UI/UX of the application for BBProductive
+*** This includes coming up with wireframes for BBProductive. (Link: https://xd.adobe.com/view/58d6f355-4000-4cd3-4038-b9b8366c9fcd-2ee7/[wireframe])
+*** As well as a proper interactive mockup the team has been using for reference when building the application itself. (Link: https://xd.adobe.com/view/80a186f2-2b5a-42c2-42c2-27f82b9667eb-f690/[mockup])
+*** I also was responsible for any additional design collateral for the group, this means the BBProductive logo, user guide cover page, as well as minor styling of the user guide.
+
+
 ** Documentation:
-** Community:
-*** PRs reviewed (with non-trivial review comments): https://github.com[#12], https://github.com[#32], https://github.com[#19], https://github.com[#42]
-*** Contributed to forum discussions (examples:  https://github.com[1], https://github.com[2], https://github.com[3], https://github.com[4])
-*** Reported bugs and suggestions for other teams in the class (examples:  https://github.com[1], https://github.com[2], https://github.com[3])
-*** Some parts of the history feature I added was adopted by several other class mates (https://github.com[1], https://github.com[2])
-** Tools:
-*** Adobe XD
-
-_{you can add/remove categories in the list above}_
-
-== Contributions to the User Guide
-
 
 |===
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
-include::../UserGuide.adoc[tag=delete]
+include::../UserGuide.adoc[tag=quickStart]
 
-include::../UserGuide.adoc[tag=dataencryption]
+include::../UserGuide.adoc[tag=reminder]
 
-== Contributions to the Developer Guide
+include::../UserGuide.adoc[tag=recurring]
+
+
+I also contributed content to the Developer Guide
 
 |===
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
 
-== PROJECT: PowerPointLabs
+include::../DeveloperGuide.adoc[tag=reminder]
 
----
+include::../DeveloperGuide.adoc[tag=recurring]
 
-_{Optionally, you may include other projects in your portfolio.}_
+include::../DeveloperGuide.adoc[tag=userStories]
+
+include::../DeveloperGuide.adoc[tag=manualTesting]
+
+** Community:
+*** PRs reviewed (with non-trivial review comments): https://github.com/AY1920S2-CS2103T-W16-1/main/pull/300[#300], https://github.com/AY1920S2-CS2103T-W16-1/main/pull/306[#306], https://github.com/AY1920S2-CS2103T-W16-1/main/pull/269[#269], https://github.com/AY1920S2-CS2103T-W16-1/main/pull/145[#145], https://github.com/AY1920S2-CS2103T-W16-1/main/pull/299[#299]
+*** Collaborate with teammates to tie in non-trivial features: [https://github.com/AY1920S2-CS2103T-W16-1/main/pull/272[#272]]
+*** Reported bugs and suggestions for other teams in the class (examples: [https://github.com/AY1920S2-CS2103-W15-3/main/issues/156[#156]], [https://github.com/AY1920S2-CS2103-W15-3/main/issues/157[#157]], [hhttps://github.com/AY1920S2-CS2103-W15-3/main/issues/158[#158]])
+
+
+** Tools:
+*** Adobe XD
+*** Adobe Illustrator

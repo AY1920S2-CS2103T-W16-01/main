@@ -35,8 +35,20 @@ BB Productive is for those who looking for motivation in their work. This app se
 * Items with `…​` after them can be used multiple times including zero times e.g. `[t/TAG]…`​ can be used as   (i.e. 0 times), `t/friend, t/friend t/family` etc.
 * Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
+=== Indexes
+[IMPORTANT]
+====
+Indexes refer to the current tasklist on display, it does not refer to the indices of the entire task list. Note also that indexes start from 1 and not 0.
+====
+
+// tag::quickStart[]
 == Quick Start
-- This section provides a quick guide on firing up BB Productive. Follow the steps below to install and launch BB Productive:
+- This section provides a quick guide on firing up BB Productive.
+
+.Overview of BBproductive features
+image::BBProductiveQuickStart_Graphic.png[width="790"]
+
+Follow the steps below to install and launch BB Productive:
 .  Ensure you have Java `11` or above installed in your Computer.
 .  Download the latest `bb_productive.jar` link:{repoURL}/releases[here].
 .  Copy the file to the folder you want to use as the home folder for your BB Productive.
@@ -54,6 +66,8 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 * *`exit`* : exits the app
 
 .  Refer to <<Features>> for details of each command.
+
+// end::quickStart[]
 
 [#index]
 [[Terminology]]
@@ -384,27 +398,36 @@ image::complete_fail.png[]
 
 //end::AutoComplete[]
 
+// tag::reminder[]
+
 === Reminders
 
 ==== What's a reminder?
 BBProductive provides an avenue to remember to do time sensitive tasks in the form of reminders. When the time for the reminder has arrived, BBProductive alerts you to do the task! Never forget to do buy milk or any other time sensitive task ever again!
 
 ==== How do you use it?
-Add a reminder to your task by adding `r/DD/MM/YY@HH:MM` when editing or adding a task. A pop up containing the task name and description will then appear reminding you to complete the task at the specified date and time.
+Add a reminder to your task by adding `r/DD/MM/YY@HH:mm` when editing or adding a task. A pop up containing the task name and description will then appear reminding you to complete the task at the specified date and time.
 
 ==== Command `r/DD/MM/YY@HH:MM`
 ===== Add Task with reminder
-Add task with reminder with the following command `add n/<name> r/DD/MM/YY@HH:MM`. You can also include the other flags such as `t/`, `des/` and more.
+Add task with reminder with the following command `add n/<name> r/DD/MM/YY@HH:mm`. You can also include the other flags such as `t/`, `des/` and more.
 
 For example: `add n/Buy Milk r/11/11/20@23:59` as shown below.
 
 .Input for adding a task with reminder.
 image::reminder_add.png[width=395]
 
-Results in a task with the reminder's date in the task card.
+This results in a task with the reminder's date in the task card.
 
 .Success for adding a task with reminder.
 image::reminder_add_success.png[width=790]
+
+[IMPORTANT]
+====
+- Firstly, the format for the date must adhere strictly to the `r/DD/MM/YY@HH:mm` format or else it will not be recognized.
+- Secondly, the date can only be set in the future and not the past. +
+An error message will be shown on the result display if either of the 2 aforementioned issues are breached. This applies for editing as task to have a reminder as well.
+====
 
 ===== Edit Task with reminder
 Edit a task to include a reminder with the following command `edit <index> r/DD/MM/YY@HH:MM`. You can also include the other flags such as `t/`, `des/` and more.
@@ -419,6 +442,9 @@ Results in a task with the reminder's date in the task card.
 .Success for editing task's reminder.
 image::reminder_edit_success.png[width=790]
 
+// end::reminder[]
+
+// tag::recurring[]
 === Recurring
 
 ==== What's Recurring?
@@ -436,10 +462,18 @@ For example: `add n/Buy Milk rec/d` as shown below.
 .Input for adding recurring attribute to task.
 image::recurring_add.png[width=395]
 
-Results in a task with the recurring attribute in the task card.
+Results in a task with the recurring attribute in the task card as well as result display giving feedback.
 
-.Success for adding recurring attribute to task.
+.Success for adding recurring attribute shown on result display.
+image::recurring_add_success_resultDisplay.png[width=396]
+
+.Success for adding recurring attribute to task card.
 image::recurring_add_success.png[width=790]
+
+[IMPORTANT]
+====
+The format for recurring is strictly `rec/d` or `rec/w` as there is only daily and weekly recurring tasks. Any other input will be recognized as invalid and an error message will be shown on the result display.
+====
 
 ===== Edit Task with recurring
 Edit a task to include a recurring with the following command `edit <index> rec/d` or `edit <index> rec/w`. You can also include the other flags such as `t/`, `des/` and more.
@@ -453,6 +487,36 @@ Results in a task with the reminder's date in the specific task card.
 
 .Success for editing recurring attribute to task.
 image::recurring_edit_success.png[width=790]
+
+=== Recurring behaviour when task is marked as done
+Mark a task as done as you would normally using the command `done <index>`. For a recurring task, after the stipulated amount of time(either daily or weekly), the task will be reset as undone.
+
+For example: `done 1`. After a day's worth of time, the task will be set from done to undone.
+
+.Task initially marked as done on task card.
+image::recurring_behaviour_done.png[width=790]
+
+.Task has been reset shown on result display.
+image::recurring_behaviour_undone_resultDisplay.png[width=395]
+
+.Task has been reset shown on task card.
+image::recurring_behaviour_undone.png[width=790]
+
+=== Recurring behaviour when task has reminder
+Add a reminder as you would normally using the command `edit <index> r/DD/MM/YY@HH:mm` or `add n/<name> r/DD/MM/YY@HH:mm rec/<type>` if you are adding the task. For a recurring task, after the stipulated amount of time(either daily or weekly), the reminder will increment by the time interval if it has been triggered. This means the reminder will be incremented by 1 day if the time interval is daily, and 7 days if the time interval is weekly.
+
+For example: `done 1`. After a day's worth of time, the task will be set from done to undone.
+
+.Task initially has a reminder for 13th April 2020 at 12:41PM.
+image::recurring_behaviour_reminder.png[width=790]
+
+.Task has been reset shown on result display with updated reminder time of 14th April 2020 at 12:41PM.
+image::recurring_behaviour_new_reminder_resultDisplay.png[width=395]
+
+.Task has been reset shown on task card with updated reminder time of 14th April 2020 at 12:41PM..
+image::recurring_behaviour_new_reminder.png[width=790]
+
+// end::recurring[]
 
 [[Navigation]]
 === Navigation
@@ -558,3 +622,20 @@ _The following table summarizes all the commands that you can use. Input contain
 
 *Q*: How do I transfer my data to another Computer? +
 *A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous BB Productive folder.
+
+== Command Summary
+
+* *Add* `add n/Do math homework des/pages 1-2 r/DD/MM/YY@HH:mm t/tag1 tag2` +
+e.g. `add n/Do math homework d/pages 1-2 r/09/08/20@12:30 t/Difficult InProgress`
+* *Edit* : `edit INDEX [n/NAME] [des/DESCRIPTION] [r/REMINDER]` +
+e.g. `edit 2 n/Add Buy Feature ld/2020-03-04`
+* *Delete* : `delete INDEX` +
+e.g. `delete 3`
+* *Find* : `find KEYWORD [MORE_KEYWORDS]` +
+e.g. `find Quiz Essay`
+* *Statistics* : `stats`
+* *Pom* : `pom 2 tm/5`
+* *List* : `list`
+* *Help* : `help`
+* *Clear* : `clear`
+* *Exit* : `exit`

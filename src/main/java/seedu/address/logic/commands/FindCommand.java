@@ -17,11 +17,11 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE =
             COMMAND_WORD
                     + ": Finds all tasks whose names contain any of "
-                    + "the specified keywords (case-insensitive) and displays them.\n"
-                    + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+                    + "the specified keywords (case-insensitive) or tags.\n"
+                    + "Parameters: n/PHRASE t/[TAG]...\n"
                     + "Example: "
                     + COMMAND_WORD
-                    + " alice bob charlie";
+                    + " n/alice bob charlie t/tag1 t/tag2";
 
     private final NameContainsKeywordsPredicate predicate;
 
@@ -29,10 +29,17 @@ public class FindCommand extends Command {
         this.predicate = predicate;
     }
 
+    /**
+     * Apart from filtering tasks that match the keywords based on edit distance derived from {@link
+     * NameContainsKeywordsPredicate} also sorts tasks in ascending order of edit distance.
+     */
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredTaskList(predicate);
+
+        model.setSearchResultOrder(predicate.getSearchOrderComparator());
+
         return new CommandResult(
                 String.format(
                         Messages.MESSAGE_TASKS_LISTED_OVERVIEW,

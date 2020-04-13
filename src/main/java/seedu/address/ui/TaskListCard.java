@@ -27,6 +27,7 @@ public class TaskListCard extends UiPart<Region> {
     @FXML private Label id;
     @FXML private Label priority;
     @FXML private Label description;
+    @FXML private Label recurring;
     @FXML private Label reminder;
     @FXML private FlowPane tags;
     @FXML private CheckBox done;
@@ -42,6 +43,7 @@ public class TaskListCard extends UiPart<Region> {
         priority.setTextFill(Color.web(getPriorityColor()));
         description.setText(task.getDescription().value);
         task.getOptionalReminder().ifPresent(rem -> reminder.setText(rem.displayReminder()));
+        task.getOptionalRecurring().ifPresent(rec -> recurring.setText(rec.displayRecurring()));
         task.getTags()
                 .stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

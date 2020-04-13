@@ -21,7 +21,7 @@ public class TasksDoneData {
     /**
      * Constructs a {@code TasksDoneData}.
      *
-     * @param taskDoneData A valid priority number.
+     * @param taskDoneData A valid TasksDoneData.
      */
     public TasksDoneData(String taskDoneData) {
         requireNonNull(taskDoneData);
@@ -29,7 +29,7 @@ public class TasksDoneData {
         value = Integer.valueOf(taskDoneData);
     }
 
-    /** Returns true if a given string is a valid priority number. */
+    /** Returns true if a given string is a valid TasksDoneData. */
     public static boolean isValidTasksDoneData(String test) {
         try {
             int i = Integer.parseInt(test);
@@ -49,10 +49,5 @@ public class TasksDoneData {
         return other == this // short circuit if same object
                 || (other instanceof TasksDoneData // instanceof handles nulls
                         && value.equals(((TasksDoneData) other).value)); // state check
-    }
-
-    @Override
-    public int hashCode() {
-        return value.hashCode();
     }
 }

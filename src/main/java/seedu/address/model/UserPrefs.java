@@ -48,21 +48,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return taskListFilePath;
     }
 
-    public Path getPetFilePath() {
-        return petFilePath;
-    }
-
-    public Path getPomodoroFilePath() {
-        return pomodoroFilePath;
-    }
-
-    public Path getStatisticsFilePath() {
-        return statisticsFilePath;
-    }
-
     public void setTaskListFilePath(Path taskListFilePath) {
         requireNonNull(taskListFilePath);
         this.taskListFilePath = taskListFilePath;
+    }
+
+    public Path getPetFilePath() {
+        return petFilePath;
     }
 
     public void setPetFilePath(Path petFilePath) {
@@ -70,9 +62,17 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.petFilePath = petFilePath;
     }
 
+    public Path getPomodoroFilePath() {
+        return pomodoroFilePath;
+    }
+
     public void setPomodoroFilePath(Path pomodoroFilePath) {
         requireNonNull(pomodoroFilePath);
         this.pomodoroFilePath = pomodoroFilePath;
+    }
+
+    public Path getStatisticsFilePath() {
+        return statisticsFilePath;
     }
 
     public void setStatisticsFilePath(Path statisticsFilePath) {
@@ -90,20 +90,27 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         }
 
         UserPrefs o = (UserPrefs) other;
-
-        return guiSettings.equals(o.guiSettings) && taskListFilePath.equals(o.taskListFilePath);
+        return guiSettings.equals(o.guiSettings)
+                && taskListFilePath.equals(o.taskListFilePath)
+                && petFilePath.equals(o.petFilePath)
+                && pomodoroFilePath.equals(o.pomodoroFilePath)
+                && statisticsFilePath.equals(o.statisticsFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, taskListFilePath);
+        return Objects.hash(
+                guiSettings, taskListFilePath, petFilePath, pomodoroFilePath, statisticsFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + taskListFilePath);
+        sb.append("\nLocal task list file location : " + taskListFilePath);
+        sb.append("\nLocal pet file location : " + petFilePath);
+        sb.append("\nLocal pomodoro file location : " + pomodoroFilePath);
+        sb.append("\nLocal statistics file location : " + statisticsFilePath);
         return sb.toString();
     }
 }

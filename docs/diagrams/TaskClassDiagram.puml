@@ -1,0 +1,164 @@
+@startuml
+
+Task o-- "1" Name
+Task o-- "1" Priority
+Task o-- "0..1" Description
+Task o--  "*" Tag
+Task o-- "0..1" Reminder
+Task o--> "0..1" Recurring
+Recurring --> "0..1" RecurType
+ModelManager --> Recurring
+note left: some methods omitted for brevity
+LogicManager --> ModelManager
+note left: some methods omitted for brevity
+
+class Task {
+    - name : Name
+    - priority : Priority
+    - description : Description
+    - done : Done
+    - tags : Set<Tag>
+    - optionalReminder : Optional<Reminder>
+    - optionalRecurring : Optional<Recurring>
+  __
+  + getName()
+  + getPriority()
+  + getDescription()
+  + getDone()
+  + getOptionalReminder()
+  + getOptionalRecurring()
+  + getTags()
+  + hasTag()
+  + isSameTask(Task otherTask)
+  + triggerReminderIfPresent()
+  + getRecurredTask()
+  + equals(Object other)
+  + hashcode()
+  + toString()
+}
+
+class Recurring {
+    - type : RecurType
+    - referenceDateTime : LocalDateTime
+    + MESSAGE_CONSTRAINTS : String
+    + MESSAGE_RECURRING_TASK_SUCCESS : String
+    + VALIDATION_REGEX : String
+    + stringFormatter : DateTimeFormatter
+  __
+  + static parseDateTime(String dateTimeString)
+  + static parseRecurType(String recurringString)
+  + shouldUpdateReminder(LocalDateTime reminderDateTime)
+  + getUpdatedReminderTime(Reminder currentReminder)
+  + static isValidRecurring(String test)
+  + getDelayToFirstTrigger()
+  + getPeriod()
+  + toString()
+}
+
+class Name {
+    + fullName : String
+    + MESSAGE_CONSTRAINTS : String
+    + VALIDATION_REGEX : String
+  __
+  + static isValidName(String test)
+  + toString()
+  + equals(Object other)
+  + hashCode()
+  + compareTo(Object obj)
+}
+
+class Priority {
+    + value : String
+    + MESSAGE_CONSTRAINTS : String
+    + VALIDATION_REGEX : String
+  __
+  + static isValidPriority(String test)
+  + toString()
+  + equals(Object object)
+  + hashCode()
+  + compareTo(Object obj)
+}
+
+class Description {
+    + value : String
+    + MESSAGE_CONSTRAINTS : String
+  __
+  + static isValidDescription(String test)
+  + toString()
+  + equals(Object object)
+  + hashCode()
+  + compareTo(Object obj)
+}
+
+class Tag {
+    + tagName : String
+    + MESSAGE_CONSTRAINTS : String
+    + VALIDATION_REGEX : String
+  __
+  + static isValidTagName(String test)
+  + equals(Object other)
+  + toString()
+  + hashCode()
+}
+
+class Reminder {
+    - reminderDateTime : LocalDateTime
+    - delay : long
+    - hasFired : boolean
+    + MESSAGE_CONSTRAINTS : String
+    + MESSAGE_CONSTRAINTS_PAST : String
+    + VALIDATION_REGEX : String
+    __
+    - setDelay()
+    + setHasFired()
+    + static isValidReminder()
+    + static calculateDelay()
+    + displayReminder()
+    + toString()
+    + compareTo(Object obj)
+}
+
+class ModelManager {
+    - taskList : TaskList
+    - pomodoro : Pomodoro
+    - statistics : Statistics
+    - pet : Pet
+    - userPrefs : UserPrefs
+    - filteredTasks : FilteredList<Task>
+    - comparator : Comparator<Task>[]
+    - pomodoroManager : PomodoroManager
+    - petManager : PetManager
+    - statisticsManager : StatisticsManager
+    - observers : ArrayList<Observer>
+    - recurringTimerTasks : HashMap<Task, TimerTask>
+    - recurringTimer: Timer
+    - taskSaver : TaskSaver
+    __
+    - setRecurringTimers()
+    - generateTimerTask()
+    - cancelTimerTask()
+    - setTimer()
+}
+
+class LogicManager {
+    - model : Model
+    - storage : Storage
+    - taskListParser : TaskListParser
+    __
+    - taskSaver()
+}
+
+enum RecurType {
+    static weekIntervalMilliseconds : long
+    static weekIntervalDays : long
+
+    static dayIntervalMilliseconds : long
+    static dayIntervalDays : long
+    __
+    - getDayInterval()
+    - getInterval()
+}
+
+
+
+@enduml
