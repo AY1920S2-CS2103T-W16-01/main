@@ -81,7 +81,7 @@ Indexes refer to the current tasklist on display, it does not refer to the indic
 [TIP]
 Parameters can be in any order e.g. if the command specifies `pet/PETNAME pom/POMDURATION`, `pom/POMDURATION pet/PETNAME` is also acceptable.
 
-// tag::quickStart[]
+//tag::quickStart[]
 == Quick Start
 - This section provides a quick guide on firing up BB Productive.
 
@@ -107,7 +107,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 .  Refer to <<Features>> for details of each command.
 
-// end::quickStart[]
+//end::quickStart[]
 
 [#index]
 [[Terminology]]
@@ -128,11 +128,11 @@ Indexes refer to the current tasklist on display, it does not refer to the indic
 
 //tag::gui[]
 
-== Graphical User Interface (Permas)
+== Graphical User Interface
 This section gives you a brief overview of the various GUI components present in BB Productive.
 
 === Pet View
-The Pet View is where you can view your pet, its name, level and experience gained. With diligent usage of BB Productive, its experience (XP) and level will increase with time. The pet will evolve as it levels up and take on different appearances, encouraging you to work harder! Further details of the Pet are described [here](#pet)
+The Pet View is where you can view your pet, its name, level, and experience gained. With diligent usage of BB Productive, its experience (XP) and level will increase with time. The pet will evolve as it levels up and takes on different appearances, encouraging you to work harder! Further details of the Pet are described <<pet, here>>.
 
 .Pet
 image::pet.png[width=395]
@@ -144,19 +144,19 @@ The Command Box is the one-stop place for you to input any commands to interact 
 image::command_box.png[width=395]
 
 === Tasks Tab
-The Task Tab is where you view your personal task list and the Pomodoro Timer. Any changes made to the task list through the commands will be reflected here! The Pomodoro Timer runs when you run the Pom Command as described [here](#Pomodoro).
+The Task Tab is where you view your task list and the Pomodoro Timer. Any changes made to the task list through the commands will be reflected here! The Pomodoro Timer runs when you run the Pom Command as described <<pomodoro, here>>.
 
 .Tasks Tab
 image::tasks_tab.png[width=790]
 
 === Statistics Tab
-The Statistics Tab consists of the Daiy Challenge and the Productivity Charts. They help you to visualise the progress of your productivity over the course of the past week, giving you momentum to hit your productivity goals! The usage of this tab will be discussed in more detail [here](#statistics).
+The Statistics Tab consists of the Daily Challenge and the Productivity Charts. They help you to visualize the progress of your productivity over the past week, giving you the momentum to hit your productivity goals! You can find out more about this tab <<statistics, here>>.
 
 .Statistics Tab
 image::stats_tab.png[width=395]
 
 === Settings Tab
-The Settings Tab lets you customise the program to suit your needs. In this tab, you can view and edit your configurations for Pet Name, Pomodoro Duration and Daily Challenge Target. The usage of this tab will be discussed in more detail [here](#settings).
+The Settings Tab lets you customize the program to suit your needs. In this tab, you can view and edit your configurations for Pet Name, Pomodoro Duration, and Daily Challenge Target.
 
 .Settings Tab
 image::settings_tab.png[width=395]
@@ -273,6 +273,13 @@ _All fields with r- prepended refers to a reverse of the original._
 . name -> Shows tasks in alphanumeric order.
 . r-name -> Shows tasks in reverse alphanumeric order.
 
+[NOTE]
+====
+Sort order is removed after any find command is applied. +
+It however remains when any other task commands are applied - add, edit, done, delete, etc. +
+Also sort orders are not retained after closing the application
+====
+
 .Sort success
 image::sort_success.png[width=790]
 
@@ -286,11 +293,16 @@ Oh my after sorting, you still have so many tasks! You can perform a search for 
 * For phrase searching, it is slightly typo tolerant and will show tasks that differ from the `PHRASE` by a little.
 * However, tag names provided must be an exact match (ignoring case).
 
+[NOTE]
+====
+Filtered selection is unapplied when the `add` or `edit` commands are used
+====
+
 .Find success
 image::find_success.png[width=790]
 
 ==== Tag Command
-===== Command :`tag`
+===== Command : `tag`
 
 Hmmm, I wonder what types of tasks I have! You can view all existing tags in BB Productive by entering the Tag command!
 
@@ -312,6 +324,7 @@ Oh my it's been a productive month, time to start on a clean slate. You may dele
 image::clear_success.png[width=790]
 
 === Pet
+anchor:pet[]
 _This section provides information about the virtual pet_
 
 ==== What's Pet?
@@ -339,9 +352,10 @@ The pet has two moods: *Happy* and *Hangry*. When the pet is happy, that means y
 
 [[example of different hangry modes]]
 
-// tag::pomodoro[]
+//tag::pomodoro[]
 [[Pomodoro]]
 === Pomodoro
+anchor:pomodoro[]
 _In this section, let's learn how you can take advantage of the Pomodoro feature to boost your productivity! Learn all the commands you can use for Pomodoro._
 
 ==== What's Pomodoro?
@@ -407,28 +421,28 @@ At the end of the break, the app will return to it's "neutral" state and you can
 .End of pomodoro cycle screen
 image::pom_break_end.png[width=790]
 
-// end::pomodoro[]
+//end::pomodoro[]
 //tag::statistics[]
 
 === Statistics
-As you continue to use BB Productive, you may start to wonder how productive you have been over time. This is where our Statistics feature comes in! Simply type in the command 'stats' to access the Statistics Tab and track your productivity. Look out for the background color of the Statistics Tab. If it turns orange after you type the command this means you are on the correct tab.
+anchor:statistics[]
+As you continue to use BB Productive, you may start to wonder how productive you have been over time. This is where our Statistics feature comes in! Simply type in the command 'stats' to access the Statistics Tab and track your productivity. Look out for the background color of the "Statistics" Tab. If it turns orange after you run the command, you are on the correct tab.
 
-The Statistics Tab consists of 2 features to help you keep track of your productivity.
+The Statistics Tab consists of the following 2 features to help you keep track of your productivity. From the figure below, the Daily Challenge is the progress bar near the top of the screen and the Productivity Charts are the 2 bar charts below.
 
 .Statistics Tab
 image::stats_tab.png[width=400]
 
 ==== Daily Challenge
-The Daily Challenge is a progress bar that tracks the total duration you have kept the Pomodoro running on the current day. The more you run the Pomodoro, the more the progress bar fills, and the closer you are to clearing the challenge! Try to clear the Daily Challenge everyday to hit your productivity goals!
+The Daily Challenge tracks the total duration you have kept the Pomodoro running on the current day. The more you run the Pomodoro, the more the progress bar fills, and the closer you are to clearing the challenge! Try to clear the Daily Challenge every day to hit your productivity goals!
 
 [IMPORTANT]
 ====
-You can customise the duration you aim to achieve on a daily basis by using the Set Command as introduced in section 6.x //TODO link.
+You can customise the duration you aim to achieve on a daily basis by using the Set Command.
 ====
 
-==== Productivity Chart
-The Productivity Chart tracks the number of tasks done and duration you ran the Pomodoro per day for the past 7 days. You can thus track your productivity over time. With this information. you can make proper adjustments to your schedule to improve your productivity. If you start noticing the orange bars getting shorter, realise that it is time to buckle up and work harder, or else you may lose your productivity momentum!
-
+==== Productivity Charts
+The Productivity Charts tracks 2 main data points daily. Firstly, it tracks the number of tasks you have completed. Secondly, it tracks the total duration you ran the Pomodoro. With this information, you can gauge your productivity over time and make proper adjustments to your schedule to improve your productivity. If you start noticing the orange bars getting shorter, realize that it is time to buckle up and work harder, or else you may lose your productivity momentum!
 //end::statistics[]
 
 //tag::AutoComplete[]
@@ -460,7 +474,7 @@ image::complete_fail.png[]
 
 //end::AutoComplete[]
 
-// tag::reminder[]
+//tag::reminder[]
 
 === Reminders
 
@@ -516,9 +530,9 @@ image::EditTaskReminderDown.png[width=395]
 .Success for editing task's reminder.
 image::reminder_edit_success.png[width=790]
 
-// end::reminder[]
+//end::reminder[]
 
-// tag::recurring[]
+//tag::recurring[]
 === Recurring
 
 ==== What's Recurring?
@@ -599,7 +613,7 @@ image::recurring_behaviour_new_reminder_resultDisplay(Bottom).png[width=395]
 .Task has been reset shown on task card with updated reminder time of 14th April 2020 at 9:32PM.
 image::recurring_behaviour_new_reminder.png[width=790]
 
-// end::recurring[]
+//end::recurring[]
 
 [[Navigation]]
 === Navigation
@@ -660,17 +674,16 @@ Pet Name: Only alphanumerics are allowed
 Pomodoro Duration : The maximum amount is 60 minutes so as to prevent you from burning out
 Daily Target: The maximun amount is 720 minutes
 
+//tag::storage[]
 === Storage (Permas)
 All your progress, user preferences and settings are stored in the “data” folder. If you plan to switch devices, you may transfer your progress to another computer by copying the contents of the original device’s “data” folder to the new device’s data folder. This can be done through a thumbdrive.
 
 [TIP]
-====
 Please check that the following files are in the “data” folder to ensure that you are transferring the correct files!
-====
 image::storage.png[width="395"]
 
-// end::storage[]
-// tag::commandtablesummary[]
+//end::storage[]
+//tag::commandtablesummary[]
 [[CommandTableSummary]]
 == Command Table Summary
 _The following table summarizes all the commands that you can use. Input contained with in [...] are optional fields._
@@ -733,7 +746,7 @@ _The following table summarizes all the commands that you can use. Input contain
 
 |===
 
-// end::commandtablesummary[]
+//end::commandtablesummary[]
 
 == FAQ
 

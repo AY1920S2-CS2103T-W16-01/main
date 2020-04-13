@@ -161,14 +161,52 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 === TaskList
+
+
 Shown below is a high level overview of task class and related classes. This is represented in a class diagram.
 
 .Task Class Diagram with all aforementioned attributes including recurring and reminder
 image::TaskClassDiagram.png[width=790]
-==== Add(Permas)
 
-// tag::editTaskList[]
-==== Edit(Arthur)
+
+//tag::add[]
+==== Add
+
+===== Implementation
+The Add feature allows the user to add a `Task`. Its only compulsory field is `Name`. `Description`, `Priority`, `Reminder`, `Recurring` and `Tag` are optional fields.
+
+[NOTE]
+Default `Priority` of 'low' is assigned if it is not specified.
+
+[NOTE]
+The user can specify multiple `Tag`s.
+
+The mechanism of how `SwitchTabCommand` updates the `Ui` is described below through an example usage.
+
+Step 1. The user executes `add n/Homework 1 des/Read up on Semaphotes p/3` to add a new `Task`. `LogicManager` calls execute on this inputs.
+
+Step 2. `TaskListParser` creates an `AddCommandParser` to parse this input. `AddCommandParser` creates the relevant objects for the fields specified in input. Based on the input, it creates a `Task` with its assigned `Name`, `Priority` and `Description`.
+
+Step 3. `AddCommandParser` returns a new `AddCommand` with the newly created `Task` as its only argument to `LogicManager`.
+
+Step 4. `AddCommand` executes. It checks if the `TaskList` contains a duplicate `Task` to it through `Model#hasTask`. If a duplicate `Task` exists, a `CommandException` is thrown. If not, it adds the new `Task` into the `Tasklist` through `Model#addTask`.
+
+Step 5. `AddCommand` creates and return the resulting `CommandResult` to the `Ui`.
+
+The following sequence diagram shows how the `AddCommand` is executed.
+
+.Add Command Sequence Diagram
+image::AddSequenceDiagram.png[]
+
+The following activity diagram summarises what happens when the `AddCommand` is executed.
+
+.Add Command Activity Diagram
+image::AddCommandActivityDiagram.png[]
+
+//end::add[]
+//tag::editTaskList[]
+
+==== Edit
 The edit feature allows the user to edit the task, adding or updating fields in a task accordingly.
 
 ===== Implementation
@@ -180,53 +218,61 @@ The edit command is done in 2 parts. `EditCommandParser` as well as `EditCommand
 
 .Sequence of executing an edit command
 image::EditSequenceDiagram.png[]
-// tag::editTaskList[]
+//end::editTaskList[]
 
 ==== Done and Delete (Fyon)
 
 //tag::branson[]
 === Sort
+
+[NOTE]
+=====
+The sort order is not maintained after the application closes
+=====
+
 ==== Implementation
 *API* : link:{repoURL}/src/main/java/seedu/address/logic/commands/SortCommand.java[`SortCommand.java`]
 
 .Sequence of executing a sort command
 image::SortSequenceDiagram.png[]
-The sort command takes in a list of fields and generates FieldComparators as seen in the diagram and then uses Comparator.thenComparing to aggregate the comparators. The first field provided will be of the highest sort order. The Model will then set the aggregated comparator on the `TaskList`.
+The sort command takes in a list of fields and generates FieldComparators as seen in the diagram and then uses Comparator.thenComparing to aggregate the comparators. The first field provided will be of the highest sort order. The `Model` will then set the aggregated comparator on the `TaskList`.
 
 .Class diagram of SortedList
 image::SortedListClassDiagram.png[]
-We use a new SortedList from JavaFx within TaskList because FilteredList does not allow for sorting. As such we have the FilteredList reference the SortedList and the SortedList refernce the UniqueTaskList. By warpping the lists around another, this allows the SortedList and FilteredList to read changes to the UniqueTaskList and perform the appropriate filtering and sorting.
+We use a new `SortedList` from JavaFx within `TaskList` because `FilteredList` does not allow for sorting. As such we have the `FilteredList` reference the `SortedList` and the `SortedList` refernce the `UniqueTaskList`. By warpping the lists around another, this allows the `SortedList` and `FilteredList` to read changes to the `UniqueTaskList` and perform the appropriate filtering and sorting.
 
 .Sequence of initializing the Sorted List
 image::SortInitliazeDiagram.png[]
 
-Due to the requirements mentioned, this is how we generate our FilteredList. We set FilteredList to reference the SortedList and then the SortedList to reference the UniqueTaskList.
+Due to the requirements mentioned, this is how we generate our `FilteredList`. We set `FilteredList` to reference the `SortedList` and then the `SortedList` to reference the `UniqueTaskList`.
 
 ==== Updating UI
+.Sequence of how sort updates the UI
 image::SortUiSequenceDiagram.png[]
 
-Meanwhile to update the UI on the newest sorting order, the latest sortOrder is set on the `TaskList`. The LogicManager is then able to access the sort order through the Model and provide the `MainWindow` with the sort order. The MainWindow then sets it on the `TaskListPanel`.
-
-SortCommandResult extends CommandResult and contains an additional String attribute `sortOrder`.
+Meanwhile to update the UI on the newest sorting order, the latest sortOrder is set on the `TaskList`. The `LogicManager` is then able to access the sort order from the `TaskList` throgh the `Model` and provide the `MainWindow` with the sort order. The `MainWindow` then sets it on the `TaskListPanel`.
 
 === AutoComplete
 Auto complete is triggered when users press tab while focussed on the command line.
 
 ==== Implementation
+*API* : link:{repoURL}/src/main/java/seedu/address/logic/commands/CommandCompletor.java[`CommandCompletor.java`]
+
 .AutoComplete Sequence Diagram
 image::ACSequenceDiagram.png[]
 
-When a user presses tab on the command line, a key event handler in the CommandBox calls the suggestCommand function of MainWindow with the user input. The MainWindow then passes the user input through the LogicManager to the CommandCompletor. +
+When a user presses tab on the command line, a key event handler in the `CommandBox` calls the suggestCommand function of `MainWindow` with the user input. The `MainWindow` then passes the user input through the `LogicManager` to the CommandCompletor. +
 
-The input is pass through the LogicManager so that we can get TaskList details from the LogicManager and transfer it to the CommandCompletor (e.g. taskList length). The CommandCompletor then parses the input and returns one of three things which lead to different changes to the UI:
+The input is pass through the `LogicManager` so that we can get TaskList details from the `LogicManager` and transfer it to the CommandCompletor (e.g. taskList length). The CommandCompletor then parses the input and returns one of three things which lead to different changes to the UI:
 
-. CompletorResult
-.. Will cause CommandBox to setSuccess on CommandTextField
-. CompletorDeletionResult [inherits from CompletorResult]
+. `CompletorResult`
+.. Will cause `CommandBox` to setSuccess on `CommandTextField`
+. `CompletorDeletionResult` [inherits from `CompletorResult`]
 .. Contains deleted input which will be shown as feedback
-.. Will cause MainWindow to call setWarning on ResultDisplay
-. CompletorException
-.. Will cause CommandBox to setFailure on CommandTextField
+.. Will cause `MainWindow` to call setWarning on `ResultDisplay`
+. `CompletorException`
+.. Will cause `CommandBox` to setFailure on `CommandTextField`
+[#criteria]
 
 ==== Auto Complete Overview
 .Activity diagram of auto complete
@@ -238,7 +284,6 @@ Auto completion of a word happens when either:
 . the input matches the start of a target word
 . the edit distance between the input and the target < 2.
 =====
-[#completion criteria]
 
 The above diagram provides a big picture overview of decisions `CommandCompletor` goes through when processing user input.
 
@@ -248,32 +293,32 @@ The above diagram provides a big picture overview of decisions `CommandCompletor
 
 ===== Argument checks overview
 
-. If the input is an add/edit/pom command then CommandCompletor will attempt to add prefixes.
+. If the input is an add/edit/pom command then `CommandCompletor` will attempt to add prefixes.
 .. add/edit command -> add priority and reminder prefixes
 ... Edit auto complete will only add prefixes after the second word to avoid adding a prefix to the compulsory INDEX field of edit commands
 .. pom command -> add timer prefix
 . If input is a delete/done command
 .. remove any invalid indices that are greater than the length of the displayed task list or that are not a positive integer
 . If input is a sort command
-.. Auto completion of fields is performed based on the <<completion criteria>>
+.. Auto completion of fields is performed based on the <<criteria, criteria>>
 .. If the field is not recongized, then it is removed
 
 ==== Auto Complete output:
 As seen from the activity diagram above:
 
-. Known Command UI displayed when:
+. Known Command UI is displayed when:
 .. Any kind of completion has happened or nothing has changed for the input
 ... `CompletorResult` is returned
 .. Any input is deleted (invalid index or sort field)
 ... `CompletorDeletionResult` is returned
 . Unknown Command UI is displayed when:
 .. Command word provided is not recognized
-... CompletorException` is raised
+... `CompletorException` is raised
 
 ==== Known Command UI
 
 .AutoComplete Success UI
-image::ACSuccess.png[width=600]
+image::ACsuccess.png[width=600]
 
 * `CommandTextField` is set to green
 * `CommandTextField` text is replaced by the suggested command
@@ -283,7 +328,7 @@ image::ACSuccess.png[width=600]
 ==== Unknown Command UI
 
 .AutoComplete Failure UI
-image::ACFailure.png[width=500]
+image::ACfailure.png[width=500]
 
 * `CommandTextField` is set to red
 * `CommandTextField` text is unchanged
@@ -297,50 +342,81 @@ Here we take a closer look at how prefix completion is implemented. We iterate t
 ==== Index Completion
 image::ACIndexActivityDiagram.png[]
 
-Similar to before, we iterate through the arguments and we remove indexes that are either out of the displayed TaskList's size or that is not a positive integer. We then append it to a removed list so that we can inform the user what input has been removed.
+Similar to before, we iterate through the arguments and we remove indexes that are either out of the displayed `TaskList` size or that is not a positive integer. We then append it to a removed list so that we can inform the user what input has been removed.
 
 ==== Sort field Completion
-Sort field completion is done by iterating through all arguments word by word and performing the auto complete checks against all possible sort fields. The auto complete checks were the same as the above <<completion criteria>>.
+Sort field completion is done by iterating through all arguments word by word and performing the auto complete checks against all possible sort fields. The auto complete checks were the same as the above <<criteria, criteria>>.
 
 === Enhanced Find
-We've built upon the existing find function in AB-3 to filter tasks based on phrases instead of words.
+We've built upon the existing find function in AB-3 to filter tasks based on phrases (with some degree of typing errors) and based on task tags.
+
+[NOTE]
+=====
+The filtered list is not maintained after the application closes
+=====
 
 ==== Implementation
+*API* : link:{repoURL}/src/main/java/seedu/address/logic/commands/FindCommand.java[`FindCommand.java`]
 
 .Find Command Sequence diagram
 image::FindSequenceDiagram.png[]
 
-* After setting the predicate on the model and FilteredList, the FilteredList will apply the Test method of the predicate.
-** Scoring will be discussed in the next section.
-* A comparator is then retrived from the Predicate and is then used to display more relevant search results to the user
-* Any existing comparator set is removed when `setSearchResultOrder` is called on Model
+* After setting the predicate on the model and `FilteredList`, the `FilteredList` will apply the Test method of the predicate.
+** The test method calculates a score for every task and only displays tasks with score < 2.
+* A comparator is then retrived from the Predicate by comparing Tasks based on their score and is used to sort the filtered list to show the more relevant searches first
+** Lower scores means a more relevant task to the search term.
+** Tasks with lower scores will preceed those with higher scores based on the comparator.
+
+[NOTE]
+====
+Any existing comparator set by previous sort commands is replaced by the find command's relevance comparator.
+====
 
 ==== Predicate
+*API* : link:{repoURL}/src/main/java/seedu/address/model/task/NameContainsKeywordsPredicate.java[`NameContainsKeywordsPredicate.java`]
 
-.Scoring decision
-All tasks will initially have a score of 2 and based on the below criteria, the score will be adjusted. Only tasks with scores < 2 will be displayed.
+===== Scoring decision
+The score is first initialized to 2 and is later replaced by name score if the name score is lower than 2. We then subtract tag score from it to get the final score.
 
+.Overview of predicate sequence
 image::PredicateSequenceDiagram.png[]
 
 ===== Name scoring
-* The name score of a task is the minimum score of all chunks of the name
-** A chunk is a String subsequence of the task name that has the same number of words as the search term
-* We iterate through all chunks of the task name and calculate a score for each chunk
-** The minimum of these scores is set as the task's overall name score
-** a smaller score means a more relevant task
-* The calculation of a chunk is decided by:
-** edit distance between one of the chunks and the search term < 2, score is set to 1
-** search term matches the start of one of the chunks, score is set to 1
-** one of the chunks is the same as the search term, score is set to 0
+Please refer to the above's name score group
+
+* The name score of a task is the minimum score of all chunks of a task.
+** A chunk is a String subsequence of the task name that has the same number of words as the search term.
+* We iterate through all chunks of the task name and calculate a score for each chunk.
+* Here is how we set the score for each chunk:
+** edit distance between one of the chunks and the search term < 2, chunk score is set to 1.
+** search term matches the start of one of the chunks, chunk score is set to 1.
+** one of the chunks is the same as the search term, chunk score is set to 0.
+** else chunk score is 2.
+* We then get the minimum of these chunk scores.
+
+.Name scoring in predicate
+image::PredicateNameSequenceDiagram.png[]
 
 ===== Tag scoring
-Tag scoring is carried out on top of name scoring. For every tag in the search term that appears in a Task, we decrement the Task's name score by 1.
+For every tag in the search term that appears in a Task, we increment the tag score by 1.
 
-The combination of name and tag score is then used as a Task's final score in determining it's relevance in the search results.
+.Tag scoring in predicate
+image::PredicateTagSequenceDiagram.png[]
 
-==== Other Considerations
-* We chose to not use edit distance for search terms of string length less than 3 as this would bring about alot of false positives given that that the edit distance between words of length < 3 will easily be 1
-* We also chose to display task names who's start matches the search term for ease of usage even though the edit distance could be significant.
+===== Final score
+final score = name score - tag score. Search results are displayed in ascending order of final score.
+
+===== Design considerations
+. The idea is to first ensure that tasks that are too different are not shown while allowing some degree of typo error on the user's end when searching for a task.
+.. This is supported by the use of edit distance and a small threshold.
+. Next we also wanted the user to be able to find a task name without searching the full name.
+.. We show tasks who have a chunk who's start matches the search term.
+. We also wanted to allow users to search by tags.
+.. Thus tag score is introduced.
+. While the score helps to determine which tasks to show, it serves another job in providing the search relevance so that while accommodating for some degree of error from user input, they are still seeing what's more relevant first.
+.. Users can also narrow their search by performing find with more tags or a more complete task name so that only that task has a chunk that matches.
+. We chose to not use edit distance for search terms of string length less than 3 as this would bring about alot of false positives given that that the edit distance between words of length < 3 will easily be 1.
+
 //end::branson[]
 
 //tag::pomodoro[]
@@ -380,43 +456,6 @@ Pomodoro has settings that can be configured by the user:
 
 This data is captured and stored in the `Pomodoro` class in `seedu.address.model`, which interacts with the app’s storage system. `PomodoroManager` also updates the `Pomodoro` model on what task is being run and the time remaining in a particular cycle. This allows the time progress to be persistent in between app closures and relaunches.
 //end::pomodoro[]
-
-// tag::reminder[]
-=== Reminders
-The user's reminder functionality is achieved by calculating the time delay from the current time and the time from the user input. This time delay as well as the Task name and description is passed to the MainWindow for the reminder to be triggered as a pop up at the right time.
-
-==== Implementation
-A `DateTimeFormatter` is used to parse the date time from the user input, which is just the date in the r/ flag when adding or editing a task, into a `LocalDateTime` object. This `LocalDateTime` is used to store the date and time information. When the reminder is instantiated, a `setDelay` method is called setting in motion the calculation of time delay between the current time and the reminder time, and triggering of reminder on the `MainWindow`. The reminder class is stored as an `Optional` in the Task class itself.
-
-Reminder is stored as a string in the `JsonAdaptedTask`. This string contains the exact format of the date and time that the user inputs, this allows the same constructor to be used when the data is read and changed to a task and thus reminder object. A sequence diagram of the reminder flow is shown below for reference.
-
-.Reminder Sequence Diagram
-image::ReminderSequenceDiagram.png[width=790]
-
-// end::reminder[]
-
-// tag::recurring[]
-=== Recurring
-The user's recurring tasks functionality is twofold. Resetting the task to be unfinished after the stipulated time interval and resetting the task's reminder date according to the stipulated time interval. The behaviour for this recurring feature is mainly represented in the activity diagram below.
-
-.Recurring Activity Diagram
-image::RecurringActivityDiagram.png[width=790]
-
-==== Implementation
-The logic is mainly implemented in the `Recurring` class and `ModelManager` class in `seedu.address.model`, which interacts with the app’s storage system especially with respect to task storage. This `Recurring` instance is stored in `Task` as an optional field.
-
-In the `Recurring` class, whenever a task is added or edited, the recurring type is then parsed to be either daily or weekly. Afterward, based on the time the recurring attribute is added, a reference LocalDateTime is noted in the `Recurring` instance itself. This ensures that the first recurring behaviour will trigger in the given interval with respect to that referenceDateTime and following the same interval afterwards.
-
-The recurring behaviour is orchestrated in `ModelManager` whenever a task is added or edited, a `setTask` method is called that will generate a `Timer` and `TimerTask`. A `TimerTask` is the logic run to update the task, namely resetting the done and the reminder accordingly. The `Timer` schedules `TimerTasks` at a fixed rate based on the the time interval chosen, if it is daily it will be every 24 hours (but for testing purposes it will be every 60 seconds) and if it is weekly it will be every 7 days. There is only 1 `Timer` for the `ModelManager` that handles the scheduling of each `TimerTask` that corresponds to every task that has a recurring behaviour. On boot the `Timer` is canceled and replaced with a new instance, subsequently all the tasks are iterated through. Every task with a recurring attribute will have a `TimerTask` generated and scheduled accordingly.
-
-The recurring behaviour triggered will set the task as undone. If a reminder exists and has been triggered, it will increment the reminder to be the next day or week depending on the interval set. When the recurring behaviour is triggered, the result display will show a message that the recurring task has been reset.
-
-Additionally, a flag has been made to check if the task needs to be changed, if it does not it will not be unnecessarily updated in the `Model`. A class diagram of the tasks and all its attributes is shown below.
-
-Recurring is stored as a string in the `JsonAdaptedTask`. This string contains the LocalDateTime information for the reference date as well as the type of interval itself. A special constructor for this string is used to reconstruct the recurring attribute when reading from storage.
-
-// end::recurring[]
-
 //tag::statistics[]
 
 === Switch Tab Feature
@@ -437,57 +476,111 @@ The following sequence diagram shows how the SwitchTabCommand updates the tab in
 .Sequence Diagram of SwitchTabCommand
 image::SwitchTabSequenceDiagram.png[]
 
-=== Statistics Feature
-
-The Statistics feature allows the user to view information about their number of tasks completed and Pomodoro duration ran on a daily basis for the past `CONSTANT_SIZE` days.
-
-[NOTE]
-`CONSTANT_SIZE` can be set to any number for any future developments. In our current implementation, we chose to store data for only the past 7 days to keep statistics simple and intuitive for users.
+//tag::reminder[]
+=== Reminders
+The user's reminder functionality is achieved by calculating the time delay from the current time and the time from the user input. This time delay as well as the Task name and description is passed to the MainWindow for the reminder to be triggered as a pop up at the right time.
 
 ==== Implementation
-The Statistics feature is mainly supported by the Statistics class, which in turn is facilitated by the CustomQueue class. Its class diagram is given below.
+A `DateTimeFormatter` is used to parse the date time from the user input, which is just the date in the r/ flag when adding or editing a task, into a `LocalDateTime` object. This `LocalDateTime` is used to store the date and time information. When the reminder is instantiated, a `setDelay` method is called setting in motion the calculation of time delay between the current time and the reminder time, and triggering of reminder on the `MainWindow`. The reminder class is stored as an `Optional` in the Task class itself.
+
+Reminder is stored as a string in the `JsonAdaptedTask`. This string contains the exact format of the date and time that the user inputs, this allows the same constructor to be used when the data is read and changed to a task and thus reminder object. A sequence diagram of the reminder flow is shown below for reference.
+
+.Reminder Sequence Diagram
+image::ReminderSequenceDiagram.png[width=790]
+
+//end::reminder[]
+
+//tag::recurring[]
+=== Recurring
+The user's recurring tasks functionality is twofold. Resetting the task to be unfinished after the stipulated time interval and resetting the task's reminder date according to the stipulated time interval. The behaviour for this recurring feature is mainly represented in the activity diagram below.
+
+.Recurring Activity Diagram
+image::RecurringActivityDiagram.png[width=790]
+
+==== Implementation
+The logic is mainly implemented in the `Recurring` class and `ModelManager` class in `seedu.address.model`, which interacts with the app’s storage system especially with respect to task storage. This `Recurring` instance is stored in `Task` as an optional field.
+
+In the `Recurring` class, whenever a task is added or edited, the recurring type is then parsed to be either daily or weekly. Afterward, based on the time the recurring attribute is added, a reference LocalDateTime is noted in the `Recurring` instance itself. This ensures that the first recurring behaviour will trigger in the given interval with respect to that referenceDateTime and following the same interval afterwards.
+
+The recurring behaviour is orchestrated in `ModelManager` whenever a task is added or edited, a `setTask` method is called that will generate a `Timer` and `TimerTask`. A `TimerTask` is the logic run to update the task, namely resetting the done and the reminder accordingly. The `Timer` schedules `TimerTasks` at a fixed rate based on the the time interval chosen, if it is daily it will be every 24 hours (but for testing purposes it will be every 60 seconds) and if it is weekly it will be every 7 days. There is only 1 `Timer` for the `ModelManager` that handles the scheduling of each `TimerTask` that corresponds to every task that has a recurring behaviour. On boot the `Timer` is canceled and replaced with a new instance, subsequently all the tasks are iterated through. Every task with a recurring attribute will have a `TimerTask` generated and scheduled accordingly.
+
+The recurring behaviour triggered will set the task as undone. If a reminder exists and has been triggered, it will increment the reminder to be the next day or week depending on the interval set. When the recurring behaviour is triggered, the result display will show a message that the recurring task has been reset.
+
+Additionally, a flag has been made to check if the task needs to be changed, if it does not it will not be unnecessarily updated in the `Model`. A class diagram of the tasks and all its attributes is shown below.
+
+Recurring is stored as a string in the `JsonAdaptedTask`. This string contains the LocalDateTime information for the reference date as well as the type of interval itself. A special constructor for this string is used to reconstruct the recurring attribute when reading from storage.
+
+//end::recurring[]
+
+//tag::statistics[]
+
+=== Switch Tab Feature
+
+The Switch tab feature allows the user to traverse between the Tasks, Statistics and Settings tabs.
+
+The user can switch tabs through 2 main methods:
+1. User calls a valid `SwitchTabCommand` that displays the appropriate tab defined.
+2. User calls a valid command that changes the display of Tab B while he or she is on Tab A. In this scenario, Tab B will display automatically.
+
+This behaviour is represented in the following activity diagram.
+
+.Activity Diagram of Tab Switches
+image::SwitchTabActivityDiagram.png[]
+
+The mechanism of how `SwitchTabCommand` updates the `Ui` is described below.
+
+Step 1. `MainWindow` executes the user input through logic and retrieves the `SwitchTabCommandResult commandResult` from `Logic`.
+
+Step 2. `MainWindow` retrieves the `tabToSwitchIndex` from `commandResult`.
+
+Step 3. `MainWindow` updates the `tabToSwitchIndex` tab through `tabPanePlaceholder`.
+
+The following sequence diagram shows how `SwitchTabCommand` updates the tab in the `Ui`.
+
+.Sequence Diagram of SwitchTabCommand
+image::SwitchTabSequenceDiagram.png[]
+
+=== Statistics Feature
+
+The Statistics feature allows the user to view information about their number of tasks completed and Pomodoro duration ran (in minutes) on a daily basis for the past `CONSTANT_SIZE` days.
+
+[NOTE]
+`CONSTANT_SIZE` can be set to any number for any future developments. In our current implementation, we chose to store data for only the past 7 days to keep Statistics simple and intuitive for users.
+
+==== Implementation
+The Statistics feature is mainly supported by the `Statistics` class, which in turn is facilitated by the `CustomQueue` class. Its class diagram is given below.
 
 .Class Diagram of the Statistics Component
 image::StatisticsClassDiagram.png[]
 
-The Statistics feature does not support any explicit commands. Instead, the UI is updated and displayed when the SwitchTabCommand 'stats' is called.
+The `CustomQueue` class enforces the following constraints:
 
-Step 1. MainWindow receives the SwitchTabCommandResult commandResult from Logic.
-
-Step 2. MainWindow calls StatisticsManager#updateStatisticsDisplayValues() which retrieve the latest Statistics from Model and generates the display information.
-
-Step 3. MainWindow then retrieves these display information from StatisticsManager and sets this information in StatisticsDisplay.
-
-[NOTE]
-SwitchTabCommand also switches the focused tab to the Statistics tab to display the results to the user.
-
-The following sequence diagram shows how the statistics is updated to the display.
-
-.Sequence Diagram of how Statistics
-image::StatisticsUiSequenceDiagram.png[]
-
-==== CustomQueue Implementation
-
-The `CustomQueue` class enforces the following constraints.
 1. Size of `CustomQueue` must be of `CONSTANT_SIZE` after each method call through `Statistics`.
 2. DayData dates in `CustomQueue` must be only 1 day apart between its elements, and sorted from oldest to latest date.
 
 The `CustomQueue` class implements the following methods for other components to access or update its data:
 
-* Model#updateDataDatesStatistics() - Updates data to current day while retaining stored data.
-* Model#updatesDayDataStatistics() - Replaces existing DayData in Statistics with new DayData of the same date.
-* Model#getDayDataFromDateStatistics() - Returns the DayData object from Statistics with the specified date.
+* `Model#updateDataDatesStatistics` - Updates data to current day while retaining stored data.
+* `Model#updatesDayDataStatistics` - Replaces existing DayData in Statistics with new DayData of the same date.
+* `Model#getDayDataFromDateStatistics` - Returns the DayData object from Statistics with the specified date.
+
+The Statistics feature does not support any explicit commands. Instead, `Ui` is updated and displayed when the SwitchTabCommand 'stats' is called. The mechanism of this behaviour is described below.
+
+Step 1. `MainWindow` receives the `SwitchTabCommandResult commandResult` from `Logic`.
+
+Step 2. `MainWindow` calls `StatisticsManager#updateStatisticsDisplayValues()` which retrieve the latest `Statistics` from `Model` and generates the display information.
+
+Step 3. `MainWindow` then retrieves these display information from `StatisticsManager` and sets this information in `StatisticsDisplay`.
+
+[NOTE]
+`SwitchTabCommand` also switches the focused tab to the `Statistics` tab to display the results to the user.
+
+The following sequence diagram shows how the `Statistics` is updated to the display.
+
+.Sequence Diagram of how Statistics
+image::StatisticsUiSequenceDiagram.png[]
 
 ==== Design considerations
-
-===== Aspect: when to update StatisticsDisplay
-
-* **Alternative 1 (current choice):** Update when the user runs the command to view Statistics
-** Pros: Easy to implement.
-** Cons: Progress can only be viewed at the Statistics tab.
-* **Alternative 2:** Update when any changes are made to Statistics.
-** Pros: In the event of future developments, any component of Statistics can be displayed at all times.
-** Cons: Need to keep track of all instances that can modify Statistics' values.
 
 ===== Aspect: Data structure to support Statistics
 
@@ -498,8 +591,68 @@ The `CustomQueue` class implements the following methods for other components to
 ** Pros: Easy to implement.
 ** Cons: Harder to pass data to generate graphs. Need to handle outdated dates.
 
+===== Aspect: when to update StatisticsDisplay
+
+* **Alternative 1 (current choice):** Update when the user runs the command to view Statistics
+** Pros: Easy to implement.
+** Cons: Progress can only be viewed at the Statistics tab.
+* **Alternative 2:** Update when any changes are made to Statistics.
+** Pros: In the event of future developments, any component of Statistics can be displayed at all times.
+** Cons: Need to keep track of all instances that can modify Statistics' values.
+
 //end::statistics[]
 
+=== Pet
+==== Implementation
+The pet feature aims to provide a virtual pet for the app in order to motivate the user. The pet has three main components: the XP points, the evolution and the mood. To facilitate this function, a Pet class is created to represent the pet. A PetManager class is created to manage the pet via communications from MainWindow. Lastly, a PetDisplay class is created to handle the UI of the pet.
+
+.Pet Class Diagram
+image::PetClassDiagram.png[]
+
+To exemplify the implementation for the components of the XP points and the evolution of the pet, an example usage scenario is given below.
+
+Step 1. User finishes a task. User calls the done command for the task. MainWindow would execute this command and generate a DoneCommandResult object
+
+image::DoneCommandSequenceDiagram.png[]
+
+Step 2. The MainWindow will update PetManager to increase XP points after the DoneCommandResult Object is received. This is done by calling the method `PetManager#incrementExp`. PetManager would then update XP points of Pet by calling `Pet#incrementExp`. This method also checks whether the XP points have reached the milestones for the levels and will update the level of the pet accordingly.
+
+.Pet Sequence Diagram
+image::PetSequenceDiagram.png[]
+
+Step 3. Following the update of XP points, MainWindow also updates the mood of the pet. Supposedly, the pet is originally in "HANGRY" mood, MainWindow will call "MainWindow#updateMoodWhenDone" method to change the pet's mood to Happy. It will also update the time of the last done task and reschedules a new timertask so that the pet will turn "Hangry" at the correct time. Lastly, this method also updates the elements
+
+Step 4. MainWindow would then update the string of the filepaths for the respective UI elements in PetDisplay by executing the method `PetManager#updateDisplayElements`.
+
+Step 5. Lastly, MainWindow will the update PetDisplay. The user will then see the UI be updated accodingly. For example, the progress bar would increase.
+
+.update PetDisplay Diagram
+image::UpdatePetDisplaySequenceDiagram.png[]
+
+==== Design Consideration
+
+=== Set Commands
+
+.Set command class diagram
+image::SetClassDiagram.png[]
+
+The Set Commands can be used to customise the features in BB Productive. It can be used to customised the name of the pet, the duration for pomodoro and the daily challenge target so as to better cater to the needs of the user.
+
+Below is an example scenario when the user runs the set command.
+
+Step 1. User runs the command "Set pet/momu pom/30 daily/150". MainWindow will take the user input and call upon LogicManager to pasrse it. LogicManager will the call AddressBookParser which in creates a SetcommandPArser object and then parse the user argument. A SetCommand object is then executed and returned to logic.
+
+.Set command sequence diagram
+image::SetCommandSequenceDiagram.png[]
+
+Step 2. Logic calls upon the method `SetCommand#execute` which eventually calls the methods `Model#SetPetName` and `Model#setPomodoroDefaultTime`. A SetCommandResult object is return once these methods are executed.
+
+Step 3. Upon receiving the SetCommandResult object, MainWindow then calls the method `MainWindow:UpdatePetDisplay` to update the UI for Pet. It also calls `PomodormoManager#SetDefaultStartTime` and `PomdooroDisplay#setTimerText` to update the Ui of pomodoro. Lastly, `StatisticsManager#setDailyTarget` is called to update the value of the dailyTargetText.
+
+.set command updating Ui
+image::SetCommandUpdatingUi.png[]
+
+==== Design Consideration
 === Logging
 
 We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.
@@ -546,7 +699,7 @@ Refer to the guide <<DevOps#, here>>.
 
 *Value proposition*: We integrate a Pomodoro-Pet environment into a full fledged task manager. The pet system serves to gamify the act of doing tasks, thereby motivating users, and the Pomodoro helps users get into a regular work/rest cycle. This integrationcovers all aspects of productivity in line platform. It covers motivation, organising of tasks and also how to go about doing them. This all in one solution is seldom found in other applications which implement maybe 1 or 2 of these features.
 
-// tag::userStories[]
+//tag::userStories[]
 [appendix]
 == User Stories
 
@@ -603,7 +756,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 
 |=======================================================================
-// end::userStories[]
+//end::userStories[]
 
 [appendix]
 
@@ -1010,7 +1163,7 @@ Cons:
 * ...
 * ...
 
-// tag::manualTesting[]
+//tag::manualTesting[]
 [appendix]
 == Instructions for Manual Testing
 
@@ -1094,7 +1247,6 @@ Prerequisite: Take note of the current time plus 1 minute and date in the format
 .. Edit the task with `edit <index> r/DD/MM/YY@HH:mm` +
 Expected: The task displays the reminder date in the task card. When the time comes, a pop up with a title `editReminderTest` and description `test` appears.
 
-
 === Adding a recurring attribute to a task
 . Adding a task with a recurring attribute. +
 .. Run the command `add n/recurTest rec/d`
@@ -1116,6 +1268,72 @@ Prerequisite: Take note of the current time plus 1 minute and date in the format
 .. Run the done command `done <index>` +
 Expected: After 60 seconds, the done is set back to unfinished, with the tick being removed from the task card. After the reminder appears, the date displayed changes to the next day, for example `15 March at 15:48` changes to `16 March at 15:48`.
 
+=== Sorting the task list
+. Add a bunch of tasks with different priorities, reminder dates and done values
+. Next perform sorts of various permutations of {(r-)priority, (r-)name, (r-)done, (r-)date} with spaces in between
+.. sort fields that appear first are of higher priority than those that appear less
+.. Expect the sort order of the tasklist to change, please reference our user guide for the specific changes to the tasklist if unsure
+.. also expect the UI to change to display the most recent sort order
+.. e.g. sort name priority -> UI shows Tasks by name
+... Note that sort order is not maintained after application closes
+
+=== Finding a task
+. Add a bunch of tasks with names with phrases that overlap and tags as well
+. Next you can perform one of the three permutations
+.. `find phrase`
+.. `find phrase [t/TAG]...`
+.. `find t/TAG [t/TAG]...`
+. Expected order of search results: [those mentioned first should appear first]
+.. tasks that have multiple tag matches
+.. tasks that have full name match and tag match
+.. tasks that have full name match or 2 tag matches
+.. tasks that match a tag or phrase is partially matched
+. tasks that don't meet any of the above won't be shown
+
+=== Auto complete
+. UI changes
+.. Any known command words will have command text field set to green
+.. Any unknown command words will have command text field set to red
+.. Any input deletion or invalid indexes will have the result display set to orange
+. Test the command words
+.. try partial start matches: `fi` -> `find`
+.. try typo matches: `fand` -> `find`
+... All command word partial matches should work
+.. `asdf` -> `asdf` 
+... [command text field set to red]
+.. try misspelled words by 1 character: `fand` -> `find`
+. Test prefix completion
+.. Add: `add 20/10/20@10:30 3` -> `add r/20/10/20@10:30 p/3`
+.. Edit: `edit 2 20/10/20@10:30 1` -> `edit 2 r/20/10/20@10:30 p/1`
+... Ensure that the date values are valid
+.. Pom: `pom 2 2.5` -> `pom 2 tm/2.5`
+. Test index checking
+.. Edit: `edit -2` -> `edit -2` 
+... [result display shown to user and turned orange]
+... any non positive integer or integers outside of the displayed task list's size will trigger the same deletion and feedback
+.. delete/done: `done -2 a 1999 2` -> `done 2` 
+... [result display also set to orange]
+. Sort field completion
+.. sort: `sort na prioruty blabla` -> `sort name priority`
+... result display set to orange if input has been deleted
+
+=== Activating Pomodoro
+. Activating Pomodoro. +
+.. Run the command `pom 1`
+.. Take note of the index of that task. +
+Expected: Pomodoro timer will start counting down from 25:00 minutes (default). Upon expiry of the time, app will prompt user in the response bubble, asking if done or no.
+
+. Activating Pomodoro with special time. +
+.. Run the command `pom 1 tm/0.5`
+.. Take note of the index of that task +
+Expected: Pomodoro timer will start counting down from 00:30 minutes. Upon expiry of the time, app will prompt user in the response bubble, asking if done or no.
+
+. Pausing and Resuming Pomodoro. +
+.. Run the command `pom 2`
+.. Then, run the command `pom pause`.
+.. Then, run the command `pom continue`. +
+Expected: After the firs command, Pomodoro timer will start counting down from 25:00 minutes (default). After `pom pause`, the timer will pause. After `pom continue`, timer will resume.
+
 
 _{ more test cases ... }_
 === Saving data
@@ -1127,4 +1345,34 @@ _{ more test cases ... }_
 
 _{ more test cases ... }_
 
-// end::manualTesting[]
+//end::manualTesting[]
+
+=== Switching tabs
+. Switching tabs by using the SwitchTabCommands. +
+.. Run the command `stats`
+Expected: The right screen displays the 'Statistics' tab. The 'Statistics' tab should have an orange background to indicate selection.
+
+. Switching tabs by using other Commands. +
+.. Run the command `stats`.
+.. Take note that the right screen displays the 'Statistics' tab.
+.. Run the command `set daily/50`. This is a SetCommand, and the right screen should automatically display the 'Settings' tab.
+Expected: The right screen displays the 'Statistics' tab. The 'Statistics' tab should have an orange background to indicate selection.
+
+=== Checking Statistics
+. Check done tabulation
+.. Run the command `stats`.
+.. Take note of the number of tasks done on the current day.
+.. Run the command `clear`.
+.. Run the command `add n/new task`.
+.. Run the command `done 1`.
+.. Run the command `stats` again.
+Expected: The number of tasks done on the current day should increase by 1.
+
+. Check Pomodoro duration tabulation
+.. Run the command `stats`.
+.. Take note of the Pomodoro duration on the current day.
+.. Run the command `clear`.
+.. Run the command `add n/new task`.
+.. Run the command `pom 1 tm/1`. This runs the Pomodoro for 1 minute.
+.. Run the command `stats` again.
+Expected: The Pomodoro duration on the current day should increase by 1.

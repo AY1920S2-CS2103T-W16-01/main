@@ -12,11 +12,11 @@ public class Pet implements ReadOnlyPet {
     public final String HANGRY_MOOD_STRING = "HANGRY";
     public final String HAPPY_MOOD_STRING = "HAPPY";
 
-    public String exp;
-    public String level;
-    public String name;
-    public String mood;
-    public String lastDoneTaskTime;
+    private String exp;
+    private String level;
+    private String name;
+    private String mood;
+    private String lastDoneTaskTime;
 
     public Pet(String name, String exp, String level, String mood, String lastDoneTaskTime) {
 

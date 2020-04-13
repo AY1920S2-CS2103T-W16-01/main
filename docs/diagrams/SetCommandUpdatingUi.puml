@@ -1,0 +1,50 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":PetDisplay" as PetDisplay UI_COLOR
+participant ":PomodoroDisplay" as PomodoroDisplay UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":PetManager" as PetManager LOGIC_COLOR
+participant ":PomodoroManager" as PomodoroManager LOGIC_COLOR
+participant ":StatisticsManager" as StatisticsManager LOGIC_COLOR
+end box
+
+
+[-> MainWindow : executeCommand("Set pet/momu pom/30 daily/150")
+activate MainWindow
+
+MainWindow -> LogicManager : executeCommand("Set pet/momu pom/30 daily/150")
+activate LogicManager
+
+LogicManager --> MainWindow : commandResult
+deactivate LogicManager
+
+ref over MainWindow, PetDisplay, PetManager
+update PetDisplay
+end ref
+
+MainWindow -> PomodoroManager : setDefaultStartTime(30.0)
+activate PomodoroManager
+
+PomodoroManager --> MainWindow
+deactivate PomodoroManager
+
+MainWindow -> PomodoroDisplay : setTimerText(30.0)
+activate PomodoroDisplay
+
+PomodoroDisplay --> MainWindow
+deactivate PomodoroDisplay
+
+MainWindow -> StatisticsManager
+activate StatisticsManager
+
+StatisticsManager --> MainWindow :"setDailyTargetText("150")
+deactivate StatisticsManager
+
+[<-- MainWindow
+@enduml
