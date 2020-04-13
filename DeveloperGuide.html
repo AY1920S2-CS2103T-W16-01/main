@@ -27,15 +27,13 @@
 <li><a href="#autocomplete">3.3. AutoComplete</a></li>
 <li><a href="#enhanced-find">3.4. Enhanced Find</a></li>
 <li><a href="#Pomodoro">3.5. Pomodoro</a></li>
-<li><a href="#switch-tab-feature">3.6. Switch Tab Feature</a></li>
-<li><a href="#reminders">3.7. Reminders</a></li>
-<li><a href="#recurring">3.8. Recurring</a></li>
-<li><a href="#switch-tab-feature-2">3.9. Switch Tab Feature</a></li>
-<li><a href="#statistics-feature">3.10. Statistics Feature</a></li>
-<li><a href="#pet">3.11. Pet</a></li>
-<li><a href="#set-commands">3.12. Set Commands</a></li>
-<li><a href="#logging">3.13. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.14. Configuration</a></li>
+<li><a href="#recurring">3.6. Recurring</a></li>
+<li><a href="#switch-tab-feature">3.7. Switch Tab Feature</a></li>
+<li><a href="#statistics-feature">3.8. Statistics Feature</a></li>
+<li><a href="#pet">3.9. Pet</a></li>
+<li><a href="#set-commands">3.10. Set Commands</a></li>
+<li><a href="#logging">3.11. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.12. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a></li>
@@ -1105,46 +1103,13 @@ The user can specify multiple `Tag`s.
 </ul>
 </div>
 <div class="paragraph">
-<p>This data is captured and stored in the <code>Pomodoro</code> class in <code>seedu.address.model</code>, which interacts with the app’s storage system. <code>PomodoroManager</code> also updates the <code>Pomodoro</code> model on what task is being run and the time remaining in a particular cycle. This allows the time progress to be persistent in between app closures and relaunches.</p>
+<p>This data is captured and stored in the <code>Pomodoro</code> class in <code>seedu.address.model</code>, which interacts with the app’s storage system. <code>PomodoroManager</code> also updates the <code>Pomodoro</code> model on what task is being run and the time remaining in a particular cycle. This allows the time progress to be persistent in between app closures and relaunches.
+=== Reminders
+The user&#8217;s reminder functionality is achieved by calculating the time delay from the current time and the time from the user input. This time delay as well as the Task name and description is passed to the MainWindow for the reminder to be triggered as a pop up at the right time.</p>
 </div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="switch-tab-feature"><a class="link" href="#switch-tab-feature">3.6. Switch Tab Feature</a></h3>
-<div class="paragraph">
-<p>The Switch tab feature allows the user to traverse between the Tasks, Statistics and Settings tabs.</p>
-</div>
-<div class="paragraph">
-<p>The user can switch tabs through 2 main methods:
-1. User calls a valid SwitchTabCommand that displays the appropriate tab defined.
-2. User calls a valid command that changes the display of Tab B while he or she is on Tab A. In this scenario, Tab B will display automatically.</p>
-</div>
-<div class="paragraph">
-<p>This behaviour is represented in the following activity diagram.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/SwitchTabActivityDiagram.png" alt="SwitchTabActivityDiagram">
-</div>
-<div class="title">Figure 28. Activity Diagram of Tab Switches</div>
-</div>
-<div class="paragraph">
-<p>The following sequence diagram shows how the SwitchTabCommand updates the tab in the UI.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/SwitchTabSequenceDiagram.png" alt="SwitchTabSequenceDiagram">
-</div>
-<div class="title">Figure 29. Sequence Diagram of SwitchTabCommand</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="reminders"><a class="link" href="#reminders">3.7. Reminders</a></h3>
-<div class="paragraph">
-<p>The user&#8217;s reminder functionality is achieved by calculating the time delay from the current time and the time from the user input. This time delay as well as the Task name and description is passed to the MainWindow for the reminder to be triggered as a pop up at the right time.</p>
 </div>
 <div class="sect3">
-<h4 id="implementation-8"><a class="link" href="#implementation-8">3.7.1. Implementation</a></h4>
+<h4 id="implementation-8"><a class="link" href="#implementation-8">3.5.2. Implementation</a></h4>
 <div class="paragraph">
 <p>A <code>DateTimeFormatter</code> is used to parse the date time from the user input, which is just the date in the r/ flag when adding or editing a task, into a <code>LocalDateTime</code> object. This <code>LocalDateTime</code> is used to store the date and time information. When the reminder is instantiated, a <code>setDelay</code> method is called setting in motion the calculation of time delay between the current time and the reminder time, and triggering of reminder on the <code>MainWindow</code>. The reminder class is stored as an <code>Optional</code> in the Task class itself.</p>
 </div>
@@ -1155,12 +1120,12 @@ The user can specify multiple `Tag`s.
 <div class="content">
 <img src="images/ReminderSequenceDiagram.png" alt="ReminderSequenceDiagram" width="790">
 </div>
-<div class="title">Figure 30. Reminder Sequence Diagram</div>
+<div class="title">Figure 28. Reminder Sequence Diagram</div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="recurring"><a class="link" href="#recurring">3.8. Recurring</a></h3>
+<h3 id="recurring"><a class="link" href="#recurring">3.6. Recurring</a></h3>
 <div class="paragraph">
 <p>The user&#8217;s recurring tasks functionality is twofold. Resetting the task to be unfinished after the stipulated time interval and resetting the task&#8217;s reminder date according to the stipulated time interval. The behaviour for this recurring feature is mainly represented in the activity diagram below.</p>
 </div>
@@ -1168,10 +1133,10 @@ The user can specify multiple `Tag`s.
 <div class="content">
 <img src="images/RecurringActivityDiagram.png" alt="RecurringActivityDiagram" width="790">
 </div>
-<div class="title">Figure 31. Recurring Activity Diagram</div>
+<div class="title">Figure 29. Recurring Activity Diagram</div>
 </div>
 <div class="sect3">
-<h4 id="implementation-9"><a class="link" href="#implementation-9">3.8.1. Implementation</a></h4>
+<h4 id="implementation-9"><a class="link" href="#implementation-9">3.6.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The logic is mainly implemented in the <code>Recurring</code> class and <code>ModelManager</code> class in <code>seedu.address.model</code>, which interacts with the app’s storage system especially with respect to task storage. This <code>Recurring</code> instance is stored in <code>Task</code> as an optional field.</p>
 </div>
@@ -1193,7 +1158,7 @@ The user can specify multiple `Tag`s.
 </div>
 </div>
 <div class="sect2">
-<h3 id="switch-tab-feature-2"><a class="link" href="#switch-tab-feature-2">3.9. Switch Tab Feature</a></h3>
+<h3 id="switch-tab-feature"><a class="link" href="#switch-tab-feature">3.7. Switch Tab Feature</a></h3>
 <div class="paragraph">
 <p>The Switch tab feature allows the user to traverse between the Tasks, Statistics and Settings tabs.</p>
 </div>
@@ -1209,7 +1174,7 @@ The user can specify multiple `Tag`s.
 <div class="content">
 <img src="images/SwitchTabActivityDiagram.png" alt="SwitchTabActivityDiagram">
 </div>
-<div class="title">Figure 32. Activity Diagram of Tab Switches</div>
+<div class="title">Figure 30. Activity Diagram of Tab Switches</div>
 </div>
 <div class="paragraph">
 <p>The mechanism of how <code>SwitchTabCommand</code> updates the <code>Ui</code> is described below.</p>
@@ -1230,11 +1195,11 @@ The user can specify multiple `Tag`s.
 <div class="content">
 <img src="images/SwitchTabSequenceDiagram.png" alt="SwitchTabSequenceDiagram">
 </div>
-<div class="title">Figure 33. Sequence Diagram of SwitchTabCommand</div>
+<div class="title">Figure 31. Sequence Diagram of SwitchTabCommand</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="statistics-feature"><a class="link" href="#statistics-feature">3.10. Statistics Feature</a></h3>
+<h3 id="statistics-feature"><a class="link" href="#statistics-feature">3.8. Statistics Feature</a></h3>
 <div class="paragraph">
 <p>The Statistics feature allows the user to view information about their number of tasks completed and Pomodoro duration ran (in minutes) on a daily basis for the past <code>CONSTANT_SIZE</code> days.</p>
 </div>
@@ -1251,7 +1216,7 @@ The user can specify multiple `Tag`s.
 </table>
 </div>
 <div class="sect3">
-<h4 id="implementation-10"><a class="link" href="#implementation-10">3.10.1. Implementation</a></h4>
+<h4 id="implementation-10"><a class="link" href="#implementation-10">3.8.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The Statistics feature is mainly supported by the <code>Statistics</code> class, which in turn is facilitated by the <code>CustomQueue</code> class. Its class diagram is given below.</p>
 </div>
@@ -1259,7 +1224,7 @@ The user can specify multiple `Tag`s.
 <div class="content">
 <img src="images/StatisticsClassDiagram.png" alt="StatisticsClassDiagram">
 </div>
-<div class="title">Figure 34. Class Diagram of the Statistics Component</div>
+<div class="title">Figure 32. Class Diagram of the Statistics Component</div>
 </div>
 <div class="paragraph">
 <p>The <code>CustomQueue</code> class enforces the following constraints:</p>
@@ -1321,11 +1286,11 @@ The user can specify multiple `Tag`s.
 <div class="content">
 <img src="images/StatisticsUiSequenceDiagram.png" alt="StatisticsUiSequenceDiagram">
 </div>
-<div class="title">Figure 35. Sequence Diagram of how Statistics</div>
+<div class="title">Figure 33. Sequence Diagram of how Statistics</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.10.2. Design considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.8.2. Design considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-data-structure-to-support-statistics"><a class="link" href="#aspect-data-structure-to-support-statistics">Aspect: Data structure to support Statistics</a></h5>
 <div class="ulist">
@@ -1395,9 +1360,9 @@ The user can specify multiple `Tag`s.
 </div>
 </div>
 <div class="sect2">
-<h3 id="pet"><a class="link" href="#pet">3.11. Pet</a></h3>
+<h3 id="pet"><a class="link" href="#pet">3.9. Pet</a></h3>
 <div class="sect3">
-<h4 id="implementation-11"><a class="link" href="#implementation-11">3.11.1. Implementation</a></h4>
+<h4 id="implementation-11"><a class="link" href="#implementation-11">3.9.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The pet feature aims to provide a virtual pet for the app in order to motivate the user. The pet has three main components: the XP points, the evolution and the mood. To facilitate this function, a Pet class is created to represent the pet. A PetManager class is created to manage the pet via communications from MainWindow. Lastly, a PetDisplay class is created to handle the UI of the pet.</p>
 </div>
@@ -1405,7 +1370,7 @@ The user can specify multiple `Tag`s.
 <div class="content">
 <img src="images/PetClassDiagram.png" alt="PetClassDiagram">
 </div>
-<div class="title">Figure 36. Pet Class Diagram</div>
+<div class="title">Figure 34. Pet Class Diagram</div>
 </div>
 <div class="paragraph">
 <p>To exemplify the implementation for the components of the XP points and the evolution of the pet, an example usage scenario is given below.</p>
@@ -1425,7 +1390,7 @@ The user can specify multiple `Tag`s.
 <div class="content">
 <img src="images/PetSequenceDiagram.png" alt="PetSequenceDiagram">
 </div>
-<div class="title">Figure 37. Pet Sequence Diagram</div>
+<div class="title">Figure 35. Pet Sequence Diagram</div>
 </div>
 <div class="paragraph">
 <p>Step 3. Following the update of XP points, MainWindow also updates the mood of the pet. Supposedly, the pet is originally in "HANGRY" mood, MainWindow will call "MainWindow#updateMoodWhenDone" method to change the pet&#8217;s mood to Happy. It will also update the time of the last done task and reschedules a new timertask so that the pet will turn "Hangry" at the correct time. Lastly, this method also updates the elements</p>
@@ -1440,21 +1405,21 @@ The user can specify multiple `Tag`s.
 <div class="content">
 <img src="images/UpdatePetDisplaySequenceDiagram.png" alt="UpdatePetDisplaySequenceDiagram">
 </div>
-<div class="title">Figure 38. update PetDisplay Diagram</div>
+<div class="title">Figure 36. update PetDisplay Diagram</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-consideration"><a class="link" href="#design-consideration">3.11.2. Design Consideration</a></h4>
+<h4 id="design-consideration"><a class="link" href="#design-consideration">3.9.2. Design Consideration</a></h4>
 
 </div>
 </div>
 <div class="sect2">
-<h3 id="set-commands"><a class="link" href="#set-commands">3.12. Set Commands</a></h3>
+<h3 id="set-commands"><a class="link" href="#set-commands">3.10. Set Commands</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/SetClassDiagram.png" alt="SetClassDiagram">
 </div>
-<div class="title">Figure 39. Set command class diagram</div>
+<div class="title">Figure 37. Set command class diagram</div>
 </div>
 <div class="paragraph">
 <p>The Set Commands can be used to customise the features in BB Productive. It can be used to customised the name of the pet, the duration for pomodoro and the daily challenge target so as to better cater to the needs of the user.</p>
@@ -1469,7 +1434,7 @@ The user can specify multiple `Tag`s.
 <div class="content">
 <img src="images/SetCommandSequenceDiagram.png" alt="SetCommandSequenceDiagram">
 </div>
-<div class="title">Figure 40. Set command sequence diagram</div>
+<div class="title">Figure 38. Set command sequence diagram</div>
 </div>
 <div class="paragraph">
 <p>Step 2. Logic calls upon the method <code>SetCommand#execute</code> which eventually calls the methods <code>Model#SetPetName</code> and <code>Model#setPomodoroDefaultTime</code>. A SetCommandResult object is return once these methods are executed.</p>
@@ -1481,22 +1446,22 @@ The user can specify multiple `Tag`s.
 <div class="content">
 <img src="images/SetCommandUpdatingUi.png" alt="SetCommandUpdatingUi">
 </div>
-<div class="title">Figure 41. set command updating Ui</div>
+<div class="title">Figure 39. set command updating Ui</div>
 </div>
 <div class="sect3">
-<h4 id="design-consideration-2"><a class="link" href="#design-consideration-2">3.12.1. Design Consideration</a></h4>
+<h4 id="design-consideration-2"><a class="link" href="#design-consideration-2">3.10.1. Design Consideration</a></h4>
 
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.13. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.11. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.14, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.12, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1527,7 +1492,7 @@ The user can specify multiple `Tag`s.
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.14. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.12. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -1747,7 +1712,7 @@ The user can specify multiple `Tag`s.
 <div class="content">
 <img src="images/use_cases.png" alt="use cases" width="790">
 </div>
-<div class="title">Figure 42. Use case diagram for BBProductive</div>
+<div class="title">Figure 40. Use case diagram for BBProductive</div>
 </div>
 <h3 id="use-case-uc01-view-tasks" class="discrete">Use Case: UC01 - View tasks</h3>
 <div class="paragraph">
@@ -3155,4 +3120,4 @@ Expected: The Pomodoro duration on the current day should increase by 1.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 15:41:50 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 15:44:40 UTC</div></div></div></body></html>
