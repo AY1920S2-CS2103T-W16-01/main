@@ -28,7 +28,6 @@ Feeling unproductive lately? Try BB Productive! BB Productive is a productivity 
 This document provides information about the multitude of features in BB Productive, and how you can best utilise them to your benefit.
 
 
-<<<<<<< HEAD
 Note the following symbols and formatting used in this document:
 
 Symbols:
@@ -54,9 +53,9 @@ Formating:
 
 `NAME` is a parameter. It can be used as add `n/Math Homework`.
 | [Square brackets]
-|Items in square brackets are optional 
+|Items in square brackets are optional
 
-E.g. `n/NAME [t/TAG]` can be used as 
+E.g. `n/NAME [t/TAG]` can be used as
 
 `n/Math HomeWork t/Urgent`
 
@@ -64,24 +63,16 @@ or
 
  as `n/Math Homework`
 | `…​`
-|Items with `…​` after them can be used multiple times or not used at all.             
+|Items with `…​` after them can be used multiple times or not used at all.
 
-E.g. `[t/TAG]…`​ can be used as 
+E.g. `[t/TAG]…`​ can be used as
 
 `t/friend 
 
-or 
+or
 
 t/friend t/family`
 |===
-=======
-=== Command Format
-* Characters like `this` are all commands that can be used for BBPoroductive
-* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in add `n/NAME`, `NAME` is a parameter which can be used as add `n/John Doe`.
-* Items in square brackets are optional e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-* Items with `…​` after them can be used multiple times including zero times e.g. `[t/TAG]…`​ can be used as   (i.e. 0 times), `t/friend, t/friend t/family` etc.
-* Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
->>>>>>> 4e5e97d1755cab1924c931a0844b9913279f0fbc
 
 [IMPORTANT]
 ====
@@ -410,7 +401,6 @@ image::pom_prompt_break.png[width=790]
 =====
 You will not be able to do execute other commands during these prompts. Please respond to the prompts to proceed.
 =====
-
 ===== Back to Step 1?
 At the end of the break, the app will return to it's "neutral" state and you can  repeat the process, if you wish.
 
@@ -677,7 +667,6 @@ All your progress, user preferences and settings are stored in the “data” fo
 ====
 Please check that the following files are in the “data” folder to ensure that you are transferring the correct files!
 ====
-
 image::storage.png[width="395"]
 
 // end::storage[]
