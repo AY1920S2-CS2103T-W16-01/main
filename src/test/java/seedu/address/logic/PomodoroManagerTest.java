@@ -93,15 +93,15 @@ public class PomodoroManagerTest {
         LocalDateTime end = LocalDateTime.now();
         LocalDateTime start = end.minusMinutes(AMOUNT_TO_TEST);
         DayData d =
-                model.getStatistics()
-                        .getDayDataFromDate(new Date(LocalDateTime.now().toLocalDate().toString()));
+                model.getDayDataFromDateStatistics(
+                        new Date(LocalDateTime.now().toLocalDate().toString()));
         assertTrue(d.getPomDurationData().value == 0);
         pomodoroManager.setStartDateTime(start);
         pomodoroManager.updateStatistics(model);
         List<DayData> dayDatas = pomodoroManager.generateUpdatedDayData(start, end);
         int totalMinutes = 0;
         for (DayData dayData : dayDatas) {
-            DayData a = model.getStatistics().getDayDataFromDate(dayData.getDate());
+            DayData a = model.getDayDataFromDateStatistics(dayData.getDate());
             totalMinutes += a.getPomDurationData().value;
         }
         assertTrue(totalMinutes == AMOUNT_TO_TEST);

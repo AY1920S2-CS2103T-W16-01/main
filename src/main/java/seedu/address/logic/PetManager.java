@@ -1,5 +1,7 @@
 package seedu.address.logic;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDateTime;
 import seedu.address.model.Pet;
 
@@ -20,6 +22,7 @@ public class PetManager {
     public PetManager() {}
 
     public void setPet(Pet pet) {
+        requireNonNull(pet);
         this.pet = pet;
         this.lastDoneTaskTime = LocalDateTime.parse(pet.getLastDoneTaskTime());
         // use this for ACTUAL
@@ -34,7 +37,6 @@ public class PetManager {
 
     public void incrementExp() {
         this.pet.incrementExp();
-        updateDisplayElements();
     }
 
     public void updateLastDoneTaskWhenDone() {
@@ -77,59 +79,63 @@ public class PetManager {
                             : "/images/pet/level2hangry.png");
             petImage = str;
         } else {
-            petImage = "/images/pet/level3.png";
+            String str =
+                    (mood.equals(HAPPY_MOOD_STRING)
+                            ? "/images/pet/level3.png"
+                            : "/images/pet/level3hangry.png");
+            petImage = str;
         }
 
         int expBarPerc = expBarInt / 10;
 
         switch (expBarPerc) {
-            case 0:
-                expBarImage = "/images/pet/ProgressBar0%.png";
-                break;
+        case 0:
+            expBarImage = "/images/progress/ProgressBar0%.png";
+            break;
 
-            case 1:
-                expBarImage = "/images/pet/ProgressBar10%.png";
-                break;
+        case 1:
+            expBarImage = "/images/progress/ProgressBar10%.png";
+            break;
 
-            case 2:
-                expBarImage = "/images/pet/ProgressBar20%.png";
-                break;
+        case 2:
+            expBarImage = "/images/progress/ProgressBar20%.png";
+            break;
 
-            case 3:
-                expBarImage = "/images/pet/ProgressBar30%.png";
-                break;
+        case 3:
+            expBarImage = "/images/progress/ProgressBar30%.png";
+            break;
 
-            case 4:
-                expBarImage = "/images/pet/ProgressBar40%.png";
-                break;
+        case 4:
+            expBarImage = "/images/progress/ProgressBar40%.png";
+            break;
 
-            case 5:
-                expBarImage = "/images/pet/ProgressBar50%.png";
-                break;
+        case 5:
+            expBarImage = "/images/progress/ProgressBar50%.png";
+            break;
 
-            case 6:
-                expBarImage = "/images/pet/ProgressBar60%.png";
-                break;
+        case 6:
+            expBarImage = "/images/progress/ProgressBar60%.png";
+            break;
 
-            case 7:
-                expBarImage = "/images/pet/ProgressBar70%.png";
-                break;
+        case 7:
+            expBarImage = "/images/progress/ProgressBar70%.png";
+            break;
 
-            case 8:
-                expBarImage = "/images/pet/ProgressBar80%.png";
-                break;
+        case 8:
+            expBarImage = "/images/progress/ProgressBar80%.png";
+            break;
 
-            case 9:
-                expBarImage = "/images/pet/ProgressBar90%.png";
-                break;
+        case 9:
+            expBarImage = "/images/progress/ProgressBar90%.png";
+            break;
 
-            case 10:
-                expBarImage = "/images/pet/ProgressBar100%.png";
-                break;
+        case 10:
+            expBarImage = "/images/progress/ProgressBar100%.png";
+            break;
 
-            default:
-                expBarImage = "/images/pet/ProgressBar0%.png";
-                break;
+        default:
+            expBarImage = "/images/progress/ProgressBar0%.png";
+            break;
         }
     }
 

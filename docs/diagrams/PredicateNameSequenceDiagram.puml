@@ -1,0 +1,45 @@
+@startuml
+!include style.puml
+
+box Model MODEL_COLOR_T1
+participant ":Predicate" as Predicate MODEL_COLOR
+end box
+
+box Predicate LOGIC_COLOR_T1
+participant "pred:Predicate" as Predicate LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Task" as Task MODEL_COLOR
+end box
+
+box Predicate LOGIC_COLOR_T1
+participant "<<class>>\n:StringUtil" as StringUtil LOGIC_COLOR
+end box
+
+[-> Predicate: test(task)
+activate Predicate
+
+loop chunks of task name
+    Predicate -> StringUtil: limitedCompare(chunk,\n search, threshold)
+    activate StringUtil
+    StringUtil -> Predicate: editDistance
+    deactivate StringUtil
+
+    alt search matches start of chunk
+        Predicate -> Predicate: temp = 1
+    else edit distance < 2
+        Predicate -> Predicate: temp = 1
+    else search equals chunk
+        Predicate -> Predicate: temp = 0
+    end
+
+    opt temp < score
+        Predicate -> Predicate: score = temp
+    end
+end
+
+
+[<--Predicate
+deactivate Predicate
+@enduml

@@ -12,7 +12,7 @@ if () then ([command is valid])
         if() then ([comparator is set])
             : Add task to task list in sorted order;
         else ([else])
-            : Add task to end of task list;
+            : Add task to the head of task list;
         endif
         :Updates UI with new task list;
   endif

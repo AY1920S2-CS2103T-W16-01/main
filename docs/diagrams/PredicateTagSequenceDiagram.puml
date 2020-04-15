@@ -1,0 +1,30 @@
+@startuml
+!include style.puml
+
+box Predicate LOGIC_COLOR_T1
+participant "pred:Predicate" as Predicate LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Task" as Task MODEL_COLOR
+end box
+
+box Predicate LOGIC_COLOR_T1
+participant "<<class>>\n:StringUtil" as StringUtil LOGIC_COLOR
+end box
+
+[--> Predicate: test(task)
+
+loop tags of search term
+    Predicate -> Task: hasTag(tag)
+    activate Task
+    Task -> Predicate
+    deactivate Task
+    opt Task contains tag
+        Predicate -> Predicate: score -= 1
+    end
+end
+
+[<--Predicate
+deactivate Predicate
+@enduml

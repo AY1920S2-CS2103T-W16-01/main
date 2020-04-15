@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box AutoComplete LOGIC_COLOR_T1
+participant ":CommandBox" as CommandBox LOGIC_COLOR
+participant ":MainWindow" as MainWindow LOGIC_COLOR
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CommandCompletor" as CommandCompletor LOGIC_COLOR
+end box
+
+box AutoComplete UI_COLOR_T1
+participant ":ResultDisplay" as ResultDisplay UI_COLOR
+participant ":CommandTextField" as CommandTextField UI_COLOR
+end box
+
+[-> CommandBox : "delete -10 10 5"
+activate CommandBox
+
+CommandBox -> MainWindow : suggestCommand\n("delete -10 10 5")
+activate MainWindow
+
+MainWindow -> LogicManager: suggestCommand\n("delete -10 10 5")
+activate LogicManager
+
+LogicManager -> LogicManager: getTaskList().size()
+activate LogicManager
+LogicManager -> LogicManager
+deactivate LogicManager
+
+LogicManager -> CommandCompletor: suggestCommand\n("delete -10 10 5", listSize)
+activate CommandCompletor
+
+alt Input removed
+    CommandCompletor --> LogicManager: res:CompletorDeletionResult
+else else
+    CommandCompletor --> LogicManager: res:CompletorResult
+end
+deactivate CommandCompletor
+
+LogicManager -> MainWindow: res
+deactivate LogicManager
+
+opt res is CompletorDeletionResult
+    MainWindow -> ResultDisplay: setWarning()
+    activate ResultDisplay
+    ResultDisplay -> MainWindow
+    deactivate ResultDisplay
+    MainWindow -[hidden]->ResultDisplay
+end
+MainWindow -> CommandBox: res
+deactivate MainWindow
+
+alt CompletorException thrown
+    CommandBox -> CommandTextField: setFailure()
+    activate CommandTextField
+    CommandTextField -> CommandBox
+    deactivate CommandTextField
+    CommandBox -[hidden]->CommandBox
+else else
+    CommandBox -> CommandTextField: setSuccess()
+    activate CommandTextField
+    CommandTextField -> CommandBox
+    deactivate CommandTextField
+    CommandBox -[hidden]->CommandBox
+end
+
+[<--CommandBox
+deactivate CommandBox
+@enduml

@@ -20,6 +20,7 @@ class DailyTarget {
 + isEmpty()
 }
 Class CustomQueue {
++ {static} CONSTANT_SIZE : int
 - internalList : ObservableList<DayData>
 - internalUnmodifiableList : ObservableList<DayData>
 + init()

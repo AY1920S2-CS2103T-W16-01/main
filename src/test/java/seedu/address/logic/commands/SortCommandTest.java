@@ -7,15 +7,13 @@ import java.time.LocalDateTime;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.PomodoroManager;
 import seedu.address.logic.parser.FindCommandParser;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyPet;
 import seedu.address.model.ReadOnlyPomodoro;
-import seedu.address.model.ReadOnlyTaskList;
+import seedu.address.model.ReadOnlyStatistics;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.Statistics;
 import seedu.address.model.TaskList;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
@@ -46,9 +44,7 @@ public class SortCommandTest {
                     .withReminder(LocalDateTime.now().plusDays(1))
                     .build();
     private static Task taskDateDone3 =
-            new TaskBuilder()
-                    .withName("Reminder Task 3")
-                    .withPriority("3")
+            new TaskBuilder(taskDate3)
                     .withReminder(LocalDateTime.now().plusDays(1))
                     .withDone()
                     .build();
@@ -70,26 +66,35 @@ public class SortCommandTest {
     @Test
     public void execute_sortWithFindDone_successful() throws Exception {
         String[] prioritySort = {"priority"};
-
-        new FindCommandParser().parse("Reminder").execute(modelStub);
         CommandResult commandResult = new SortCommand(prioritySort).execute(modelStub);
+
+        new FindCommandParser().parse(" Reminder").execute(modelStub);
+
+        commandResult = new SortCommand(prioritySort).execute(modelStub);
+
         TaskList stubList = new TaskList();
-        ModelStub tempModelStub = new ModelStub();
+        ModelStub expectedModel = new ModelStub();
         stubList.addTask(taskDate3);
         stubList.addTask(taskDate1);
         stubList.addTask(taskDate2);
-        tempModelStub.setTaskList(stubList);
+        expectedModel.setTaskList(stubList);
+
         assertEquals(
                 String.format(SortCommand.MESSAGE_SUCCESS, prioritySort[0]),
                 commandResult.getFeedbackToUser());
-        assertEquals(tempModelStub.getFilteredTaskList(), modelStub.getFilteredTaskList());
-        Index[] doneIndices = {Index.fromZeroBased(0)};
-        new DoneCommand(doneIndices);
+        assertEquals(expectedModel.getFilteredTaskList(), modelStub.getFilteredTaskList());
+
         stubList = new TaskList();
         stubList.addTask(taskDateDone3);
         stubList.addTask(taskDate1);
         stubList.addTask(taskDate2);
-        assertEquals(tempModelStub.getFilteredTaskList(), modelStub.getFilteredTaskList());
+
+        assertEquals(expectedModel.getFilteredTaskList(), modelStub.getFilteredTaskList());
+
+        String[] reversePriorityAfterPriority = {"priority", "r-priority"};
+        new SortCommand(reversePriorityAfterPriority).execute(modelStub);
+
+        assertEquals(expectedModel.getFilteredTaskList(), modelStub.getFilteredTaskList());
     }
 
     @Test
@@ -98,18 +103,18 @@ public class SortCommandTest {
 
         CommandResult commandResult = new SortCommand(prioritySort).execute(modelStub);
         TaskList stubList = new TaskList();
-        ModelStub tempModelStub = new ModelStub();
+        ModelStub expectedModel = new ModelStub();
         stubList.addTask(taskDate3);
         stubList.addTask(taskPriority3);
         stubList.addTask(taskDate1);
         stubList.addTask(taskPriority2);
         stubList.addTask(taskDate2);
         stubList.addTask(taskPriority1);
-        tempModelStub.setTaskList(stubList);
+        expectedModel.setTaskList(stubList);
         assertEquals(
-                String.format(SortCommand.MESSAGE_SUCCESS, String.join(" ", prioritySort)),
+                String.format(SortCommand.MESSAGE_SUCCESS, String.join(", ", prioritySort)),
                 commandResult.getFeedbackToUser());
-        assertEquals(tempModelStub.getFilteredTaskList(), modelStub.getFilteredTaskList());
+        assertEquals(expectedModel.getFilteredTaskList(), modelStub.getFilteredTaskList());
     }
 
     @Test
@@ -118,18 +123,18 @@ public class SortCommandTest {
 
         CommandResult commandResult = new SortCommand(nameSort).execute(modelStub);
         TaskList stubList = new TaskList();
-        ModelStub tempModelStub = new ModelStub();
+        ModelStub expectedModel = new ModelStub();
         stubList.addTask(taskDate1);
         stubList.addTask(taskDate2);
         stubList.addTask(taskDate3);
         stubList.addTask(taskPriority1);
         stubList.addTask(taskPriority2);
         stubList.addTask(taskPriority3);
-        tempModelStub.setTaskList(stubList);
+        expectedModel.setTaskList(stubList);
         assertEquals(
                 String.format(SortCommand.MESSAGE_SUCCESS, nameSort[0]),
                 commandResult.getFeedbackToUser());
-        assertEquals(tempModelStub.getFilteredTaskList(), modelStub.getFilteredTaskList());
+        assertEquals(expectedModel.getFilteredTaskList(), modelStub.getFilteredTaskList());
     }
 
     @Test
@@ -138,18 +143,46 @@ public class SortCommandTest {
 
         CommandResult commandResult = new SortCommand(dateSort).execute(modelStub);
         TaskList stubList = new TaskList();
-        ModelStub tempModelStub = new ModelStub();
+        ModelStub expectedModel = new ModelStub();
         stubList.addTask(taskDate3);
         stubList.addTask(taskDate2);
         stubList.addTask(taskDate1);
         stubList.addTask(taskPriority1);
         stubList.addTask(taskPriority2);
         stubList.addTask(taskPriority3);
-        tempModelStub.setTaskList(stubList);
+        expectedModel.setTaskList(stubList);
         assertEquals(
                 String.format(SortCommand.MESSAGE_SUCCESS, dateSort[0]),
                 commandResult.getFeedbackToUser());
-        assertEquals(tempModelStub.getFilteredTaskList(), modelStub.getFilteredTaskList());
+        assertEquals(expectedModel.getFilteredTaskList(), modelStub.getFilteredTaskList());
+    }
+
+    @Test
+    public void execute_sortByDone_doneTaskreSort_successful() throws Exception {
+        String[] doneSort = {"done"};
+
+        CommandResult commandResult = new SortCommand(doneSort).execute(modelStub);
+        Task doneTask = doneTask(taskPriority1);
+
+        modelStub.setTask(taskPriority1, doneTask);
+
+        TaskList stubList = new TaskList();
+        ModelStub expectedModel = new ModelStub();
+        stubList.addTask(taskPriority2);
+        stubList.addTask(taskPriority3);
+        stubList.addTask(taskDate1);
+        stubList.addTask(taskDate2);
+        stubList.addTask(taskDate3);
+        stubList.addTask(doneTask);
+        expectedModel.setTaskList(stubList);
+        assertEquals(
+                String.format(SortCommand.MESSAGE_SUCCESS, doneSort[0]),
+                commandResult.getFeedbackToUser());
+        assertEquals(expectedModel.getFilteredTaskList(), modelStub.getFilteredTaskList());
+    }
+
+    private Task doneTask(Task t) {
+        return new TaskBuilder(taskPriority1).withDone().withReminder().build();
     }
 
     /** A default model stub that have all of the methods failing. */
@@ -185,27 +218,12 @@ public class SortCommandTest {
         }
 
         @Override
-        public void addTask(Task task) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyTaskList getTaskList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public boolean hasTask(Task task) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void deleteTask(Task target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setTask(Task target, Task editedTask) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -240,46 +258,8 @@ public class SortCommandTest {
         }
 
         @Override
-        public Statistics getStatistics() {
+        public ReadOnlyStatistics getStatistics() {
             throw new AssertionError("This method should not be called.");
         }
     }
-
-    // /** A Model stub that contains a single task. */
-    // private class ModelStubWithTask extends ModelStub {
-    //     private final Task task;
-
-    //     ModelStubWithTask(Task task) {
-    //         requireNonNull(task);
-    //         this.task = task;
-    //     }
-
-    //     @Override
-    //     public boolean hasTask(Task task) {
-    //         requireNonNull(task);
-    //         return this.task.isSameTask(task);
-    //     }
-    // }
-
-    // /** A Model stub that always accept the task being added. */
-    // private class ModelStubAcceptingTaskAdded extends ModelStub {
-    //     final ArrayList<Task> tasksAdded = new ArrayList<>();
-
-    //     @Override
-    //     public boolean hasTask(Task task) {
-    //         requireNonNull(task);
-    //         return tasksAdded.stream().anyMatch(task::isSameTask);
-    //     }
-
-    //     @Override
-    //     public void addTask(Task task) {
-    //         requireNonNull(task);
-    //         tasksAdded.add(task);
-    //     }
-
-    //     @Override
-    //     public ReadOnlyTaskList getTaskList() {
-    //         return new TaskList();
-    //     }
-    // }
 }

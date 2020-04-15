@@ -24,7 +24,7 @@ public class Date {
     /**
      * Constructs a {@code Date}.
      *
-     * @param date A valid priority number.
+     * @param date A valid date.
      */
     public Date(String date) {
         requireNonNull(date);
@@ -43,6 +43,7 @@ public class Date {
         return true;
     }
 
+    /** Returns dateString to display for user output. */
     public String toPrint() {
         String dateString = value.toString();
         return dateString.substring(5, 7) + "/" + dateString.substring(8, 10);
@@ -58,10 +59,5 @@ public class Date {
         return other == this // short circuit if same object
                 || (other instanceof Date // instanceof handles nulls
                         && value.equals(((Date) other).value)); // state check
-    }
-
-    @Override
-    public int hashCode() {
-        return value.hashCode();
     }
 }

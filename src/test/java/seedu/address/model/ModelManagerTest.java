@@ -3,7 +3,6 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTasks.HOMEWORK10;
 import static seedu.address.testutil.TypicalTasks.LAB_3;
@@ -13,7 +12,9 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.NameContainsKeywordsPredicate;
+import seedu.address.model.util.TaskBuilder;
 import seedu.address.testutil.TaskListBuilder;
 
 public class ModelManagerTest {
@@ -25,6 +26,7 @@ public class ModelManagerTest {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
         assertEquals(new TaskList(), new TaskList(modelManager.getTaskList()));
+        assertEquals(new Statistics(), modelManager.getStatistics());
     }
 
     @Test
@@ -76,6 +78,32 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasTag_returnsTrue() {
+        modelManager.addTask(HOMEWORK10);
+        assertTrue(modelManager.hasTag(new Tag("MA1521")));
+        TaskBuilder lowerCaseTag = new TaskBuilder(HOMEWORK10).withTags("ma1521");
+        modelManager.setTask(HOMEWORK10, lowerCaseTag.build());
+        assertTrue(modelManager.hasTag(new Tag("MA1521")));
+    }
+
+    @Test
+    public void multipleTag_returnsTrue() {
+        modelManager.addTask(HOMEWORK10);
+        for (int i = 0; i < 100; i++) {
+            TaskBuilder lowerCaseTag =
+                    new TaskBuilder(HOMEWORK10).withName(String.format("task %d", i));
+            modelManager.addTask(lowerCaseTag.build());
+        }
+        assertTrue(modelManager.hasTag(new Tag("MA1521")));
+        for (int i = 0; i < 100; i++) {
+            modelManager.deleteTask(modelManager.getFilteredTaskList().get(0));
+        }
+        assertTrue(modelManager.hasTag(new Tag("MA1521")));
+        modelManager.deleteTask(modelManager.getFilteredTaskList().get(0));
+        assertFalse(modelManager.hasTag(new Tag("MA1521")));
+    }
+
+    @Test
     public void hasTask_taskNotInTaskList_returnsFalse() {
         assertFalse(modelManager.hasTask(HOMEWORK10));
     }
@@ -91,6 +119,11 @@ public class ModelManagerTest {
         assertThrows(
                 UnsupportedOperationException.class,
                 () -> modelManager.getFilteredTaskList().remove(0));
+    }
+
+    @Test
+    public void setStatisticsManager_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setStatisticsManager(null));
     }
 
     @Test
@@ -135,7 +168,7 @@ public class ModelManagerTest {
                                 taskList, new Pet(), new Pomodoro(), new Statistics(), userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        modelManager.showAllTasks();
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

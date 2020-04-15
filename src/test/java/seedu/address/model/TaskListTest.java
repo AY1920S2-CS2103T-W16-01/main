@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
@@ -98,6 +99,11 @@ public class TaskListTest {
         @Override
         public ObservableList<Task> getTaskList() {
             return tasks;
+        }
+
+        @Override
+        public Optional<String> getSortOrder() {
+            return Optional.empty();
         }
     }
 }

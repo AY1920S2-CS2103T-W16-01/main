@@ -3,6 +3,13 @@
 :imagesDir: ../images
 :stylesDir: ../stylesheets
 
+image::fyonnoh.png[width="200", align="left"]
+{empty}[https://github.com/FyonnOh[github]] +
+{empty}[https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=&sort=totalCommits%20dsc&sortWithin=title&since=2020-02-14&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=FyonnOh&tabRepo=AY1920S2-CS2103T-W16-1%2Fmain%5Bmaster%5D[CodeBase]]
+
+Role: Documentation, Code Quality
+Responsibilites: Pet feature, Set Commands
+
 == PROJECT: BB Productive - Level 3
 
 ---
@@ -23,7 +30,6 @@ My team and I were tasked to create an enhanced application that is built upon a
 ** Justification: The purpose of the set commands is so the user will be able to modify the features provided in the application to better cater to his/her needs.
 ** Highlights: In order to create the settings tab, I had to learn JavaFx. To create the set commands, I had to define my own set of classes and also learn Regex so as to determine the validity of certain inputs. Furthermore, I had to augment it on top of the code produced by my teammates (as I was changing the attributes of their code).
 
-* *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
 
 * *Other contributions*:
 
@@ -42,9 +48,10 @@ _{you can add/remove categories in the list above}_
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
-include::../UserGuide.adoc[tag=delete]
-
-include::../UserGuide.adoc[tag=dataencryption]
+include::../UserGuide.adoc[tag=pet]
+include::../UserGuide.adoc[tag=setcommands]
+include::../UserGuide.adoc[tag=intro]
+include::../UserGuide.adoc[tag=about]
 
 == Contributions to the Developer Guide
 
@@ -52,9 +59,8 @@ include::../UserGuide.adoc[tag=dataencryption]
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
+include::../DeveloperGuide.adoc[tag=DGpet]
+include::../DeveloperGuide.adoc[tag=DGsetcommands]
+include::../DeveloperGuide.adoc[tag=DGDoneAndDelete]
 
-== PROJECT: PowerPointLabs
 
----
-
-_{Optionally, you may include other projects in your portfolio.}_

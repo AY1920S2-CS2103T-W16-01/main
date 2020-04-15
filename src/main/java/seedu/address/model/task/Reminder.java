@@ -7,8 +7,10 @@ import java.time.format.DateTimeParseException;
 import seedu.address.model.task.exceptions.InvalidReminderException;
 
 /**
- * Represents a Task's reminder number in the task list. Guarantees: immutable; is valid as declared
- * in {@link #isValidReminder(String)}
+ * Represents the task's reminder and its functionality.
+ *
+ * @author Arthur Lee
+ * @version 1.4
  */
 public class Reminder implements Comparable {
 
@@ -23,11 +25,10 @@ public class Reminder implements Comparable {
     private long delay;
 
     /**
-     * Constructs a reminder with the corresponding time, description and name.
+     * Constructs a reminder with the corresponding LocalDateTime. By default its hasFired is set to
+     * false and delay is the maximum value possible. On construction, delay is calculated and set.
      *
      * @param reminderDateTime
-     * @param Description
-     * @param Name
      * @throws InvalidReminderException
      */
     public Reminder(LocalDateTime reminderDateTime) throws InvalidReminderException {
@@ -37,6 +38,13 @@ public class Reminder implements Comparable {
         setDelay();
     }
 
+    /**
+     * Constructs a reminder with the dateTimeString read from user input. On construction, delay is
+     * calculated and set.
+     *
+     * @param dateTimeString
+     * @throws InvalidReminderException
+     */
     public Reminder(String dateTimeString) throws InvalidReminderException {
         this.reminderDateTime = stringFormatter.parse(dateTimeString, LocalDateTime::from);
         this.hasFired = false;
@@ -44,16 +52,35 @@ public class Reminder implements Comparable {
         setDelay();
     }
 
+    /**
+     * Calculates the time delay between the current time and the time indicated by user for the
+     * reminder.
+     *
+     * @param currentTime
+     * @param reminderDateTime
+     * @return
+     */
     public static long calculateDelay(LocalDateTime currentTime, LocalDateTime reminderDateTime) {
         Duration duration = Duration.between(currentTime, reminderDateTime);
         long delay = duration.getSeconds();
         return delay;
     }
 
+    /** Setter for hasFired. */
     public void setHasFired() {
         this.hasFired = true;
     }
 
+    /** Gets the hasFired boolean attribute */
+    public boolean getHasFired() {
+        return hasFired;
+    }
+
+    /**
+     * Boolean check valid reminder when parsing the string input from the user.
+     *
+     * @param dateTimeString
+     */
     public static boolean isValidReminder(String dateTimeString) {
         try {
             stringFormatter.parse(dateTimeString);
@@ -80,13 +107,23 @@ public class Reminder implements Comparable {
         }
     }
 
-    /** @return the delay */
+    /** Getter for reminder's LocalDateTime. */
+    public LocalDateTime getDateTime() {
+        return reminderDateTime;
+    }
+
+    /** Getter for reminder's time delay. */
     public long getDelay() {
         return delay;
     }
 
+    /**
+     * Formats the string for displaying on the taskcard.
+     *
+     * @return String
+     */
     public String displayReminder() {
-        DateTimeFormatter customFormatter = DateTimeFormatter.ofPattern("dd LLLL 'at' h:ma");
+        DateTimeFormatter customFormatter = DateTimeFormatter.ofPattern("dd LLLL 'at' h:mma");
         return reminderDateTime.format(customFormatter);
     }
 
@@ -95,6 +132,7 @@ public class Reminder implements Comparable {
         return reminderDateTime.format(stringFormatter);
     }
 
+    /** Overrides compareTo method to use time delay as point of comparison. */
     @Override
     public int compareTo(Object other) {
         if (!(other instanceof Reminder)) {

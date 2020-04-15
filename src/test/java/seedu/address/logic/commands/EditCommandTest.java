@@ -6,6 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_TASK1;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_TASK2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_TASK2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_TASK2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMINDER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MA1521;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -45,7 +46,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Task editedTask = new TaskBuilder().build();
+        Task editedTask = new TaskBuilder().withReminder(VALID_REMINDER).build();
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedTask).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK, descriptor);
 
@@ -121,7 +122,11 @@ public class EditCommandTest {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
         Task taskInFilteredList = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        Task editedTask = new TaskBuilder(taskInFilteredList).withName(VALID_NAME_TASK2).build();
+        Task editedTask =
+                new TaskBuilder(taskInFilteredList)
+                        .withName(VALID_NAME_TASK2)
+                        .withReminder(VALID_REMINDER)
+                        .build();
         EditCommand editCommand =
                 new EditCommand(
                         INDEX_FIRST_TASK,

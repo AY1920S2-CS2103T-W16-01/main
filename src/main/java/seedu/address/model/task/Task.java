@@ -2,12 +2,14 @@ package seedu.address.model.task;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.util.TaskBuilder;
 import seedu.address.ui.MainWindow;
 
 /**
@@ -20,11 +22,12 @@ public class Task {
     private final Name name;
     private final Priority priority;
 
-    // Data fields'
+    // Data fields
     private final Description description;
     private final Done done;
     private final Set<Tag> tags = new HashSet<>();
     private final Optional<Reminder> optionalReminder;
+    private final Optional<Recurring> optionalRecurring;
 
     /** Every field must be present and not null. */
     public Task(
@@ -33,7 +36,8 @@ public class Task {
             Description description,
             Done done,
             Set<Tag> tags,
-            Optional<Reminder> optionalReminder) {
+            Optional<Reminder> optionalReminder,
+            Optional<Recurring> optionalRecurring) {
         requireAllNonNull(name, priority, description, tags);
         this.name = name;
         this.priority = priority;
@@ -41,6 +45,7 @@ public class Task {
         this.done = done;
         this.tags.addAll(tags);
         this.optionalReminder = optionalReminder;
+        this.optionalRecurring = optionalRecurring;
         triggerReminderIfPresent();
     }
 
@@ -53,6 +58,25 @@ public class Task {
         this.done = done;
         this.tags.addAll(tags);
         this.optionalReminder = Optional.empty();
+        this.optionalRecurring = Optional.empty();
+    }
+
+    /** With done, no reminder but with recurring */
+    public Task(
+            Name name,
+            Priority priority,
+            Description description,
+            Done done,
+            Set<Tag> tags,
+            Optional<Recurring> optionalRecurring) {
+        requireAllNonNull(name, priority, description, tags);
+        this.name = name;
+        this.priority = priority;
+        this.description = description;
+        this.done = done;
+        this.tags.addAll(tags);
+        this.optionalReminder = Optional.empty();
+        this.optionalRecurring = optionalRecurring;
     }
 
     // without done provided
@@ -61,7 +85,8 @@ public class Task {
             Priority priority,
             Description description,
             Set<Tag> tags,
-            Optional<Reminder> optionalReminder) {
+            Optional<Reminder> optionalReminder,
+            Optional<Recurring> optionalRecurring) {
         requireAllNonNull(name, priority, description, tags);
         this.name = name;
         this.priority = priority;
@@ -69,6 +94,7 @@ public class Task {
         this.done = new Done();
         this.optionalReminder = optionalReminder;
         this.tags.addAll(tags);
+        this.optionalRecurring = optionalRecurring;
         triggerReminderIfPresent();
     }
 
@@ -80,13 +106,51 @@ public class Task {
         this.description = description;
         this.done = new Done();
         this.optionalReminder = Optional.empty();
+        this.optionalRecurring = Optional.empty();
         this.tags.addAll(tags);
     }
 
+    /**
+     * Gets time delay for first trigger of recurring behaviour.
+     *
+     * @return time delay in long.
+     */
+    public long getDelayToFirstTrigger() {
+        return this.optionalRecurring.get().getDelayToFirstTrigger();
+    }
+
+    /**
+     * Gets time delay for recurring based on the type in milliseconds.
+     *
+     * @return time delay in long.
+     */
+    public long getRecurPeriod() {
+        return this.optionalRecurring.get().getPeriod();
+    }
+
+    /**
+     * Gets the new version of the task after recurring behaviour, namely with done set to
+     * unfinished and reminder updated based on time interval.
+     *
+     * @return updated version of task.
+     */
+    public Task getRecurredTask() {
+        Recurring recurring = optionalRecurring.get();
+        if (optionalReminder.isPresent()) {
+            Reminder reminder = optionalReminder.get();
+            LocalDateTime newDateTime = recurring.getUpdatedReminderTime(reminder);
+            return new TaskBuilder(this).withDone(new Done()).withReminder(newDateTime).build();
+        }
+        return new TaskBuilder(this).withDone(new Done()).build();
+    }
+
+    /** Triggers reminder behaviour if there is a reminder present in the task. */
     public void triggerReminderIfPresent() {
         if (optionalReminder.isPresent()) {
             Reminder reminder = optionalReminder.get();
-            MainWindow.triggerReminder(reminder, name.toString(), description.toString());
+            if (!reminder.getHasFired()) {
+                MainWindow.triggerReminder(reminder, name.toString(), description.toString());
+            }
         }
     }
 
@@ -106,8 +170,18 @@ public class Task {
         return done;
     }
 
+    /** Getter for the optional reminder. */
     public Optional<Reminder> getOptionalReminder() {
         return optionalReminder;
+    }
+
+    /** Getter for the optional recurring. */
+    public Optional<Recurring> getOptionalRecurring() {
+        return optionalRecurring;
+    }
+
+    public boolean hasTag(Tag t) {
+        return tags.contains(t);
     }
 
     /**
@@ -127,9 +201,7 @@ public class Task {
             return true;
         }
 
-        return otherTask != null
-                && otherTask.getName().equals(getName())
-                && (otherTask.getPriority().equals(getPriority()));
+        return otherTask != null && otherTask.getName().equals(getName());
     }
 
     /**
@@ -162,13 +234,22 @@ public class Task {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append(" Priority: ")
+        builder.append("Name: ")
+                .append(getName())
+                .append(",\nPriority: ")
                 .append(getPriority())
-                .append(" Description: ")
+                .append(",\nDescription: ")
                 .append(getDescription())
-                .append(" Tags: ");
+                .append(",\nTags: ");
         getTags().forEach(builder::append);
+        if (optionalReminder.isPresent()) {
+            String reminderString = optionalReminder.get().displayReminder();
+            builder.append(",\nReminder: ").append(reminderString);
+        }
+        if (optionalRecurring.isPresent()) {
+            String recurrString = optionalRecurring.get().displayRecurring();
+            builder.append(",\nRecurring: ").append(recurrString);
+        }
         return builder.toString();
     }
 }

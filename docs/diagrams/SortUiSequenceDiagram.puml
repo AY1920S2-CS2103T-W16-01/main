@@ -1,0 +1,34 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":MainWindow" as MainWindow LOGIC_COLOR
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+end box
+
+box UI UI_COLOR_T1
+participant ":TaskListPanel" as TaskListPanel UI_COLOR
+end box
+
+[-> MainWindow : executeCommand("sort priority name")
+activate MainWindow
+
+MainWindow -> LogicManager: execute("sort priority name")
+activate LogicManager
+
+LogicManager -> MainWindow: ComandResult
+deactivate LogicManager
+
+MainWindow -> LogicManager: getTaskList().getSortOrder()
+activate LogicManager
+LogicManager -> MainWindow: sortOrder
+deactivate LogicManager
+
+MainWindow -> TaskListPanel: setSortOrder(sortOrder)
+activate TaskListPanel
+TaskListPanel -> MainWindow
+deactivate TaskListPanel
+
+[<--MainWindow: CommandResult
+deactivate MainWindow
+@enduml

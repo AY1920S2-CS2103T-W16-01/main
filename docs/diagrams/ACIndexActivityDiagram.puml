@@ -1,0 +1,20 @@
+@startuml
+start
+:Input provided for completion;
+
+repeat
+:iterate forwards;
+if () then ([index is valid])
+else ([else])
+    :remove index from input;
+    :append index to \n removed list;
+endif
+repeat while() is ([more words])
+-> [else];
+if () then ([removed list > 0])
+    :throw exception;
+    stop
+else ([else])
+    :suggested command;
+    stop
+@enduml

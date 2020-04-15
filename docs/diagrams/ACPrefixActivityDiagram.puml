@@ -1,0 +1,17 @@
+@startuml
+start
+:Input provided for completion;
+
+repeat
+:iterate backwards;
+if () then ([word is valid field])
+    :append prefix;
+    :update hasPrefix to true;
+    :update input;
+else ([else])
+endif
+repeat while() is ([more words])
+-> [else];
+:suggested command;
+stop
+@enduml

@@ -66,21 +66,4 @@ public class PetDisplay extends UiPart<Region> {
         this.petName = petName;
         petNameLabel.setText(petName);
     }
-
-    @Override
-    public boolean equals(Object other) {
-        // short circuit if same object
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof PetDisplay)) {
-            return false;
-        }
-
-        // state check
-        PetDisplay card = (PetDisplay) other;
-        return petPic.getImage().equals(card.petPic.getImage());
-    }
 }

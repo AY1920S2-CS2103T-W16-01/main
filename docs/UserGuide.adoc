@@ -22,28 +22,73 @@ image::CoverPage.png[width="790"]
 
 == What is BB Productive?
 
-BB Productive is for those who looking for motivation in their work. This app serves as a great task manager and includes a Pomodoro feature and a Pet companion. It is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, BB Productive can get you to get tasks done faster. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
+Feeling unproductive lately? Try BB Productive! BB Productive is a productivity application that consists of three main features: a task manager, a Pomodoro timer and a Pet, to help you get rid of those unproductive days. It is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, BB Productive can help you to start your journey of productivity. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
 
 == About this document
+This document provides information about the multitude of features in BB Productive, and how you can best utilise them to your benefit.
 
-BB Productive is for those who looking for motivation in their work. This app serves as a great task manager and includes a Pomodoro feature and a Pet companion. It is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, BB Productive can get you to get tasks done faster. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
 
-[#index]
-=== Command Format
-* Characters like `this` are all commands that can be used for BBPoroductive
-* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in add `n/NAME`, `NAME` is a parameter which can be used as add `n/John Doe`.
-* Items in square brackets are optional e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-* Items with `…​` after them can be used multiple times including zero times e.g. `[t/TAG]…`​ can be used as   (i.e. 0 times), `t/friend, t/friend t/family` etc.
-* Parameters can be in any order e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+Note the following symbols and formatting used in this document:
 
-=== Indexes
+Symbols:
+
+[IMPORTANT]
+This formating indicates important information.
+
+[TIP]
+This formatting indicates that this is additional information
+
+Formating:
+
+[cols=2*]
+|===
+| *Formatting*
+| *Meaning*
+| _preface_
+| A paragraph in italics indicates that the paragraph is a preface to the section below.
+| `Command`
+| A gray highlight indicates that the word is a command to be entered by the user.
+| `UPPER_CASE`
+| Words in `UPPER_CASE` are the parameters to be supplied by the user E.g. add `n/NAME`
+
+`NAME` is a parameter. It can be used as add `n/Math Homework`.
+| [Square brackets]
+|Items in square brackets are optional
+
+E.g. `n/NAME [t/TAG]` can be used as
+
+`n/Math HomeWork t/Urgent`
+
+or
+
+ as `n/Math Homework`
+| `…​`
+|Items with `…​` after them can be used multiple times or not used at all.
+
+E.g. `[t/TAG]…`​ can be used as
+
+`t/friend
+
+or
+
+t/friend t/family`
+|===
+
 [IMPORTANT]
 ====
 Indexes refer to the current tasklist on display, it does not refer to the indices of the entire task list. Note also that indexes start from 1 and not 0.
 ====
+[TIP]
+Parameters can be in any order e.g. if the command specifies `pet/PETNAME pom/POMDURATION`, `pom/POMDURATION pet/PETNAME` is also acceptable.
 
+//tag::quickStart[]
 == Quick Start
-- This section provides a quick guide on firing up BB Productive. Follow the steps below to install and launch BB Productive:
+- This section provides a quick guide on firing up BB Productive.
+
+.Overview of BBproductive features
+image::BBProductiveQuickStart_Graphic.png[width="790"]
+
+Follow the steps below to install and launch BB Productive:
 .  Ensure you have Java `11` or above installed in your Computer.
 .  Download the latest `bb_productive.jar` link:{repoURL}/releases[here].
 .  Copy the file to the folder you want to use as the home folder for your BB Productive.
@@ -62,6 +107,9 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 .  Refer to <<Features>> for details of each command.
 
+//end::quickStart[]
+
+[#index]
 [[Terminology]]
 == Terminology
 _This section provides a quick description for the common terminologies used in this user guide._
@@ -72,11 +120,19 @@ _This section provides a quick description for the common terminologies used in 
 
 *Pet*: The pet you will interact with to manage your tasks and pomodoros. You can also level up the pet by completing more tasks/pomodoros.
 
-== Graphical User Interface (Permas)
+=== Indexes
+[IMPORTANT]
+====
+Indexes refer to the current tasklist on display, it does not refer to the indices of the entire task list. Note also that indexes start from 1 and not 0.
+====
+
+//tag::gui[]
+
+== Graphical User Interface
 This section gives you a brief overview of the various GUI components present in BB Productive.
 
 === Pet View
-The Pet View is where you can view your pet, its name, level and experience gained. With diligent usage of BB Productive, its experience (XP) and level will increase with time. The pet will evolve as it levels up with more XP gained and take on different appearances, encouraging you to work harder! Further details on the Pet are described in section 6.x. //TODO link
+The Pet View is where you can view your pet, its name, level, and experience gained. With diligent usage of BB Productive, its experience (XP) and level will increase with time. The pet will evolve as it levels up and takes on different appearances, encouraging you to work harder! Further details of the Pet are described <<pet, here>>.
 
 .Pet
 image::pet.png[width=395]
@@ -88,31 +144,39 @@ The Command Box is the one-stop place for you to input any commands to interact 
 image::command_box.png[width=395]
 
 === Tasks Tab
-The Task Tab is where you view your personal task list and the Pomodoro Timer. Any changes made to the task list through the commands will be reflected here! The Pomodoro Timer runs when you run the Pom Command as described in section 6.x. //TODO link
+The Task Tab is where you view your task list and the Pomodoro Timer. Any changes made to the task list through the commands will be reflected here! The Pomodoro Timer runs when you run the Pom Command as described <<pomodoro, here>>.
 
 .Tasks Tab
 image::tasks_tab.png[width=790]
 
 === Statistics Tab
-The Statistics Tab consists of the Daiy Challenge and the Productivity Charts. They help you to visualise the progress of your productivity over the course of the past week, giving you momentum to hit your productivity goals! The usage of this tab will be discussed in more detail in section 6.x //TODO link
+The Statistics Tab consists of the Daily Challenge and the Productivity Charts. They help you to visualize the progress of your productivity over the past week, giving you the momentum to hit your productivity goals! You can find out more about this tab <<statistics, here>>.
 
 .Statistics Tab
 image::stats_tab.png[width=395]
 
 === Settings Tab
-The Settings Tab lets you customise the program to suit your needs. In this tab, you can view and edit your configurations for Pet Name, Pomodoro Duration and Daily Challenge Target. The usage of this tab will be discussed in more detail in section 6.x //TODO link
+The Settings Tab lets you customize the program to suit your needs. In this tab, you can view and edit your configurations for Pet Name, Pomodoro Duration, and Daily Challenge Target.
 
 .Settings Tab
 image::settings_tab.png[width=395]
 
+//end::gui[]
+
 [[Features]]
 == Features
 
+//tag::TaskList[]
 === TaskList
 image::tasks.png[width=790]
 
 ==== Task Fields
-You may use `add` and `edit <<index, INDEX>>`  to begin the add and edit commands, next attach any combination of the following commands.
+Use `add` and `edit <<index, INDEX>>` attached with any combination of the following task field prefixes to perform them. These prefixes can be in any order.
+
+[NOTE]
+====
+Constraints for fields are _italicized_ in the Format column.
+====
 
 .Task Fields
 [cols="1,2m,3m", frame="topbot",options="header"]
@@ -120,42 +184,47 @@ You may use `add` and `edit <<index, INDEX>>`  to begin the add and edit command
 |Field |Format |Notes
 
 |Name
-a|`n/NAME`+
+a|`n/NAME` +
 `n/Any name is possible`
+_alphanumeric characters and spaces_
 a|
 * Name provided has to be unique in the tasklist and is used as an identifying field.
 * It is the **only compulsory** field when creating a task.
 
 |Description
 a|`[des/DESCRIPTION]` +
-`des/Lab of weightage 20% about NP-Cmpleteness`
-a|* Optional description that accompanies a task
+`des/Lab of weightage 20% on NP-Completeness`
+a|* Description that accompanies a task
 
 |Priority
 |`[p/PRIORITY]` +
-`p/1`
+`p/1` +
+_1 or 2 or 3_
 a|
 * If not provided, task is created with the low priority.
 * `PRIORITY` can only be one of these numbers `1,2,3` ranging from low to high in that order.
 
 |Reminder
 |`[r/REMINDER]` +
-`r/10/06/20@12:30`
+`r/10/06/20@12:30` +
+_DD/MM/YY@HH:mm_
 a|
 * A datetime value in this format `DD/MM/YY@HH:mm`.
 
 |Recurring tag
 |`[rec/FREQUENCY]` +
-`rec/daily`
+`rec/d` +
+_d or w_
 a|
-* Can only be `DAILY` or `WEEKLY`.
+* Options are _`d`_ or _`w`_ which respectively are daily or weekly.
 
 |Tag
 a|`[t/TAG]...` +
-`t/errand t/home`
+`t/errand t/home` +
+_alphanumeric characters only_
 a|
 * There can be multiple tags or none at all.
-* Only alphanumeric characters are allowed, spaces and symbols are disallowed.
+* spaces and symbols are disallowed.
 
 |Done
 a|_No prefix available_
@@ -165,14 +234,17 @@ a|
 |===
 
 ==== Add Command
-`add n/This is a new task p/3 des/We have alot of work to do today! t/This t/Is t/Fun` +
-You only need the `n/` prefix when adding a new task as name fields are compulsory. +
+===== Command: `add n/This is a new task p/3 des/We have alot of work to do today! t/This t/Is t/Fun`
+
+Alright, time to start your productivity journey! You only need the `n/` prefix when adding a new task as only the name field is compulsory. Let's add our very first task!
 
 .Add success
 image::add_success.png[width=790]
 
 ==== Edit Command
-`edit n/Look edited the task des/BB Productive is the best app I've every used t/NewTag` +
+===== Command: `edit n/Look edited the task des/BB Productive is the best app I've every used t/NewTag`
+Oh, looks like you've made a mistake, don't worry you can edit your tasks. But first a few things to take note of:
+
 * You can edit all fields except the done field.
 * Please indicate an `<<index, INDEX>>` so that BB Productive knows which task to edit.
 
@@ -180,57 +252,112 @@ image::add_success.png[width=790]
 image::edit_success.png[width=790]
 
 ==== Done Command
-`done <<index, INDEX>> INDEX...`
-You can also mark multiple tasks as done by using comma separated indexes.
+===== Command: `done <<index, INDEX>> INDEX...`
+After some hardwork, you've finished a task, so now let's mark it as done. You can also mark multiple tasks as done by using space to separate those <<index, indexes>>.
 
 .Done success
 image::done_success.png[width=790]
 
 ==== Sort Command
-`sort FIELD FIELD...`
-You can choose to change the current ordering of your task list to something more suitable by sorting it one or more of these task fields:
+===== Command: `sort FIELD FIELD...`
+Oh boy, after a couple of hours, you have filled your day with so many activities! You can choose to change the current ordering of your task list to something more suitable by sorting it by one or more of these task fields:
 
 _All fields with r- prepended refers to a reverse of the original._
 
 . priority -> Shows task of highest priority first.
 . r-priority -> Shows task of lowest priority first.
-. done -> Shows task of undone first.
-. r-done -> Shows task of done first.
+. done -> Shows undone tasks first.
+. r-done -> Shows done tasks first.
 . date -> Shows tasks with reminders closer to today first then tasks without reminders.
 . r-date -> Shows tasks with no remidners first then tasks with reminders further from today.
 . name -> Shows tasks in alphanumeric order.
 . r-name -> Shows tasks in reverse alphanumeric order.
 
+[NOTE]
+====
+Sort order is removed after any find command is applied. +
+It however remains when any other task commands are applied - add, edit, done, delete, etc. +
+Also sort orders are not retained after closing the application
+====
+
 .Sort success
 image::sort_success.png[width=790]
 
 ==== Find Command
-`find PHRASE`
-You can perform a search for tasks by name that are important. BB Productive will then search through the names of the tasks and bring tasks that match the `PHRASE`. It is also typo tolerant and will show tasks that differ from the `PHRASE` by a little.
+===== Command: `find PHRASE`
+===== Command: `find t/TAG t/TAG...`
+===== Command: `find PHRASE t/TAG...`
+Oh my after sorting, you still have so many tasks! You can perform a search for tasks by name or tag to find the tasks most important to you.
+
+* You can choose to search by both name and tag, just name or just tag.
+* For phrase searching, it is slightly typo tolerant and will show tasks that differ from the `PHRASE` by a little.
+* However, tag names provided must be an exact match (ignoring case).
+
+[NOTE]
+====
+Filtered selection is unapplied when the `add` or `edit` commands are used
+====
 
 .Find success
 image::find_success.png[width=790]
 
+==== Tag Command
+===== Command : `tag`
+
+Hmmm, I wonder what types of tasks I have! You can view all existing tags in BB Productive by entering the Tag command!
+
+.Tags success
+image::tag_success.png[width=790]
+
 ==== Delete Command
-`delete <<index, INDEX>> INDEX...`
-You can delete multiple tasks.
+===== Command: `delete <<index, INDEX>> INDEX...`
+Oh my, my task list is getting overcrowded... Luckily, you can use the delete command to delete one or more tasks.
 
 .Delete success
 image::delete_success.png[width=790]
 
 ==== Clear Command
-`clear`
-You may delete all tasks from your list by issuing a clear command.
+===== Command: `clear`
+Oh my it's been a productive month, time to start on a clean slate. You may delete all tasks from your list by issuing a clear command.
 
 .Clear success
 image::clear_success.png[width=790]
 
-=== Pet (Fyonn)
-Write pet
+//end::TaskList[]
 
-// tag::pomodoro[]
+=== Pet
+anchor:pet[]
+_This section provides information about the virtual pet_
+
+==== What's Pet?
+BB productive provides you with a virtual pet to act as your companion to motivate you to do work. It is also a visual embodiment of your productivity so as to remind you of your productivity progress. The pet achieves these functions through three components: Experience points, Evolution and Pet's Mood.
+
+==== Experience (XP) Points
+Just like in a game, the pet has experience (XP) points that is used to level up. Notice whenever a task is done, the XP increases by 5 points? You can also increase the XP by 25 points when you finish a pomodoro cycle. When the XP points accumulations to a total of 100, the pet levels up! Through this reward system, you will be motivated to start doing your work and completing them! Proceed to the next section for information about the evolution of the pet.
+
+.Done Before
+image::UG_Done_before.png[width=790]
+
+.Done Afrer
+image::UG_Done_Finish.png[width=790]
+
+==== Evolution
+
+The pet has three stages of in its evolution: the baby, the teenager and the dad. Each level can be achieved after every successive accumulation of 100 XP points. Can't wait to see your pet grow? Start doing work to gain more XP!
+
+.Evolution of Pet
+image::BBProductiveGrowing.png[width=790]
+
+==== Pet's Mode
+
+The pet has two moods: *Happy* and *Hangry*. When the pet is happy, that means you have been consistent in your work. Good Job! However, when the pet is hangry, that indicates that you have not been doing work for awhile. The pet acts as a visual cue to remind you when you have not been productive in awhile.
+
+[[example of different hangry modes]]
+
+//tag::pomodoro[]
 [[Pomodoro]]
 === Pomodoro
+anchor:pomodoro[]
 _In this section, let's learn how you can take advantage of the Pomodoro feature to boost your productivity! Learn all the commands you can use for Pomodoro._
 
 ==== What's Pomodoro?
@@ -290,55 +417,66 @@ image::pom_prompt_break.png[width=790]
 =====
 You will not be able to do execute other commands during these prompts. Please respond to the prompts to proceed.
 =====
-
 ===== Back to Step 1?
 At the end of the break, the app will return to it's "neutral" state and you can  repeat the process, if you wish.
 
 .End of pomodoro cycle screen
 image::pom_break_end.png[width=790]
 
-// end::pomodoro[]
+//end::pomodoro[]
+//tag::statisticsug[]
 
-=== Statistics (Permas)
-As you continue to use BB Productive, you may start to wonder how productive you have been over time. This is where our Statistics feature comes in! Simply type in the command 'stats' to access the Statistics Tab and track your productivity. Look out for the background color of the Statistics Tab. If it turns orange after you type the command this means you are on the correct tab.
+=== Statistics
+anchor:statistics[]
+As you continue to use BB Productive, you may start to wonder how productive you have been over time. This is where our Statistics feature comes in! Simply type in the command 'stats' to access the Statistics Tab and track your productivity. Look out for the background color of the "Statistics" Tab. If it turns orange after you run the command, you are on the correct tab.
 
-The Statistics Tab consists of 2 features to help you keep track of your productivity.
+The Statistics Tab consists of the following 2 features to help you keep track of your productivity. From the figure below, the Daily Challenge is the progress bar near the top of the screen and the Productivity Charts are the 2 bar charts below.
 
 .Statistics Tab
 image::stats_tab.png[width=400]
 
 ==== Daily Challenge
-The Daily Challenge is a progress bar that tracks the total duration you have kept the Pomodoro running on the current day. The more you run the Pomodoro, the more the progress bar fills, and the closer you are to clearing the challenge! Try to clear the Daily Challenge everyday to hit your productivity goals!
+The Daily Challenge tracks the total duration you have kept the Pomodoro running on the current day. The more you run the Pomodoro, the more the progress bar fills, and the closer you are to clearing the challenge! Try to clear the Daily Challenge every day to hit your productivity goals!
 
-[IMPORTANT]
+[TIP]
 ====
-You can customise the duration you aim to achieve on a daily basis by using the Set Command as introduced in section 6.x //TODO link.
+You can customise the duration you aim to achieve on a daily basis by using the Set Command as described <<settings, here>>.
 ====
 
-==== Productivity Chart
-The Productivity Chart tracks the number of tasks done and duration you ran the Pomodoro per day for the past 7 days. You can thus track your productivity over time. With this information. you can make proper adjustments to your schedule to improve your productivity. If you start noticing the orange bars getting shorter, realise that it is time to buckle up and work harder, or else you may lose your productivity momentum!
+==== Productivity Charts
+The Productivity Charts tracks 2 main data points daily. Firstly, it tracks the number of tasks you have completed. Secondly, it tracks the total duration you ran the Pomodoro. With this information, you can gauge your productivity over time and make proper adjustments to your schedule to improve your productivity. If you start noticing the orange bars getting shorter, realize that it is time to buckle up and work harder, or else you may lose your productivity momentum!
+//end::statisticsug[]
 
+//tag::AutoComplete[]
 === AutoComplete
-As much as you enjoy typing, we've added some extra grease to make you type even faster. You can trigger our very intelligent auto complete function by pressing `tab` on the keyboard.
+As much as you enjoy typing, we've added some extra grease to help you type even faster. You can trigger our very intelligent auto complete function by pressing `tab` on the keyboard.
 
 You can expect: +
 
 * Auto completion of command words: `del -> delete`
+
+.Command word auto complete
+image::AC_command.png[]
 * Addition of prefixes for common values: `20/10/20@10:30 -> r/20/10/20@10:30`
-** Figure 14
-* Auto completion of sort fields `sort pri` -> `sort priority`
-** Figure 15
 
 .Prefix auto complete
 image::prefix_complete.png[]
+* Auto completion of sort fields `sort pri` -> `sort priority`
+
 .Sort auto complete
 image::sort_complete.png[]
+* Removal of indexes that are invalid [not a positive integer or out of the tasklist's size]
 
-If we can't find a valid command, you will observe feedback like below:
+.Done index removal
+image::AC_removal_success.png[]
+* If we can't find a valid command, you will observe feedback like below:
 
 .Auto complete not found
 image::complete_fail.png[]
 
+//end::AutoComplete[]
+
+//tag::reminder[]
 
 === Reminders
 
@@ -346,21 +484,34 @@ image::complete_fail.png[]
 BBProductive provides an avenue to remember to do time sensitive tasks in the form of reminders. When the time for the reminder has arrived, BBProductive alerts you to do the task! Never forget to do buy milk or any other time sensitive task ever again!
 
 ==== How do you use it?
-Add a reminder to your task by adding `r/DD/MM/YY@HH:MM` when editing or adding a task. A pop up containing the task name and description will then appear reminding you to complete the task at the specified date and time.
+Add a reminder to your task by adding `r/DD/MM/YY@HH:mm` when editing or adding a task. A pop up containing the task name and description will then appear reminding you to complete the task at the specified date and time.
 
 ==== Command `r/DD/MM/YY@HH:MM`
 ===== Add Task with reminder
-Add task with reminder with the following command `add n/<name> r/DD/MM/YY@HH:MM`. You can also include the other flags such as `t/`, `des/` and more.
+Add task with reminder with the following command `add n/<name> r/DD/MM/YY@HH:mm`. You can also include the other flags such as `t/`, `des/` and more.
 
 For example: `add n/Buy Milk r/11/11/20@23:59` as shown below.
 
 .Input for adding a task with reminder.
 image::reminder_add.png[width=395]
 
-Results in a task with the reminder's date in the task card.
+This results in a task with the reminder's date in the task card as well as result display giving feedback.
 
-.Success for adding a task with reminder.
+.Success for adding a task with reminder on result display(top).
+image::AddTaskReminderUp.png[width=395]
+
+.Success for adding a task with reminder on result display(scroll to bottom).
+image::AddTaskReminderDown.png[width=395]
+
+.Success for adding a task with reminder(top).
 image::reminder_add_success.png[width=790]
+
+[IMPORTANT]
+====
+- Firstly, the format for the date must adhere strictly to the `r/DD/MM/YY@HH:mm` format or else it will not be recognized.
+- Secondly, the date can only be set in the future and not the past. +
+An error message will be shown on the result display if either of the 2 aforementioned issues are breached. This applies for editing as task to have a reminder as well.
+====
 
 ===== Edit Task with reminder
 Edit a task to include a reminder with the following command `edit <index> r/DD/MM/YY@HH:MM`. You can also include the other flags such as `t/`, `des/` and more.
@@ -370,11 +521,20 @@ For example: `edit 1 r/01/11/20@11:59` as shown below.
 .Input for editing task to have reminder or edit reminder itself.
 image::reminder_edit.png[width=395]
 
-Results in a task with the reminder's date in the task card.
+Results in a task with the reminder's date in the task card as well as result display giving feedback.
+
+.Success for editing a task with reminder on result display(top).
+image::EditTaskReminderUp.png[width=395]
+
+.Success for editing a task with reminder on result display(scroll to bottom).
+image::EditTaskReminderDown.png[width=395]
 
 .Success for editing task's reminder.
 image::reminder_edit_success.png[width=790]
 
+//end::reminder[]
+
+//tag::recurring[]
 === Recurring
 
 ==== What's Recurring?
@@ -392,24 +552,70 @@ For example: `add n/Buy Milk rec/d` as shown below.
 .Input for adding recurring attribute to task.
 image::recurring_add.png[width=395]
 
-Results in a task with the recurring attribute in the task card.
+Results in a task with the recurring attribute in the task card as well as result display giving feedback.
 
-.Success for adding recurring attribute to task.
+.Success for adding a task with recurring attribute on result display(top).
+image::AddTaskRecurringUp.png[width=395]
+
+.Success for adding a task with recurring attribute on result display(scroll to bottom).
+image::AddTaskRecurringDown.png[width=395]
+
+.Success for adding recurring attribute to task card.
 image::recurring_add_success.png[width=790]
+
+[IMPORTANT]
+====
+The format for recurring is strictly `rec/d` or `rec/w` as there is only daily and weekly recurring tasks. Any other input will be recognized as invalid and an error message will be shown on the result display.
+====
 
 ===== Edit Task with recurring
 Edit a task to include a recurring with the following command `edit <index> rec/d` or `edit <index> rec/w`. You can also include the other flags such as `t/`, `des/` and more.
 
-For example: `edit 1 rec/d` as shown below.
+For example: `edit 1 rec/w` as shown below.
 
 .Input for editing recurring attribute to task.
 image::recurring_edit.png[width=395]
 
 Results in a task with the reminder's date in the specific task card.
 
-.Success for editing recurring attribute to task.
-image::recurring_edit_success.png[width=790]
+.Success for editing a task with recurring attribute on result display(top).
+image::EditTaskRecurringUp.png[width=395]
 
+.Success for editing a task with recurring attribute on result display(scroll to bottom).
+image::EditTaskRecurringDown.png[width=395]
+
+=== Recurring behaviour when task is marked as done
+Mark a task as done as you would normally using the command `done <index>`. For a recurring task, after the stipulated amount of time(either daily or weekly), the task will be reset as undone.
+
+For example: `done 1`. After a day's worth of time, the task will be set from done to undone.
+
+.Task initially marked as done on task card.
+image::recurring_behaviour_done.png[width=790]
+
+.Task has been reset shown on result display.
+image::recurring_behaviour_undone_resultDisplay.png[width=395]
+
+.Task has been reset shown on task card.
+image::recurring_behaviour_undone.png[width=790]
+
+=== Recurring behaviour when task has reminder
+Add a reminder as you would normally using the command `edit <index> r/DD/MM/YY@HH:mm` or `add n/<name> r/DD/MM/YY@HH:mm rec/<type>` if you are adding the task. For a recurring task, after the stipulated amount of time(either daily or weekly), the reminder will increment by the time interval if it has been triggered. This means the reminder will be incremented by 1 day if the time interval is daily, and 7 days if the time interval is weekly.
+
+For example: `done 1`. After a day's worth of time, the task will be set from done to undone.
+
+.Task initially has a reminder for 13th April 2020 at 9:32PM.
+image::recurring_behaviour_reminder.png[width=790]
+
+.Task has been reset shown on result display with updated reminder time of 14th April 2020 at 9:32PM(top).
+image::recurring_behaviour_new_reminder_resultDisplay(Top).png[width=395]
+
+.Task has been reset shown on result display with updated reminder time of 14th April 2020 at 9:32PM(scroll to bottom).
+image::recurring_behaviour_new_reminder_resultDisplay(Bottom).png[width=395]
+
+.Task has been reset shown on task card with updated reminder time of 14th April 2020 at 9:32PM.
+image::recurring_behaviour_new_reminder.png[width=790]
+
+//end::recurring[]
 
 [[Navigation]]
 === Navigation
@@ -437,17 +643,51 @@ Use the `settings` command to view the _Settings_ tab. The orange background on 
 
 image::settings.png[width="790"]
 
-=== Storage (Permas)
-All your progress, user preferences and settings are stored in the “data” folder. If you plan to switch devices, you may transfer your progress to another computer by copying the contents of the original device’s “data” folder to the new device’s data folder. This can be done through a thumbdrive.
+=== Set Commands
+anchor:settings[]
+_This section explains how to use the set commands_
+
+Tired of the name "BB"? Is 25 minutes of pomodoro time too short for you? Want to achieve more with the daily challenge? BB productive provides you with the option to customise the various features! Simply use the set commands to customise it the way you want.
+
+command: `set [pet/PETNAME] [pom/POMDURATION] [daily/DAILYTARGET]`
 
 [TIP]
-====
-Please check that the following files are in the “data” folder to ensure that you are transferring the correct files!
-====
+Parameters can be in any order e.g. if the command specifies `pet/PETNAME pom/POMDURATION`, `pom/POMDURATION pet/PETNAME` is also acceptable.
 
+Take for example, you would like the name to be "Momu", the pomodoro duration to be 30 mins and the daily challenge target to be 150 minutes. Run this command:
+
+eg. Command `set pet/Momu pom/30 daily/150`
+
+.Set before
+image::UG_Set_Before.png[width="790"]
+
+Once, the set is successful, you will this success message being displayed.
+
+.set success message
+image::UG_set_successmessage.png[width="790"]
+
+This is the view you will be seeing after running the set command. As you can see the pet name, pomodoro duration and daily challenge target have been changed!
+
+.Set after
+image::UG_Set_After.png[width="790"]
+
+[IMPORTANT]
+Take note that there are restrictions in the values you can set.
+Pet Name: Only alphanumerics are allowed
+Pomodoro Duration : The maximum amount is 60 minutes so as to prevent you from burning out
+Daily Target: The maximun amount is 720 minutes
+
+//tag::storage[]
+=== Storage
+All your progress, user preferences and settings are stored in the “data” folder. If you plan to switch devices, you may transfer your progress to another computer by copying the contents of the original device’s “data” folder to the new device’s data folder. This can be done through a thumbdrive.
+
+Please check that the following files are in the “data” folder to ensure that you are transferring the correct files!
+
+.Files in data folder
 image::storage.png[width="395"]
 
-// tag::commandtablesummary[]
+//end::storage[]
+//tag::commandtablesummary[]
 [[CommandTableSummary]]
 == Command Table Summary
 _The following table summarizes all the commands that you can use. Input contained with in [...] are optional fields._
@@ -458,32 +698,36 @@ _The following table summarizes all the commands that you can use. Input contain
 |Command |Format |Example
 
 |Add
-|add n/<item index> [des/<task description>] [p/<priority value>] [r/<reminder’s date and time>] [t/<tag1> t/<tag2>...]
-|add n/Finish Quiz des/Pages 3-5 p/1 r/20/03/20@19:30 t/cs2100
+|add n/NAME [des/DESCRIPTION] [p/PRIORITY] [r/REMINDER] [rec/FREQUENCY] [t/TAG...]
+|add n/Finish Quiz des/Pages 3-5 p/1 r/20/03/20@19:30 rec/d t/cs2100 t/school
 
 |Edit
-|edit INDEX [n/NAME] [des/DESCRIPTION] [p/PRIORITY] [r/REMINDER] [t/TAG]
+|edit INDEX [n/NAME] [des/DESCRIPTION] [p/PRIORITY] [r/REMINDER] [rec/FREQUENCY] [t/TAG...]
 |edit 2 r/10/03/21@13:00
 
 |Done
 |done INDEX
-|done 5
+|done 5 6 7
 
 |Delete
 |delete INDEX
-|delete 7
-
-|Clear
-|clear
-|clear
+|delete 1 2 3 7
 
 |Pom
 |pom INDEX [tm/TIME IN MINUTES]
 |pom 4 tm/45
 
+|find
+|find PHRASE [t/TAG...]
+|find mum tells me to t/MA1521
+
+|Tag
+|tag
+|tag
+
 |Sort
 |sort FIELD1 FIELD2 FIELD3 ...
-|sort done, priority
+|sort done priority r-done
 
 |Tasks
 |tasks
@@ -497,11 +741,35 @@ _The following table summarizes all the commands that you can use. Input contain
 |settings
 |settings
 
+|Set
+|Set [pet/PETNAME] [pom/POMDURATION] [daily/DAILYTARGET]
+|Set pet/momu pom/30 daily/150
+|Clear
+|clear
+|clear
+
 |===
 
-// end::commandtablesummary[]
+//end::commandtablesummary[]
 
 == FAQ
 
 *Q*: How do I transfer my data to another Computer? +
 *A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous BB Productive folder.
+
+== Command Summary
+
+* *Add* `add n/Do math homework des/pages 1-2 r/DD/MM/YY@HH:mm t/tag1 tag2` +
+e.g. `add n/Do math homework d/pages 1-2 r/09/08/20@12:30 t/Difficult InProgress`
+* *Edit* : `edit INDEX [n/NAME] [des/DESCRIPTION] [r/REMINDER]` +
+e.g. `edit 2 n/Add Buy Feature ld/2020-03-04`
+* *Delete* : `delete INDEX` +
+e.g. `delete 3`
+* *Find* : `find KEYWORD [MORE_KEYWORDS]` +
+e.g. `find Quiz Essay`
+* *Statistics* : `stats`
+* *Pom* : `pom 2 tm/5`
+* *List* : `list`
+* *Help* : `help`
+* *Clear* : `clear`
+* *Exit* : `exit`
