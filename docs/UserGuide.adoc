@@ -350,9 +350,10 @@ image::BBProductiveGrowing.png[width=790]
 
 ==== Pet's Mode
 
-The pet has two moods: *Happy* and *Hangry*. When the pet is happy, that means you have been consistent in your work. Good Job! However, when the pet is hangry, that indicates that you have not been doing work for awhile. The pet acts as a visual cue to remind you when you have not been productive in awhile.
+The pet has two moods: *Happy* and *Hangry*. When the pet is happy, that means you have been consistent in your work. Good Job! However, when the pet is hangry, that indicates that you have not been doing work for awhile. The pet acts as a visual cue to remind you when you have not been productive in awhile. [For testing purposes, the pet will turn hangry after 1 minute]
 
-[[example of different hangry modes]]
+.Example of different hangry modes
+image::hangry-moods-examples.png[width=790]
 
 //tag::pomodoro[]
 [[Pomodoro]]
@@ -661,7 +662,7 @@ eg. Command `set pet/Momu pom/30 daily/150`
 .Set before
 image::UG_Set_Before.png[width="790"]
 
-Once, the set is successful, you will this success message being displayed.
+Once the set is successful, you will see this success message being displayed.
 
 .set success message
 image::UG_set_successmessage.png[width="790"]

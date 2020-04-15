@@ -1212,24 +1212,24 @@ Expected: The task displays the reminder date in the task card. When the time co
 
 === Adding a recurring attribute to a task
 . Adding a task with a recurring attribute. +
-.. Run the command `add n/recurTest rec/t`
+.. Run the command add n/recurTest rec/t
 .. Take note of the index of that task.
-.. Run the done command `done <index>` +
-Expected: Although it is meant to be a daily recurring task and thus the time delay should be 24 hours, for testing purposes the time delay is set to 60 seconds. After 60 seconds, the done is set back to unfinished, with the tick being removed from the task card.
+.. Run the done command done <index> +
+Expected: For testing purposes, the time delay is set to 60 seconds and it mimics a weekly recurring task. After 60 seconds, the done is set back to unfinished, with the tick being removed from the task card.
 
 . Editing a task to have a recurring attribute. +
-.. Add a task `add n/editRecurringTest` first and see it added on the tasklist panel
+.. Add a task add n/editRecurringTest first and see it added on the tasklist panel
 .. Take note of the index of that task
-.. Edit the task with `edit <index> rec/t`
-.. Run the done command `done <index>` +
+.. Edit the task with edit <index> rec/t
+.. Run the done command done <index> +
 Expected: The task is marked as done at first. After 60 seconds, the done is set back to unfinished, with the tick being removed from the task card.
 
 . Adding a task with a reminder and recurring attribute. +
-Prerequisite: Take note of the current time plus 1 minute and date in the format `DD/MM/YY@HH:mm`, for example if the current time is `15/03/20@15:47` then you should get the command ready `15/03/20@15:48` (but use the current date and time instead)
-.. Run the command `add n/recurReminderTest r/DD/MM/YY@HH:mm rec/t`
+Prerequisite: Take note of the current time plus 1 minute and date in the format DD/MM/YY@HH:mm, for example if the current time is 15/03/20@15:47 then you should get the command ready 15/03/20@15:48 (but use the current date and time instead)
+.. Run the command add n/recurReminderTest r/DD/MM/YY@HH:mm rec/t
 .. Take note of the index of that task.
-.. Run the done command `done <index>` +
-Expected: After 60 seconds, the done is set back to unfinished, with the tick being removed from the task card. After the reminder appears, the date displayed changes to the next day, for example `15 March at 15:48` changes to `16 March at 15:48`.
+.. Run the done command done <index> +
+Expected: After 60 seconds, the done is set back to unfinished, with the tick being removed from the task card. After the reminder appears, the date displayed changes to the next week as it mimics a weekly recurring task albeit with a 60 second time delay, for example 15 March at 15:48 changes to 22 March at 15:48.
 
 === Sorting the task list
 . Add a bunch of tasks with different priorities, reminder dates and done values

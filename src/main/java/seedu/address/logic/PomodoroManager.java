@@ -452,7 +452,7 @@ public class PomodoroManager {
         // Update stats
         model.updateDataDatesStatistics();
 
-        timeline = null;
+        // timeline = null;
 
         LocalDateTime now = LocalDateTime.now();
         Date dateOnDone = new Date(now.format(Date.dateFormatter));
@@ -493,6 +493,7 @@ public class PomodoroManager {
                                 "Good job! " + CHECK_TAKE_BREAK_MESSAGE, false, false);
                 resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
                 doneTask();
+                timeline = null;
                 checkBreakActions();
                 return commandResult;
             } else if (commandTextLower.equals("n")) {
@@ -538,6 +539,7 @@ public class PomodoroManager {
                 resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
                 setPromptState(PROMPT_STATE.NONE);
                 reset();
+                timeline = null;
                 mainWindow.setDefaultCommandExecutor();
                 return commandResult;
             }
