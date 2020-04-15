@@ -952,14 +952,14 @@ Expected: The task displays the reminder date in the task card. When the time co
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Run the command <code>add n/recurTest rec/t</code></p>
+<p>Run the command add n/recurTest rec/t</p>
 </li>
 <li>
 <p>Take note of the index of that task.</p>
 </li>
 <li>
-<p>Run the done command <code>done &lt;index&gt;</code><br>
-Expected: Although it is meant to be a daily recurring task and thus the time delay should be 24 hours, for testing purposes the time delay is set to 60 seconds. After 60 seconds, the done is set back to unfinished, with the tick being removed from the task card.</p>
+<p>Run the done command done &lt;index&gt;<br>
+Expected: For testing purposes, the time delay is set to 60 seconds and it mimics a weekly recurring task. After 60 seconds, the done is set back to unfinished, with the tick being removed from the task card.</p>
 </li>
 </ol>
 </div>
@@ -969,16 +969,16 @@ Expected: Although it is meant to be a daily recurring task and thus the time de
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Add a task <code>add n/editRecurringTest</code> first and see it added on the tasklist panel</p>
+<p>Add a task add n/editRecurringTest first and see it added on the tasklist panel</p>
 </li>
 <li>
 <p>Take note of the index of that task</p>
 </li>
 <li>
-<p>Edit the task with <code>edit &lt;index&gt; rec/t</code></p>
+<p>Edit the task with edit &lt;index&gt; rec/t</p>
 </li>
 <li>
-<p>Run the done command <code>done &lt;index&gt;</code><br>
+<p>Run the done command done &lt;index&gt;<br>
 Expected: The task is marked as done at first. After 60 seconds, the done is set back to unfinished, with the tick being removed from the task card.</p>
 </li>
 </ol>
@@ -986,18 +986,18 @@ Expected: The task is marked as done at first. After 60 seconds, the done is set
 </li>
 <li>
 <p>Adding a task with a reminder and recurring attribute.<br>
-Prerequisite: Take note of the current time plus 1 minute and date in the format <code>DD/MM/YY@HH:mm</code>, for example if the current time is <code>15/03/20@15:47</code> then you should get the command ready <code>15/03/20@15:48</code> (but use the current date and time instead)</p>
+Prerequisite: Take note of the current time plus 1 minute and date in the format DD/MM/YY@HH:mm, for example if the current time is 15/03/20@15:47 then you should get the command ready 15/03/20@15:48 (but use the current date and time instead)</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Run the command <code>add n/recurReminderTest r/DD/MM/YY@HH:mm rec/t</code></p>
+<p>Run the command add n/recurReminderTest r/DD/MM/YY@HH:mm rec/t</p>
 </li>
 <li>
 <p>Take note of the index of that task.</p>
 </li>
 <li>
-<p>Run the done command <code>done &lt;index&gt;</code><br>
-Expected: After 60 seconds, the done is set back to unfinished, with the tick being removed from the task card. After the reminder appears, the date displayed changes to the next day, for example <code>15 March at 15:48</code> changes to <code>16 March at 15:48</code>.</p>
+<p>Run the done command done &lt;index&gt;<br>
+Expected: After 60 seconds, the done is set back to unfinished, with the tick being removed from the task card. After the reminder appears, the date displayed changes to the next week as it mimics a weekly recurring task albeit with a 60 second time delay, for example 15 March at 15:48 changes to 22 March at 15:48.</p>
 </li>
 </ol>
 </div>
@@ -1322,4 +1322,4 @@ Expected: After the firs command, Pomodoro timer will start counting down from 2
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-13 15:59:52 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-15 10:51:35 UTC</div></div></div></body></html>
