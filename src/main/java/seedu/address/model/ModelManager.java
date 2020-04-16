@@ -322,6 +322,7 @@ public class ModelManager implements Model {
         requireNonNull(comparator);
         this.taskList.setComparator(comparator);
         this.taskList.setSortOrder("");
+        this.taskList.resetData(this.taskList);
         this.taskList.setComparator(null);
     }
 
