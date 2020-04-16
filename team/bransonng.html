@@ -234,15 +234,15 @@ Added Done field</p>
 <div class="paragraph">
 <p>Use <code>add</code> and <code>edit <a href="#index">INDEX</a></code> attached with any combination of the following task field prefixes to perform them. These prefixes can be in any order.</p>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Constraints for fields are <em>italicized</em> in the Format column.</p>
+<p>Constraints for fields are <em>italicized</em> in the Notes column.</p>
 </div>
 </td>
 </tr>
@@ -267,11 +267,13 @@ Added Done field</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Name</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p><code>n/NAME</code><br>
-<code>n/Any name is possible</code>
-<em>alphanumeric characters and spaces</em></p>
+Eg. n/Any name is possible</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="ulist">
 <ul>
+<li>
+<p><em>Name must be in alphanumeric characters or spaces. It cannot be blank.</em></p>
+</li>
 <li>
 <p>Name provided has to be unique in the tasklist and is used as an identifying field.</p>
 </li>
@@ -285,7 +287,7 @@ Added Done field</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p><code>[des/DESCRIPTION]</code><br>
-<code>des/Lab of weightage 20% on NP-Completeness</code></p>
+Eg.des/Lab of weightage 20% on NP-Completeness</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="ulist">
 <ul>
@@ -298,12 +300,14 @@ Added Done field</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Priority</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>[p/PRIORITY]</code><br>
-<code>p/1</code><br>
-<em>1 or 2 or 3</em></code></p></td>
+Eg. <code>p/1</code></code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="ulist">
 <ul>
 <li>
-<p>If not provided, task is created with the low priority.</p>
+<p><em>Priority can only be 1 or 2 or 3</em></p>
+</li>
+<li>
+<p>If not provided, the task is created with a low priority ie. 1.</p>
 </li>
 <li>
 <p><code>PRIORITY</code> can only be one of these numbers <code>1,2,3</code> ranging from low to high in that order.</p>
@@ -314,45 +318,31 @@ Added Done field</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Reminder</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>[r/REMINDER]</code><br>
-<code>r/10/06/20@12:30</code><br>
-<em>DD/MM/YY@HH:mm</em></code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="ulist">
-<ul>
-<li>
-<p>A datetime value in this format <code>DD/MM/YY@HH:mm</code>.</p>
-</li>
-</ul>
+Eg. <code>r/10/06/20@12:30</code></code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>*_ Format should be in DD/MM/YY@HH:mm_
+* A DateTime value in this format <code>DD/MM/YY@HH:mm</code>.</p>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Recurring tag</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>[rec/FREQUENCY]</code><br>
-<code>rec/d</code><br>
-<em>d or w</em></code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="ulist">
-<ul>
-<li>
-<p>Options are <em>`d`</em> or <em>`w`</em> which respectively are daily or weekly.</p>
-</li>
-</ul>
+<code>rec/d</code><br></code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>*_ Recurring tag should either be d or w_
+* Options are <em>`d`</em> or <em>`w`</em> which respectively are daily or weekly.</p>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Tag</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p><code>[t/TAG]&#8230;&#8203;</code><br>
-<code>t/errand t/home</code><br>
-<em>alphanumeric characters only</em></p>
+<code>t/errand t/home</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="ulist">
-<ul>
-<li>
-<p>There can be multiple tags or none at all.</p>
-</li>
-<li>
-<p>spaces and symbols are disallowed.</p>
-</li>
-</ul>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>*<em>Tags should be in alphanumeric characters only</em>
+* There can be multiple tags or none at all.
+* spaces and symbols are disallowed.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -379,23 +369,38 @@ Added Done field</p>
 <div class="sect4">
 <h5 id="command-code-add-n-this-is-a-new-task-p-3-des-we-have-alot-of-work-to-do-today-t-this-t-is-t-fun-code"><a class="link" href="#command-code-add-n-this-is-a-new-task-p-3-des-we-have-alot-of-work-to-do-today-t-this-t-is-t-fun-code">Command: <code>add n/This is a new task p/3 des/We have alot of work to do today! t/This t/Is t/Fun</code></a></h5>
 <div class="paragraph">
-<p>Alright, time to start your productivity journey! You only need the <code>n/</code> prefix when adding a new task as only the name field is compulsory. Let&#8217;s add our very first task!</p>
+<p>Alright, time to start your productivity journey! Let&#8217;s add our very first task by using the command stated above.</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/add_success.png" alt="add success" width="790">
-</div>
-<div class="title">Figure 1. Add success</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+When adding tasks, you only need the <code>n/</code> prefix as only the name field is compulsory.
+.Add success
+image::add_success.png[width=790]
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="edit-command"><a class="link" href="#edit-command">Edit Command</a></h4>
 <div class="sect4">
-<h5 id="command-code-edit-n-look-edited-the-task-des-bb-productive-is-the-best-app-i-ve-every-used-t-newtag-code"><a class="link" href="#command-code-edit-n-look-edited-the-task-des-bb-productive-is-the-best-app-i-ve-every-used-t-newtag-code">Command: <code>edit n/Look edited the task des/BB Productive is the best app I&#8217;ve every used t/NewTag</code></a></h5>
+<h5 id="command-code-edit-index-n-look-edited-the-task-des-bb-productive-is-the-best-app-i-ve-ever-used-t-newtag-code"><a class="link" href="#command-code-edit-index-n-look-edited-the-task-des-bb-productive-is-the-best-app-i-ve-ever-used-t-newtag-code">Command: <code>edit INDEX n/Look edited the task des/BB Productive is the best app I&#8217;ve ever used t/NewTag</code></a></h5>
 <div class="paragraph">
-<p>Oh, looks like you&#8217;ve made a mistake, don&#8217;t worry you can edit your tasks. But first a few things to take note of:</p>
+<p>Made a mistake when adding your task? don&#8217;t worry you can always edit your tasks! But first, a few things to take note of:</p>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
 <div class="ulist">
 <ul>
 <li>
@@ -406,11 +411,15 @@ Added Done field</p>
 </li>
 </ul>
 </div>
+</td>
+</tr>
+</table>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/edit_success.png" alt="edit success" width="790">
 </div>
-<div class="title">Figure 2. Edit success</div>
+<div class="title">Figure 1. Edit success</div>
 </div>
 </div>
 </div>
@@ -419,13 +428,13 @@ Added Done field</p>
 <div class="sect4">
 <h5 id="command-code-done-a-href-index-index-a-index-code"><a class="link" href="#command-code-done-a-href-index-index-a-index-code">Command: <code>done <a href="#index">INDEX</a> INDEX&#8230;&#8203;</code></a></h5>
 <div class="paragraph">
-<p>After some hardwork, you&#8217;ve finished a task, so now let&#8217;s mark it as done. You can also mark multiple tasks as done by using space to separate those <a href="#index">indexes</a>.</p>
+<p>After some hard work, you have finally finished a task! Let us now mark it as done by using the done command. You can also mark multiple tasks as done by using space to separate the <a href="#index">indexes</a>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/done_success.png" alt="done success" width="790">
 </div>
-<div class="title">Figure 3. Done success</div>
+<div class="title">Figure 2. Done success</div>
 </div>
 </div>
 </div>
@@ -436,8 +445,19 @@ Added Done field</p>
 <div class="paragraph">
 <p>Oh boy, after a couple of hours, you have filled your day with so many activities! You can choose to change the current ordering of your task list to something more suitable by sorting it by one or more of these task fields:</p>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
 <div class="paragraph">
 <p><em>All fields with r- prepended refers to a reverse of the original.</em></p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -457,7 +477,7 @@ Added Done field</p>
 <p>date &#8594; Shows tasks with reminders closer to today first then tasks without reminders.</p>
 </li>
 <li>
-<p>r-date &#8594; Shows tasks with no remidners first then tasks with reminders further from today.</p>
+<p>r-date &#8594; Shows tasks with no reminders first then tasks with reminders further from today.</p>
 </li>
 <li>
 <p>name &#8594; Shows tasks in alphanumeric order.</p>
@@ -467,17 +487,17 @@ Added Done field</p>
 </li>
 </ol>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 <div class="paragraph">
 <p>Sort order is removed after any find command is applied.<br>
-It however remains when any other task commands are applied - add, edit, done, delete, etc.<br>
-Also sort orders are not retained after closing the application</p>
+However, it, remains when any other task commands are applied - add, edit, done, delete, etc.<br>
+Also, sort orders are not retained after closing the application</p>
 </div>
 </td>
 </tr>
@@ -487,7 +507,7 @@ Also sort orders are not retained after closing the application</p>
 <div class="content">
 <img src="../images/sort_success.png" alt="sort success" width="790">
 </div>
-<div class="title">Figure 4. Sort success</div>
+<div class="title">Figure 3. Sort success</div>
 </div>
 </div>
 </div>
@@ -504,7 +524,7 @@ Also sort orders are not retained after closing the application</p>
 <div class="sect4">
 <h5 id="command-code-find-phrase-t-tag-code"><a class="link" href="#command-code-find-phrase-t-tag-code">Command: <code>find PHRASE t/TAG&#8230;&#8203;</code></a></h5>
 <div class="paragraph">
-<p>Oh my after sorting, you still have so many tasks! You can perform a search for tasks by name or tag to find the tasks most important to you.</p>
+<p>Even after sorting, you still have so many tasks in your tasklist. You can perform a search for tasks by name or tag to find the tasks most important to you.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -512,18 +532,18 @@ Also sort orders are not retained after closing the application</p>
 <p>You can choose to search by both name and tag, just name or just tag.</p>
 </li>
 <li>
-<p>For phrase searching, it is slightly typo tolerant and will show tasks that differ from the <code>PHRASE</code> by a little.</p>
+<p>For phrase searching, it is tolerant to typographical errors and will show tasks that differ from the <code>PHRASE</code> by a little.</p>
 </li>
 <li>
-<p>However, tag names provided must be an exact match (ignoring case).</p>
+<p>However, tag names provided must be an exact match (ignoring casing of letters).</p>
 </li>
 </ul>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -537,7 +557,7 @@ Also sort orders are not retained after closing the application</p>
 <div class="content">
 <img src="../images/find_success.png" alt="find success" width="790">
 </div>
-<div class="title">Figure 5. Find success</div>
+<div class="title">Figure 4. Find success</div>
 </div>
 </div>
 </div>
@@ -546,13 +566,13 @@ Also sort orders are not retained after closing the application</p>
 <div class="sect4">
 <h5 id="command-code-tag-code"><a class="link" href="#command-code-tag-code">Command : <code>tag</code></a></h5>
 <div class="paragraph">
-<p>Hmmm, I wonder what types of tasks I have! You can view all existing tags in BB Productive by entering the Tag command!</p>
+<p>Wondering what types of tasks you have? You can view all existing tags in BB Productive by entering the Tag command!</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/tag_success.png" alt="tag success" width="790">
 </div>
-<div class="title">Figure 6. Tags success</div>
+<div class="title">Figure 5. Tags success</div>
 </div>
 </div>
 </div>
@@ -561,13 +581,13 @@ Also sort orders are not retained after closing the application</p>
 <div class="sect4">
 <h5 id="command-code-delete-a-href-index-index-a-index-code"><a class="link" href="#command-code-delete-a-href-index-index-a-index-code">Command: <code>delete <a href="#index">INDEX</a> INDEX&#8230;&#8203;</code></a></h5>
 <div class="paragraph">
-<p>Oh my, my task list is getting overcrowded&#8230;&#8203; Luckily, you can use the delete command to delete one or more tasks.</p>
+<p>Tasklist getting overcrowded? Use the delete command to delete one or more tasks To clean up your tasklist!</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/delete_success.png" alt="delete success" width="790">
 </div>
-<div class="title">Figure 7. Delete success</div>
+<div class="title">Figure 6. Delete success</div>
 </div>
 </div>
 </div>
@@ -576,13 +596,13 @@ Also sort orders are not retained after closing the application</p>
 <div class="sect4">
 <h5 id="command-code-clear-code"><a class="link" href="#command-code-clear-code">Command: <code>clear</code></a></h5>
 <div class="paragraph">
-<p>Oh my it&#8217;s been a productive month, time to start on a clean slate. You may delete all tasks from your list by issuing a clear command.</p>
+<p>It&#8217;s been a productive month and you want to  start on a clean slate. You may delete all tasks from your list by issuing a clear command.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/clear_success.png" alt="clear success" width="790">
 </div>
-<div class="title">Figure 8. Clear success</div>
+<div class="title">Figure 7. Clear success</div>
 </div>
 </div>
 </div>
@@ -590,7 +610,7 @@ Also sort orders are not retained after closing the application</p>
 <div class="sect2">
 <h3 id="autocomplete"><a class="link" href="#autocomplete">AutoComplete</a></h3>
 <div class="paragraph">
-<p>As much as you enjoy typing, we&#8217;ve added some extra grease to help you type even faster. You can trigger our very intelligent auto complete function by pressing <code>tab</code> on the keyboard.</p>
+<p>As much as you enjoy typing, we&#8217;ve added some extra grease to help you type even faster. You can trigger our intelligent autocomplete function by pressing <code>tab</code> on the keyboard.</p>
 </div>
 <div class="paragraph">
 <p>You can expect:<br></p>
@@ -606,7 +626,7 @@ Also sort orders are not retained after closing the application</p>
 <div class="content">
 <img src="../images/AC_command.png" alt="AC command">
 </div>
-<div class="title">Figure 9. Command word auto complete</div>
+<div class="title">Figure 8. Command word auto complete</div>
 </div>
 <div class="ulist">
 <ul>
@@ -619,7 +639,7 @@ Also sort orders are not retained after closing the application</p>
 <div class="content">
 <img src="../images/prefix_complete.png" alt="prefix complete">
 </div>
-<div class="title">Figure 10. Prefix auto complete</div>
+<div class="title">Figure 9. Prefix auto complete</div>
 </div>
 <div class="ulist">
 <ul>
@@ -632,7 +652,7 @@ Also sort orders are not retained after closing the application</p>
 <div class="content">
 <img src="../images/sort_complete.png" alt="sort complete">
 </div>
-<div class="title">Figure 11. Sort auto complete</div>
+<div class="title">Figure 10. Sort auto complete</div>
 </div>
 <div class="ulist">
 <ul>
@@ -645,7 +665,7 @@ Also sort orders are not retained after closing the application</p>
 <div class="content">
 <img src="../images/AC_removal_success.png" alt="AC removal success">
 </div>
-<div class="title">Figure 12. Done index removal</div>
+<div class="title">Figure 11. Done index removal</div>
 </div>
 <div class="ulist">
 <ul>
@@ -658,7 +678,7 @@ Also sort orders are not retained after closing the application</p>
 <div class="content">
 <img src="../images/complete_fail.png" alt="complete fail">
 </div>
-<div class="title">Figure 13. Auto complete not found</div>
+<div class="title">Figure 12. Auto complete not found</div>
 </div>
 </div>
 </div>
@@ -701,7 +721,7 @@ Also sort orders are not retained after closing the application</p>
 <div class="content">
 <img src="../images/SortSequenceDiagram.png" alt="SortSequenceDiagram">
 </div>
-<div class="title">Figure 14. Sequence of executing a sort command</div>
+<div class="title">Figure 13. Sequence of executing a sort command</div>
 </div>
 <div class="paragraph">
 <p>The sort command takes in a list of fields and generates FieldComparators as seen in the diagram and then uses Comparator.thenComparing to aggregate the comparators. The first field provided will be of the highest sort order. The <code>Model</code> will then set the aggregated comparator on the <code>TaskList</code>.</p>
@@ -710,7 +730,7 @@ Also sort orders are not retained after closing the application</p>
 <div class="content">
 <img src="../images/SortedListClassDiagram.png" alt="SortedListClassDiagram">
 </div>
-<div class="title">Figure 15. Class diagram of SortedList</div>
+<div class="title">Figure 14. Class diagram of SortedList</div>
 </div>
 <div class="paragraph">
 <p>We use a new <code>SortedList</code> from JavaFx within <code>TaskList</code> because <code>FilteredList</code> does not allow for sorting. As such we have the <code>FilteredList</code> reference the <code>SortedList</code> and the <code>SortedList</code> refernce the <code>UniqueTaskList</code>. By warpping the lists around another, this allows the <code>SortedList</code> and <code>FilteredList</code> to read changes to the <code>UniqueTaskList</code> and perform the appropriate filtering and sorting.</p>
@@ -719,7 +739,7 @@ Also sort orders are not retained after closing the application</p>
 <div class="content">
 <img src="../images/SortInitliazeDiagram.png" alt="SortInitliazeDiagram">
 </div>
-<div class="title">Figure 16. Sequence of initializing the Sorted List</div>
+<div class="title">Figure 15. Sequence of initializing the Sorted List</div>
 </div>
 <div class="paragraph">
 <p>Due to the requirements mentioned, this is how we generate our <code>FilteredList</code>. We set <code>FilteredList</code> to reference the <code>SortedList</code> and then the <code>SortedList</code> to reference the <code>UniqueTaskList</code>.</p>
@@ -731,7 +751,7 @@ Also sort orders are not retained after closing the application</p>
 <div class="content">
 <img src="../images/SortUiSequenceDiagram.png" alt="SortUiSequenceDiagram">
 </div>
-<div class="title">Figure 17. Sequence of how sort updates the UI</div>
+<div class="title">Figure 16. Sequence of how sort updates the UI</div>
 </div>
 <div class="paragraph">
 <p>Meanwhile to update the UI on the newest sorting order, the latest sortOrder is set on the <code>TaskList</code>. The <code>LogicManager</code> is then able to access the sort order from the <code>TaskList</code> throgh the <code>Model</code> and provide the <code>MainWindow</code> with the sort order. The <code>MainWindow</code> then sets it on the <code>TaskListPanel</code>.</p>
@@ -752,7 +772,7 @@ Also sort orders are not retained after closing the application</p>
 <div class="content">
 <img src="../images/ACSequenceDiagram.png" alt="ACSequenceDiagram">
 </div>
-<div class="title">Figure 18. AutoComplete Sequence Diagram</div>
+<div class="title">Figure 17. AutoComplete Sequence Diagram</div>
 </div>
 <div class="paragraph">
 <p>When a user presses tab on the command line, a key event handler in the <code>CommandBox</code> calls the suggestCommand function of <code>MainWindow</code> with the user input. The <code>MainWindow</code> then passes the user input through the <code>LogicManager</code> to the CommandCompletor.<br></p>
@@ -804,7 +824,7 @@ Also sort orders are not retained after closing the application</p>
 <div class="content">
 <img src="../images/ACActivityDiagram.png" alt="ACActivityDiagram" width="790">
 </div>
-<div class="title">Figure 19. Activity diagram of auto complete</div>
+<div class="title">Figure 18. Activity diagram of auto complete</div>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -961,7 +981,7 @@ Also sort orders are not retained after closing the application</p>
 <div class="content">
 <img src="../images/ACsuccess.png" alt="ACsuccess" width="600">
 </div>
-<div class="title">Figure 20. AutoComplete Success UI</div>
+<div class="title">Figure 19. AutoComplete Success UI</div>
 </div>
 <div class="ulist">
 <ul>
@@ -990,7 +1010,7 @@ Also sort orders are not retained after closing the application</p>
 <div class="content">
 <img src="../images/ACfailure.png" alt="ACfailure" width="500">
 </div>
-<div class="title">Figure 21. AutoComplete Failure UI</div>
+<div class="title">Figure 20. AutoComplete Failure UI</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1063,7 +1083,7 @@ Also sort orders are not retained after closing the application</p>
 <div class="content">
 <img src="../images/FindSequenceDiagram.png" alt="FindSequenceDiagram">
 </div>
-<div class="title">Figure 22. Find Command Sequence diagram</div>
+<div class="title">Figure 21. Find Command Sequence diagram</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1121,7 +1141,7 @@ Also sort orders are not retained after closing the application</p>
 <div class="content">
 <img src="../images/PredicateSequenceDiagram.png" alt="PredicateSequenceDiagram">
 </div>
-<div class="title">Figure 23. Overview of predicate sequence</div>
+<div class="title">Figure 22. Overview of predicate sequence</div>
 </div>
 </div>
 <div class="sect4">
@@ -1172,7 +1192,7 @@ Also sort orders are not retained after closing the application</p>
 <div class="content">
 <img src="../images/PredicateNameSequenceDiagram.png" alt="PredicateNameSequenceDiagram">
 </div>
-<div class="title">Figure 24. Name scoring in predicate</div>
+<div class="title">Figure 23. Name scoring in predicate</div>
 </div>
 </div>
 <div class="sect4">
@@ -1184,7 +1204,7 @@ Also sort orders are not retained after closing the application</p>
 <div class="content">
 <img src="../images/PredicateTagSequenceDiagram.png" alt="PredicateTagSequenceDiagram">
 </div>
-<div class="title">Figure 25. Tag scoring in predicate</div>
+<div class="title">Figure 24. Tag scoring in predicate</div>
 </div>
 </div>
 <div class="sect4">
@@ -1345,4 +1365,4 @@ Also sort orders are not retained after closing the application</p>
 </tbody>
 </table>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-16 10:32:25 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-16 16:03:10 UTC</div></div></div></body></html>

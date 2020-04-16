@@ -9,7 +9,6 @@
 <div class="content">
 <img src="images/CoverPage.png" alt="CoverPage" width="790">
 </div>
-<div class="title">Figure 1. Cover Page of User Guide.</div>
 </div>
 </div>
 <div id="toc" class="toc">
@@ -18,11 +17,7 @@
 <li><a href="#what-is-bb-productive">1. What is BB Productive?</a></li>
 <li><a href="#about-this-document">2. About this document</a></li>
 <li><a href="#quick-start">3. Quick Start</a></li>
-<li><a href="#index">4. Terminology</a>
-<ul class="sectlevel2">
-<li><a href="#indexes">4.1. Indexes</a></li>
-</ul>
-</li>
+<li><a href="#index">4. Terminology</a></li>
 <li><a href="#graphical-user-interface">5. Graphical User Interface</a>
 <ul class="sectlevel2">
 <li><a href="#pet-view">5.1. Pet View</a></li>
@@ -41,8 +36,8 @@
 <li><a href="#autocomplete">6.5. AutoComplete</a></li>
 <li><a href="#reminders">6.6. Reminders</a></li>
 <li><a href="#recurring">6.7. Recurring</a></li>
-<li><a href="#recurring-behaviour-when-task-is-marked-as-done">6.8. Recurring behaviour when task is marked as done</a></li>
-<li><a href="#recurring-behaviour-when-task-has-reminder">6.9. Recurring behaviour when task has reminder</a></li>
+<li><a href="#recurring-behaviour-when-a-task-is-marked-as-done">6.8. Recurring behaviour when a task is marked as done</a></li>
+<li><a href="#recurring-behaviour-when-the-task-has-a-reminder">6.9. Recurring behaviour when the task has a reminder</a></li>
 <li><a href="#Navigation">6.10. Navigation</a></li>
 <li><a href="#set-commands">6.11. Set Commands</a></li>
 <li><a href="#storage">6.12. Storage</a></li>
@@ -117,7 +112,7 @@ This formatting indicates that this is additional information
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Command</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A gray highlight indicates that the word is a command to be entered by the user.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A grey highlight indicates that the word is a command to be entered by the user.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>UPPER_CASE</code></p></td>
@@ -184,45 +179,59 @@ Parameters can be in any order e.g. if the command specifies <code>pet/PETNAME p
 <div class="content">
 <img src="images/BBProductiveQuickStart_Graphic.png" alt="BBProductiveQuickStart Graphic" width="790">
 </div>
-<div class="title">Figure 2. Overview of BBproductive features</div>
+<div class="title">Figure 1. Overview of BBproductive features</div>
 </div>
 <div class="paragraph">
-<p>Follow the steps below to install and launch BB Productive:
-.  Ensure you have Java <code>11</code> or above installed in your Computer.
-.  Download the latest <code>bb_productive.jar</code> <a href="https://github.com/AY1920S2-CS2103T-W16-1/main/releases">here</a>.
-.  Copy the file to the folder you want to use as the home folder for your BB Productive.
-.  Double-click the file to start the app. The GUI should appear in a few seconds.</p>
+<p>Follow the steps below to install and launch BB Productive:</p>
 </div>
-<div class="paragraph">
-<p>+
-.Image of User Interface on boot.
-image::Ui.png[width="790"]</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Ensure you have Java <code>11</code> or above installed in your Computer.</p>
+</li>
+<li>
+<p>Download the latest <code>bb_productive.jar</code> <a href="https://github.com/AY1920S2-CS2103T-W16-1/main/releases">here</a>.</p>
+</li>
+<li>
+<p>Copy the file to the folder you want to use as the home folder for your BB Productive.</p>
+</li>
+<li>
+<p>Double-click the file to start the app. The GUI should appear in a few seconds.</p>
+</li>
+</ol>
 </div>
-<div class="paragraph">
-<p>+
-.  Type the command in the Pet Chat (Command box) and press <kbd>Enter</kbd> to execute it.<br>
-e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> will open the help window.
-.  Some example commands you can try:</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/Ui.png" alt="Ui" width="790">
 </div>
+<div class="title">Figure 2. Image of User Interface on boot.</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Type the command in the Pet Chat (Command box) and press <kbd>Enter</kbd> to execute it.<br>
+e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> will open the help window.</p>
+</li>
+<li>
+<p>Some example commands you can try:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong><code>add</code></strong><code>n/Do math homework des/pages 1-2 r/11/11/21@23:59</code> : adds a task of name <code>Do math homework</code> to the Task List with a date and time that follows the r/ prefix and a <code>pages 1-2</code> description.</p>
+<p><strong><code>add</code></strong><code>n/Do math homework des/pages 1-2 r/11/11/21@23:59</code> : adds a task of the name <code>Do math homework</code> to the Task List with a date and time that follows the r/ prefix and a <code>pages 1-2</code> description.</p>
 </li>
 <li>
 <p><strong><code>delete</code></strong><code>3</code> : deletes the 3rd task shown in the list</p>
 </li>
 <li>
 <p><strong><code>exit</code></strong> : exits the app</p>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
+</ul>
+</div>
+</li>
 <li>
 <p>Refer to <a href="#Features">Section 6, &#8220;Features&#8221;</a> for details of each command.</p>
 </li>
 </ol>
-</div>
-</li>
-</ul>
 </div>
 </div>
 </div>
@@ -236,27 +245,10 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p><strong>Task</strong>: A task is something that you need to complete. It is represented as a card on the right side of the window. Set reminders, add tags and more to better manage your tasks!</p>
 </div>
 <div class="paragraph">
-<p><strong>Pomodoro</strong>: A productivity technique that consists of doing focused work for 25 minutes followed by a 5 minute break. This technique prevents you from tiring out while doing work.</p>
+<p><strong>Pomodoro</strong>: A productivity technique that consists of doing focused work for 25 minutes followed by a 5-minute break. This technique prevents you from tiring out while doing work.</p>
 </div>
 <div class="paragraph">
-<p><strong>Pet</strong>: The pet you will interact with to manage your tasks and pomodoros. You can also level up the pet by completing more tasks/pomodoros.</p>
-</div>
-<div class="sect2">
-<h3 id="indexes"><a class="link" href="#indexes">4.1. Indexes</a></h3>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Indexes refer to the current tasklist on display, it does not refer to the indices of the entire task list. Note also that indexes start from 1 and not 0.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
+<p><strong>Pet</strong>: The pet you will interact with to manage your tasks and Pomodoros. You can also level up the pet by completing more tasks/Pomodoros.</p>
 </div>
 </div>
 </div>
@@ -269,7 +261,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="sect2">
 <h3 id="pet-view"><a class="link" href="#pet-view">5.1. Pet View</a></h3>
 <div class="paragraph">
-<p>The Pet View is where you can view your pet, its name, level, and experience gained. With diligent usage of BB Productive, its experience (XP) and level will increase with time. The pet will evolve as it levels up and takes on different appearances, encouraging you to work harder! Further details of the Pet are described <a href="#pet">here</a>.</p>
+<p>The Pet View is where you can view your pet, its name, level, and experience points. With diligent usage of BB Productive, you can increase the experience points of your pete. The pet will evolve as it levels up, encouraging you to work harder! Further details of the Pet can be found in <a href="#pet">Section 6.2. Pet</a>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -281,7 +273,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="sect2">
 <h3 id="command-box"><a class="link" href="#command-box">5.2. Command Box</a></h3>
 <div class="paragraph">
-<p>The Command Box is the one-stop place for you to input any commands to interact with the app. Simply click the box and type the command of your choice. Hit the <code>Enter</code> or <code>Return</code> key on your keyboard to execute the command. The program will respond to each command through the Pet Dialog Box. Occasionally, the app may prompt you for your preferences via the Dialog Box. Simply respond via the Command Box as well!</p>
+<p>The Command Box is the one-stop place for you to input any commands to interact with the app. Simply click the box and type the command of your choice. Hit the <code>Enter</code> or <code>Return</code> key on your keyboard to execute the command. The program will respond to each command through the Pet Dialog Box. Occasionally, the app may also prompt you for your response via the Dialog Box. You can reply through the command box as well.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -293,7 +285,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="sect2">
 <h3 id="tasks-tab"><a class="link" href="#tasks-tab">5.3. Tasks Tab</a></h3>
 <div class="paragraph">
-<p>The Task Tab is where you view your task list and the Pomodoro Timer. Any changes made to the task list through the commands will be reflected here! The Pomodoro Timer runs when you run the Pom Command as described <a href="#pomodoro">here</a>.</p>
+<p>The Task Tab is where you can view your task list and the Pomodoro Timer. Any changes made to the task list through the commands will be reflected here! The Pomodoro Timer activates when you run the Pom Command as described in <a href="#pomodoro">Section 6.3. Pomodoro</a>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -305,7 +297,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="sect2">
 <h3 id="statistics-tab"><a class="link" href="#statistics-tab">5.4. Statistics Tab</a></h3>
 <div class="paragraph">
-<p>The Statistics Tab consists of the Daily Challenge and the Productivity Charts. They help you to visualize the progress of your productivity over the past week, giving you the momentum to hit your productivity goals! You can find out more about this tab <a href="#statistics">here</a>.</p>
+<p>The Statistics Tab shows you your progress on the Daily Challenge and your Productivity Charts. They help you to visualize your productivity over the past week, so that you can reflect on your progress to hit your productivity goals! You can find out more about this tab in <a href="#statistics">Section 6.4. Statistics</a>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -317,13 +309,9 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="sect2">
 <h3 id="settings-tab"><a class="link" href="#settings-tab">5.5. Settings Tab</a></h3>
 <div class="paragraph">
-<p>The Settings Tab lets you customize the program to suit your needs. In this tab, you can view and edit your configurations for Pet Name, Pomodoro Duration, and Daily Challenge Target.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/settings_tab.png" alt="settings tab" width="395">
-</div>
-<div class="title">Figure 7. Settings Tab</div>
+<p>The Settings Tab lets you customize the app to your preference. In this tab, you can view your configurations for Pet Name, Pomodoro Duration, and Daily Challenge Target. To find out more about how you can use this tab, head to Section 6.11. Set Commands.
+.Settings Tab
+image::settings_tab.png[width=395]</p>
 </div>
 </div>
 </div>
@@ -343,15 +331,15 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="paragraph">
 <p>Use <code>add</code> and <code>edit <a href="#index">INDEX</a></code> attached with any combination of the following task field prefixes to perform them. These prefixes can be in any order.</p>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Constraints for fields are <em>italicized</em> in the Format column.</p>
+<p>Constraints for fields are <em>italicized</em> in the Notes column.</p>
 </div>
 </td>
 </tr>
@@ -376,11 +364,13 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <td class="tableblock halign-left valign-top"><p class="tableblock">Name</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p><code>n/NAME</code><br>
-<code>n/Any name is possible</code>
-<em>alphanumeric characters and spaces</em></p>
+Eg. n/Any name is possible</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="ulist">
 <ul>
+<li>
+<p><em>Name must be in alphanumeric characters or spaces. It cannot be blank.</em></p>
+</li>
 <li>
 <p>Name provided has to be unique in the tasklist and is used as an identifying field.</p>
 </li>
@@ -394,7 +384,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p><code>[des/DESCRIPTION]</code><br>
-<code>des/Lab of weightage 20% on NP-Completeness</code></p>
+Eg.des/Lab of weightage 20% on NP-Completeness</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="ulist">
 <ul>
@@ -407,12 +397,14 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Priority</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>[p/PRIORITY]</code><br>
-<code>p/1</code><br>
-<em>1 or 2 or 3</em></code></p></td>
+Eg. <code>p/1</code></code></p></td>
 <td class="tableblock halign-left valign-top"><div><div class="ulist">
 <ul>
 <li>
-<p>If not provided, task is created with the low priority.</p>
+<p><em>Priority can only be 1 or 2 or 3</em></p>
+</li>
+<li>
+<p>If not provided, the task is created with a low priority ie. 1.</p>
 </li>
 <li>
 <p><code>PRIORITY</code> can only be one of these numbers <code>1,2,3</code> ranging from low to high in that order.</p>
@@ -423,45 +415,31 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Reminder</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>[r/REMINDER]</code><br>
-<code>r/10/06/20@12:30</code><br>
-<em>DD/MM/YY@HH:mm</em></code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="ulist">
-<ul>
-<li>
-<p>A datetime value in this format <code>DD/MM/YY@HH:mm</code>.</p>
-</li>
-</ul>
+Eg. <code>r/10/06/20@12:30</code></code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>*_ Format should be in DD/MM/YY@HH:mm_
+* A DateTime value in this format <code>DD/MM/YY@HH:mm</code>.</p>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Recurring tag</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><code>[rec/FREQUENCY]</code><br>
-<code>rec/d</code><br>
-<em>d or w</em></code></p></td>
-<td class="tableblock halign-left valign-top"><div><div class="ulist">
-<ul>
-<li>
-<p>Options are <em>`d`</em> or <em>`w`</em> which respectively are daily or weekly.</p>
-</li>
-</ul>
+<code>rec/d</code><br></code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>*_ Recurring tag should either be d or w_
+* Options are <em>`d`</em> or <em>`w`</em> which respectively are daily or weekly.</p>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Tag</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p><code>[t/TAG]&#8230;&#8203;</code><br>
-<code>t/errand t/home</code><br>
-<em>alphanumeric characters only</em></p>
+<code>t/errand t/home</code></p>
 </div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="ulist">
-<ul>
-<li>
-<p>There can be multiple tags or none at all.</p>
-</li>
-<li>
-<p>spaces and symbols are disallowed.</p>
-</li>
-</ul>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>*<em>Tags should be in alphanumeric characters only</em>
+* There can be multiple tags or none at all.
+* spaces and symbols are disallowed.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -488,23 +466,38 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="sect4">
 <h5 id="command-code-add-n-this-is-a-new-task-p-3-des-we-have-alot-of-work-to-do-today-t-this-t-is-t-fun-code"><a class="link" href="#command-code-add-n-this-is-a-new-task-p-3-des-we-have-alot-of-work-to-do-today-t-this-t-is-t-fun-code">Command: <code>add n/This is a new task p/3 des/We have alot of work to do today! t/This t/Is t/Fun</code></a></h5>
 <div class="paragraph">
-<p>Alright, time to start your productivity journey! You only need the <code>n/</code> prefix when adding a new task as only the name field is compulsory. Let&#8217;s add our very first task!</p>
+<p>Alright, time to start your productivity journey! Let&#8217;s add our very first task by using the command stated above.</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="images/add_success.png" alt="add success" width="790">
-</div>
-<div class="title">Figure 8. Add success</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+When adding tasks, you only need the <code>n/</code> prefix as only the name field is compulsory.
+.Add success
+image::add_success.png[width=790]
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="edit-command"><a class="link" href="#edit-command">6.1.3. Edit Command</a></h4>
 <div class="sect4">
-<h5 id="command-code-edit-n-look-edited-the-task-des-bb-productive-is-the-best-app-i-ve-every-used-t-newtag-code"><a class="link" href="#command-code-edit-n-look-edited-the-task-des-bb-productive-is-the-best-app-i-ve-every-used-t-newtag-code">Command: <code>edit n/Look edited the task des/BB Productive is the best app I&#8217;ve every used t/NewTag</code></a></h5>
+<h5 id="command-code-edit-index-n-look-edited-the-task-des-bb-productive-is-the-best-app-i-ve-ever-used-t-newtag-code"><a class="link" href="#command-code-edit-index-n-look-edited-the-task-des-bb-productive-is-the-best-app-i-ve-ever-used-t-newtag-code">Command: <code>edit INDEX n/Look edited the task des/BB Productive is the best app I&#8217;ve ever used t/NewTag</code></a></h5>
 <div class="paragraph">
-<p>Oh, looks like you&#8217;ve made a mistake, don&#8217;t worry you can edit your tasks. But first a few things to take note of:</p>
+<p>Made a mistake when adding your task? don&#8217;t worry you can always edit your tasks! But first, a few things to take note of:</p>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
 <div class="ulist">
 <ul>
 <li>
@@ -515,11 +508,15 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </li>
 </ul>
 </div>
+</td>
+</tr>
+</table>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="images/edit_success.png" alt="edit success" width="790">
 </div>
-<div class="title">Figure 9. Edit success</div>
+<div class="title">Figure 7. Edit success</div>
 </div>
 </div>
 </div>
@@ -528,13 +525,13 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="sect4">
 <h5 id="command-code-done-a-href-index-index-a-index-code"><a class="link" href="#command-code-done-a-href-index-index-a-index-code">Command: <code>done <a href="#index">INDEX</a> INDEX&#8230;&#8203;</code></a></h5>
 <div class="paragraph">
-<p>After some hardwork, you&#8217;ve finished a task, so now let&#8217;s mark it as done. You can also mark multiple tasks as done by using space to separate those <a href="#index">indexes</a>.</p>
+<p>After some hard work, you have finally finished a task! Let us now mark it as done by using the done command. You can also mark multiple tasks as done by using space to separate the <a href="#index">indexes</a>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/done_success.png" alt="done success" width="790">
 </div>
-<div class="title">Figure 10. Done success</div>
+<div class="title">Figure 8. Done success</div>
 </div>
 </div>
 </div>
@@ -545,8 +542,19 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="paragraph">
 <p>Oh boy, after a couple of hours, you have filled your day with so many activities! You can choose to change the current ordering of your task list to something more suitable by sorting it by one or more of these task fields:</p>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
 <div class="paragraph">
 <p><em>All fields with r- prepended refers to a reverse of the original.</em></p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -566,7 +574,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p>date &#8594; Shows tasks with reminders closer to today first then tasks without reminders.</p>
 </li>
 <li>
-<p>r-date &#8594; Shows tasks with no remidners first then tasks with reminders further from today.</p>
+<p>r-date &#8594; Shows tasks with no reminders first then tasks with reminders further from today.</p>
 </li>
 <li>
 <p>name &#8594; Shows tasks in alphanumeric order.</p>
@@ -576,17 +584,17 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </li>
 </ol>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 <div class="paragraph">
 <p>Sort order is removed after any find command is applied.<br>
-It however remains when any other task commands are applied - add, edit, done, delete, etc.<br>
-Also sort orders are not retained after closing the application</p>
+However, it, remains when any other task commands are applied - add, edit, done, delete, etc.<br>
+Also, sort orders are not retained after closing the application</p>
 </div>
 </td>
 </tr>
@@ -596,7 +604,7 @@ Also sort orders are not retained after closing the application</p>
 <div class="content">
 <img src="images/sort_success.png" alt="sort success" width="790">
 </div>
-<div class="title">Figure 11. Sort success</div>
+<div class="title">Figure 9. Sort success</div>
 </div>
 </div>
 </div>
@@ -613,7 +621,7 @@ Also sort orders are not retained after closing the application</p>
 <div class="sect4">
 <h5 id="command-code-find-phrase-t-tag-code"><a class="link" href="#command-code-find-phrase-t-tag-code">Command: <code>find PHRASE t/TAG&#8230;&#8203;</code></a></h5>
 <div class="paragraph">
-<p>Oh my after sorting, you still have so many tasks! You can perform a search for tasks by name or tag to find the tasks most important to you.</p>
+<p>Even after sorting, you still have so many tasks in your tasklist. You can perform a search for tasks by name or tag to find the tasks most important to you.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -621,18 +629,18 @@ Also sort orders are not retained after closing the application</p>
 <p>You can choose to search by both name and tag, just name or just tag.</p>
 </li>
 <li>
-<p>For phrase searching, it is slightly typo tolerant and will show tasks that differ from the <code>PHRASE</code> by a little.</p>
+<p>For phrase searching, it is tolerant to typographical errors and will show tasks that differ from the <code>PHRASE</code> by a little.</p>
 </li>
 <li>
-<p>However, tag names provided must be an exact match (ignoring case).</p>
+<p>However, tag names provided must be an exact match (ignoring casing of letters).</p>
 </li>
 </ul>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -646,7 +654,7 @@ Also sort orders are not retained after closing the application</p>
 <div class="content">
 <img src="images/find_success.png" alt="find success" width="790">
 </div>
-<div class="title">Figure 12. Find success</div>
+<div class="title">Figure 10. Find success</div>
 </div>
 </div>
 </div>
@@ -655,13 +663,13 @@ Also sort orders are not retained after closing the application</p>
 <div class="sect4">
 <h5 id="command-code-tag-code"><a class="link" href="#command-code-tag-code">Command : <code>tag</code></a></h5>
 <div class="paragraph">
-<p>Hmmm, I wonder what types of tasks I have! You can view all existing tags in BB Productive by entering the Tag command!</p>
+<p>Wondering what types of tasks you have? You can view all existing tags in BB Productive by entering the Tag command!</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/tag_success.png" alt="tag success" width="790">
 </div>
-<div class="title">Figure 13. Tags success</div>
+<div class="title">Figure 11. Tags success</div>
 </div>
 </div>
 </div>
@@ -670,13 +678,13 @@ Also sort orders are not retained after closing the application</p>
 <div class="sect4">
 <h5 id="command-code-delete-a-href-index-index-a-index-code"><a class="link" href="#command-code-delete-a-href-index-index-a-index-code">Command: <code>delete <a href="#index">INDEX</a> INDEX&#8230;&#8203;</code></a></h5>
 <div class="paragraph">
-<p>Oh my, my task list is getting overcrowded&#8230;&#8203; Luckily, you can use the delete command to delete one or more tasks.</p>
+<p>Tasklist getting overcrowded? Use the delete command to delete one or more tasks To clean up your tasklist!</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/delete_success.png" alt="delete success" width="790">
 </div>
-<div class="title">Figure 14. Delete success</div>
+<div class="title">Figure 12. Delete success</div>
 </div>
 </div>
 </div>
@@ -685,13 +693,13 @@ Also sort orders are not retained after closing the application</p>
 <div class="sect4">
 <h5 id="command-code-clear-code"><a class="link" href="#command-code-clear-code">Command: <code>clear</code></a></h5>
 <div class="paragraph">
-<p>Oh my it&#8217;s been a productive month, time to start on a clean slate. You may delete all tasks from your list by issuing a clear command.</p>
+<p>It&#8217;s been a productive month and you want to  start on a clean slate. You may delete all tasks from your list by issuing a clear command.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/clear_success.png" alt="clear success" width="790">
 </div>
-<div class="title">Figure 15. Clear success</div>
+<div class="title">Figure 13. Clear success</div>
 </div>
 </div>
 </div>
@@ -711,31 +719,31 @@ Also sort orders are not retained after closing the application</p>
 <div class="sect3">
 <h4 id="experience-xp-points"><a class="link" href="#experience-xp-points">6.2.2. Experience (XP) Points</a></h4>
 <div class="paragraph">
-<p>Just like in a game, the pet has experience (XP) points that is used to level up. Notice whenever a task is done, the XP increases by 5 points? You can also increase the XP by 25 points when you finish a pomodoro cycle. When the XP points accumulations to a total of 100, the pet levels up! Through this reward system, you will be motivated to start doing your work and completing them! Proceed to the next section for information about the evolution of the pet.</p>
+<p>Just like in a game, the pet has experience (XP) points that are used to level up. Notice whenever a task is done, the XP increases by 5 points? You can also increase the XP by 25 points when you finish a Pomodoro cycle. When the XP points accumulations to a total of 100, the pet levels up! Through this reward system, you will be motivated to start doing your work and completing them! Proceed to the next section for information about the evolution of the pet.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/UG_Done_before.png" alt="UG Done before" width="790">
 </div>
-<div class="title">Figure 16. Done Before</div>
+<div class="title">Figure 14. Done Before</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/UG_Done_Finish.png" alt="UG Done Finish" width="790">
 </div>
-<div class="title">Figure 17. Done Afrer</div>
+<div class="title">Figure 15. Done After</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="evolution"><a class="link" href="#evolution">6.2.3. Evolution</a></h4>
 <div class="paragraph">
-<p>The pet has three stages of in its evolution: the baby, the teenager and the dad. Each level can be achieved after every successive accumulation of 100 XP points. Can&#8217;t wait to see your pet grow? Start doing work to gain more XP!</p>
+<p>The pet has three stages in its evolution: the baby, the teenager and the dad. Each level can be achieved after every successive accumulation of 100 XP points. Can&#8217;t wait to see your pet grow? Start doing work to gain more XP!</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/BBProductiveGrowing.png" alt="BBProductiveGrowing" width="790">
 </div>
-<div class="title">Figure 18. Evolution of Pet</div>
+<div class="title">Figure 16. Evolution of Pet</div>
 </div>
 </div>
 <div class="sect3">
@@ -747,7 +755,7 @@ Also sort orders are not retained after closing the application</p>
 <div class="content">
 <img src="images/hangry-moods-examples.png" alt="hangry moods examples" width="790">
 </div>
-<div class="title">Figure 19. Example of different hangry modes</div>
+<div class="title">Figure 17. Example of different hangry modes</div>
 </div>
 </div>
 </div>
@@ -784,23 +792,23 @@ Also sort orders are not retained after closing the application</p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Indexes refer to the current tasklist on display, it does not refer to the indices of the entire task list. Note also that indexes start from 1 and not 0.</p>
+<p>Indexes refer to the current tasklist on display, it does not refer to the indices of the entire task list. Note that indexes start from 1 and not 0.</p>
 </div>
 <div class="paragraph">
-<p>You can use the value (decimals allowed) following <code>tm/</code> to represent your desired amount of time in <strong>minutes</strong> for a particular pomodoro cycle.</p>
+<p>You can input a value  (decimals allowed) following the prefix <code>tm/</code> to represent your desired amount of time in <strong>minutes</strong> for a particular Pomodoro cycle.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>After you&#8217;ve successfully <em>pommed</em> a task, you can see the task&#8217;s name in the bar at the top of the tasklist. The timer there will start counting down as well.</p>
+<p>After you&#8217;ve successfully <em>pommed</em> a task, you can see the task&#8217;s name in the bar at the top of the task list. The timer there will start counting down as well.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/pom_success.png" alt="pom success" width="790">
 </div>
-<div class="title">Figure 20. Example screen when pom is successfully executed</div>
+<div class="title">Figure 18. Example screen when pom is successfully executed</div>
 </div>
 </div>
 <div class="sect4">
@@ -809,13 +817,13 @@ Also sort orders are not retained after closing the application</p>
 <p>Not exactly a break. But let&#8217;s say you need to leave your desk real quick. You can pause a running Pomodoro timer by simply calling <code>pom pause</code>.</p>
 </div>
 <div class="paragraph">
-<p>Once, you&#8217;ve paused pomodoro, the timer will freeze and remain so until you resume in the next step.</p>
+<p>Once you&#8217;ve paused Pomodoro, the timer will freeze and remain so until you resume in the next step.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/pom_pause.png" alt="pom pause" width="790">
 </div>
-<div class="title">Figure 21. Example screen when pom is successfully paused</div>
+<div class="title">Figure 19. Example screen when pom is successfully paused</div>
 </div>
 </div>
 <div class="sect4">
@@ -827,7 +835,7 @@ Also sort orders are not retained after closing the application</p>
 <div class="content">
 <img src="images/pom_continuing.png" alt="pom continuing" width="790">
 </div>
-<div class="title">Figure 22. Example screen when pom is successfully resumed</div>
+<div class="title">Figure 20. Example screen when pom is successfully resumed</div>
 </div>
 </div>
 <div class="sect4">
@@ -839,19 +847,19 @@ Also sort orders are not retained after closing the application</p>
 <div class="content">
 <img src="images/pom_time_expire.png" alt="pom time expire" width="790">
 </div>
-<div class="title">Figure 23. Prompt when the pomodoro timer expires</div>
+<div class="title">Figure 21. Prompt when the Pomodoro timer expires</div>
 </div>
 </div>
 <div class="sect4">
 <h5 id="step-5-break-time"><a class="link" href="#step-5-break-time">Step 5: Break-time!</a></h5>
 <div class="paragraph">
-<p>Afterwards, the app will prompt you if you would like to begin a 5 minute break (as per the pomodoro technique). Similarly, you need to respond with Yes (Y) or No (N). Responding with No will set the app to its neutral state. Yes will start the break timer.</p>
+<p>Afterwards, the app will prompt you if you would like to begin a 5-minute break (as per the Pomodoro technique). Similarly, you need to respond with Yes (Y) or No (N). Responding with No(N) will set the app to its neutral state. Responding with a Yes(Y) will start the break timer.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/pom_prompt_break.png" alt="pom prompt break" width="790">
 </div>
-<div class="title">Figure 24. Prompt checking if you&#8217;d like to take a break</div>
+<div class="title">Figure 22. Prompt checking if you&#8217;d like to take a break</div>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -861,7 +869,7 @@ Also sort orders are not retained after closing the application</p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>You will not be able to do execute other commands during these prompts. Please respond to the prompts to proceed.</p>
+<p>You will not be able to execute other commands during these prompts. Please respond to the prompts to proceed.</p>
 </div>
 </td>
 </tr>
@@ -869,15 +877,15 @@ Also sort orders are not retained after closing the application</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="back-to-step-1"><a class="link" href="#back-to-step-1">Back to Step 1?</a></h5>
+<h5 id="back-to-step-1"><a class="link" href="#back-to-step-1">Back to Step 1</a></h5>
 <div class="paragraph">
-<p>At the end of the break, the app will return to it&#8217;s "neutral" state and you can  repeat the process, if you wish.</p>
+<p>At the end of the break, the app will return to its "neutral" state. Wish to start on another Pomodoro cycle? Head back to step 1 for another journey of productivity.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/pom_break_end.png" alt="pom break end" width="790">
 </div>
-<div class="title">Figure 25. End of pomodoro cycle screen</div>
+<div class="title">Figure 23. End of Pomodoro cycle screen</div>
 </div>
 </div>
 </div>
@@ -886,21 +894,21 @@ Also sort orders are not retained after closing the application</p>
 <h3 id="statistics"><a class="link" href="#statistics">6.4. Statistics</a></h3>
 <div class="paragraph">
 <p><a id="statistics"></a>
-As you continue to use BB Productive, you may start to wonder how productive you have been over time. This is where our Statistics feature comes in! Simply type in the command 'stats' to access the Statistics Tab and track your productivity. Look out for the background color of the "Statistics" Tab. If it turns orange after you run the command, you are on the correct tab.</p>
-</div>
-<div class="paragraph">
-<p>The Statistics Tab consists of the following 2 features to help you keep track of your productivity. From the figure below, the Daily Challenge is the progress bar near the top of the screen and the Productivity Charts are the 2 bar charts below.</p>
+As you continue to use BB Productive, you may start to wonder how productive you have been over time. This is where our Statistics feature comes in! Simply type in the command stats` to access the Statistics Tab and track your productivity. Look out for the background color of the "Statistics" Tab. If it turns orange after you run the command, you are on the correct tab.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/stats_tab.png" alt="stats tab" width="400">
 </div>
-<div class="title">Figure 26. Statistics Tab</div>
+<div class="title">Figure 24. Statistics Tab</div>
+</div>
+<div class="paragraph">
+<p>The Statistics Tab consists of two features to help you keep track of your productivity : the Daily Challenge and the productivity charts.</p>
 </div>
 <div class="sect3">
 <h4 id="daily-challenge"><a class="link" href="#daily-challenge">6.4.1. Daily Challenge</a></h4>
 <div class="paragraph">
-<p>The Daily Challenge tracks the total duration you have kept the Pomodoro running on the current day. The more you run the Pomodoro, the more the progress bar fills, and the closer you are to clearing the challenge! Try to clear the Daily Challenge every day to hit your productivity goals!</p>
+<p>The Daily Challenge tracks the total duration you have completed with the Pomodoro running on the current day. The more you run the Pomodoro, the more the progress bar fills, and the closer you are to clearing the challenge! Try to clear the Daily Challenge every day to hit your productivity goals!</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -910,7 +918,7 @@ As you continue to use BB Productive, you may start to wonder how productive you
 </td>
 <td class="content">
 <div class="paragraph">
-<p>You can customise the duration you aim to achieve on a daily basis by using the Set Command as described <a href="#settings">here</a>.</p>
+<p>You can customize the duration you aim to achieve on a daily basis by using the Set Command as described in <a href="#settings">Section 6.11 Set Commands</a>.</p>
 </div>
 </td>
 </tr>
@@ -920,14 +928,14 @@ As you continue to use BB Productive, you may start to wonder how productive you
 <div class="sect3">
 <h4 id="productivity-charts"><a class="link" href="#productivity-charts">6.4.2. Productivity Charts</a></h4>
 <div class="paragraph">
-<p>The Productivity Charts tracks 2 main data points daily. Firstly, it tracks the number of tasks you have completed. Secondly, it tracks the total duration you ran the Pomodoro. With this information, you can gauge your productivity over time and make proper adjustments to your schedule to improve your productivity. If you start noticing the orange bars getting shorter, realize that it is time to buckle up and work harder, or else you may lose your productivity momentum!</p>
+<p>The Productivity Charts tracks two main data points daily. Firstly, it tracks the number of tasks you have completed. Secondly, it tracks the total duration you ran the Pomodoro. With this information, you can gauge your productivity over time and make proper adjustments to your schedule to improve your productivity. If you start noticing the orange bars getting shorter, realize that it is time to buckle up and work harder, or else you may lose your productivity momentum!</p>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="autocomplete"><a class="link" href="#autocomplete">6.5. AutoComplete</a></h3>
 <div class="paragraph">
-<p>As much as you enjoy typing, we&#8217;ve added some extra grease to help you type even faster. You can trigger our very intelligent auto complete function by pressing <code>tab</code> on the keyboard.</p>
+<p>As much as you enjoy typing, we&#8217;ve added some extra grease to help you type even faster. You can trigger our intelligent autocomplete function by pressing <code>tab</code> on the keyboard.</p>
 </div>
 <div class="paragraph">
 <p>You can expect:<br></p>
@@ -943,7 +951,7 @@ As you continue to use BB Productive, you may start to wonder how productive you
 <div class="content">
 <img src="images/AC_command.png" alt="AC command">
 </div>
-<div class="title">Figure 27. Command word auto complete</div>
+<div class="title">Figure 25. Command word auto complete</div>
 </div>
 <div class="ulist">
 <ul>
@@ -956,7 +964,7 @@ As you continue to use BB Productive, you may start to wonder how productive you
 <div class="content">
 <img src="images/prefix_complete.png" alt="prefix complete">
 </div>
-<div class="title">Figure 28. Prefix auto complete</div>
+<div class="title">Figure 26. Prefix auto complete</div>
 </div>
 <div class="ulist">
 <ul>
@@ -969,7 +977,7 @@ As you continue to use BB Productive, you may start to wonder how productive you
 <div class="content">
 <img src="images/sort_complete.png" alt="sort complete">
 </div>
-<div class="title">Figure 29. Sort auto complete</div>
+<div class="title">Figure 27. Sort auto complete</div>
 </div>
 <div class="ulist">
 <ul>
@@ -982,7 +990,7 @@ As you continue to use BB Productive, you may start to wonder how productive you
 <div class="content">
 <img src="images/AC_removal_success.png" alt="AC removal success">
 </div>
-<div class="title">Figure 30. Done index removal</div>
+<div class="title">Figure 28. Done index removal</div>
 </div>
 <div class="ulist">
 <ul>
@@ -995,7 +1003,7 @@ As you continue to use BB Productive, you may start to wonder how productive you
 <div class="content">
 <img src="images/complete_fail.png" alt="complete fail">
 </div>
-<div class="title">Figure 31. Auto complete not found</div>
+<div class="title">Figure 29. Auto complete not found</div>
 </div>
 </div>
 <div class="sect2">
@@ -1003,13 +1011,13 @@ As you continue to use BB Productive, you may start to wonder how productive you
 <div class="sect3">
 <h4 id="what-s-a-reminder"><a class="link" href="#what-s-a-reminder">6.6.1. What&#8217;s a reminder?</a></h4>
 <div class="paragraph">
-<p>BBProductive provides an avenue to remember to do time sensitive tasks in the form of reminders. When the time for the reminder has arrived, BBProductive alerts you to do the task! Never forget to do buy milk or any other time sensitive task ever again!</p>
+<p>BBProductive provides you with the option to remind you during those forgetful times. BBProductive can help to remind you to do time-sensitive tasks such as taking temperature in the afternoon. When the time for the reminder has arrived, BBProductive alerts you to do the task! Never forget to buy milk or any other time-sensitive task ever again!</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="how-do-you-use-it"><a class="link" href="#how-do-you-use-it">6.6.2. How do you use it?</a></h4>
 <div class="paragraph">
-<p>Add a reminder to your task by adding <code>r/DD/MM/YY@HH:mm</code> when editing or adding a task. A pop up containing the task name and description will then appear reminding you to complete the task at the specified date and time.</p>
+<p>You can add a reminder to your task by adding <code>r/DD/MM/YY@HH:mm</code> when editing or adding a task. A pop up containing the task name and description will then appear reminding you to complete the task at the specified date and time.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1017,37 +1025,31 @@ As you continue to use BB Productive, you may start to wonder how productive you
 <div class="sect4">
 <h5 id="add-task-with-reminder"><a class="link" href="#add-task-with-reminder">Add Task with reminder</a></h5>
 <div class="paragraph">
-<p>Add task with reminder with the following command <code>add n/&lt;name&gt; r/DD/MM/YY@HH:mm</code>. You can also include the other flags such as <code>t/</code>, <code>des/</code> and more.</p>
+<p>Add a task with a reminder using the following command <code>add n/&lt;name&gt; r/DD/MM/YY@HH:mm</code>. You can also include the other flags such as <code>t/</code>, <code>des/</code> and more.</p>
 </div>
 <div class="paragraph">
-<p>For example: <code>add n/Buy Milk r/11/11/20@23:59</code> as shown below.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/reminder_add.png" alt="reminder add" width="395">
-</div>
-<div class="title">Figure 32. Input for adding a task with reminder.</div>
+<p>For example: <code>add n/Buy Milk r/11/11/20@23:59</code>.</p>
 </div>
 <div class="paragraph">
-<p>This results in a task with the reminder&#8217;s date in the task card as well as result display giving feedback.</p>
+<p>After you have successfully added the task, you will see the following success message in the dialogue box!</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/AddTaskReminderUp.png" alt="AddTaskReminderUp" width="395">
 </div>
-<div class="title">Figure 33. Success for adding a task with reminder on result display(top).</div>
+<div class="title">Figure 30. Success for adding a task with reminder on result display(top).</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/AddTaskReminderDown.png" alt="AddTaskReminderDown" width="395">
 </div>
-<div class="title">Figure 34. Success for adding a task with reminder on result display(scroll to bottom).</div>
+<div class="title">Figure 31. Success for adding a task with reminder on result display(scroll to bottom).</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/reminder_add_success.png" alt="reminder add success" width="790">
 </div>
-<div class="title">Figure 35. Success for adding a task with reminder(top).</div>
+<div class="title">Figure 32. Success for adding a task with reminder(top).</div>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -1063,7 +1065,7 @@ As you continue to use BB Productive, you may start to wonder how productive you
 </li>
 <li>
 <p>Secondly, the date can only be set in the future and not the past.<br>
-An error message will be shown on the result display if either of the 2 aforementioned issues are breached. This applies for editing as task to have a reminder as well.</p>
+An error message will be shown on the result display if either of the 2 aforementioned issues is breached. This applies when editing a task to have a reminder as well.</p>
 </li>
 </ul>
 </div>
@@ -1078,34 +1080,16 @@ An error message will be shown on the result display if either of the 2 aforemen
 <p>Edit a task to include a reminder with the following command <code>edit &lt;index&gt; r/DD/MM/YY@HH:MM</code>. You can also include the other flags such as <code>t/</code>, <code>des/</code> and more.</p>
 </div>
 <div class="paragraph">
-<p>For example: <code>edit 1 r/01/11/20@11:59</code> as shown below.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/reminder_edit.png" alt="reminder edit" width="395">
-</div>
-<div class="title">Figure 36. Input for editing task to have reminder or edit reminder itself.</div>
+<p>For example: <code>edit 1 r/01/11/20@11:59</code>.</p>
 </div>
 <div class="paragraph">
-<p>Results in a task with the reminder&#8217;s date in the task card as well as result display giving feedback.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/EditTaskReminderUp.png" alt="EditTaskReminderUp" width="395">
-</div>
-<div class="title">Figure 37. Success for editing a task with reminder on result display(top).</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/EditTaskReminderDown.png" alt="EditTaskReminderDown" width="395">
-</div>
-<div class="title">Figure 38. Success for editing a task with reminder on result display(scroll to bottom).</div>
+<p>This results in a task with the reminder&#8217;s date in the task card as well as result display giving feedback.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/reminder_edit_success.png" alt="reminder edit success" width="790">
 </div>
-<div class="title">Figure 39. Success for editing task&#8217;s reminder.</div>
+<div class="title">Figure 33. Success for editing task&#8217;s reminder, reminder date appears on task card.</div>
 </div>
 </div>
 </div>
@@ -1115,13 +1099,13 @@ An error message will be shown on the result display if either of the 2 aforemen
 <div class="sect3">
 <h4 id="what-s-recurring"><a class="link" href="#what-s-recurring">6.7.1. What&#8217;s Recurring?</a></h4>
 <div class="paragraph">
-<p>Recurring tasks allows you to have repeated tasks either every day or every week. This means the task previously set as done will be set as unfinished. Furthermore, if there is a reminder set, recurring tasks is smart enough to change the reminder date according to the interval you set. This means a reminder that has already been triggered for a daily recurring task will also fire again the following day.</p>
+<p>Have a task you need to complete every day or every week? BBProductive has you covered with recurring tasks! Add a recurring task and the task will be marked as unfinished every day or every week? This means not having to add the same task over and over again! Furthermore, you can accompany these recurring tasks with reminders. Now you don&#8217;t have to worry about forgetting to do your daily or weekly tasks!</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="how-do-you-use-it-2"><a class="link" href="#how-do-you-use-it-2">6.7.2. How do you use it?</a></h4>
 <div class="paragraph">
-<p>Add a recurring attribute to your task by adding <code>rec/d</code> for daily recurring tasks or <code>rec/w</code> for weekly. This will trigger the recurring behaviour for the task including the task&#8217;s done and reminder attribute.</p>
+<p>Add a recurring attribute to your task by adding <code>rec/d</code> for daily recurring tasks or <code>rec/w</code> for weekly. This will trigger the recurring behaviour for the task, meaning tasks will be reset according to the delay you set! This means after marking a task as done, the next day (or week) it will be marked as unfinished. For reminders, BBProductive will also add a day(or week) to the reminder date! This ensures you are reminded on a recurring basis!</p>
 </div>
 <div class="sect4">
 <h5 id="command-code-rec-d-code-or-code-rec-w-code"><a class="link" href="#command-code-rec-d-code-or-code-rec-w-code">Command <code>rec/d</code> or <code>rec/w</code></a></h5>
@@ -1130,37 +1114,34 @@ An error message will be shown on the result display if either of the 2 aforemen
 <div class="sect4">
 <h5 id="add-task-with-recurring"><a class="link" href="#add-task-with-recurring">Add Task with recurring</a></h5>
 <div class="paragraph">
-<p>Add task with recurring with the following command <code>add n/&lt;name&gt; rec/d</code> or <code>add n/&lt;name&gt; rec/w</code>. You can also include the other flags such as <code>t/</code>, <code>des/</code> and more.</p>
+<p>Add a task with a recurring attribute using the following command <code>add n/&lt;name&gt; rec/d</code> or <code>add n/&lt;name&gt; rec/w</code>. You can also include the other flags such as <code>t/</code>, <code>des/</code> and more.</p>
 </div>
 <div class="paragraph">
-<p>For example: <code>add n/Buy Milk rec/d</code> as shown below.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/recurring_add.png" alt="recurring add" width="395">
-</div>
-<div class="title">Figure 40. Input for adding recurring attribute to task.</div>
+<p>For example: <code>add n/Buy Milk rec/d</code></p>
 </div>
 <div class="paragraph">
-<p>Results in a task with the recurring attribute in the task card as well as result display giving feedback.</p>
+<p>After you have successfully added the task, you will see the following success message in the dialogue box!</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/AddTaskRecurringUp.png" alt="AddTaskRecurringUp" width="395">
 </div>
-<div class="title">Figure 41. Success for adding a task with recurring attribute on result display(top).</div>
+<div class="title">Figure 34. Success for adding a task with recurring attribute on result display(top).</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/AddTaskRecurringDown.png" alt="AddTaskRecurringDown" width="395">
 </div>
-<div class="title">Figure 42. Success for adding a task with recurring attribute on result display(scroll to bottom).</div>
+<div class="title">Figure 35. Success for adding a task with recurring attribute on result display(scroll to bottom).</div>
+</div>
+<div class="paragraph">
+<p>You will see the task appear in the tasklist with a recurring attribute at the side!</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/recurring_add_success.png" alt="recurring add success" width="790">
 </div>
-<div class="title">Figure 43. Success for adding recurring attribute to task card.</div>
+<div class="title">Figure 36. Success for adding recurring attribute to task card.</div>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -1170,7 +1151,7 @@ An error message will be shown on the result display if either of the 2 aforemen
 </td>
 <td class="content">
 <div class="paragraph">
-<p>The format for recurring is strictly <code>rec/d</code> or <code>rec/w</code> as there is only daily and weekly recurring tasks. Any other input will be recognized as invalid and an error message will be shown on the result display.</p>
+<p>The format for recurring is strictly <code>rec/d</code> or <code>rec/w</code> as there are only daily and weekly recurring tasks. Any other input will be recognized as invalid and an error message will be shown on the result display.</p>
 </div>
 </td>
 </tr>
@@ -1180,99 +1161,78 @@ An error message will be shown on the result display if either of the 2 aforemen
 <div class="sect4">
 <h5 id="edit-task-with-recurring"><a class="link" href="#edit-task-with-recurring">Edit Task with recurring</a></h5>
 <div class="paragraph">
-<p>Edit a task to include a recurring with the following command <code>edit &lt;index&gt; rec/d</code> or <code>edit &lt;index&gt; rec/w</code>. You can also include the other flags such as <code>t/</code>, <code>des/</code> and more.</p>
+<p>Want to make an existing task recurring? You can edit a task to include a recurring with the following command <code>edit &lt;index&gt; rec/d</code> or <code>edit &lt;index&gt; rec/w</code>. You can also include the other flags such as <code>t/</code>, <code>des/</code> and more.</p>
 </div>
 <div class="paragraph">
-<p>For example: <code>edit 1 rec/w</code> as shown below.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/recurring_edit.png" alt="recurring edit" width="395">
-</div>
-<div class="title">Figure 44. Input for editing recurring attribute to task.</div>
+<p>For example: <code>edit 1 rec/w</code>.</p>
 </div>
 <div class="paragraph">
-<p>Results in a task with the reminder&#8217;s date in the specific task card.</p>
+<p>Once completed, you will see that the task details will be updated with a recurring attribute.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/EditTaskRecurringUp.png" alt="EditTaskRecurringUp" width="395">
+<img src="images/EditRecurringTaskWeekly.png" alt="EditRecurringTaskWeekly" width="790">
 </div>
-<div class="title">Figure 45. Success for editing a task with recurring attribute on result display(top).</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/EditTaskRecurringDown.png" alt="EditTaskRecurringDown" width="395">
-</div>
-<div class="title">Figure 46. Success for editing a task with recurring attribute on result display(scroll to bottom).</div>
+<div class="title">Figure 37. Task card now has a weekly recurring attribute</div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="recurring-behaviour-when-task-is-marked-as-done"><a class="link" href="#recurring-behaviour-when-task-is-marked-as-done">6.8. Recurring behaviour when task is marked as done</a></h3>
+<h3 id="recurring-behaviour-when-a-task-is-marked-as-done"><a class="link" href="#recurring-behaviour-when-a-task-is-marked-as-done">6.8. Recurring behaviour when a task is marked as done</a></h3>
 <div class="paragraph">
-<p>Mark a task as done as you would normally using the command <code>done &lt;index&gt;</code>. For a recurring task, after the stipulated amount of time(either daily or weekly), the task will be reset as undone.</p>
+<p>Mark a task as done as you would normally using the command <code>done &lt;index&gt;</code>. For a recurring task, after the stipulated amount of time(either daily or weekly), the task will be reset as unfinished.</p>
 </div>
 <div class="paragraph">
-<p>For example: <code>done 1</code>. After a day&#8217;s worth of time, the task will be set from done to undone.</p>
+<p>For example: <code>done 1</code> on a daily recurring task.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/recurring_behaviour_done.png" alt="recurring behaviour done" width="790">
 </div>
-<div class="title">Figure 47. Task initially marked as done on task card.</div>
+<div class="title">Figure 38. Task initially marked as done on a task card.</div>
+</div>
+<div class="paragraph">
+<p>After one day, the task will be set from done to unfinished, meaning the tick in the checkbox will disappear.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/recurring_behaviour_undone_resultDisplay.png" alt="recurring behaviour undone resultDisplay" width="395">
 </div>
-<div class="title">Figure 48. Task has been reset shown on result display.</div>
+<div class="title">Figure 39. Task has been reset shown on result display.</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/recurring_behaviour_undone.png" alt="recurring behaviour undone" width="790">
 </div>
-<div class="title">Figure 49. Task has been reset shown on task card.</div>
+<div class="title">Figure 40. Task has been reset as shown on the task card.</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="recurring-behaviour-when-task-has-reminder"><a class="link" href="#recurring-behaviour-when-task-has-reminder">6.9. Recurring behaviour when task has reminder</a></h3>
+<h3 id="recurring-behaviour-when-the-task-has-a-reminder"><a class="link" href="#recurring-behaviour-when-the-task-has-a-reminder">6.9. Recurring behaviour when the task has a reminder</a></h3>
 <div class="paragraph">
-<p>Add a reminder as you would normally using the command <code>edit &lt;index&gt; r/DD/MM/YY@HH:mm</code> or <code>add n/&lt;name&gt; r/DD/MM/YY@HH:mm rec/&lt;type&gt;</code> if you are adding the task. For a recurring task, after the stipulated amount of time(either daily or weekly), the reminder will increment by the time interval if it has been triggered. This means the reminder will be incremented by 1 day if the time interval is daily, and 7 days if the time interval is weekly.</p>
-</div>
-<div class="paragraph">
-<p>For example: <code>done 1</code>. After a day&#8217;s worth of time, the task will be set from done to undone.</p>
+<p>Add a reminder as you would normally using the command <code>edit &lt;index&gt; r/DD/MM/YY@HH:mm</code> or <code>add n/&lt;name&gt; r/DD/MM/YY@HH:mm rec/&lt;type&gt;</code> if you are adding the task. For a recurring task, after the stipulated amount of time(either daily or weekly), the reminder will be incremented by the time interval if it has been triggered. This means that the reminder will be incremented by 1 day if the time interval is daily, and 7 days if the time interval is weekly.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/recurring_behaviour_reminder.png" alt="recurring behaviour reminder" width="790">
 </div>
-<div class="title">Figure 50. Task initially has a reminder for 13th April 2020 at 9:32PM.</div>
+<div class="title">Figure 41. Task initially has a reminder for 13th April 2020 at 9:32 PM.</div>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="images/recurring_behaviour_new_reminder_resultDisplay(Top).png" alt="recurring behaviour new reminder resultDisplay(Top)" width="395">
-</div>
-<div class="title">Figure 51. Task has been reset shown on result display with updated reminder time of 14th April 2020 at 9:32PM(top).</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/recurring_behaviour_new_reminder_resultDisplay(Bottom).png" alt="recurring behaviour new reminder resultDisplay(Bottom)" width="395">
-</div>
-<div class="title">Figure 52. Task has been reset shown on result display with updated reminder time of 14th April 2020 at 9:32PM(scroll to bottom).</div>
+<div class="paragraph">
+<p>After one day, you will see that the reminder time is updated!</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/recurring_behaviour_new_reminder.png" alt="recurring behaviour new reminder" width="790">
 </div>
-<div class="title">Figure 53. Task has been reset shown on task card with updated reminder time of 14th April 2020 at 9:32PM.</div>
+<div class="title">Figure 42. Task has been reset shown on task card with an updated reminder time of 14th April 2020 at 9:32 PM.</div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="Navigation"><a class="link" href="#Navigation">6.10. Navigation</a></h3>
 <div class="paragraph">
-<p><em>This section shows all the commands to navigate the app. There are multiple tabs that can be shown: tasklist, statistics and settings.</em></p>
+<p><em>This section shows all the commands to navigate the app. There are multiple tabs that can be shown: tasklist, statistics, and settings.</em></p>
 </div>
 <div class="sect3">
 <h4 id="commands"><a class="link" href="#commands">6.10.1. Commands</a></h4>
@@ -1321,7 +1281,7 @@ An error message will be shown on the result display if either of the 2 aforemen
 <em>This section explains how to use the set commands</em></p>
 </div>
 <div class="paragraph">
-<p>Tired of the name "BB"? Is 25 minutes of pomodoro time too short for you? Want to achieve more with the daily challenge? BB productive provides you with the option to customise the various features! Simply use the set commands to customise it the way you want.</p>
+<p>Tired of the name "BB"? Are 25 minutes of Pomodoro time too short for you? Want to achieve more with the daily challenge? BB productive provides you with the option to customize the various features! Simply use the set commands to customize it the way you want.</p>
 </div>
 <div class="paragraph">
 <p>command: <code>set [pet/PETNAME] [pom/POMDURATION] [daily/DAILYTARGET]</code></p>
@@ -1339,7 +1299,7 @@ Parameters can be in any order e.g. if the command specifies <code>pet/PETNAME p
 </table>
 </div>
 <div class="paragraph">
-<p>Take for example, you would like the name to be "Momu", the pomodoro duration to be 30 mins and the daily challenge target to be 150 minutes. Run this command:</p>
+<p>For example, you would like the name to be "Momu", the Pomodoro duration to be 30 mins and the daily challenge target to be 150 minutes. Run this command:</p>
 </div>
 <div class="paragraph">
 <p>eg. Command <code>set pet/Momu pom/30 daily/150</code></p>
@@ -1348,7 +1308,7 @@ Parameters can be in any order e.g. if the command specifies <code>pet/PETNAME p
 <div class="content">
 <img src="images/UG_Set_Before.png" alt="UG Set Before" width="790">
 </div>
-<div class="title">Figure 54. Set before</div>
+<div class="title">Figure 43. Set before</div>
 </div>
 <div class="paragraph">
 <p>Once the set is successful, you will see this success message being displayed.</p>
@@ -1357,16 +1317,16 @@ Parameters can be in any order e.g. if the command specifies <code>pet/PETNAME p
 <div class="content">
 <img src="images/UG_set_successmessage.png" alt="UG set successmessage" width="790">
 </div>
-<div class="title">Figure 55. set success message</div>
+<div class="title">Figure 44. set success message</div>
 </div>
 <div class="paragraph">
-<p>This is the view you will be seeing after running the set command. As you can see the pet name, pomodoro duration and daily challenge target have been changed!</p>
+<p>This is the view you will be seeing after running the set command. As you can see the pet name, Pomodoro duration and daily challenge target have been changed!</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/UG_Set_After.png" alt="UG Set After" width="790">
 </div>
-<div class="title">Figure 56. Set after</div>
+<div class="title">Figure 45. Set after</div>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -1375,10 +1335,10 @@ Parameters can be in any order e.g. if the command specifies <code>pet/PETNAME p
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Take note that there are restrictions in the values you can set.
+Take note that there are restrictions on the values you can set.
 Pet Name: Only alphanumerics are allowed
-Pomodoro Duration : The maximum amount is 60 minutes so as to prevent you from burning out
-Daily Target: The maximun amount is 720 minutes
+Pomodoro Duration: The maximum amount is 60 minutes so as to prevent you from burning out
+Daily Target: The maximum amount is 720 minutes
 </td>
 </tr>
 </table>
@@ -1387,7 +1347,7 @@ Daily Target: The maximun amount is 720 minutes
 <div class="sect2">
 <h3 id="storage"><a class="link" href="#storage">6.12. Storage</a></h3>
 <div class="paragraph">
-<p>All your progress, user preferences and settings are stored in the “data” folder. If you plan to switch devices, you may transfer your progress to another computer by copying the contents of the original device’s “data” folder to the new device’s data folder. This can be done through a thumbdrive.</p>
+<p>All your progress, user preferences and settings are stored in the “data” folder. If you plan to switch devices, you may transfer your progress to another computer by copying the contents of the original device’s “data” folder to the new device’s data folder. This can be done through a thumb drive.</p>
 </div>
 <div class="paragraph">
 <p>Please check that the following files are in the “data” folder to ensure that you are transferring the correct files!</p>
@@ -1396,7 +1356,7 @@ Daily Target: The maximun amount is 720 minutes
 <div class="content">
 <img src="images/storage.png" alt="storage" width="395">
 </div>
-<div class="title">Figure 57. Files in data folder</div>
+<div class="title">Figure 46. Files in data folder</div>
 </div>
 </div>
 </div>
@@ -1542,4 +1502,4 @@ e.g. <code>find Quiz Essay</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-16 10:32:25 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2020-04-16 16:03:10 UTC</div></div></div></body></html>
