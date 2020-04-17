@@ -74,6 +74,8 @@ or
 t/friend t/family`
 |===
 
+[#index]
+
 [IMPORTANT]
 ====
 Indexes refer to the current tasklist on display, it does not refer to the indices of the entire task list. Note also that indexes start from 1 and not 0.
@@ -111,7 +113,6 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 //end::quickStart[]
 
-[#index]
 [[Terminology]]
 == Terminology (Branson)
 _This section provides a quick description for the common terminologies used in this user guide._
@@ -166,6 +167,7 @@ _This section describes the features of BBProductive._
 
 //tag::TaskList[]
 === TaskList (Branson)
+
 image::tasks.png[width=790]
 
 ==== Task Fields
@@ -209,7 +211,7 @@ a|
 Eg. `r/10/06/20@12:30`
 
 a|
-*_ Format should be in DD/MM/YY@HH:mm_
+* _Format should be in DD/MM/YY@HH:mm_
 * A DateTime value in this format `DD/MM/YY@HH:mm`.
 
 |Recurring tag
@@ -217,14 +219,14 @@ a|
 `rec/d` +
 
 a|
-*_ Recurring tag should either be d or w_
+* _Recurring tag should either be d or w_
 * Options are _`d`_ or _`w`_ which respectively are daily or weekly.
 
 |Tag
 a|`[t/TAG]...` +
 `t/errand t/home`
 a|
-*_Tags should be in alphanumeric characters only_
+* _Tags should be in alphanumeric characters only_
 * There can be multiple tags or none at all.
 * spaces and symbols are disallowed.
 
@@ -243,6 +245,7 @@ Alright, time to start your productivity journey! Let's add our very first task 
 [IMPORTANT]
 When adding tasks, you only need the `n/` prefix as only the name field is compulsory.
 .Add success
+
 image::add_success.png[width=790]
 
 ==== Edit Command
@@ -760,6 +763,7 @@ e.g. `edit 2 n/Add Buy Feature ld/2020-03-04`
 e.g. `delete 3`
 * *Find* : `find KEYWORD [MORE_KEYWORDS]` +
 e.g. `find Quiz Essay`
+* *Tag*: `tag`
 * *Statistics* : `stats`
 * *Pom* : `pom 2 tm/5`
 * *List* : `list`
